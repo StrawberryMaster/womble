@@ -36,6 +36,12 @@ The [continue button editor](./codes/continue_button_editor.js) is a simple tool
 electionBtn.innerHTML = "Your text here";
 ```
 
+### "Click here to begin!" button editor
+The [click here to begin button editor](./codes/startscreen_button_editor.js) works just like the editor above, but it replaces the "Click here to begin!" button that appears on the title screen of a mod. You need to replace the text content of the button with your desired text. For example:
+```javascript
+gameStart.innerHTML = "Your text here";
+```
+
 # Mod notes
 Mods listed here are in various stages of development, and may be incomplete or buggy. Some may be intended for private use, but are being shared here for the sake of open-source-ness and preservation. Finally, a few others were canceled before they were finished, but are being shared here for the sake of "what could have been", or are here after being removed from the CTS mod gallery.
 
