@@ -3,7 +3,7 @@ A series of tools/addons/etc for The Campaign Trail mods
 
 ## Addon notes
 ### Banner changer
-The [banner changer](./src/banner_changer.js) is a simple tool for changing the candidate banner logos. It includes a single function, `changeImage()`, which takes an image URL as an argument and updates the banner logo to that image. For example:
+The [banner changer](./codes/banner_changer.js) is a simple tool for changing the candidate banner logos. It includes a single function, `changeImage()`, which takes an image URL as an argument and updates the banner logo to that image. For example:
 
 ```javascript
 changeImage("https://i.imgur.com/A1674e8.png");
@@ -18,7 +18,7 @@ if (e.running_mate_last_name === "Gephardt") {
 ```
 
 ### Candidate remover/restorer
-[`candidateRemover`](./src/candidateRemover.ts) is a tool for removing candidates from the election, and optionally restoring them later. It includes both `removeCandidate()` and `restoreCandidate()`. For a quick cheat-sheet:
+[`candidateRemover`](./codes/candidate_remover-restorer.js) is a tool for removing candidates from the election, and optionally restoring them later. It includes both `removeCandidate()` and `restoreCandidate()`. For a quick cheat-sheet:
 
 #### removeCandidate
 - `removeCandidate(301);` - removes candidate 301, distributes their votes proportionally among the other candidate
@@ -31,7 +31,7 @@ if (e.running_mate_last_name === "Gephardt") {
 - `restoreCandidate(301, { touch: 'final' });` - restores 301, *but* only makes them appear at the final results
 
 ### "Continue" button editor
-The [continue button editor](continue_button_editor.js) is a simple tool for changing the text of the "Continue" button that appears after booting up a mod. You need to replace the text content of the button with your desired text. For example:
+The [continue button editor](./codes/continue_button_editor.js) is a simple tool for changing the text of the "Continue" button that appears after booting up a mod. You need to replace the text content of the button with your desired text. For example:
 ```javascript
 electionBtn.innerHTML = "Your text here";
 ```
