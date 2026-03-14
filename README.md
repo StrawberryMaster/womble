@@ -107,6 +107,19 @@ For an individual answer, you can set a manual volatility value by creating a `v
 
 will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range.
 
+----
+
+## Music players
+### American Carnage player
+The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version of the player initially made for *2028: An Old Cycle*. See source [here](.players/ac_music_player.js).
+![American Carnage player](./images/ac_music_player.png)
+
+## QuickTime player
+Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario.
+![QuickTime player](./images/quicktime_player.png)
+
+----
+
 # Mod notes
 Mods listed here are in various stages of development, and may be incomplete or buggy. Some may be intended for private use, but are being shared here for the sake of open-source-ness and preservation. Finally, a few others were canceled before they were finished, but are being shared here for the sake of "what could have been", or are here after being removed from the CTS mod gallery.
 
