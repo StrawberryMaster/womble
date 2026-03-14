@@ -56,9 +56,56 @@ e.RMLabel3 = "Leader's Riding";
 ```
 
 leads to:
-
 ![Example 1](./images/SLE_example.png) ![Example 2](./images/SLE_example2.png)
 
+### Election night song
+The [election night song](./codes/election_night_song.js) changes the election night song to a custom one. To customize this, you can update the song details in the code below. This snippet should work on music players based off the *W.* and *American Carnage* player codes.
+```javascript
+const electionPlaylist = new Playlist();
+const electionSong = new Song(
+  "Mishima/Closing",
+  "Kronos Quartet",
+  "https://lh3.googleusercontent.com/hZaa-nr_sc1OyI9az-Q4l3dsn_riLbmr4kXSoGNypEv2wmOuOnEQoGDc3mmqrhuU2m1WedR52fVNcEkA=w544-h544-s-l90-rj",
+  "https://file.garden/aNtAfG887DiA_7lO/2028AOC/mishimaclosing.m4a"
+);
+electionPlaylist.addSong(electionSong);
+changePlaylist(electionPlaylist);
+```
+
+### Polling blackout
+The [polling blackout](./codes/polling_blackout.js) disables the map view from a specific question onwards, similar to a Polling Blackout feature used in mods like *Y. of Korea*. (The version used here is an observer-less version made for *2028: An Old Cycle*.) To customize this, you can update the question number in the code by updating to the question number you want the blackout to start from.
+```javascript
+function isBlackoutPeriod() {
+  return e.question_number > 22; // blackout will start after answering question 23
+}
+```
+
+You can also change the text of the blackout message, or the hover text of the map view button, by editing below:
+```javascript
+mapButton.innerHTML = "Polling Blackout Period";
+mapButton.title = "It's all so hazy.";
+```
+
+### Volatility feature
+The [volatility_applier.js](./codes/volatility_applier.js) snippet applies volatility to global multipliers in the answer score global JSON. In other words, it randomly adjusts the values of global multipliers to introduce volatility into the scoring process, increasing the unpredictability of your answers.
+
+For an individual answer, you can set a manual volatility value by creating a `volatility_range` property in your desired answer score. For example:
+
+```json
+{
+        "model": "campaign_trail.answer_score_global",
+        "pk": 15000,
+        "fields": {
+            "answer": 2000,
+            "candidate": 78,
+            "affected_candidate": 77,
+            "global_multiplier": 0.005,
+            "volatility_range": [0.0005, 0.0009]
+        }
+    },
+```
+
+will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range.
 
 # Mod notes
 Mods listed here are in various stages of development, and may be incomplete or buggy. Some may be intended for private use, but are being shared here for the sake of open-source-ness and preservation. Finally, a few others were canceled before they were finished, but are being shared here for the sake of "what could have been", or are here after being removed from the CTS mod gallery.
