@@ -42,6 +42,24 @@ The [click here to begin button editor](./codes/startscreen_button_editor.js) wo
 gameStart.innerHTML = "Your text here";
 ```
 
+### Candidate label editor
+The [candidate label editor](./codes/startscreen_label_editor.js) is a tool for changing the labels of candidates at their introduction screens. It lets you define individual labels for candidates and running mates separately, alllowing for those you don't want to be hidden. For example:
+
+```javascript
+e.CandLabel1 = "Candidate";
+e.CandLabel2 = "Affiliation";
+e.CandLabel3 = "Residence";
+
+e.RMLabel1 = "Running Mate";
+e.RMLabel2 = "";
+e.RMLabel3 = "Leader's Riding";
+```
+
+leads to:
+
+![Example 1](./images/SLE_example.png) ![Example 2](./images/SLE_example2.png)
+
+
 # Mod notes
 Mods listed here are in various stages of development, and may be incomplete or buggy. Some may be intended for private use, but are being shared here for the sake of open-source-ness and preservation. Finally, a few others were canceled before they were finished, but are being shared here for the sake of "what could have been", or are here after being removed from the CTS mod gallery.
 
