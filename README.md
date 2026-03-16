@@ -123,7 +123,7 @@ Based off the QuickTime player, this was initially made for *2019 DOTP*, meant t
 ![QuickTime player](./images/quicktime_music_player.png)
 
 ## W. player
-The iPod-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
+The Windows Music Player-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
 ![W. player](./images/w_player.png)
 
 ----
