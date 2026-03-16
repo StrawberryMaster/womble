@@ -115,12 +115,16 @@ The Spotify-themed music player shown in the mod *American Carnage*. Shown here 
 ![American Carnage player](./images/ac_music_player.png)
 
 ## An Old Cycle player
-Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See source [here](./players/aoc_player.js)
+Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See source [here](./players/aoc_player.js).
 ![An Old Cycle player](./images/aoc_player.png)
 
 ## QuickTime player
-Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_music_player.js)
+Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_music_player.js).
 ![QuickTime player](./images/quicktime_music_player.png)
+
+## W. player
+The iPod-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
+![W. player](./images/w_player.png)
 
 ----
 
