@@ -1,5 +1,5 @@
 // A QuickTime player implementation, initially
-// made for 2019 DOTP, a remake of 2019NK
+// made for 2019 DOTP, a remake of 2019NK.
 class Song {
   constructor(title, artist, album, coverLink, audioLink) {
     this.title = title;

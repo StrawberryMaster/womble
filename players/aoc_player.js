@@ -1,5 +1,5 @@
 // This music player was made
-// for 2028: An Old Cycle
+// for 2028: An Old Cycle.
 class Song {
   constructor(title, artist, coverLink, audioLink) {
     this.title = title;

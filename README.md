@@ -118,6 +118,10 @@ The Spotify-themed music player shown in the mod *American Carnage*. Shown here 
 Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See source [here](./players/aoc_player.js).
 ![An Old Cycle player](./images/aoc_player.png)
 
+## No More Maga player
+This is a modified version of the music player used in the mod *2024: No More Maga*. Shown here is a modified version of the player with a lower initial volume and other minor optimizations. See source [here](./players/nmmaga_player.js).
+![No More Maga player](./images/nmmaga_player.png)
+
 ## QuickTime player
 Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_music_player.js).
 ![QuickTime player](./images/quicktime_music_player.png)
