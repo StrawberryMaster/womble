@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>womble</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            background: linear-gradient(135deg, #f8f6f6 0%, #ece8e8 100%);
+            color: #3a3a3a;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, #fff5f5 0%, #faf8f8 100%);
+            border-right: 1px solid #d4a5a5;
+            overflow-y: auto;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            box-shadow: 0 2px 8px rgba(139, 0, 0, 0.08);
+        }
+
+        .sidebar h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #8b3a3a;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .sidebar h3:first-child {
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 5px 0;
+        }
+
+        .sidebar a {
+            color: #a84a4a;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: linear-gradient(90deg, #f0e5e5, #e8dcdc);
+            color: #8b2e2e;
+        }
+
+        .sidebar a.active {
+            background: linear-gradient(90deg, #ffe8e8, #ffd9d9);
+            color: #8b2e2e;
+            font-weight: 600;
+        }
+
+        .content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 40px;
+            max-width: 900px;
+        }
+
+        .main {
+            background: linear-gradient(135deg, #fdfbfb 0%, #fcf8f8 100%);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(139, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0 30px 0;
+            color: #7a2c2c;
+            border-bottom: 3px solid #a84a4a;
+            padding-bottom: 10px;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 30px 0 15px 0;
+            color: #7a2c2c;
+            padding-top: 10px;
+            border-top: 1px solid #e8d4d4;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+            color: #7a2c2c;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            margin: 15px 0 8px 0;
+            color: #7a2c2c;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        p {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        a {
+            color: #a84a4a;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            border-bottom-color: #a84a4a;
+            color: #8b2e2e;
+        }
+
+        code {
+            background: linear-gradient(90deg, #f5f0f0, #f2eded);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #b83a3a;
+        }
+
+        pre {
+            background: linear-gradient(135deg, #2a1f1f 0%, #1f1515 100%);
+            color: #e8d5d5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: transparent;
+            color: #e8d5d5;
+            padding: 0;
+            border-radius: 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+
+        /* Highlight.js syntax highlighting theme */
+        .hljs {
+            background: linear-gradient(135deg, #2a1f1f 0%, #1f1515 100%);
+            color: #e8d5d5;
+        }
+
+        .hljs-literal,
+        .hljs-number {
+            color: #ff9d76;
+        }
+
+        .hljs-string,
+        .hljs-attr {
+            color: #c9a373;
+        }
+
+        .hljs-function,
+        .hljs-title {
+            color: #e8b4a8;
+        }
+
+        .hljs-keyword {
+            color: #ff7f7f;
+        }
+
+        .hljs-property {
+            color: #d5a8a8;
+        }
+
+        .hljs-comment {
+            color: #8b6464;
+            font-style: italic;
+        }
+
+        .hljs-variable,
+        .hljs-params {
+            color: #e8d5d5;
+        }
+
+        .hljs-punctuation {
+            color: #c9a9a9;
+        }
+
+        .hljs-built_in {
+            color: #e8956f;
+        }
+
+        blockquote {
+            border-left: 3px solid #a84a4a;
+            padding-left: 15px;
+            margin-left: 0;
+            margin: 15px 0;
+            color: #6a5a5a;
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #e8d4d4;
+            margin: 30px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #d4a5a5;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(90deg, #f5e8e8, #f0dede);
+            font-weight: 600;
+            color: #7a2c2c;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8d4d4;
+        }
+
+        .header-title h1 {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .search-box {
+            padding: 8px 12px;
+            border: 1px solid #d4a5a5;
+            border-radius: 4px;
+            width: 200px;
+            font-size: 14px;
+            background: linear-gradient(90deg, #fffbfb, #fff8f8);
+        }
+
+        .toc-toggle {
+            display: none;
+            background: linear-gradient(135deg, #a84a4a 0%, #8b3a3a 100%);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .toc-toggle:hover {
+            background: linear-gradient(135deg, #8b3a3a 0%, #6f2e2e 100%);
+            box-shadow: 0 2px 6px rgba(139, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -250px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .toc-toggle {
+                display: block;
+            }
+
+            .main {
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Navigation</h3>
+            <ul id="toc-list"></ul>
+        </div>
+
+        <div class="content">
+            <button class="toc-toggle" id="toc-toggle">☰ Menu</button>
+            <div class="main" id="content"></div>
+        </div>
+    </div>
+
+    <script>
+        // fetch and render the README
+        async function loadReadme() {
+            try {
+                const response = await fetch('./README.md');
+                const markdown = await response.text();
+                
+                // configure marked options with highlight.js
+                marked.setOptions({
+                    breaks: true,
+                    gfm: true,
+                    highlight: function(code, lang) {
+                        if (lang && hljs.getLanguage(lang)) {
+                            try {
+                                return hljs.highlight(code, { language: lang }).value;
+                            } catch (e) {}
+                        }
+                        return hljs.highlightAuto(code).value;
+                    }
+                });
+
+                // render markdown to HTML
+                const html = marked.parse(markdown);
+                const cleanHtml = DOMPurify.sanitize(html);
+                
+                // insert into page
+                const contentDiv = document.getElementById('content');
+                contentDiv.innerHTML = cleanHtml;
+
+                // highlight code blocks
+                contentDiv.querySelectorAll('pre code').forEach((el) => {
+                    hljs.highlightElement(el);
+                });
+
+                // add IDs before building TOC so links always match heading anchors
+                addHeadingIds();
+
+                // generate TOC
+                generateTableOfContents();
+
+                // wire up click handlers after TOC links exist
+                attachSidebarLinkHandlers();
+
+                // if page opened with a hash, scroll once content is ready
+                scrollToHashSection();
+                
+            } catch (error) {
+                console.error('Error loading README:', error);
+                document.getElementById('content').innerHTML = 
+                    '<h2>Error loading README</h2><p>Could not fetch README.md file.</p>';
+            }
+        }
+
+        function slugifyHeading(text) {
+            return text
+                .toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .trim()
+                .replace(/\s+/g, '-');
+        }
+
+        function generateTableOfContents() {
+            const contentDiv = document.getElementById('content');
+            const headings = contentDiv.querySelectorAll('h1, h2, h3, h4');
+            const tocList = document.getElementById('toc-list');
+            tocList.innerHTML = '';
+
+            headings.forEach((heading) => {
+                const level = parseInt(heading.tagName[1]);
+                const li = document.createElement('li');
+                li.style.marginLeft = Math.max(0, (level - 1) * 15) + 'px';
+                
+                const a = document.createElement('a');
+                a.href = '#' + (heading.id || slugifyHeading(heading.textContent));
+                a.textContent = heading.textContent;
+                
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+        }
+
+        function addHeadingIds() {
+            const contentDiv = document.getElementById('content');
+            const headings = contentDiv.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            const usedIds = new Set();
+            
+            headings.forEach((heading) => {
+                let baseId = heading.id || slugifyHeading(heading.textContent);
+                if (!baseId) {
+                    baseId = 'section';
+                }
+
+                let uniqueId = baseId;
+                let counter = 2;
+                while (usedIds.has(uniqueId)) {
+                    uniqueId = baseId + '-' + counter;
+                    counter += 1;
+                }
+
+                heading.id = uniqueId;
+
+                usedIds.add(heading.id);
+            });
+        }
+
+        function attachSidebarLinkHandlers() {
+            // handle TOC navigation so all entries scroll reliably
+            document.querySelectorAll('.sidebar a').forEach((link) => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const targetId = this.getAttribute('href').slice(1);
+                    const targetHeading = document.getElementById(targetId);
+
+                    if (targetHeading) {
+                        history.replaceState(null, '', '#' + targetId);
+                        targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+
+                    document.querySelector('.sidebar').classList.remove('active');
+                });
+            });
+        }
+
+        function scrollToHashSection() {
+            const hash = window.location.hash;
+            if (!hash) {
+                return;
+            }
+
+            const targetHeading = document.getElementById(hash.slice(1));
+            if (targetHeading) {
+                targetHeading.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+        }
+
+        // mobile menu toggle
+        document.getElementById('toc-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // update active link in sidebar based on scroll position
+        window.addEventListener('scroll', function() {
+            const headings = document.querySelectorAll('#content h1, #content h2, #content h3, #content h4');
+            const links = document.querySelectorAll('.sidebar a');
+            
+            let currentHeading = null;
+            headings.forEach((heading) => {
+                if (heading.offsetTop - window.innerHeight / 3 < window.scrollY) {
+                    currentHeading = heading;
+                }
+            });
+
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (currentHeading && link.getAttribute('href') === '#' + currentHeading.id) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // load README
+        loadReadme();
+    </script>
+</body>
+</html>

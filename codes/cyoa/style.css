@@ -1,0 +1,401 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+h1 {
+    color: #333366;
+    border-bottom: 2px solid #333366;
+    text-align: center;
+    /* This will center the text horizontally */
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333366;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+a {
+    color: #333366;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    max-width: 250px;
+    margin: 20px 0;
+}
+
+.button {
+    display: inline-block;
+    background-color: #333366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #555588;
+    text-decoration: none;
+}
+
+/* Style the navbar */
+.navbar {
+    width: 100%;
+    /* Ensure the navbar takes the full width */
+    background-color: #333366;
+    /* Set the background color to match your theme */
+    overflow: auto;
+    /* Ensure content doesn't overflow */
+    padding: 10px 0;
+    /* Add vertical padding */
+    list-style-type: none;
+    /* Remove bullet points */
+    margin: 0;
+    /* Remove default margin */
+}
+
+/* Style the navbar links */
+.navbar li {
+    display: inline-block;
+    /* Display list items inline */
+    padding: 0 20px;
+    /* Add horizontal padding */
+}
+
+.navbar a {
+    text-align: center;
+    /* Center-align text */
+    text-decoration: none;
+    /* Remove underline */
+    font-size: 17px;
+    /* Set font size */
+    color: white;
+    /* Set color */
+    padding: 10px 0;
+    /* Add vertical padding */
+    display: block;
+    /* Make links block elements */
+}
+
+/* Change color on hover */
+.navbar a:hover {
+    background-color: #555588;
+    /* Change background color on hover */
+    text-decoration: none;
+    /* Remove underline on hover */
+}
+
+/* Style for clickable rows */
+.time-period {
+    cursor: pointer;
+    /* Changes the cursor to a hand when hovering over the row */
+}
+
+.time-period:hover {
+    background-color: #f0f0f0;
+    /* Lightens the background color on hover */
+}
+
+/* Style for the arrow indicator */
+.arrow-indicator {
+    display: inline-block;
+    /* Ensures the arrow is inline with the text */
+    margin-right: 10px;
+    /* Adds some space to the right of the arrow */
+    transition: transform 0.3s;
+    /* Adds a smooth transition effect when the arrow rotates */
+}
+
+.arrow-indicator::before {
+    content: '\25B6';
+    /* Unicode character for a right-pointing triangle (arrow) */
+    display: inline-block;
+    /* Ensures the arrow can be transformed */
+}
+
+/* Rotate the arrow when the row is clicked */
+.time-period.active .arrow-indicator::before {
+    transform: rotate(90deg);
+    /* Rotates the arrow 90 degrees */
+}
+
+.navigation-buttons {
+    margin-top: 10px;
+}
+
+.unique-banner-container {
+    background-color: #333366;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+
+
+.site-banner {
+    width: 60%;
+    /* Adjust as needed */
+    height: auto;
+    border: 2px solid black;
+    /* Adds a black border */
+    display: inline-block;
+    /* Helps center the image */
+}
+
+.main-container {
+    padding: 20px;
+}
+
+.graphs-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* This ensures that the items are aligned at the top */
+}
+
+.outer-graph-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+
+
+.filters-container {
+    text-align: center;
+    margin-bottom: 20px;
+    /* Adjust as needed */
+}
+
+.graphs-row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* Ensures responsiveness */
+}
+
+.graph-section {
+    flex-basis: 48%;
+    /* Adjust width for side-by-side layout, considering margins/paddings */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width and height */
+    margin-bottom: 20px;
+    /* Space between graphs */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .graph-section {
+        flex-basis: 100%;
+        /* Stack graphs on smaller screens */
+    }
+}
+
+
+
+#selected-mods {
+    display: none;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#selected-mods span {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+}
+
+#selected-mods button {
+    margin-left: 10px;
+    padding: 3px 6px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#selected-mods button:hover {
+    background-color: #c0392b;
+}
+
+
+.search-results {
+    display: none;
+    position: absolute;
+    border: 1px solid #ddd;
+    border-top: none;
+    z-index: 1;
+    background-color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+}
+
+.search-results div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.search-results div:hover {
+    background-color: #f0f0f0;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+    /* Or 'block' if you prefer the container to take the full width */
+    width: 100%;
+    /* Adjust this based on your design */
+}
+
+
+
+#mod-play-comparison-graph,
+#market-share-pie-chart,
+#cumulative-mod-plays-graph {
+    border: 1px solid #ddd;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+    .graphs-container {
+        flex-direction: column;
+    }
+
+    .graph-section {
+        width: 100%;
+        margin-bottom: 20px;
+        /* optional, for some space between the graphs */
+    }
+}
+
+
+/* Card game stuff here */
+#game-outer-container {
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(9, 100px);
+    /* Adjust based on the number of slots */
+    gap: 10px;
+}
+
+.hand {
+    display: flex;
+    gap: 10px;
+}
+
+.deck,
+.retire-pile {
+    width: 100px;
+    height: 140px;
+    background-color: #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Add additional styling for slots, cards, and other elements */
+.slot {
+    width: 100px;
+    height: 140px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 90px;
+    height: 130px;
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    background-size: cover;
+    background-position: center;
+}
+
+#opponent-area,
+#player-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#opponent-area {
+    transform: rotate(180deg);
+    /* Flip the opponent's area to face the opponent */
+}
+
+.slot.left {
+    background-color: #e0f4f1;
+    /* Light blue for left slots */
+}
+
+.slot.center {
+    background-color: #f0e4f1;
+    /* Light purple for center slots */
+}
+
+.slot.right {
+    background-color: #f4e0e0;
+    /* Light red for right slots */
+}
