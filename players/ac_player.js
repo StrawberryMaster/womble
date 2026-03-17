@@ -102,7 +102,6 @@ function updatePlayPauseIcon(isPlaying) {
 }
 
 // setup
-
 function setupMusicPlayer() {
   const gameWindow = document.getElementById("game_window");
   if (!gameWindow) {
