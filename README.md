@@ -155,7 +155,13 @@ Mods listed here are in various stages of development, and may be incomplete or 
 
 I do not own the content in these mods (unless otherwise specified), and am not responsible for any of it. All credit goes to the original creators. If you are the creator or responsible for any of the content in these mods and would like it removed, please contact me so I can take it down.
 
-See [the mods folder](./mods) for the full list of mods. Included here are:
+See [the mods folder](./mods) for the full list of mods.
+
+## Our Revolution
+This is a patched version with some extra fixes for the mod, including some optimizations, other UI changes and a revamped Game Stats design. Codes can be found [here](./mods/2024%20-%20Our%20Revolution_init.txt) (Code 1) and [here](./mods/2024%20-%20Our%20Revolution_SandersHarris.txt) (Code 2). See example:
+![Our Revolution](./images/ourrevolution.png)
+
+Also included, within the others folder, here are:
 - DeanDemocracy '68: a mod where James Dean, alive and well, runs for president in 1968. He faces off against the real-life candidates of that year, as well as a few other ones. Available running mates for Dean include Montgomery Clift, Robert Kennedy, Richard Daley, and Frank Sinatra. Running mates for Nixon are Spiro Agnew, Ronald Reagan, John Lindsay, and George Bush. Finally, George Wallace's running mates are Curtis LeMay, Ezra Taft Benson, and John Wayne. I might get back to this eventually now that I have the codes, but much of our progress on the question has been lost.
 - 1804: Assassin's Creed: made by mefoo, never added to the loaders.
 - 2012 Razistorija: made by the group [Memorandum Teleoptik](https://memorandumteleoptik.org/) and is centered around the 2012 presidential election in Yugoslavia, in an alternate timeline where the country was not dissolved in the 1990s. This is a patched version that includes a few bug/achievement fixes and quality of life improvements (especially to the political compass within the mod), but is otherwise the same as the original release.
