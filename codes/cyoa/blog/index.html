@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampaignTrailMojo</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <style>
         .blog-shell {
             max-width: 1200px;
@@ -91,61 +90,59 @@
         }
     </style>
 </head>
-
 <body>
     <div class="unique-banner-container">
-        <img src="static/images/CampaignTrailMojo.png" alt="Site Banner" class="site-banner">
+        <img src="../static/images/CampaignTrailMojo.png" alt="Site Banner" class="site-banner">
     </div>
     <div class="main-container">
-        <div class="blog-shell">
-            <h1>CYOA Blog</h1>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <ul class="navbar">
-                        <li><a href="/">Total</a></li>
-                        <li><a href="/recent">Recent</a></li>
-                        <li><a href="/by_day">By Day</a></li>
-                        <li><a href="/by_week">By Week</a></li>
-                        <li><a href="/by_month">By Month</a></li>
-                        <li><a href="/graphs">Graphs</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <p class="blog-intro">All of Nina's CYOA blog posts are now available in one page, for ease of use. Pick a
-                tab to load the post.</p>
+    <div class="blog-shell">
+     <h1>CYOA Blog</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+        <ul class="navbar">
+          <li><a href="/">Total</a></li>
+          <li><a href="/recent">Recent</a></li>
+          <li><a href="/by_day">By Day</a></li>
+          <li><a href="/by_week">By Week</a></li>
+          <li><a href="/by_month">By Month</a></li>
+          <li><a href="/graphs">Graphs</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+  </div>
+</nav>
+    <p class="blog-intro">All CYOA blog posts are now available in one page. Pick a tab to load the post.</p>
 
-            <div id="tab-bar" class="tab-bar" role="tablist" aria-label="CYOA blog posts"></div>
+    <div id="tab-bar" class="tab-bar" role="tablist" aria-label="CYOA blog posts"></div>
 
-            <div class="reader-card">
-                <h2 id="post-title">Choose a post</h2>
-                <div id="post-content" class="loading-text">Loading post content...</div>
-            </div>
+    <div class="reader-card">
+        <h2 id="post-title">Choose a post</h2>
+        <div id="post-content" class="loading-text">Loading post content...</div>
+    </div>
 
-            <noscript>
-                <p>JavaScript is required for the one-page reader. You can still open the individual pages:</p>
-                <ul>
-                    <li><a href="./blog/post1/">1) Welcome and Tooltips</a></li>
-                    <li><a href="./blog/post2/">2) What even is CYOA?</a></li>
-                    <li><a href="./blog/post3/">3) CYOA: Making the right stuff happen</a></li>
-                    <li><a href="./blog/post4/">4) campaignTrail_temp and you</a></li>
-                    <li><a href="./blog/post5/">5) Candidate Switching with CYOA</a></li>
-                    <li><a href="./blog/post6/">6) VPs and how to use them</a></li>
-                    <li><a href="./blog/post8/">8) CYOA Helper Functions</a></li>
-                </ul>
-            </noscript>
-        </div>
+    <noscript>
+        <p>JavaScript is required for the one-page reader. You can still open the individual pages:</p>
+        <ul>
+            <li><a href="./post1/">1) Welcome and Tooltips</a></li>
+            <li><a href="./post2/">2) What even is CYOA?</a></li>
+            <li><a href="./post3/">3) CYOA: Making the right stuff happen</a></li>
+            <li><a href="./post4/">4) campaignTrail_temp and you</a></li>
+            <li><a href="./post5/">5) Candidate Switching with CYOA</a></li>
+            <li><a href="./post6/">6) VPs and how to use them</a></li>
+            <li><a href="./post8/">8) CYOA Helper Functions</a></li>
+        </ul>
+    </noscript>
+    </div>
     </div>
 
     <script>
         const posts = [
-            { key: "post1", label: "1) Welcome and Tooltips", url: "./blog/post1/index.html", fallbackUrl: "./blog/post1/", sitePath: "/blog/post1/" },
-            { key: "post2", label: "2) What even is CYOA?", url: "./blog/post2/index.html", fallbackUrl: "./blog/post2/", sitePath: "/blog/post2/" },
-            { key: "post3", label: "3) Making the right stuff happen", url: "./blog/post3/index.html", fallbackUrl: "./blog/post3/", sitePath: "/blog/post3/" },
-            { key: "post4", label: "4) campaignTrail_temp and you", url: "./blog/post4/index.html", fallbackUrl: "./blog/post4/", sitePath: "/blog/post4/" },
-            { key: "post5", label: "5) Candidate Switching", url: "./blog/post5/index.html", fallbackUrl: "./blog/post5/", sitePath: "/blog/post5/" },
-            { key: "post6", label: "6) VPs and how to use them", url: "./blog/post6/index.html", fallbackUrl: "./blog/post6/", sitePath: "/blog/post6/" },
-            { key: "post8", label: "8) CYOA Helper Functions", url: "./blog/post8/index.html", fallbackUrl: "./blog/post8/", sitePath: "/blog/post8/" }
+            { key: "post1", label: "1) Welcome and Tooltips", url: "./post1/index.html", fallbackUrl: "./post1/", sitePath: "/blog/post1/" },
+            { key: "post2", label: "2) What even is CYOA?", url: "./post2/index.html", fallbackUrl: "./post2/", sitePath: "/blog/post2/" },
+            { key: "post3", label: "3) Making the right stuff happen", url: "./post3/index.html", fallbackUrl: "./post3/", sitePath: "/blog/post3/" },
+            { key: "post4", label: "4) campaignTrail_temp and you", url: "./post4/index.html", fallbackUrl: "./post4/", sitePath: "/blog/post4/" },
+            { key: "post5", label: "5) Candidate Switching", url: "./post5/index.html", fallbackUrl: "./post5/", sitePath: "/blog/post5/" },
+            { key: "post6", label: "6) VPs and how to use them", url: "./post6/index.html", fallbackUrl: "./post6/", sitePath: "/blog/post6/" },
+            { key: "post8", label: "8) CYOA Helper Functions", url: "./post8/index.html", fallbackUrl: "./post8/", sitePath: "/blog/post8/" }
         ];
 
         function getDeploymentPrefix() {
@@ -164,11 +161,11 @@
 
         function normalizeLoadedContent(container) {
             container.querySelectorAll('img[src^="/static/"]').forEach((img) => {
-                img.setAttribute("src", withDeploymentPrefix(img.getAttribute("src")));
+                img.setAttribute("src", ".." + img.getAttribute("src"));
             });
 
             container.querySelectorAll('a[href^="/static/"]').forEach((link) => {
-                link.setAttribute("href", withDeploymentPrefix(link.getAttribute("href")));
+                link.setAttribute("href", ".." + link.getAttribute("href"));
             });
 
             container.querySelectorAll('a[href="/blog"]').forEach((link) => {
@@ -198,7 +195,7 @@
                         return html;
                     }
                 } catch (error) {
-                    // try next source
+                    // Try next source.
                 }
             }
 
@@ -270,5 +267,4 @@
         });
     </script>
 </body>
-
 </html>
