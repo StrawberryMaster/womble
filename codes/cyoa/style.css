@@ -435,3 +435,10 @@ a:hover {
     font-style: italic;
     font-size: 0.8em;
 }
+
+.code {
+    background-color: #f4f4f4;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: monospace;
+}
