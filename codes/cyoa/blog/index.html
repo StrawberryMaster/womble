@@ -136,18 +136,24 @@
 
     <script>
         const posts = [
-            { key: "post1", label: "1) Welcome and Tooltips", url: "./post1/index.html", fallbackUrl: "./post1/", sitePath: "/blog/post1/" },
-            { key: "post2", label: "2) What even is CYOA?", url: "./post2/index.html", fallbackUrl: "./post2/", sitePath: "/blog/post2/" },
-            { key: "post3", label: "3) Making the right stuff happen", url: "./post3/index.html", fallbackUrl: "./post3/", sitePath: "/blog/post3/" },
-            { key: "post4", label: "4) campaignTrail_temp and you", url: "./post4/index.html", fallbackUrl: "./post4/", sitePath: "/blog/post4/" },
-            { key: "post5", label: "5) Candidate Switching", url: "./post5/index.html", fallbackUrl: "./post5/", sitePath: "/blog/post5/" },
-            { key: "post6", label: "6) VPs and how to use them", url: "./post6/index.html", fallbackUrl: "./post6/", sitePath: "/blog/post6/" },
-            { key: "post8", label: "8) CYOA Helper Functions", url: "./post8/index.html", fallbackUrl: "./post8/", sitePath: "/blog/post8/" }
+            { key: "post1", label: "1) Welcome and Tooltips", url: "./post1/index.html" },
+            { key: "post2", label: "2) What even is CYOA?", url: "./post2/index.html" },
+            { key: "post3", label: "3) Making the right stuff happen", url: "./post3/index.html" },
+            { key: "post4", label: "4) campaignTrail_temp and you", url: "./post4/index.html" },
+            { key: "post5", label: "5) Candidate Switching", url: "./post5/index.html" },
+            { key: "post6", label: "6) VPs and how to use them", url: "./post6/index.html" },
+            { key: "post8", label: "8) CYOA Helper Functions", url: "./post8/index.html" }
         ];
 
         function getDeploymentPrefix() {
             const marker = "/codes/cyoa";
-            return window.location.pathname.includes(marker) ? marker : "";
+            const path = window.location.pathname;
+            const index = path.indexOf(marker);
+            if (index === -1) {
+                return "";
+            }
+
+            return path.slice(0, index + marker.length);
         }
 
         function withDeploymentPrefix(absolutePath) {
@@ -175,12 +181,7 @@
         }
 
         async function getPostHtml(post) {
-            const sourceUrls = [
-                post.url,
-                post.fallbackUrl,
-                withDeploymentPrefix(post.sitePath),
-                post.sitePath
-            ];
+            const sourceUrls = [post.url];
 
             for (const sourceUrl of sourceUrls) {
                 try {
@@ -240,7 +241,7 @@
                 window.scrollTo({ top: 0, behavior: "smooth" });
             } catch (error) {
                 postContent.className = "";
-                postContent.innerHTML = "<p>Could not load this post in the reader.</p><p><a href=\"" + post.url + "\">Open local file</a></p><p><a href=\"" + withDeploymentPrefix(post.sitePath) + "\">Open blog route</a></p>";
+                postContent.innerHTML = "<p>Could not load this post in the reader.</p><p><a href=\"" + post.url + "\">Open post file</a></p>";
             }
         }
 
