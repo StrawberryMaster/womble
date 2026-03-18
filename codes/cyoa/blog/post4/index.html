@@ -1,15 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../index.html#post4">
-    <title>Redirecting...</title>
-    <script>
-        window.location.replace("../index.html#post4");
-    </script>
+    <title>CampaignTrailMojo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .blog {
+                margin-left: 300px;
+                margin-right: 300px;
+            }
+        }
+
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .image-container {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container img {
+            height: 150px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-container-vertical {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container-vertical img {
+            height: 250px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-caption {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+
+        .code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Redirecting to the blog reader... <a href="../index.html#post4">Open post</a></p>
+    <h1>campaignTrail_temp and you</h1>
+    <div class="blog">
+
+        <p>Hi hi, this is blog post number four! So far, the weekly cadence is working well for me, especially since I
+            have many more topics to talk about, so I’m pretty hopeful about keeping this up. Still, if someone wants to
+            make a guest post, hit me up - I’ll just pause for a week then to fit it in. But now, enough introduction,
+            let’s talk about the topic of today - the <span class="code">campaignTrail_temp</span> object!</p>
+
+        <h2>What is an Object in Javascript?</h2>
+        <p>First, let’s take a step back - what even is an object? Not in a philosophical sense, but in a Javascript
+            programming sense. Broadly speaking, an object is a collection of things, where each thing has a key (the
+            name of the thing) and a value (basically what the thing is). An Object can also be nested and contain other
+            objects. A simple object could look like this:</p>
+        <p><span class="code">const president = {<br>
+                &nbsp;&nbsp;firstName: "Joe",<br>
+                &nbsp;&nbsp;lastName: "Biden",<br>
+                &nbsp;&nbsp;party: "Democrats",<br>
+                &nbsp;&nbsp;vicePresident: {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;firstName: "Kamala",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;lastName: "Harris"<br>
+                &nbsp;&nbsp;}<br>
+                };</span></p>
+        <p>(By the way, remember the <span class="code">liberalMap</span> from last week? That was also an object).</p>
+        <p>The cool thing about objects is that it’s quite simple to access its properties if you know the keys. To
+            access the name of the president in the above object, you simply need to use <span
+                class="code">president.firstName</span> That would have the value “Joe”. This also works with the nested
+            objects inside, so <span class="code">president.vicePresident.firstName</span> would give you “Kamala”. With
+            the same syntax, you can also change the value - for example if you execute this code:</p>
+        <p><span class="code">president.vicePresident.firstName = “Gretchen”;<br>
+                president.vicePresident.lastName = “Whitmer”;</span></p>
+        <p>Your object would then look like this:</p>
+        <p><span class="code">{
+                &nbsp;&nbsp;firstName: "Joe",<br>
+                &nbsp;&nbsp;lastName: "Biden",<br>
+                &nbsp;&nbsp;party: "Democrats",<br>
+                &nbsp;&nbsp;vicePresident: {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;firstName: "Gretchen",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;lastName: "Whitmer"<br>
+                &nbsp;&nbsp;}<br>
+                }</span></p>
+
+        <h2>Arrays in Javascript</h2>
+        <p>Another thing that exists in Javascript (and can be contained within objects) are arrays. In contrast to
+            objects with their key-value-pairs, arrays are basically just an (ordered) list of things. Let’s add one to
+            our object:</p>
+        <p><span class="code">president.electionYears = [2020, 2024]</span> //we can just add a new key-value-pair to
+            our object like this</p>
+        <p>Now, the president object looks like this:</p>
+        <p><span class="code">{
+                &nbsp;&nbsp;firstName: "Joe",<br>
+                &nbsp;&nbsp;lastName: "Biden",<br>
+                &nbsp;&nbsp;party: "Democrats",<br>
+                &nbsp;&nbsp;vicePresident: {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;firstName: "Gretchen",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;lastName: "Whitmer"<br>
+                &nbsp;&nbsp;},<br>
+                electionYears: [2020, 2024]<br>
+                }</span></p>
+        <p>To access a value in an array, we can’t use a key, since there is none! Instead, we have to work with the
+            index (or position). Important here, computers start counting at zero! Therefore <span
+                class="code">president.electionYears[1]</span> returns us the <i>second</i> element in the electionYears
+            array in the president object - so 2024.</p>
+
+        <h2>Understanding <span class="code">campaignTrail_temp</span></h2>
+        <p>Now, you probably already guessed it - <span class="code">campaignTrail_temp</span> is an object. It is not
+            just any object though, it is quite a large object, deeply nested in part, that contains basically
+            everything information of the current scenario! All the candidates, questions, effects and so are all part
+            of this object! In fact, both code 1 and code 2 of a Campaign Trail mod are mostly just assigning values to
+            sub-objects of <span class="code">campaignTrail_temp</span> (or e. e and <span
+                class="code">campaignTrail_temp</span> refers to the same thing and can be used interchangeably). What’s
+            <i><b>not</b></i> part of the <span class="code">campaignTrail_temp</span> object is custom Javascript code,
+            like a music player, CYOA, or the modern way of doing endings.</p>
+        <p>If you want to see how the object looks like, I’d recommend to look at it in the browser console. To do so,
+            start a mod, then right-click anywhere, select “Inspect element”, navigate to the console tab in the thingie
+            that opens up and send the following command on the console:</p>
+        <p><span class="code">console.log(campaignTrail_temp)</span></p>
+        <p>That will print the whole object to the console - you can click the little arrows to look at specific parts.
+        </p>
+        <div class="image-container">
+            <img src="/static/images/post4/console.png">
+            <p class="image-caption">This is how campaignTrail_temp is looking when logged to the console (Firefox)</p>
+        </div>
+
+        <h2>Why does this matter?</h2>
+        <p>So, what does this mean? Why do we <i>care</i> that all the game info is stored in a specific Javascript
+            structure? Because it is now clear how to look at and manipulate all the game data. Do you want to read out
+            the difficulty, perhaps because a certain ending can only be achieved on normal? Use <span
+                class="code">campaignTrail_temp.difficulty_level_multiplier</span>. Want to access the colour of the
+            third candidate you defined in your code one? Use <span
+                class="code">campaignTrail_temp.candidate_json[2].fields.color_hex</span>. This works with basically
+            everything, every value of the scenario that’s defined inside the <span
+                class="code">campaignTrail_temp</span> object can be manipulated like this.</p>
+        <p>So, is this blog already coming to an end then? All you need to do is apply this knowledge? No! Doing this
+            all manually can be very tedious, especially, when working with arrays, since you often don’t really know
+            the index of the thing you want to manipulate. To make things simpler, you often should use functions that
+            do specific things, like exchanging and opposing candidates, or changing the effect of a certain answer.
+            I’ll share some of those next week.</p>
+
+        <p>Still, it’s good to have an understanding of how the game works and stores its data - hopefully, that
+            understanding will make many aspects of CYOA less of a mystery and a lot clearer. See you next week for the
+            first batch of CYOA functions!</p>
+        <p>
+            <a href="/blog" class="button">Back to Overview</a>
+        </p>
+
 </body>
+
 </html>

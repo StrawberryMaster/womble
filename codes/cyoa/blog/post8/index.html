@@ -1,15 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../index.html#post8">
-    <title>Redirecting...</title>
-    <script>
-        window.location.replace("../index.html#post8");
-    </script>
+    <title>CampaignTrailMojo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .blog {
+                margin-left: 300px;
+                margin-right: 300px;
+            }
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .image-container {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container img {
+            height: 300px;
+            width: auto;
+        }
+
+        .image-container-vertical {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container-vertical img {
+            height: 250px;
+            width: auto;
+        }
+
+        .image-caption {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+
+        .code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Redirecting to the blog reader... <a href="../index.html#post8">Open post</a></p>
+    <h1>CYOA Helper Functions</h1>
+    <div class="blog">
+
+        <p>This week, I'll share some CYOA helper functions that I have shared before on the NCT Discord. You can find
+            them here: <a href="https://pastebin.com/zejyud2p" target="_blank">CYOA Helper Functions</a>. I'll briefly
+            explain in which situation they are useful, then provide a tutorial on how to use them. First a note - to
+            use them in your code, they need to be defined inside your code. I'd recommend just copying everything from
+            the link and putting that code at the very bottom of your code 2. The code is harmless if you don't end up
+            using the functions, so it's no issue if you have a few definitions too many. Also included in the link are
+            example calls for how it should look like when you use the function inside your code.</p>
+
+        <p>I published these functions quite a while ago, but they are probably quite hard to use without a tutorial, so
+            let's look at them in more detail.</p>
+
+        <h2>The Answer Swapper</h2>
+        <p>This function swaps the question to which two answers belong. That doesn't sound super useful, because it
+            isn't usually, unless you use it to swap in an answer the player wouldn't see at all and functionally use it
+            as an answer replacer. That's (in almost all cases) the intended way to use it. Why is it called answer
+            swapper then? It just is, ok?</p>
+
+        <p>Use cases for that are for example if a candidate promised something and can later deliver, if the candidate
+            has decided on a specific debate strategy and gets different options based on that, or if they decided on a
+            certain strategy, then get unique answers that fit that strategy. It's probably also useful for mid-game VP
+            change shenanigans that are supposed to affect later answers. The workflow in this case goes something like
+            this:</p>
+        <ul>
+            <li>You set up an answer to a question as usual, with feedback, effects and all</li>
+            <li>You set up the alternate answer, also with feedback and (optionally, more on that later) effects, but
+                for question (I mean the entry inside "field") you don't place the pk of the question, but a random
+                super high number that you don't use anywhere else in the code</li>
+            <li>That's all the setup you need, now you just need to actually call the function, like this:</li>
+        </ul>
+        <p><span class="code">answerSwapper(pk of the original question, pk of the other question, true)</span></p>
+        <p>somewhere in your CYOA function (ideally inside some kind of conditional checks - see <a
+                href="../post3/index.html" target="_blank">this post about conditional logic in CYOA</a>)</p>
+
+        <p>Effectively, if you use the function like this, this will replace an answer with another answer, with new
+            feedback and effects. If for some reason, you only want to change the answer texts and feedback, but keep
+            the old effects, instead do this:</p>
+        <p><span class="code">answerSwapper(pk of the original question, pk of the other question, true)</span></p>
+        <p>That's all you need to exchange answers, on to the next!</p>
+
+        <h2>The Feedback Update</h2>
+        <p>This is a super simple function for when you just want to change a certain feedback. Just put this code in
+            your CYOA</p>
+        <p><span class="code">updateFeedback(pkValue, newFeedback)</span></p>
+        <p>The pk should be the pk of the feedback (not the answer!) you want to replace, and newFeedback just the text
+            you want to have as your new feedback (enclosed in " ")</p>
+
+        <p>I'm gonna skip one of the helpers (applyDrift) since I can't think about a good use case for this if you
+            don't have an advisor system or something else complicated. Maybe I'll talk about that function another
+            time. For now, on to</p>
+
+        <h2>Changing Global Effects</h2>
+        <p>As you most probably know, answers can have three types of effects - global, state, and issue score. This
+            function is to change a single global effect of an answer (an answer can have several global effects, for
+            different candidates). There are a few reasons for doing this, just changing the effect without swapping out
+            the whole answer - for example, if you want to make future effects worse after an earlier gaffe, or you
+            could use it in combination with the feedback update to create a whole new outcome to an answer, or you
+            could reward a player for being consistent by boosting answers that are consistent with what they earlier
+            said. The function is called - as usual, inside your CYOA function somewhere - like this:</p>
+        <p><span class="code">changeGlobalEffect(affectedCandidate, answer, changeAmount)</span></p>
+        <p>Affected candidate is the candidate pk, answer is the answer pk, and changeAmount is how much you want to add
+            to the effect (can be positive or negative). For example, if your old global_multiplier is 0.01 and the
+            changeAmount is -0.002, your new global_multiplier will be 0.008. If no effect exists for this answer and
+            candidate yet, one will be created with changeAmount as the global multiplier. So again, if your
+            changeAmount was -0.002 and no effect existed yet, the newly created effect will have a global multiplier of
+            -0.002</p>
+
+        <h2>Changing State Effects</h2>
+        <p>This works basically the exact same way as changing global effects, with the only difference that you have an
+            extra argument for the state pk:</p>
+        <p><span class="code">function changeStateEffect(affectedCandidate, answer, state, changeAmount)</span></p>
+        <p>Again, put in candidate pk and answer pk, then the state pk, and then the change amount.</p>
+
+        <h2>Changing Issue Effects</h2>
+        <p>Once again, quite similar, only with some different arguments:</p>
+        <p><span class="code">function changeIssueEffect(answer, issue, changeScore, changeImportance)</span></p>
+        <p>Here, you have to put in the answer_pk, then the issue_pk, how much you want to change the issue score by
+            (note - the function automatically makes sure it stays between -1 and 1, no matter what), and by how much
+            you want to change the importance</p>
+
+        <h2>Comprehensive Example</h2>
+        <p>Let's look at a comprehensive example that demonstrates how to use all these functions together. Please, try
+            to read the above text and understand the functions a little and don't just copy-paste, but I hope this will
+            make it easier to include the functions into your mod:</p>
+
+        <p><span class="code">
+                cyoAdventure = function(a) {<br>
+
+                ans = campaignTrail_temp.player_answers[campaignTrail_temp.player_answers.length - 1];<br>
+                <br>
+                // Example of using answerSwapper, which happens if the answer with pk 4504 was chosen:<br>
+                if (ans === 4504) {<br>
+                // Swap answer 4505 with a pre-prepared answer 9001<br>
+                // This could be used to change an option based on earlier choices<br>
+                answerSwapper(4505, 9001, true);<br>
+                }<br>
+                <br>
+                // Example of using updateFeedback, which ahppens if the player chose the answer 4534, 4536 or 4537<br>
+                if ([4534, 4536, 4537].includes(ans)) {<br>
+                // Update the feedback with pk 5538 based on player's choice<br>
+                // This could be used to personalize feedback based on earlier decisions<br>
+                updateFeedback(5538, "While voters like this stance, this is a flip-flop compared to what you said
+                earlier");<br>
+                }<br>
+                <br>
+                // Example of using changeGlobalEffect and updateFeedback together, if the player gave answer 4027, but
+                hadn't chosen answer 4021 on an earlier question<br>
+                if (ans === 4027 &amp;&amp; !campaignTrail_temp.player_answers.includes(4021)) {<br>
+                // This could represent a consistent campaign strategy paying off.<br>
+                updateFeedback(5535, "This is a good, liberal position, and voters like your consistency on the issue");
+                changeGlobalEffect(campaignTrail_temp.candidate_id, 4035, 0.006);<br>
+                }<br>
+                <br>
+                // Example of using changeStateEffect and changeIssueEffect if answer 4042 was given<br>
+                if (ans === 4042) {<br>
+                // Change state effect for answer 4050 in state with pk 322 <br>
+                // Also change the weight and importance of the issue score (for issue 550) for the same answer<br>
+                // This could represent a state and a group of voters seeing a certain statement in a new light<br>
+                changeStateEffect(campaignTrail_temp.candidate_id, 4050, 3, 0.005);<br>
+                changeIssueEffect(4050, 550, 0.1, 0.05);<br>
+                }<br>
+                <br>
+
+                }<br>
+            </span></p>
+
+        <p>This example demonstrates how you might use these functions in practice. Remember, the specific answer pks,
+            candidate pks, state pks, and issue pks will depend on your particular mod. Always make sure you're using
+            the correct pks for your game!</p>
+
+
+        <p>That's it! I hope this helps people understand how to use these helper functions. If I end up making more
+            blog posts (odds are not too bad), I'll probably talk about how to exchange questions next (Well, the method
+            that I used, with an extra question object and no tunnel function. But more on that next time.)</p>
+        <p>
+            <a href="/blog" class="button">Back to Overview</a>
+        </p>
+
+    </div>
 </body>
+
 </html>

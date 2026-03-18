@@ -1,15 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../index.html#post5">
-    <title>Redirecting...</title>
-    <script>
-        window.location.replace("../index.html#post5");
-    </script>
+    <title>CampaignTrailMojo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .blog {
+                margin-left: 300px;
+                margin-right: 300px;
+            }
+        }
+
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .image-container {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container img {
+            height: 300px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-container-vertical {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container-vertical img {
+            height: 250px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-caption {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+
+        .code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Redirecting to the blog reader... <a href="../index.html#post5">Open post</a></p>
+    <h1>Candidate Switching with CYOA</h1>
+    <div class="blog">
+
+        <p>Hi hi people, welcome back to the blog! Sorry for the break last week - I had a lot of stuff going on in both
+            my job and my personal life, and I didn’t want to throw out anything half-baked. I’ll try to keep these
+            weeks where I publish nothing to a minimum, but I can’t make any promises. Or I’ll just write some posts
+            that are more personal opinion stuff and less technical guides, since these are a lot faster to write when I
+            don’t have a lot of time. We’ll see.</p>
+        <p>Anyway, my plan for this week was to give some guidance for a bunch of little CYOA helper functions I posted
+            on the TCT Discord a while back. However, I realized that while these are neat, it’s not the most common
+            thing people want to use when they add CYOA to their mod. Ever since mods like 1968Romney and 1964Midnight
+            did it, candidate and VP switchers are <i>the big thing </i> that can be done with CYOA (though the North
+            Korea mod and I think an updated version of 1972 did it first, technically). So let’s dive in, how can you
+            do that?</p>
+
+        <div class="image-container">
+            <img src="/static/images/post5/tower.png">
+            <p class="image-caption">One of the earliest examples of a candidate switcher - and what a great way to
+                utilize it!</p>
+        </div>
+
+        <p>I’ll go over three different cases here that are relevant: Switching the player VP, the opponent candidate
+            and the player candidate. I will not cover how to switch the opponent VP - for the simple reason that,
+            unless you want to use a fancy results table like in Peace with Honor for example, the opponent’s VP doesn’t
+            show up anywhere. In fact, I don’t even know if the game per default <i> knows </i> which VP your opponent
+            uses (probably, it defaults to the first one defined or something). </p>
+
+        <p>The player VP, however, makes a difference. Still, even here, it mostly makes a difference before the game
+            proper starts - depending on the VP selected, a different Code 2 is loaded, with (potentially) different
+            questions, effects, CYOA and so on. Once the game has started, the VP mostly influences two things - the
+            name and picture shown at the bottom of the screen. Additionally, the VP has a home state in the code which
+            I assume gives a small bonus in that state, but I never actually checked. The running mate can also change
+            the issue score values of your candidate.</p>
+
+        <p>So, to change the VP all we need to do is change the name, picture and homestate then. With what we learned
+            two weeks ago about the structure of the game code, that’s easy-peasy, right? Should go something like this:
+        </p>
+
+        <p><span class="code">campaignTrail_temp.running_mate_image_url = "new_link.jpg"<br>
+                campaignTrail_temp.running_mate_last_name = 'Whitmer'<br>
+                campaignTrail_temp.running_mate_state_id = pk_of_a_state</span></p>
+
+        <p>That’s it! Put these three lines in an appropriate spot in your CYOA function (see earlier blogpost on how to
+            determine when the game should run the switch), and the VP will change after the next question. Changing the
+            running_mate_issue_scores works the same way, it’s just a little more complex since they are an array of
+            objects in itself, not just a single value like the stuff above. The easiest way to change them is to
+            probably swap out the whole array.
+            <br>Also of note, this doesn’t change any questions - you’ll need to use some different code to achieve
+            that. (Which, you know what I’m going to say, I might cover another time)
+        </p>
+        <p>Exchanging opponents works a little differently. Here, you need to change the name in a completely different
+            part of the code - you don’t see your opponents name at the bottom of your screen, but on the map, in the
+            ending area… Luckily, for all those spots, the name is drawn from the same source, so you just need to
+            change it once:</p>
+        <p><span class="code">campaignTrail_temp.candidate_json.find(candidate =&gt; candidate.pk
+                ==pk_of_opponent).fields.first_name = "Nikki"<br>
+                campaignTrail_temp.candidate_json.find(candidate =&gt; candidate.pk ==pk_of_opponent).fields.last_name =
+                "Haley"<br>
+                campaignTrail_temp.candidate_json.find(candidate =&gt; candidate.pk == pk_of_opponent).fields.color_hex
+                = ‘hexcolourcode’</span>
+        </p>
+
+
+        <p>Looking complicated? Let’s get through it step by step: You take the object campaignTrail_temp (see last
+            post), then traverse to the object candidate_json.That contains an array, in which you find the candidate
+            with the pk you want to change. That candidate is an object again - you move to the sub-object fields and
+            then to the variable first_name/last name/color_hex. </p>
+
+        <div class="image-container">
+            <img src="/static/images/post5/flowchart.png">
+            <p class="image-caption">All this is possible with candidate switching and some variable tracking and
+                conditional logic.</p>
+        </div>
+        <p>Don’t worry if you don’t understand all that in detail - it’s great if you do, since you can then use similar
+            code to change similar stuff. But if you don’t understand the code in detail, you can still just use it, and
+            it will work fine. In any case, you can do 1920/PwH/W.-esque shenanigans with that code and the one from the
+            blog post a while ago that talks about conditions.</p>
+        <p>But something is still missing - we’ve gone over changing VPs and opponents, but how do you change your
+            candidate (Note - by changing candidate, I mean like in 68Romney. I don’t mean switching from Hillary to
+            Trump in 2016, for example. If that’s possible, it’s significantly more complicated). Luckily, you already
+            know how to switch your candidate, even if all your knowledge about CYOA comes from this code. How so?
+            Switching your candidate works like this:</p>
+        <p><span class="code">campaignTrail_temp.candidate_image_url = "new_link.jpg"<br>
+                campaignTrail_temp.candidate_last_name = 'Whitmer'<br>
+                campaignTrail_temp.candidate_json.find(candidate =&gt; candidate.pk ==pk_of_player).fields.first_name =
+                "Gretchen"<br>
+                campaignTrail_temp.candidate_json.find(candidate =&gt; candidate.pk ==pk_of_player).fields.last_name =
+                "Whitmer"<br>
+                campaignTrail_temp.candidate_json.find(candidate =&gt; candidate.pk == pk_of_player).fields.color_hex =
+                ‘hexcolourcode’</span>
+        </p>
+        <p>Looking familiar? You’re basically just chaining the VP switcher and opponent switcher, with some small
+            adjustments. But it basically works the same way!<br>
+            Of course, all this code can also be combined (so the candidate and the VP change at the same time), or
+            modularized (so, for example, only the image is changed, or only the colour a candidate uses). Lots of
+            possibilities, and as you see, the code is not <i> that</i> complicated.</p>
+
+        <div class="image-container">
+            <img src="/static/images/post5/soviets.png">
+            <p class="image-caption">Just changing the names and pictures (along with the theme) can lead to cool
+                effects like this.</p>
+        </div>
+
+        <p>That wraps it up for today - have fun with the candidate switching! Next time, expect some thoughts about
+            game design in the context of TCT and after that, more code to do cool CYOA stuff. Until then, have a good
+            time!</p>
+        <p>
+            <a href="/blog" class="button">Back to Overview</a>
+        </p>
+
 </body>
+
 </html>

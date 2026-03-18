@@ -1,15 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../index.html#post3">
-    <title>Redirecting...</title>
-    <script>
-        window.location.replace("../index.html#post3");
-    </script>
+    <title>CampaignTrailMojo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .blog {
+                margin-left: 300px;
+                margin-right: 300px;
+            }
+        }
+
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .image-container {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container img {
+            height: 150px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-container-vertical {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container-vertical img {
+            height: 250px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-caption {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+
+        .code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Redirecting to the blog reader... <a href="../index.html#post3">Open post</a></p>
+    <h1>CYOA: Making the right stuff happen</h1>
+    <div class="blog">
+        <p>Hi hi, we made it to the third installment of this blog! So, I’m in a bit of a conundrum here - on the one
+            hand, I realised that I should talk about some fundamental stuff, so the technical details in the guides
+            make more sense for non-coding people. On the other hand, I promised last week to actually share some CYOA
+            code this time. I’ve decided on alternating - every other week I will post some code and a guide on how to
+            use it, and every other week I’ll talk a bit about fundamental stuff. That way, you’ll get plenty of code to
+            put into your mods if you want as well as a better understanding of how the game works.</p>
+        <p>My original plan was to share a few simple CYOA functions here, but I realized that it makes more sense to
+            talk about control structures first. I’ll first show you how you make your functions trigger at the right
+            point and not what those functions are. Trust me, it’ll make sense in a few weeks. I'm also thinking about
+            collecting the code snippets I put in these posts in a central repository, so they can be found more easily.
+        </p>
+        <p>So, the first thing you should do so everything works is put this line into your CYOA-function:</p>
+        <p><span class="code">ans = campaignTrail_temp.player_answers[campaignTrail_temp.player_answers.length -
+                1]</span></p>
+        <p>Put it just below the line that says</p>
+        <p><span class="code">cyoAdventure = function(a) { </span></p>
+        <p>I’ll explain in more detail what happens here in a future post - for now, all you need to know is that this
+            somehow gives the game the pk of the last answer the player chose. Pk stands for primary key by the way,
+            probably because originally all the campaign trail data was stored in a database and those usually have
+            primary keys. In this case, it’s just another name for the id of the question.</p>
+        <p>So, the first and most important way you can determine if an effect will trigger is checking if the answer
+            that was just give had a certain pk, like this:</p>
+        <p><span class="code">if (ans == 1234) { //do something here}</span></p>
+        <p>Let’s break it down - the “if” tells the game it should check for a condition. Then, the condition is inside
+            the normal brackets (). We want to know if the answer given has a pk of 1234. Since the variable “ans” holds
+            the value of the pk of the last answer, we check if that is equal to 1234. Why do we use == instead of = ?
+            In Javascript, and most other programming languages, single = assigns a value to a variable (if you check
+            above, that's how we gave ans its value in the first place). But assigning a value is not what we want here,
+            we want to compare. For that, we have to use ==. (In Javascript, you can also compare with ===, but there
+            are some subtle differences. I’d recommend to stick with ==. For more info, see here <a
+                href="https://www.freecodecamp.org/news/loose-vs-strict-equality-in-javascript/" target="_blank">Loose
+                vs. Strict Equality in JavaScript</a>.)</p>
+        <p>A slight variation of this is when there are several answers that lead to the same effect. In that case, you
+            use the javascript “or” which looks like this: ||. So</p>
+        <p><span class="code">if (ans == 1234 || ans == 1235) { //do something here}</span></p>
+        <p>checks if the answer was either of those PKs. One thing to be careful about here - say 1234 is an answer for
+            question 1 and 1235 is an answer for question 2. In that case, the effect can actually trigger twice, once
+            after each question! If that’s not something you want, you need to restructure your code a little. More on
+            not triggering effects twice later down.</p>
+        <p>So, sometimes you want to have your CYOA effect depend on both the current answer and a past answer though -
+            for example, your candidate loses the primary if they screw up in both questions related to the primary. In
+            that case, you want to modify the above code to both check for the value of ans and check if a specific
+            answer has been given previously. You do it like this:</p>
+        <p><span class="code">if (ans == 1234 &amp;&amp; campaignTrail_temp.player_answers.includes(1235)){ //do
+                something here}</span></p>
+        <p>The first part is the same as above. The &amp;&amp; is the logical “and” in Javascript - it makes it so that
+            both conditions have to be true. For the second part, I have to move a more in-depth explanation to a later
+            post, this one is getting long enough as it is. For now, all you need to know is that the game tracks the
+            PKs of all answers that were given, and this code checks if a specific answer was given in the past.</p>
+        <p>So, this is good if you want the effect to depend on if several specific answers were chosen. Sometimes, you
+            want to do something more broad though. Like, if your candidate was controversial or jingoistic or
+            conservative or whatever enough, you want something to happen. Different mods have implemented this in
+            different ways, and there aren’t really right or wrong ways to do that. I’ll show the ways I prefer because
+            it’s clear what happens, fairly easy to implement and rebalance, but your mileage may vary - different paths
+            can lead to the same destination</p>
+        <p>First, you’ll want to define a variable that tracks whatever stat you’re interested in. For this example,
+            I’ll call it “liberal”, but you can use it for whatever. Put this line</p>
+        <p><span class="code">var liberal = 0;</span></p>
+        <p>outside your CYOA function. I prefer to put all my variables in one place, so I don’t have to search around
+            in my code for them. Note, you don’t have to make it start at 0. It can make your calculations a little
+            simpler though.</p>
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post3/harold.png">
+                <p class="image-caption">I haven't looked at the code of this mod in-depth, but I think it does
+                    something like this for the intro. The variable is fittingly called 'haroldpoints'</p>
+            </div>
+
+        </div>
+        <p>Next, define something called liberalMap. What this does is map certain answers to certain score changes. It
+            should look like this:</p>
+        <p><span class="code">var liberalMap = {<br> &nbsp; 1234: 1,<br> &nbsp; 1235: 1,<br> &nbsp; 1236: 2,<br> &nbsp;
+                1237: -1,<br> &nbsp; 1240: 1<br>}</span></p>
+        <p>In this map you define how much certain answers change the liberal score. As you see, answers can change the
+            score both up and down, and one answer changes it by two. That way, you can model some answers being more
+            impactful than others.</p>
+        <p>Next, we move inside the CYOA function. Inside there, you want to check after every question if the given
+            answer affects the liberal score. You do that like this:</p>
+        <p><span class="code">if (liberalMap.hasOwnProperty(ans)) {<br> &nbsp; liberal += liberalMap[ans];<br>}</span>
+        </p>
+        <p>What this code does is first check if the answer the player just gave is relevant for the liberal score, and
+            if it is, change the score defined by the value in the liberalMap. I’d recommend putting this near the top
+            of the CYOA function, so the latest score change is already in effect when you check for the current value
+            of the liberal score.</p>
+        <div class="image-row">
+            <div class="image-container-vertical">
+                <img src="/static/images/post3/trafficlight.png">
+                <p class="image-caption">It's beyond the scope of this post, but you can also visualize these values to
+                    the player.</p>
+            </div>
+
+        </div>
+        <p>Now we’ve set up the part that deals with changing the liberal score, how do we use it to change something?
+            Again, there are different ways, but I’d recommend something like this:</p>
+        <p><span class="code">if (campaignTrail_temp.question_number == 10 &amp;&amp; liberal &gt; 2) { //do
+                something}</span></p>
+        <p>Why check for the question number as well? If you’d only check for the liberal score, the effect would
+            trigger after <i> every </i> question as long as the liberal score is above 2. Usually, that’s not what we
+            want! (Sometimes, it is, in that case you can leave out the check for the question number). So what this
+            snippet does is check if, after the player has answered question 11, the liberal score is 3 or higher. If
+            yes, it does something. Why after question 11 when we check for 10? Simply, computers usually start counting
+            at 0, so you always have to shift by one.</p>
+        <p>There are some other things worth talking about - else if, dynamically changing the maps, nested conditions -
+            but this post is already getting kinda long, so I’ll leave it at that for now. Maybe I’ll return to this
+            topic at some point. Next week, I’ll talk about something fundamental - the campaignTrail_temp object.
+            Understanding it can help you a lot when modding, so see you then!</p>
+        <p>
+            <a href="/blog" class="button">Back to Overview</a>
+        </p>
+
 </body>
+
 </html>

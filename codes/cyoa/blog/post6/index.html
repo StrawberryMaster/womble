@@ -1,15 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../index.html#post6">
-    <title>Redirecting...</title>
-    <script>
-        window.location.replace("../index.html#post6");
-    </script>
+    <title>CampaignTrailMojo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .blog {
+                margin-left: 300px;
+                margin-right: 300px;
+            }
+        }
+
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .image-container {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container img {
+            height: 300px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-container-vertical {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container-vertical img {
+            height: 250px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-caption {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+
+        .code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Redirecting to the blog reader... <a href="../index.html#post6">Open post</a></p>
+    <h1>VPs and how to use them</h1>
+    <div class="blog">
+
+        <p>Hi hi, welcome to the sixth post on this blog. This week, I want to try something different, and talk about a
+            game design topic instead of something technical. The main focus of this blog will still be technical stuff
+            (and code you can take and put in your mods), but I want to broaden the type of topics I talk about a bit.
+            It’s unavoidable that this will be a bit more subjective than the coding guides, so take this as a,
+            hopefully still useful, opinion, and not as something that should be taken as gospel. Anyway, enough
+            introduction, let’s talk about the topic of the day: VPs and how to best use them. Note, I’m not going to be
+            talking about VP switching or the midgame VP picker this time.</p>
+
+
+
+        <p>Choosing a VP alongside the candidate you play has been a feature of the game since the very beginning - even
+            the earliest Dan Bryan scenarios have them. Even before the game proper starts, they give the player some
+            agency. Picking them can both change the ideology of the campaign (by shifting the starting position of your
+            issue scores), give a boost in their home state (though that boost is quite small) and give you access to
+            completely different questions (every VP gets its own code 2, which means the questions, answers and effects
+            can differ dramatically without needing to use CYOA).</p>
+
+        <p>The first two point I mentioned are pretty clear, so I won’t go into much more detail here - just know that
+            how much influence your VP has on your issue scores is determined by
+            global_parameter_json[0].fields.running_mate_issue_weight, their actual stances by
+            campaignTrail_temp.running_mate_issue_score_json and their home state by running_mate_state_id. Just log
+            them to the browser console to see how they look, then adjust them for your mods. What’s the more
+            interesting question in my opinion is how much should they influence how your campaign plays? And if you’re
+            making a mod for an election without VPs, what should you put in that slot? Spoilers: A lot, and there are a
+            few different options.</p>
+
+        <div class="image-container">
+            <img src="/static/images/post6/VPquestion.png">
+            <p class="image-caption">The classic question for your VP - but you can do much more than that!</p>
+        </div>
+
+        <p>Back when there was just The Campaign Trail and no New Campaign Trail, VPs didn’t matter all that much. In
+            the earliest scenarios, you didn’t even get a question devoted to them, and in the later scenarios, you
+            usually only got that one “You chose person X as VP, why?”, and then you talk about their competence or
+            their home region. This is fine if you’re making a game that’s mostly for informational purposes and you use
+            the VP slot mostly to show players what people were considered as VPs historically. It doesn’t really make
+            the gameplay a lot more interesting, though. The VPs might make a small difference at the margins, but
+            overall, you’re playing the game the same way no matter who you choose as VP.</p>
+
+        <p>Modding gave creators the ability to change almost everything about the game, so it’s no surprise that the
+            way VPs are used also got changed. One thing a lot of early mods did was making the list of VPs
+            comparatively huge - Dan Bryan gave us between three and five potential VPs, while some mods upped that
+            number closer to ten. In my opinion, that wasn’t really an improvement when the VPs didn’t matter more than
+            in an original scenario. What’s the point of having ten VPs if the game plays the same with all of them? For
+            historical mods, this was even counterproductive. With a list of five, you would probably read all their
+            bios and learn which candidates were seriously considered. With ten, you’d probably give up at some point,
+            just select someone and walk away not knowing who was actually a plausible choice and who was a more
+            far-fetched one just thrown in by the modmaker. So, my first lesson here would be - don’t overstuff the VP
+            menu for no reason. If a VP plays basically the same as another one and wasn’t on a historical shortlist,
+            they don’t make your mod better.</p>
+
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post6/manyVPS.png">
+                <p class="image-caption">An example of an expansive VP list</p>
+            </div>
+            <div class="image-container">
+                <img src="/static/images/post6/manyVPsDB.png">
+                <p class="image-caption">Even Dan Bryan did this in his 2020 scenario!</p>
+            </div>
+        </div>
+
+        <p>However, mods were also doing something else - changing more questions, feedback and effects due to your
+            running mate. Take this question from 1972b, for example:</p>
+
+        <div class="image-container">
+            <img src="/static/images/post6/wallacequestion.png">
+            <p class="image-caption">This part is the same no matter who your VP is</p>
+        </div>
+
+        <p>Depending on your running mate, the result is very different:</p>
+
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post6/wallacejackson.png">
+                <p class="image-caption">Going badly...</p>
+            </div>
+            <div class="image-container">
+                <img src="/static/images/post6/wallaceyorty.png">
+                <p class="image-caption">...even worse...</p>
+            </div>
+            <div class="image-container">
+                <img src="/static/images/post6/wallacechisholm.png">
+                <p class="image-caption">...now that's better!</p>
+            </div>
+        </div>
+
+        <p> Now that’s really cool! And it changes a lot - suddenly, choosing a different VP actually changes the game
+            in a meaningful way, so you have a good reason to go back and play the scenario with someone else. In my
+            opinion, making good use of VPs is a great way to make your mod more varied and replayable. My (very rough)
+            guideline would be that a VP in a 25 question mode should change something in at least five questions if you
+            want the VP choice to feel impactful - be it the whole question, unique answers, or different feedback and
+            effects for answers that look the same. You can get away with having them change fewer questions by making
+            the changes bigger, but I think spreading the effects out over more questions is more elegant.</p>
+
+        <p>So, what are some cool things you can do with VPs? I’ll list some examples here for (US presidential) mods
+            that use VPs in cool ways, so you can get some inspiration. Of course, don’t try to do everything at once in
+            a single mod, but putting something like this in your mod can help it stand out without having to use more
+            complicated technology:
+        <ul>
+            <li>Put some states or whole regions into play only with a certain VP, but sacrifice some other regions in
+                return. This will almost make your mod feel like a different game with that VP, since you totally have
+                to change strategies. Examples: Hyperion 1884, 1964 Draft Lodge</li>
+            <br>A note of caution here though: VPs putting different areas into play and allowing for different
+            strategies is good overall, but you should be mindful of it making sense. Just adding a VP that completely
+            changes the map without it making a lot of sense doesn't make your mod better, it makes it look like you
+            don't know what you're doing. Varied gameplay is a good thing, but don't completely sacrifice realism for
+            it. Also, the VP helping you in the North while sacrificing most of the South in pre-Civil Rights mods is a
+            classic (and can make sense when done well), but can also feel overdone and a bit stale.</li>
+            <li>Make the campaign partly about what your VP is up to and the consequences they and you) face for their
+                actions. Examples: 1972d plays this straight, 2000 Palpatine does this in a hilarious way</li>
+            <li>Make it harder to win with a certain pick, but satisfying (by giving a better ending or achieving a
+                representation milestone early). Examples: 1952Red (with Helen Douglas), 1968Romney (with Edward Brooke)
+            </li>
+        </ul>
+        </p>
+
+
+        <p>The next few examples are a bit more complicated and require some more technology, but can be very
+            worthwhile:
+        <ul>
+            <li>Have a VP that is very powerful and gives you strong effects, but needs you to play a certain way to not
+                leave the ticket (Kaptur as Bernie’s VP in 2016-4way redux)</li>
+            <li>Lock some answers (but keep them visible), only “unlocking” them with the fitting VP (a cool tech that
+                4352 BCE: Cold Famine uses - I might talk about how to implement this in the future)</li>
+            <li>Have a whole alternate history novella for your players to read if they win all states with a certain VP
+                (yeah… I don’t know if another mod will manage to pull this off properly, but it’s so great with Butler
+                in 1864)</li>
+        </ul>
+        </p>
+        <p>These are just some ideas to get you inspired - I’m sure there are cool things to do with VPs that no one has
+            done yet! And remember - a mod that has just three VPs but does interesting things with each of them is more
+            replayable than a mod that has a huge list, but they all more or less play the same.</p>
+
+        <p>Now, what about situations in which there isn’t even a VP - like in international or statewide elections. I
+            see some options here that are used by different mods and all work well:
+        <ul>
+            <li>Basically, ignore the slot. Put a party or an attorney general or something in there and give the player
+                just one option. In general, for US presidential mods also, a mod doesn’t need different VPs to be fun.
+            </li>
+            <li>Switch it so that the candidate is a party and the VP is their leader. Then, you can have different
+                leaders in the VP slot like 2025NL and 2021DE. Same thing as above applies here, and even moreso: The
+                leaders should play differently to justify their inclusion.</li>
+            <li>Instead of using a party or a person, use a strategy, like the campaign styles in 2017UK. This was a
+                brilliant idea by that mod - the campaign styles serve a similar purpose as the VPs, by giving you a
+                glimpse of what strategies a party could have chosen and changing the campaign to reflect that. You know
+                what I’m gonna say next: Make them different enough to make their inclusion worthwhile!</li>
+            <li>Another idea I toyed with at a point was to use an advisor in this slot that helps you with some
+                questions, like the VPs in the End of History mod.</li>
+        </ul>
+        </p>
+
+        <p>As you see, even in mods that don’t even have a VP you can still do interesting stuff with that slot if you
+            want!</p>
+
+        <p>In conclusion, VPs are a core feature of the game that’s sometimes overlooked, but can really help at making
+            mods feel distinct and be replayable. I’ll talk about them again in the future when I make a guide on the
+            midgame VP switcher, or if I have some other thoughts. Next week, there’ll be more code to use with CYOA
+            again. See you next time!</p>
+        <p>
+            <a href="/blog" class="button">Back to Overview</a>
+        </p>
+
 </body>
+
 </html>

@@ -1,15 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../index.html#post1">
-    <title>Redirecting...</title>
-    <script>
-        window.location.replace("../index.html#post1");
-    </script>
+    <title>CampaignTrailMojo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .blog {
+                margin-left: 300px;
+                margin-right: 300px;
+            }
+        }
+
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .image-container {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container img {
+            height: 150px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-caption {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Redirecting to the blog reader... <a href="../index.html#post1">Open post</a></p>
+    <h1>Welcome and Tooltips!</h1>
+    <div class="blog">
+        <p>
+            Hi hi people, this is Nina! I'm the coder of the 2021DE mod and creator of this site. I’m starting a little
+            blog in this space, for a few reasons:
+            to have a central place for all my guides and coding tips, to share some insights into the modding process
+            that
+            might be useful to other modders and interesting to everyone else, and last but not least to show that this
+            community
+            is still going strong after unfortunate recent incidents. Since I’m a coding person (I studied computer
+            science and work in IT now),
+            this blog will focus on the more technical aspects of modding, but fear not: I’ll try to write everything in
+            a way that’s accessible
+            to people without coding experience.
+        </p>
+        <p>
+            For the first blog, I want to rehash a coding feature that I’ve actually written a guide on reddit about
+            before,
+            but that I’ve gotten asked about a few times recently since many people seem to have been unaware of the
+            reddit post -
+            Tooltips, as first seen in 2021DE:
+        </p>
+        <p>
+            Let’s start with some code: <a
+                href="https://pastebin.com/raw/3WZEeKDH">https://pastebin.com/raw/3WZEeKDH</a><br>
+            Put this in your code 1. You can also put it in your code 2 if you want - as long as you put it above the
+            other code, everything should be fine.
+            To add tooltips, simply add new searchStrings in the same format. As you can see with the image example, you
+            can use HTML tags,
+            so add pictures, make them bold, colourful, whatever. To change the background colour of the tooltip area,
+            simply change the background-color of .mytooltip .mytooltiptext ... to something other than lightblue
+            (either a named colour or a hex value - <a
+                href="https://htmlcolorcodes.com/">https://htmlcolorcodes.com/</a> is good for picking colours). In a
+            similar vein, changing the color attribute in the same place changes the color of the text.
+        </p>
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post1/tooltip_default.png">
+                <p class="image-caption">The default tooltip look</p>
+            </div>
+            <div class="image-container">
+                <img src="/static/images/post1/tooltip_bw.png">
+                <p class="image-caption">Something a bit darker...</p>
+            </div>
+            <div class="image-container">
+                <img src="/static/images/post1/tooltip_red_bold.png">
+                <p class="image-caption">...or more like a danger sign is also possible</p>
+            </div>
+        </div>
+        <p>
+            Now the second bit of code: <a
+                href="https://pastebin.com/raw/c2DMtD34">https://pastebin.com/raw/c2DMtD34</a><br>
+            Put that part in your code 2, below the part where you define the questions, answers and feedback. It will
+            apply a tooltip
+            to every searchString you defined in the other file to all questions, answers and feedbacks (not to other
+            stuff like endings and
+            depending on how you do your CYOA, not necessarily to those paths either). Cases like overlapping tooltips,
+            fanciful punctuation
+            within the searchStrings and such are mostly dealt with, though there are probably some weird edge cases.
+        </p>
+        <p>
+            Note, that this will not apply tooltips to your code 1 and endings, I might cover that in a later blogpost.
+            Some technical explanation for the people who are interested - what this code does is basically define pairs
+            of words to explain
+            and their explainer text, then search through all questions, answers and feedback and add some HTML with the
+            explainer tags within
+            specific tags directly behind the word to be explained. Then, CSS is used to hide the tooltips by default
+            and only show them in a box
+            of the right size on hover. You can adjust the looks of it too - the advisor speech bubbles in 2021DE use
+            basically the same system,
+            with some slight styling modifications.
+        </p>
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post1/tooltip_speechbubble.png">
+                <p class="image-caption">With a little CSS magic, you can turn the tooltips into these advice boxes</p>
+            </div>
+            <div class="image-container">
+                <img src="/static/images/post1/tooltip_image.png">
+                <p class="image-caption">Background images also work - to make them look like a letter</p>
+            </div>
+        </div>
+        <p>
+            Now, what are tooltips good for? In 2021, we mainly used them for three things - giving more background on
+            certain people, events and organizations,
+            showing iconic pictures (like the Laschet laugh after the flood) and for memes (though we used that
+            sparingly). W uses tooltips mainly to explain the
+            nicknames that are used, and sometimes almost like a neutral observer commenting in a less biased way. Some
+            othher uses I came up with are:
+        <ul>
+            <li>Highlighting certain events in alternate history mods to give context without overloading the question
+            </li>
+            <li>Fact-checking things the candidate says in answers</li>
+            <li>Give context to offensive or discriminatory statements</li>
+            <li>For foreign mods, give context to words or concepts that don't translate well</li>
+            <li>Use them as advice boxes - maybe your VP can chime in what they think of certain answers?</li>
+        </ul>
+
+        I'm sure you can come up with even more ways to use them - in any case, they are quite easy to set up, so if you
+        have an idea how to use them, go ahead and try it out!
+        </p>
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post1/tooltip_picture.png">
+                <p class="image-caption">It's not overstatement that this image decided the 2021 German election - and
+                    tooltips were a great way to organically put it into the mod.</p>
+            </div>
+
+        </div>
+        <p>
+            That concludes my first blog post - I’ll try to release them weekly, but might switch to bi-weekly if I
+            can’t keep up. Some topics I plan to talk about in coming weeks are polling-based CYOA, targeted CYOA to
+            just change things like single answers, effects and feedback without changing the whole question,
+            achievements, more about tooltips and the coalition builder. I’m always open for suggestions and guest posts
+            - if someone wants to talk about a topic that fits the theme of the blog. Just hit me up on Discord!
+            <br>Until next time, happy modding and playing!
+        <p>
+        <p>
+            <a href="/blog" class="button">Back to Overview</a>
+        </p>
+    </div>
 </body>
+
 </html>

@@ -1,15 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../index.html#post2">
-    <title>Redirecting...</title>
-    <script>
-        window.location.replace("../index.html#post2");
-    </script>
+    <title>CampaignTrailMojo</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <style>
+        @media screen and (min-width: 768px) {
+            .blog {
+                margin-left: 300px;
+                margin-right: 300px;
+            }
+        }
+
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .image-container {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container img {
+            height: 150px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-container-vertical {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .image-container-vertical img {
+            height: 250px;
+            /* Adjust this value to set the height of your images */
+            width: auto;
+        }
+
+        .image-caption {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Redirecting to the blog reader... <a href="../index.html#post2">Open post</a></p>
+    <h1>What even is CYOA?</h1>
+    <div class="blog">
+        <p>
+            Hi hi, welcome to the second post on this blog! I considered doing a proper guide about polling-based CYOA
+            here
+            (my reddit post about the topic has a few mistakes in it). Still, I think that it’s helpful to ask a broader
+            question first before delving into this specific topic: What even is CYOA?
+        </p>
+
+        <p>
+            CYOA stands for “<b>C</b>hoose <b>Y</b>our <b>O</b>wn <b>A</b>dventure</b>.” Usually, it refers to a genre
+            of books that give you a small
+            chapter or something then say something like “If you want to go left, turn to page 17. If you want to go
+            right,
+            turn to page 52”. Some text-based adventure games also work on the same principle.
+        </p>
+
+
+        <div class="image-row">
+            <div class="image-container-vertical">
+                <img src="/static/images/post2/You_are_Deadpool.jpg">
+                <p class="image-caption">My favourite example of CYOA</p>
+            </div>
+
+        </div>
+
+        <p>
+            Notably, standard TCT doesn’t have CYOA - the questions you get are either randomly drawn from a pool of
+            questions (on the old site or with bunnyhop) or you just get the same questions every time. Your past
+            choices
+            don’t affect future questions.
+        </p>
+
+        <p>
+            This all changed around a year ago when the CYOA function became available for modding in TCT. I believe it
+            was
+            all coded by Decstar. If memory serves me right, the first instance on the mod loader was a weird version of
+            1948 in which you could get shot as Dewey (after which the game sent you to election night immediately)
+            depending on your answer. Soon after that, 2019 North Korea and 2000n did more with the concept (swapping
+            out
+            whole questions, swapping out the VP, messing with the question counter) and the rest, as they say, is
+            history.
+        </p>
+
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post2/1948N.png">
+                <p class="image-caption">Never forget where you came from</p>
+            </div>
+
+        </div>
+
+        <p>
+            So, judging by what these three mods did, CYOA is a pretty powerful technology - it seems like you can swap
+            out
+            a lot of stuff. So what is CYOA truly capable of?
+        </p>
+
+        <p>
+            On a technical level, CYOA just means that there’s an extra (Javascript) function that gets called every
+            time
+            after a question has been answered and (if there is any) the feedback has been shown. The function is
+            defined
+            in the code of the mod that’s currently loaded. If you know coding, this should make you feel a bit giddy.
+            This
+            means that there’s a function in which you can put <i>any Javascript code you can think of</i> and the game
+            will
+            execute it after each question! The possibilities are endless!
+        </p>
+
+        <div class="image-row">
+            <div class="image-container-vertical">
+                <img src="/static/images/post2/javascript_guide.jpg">
+                <p class="image-caption">CYOA. The definitive guide.</p>
+            </div>
+
+        </div>
+
+        <p>
+            If you can’t code, on the other hand, this might make CYOA seem a bit daunting. For most other parts of TCT
+            coding, you don’t really need to <i>code</i> in the sense that you need to mess with functions and variables
+            and
+            control structures and all that complicated stuff. Does this mean CYOA will only ever be accessible to
+            people
+            who know how to code?
+        </p>
+
+        <p>
+            Fortunately, no. While you <i>can</i> do lots and lots of different things with CYOA (for example - with
+            some
+            extra stuff around it - save the polling after each question, randomize it a little, to later display it in
+            a
+            neat graph), in reality, you mostly want to do something specific from a not too long list of things.
+        </p>
+
+        <div class="image-row">
+            <div class="image-container">
+                <img src="/static/images/post2/polling_chart.png">
+                <p class="image-caption">Making a chart like this wouldn’t have been possible without CYOA.</p>
+            </div>
+
+        </div>
+
+        <p>
+            Exchanging questions, answers, feedback, answer effects, jumping to the end, skipping questions and even
+            exchanging VPs and candidates are things that have been done in TCT mods and aren’t that complicated, even
+            if
+            you don’t know any Javascript. Mostly you can get that to work by finding a mod that does what you want and
+            copy-pasting the relevant parts. This can be finicky though and it’s usually better if you somewhat
+            understand
+            what you’re doing instead of blindly copy-pasting - so in the coming weeks, I’m going to add some guides on
+            how
+            to do certain stuff in CYOA (with example code), so watch this space!
+        </p>
+
+        <p>
+            So, that’s it for today! See you next week, probably with some specific CYOA guides.
+        </p>
+        <p>
+            <a href="/blog" class="button">Back to Overview</a>
+        </p>
+
+    </div>
 </body>
+
 </html>
