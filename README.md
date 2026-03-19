@@ -87,7 +87,7 @@ mapButton.title = "It's all so hazy.";
 ```
 
 ### Temporary song easter egg
-In *All The Way*, clicking candidate/running mate images a total of six (6) times unlocks a new song in the music player. This is a cleaned up version that lets it work in the players shown here. To customize it, you need to replace the image link that will trigger the songs, and also the song data you want, as shown here:
+In *All The Way*, clicking candidate/running mate images a total of six (6) times unlocks a new song in the music player. This is the [temporary song easter egg](./codes/song_easteregg.js) feature; here, we have a cleaned up version that lets it work in the players shown here. To customize it, you need to replace the image link that will trigger the songs, and also the song data you want, as shown here:
 ```javascript
   "https://i.imgur.com/kyGgGv1.gif": new Song(
     "68 Nixon",
@@ -101,7 +101,7 @@ See example:
 ![ATW easter egg](./images/song_easteregg.png)
 
 ### Volatility feature
-The [volatility_applier.js](./codes/volatility_applier.js) snippet applies volatility to global multipliers in the answer score global JSON. In other words, it randomly adjusts the values of global multipliers to introduce volatility into the scoring process, increasing the unpredictability of your answers.
+The [volatility applier](./codes/volatility_applier.js) snippet, as seen in *1992: Moonbeam*, applies volatility to global multipliers in the answer score global JSON. In other words, it randomly adjusts the values of global multipliers to introduce volatility into the scoring process, increasing the unpredictability of your answers.
 
 For an individual answer, you can set a manual volatility value by creating a `volatility_range` property in your desired answer score. For example:
 
@@ -129,7 +129,7 @@ The radio-themed player shown in the mod *1968: All The Way*. Shown here is a mo
 ![All The Way player](./images/atw_player.png)
 
 ### American Carnage player
-The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version of the player initially made for *2028: An Old Cycle*. See source [here](.players/ac_player.js).
+The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version of the player initially made for *2028: An Old Cycle*. See source [here](./players/atw_player.js).
 ![American Carnage player](./images/ac_player.png)
 
 ### An Old Cycle player
