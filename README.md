@@ -125,11 +125,11 @@ will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the glo
 
 ## Music players
 ### All The Way player
-The radio-themed player shown in the mod *1968: All The Way*. Shown here is a modified version of the player with some optimizations/cleanups and a more readable progress bar. See source [here](./players/ac_player.js).
+The radio-themed player shown in the mod *1968: All The Way*. Shown here is a modified version of the player with some optimizations/cleanups and a more readable progress bar. See source [here](./players/atw_player.js).
 ![All The Way player](./images/atw_player.png)
 
 ### American Carnage player
-The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version of the player initially made for *2028: An Old Cycle*. See source [here](./players/atw_player.js).
+The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version of the player initially made for *2028: An Old Cycle*. See source [here](./players/ac_player.js).
 ![American Carnage player](./images/ac_player.png)
 
 ### An Old Cycle player
