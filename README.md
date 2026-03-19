@@ -172,6 +172,10 @@ Based off the QuickTime player, this was initially made for *2019 DOTP*, meant t
 This was made for the unreleased Dan Quayle presidency simulator *Quaylee*, on top of the underlying code for the player used for *Moonbeam*. See source [here](./players/quinto_player.js).
 ![Quinto player](./images/quinto_player.png)
 
+### ROC player
+This is a modified version of the player used in *2000 ROC Redux* and other mods in the ROC series, with some optimizations and positioning fixes so it aligns with other players' layouts. See source [here](./players/roc_player.js).
+![ROC player](./images/roc_player.png)
+
 ### W. player
 The Windows Music Player-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
 ![W. player](./images/w_player.png)
