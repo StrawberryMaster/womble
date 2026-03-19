@@ -120,7 +120,7 @@ function setupMusicPlayer() {
     ["Is This the Life We Really Want", "Roger Waters", "https://i.imgur.com/3NCgTGN.png", "https://audio.jukehost.co.uk/ng58tjZYGQSrNKrGgmH5pFp4wobiaUPe"],
     ["The Kids are Alt-Right", "Bad Religion", "https://i.imgur.com/KzlAiiO.png", "https://audio.jukehost.co.uk/f9HDWEKzRO8NtI5ePOLgh0Nn6pz4nXmQ"],
     ["Vigilante Man", "Glen Hansard", "https://i.imgur.com/SvUzGQH.png", "https://audio.jukehost.co.uk/MasC7udHqmabHGNLCJdlD9sSHIx9gpnV"],
-    ["Real American", "Rick Derringer", "https://i.imgur.com/CalYXXW.png", "https://audio.jukehost.co.uk/5aZ2PQqoNvJN2kPuLCaOoGSHmkmI95lk"]
+    ["Real American", "Rick Derringer", "https://i.imgur.com/CalYXXW.png", "https://audio.jukehost.co.uk/5aZ2PQqoNvJN2kPuLCaOoGSHmkmI95lk"],
   ];
 
   if (activePlaylist.songs.length === 0) {

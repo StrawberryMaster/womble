@@ -292,7 +292,7 @@ function setupMusicPlayer() {
     ["Soldier of Love", "Sade", "https://i.discogs.com/vntsNIVveCmaocTGQP6hXo18bg4KuyTjB1jvOcCx83g/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxMjc2/MzMtMTI2NTkwOTA0/OC5qcGVn.jpeg", "https://file.garden/aNtAfG887DiA_7lO/2028AOC/Soldier%20of%20Love%20-%20Sade.ogg"],
     ["The Room Where It Happens", "Original Broadway Cast of “Hamilton”", "https://images.genius.com/3d49fcb34aa21fccd06f2b3c818146fd.1000x1000x1.png", "https://file.garden/aNtAfG887DiA_7lO/2028AOC/The%20Room%20Where%20It%20Happens%20-%20Leslie%20Odom%20Jr..ogg"],
     ["LO QUE LE PASÓ A HAWAii", "Bad Bunny", "https://images.genius.com/66f08db4c1d9d323ab441ab6c04a034a.1000x1000x1.png", "https://file.garden/aNtAfG887DiA_7lO/2028AOC/LO%20QUE%20LE%20PAS%C3%93%20A%20HAWAii%20-%20Bad%20Bunny.ogg"],
-    ["Kaleidoscope", "Chappell Roan", "https://i.scdn.co/image/ab67616d0000b27300ba233051308498954daf7c", "https://file.garden/aNtAfG887DiA_7lO/2028AOC/Kaleidoscope%20-%20Chappell%20Roan.ogg"]
+    ["Kaleidoscope", "Chappell Roan", "https://i.scdn.co/image/ab67616d0000b27300ba233051308498954daf7c", "https://file.garden/aNtAfG887DiA_7lO/2028AOC/Kaleidoscope%20-%20Chappell%20Roan.ogg"],
   ];
 
   if (activePlaylist.songs.length === 0) {

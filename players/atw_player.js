@@ -168,7 +168,7 @@ function setupMusicPlayer() {
     ["Coffee Cold", "Galt MacDermot", "https://i.imgur.com/waC4T60.png", "https://audio.jukehost.co.uk/lLCs02yVw3VQuiIXftCNl92A9E6UgJM8"],
     ["California Dreamin'", "Bobby Womack", "https://i.imgur.com/MiopO4X.png", "https://audio.jukehost.co.uk/8SsMNO7WhAZZFNSqnT5lmGO15zYeG5Zc"],
     ["While My Guitar Gently Weeps", "The Beatles", "https://i.imgur.com/aD89GIe.png", "https://audio.jukehost.co.uk/wpGBWAcoa3ESzqWWsabdDTz2Abgb7m3J"],
-    ["If I Can Dream", "Elvis Presley", "https://i.imgur.com/2l1GDRz.png", "https://audio.jukehost.co.uk/SOXH6LMirjYFqNHPLKbWYo7UwkYNAWY9"]
+    ["If I Can Dream", "Elvis Presley", "https://i.imgur.com/2l1GDRz.png", "https://audio.jukehost.co.uk/SOXH6LMirjYFqNHPLKbWYo7UwkYNAWY9"],
   ];
 
   if (activePlaylist.songs.length === 0) {

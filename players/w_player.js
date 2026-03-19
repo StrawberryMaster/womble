@@ -119,7 +119,7 @@ function setupMusicPlayer() {
     ["The Middle", "Jimmy Eat World", "https://resources.tidal.com/images/8434cc6f/7ce9/4558/bea8/af00b34dce36/320x320.jpg", "https://audio.jukehost.co.uk/VLIEj9gbu4y1WBgJjMKkdlckXQzAQsb8"],
     ["Saddest Girl Story", "The Starting Line", "https://resources.tidal.com/images/89571243/7a8b/4a85/945b/ec723866e109/320x320.jpg", "https://audio.jukehost.co.uk/A2jyXHWjaFVimqsqdgldYnBokmEV2Aup"],
     ["The Boy Who Blocked His Own Shot", "Brand New", "https://resources.tidal.com/images/1c1ba9d5/f47c/417d/86d3/48d46dac02db/320x320.jpg", "https://audio.jukehost.co.uk/5tx0d7xnGrJw3T2ue4r451SLrRUphlBd"],
-    ["War All The Time", "Thursday", "https://resources.tidal.com/images/2eb4dbc7/0f01/4d0c/ac73/c19691259eea/320x320.jpg", "https://audio.jukehost.co.uk/seThtysSBS6MsbfeUUNRuKlxAkR0GSlO"]
+    ["War All The Time", "Thursday", "https://resources.tidal.com/images/2eb4dbc7/0f01/4d0c/ac73/c19691259eea/320x320.jpg", "https://audio.jukehost.co.uk/seThtysSBS6MsbfeUUNRuKlxAkR0GSlO"],
   ];
 
   if (activePlaylist.songs.length === 0) {
