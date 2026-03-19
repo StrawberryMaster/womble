@@ -58239,69 +58239,91 @@ function applyBernieEffect(value) {
 
 function applyKamala() {
   //Turns Bernie/Kamala into Kamala/???
-  e.candidate_json[0].fields.first_name = 'Kamala'
-  e.candidate_json[0].fields.last_name = 'Harris'
-  e.candidate_json[0].fields.state = 'California'
-  e.candidate_json[0].fields.color_hex = "#2d1894" //Kamala color hex
+  e.candidate_json[0].fields.first_name = 'Kamala';
+  e.candidate_json[0].fields.last_name = 'Harris';
+  e.candidate_json[0].fields.state = 'California';
+  e.candidate_json[0].fields.color_hex = "#2d1894"; //Kamala color hex
 
-  e.candidate_json[1].fields.first_name = 'Temporarily'
-  e.candidate_json[1].fields.last_name = 'Vacant'
+  e.candidate_json[1].fields.first_name = 'Temporarily';
+  e.candidate_json[1].fields.last_name = 'Vacant';
 
-  applyDrift(300, 0.02, 1104) //CA home state boost for Kamala
-  e.election_json[0].fields.advisor_url = "https://i.imgur.com/R2FmZVf.jpeg"
+  applyDrift(300, 0.02, 1104); //CA home state boost for Kamala
+  e.election_json[0].fields.advisor_url = "https://i.imgur.com/R2FmZVf.jpeg";
   campaignTrail_temp.candidate_image_url = "https://i.imgur.com/AvEct3B.jpeg";
   campaignTrail_temp.running_mate_image_url = "https://i.imgur.com/hDLsVGF.jpeg"; //just a question mark
-  e.candidate_issue_score_json[0].fields.issue_score = -0.3 //Kamala perceived as much more moderate and establishment on econ - exaggerating to help distinguish from Bernie's previous decisions
-  e.candidate_issue_score_json[1].fields.issue_score = 0.6 //Kamala perceived as much more globalist - exaggerating to distinguish (because the player will have previously made many important decisions that Kamala is also owning; I'm more interested in the issue movement than the actual values.)
-  e.candidate_issue_score_json[2].fields.issue_score = 0.4 //Kamala perceived as slightly more progressive on social issues and immigration
-  e.candidate_issue_score_json[3].fields.issue_score = 0.4
-  document.head.lastElementChild.innerHTML = `
-		  #campaign_sign {
-			  background-image: url("https://i.imgur.com/6IuwrxC.jpeg");
-			  background-size: cover;
-			  border-color: #c9c9c9;
-			  border-width: .01em;
-			  margin: 0 auto;
-			  background-position: center 55%;
-			  width: 100%;
-			  height: 110px;
-			  margin-left: -0.07em;
-			}
-		`;
+  
+  e.candidate_issue_score_json[0].fields.issue_score = -0.3; //Kamala perceived as much more moderate and establishment on econ - exaggerating to help distinguish from Bernie's previous decisions
+  e.candidate_issue_score_json[1].fields.issue_score = 0.6; //Kamala perceived as much more globalist - exaggerating to distinguish (because the player will have previously made many important decisions that Kamala is also owning; I'm more interested in the issue movement than the actual values.)
+  e.candidate_issue_score_json[2].fields.issue_score = 0.4; //Kamala perceived as slightly more progressive on social issues and immigration
+  e.candidate_issue_score_json[3].fields.issue_score = 0.4;
+
+  // Safely inject styling instead of modifying map_image directly
+  let kamalaStyle = document.getElementById("kamala-dynamic-styles");
+  if (!kamalaStyle) {
+      kamalaStyle = document.createElement("style");
+      kamalaStyle.id = "kamala-dynamic-styles";
+      document.head.appendChild(kamalaStyle);
+  }
+  kamalaStyle.innerHTML = `
+      #campaign_sign {
+          background-image: url("https://i.imgur.com/6IuwrxC.jpeg");
+          background-size: cover;
+          border-color: #c9c9c9;
+          border-width: .01em;
+          margin: 0 auto;
+          background-position: center 55%;
+          width: 100%;
+          height: 110px;
+          margin-left: -0.07em;
+      }
+      #map_container {
+          background-image: url("https://i.imgur.com/pkTlUov.jpeg");
+          background-size: cover;
+      }
+  `;
+
   if (ticket_status == 2) {
     const popup = document.getElementById("simplePopup");
-    popup.style.backgroundImage = "url('https://i.imgur.com/X3MtJ51.jpeg')"; //code to shift memo to VP Harris
+    if (popup) popup.style.backgroundImage = "url('https://i.imgur.com/X3MtJ51.jpeg')";  //code to shift memo to VP Harris
   }
   else if (ticket_status == 3) {
     const popup = document.getElementById("simplePopup");
-    popup.style.backgroundImage = "url('https://i.imgur.com/40yMWtb.jpeg')"; //code to shift memo to President Harris
+    if (popup) popup.style.backgroundImage = "url('https://i.imgur.com/40yMWtb.jpeg')";  //code to shift memo to President Harris
   }
+  
   //change campaign music track - defined earlier in init.
-  changePlaylist(KPlaylist);
+  if (typeof kamalaPlaylist !== 'undefined') {
+      changePlaylist(kamalaPlaylist);
+  }
+
   //change Kamala theme, thanks to Skittie
-  nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1f1945";
+  if (typeof nct_stuff !== 'undefined' && nct_stuff.themes && nct_stuff.themes[nct_stuff.selectedTheme]) {
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1f1945";
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#4c40aa";
 
-  nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#4c40aa";
+      let gameHeader = document.getElementsByClassName("game_header")[0];
+      if (gameHeader) gameHeader.style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
 
-  document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+      let gameWindow = document.getElementById("game_window");
+      if (gameWindow) {
+          gameWindow.style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+          gameWindow.style.backgroundImage = "url(https://i.imgur.com/zKxvcC1.jpeg)";
+          gameWindow.style.borderColor = "#FFFFFF";
+      }
+  }
 
-  $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+  let container = document.getElementsByClassName("container")[0];
+  if (container) {
+      container.style.backgroundColor = "#382d8d";
+      container.style.border = ".2em solid #FFFFFF";
+  }
 
-  $(".container")[0].style.backgroundColor = "#382d8d";
-
-  $("#game_window")[0].style.backgroundImage = "url(https://i.imgur.com/zKxvcC1.jpeg)"
-  //$("#game_window")[0].style.backgroundImage = "url(https://i.imgur.com/VcTs8ci.jpeg)"
-  $("#game_window")[0].style.borderColor = "#FFFFFF"
-
-  $(".container")[0].style.border = ".2em solid #FFFFFF"
-  document.getElementById("header").src = "https://i.imgur.com/V4JhoMQ.jpeg";
+  let header = document.getElementById("header");
+  if (header) header.src = "https://i.imgur.com/V4JhoMQ.jpeg";
 
   document.body.background = "https://i.imgur.com/zvp0Qtk.jpeg";
-  document.getElementById("map_image").innerHTML = `#map_container {
-			background-image: url("https://i.imgur.com/pkTlUov.jpeg");
-			background-size: cover;
-		}`;
 }
+
 function applyVP(VPnum) {
   if (VPnum == 1) { //AOC
     vpTable["Kamala Harris"] = "Alexandria Ocasio-Cortez"
