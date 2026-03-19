@@ -30,6 +30,30 @@ if (e.running_mate_last_name === "Gephardt") {
 - `restoreCandidate(301, { touch: 'both' });` - restores candidate 301. I missed them
 - `restoreCandidate(301, { touch: 'final' });` - restores 301, *but* only makes them appear at the final results
 
+### Change turnout
+The [change turnout](./codes/change_turnout.js) function is a simple tool for changing the turnout of a state or the overall turnout of the election. It includes a single function, `changeTurnout()`, which takes a percentage as an argument and updates the turnout to that percentage. For example:
+```javascript
+changeTurnout(1.15, "CA"); // increases turnout in California by 15%
+
+changeTurnout(0.80, 133); // decreases turnout in South Carolina (pk 133) by 20%
+
+// as shown on TTNW:
+if (eminence > 8) {
+    changeTurnout(0.60); // nationwide turnout slashed by 40%
+} else if (eminence > 6) {
+    changeTurnout(0.80); // nationwide turnout slashed by 20%
+} else {
+    changeTurnout(0.90); // nationwide turnout dips by 10%
+}
+
+// here, drops turnout by 30% across the Gulf states
+const gulfStates = ["FL", "AL", "MS", "LA", "TX"];
+
+gulfStates.forEach(state => {
+    changeTurnout(0.70, state);
+});
+```
+
 ### "Continue" button editor
 The [continue button editor](./codes/continue_button_editor.js) is a simple tool for changing the text of the "Continue" button that appears after booting up a mod. You need to replace the text content of the button with your desired text. For example:
 ```javascript
@@ -172,3 +196,8 @@ Also included, within the others folder, here are:
 - 2028: Smoke In The Air: J.D. Vance vs. "an 18-year-old genderfluid Deltarune fan [that] somehow got the nomination and convinced some random dude they shitposted with 3 years ago to join the ticket."
 - 2028: Soul of the Nation: a Harris 2028 mod made by Mari. A Trump side was made but seemingly never released, though the Harris side is complete and available here. Minor CYOA patches have been included here, but the mod is otherwise the same as the last-available version.
 - 2028: The American Crossroads: also known as 2028 Redux. Made by gamerdoglover, this is a Gavin Newsom vs J.D. Vance mod. It was withdrawn fom the CTS mod loader for bug fixes, though it was not re-uploaded. This is a patched version that includes a fix to have the scenario map actually show up on the screen.
+
+----
+
+## Nina's CYOA guide
+This is a guide for making CYOA questions, made by Nina. It includes tips and tricks for making good CYOA questions, as well as some common pitfalls to avoid. A copy of it is kept here for preservation as the original site it was hosted has since gone down. See [the guide here](./codes/cyoa/index.html).
