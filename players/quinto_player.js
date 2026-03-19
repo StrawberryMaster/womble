@@ -371,25 +371,6 @@ const QuintoPlayer = {
     }
 };
 
-// the observer.
-const windowsAdvisorTargetNode = document.getElementById("game_window");
-if (windowsAdvisorTargetNode) {
-    const windowsAdvisorConfig = { attributes: true, childList: true, subtree: true };
-    const callback = (mutationList, observer) => {
-        const visitWindow = document.getElementsByClassName("overlay_window")[0];
-        if (visitWindow && !visitWindow.classList.contains("done")) {
-            visitWindow.classList.add("done", "window");
-            let titleBar = visitWindow.querySelector("h3");
-            if (titleBar) {
-                titleBar.classList.add("title-bar", "title-bar-text");
-                titleBar.style.paddingLeft = "3px";
-            }
-        }
-    };
-    const observer = new MutationObserver(callback);
-    observer.observe(windowsAdvisorTargetNode, windowsAdvisorConfig);
-}
-
 // the songs.
 const mainPlaylist = new Playlist([
     new Song( "St. Chroma", "Tyler, The Creator", "https://upload.wikimedia.org/wikipedia/en/5/5b/Chromakopia_CD_cover.jpg", "https://audio.jukehost.co.uk/OJ5E0ssxcGFM9TQYGmixpt549j95LxeK"),
