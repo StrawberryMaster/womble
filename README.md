@@ -141,8 +141,8 @@ This is a modified version of the music player used in the mod *2024: No More Ma
 ![No More Maga player](./images/nmmaga_player.png)
 
 ### QuickTime player
-Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_music_player.js).
-![QuickTime player](./images/quicktime_music_player.png)
+Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_player.js).
+![QuickTime player](./images/quicktime_player.png)
 
 ### W. player
 The Windows Music Player-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
