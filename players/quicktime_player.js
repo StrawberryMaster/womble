@@ -1,77 +1,77 @@
 // A QuickTime player implementation, initially
 // made for 2019 DOTP, a remake of 2019NK.
 class Song {
-  constructor(title, artist, album, coverLink, audioLink) {
-    this.title = title;
-    this.artist = artist;
-    this.album = album;
-    this.coverLink = coverLink;
-    this.audioLink = audioLink;
-  }
+	constructor(title, artist, album, coverLink, audioLink) {
+		this.title = title;
+		this.artist = artist;
+		this.album = album;
+		this.coverLink = coverLink;
+		this.audioLink = audioLink;
+	}
 }
 
 class Playlist {
-  constructor(songs = []) {
-    this.songs = songs;
-    this.currentSongIndex = 0;
-  }
+	constructor(songs = []) {
+		this.songs = songs;
+		this.currentSongIndex = 0;
+	}
 
-  addSong(song) {
-    this.songs.push(song);
-  }
+	addSong(song) {
+		this.songs.push(song);
+	}
 
-  getCurrentSong() {
-    if (this.songs.length === 0) {
-      return new Song("No Songs", "N/A", "Unknown Album", "N/A", "https://itsastronomical.com/assets/music/buttons.png", "");
-    }
-    return this.songs[this.currentSongIndex];
-  }
+	getCurrentSong() {
+		if (this.songs.length === 0) {
+			return new Song("No Songs", "N/A", "Unknown Album", "N/A", "https://itsastronomical.com/assets/music/buttons.png", "");
+		}
+		return this.songs[this.currentSongIndex];
+	}
 
-  playNext() {
-    if (this.songs.length === 0) return;
-    this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
-  }
+	playNext() {
+		if (this.songs.length === 0) return;
+		this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+	}
 
-  playPrevious() {
-    if (this.songs.length === 0) return;
-    this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
-  }
+	playPrevious() {
+		if (this.songs.length === 0) return;
+		this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+	}
 }
 
 // player logic
 const QuickTimePlayer = {
-  playlist: null,
-  audio: null,
-  isPlaying: false,
-  dom: {},
+	playlist: null,
+	audio: null,
+	isPlaying: false,
+	dom: {},
 
-  init(targetSelector, initialPlaylist) {
-    const targetElement = document.querySelector(targetSelector);
-    if (!targetElement) {
-      console.error("Music player: target element not found.", targetSelector);
-      return;
-    }
+	init(targetSelector, initialPlaylist) {
+		const targetElement = document.querySelector(targetSelector);
+		if (!targetElement) {
+			console.error("Music player: target element not found.", targetSelector);
+			return;
+		}
 
-    this._injectCSS();
-    this._createPlayerHTML(targetElement);
-    this._cacheDOMElements();
+		this._injectCSS();
+		this._createPlayerHTML(targetElement);
+		this._cacheDOMElements();
 
-    this.audio = new Audio();
+		this.audio = new Audio();
 
-    this._bindEvents();
-    this._bindScrubbing();
-    this.loadPlaylist(initialPlaylist);
-    this._setVolume(parseFloat(this.dom.volumeSlider.value));
-  },
+		this._bindEvents();
+		this._bindScrubbing();
+		this.loadPlaylist(initialPlaylist);
+		this._setVolume(parseFloat(this.dom.volumeSlider.value));
+	},
 
-  loadPlaylist(newPlaylist) {
-    this.playlist = newPlaylist;
-    this.playlist.currentSongIndex = 0;
-    this._playSongAtIndex(0, false);
-  },
+	loadPlaylist(newPlaylist) {
+		this.playlist = newPlaylist;
+		this.playlist.currentSongIndex = 0;
+		this._playSongAtIndex(0, false);
+	},
 
-  _createPlayerHTML(targetElement) {
-    const playerHTML = `
+	_createPlayerHTML(targetElement) {
+		const playerHTML = `
 			<div class="player qt-window">
 				<div class="qt-title-bar">
 					<div class="qt-window-controls">
@@ -143,199 +143,199 @@ const QuickTimePlayer = {
 				</div>
 			</div>
 		`;
-    targetElement.insertAdjacentHTML('afterend', playerHTML);
-  },
+		targetElement.insertAdjacentHTML('afterend', playerHTML);
+	},
 
-  _cacheDOMElements() {
-    const player = document.querySelector('.player');
-    this.dom = {
-      player,
-      albumArt: player.querySelector('.player__album-art'),
-      songTitle: player.querySelector('.player__song-title'),
-      songArtist: player.querySelector('.player__song-artist'),
-      songAlbum: player.querySelector('.player__song-album'),
-      startBtn: player.querySelector('.player__btn--start'),
-      prevBtn: player.querySelector('.player__btn--prev'),
-      toggleBtn: player.querySelector('.player__btn--toggle'),
-      stopBtn: player.querySelector('.player__btn--stop'),
-      nextBtn: player.querySelector('.player__btn--next'),
-      progressBar: player.querySelector('.player__progress-bar'),
-      progressWrapper: player.querySelector('.progress-bar-wrapper'),
-      volumeSlider: player.querySelector('.player__volume-slider'),
-      timecode: player.querySelector('.player__timecode'),
-      toggleIcon: player.querySelector('.player__toggle-icon'),
-    };
-  },
+	_cacheDOMElements() {
+		const player = document.querySelector('.player');
+		this.dom = {
+			player,
+			albumArt: player.querySelector('.player__album-art'),
+			songTitle: player.querySelector('.player__song-title'),
+			songArtist: player.querySelector('.player__song-artist'),
+			songAlbum: player.querySelector('.player__song-album'),
+			startBtn: player.querySelector('.player__btn--start'),
+			prevBtn: player.querySelector('.player__btn--prev'),
+			toggleBtn: player.querySelector('.player__btn--toggle'),
+			stopBtn: player.querySelector('.player__btn--stop'),
+			nextBtn: player.querySelector('.player__btn--next'),
+			progressBar: player.querySelector('.player__progress-bar'),
+			progressWrapper: player.querySelector('.progress-bar-wrapper'),
+			volumeSlider: player.querySelector('.player__volume-slider'),
+			timecode: player.querySelector('.player__timecode'),
+			toggleIcon: player.querySelector('.player__toggle-icon'),
+		};
+	},
 
-  _bindEvents() {
-    this.dom.toggleBtn.addEventListener('click', () => {
-      if (this.audio.paused) {
-        this.play();
-      } else {
-        this.pause();
-      }
-    });
+	_bindEvents() {
+		this.dom.toggleBtn.addEventListener('click', () => {
+			if (this.audio.paused) {
+				this.play();
+			} else {
+				this.pause();
+			}
+		});
 
-    this.dom.stopBtn.addEventListener('click', () => this.stop());
+		this.dom.stopBtn.addEventListener('click', () => this.stop());
 
-    this.dom.startBtn.addEventListener('click', () => {
-      this.audio.currentTime = 0;
-      this._updateProgress();
-    });
+		this.dom.startBtn.addEventListener('click', () => {
+			this.audio.currentTime = 0;
+			this._updateProgress();
+		});
 
-    this.dom.nextBtn.addEventListener('click', () => this.playNext());
-    this.dom.prevBtn.addEventListener('click', () => this.playPrev());
+		this.dom.nextBtn.addEventListener('click', () => this.playNext());
+		this.dom.prevBtn.addEventListener('click', () => this.playPrev());
 
-    this.audio.addEventListener('timeupdate', () => this._updateProgress());
-    this.audio.addEventListener('loadedmetadata', () => this._updateProgress());
+		this.audio.addEventListener('timeupdate', () => this._updateProgress());
+		this.audio.addEventListener('loadedmetadata', () => this._updateProgress());
 
-    this.audio.addEventListener('ended', () => {
-      this.isPlaying = false;
-      this._updateControlsState();
-      this.playNext();
-    });
+		this.audio.addEventListener('ended', () => {
+			this.isPlaying = false;
+			this._updateControlsState();
+			this.playNext();
+		});
 
-    this.audio.addEventListener('play', () => {
-      this.isPlaying = true;
-      this._updateControlsState();
-    });
+		this.audio.addEventListener('play', () => {
+			this.isPlaying = true;
+			this._updateControlsState();
+		});
 
-    this.audio.addEventListener('pause', () => {
-      this.isPlaying = false;
-      this._updateControlsState();
-    });
+		this.audio.addEventListener('pause', () => {
+			this.isPlaying = false;
+			this._updateControlsState();
+		});
 
-    this.dom.volumeSlider.addEventListener('input', (e) => {
-      this._setVolume(parseFloat(e.target.value));
-    });
+		this.dom.volumeSlider.addEventListener('input', (e) => {
+			this._setVolume(parseFloat(e.target.value));
+		});
 
-    this.dom.progressWrapper.addEventListener('click', (e) => {
-      const rect = this.dom.progressWrapper.getBoundingClientRect();
-      const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      if (!isNaN(this.audio.duration)) {
-        this.audio.currentTime = percent * this.audio.duration;
-      }
-    });
-  },
+		this.dom.progressWrapper.addEventListener('click', (e) => {
+			const rect = this.dom.progressWrapper.getBoundingClientRect();
+			const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+			if (!isNaN(this.audio.duration)) {
+				this.audio.currentTime = percent * this.audio.duration;
+			}
+		});
+	},
 
-  _playSongAtIndex(index, autoplay = this.autoplay) {
-    this.playlist.currentSongIndex = index;
-    const song = this.playlist.getCurrentSong();
+	_playSongAtIndex(index, autoplay = this.autoplay) {
+		this.playlist.currentSongIndex = index;
+		const song = this.playlist.getCurrentSong();
 
-    this.audio.src = song.audioLink;
-    this._updateUI();
+		this.audio.src = song.audioLink;
+		this._updateUI();
 
-    if (autoplay) {
-      this.play();
-    } else {
-      this.audio.pause();
-      this.audio.currentTime = 0;
-      this._updateProgress();
-    }
-  },
+		if (autoplay) {
+			this.play();
+		} else {
+			this.audio.pause();
+			this.audio.currentTime = 0;
+			this._updateProgress();
+		}
+	},
 
-  _setVolume(value) {
-    this.audio.volume = value;
-  },
+	_setVolume(value) {
+		this.audio.volume = value;
+	},
 
-  _updateUI() {
-    const song = this.playlist.getCurrentSong();
-    this.dom.albumArt.src = song.coverLink;
-    this.dom.songTitle.textContent = song.title;
-    this.dom.songArtist.textContent = song.artist;
-    this.dom.songAlbum.textContent = song.album;
-  },
+	_updateUI() {
+		const song = this.playlist.getCurrentSong();
+		this.dom.albumArt.src = song.coverLink;
+		this.dom.songTitle.textContent = song.title;
+		this.dom.songArtist.textContent = song.artist;
+		this.dom.songAlbum.textContent = song.album;
+	},
 
-  play() {
-    if (!this.audio.src) return;
+	play() {
+		if (!this.audio.src) return;
 
-    this.audio.play().catch(e => {
-      this.isPlaying = false;
-      this._updateControlsState();
-      console.warn("Playback failed or autoplay was blocked.", e);
-    });
-  },
+		this.audio.play().catch(e => {
+			this.isPlaying = false;
+			this._updateControlsState();
+			console.warn("Playback failed or autoplay was blocked.", e);
+		});
+	},
 
-  pause() {
-    this.audio.pause();
-  },
+	pause() {
+		this.audio.pause();
+	},
 
-  stop() {
-    this.audio.pause();
-    this.audio.currentTime = 0;
-    this._updateProgress();
-  },
+	stop() {
+		this.audio.pause();
+		this.audio.currentTime = 0;
+		this._updateProgress();
+	},
 
-  playNext() {
-    this.playlist.playNext();
-    this._playSongAtIndex(this.playlist.currentSongIndex, true);
-  },
+	playNext() {
+		this.playlist.playNext();
+		this._playSongAtIndex(this.playlist.currentSongIndex, true);
+	},
 
-  playPrev() {
-    this.playlist.playPrevious();
-    this._playSongAtIndex(this.playlist.currentSongIndex, true);
-  },
+	playPrev() {
+		this.playlist.playPrevious();
+		this._playSongAtIndex(this.playlist.currentSongIndex, true);
+	},
 
-  _updateControlsState() {
-    if (this.isPlaying) {
-      this.dom.toggleBtn.title = 'Pause';
-      this.dom.toggleIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>';
-    } else {
-      this.dom.toggleBtn.title = 'Play';
-      this.dom.toggleIcon.innerHTML = '<path d="M8 5v14l11-7z"></path>';
-    }
-  },
+	_updateControlsState() {
+		if (this.isPlaying) {
+			this.dom.toggleBtn.title = 'Pause';
+			this.dom.toggleIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>';
+		} else {
+			this.dom.toggleBtn.title = 'Play';
+			this.dom.toggleIcon.innerHTML = '<path d="M8 5v14l11-7z"></path>';
+		}
+	},
 
-  _formatTime(seconds) {
-    const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-    const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
-    return `${h}:${m}:${s}`;
-  },
+	_formatTime(seconds) {
+		const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+		const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+		const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+		return `${h}:${m}:${s}`;
+	},
 
-  _updateProgress() {
-    const currentTime = this.audio.currentTime;
-    const duration = this.audio.duration;
-    const progressPercent = (currentTime / duration) * 100;
-    const safePercent = isNaN(progressPercent) ? 0 : progressPercent;
+	_updateProgress() {
+		const currentTime = this.audio.currentTime;
+		const duration = this.audio.duration;
+		const progressPercent = (currentTime / duration) * 100;
+		const safePercent = isNaN(progressPercent) ? 0 : progressPercent;
 
-    this.dom.progressBar.style.width = `${safePercent}%`;
-    this.dom.timecode.textContent = this._formatTime(isNaN(currentTime) ? 0 : currentTime);
-  },
+		this.dom.progressBar.style.width = `${safePercent}%`;
+		this.dom.timecode.textContent = this._formatTime(isNaN(currentTime) ? 0 : currentTime);
+	},
 
-  _bindScrubbing() {
-    let isScrubbing = false;
+	_bindScrubbing() {
+		let isScrubbing = false;
 
-    const seek = (clientX) => {
-      const rect = this.dom.progressWrapper.getBoundingClientRect();
-      const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      if (!isNaN(this.audio.duration)) {
-        this.audio.currentTime = percent * this.audio.duration;
-      }
-    };
+		const seek = (clientX) => {
+			const rect = this.dom.progressWrapper.getBoundingClientRect();
+			const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+			if (!isNaN(this.audio.duration)) {
+				this.audio.currentTime = percent * this.audio.duration;
+			}
+		};
 
-    this.dom.progressWrapper.addEventListener('mousedown', (e) => {
-      isScrubbing = true;
-      seek(e.clientX);
-    });
+		this.dom.progressWrapper.addEventListener('mousedown', (e) => {
+			isScrubbing = true;
+			seek(e.clientX);
+		});
 
-    document.addEventListener('mousemove', (e) => {
-      if (!isScrubbing) return;
-      seek(e.clientX);
-    });
+		document.addEventListener('mousemove', (e) => {
+			if (!isScrubbing) return;
+			seek(e.clientX);
+		});
 
-    document.addEventListener('mouseup', () => {
-      isScrubbing = false;
-    });
+		document.addEventListener('mouseup', () => {
+			isScrubbing = false;
+		});
 
-    this.dom.progressWrapper.addEventListener('click', (e) => {
-      seek(e.clientX);
-    });
-  },
+		this.dom.progressWrapper.addEventListener('click', (e) => {
+			seek(e.clientX);
+		});
+	},
 
-  _injectCSS() {
-    const style = document.createElement('style');
-    style.textContent = `
+	_injectCSS() {
+		const style = document.createElement('style');
+		style.textContent = `
 			.player * { box-sizing: border-box; }
 
 			.qt-window {
@@ -676,22 +676,22 @@ const QuickTimePlayer = {
 				}
 			}
 		`;
-    document.head.appendChild(style);
-  }
+		document.head.appendChild(style);
+	}
 };
 
 
 const mainPlaylist = new Playlist([
-  new Song("St. Chroma", "Tyler, The Creator", "Chromakopia", "https://upload.wikimedia.org/wikipedia/en/5/5b/Chromakopia_CD_cover.jpg", "https://audio.jukehost.co.uk/OJ5E0ssxcGFM9TQYGmixpt549j95LxeK"),
-  new Song("SIRENS", "Travis Scott", "Utopia", "https://upload.wikimedia.org/wikipedia/en/2/23/Travis_Scott_-_Utopia.png", "https://audio.jukehost.co.uk/tMqMoa9zNtWgKpMJLgBE7iBITA8ivTRo"),
-  new Song("Rich Men North of Richmond", "Oliver Anthony", "Single", "https://upload.wikimedia.org/wikipedia/en/d/d4/Oliver_Anthony_-_Rich_Men_North_of_Richmond.png", "https://audio.jukehost.co.uk/Po5eKwlVG0M4wQ3oOG9otBNFevRmkpPC"),
-  new Song("Trance", "Metro Boomin", "Heroes & Villains", "https://i.scdn.co/image/ab67616d0000b273c4fee55d7b51479627c31f89", "https://audio.jukehost.co.uk/L5xxytRx8xzIZJGO3mr6fGlVxD3s99BP"),
-  new Song("Sacrifice", "The Weeknd", "Dawn FM", "https://i.scdn.co/image/ab67616d0000b2734ab2520c2c77a1d66b9ee21d", "https://audio.jukehost.co.uk/OPJ03lifktGkFiDtX6zABItt8gdfqmvn"),
-  new Song("Too Sweet", "Hozier", "Unheard", "https://upload.wikimedia.org/wikipedia/en/9/9a/Hozier_-_Unheard.png", "https://audio.jukehost.co.uk/vM6S0Sokz9qcJ2TPv0R6WcAXhvNFhYoT"),
-  new Song("The American Dream Is Killing Me", "Green Day", "Saviors", "https://upload.wikimedia.org/wikipedia/en/c/c9/Green_Day_-_Saviors.png", "https://audio.jukehost.co.uk/xVflzX2agfU70s5rmti5BfQncpqLOCjw"),
-  new Song("Welcome To Hell", "Black Midi", "Hellfire", "https://upload.wikimedia.org/wikipedia/en/1/12/Black_Midi_-_Hellfire.png", "https://audio.jukehost.co.uk/UIHdUryJ1XMkYpDsi6uTs9av0NwAy3dX"),
-  new Song("São Paulo", "The Weeknd, Anitta", "Single", "https://upload.wikimedia.org/wikipedia/en/7/72/The_Weeknd_and_Anitta_-_S%C3%A3o_Paulo.png", "https://audio.jukehost.co.uk/vTA6uZ2eCK9uEB5HLUBzLICYLz3sDKPJ"),
-  new Song("Blind", "SZA", "SOS", "https://upload.wikimedia.org/wikipedia/en/2/2c/SZA_-_S.O.S.png", "https://audio.jukehost.co.uk/wDaCOSFko1S0NGERvwgKOIPWuShRNeOf"),
+	new Song("St. Chroma", "Tyler, The Creator", "Chromakopia", "https://upload.wikimedia.org/wikipedia/en/5/5b/Chromakopia_CD_cover.jpg", "https://audio.jukehost.co.uk/OJ5E0ssxcGFM9TQYGmixpt549j95LxeK"),
+	new Song("SIRENS", "Travis Scott", "Utopia", "https://upload.wikimedia.org/wikipedia/en/2/23/Travis_Scott_-_Utopia.png", "https://audio.jukehost.co.uk/tMqMoa9zNtWgKpMJLgBE7iBITA8ivTRo"),
+	new Song("Rich Men North of Richmond", "Oliver Anthony", "Single", "https://upload.wikimedia.org/wikipedia/en/d/d4/Oliver_Anthony_-_Rich_Men_North_of_Richmond.png", "https://audio.jukehost.co.uk/Po5eKwlVG0M4wQ3oOG9otBNFevRmkpPC"),
+	new Song("Trance", "Metro Boomin", "Heroes & Villains", "https://i.scdn.co/image/ab67616d0000b273c4fee55d7b51479627c31f89", "https://audio.jukehost.co.uk/L5xxytRx8xzIZJGO3mr6fGlVxD3s99BP"),
+	new Song("Sacrifice", "The Weeknd", "Dawn FM", "https://i.scdn.co/image/ab67616d0000b2734ab2520c2c77a1d66b9ee21d", "https://audio.jukehost.co.uk/OPJ03lifktGkFiDtX6zABItt8gdfqmvn"),
+	new Song("Too Sweet", "Hozier", "Unheard", "https://upload.wikimedia.org/wikipedia/en/9/9a/Hozier_-_Unheard.png", "https://audio.jukehost.co.uk/vM6S0Sokz9qcJ2TPv0R6WcAXhvNFhYoT"),
+	new Song("The American Dream Is Killing Me", "Green Day", "Saviors", "https://upload.wikimedia.org/wikipedia/en/c/c9/Green_Day_-_Saviors.png", "https://audio.jukehost.co.uk/xVflzX2agfU70s5rmti5BfQncpqLOCjw"),
+	new Song("Welcome To Hell", "Black Midi", "Hellfire", "https://upload.wikimedia.org/wikipedia/en/1/12/Black_Midi_-_Hellfire.png", "https://audio.jukehost.co.uk/UIHdUryJ1XMkYpDsi6uTs9av0NwAy3dX"),
+	new Song("São Paulo", "The Weeknd, Anitta", "Single", "https://upload.wikimedia.org/wikipedia/en/7/72/The_Weeknd_and_Anitta_-_S%C3%A3o_Paulo.png", "https://audio.jukehost.co.uk/vTA6uZ2eCK9uEB5HLUBzLICYLz3sDKPJ"),
+	new Song("Blind", "SZA", "SOS", "https://upload.wikimedia.org/wikipedia/en/2/2c/SZA_-_S.O.S.png", "https://audio.jukehost.co.uk/wDaCOSFko1S0NGERvwgKOIPWuShRNeOf"),
 ]);
 
 // kick it off!

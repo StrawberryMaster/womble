@@ -60,7 +60,7 @@ const QuintoPlayer = {
         this._setVolume(parseFloat(this.dom.volumeSlider.value));
         this.loadPlaylist(initialPlaylist);
     },
-    
+
     loadPlaylist(newPlaylist) {
         this.playlist = newPlaylist;
         this.playlist.currentSongIndex = 0;
@@ -137,7 +137,7 @@ const QuintoPlayer = {
             songArtist: player.querySelector('.player__song-artist'),
             prevBtn: player.querySelector('.player__btn--prev'),
             playBtn: player.querySelector('.player__btn--play'),
-            pauseBtn: player.querySelector('.player__btn--pause'),			
+            pauseBtn: player.querySelector('.player__btn--pause'),
             stopBtn: player.querySelector('.player__btn--stop'),
             nextBtn: player.querySelector('.player__btn--next'),
             progressBar: player.querySelector('.player__progress-bar'),
@@ -148,11 +148,11 @@ const QuintoPlayer = {
 
     _bindEvents() {
         this.dom.playBtn.addEventListener('click', () => this.play());
-        this.dom.pauseBtn.addEventListener('click', () => this.pause());		
+        this.dom.pauseBtn.addEventListener('click', () => this.pause());
         this.dom.stopBtn.addEventListener('click', () => this.stop());
         this.dom.nextBtn.addEventListener('click', () => this.playNext());
         this.dom.prevBtn.addEventListener('click', () => this.playPrev());
-        
+
         this.audio.addEventListener('timeupdate', () => this._updateProgress());
         this.audio.addEventListener('loadedmetadata', () => this._updateProgress());
         this.audio.addEventListener('ended', () => this.playNext());
@@ -175,7 +175,7 @@ const QuintoPlayer = {
             this._updateProgress();
         }
     },
-    
+
     _setVolume(value) {
         this.audio.volume = value;
         const percent = value * 100;
@@ -205,15 +205,15 @@ const QuintoPlayer = {
         this.audio.pause();
         this._updateControlsState();
     },
-	
-	stop() {
+
+    stop() {
         this.isPlaying = false;
         this.audio.pause();
         this.audio.currentTime = 0;
         this._updateProgress();
         this._updateControlsState();
     },
-    
+
     playNext() {
         this.playlist.playNext();
         this._playSongAtIndex(this.playlist.currentSongIndex, true);
@@ -223,8 +223,8 @@ const QuintoPlayer = {
         this.playlist.playPrevious();
         this._playSongAtIndex(this.playlist.currentSongIndex, true);
     },
-	
-	_updateControlsState() {
+
+    _updateControlsState() {
         this.dom.playBtn.classList.remove('active');
         this.dom.pauseBtn.classList.remove('active');
         this.dom.stopBtn.classList.remove('active');
@@ -373,35 +373,35 @@ const QuintoPlayer = {
 
 // the songs.
 const mainPlaylist = new Playlist([
-    new Song( "St. Chroma", "Tyler, The Creator", "https://upload.wikimedia.org/wikipedia/en/5/5b/Chromakopia_CD_cover.jpg", "https://audio.jukehost.co.uk/OJ5E0ssxcGFM9TQYGmixpt549j95LxeK"),
-    new Song( "SIRENS", "Travis Scott", "https://upload.wikimedia.org/wikipedia/en/2/23/Travis_Scott_-_Utopia.png", "https://audio.jukehost.co.uk/tMqMoa9zNtWgKpMJLgBE7iBITA8ivTRo"),
-    new Song( "Rich Men North of Richmond", "Oliver Anthony", "https://upload.wikimedia.org/wikipedia/en/d/d4/Oliver_Anthony_-_Rich_Men_North_of_Richmond.png", "https://audio.jukehost.co.uk/Po5eKwlVG0M4wQ3oOG9otBNFevRmkpPC"),
-    new Song( "Trance", "Metro Boomin", "https://i.scdn.co/image/ab67616d0000b273c4fee55d7b51479627c31f89", "https://audio.jukehost.co.uk/L5xxytRx8xzIZJGO3mr6fGlVxD3s99BP"),
-    new Song( "Sacrifice", "The Weeknd", "https://i.scdn.co/image/ab67616d0000b2734ab2520c2c77a1d66b9ee21d", "https://audio.jukehost.co.uk/OPJ03lifktGkFiDtX6zABItt8gdfqmvn"),
-    new Song( "Too Sweet", "Hozier", "https://upload.wikimedia.org/wikipedia/en/9/9a/Hozier_-_Unheard.png", "https://audio.jukehost.co.uk/vM6S0Sokz9qcJ2TPv0R6WcAXhvNFhYoT"),
-	new Song(
-      "The American Dream Is Killing Me",
-      "Green Day",
-      "https://upload.wikimedia.org/wikipedia/en/c/c9/Green_Day_-_Saviors.png",
-      "https://audio.jukehost.co.uk/xVflzX2agfU70s5rmti5BfQncpqLOCjw"
+    new Song("St. Chroma", "Tyler, The Creator", "https://upload.wikimedia.org/wikipedia/en/5/5b/Chromakopia_CD_cover.jpg", "https://audio.jukehost.co.uk/OJ5E0ssxcGFM9TQYGmixpt549j95LxeK"),
+    new Song("SIRENS", "Travis Scott", "https://upload.wikimedia.org/wikipedia/en/2/23/Travis_Scott_-_Utopia.png", "https://audio.jukehost.co.uk/tMqMoa9zNtWgKpMJLgBE7iBITA8ivTRo"),
+    new Song("Rich Men North of Richmond", "Oliver Anthony", "https://upload.wikimedia.org/wikipedia/en/d/d4/Oliver_Anthony_-_Rich_Men_North_of_Richmond.png", "https://audio.jukehost.co.uk/Po5eKwlVG0M4wQ3oOG9otBNFevRmkpPC"),
+    new Song("Trance", "Metro Boomin", "https://i.scdn.co/image/ab67616d0000b273c4fee55d7b51479627c31f89", "https://audio.jukehost.co.uk/L5xxytRx8xzIZJGO3mr6fGlVxD3s99BP"),
+    new Song("Sacrifice", "The Weeknd", "https://i.scdn.co/image/ab67616d0000b2734ab2520c2c77a1d66b9ee21d", "https://audio.jukehost.co.uk/OPJ03lifktGkFiDtX6zABItt8gdfqmvn"),
+    new Song("Too Sweet", "Hozier", "https://upload.wikimedia.org/wikipedia/en/9/9a/Hozier_-_Unheard.png", "https://audio.jukehost.co.uk/vM6S0Sokz9qcJ2TPv0R6WcAXhvNFhYoT"),
+    new Song(
+        "The American Dream Is Killing Me",
+        "Green Day",
+        "https://upload.wikimedia.org/wikipedia/en/c/c9/Green_Day_-_Saviors.png",
+        "https://audio.jukehost.co.uk/xVflzX2agfU70s5rmti5BfQncpqLOCjw"
     ),
-	new Song(
-      "Welcome To Hell",
-      "Black Midi",
-      "https://upload.wikimedia.org/wikipedia/en/1/12/Black_Midi_-_Hellfire.png",      
-      "https://audio.jukehost.co.uk/UIHdUryJ1XMkYpDsi6uTs9av0NwAy3dX"
+    new Song(
+        "Welcome To Hell",
+        "Black Midi",
+        "https://upload.wikimedia.org/wikipedia/en/1/12/Black_Midi_-_Hellfire.png",
+        "https://audio.jukehost.co.uk/UIHdUryJ1XMkYpDsi6uTs9av0NwAy3dX"
     ),
-	new Song(
-      "São Paulo",
-      "The Weeknd, Anitta",
-      "https://upload.wikimedia.org/wikipedia/en/7/72/The_Weeknd_and_Anitta_-_S%C3%A3o_Paulo.png",
-      "https://audio.jukehost.co.uk/vTA6uZ2eCK9uEB5HLUBzLICYLz3sDKPJ"
+    new Song(
+        "São Paulo",
+        "The Weeknd, Anitta",
+        "https://upload.wikimedia.org/wikipedia/en/7/72/The_Weeknd_and_Anitta_-_S%C3%A3o_Paulo.png",
+        "https://audio.jukehost.co.uk/vTA6uZ2eCK9uEB5HLUBzLICYLz3sDKPJ"
     ),
-	new Song(
-      "Blind",
-      "SZA",
-      "https://upload.wikimedia.org/wikipedia/en/2/2c/SZA_-_S.O.S.png",
-      "https://audio.jukehost.co.uk/wDaCOSFko1S0NGERvwgKOIPWuShRNeOf"
+    new Song(
+        "Blind",
+        "SZA",
+        "https://upload.wikimedia.org/wikipedia/en/2/2c/SZA_-_S.O.S.png",
+        "https://audio.jukehost.co.uk/wDaCOSFko1S0NGERvwgKOIPWuShRNeOf"
     ),
 ]);
 
