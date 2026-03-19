@@ -31,7 +31,7 @@ if (e.running_mate_last_name === "Gephardt") {
 - `restoreCandidate(301, { touch: 'final' });` - restores 301, *but* only makes them appear at the final results
 
 ### Change turnout
-The [change turnout](./codes/change_turnout.js) function is a simple tool for changing the turnout of a state or the overall turnout of the election. It includes a single function, `changeTurnout()`, which takes a percentage as an argument and updates the turnout to that percentage. For example:
+The [change turnout](./codes/changeturnout.js) function is a simple tool for changing the turnout of a state or the overall turnout of the election. It includes a single function, `changeTurnout()`, which takes a percentage as an argument and updates the turnout to that percentage. For example:
 ```javascript
 changeTurnout(1.15, "CA"); // increases turnout in California by 15%
 
