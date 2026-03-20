@@ -174,6 +174,10 @@ The tape recorder-like music player shown in *1972: More Than Ever*, and also in
 This is a modified version of the music player used in the mod *2024: No More Maga*. Shown here is a modified version of the player with a lower initial volume and other minor optimizations. See source [here](./players/nmmaga_player.js).
 ![No More Maga player](./images/nmmaga_player.png)
 
+### Project 2024 player
+Not the real player, but a loosely faithful recreation of the music player shown in the *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
+![Project 2024 player](./images/p24_player.png)
+
 ### QuickTime player
 Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_player.js).
 ![QuickTime player](./images/quicktime_player.png)
