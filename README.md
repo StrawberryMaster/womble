@@ -150,6 +150,10 @@ will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the glo
 ## Music players
 If the credits/attribution for the music players here is inaccurate, please contact me so I can update it. All credit goes to the original creators of the players, so please preserve the annotations in the source code so that everyone is properly credited. Note that, for some lesser used players, you may still have to ask the original creators for permission to use/modify the players.
 
+### A Lifetime of This player
+The YouTube-powered music player shown in the mod *2016: A Lifetime of This*, built on top of the *W.* player code. See source [here](./players/alot_player.js).
+![A Lifetime of This player](./images/alot_player.png)
+
 ### All The Way player
 The radio-themed player shown in the mod *1968: All The Way*. Shown here is a modified version of the player with some optimizations/cleanups and a more readable progress bar. See source [here](./players/atw_player.js).
 ![All The Way player](./images/atw_player.png)
@@ -165,6 +169,10 @@ Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See 
 ### Contract With America player
 A music player with a design inspired by the 1990s-era music players, shown in the mod *1996: Contract With America*. Shown here is a somewhat more standardized version of the player. See source [here](./players/cwa_player.js).
 ![Contract With America player](./images/cwa_player.png)
+
+### Little Big Man player
+The YouTube-powered music player shown in the mod *2012: Little Big Man*, which was built on top of the *A Lifetime of This* player code. See source [here](./players/lbm_player.js).
+![Little Big Man player](./images/lbm_player.png)
 
 ### More Than Ever player
 The tape recorder-like music player shown in *1972: More Than Ever*, and also in *1976: Year Zero*. Shown here is a modified version of the player with some optimizations. See source [here](./players/mte_player.js).
