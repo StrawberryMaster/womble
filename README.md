@@ -186,6 +186,10 @@ This was made for the unreleased Dan Quayle presidency simulator *Quaylee*, on t
 This is a modified version of the player used in *2000 ROC Redux* and other mods in the ROC series, with some optimizations and positioning fixes so it aligns with other players' layouts. See source [here](./players/roc_player.js).
 ![ROC player](./images/roc_player.png)
 
+### TTNW player
+The vinyl-esque music player shown in *Things That Never Were*. Shown here is a modified version of the player with the ability to switch playlists by clicking on the album art, and some optimizations. See source [here](./players/ttnw_player.js).
+![TTNW player](./images/ttnw_player.png)
+
 ### W. player
 The Windows Music Player-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
 ![W. player](./images/w_player.png)
