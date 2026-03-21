@@ -198,6 +198,10 @@ This was made for the unreleased Dan Quayle presidency simulator *Quaylee*, on t
 This is a modified version of the player used in *2000 ROC Redux* and other mods in the ROC series, with some optimizations and positioning fixes so it aligns with other players' layouts. See source [here](./players/roc_player.js).
 ![ROC player](./images/roc_player.png)
 
+### SoundCloud player
+Not used for a mod, but is a SoundCloud-themed music player, and would be useful for a 2010s onward mod. See source [here](./players/soundcloud_player.js).
+![alt text](image.png)
+
 ### TTNW player
 The vinyl-esque music player shown in *Things That Never Were*. Shown here is a modified version of the player with the ability to switch playlists by clicking on the album art, and some optimizations. See source [here](./players/ttnw_player.js).
 ![TTNW player](./images/ttnw_player.png)
