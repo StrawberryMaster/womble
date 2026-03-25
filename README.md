@@ -143,8 +143,7 @@ For an individual answer, you can set a manual volatility value by creating a `v
     },
 ```
 
-will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range.
-
+will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range. If no volatility range is set for an answer, it will generate max and min volatility values based on the global multiplier value.
 ----
 
 ## Music players
@@ -199,7 +198,7 @@ This is a modified version of the player used in *2000 ROC Redux* and other mods
 ![ROC player](./images/roc_player.png)
 
 ### SoundCloud player
-Not used for a mod, but is a SoundCloud-themed music player, and would be useful for a 2010s onward mod. See source [here](./players/soundcloud_player.js).
+A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player.See source [here](./players/soundcloud_player.js).
 ![SoundCloud player](./images/soundcloud_player.png)
 
 ### TTNW player
