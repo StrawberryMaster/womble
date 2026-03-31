@@ -2,6 +2,24 @@
 A series of tools/addons/etc for The Campaign Trail mods
 
 ## Addon notes
+### Answer swapper
+The [answer swapper](./codes/answer_swapper.js) is the bread and butter for swapping answer behaviors. It exchanges which question two answers belong to, and optionally swaps their effects too. Think of it like redirecting traffic: if answer A was supposed to go to question 1, and answer B to question 2, this flips that around. The ´takeEffects` parameter controls whether all the associated scoring/feedback also gets swapped.
+
+Example:
+```javascript
+// swap answer PKs 8325 and 8549, along with their effects
+answerSwapper(8325, 8549, true);
+
+// if applesause is greater than 2, AND
+// you're on question 4, then swap answer 8325 with 8549
+if (e.question_number === 5 && applesauce > 2) {
+    answerSwapper(8325, 8549, true);
+}
+
+// swap answer PKs 8325 and 8549, but keep their effects the same
+answerSwapper(8325, 8549, false);
+```
+
 ### Banner changer
 The [banner changer](./codes/banner_changer.js) is a simple tool for changing the candidate banner logos. It includes a single function, `changeImage()`, which takes an image URL as an argument and updates the banner logo to that image. For example:
 
@@ -96,6 +114,22 @@ electionPlaylist.addSong(electionSong);
 changePlaylist(electionPlaylist);
 ```
 
+### Feedback updater
+The [feedback updater](./codes/feedback_updater.js) is a tool for changing the feedback text that appears after answering a question. It includes a single function, `updateFeedback()`, which takes a string as an argument and updates the feedback text to that string. Note it supports both answer PKs and feedback PKs. For example:
+```javascript
+
+// update feedback for answer PK 8325
+updateFeedback(8325, "Your custom feedback text here");
+
+// update feedback for feedback PK 5000
+updateFeedback(5000, "Your custom feedback text here");
+
+// if player selects answer 2500 or 2501, update feedback
+if ([2500, 2501].includes(ans)) {
+    updateFeedback(3952, "This is not the feedback you think it is.");
+}
+```
+
 ### Polling blackout
 The [polling blackout](./codes/polling_blackout.js) disables the map view from a specific question onwards, similar to a Polling Blackout feature used in mods like *Y. of Korea*. (The version used here is an observer-less version made for *2028: An Old Cycle*.) To customize this, you can update the question number in the code by updating to the question number you want the blackout to start from.
 ```javascript
@@ -108,6 +142,19 @@ You can also change the text of the blackout message, or the hover text of the m
 ```javascript
 mapButton.innerHTML = "Polling Blackout Period";
 mapButton.title = "It's all so hazy.";
+```
+
+### Question swapper
+The [question swapper](./codes/question_swapper.js) is a tool for swapping the order of questions in a mod. It includes a single function, `questionSwapper()`, which takes two question numbers as arguments and swaps their order. For example:
+```javascript
+// swap question PKs 100 and 150
+questionSwapper(100, 150);
+
+// if player is on question 5 + answered the answer with PK 2500, then
+// swap question PKs 100 and 150
+if (e.question_number === 4 && ans === 2500) {
+    questionSwapper(100, 150);
+}
 ```
 
 ### Temporary song easter egg
@@ -142,8 +189,8 @@ For an individual answer, you can set a manual volatility value by creating a `v
         }
     },
 ```
+This will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range. If no volatility range is set for an answer, it will generate max and min volatility values based on the global multiplier value.
 
-will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range. If no volatility range is set for an answer, it will generate max and min volatility values based on the global multiplier value.
 ----
 
 ## Music players
@@ -182,7 +229,7 @@ This is a modified version of the music player used in the mod *2024: No More Ma
 ![No More Maga player](./images/nmmaga_player.png)
 
 ### Project 2024 player
-Not the real player, but a loosely faithful recreation of the music player shown in the *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
+Not the real player, but a loosely faithful recreation of the music player shown in the first couple of *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
 ![Project 2024 player](./images/p24_player.png)
 
 ### QuickTime player
@@ -229,7 +276,6 @@ This is a patched version of the mod *1976: Year Zero*, with some optimizations 
 Also included, within the others folder, here are:
 - DeanDemocracy '68: a mod where James Dean, alive and well, runs for president in 1968. He faces off against the real-life candidates of that year, as well as a few other ones. Available running mates for Dean include Montgomery Clift, Robert Kennedy, Richard Daley, and Frank Sinatra. Running mates for Nixon are Spiro Agnew, Ronald Reagan, John Lindsay, and George Bush. Finally, George Wallace's running mates are Curtis LeMay, Ezra Taft Benson, and John Wayne. I might get back to this eventually now that I have the codes, but much of our progress on the question has been lost.
 - 1804: Assassin's Creed: made by mefoo, never added to the loaders.
-- 2012 Razistorija: made by the group [Memorandum Teleoptik](https://memorandumteleoptik.org/) and is centered around the 2012 presidential election in Yugoslavia, in an alternate timeline where the country was not dissolved in the 1990s. This is a patched version that includes a few bug/achievement fixes and quality of life improvements (especially to the political compass within the mod), but is otherwise the same as the original release.
 - 2028: Smoke In The Air: J.D. Vance vs. "an 18-year-old genderfluid Deltarune fan [that] somehow got the nomination and convinced some random dude they shitposted with 3 years ago to join the ticket."
 - 2028: Soul of the Nation: a Harris 2028 mod made by Mari. A Trump side was made but seemingly never released, though the Harris side is complete and available here. Minor CYOA patches have been included here, but the mod is otherwise the same as the last-available version.
 - 2028: The American Crossroads: also known as 2028 Redux. Made by gamerdoglover, this is a Gavin Newsom vs J.D. Vance mod. It was withdrawn fom the CTS mod loader for bug fixes, though it was not re-uploaded. This is a patched version that includes a fix to have the scenario map actually show up on the screen.
