@@ -274,6 +274,8 @@ This is a compilation of the mods seen in [thecampaigntrail.net](https://thecamp
 
 As of now, the 2008 and 2004 versions are not not included due to their very minimal changes in comparison to their original counterparts. 1964 has not been included because there have been no notable changes, and some of its images are broken (especially on the Goldwater side).
 
+Included as well is a brief patch that should let issue effects for other candidates work on either side,
+
 Code 1 can be found [here](./mods/TCTdotnet_code1.txt), and the Code 2 can be found [here](./mods/TCTdotnet_code2_minified.txt). Note that because of the size of the code 2, the version above is minified to be around ~3mb. If you wish to inspect the code 2 for other mods, or want to try your hand at importing the uncompressed file, it can be found [here](./mods/TCTdotnet_code2.txt).
 
 ![TCT.net](./images/tctdotnet.png)
