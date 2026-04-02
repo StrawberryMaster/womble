@@ -1,0 +1,2405 @@
+e = campaignTrail_temp;
+RecReading = true;
+
+// this is so we can use the mod historical data
+histFunction = function() {
+    switch (campaignTrail_temp.election_id) {
+        case 1: // 1876
+            HistHexcolour = ["#FF0000", "#0000FF", "#00C100"];
+            HistName = [" Rutherford B. Hayes"," Samuel J. Tilden"," Peter Cooper"];
+            HistEV=[185,184,0,0];
+            HistPV=["4,034,142","4,286,808","83,726","13,983"];
+            HistPVP=["47.92%","50.92%","0.99%","0.17%"];
+            break;
+        case 2: // 1908
+            HistHexcolour = ["#FF0000", "#0000FF", "#00C100", "#FFFF00"];
+            HistName = [" William Howard Taft"," William Jennings Bryan"," Eugene V. Debs"," Eugene W. Chafin/Others"];
+            HistEV=[321,162,0,0];
+            HistPV=["7,678,335","6,408,979","420,852","381,073"];
+            HistPVP=["51.57%","43.04%","2.83%","2.55%"];
+            break;
+        case 17: // 1984
+            HistHexcolour = ["#FF0000", "#0000FF", "#FFFF00"];
+            HistName = [" Ronald Reagan"," Walter Mondale"," Others"];
+            HistEV = [526, 13, 0];
+            HistPV=["54,455,472","37,577,352","620,509"];
+            HistPVP=["58.77%","40.56%","0.67%"];
+            break;
+        case 18: // 1956
+            HistHexcolour=["#ff0000","#0000FF","#FFFF00","#00C100"];
+            HistName=[" Dwight D. Eisenhower"," Adlai Stevenson II"," T. Coleman Andrews/Others"," Eric Hass"];
+            HistEV = [457,73,1,0];
+            HistPV = ["35,579,180","26,028,028","370,321","44,450"];
+            HistPVP = ["57.37%","41.97%","0.59%","0.07%"];
+            break;
+        case 19: // 1972
+            HistHexcolour=["#ff0000","#0000FF","#FFFF00","#00C100"];
+            HistName = [" Richard Nixon"," George McGovern"," John Schmitz"," Dr. Spock/Others"];
+            HistEV = [520,17,0,1];
+            HistPV = ["47,168,710","29,173,222","1,100,896","301,202"];
+            HistPVP = ["60.67%","37.52%","1.42%","0.39%"];
+            break;
+        case 22: // 1996
+            HistHexcolour=["#0000FF","#ff0000","#800080","#00C100"];
+            HistName=[" Bill Clinton"," Bob Dole"," Ross Perot"," Ralph Nader/Others"];
+            HistEV = [379,159,0, 0];
+            HistPV = ["47,402,357","39,198,755","8,085,402","1,590,709"];
+            HistPVP = ["49.24%","40.71%","8.40%","1.65%"];
+            break;
+        case 23: // 1940
+            HistHexcolour=["#0000ff","#ff0000","#00c100","#ffff00"];
+            HistName=[" Franklin D. Roosevelt"," Wendell Willkie"," Norman Thomas"," Roger Babson"];
+            HistEV = [449,82,0,0];
+            HistPV = ["27,313,945","22,347,744","116,599","57,903"];
+            HistPVP = ["54.74%","44.78%","0.23%","0.12%"];
+            break;
+    }
+}
+
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 22,
+        "fields": {
+            "year": 1996,
+            "summary": "<p>The aftershocks of the 1994 Republican Revolution are still reverberating in the 1996 election. With a booming economy, government spending and deficit reduction will be top issues, as well as the conservative \u201cFamily Values\u201d culture wars.</p> <ul><li>Bill Clinton attempts to mount a comeback to win a second term by pivoting to the center.</li><li>Bob Dole seeks to finally claim the White House after a lifetime of public service.</li> <li>Ross Perot hopes to learn from the mistakes of his last third party bid with the new Reform Party.</ul>",
+            "image_url": "https://thecampaigntrail.net/static/images/1996.jpeg",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1996advisors.jpeg",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Articles</h4>The New York Times - <a href=\"https://www.nytimes.com/1996/12/15/magazine/margins-of-error.html/\" target=\"_blank\">Margins of Error</a></br><a href=\"https://ropercenter.cornell.edu/sites/default/files/2018-07/82045.pdf\">Why Most Polls Overestimated Clinton's Margin</a></br><a href=\"https://www.motherjones.com/politics/1996/01/dark-side-what-you-need-know-about-bob-dole/\">The Dark Side: What You Need to Know About Bob Dole</a></br><a href=\"https://www.nationalreview.com/2017/07/chinese-illegally-donated-bill-clinton-reelection-campaign-media-downplayed/\">Not All Foreign-Influence Scandals Are Created Equal</a></br><a href=\"https://www.aei.org/articles/government-shutdowns-and-public-opinion-revisiting-1995-and-2013/\">Government Shutdowns and Public Opinion</a><h4>Books</h4>\nSteve Kornacki - <a href=\"https://www.amazon.com/Red-Blue-1990s-Political-Tribalism/dp/0062438980\" target=\"_blank\">The Red and the Blue: The 1990s and the Birth of Political Tribalism</a></br>\nBob Woodward - <a href=\"https://www.amazon.com/Choice-How-Bill-Clinton-Won/dp/074328514X\" target=\"_blank\">The Choice: How Bill Clinton Won</a></br>\n Michael Nelson - <a href=\"https://www.amazon.com/Clintons-Elections-1992-Birth-Governance/dp/0700629173\" target=\"_blank\">Clinton's Elections: 1992, 1996, and the Birth of a New Era of Governance</a></br>\n Roger Morris - <a href=\"https://www.amazon.com/Partners-Power-Clintons-Their-America/dp/0895263025\" target=\"_blank\">Partners in Power: The Clintons and Their America</a></br>\nBob Dole & Jack Kemp - <a href=\"https://www.amazon.com/Trusting-People-Robert-Dole/dp/0061011533\" target=\"_blank\">Trusting the People</a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1996deadlock.jpeg",
+            "creator": "Dan Bryan",
+            "display_year": "1996"
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 17,
+        "fields": {
+            "year": 1984,
+            "summary": "<p>At the outset of the 1984 campaign, the American people don\u2019t seem ready for a change in leadership. President Ronald Reagan benefits from a sense of national prosperity after a rocky start to his term, while Democratic challenger Walter Mondale emerges weakened from a contested Democratic primary after years of carrying water for the unpopular Jimmy Carter.</p><p>The ballooning deficit, national defense, and the incumbent\u2019s age are widely acknowledged and controversial issues, but enough Americans feel better than they did four years ago for Reagan to hold the advantage.</p>",
+            "image_url": "https://thecampaigntrail.net/static/images/1984.png",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1984advisors.png",
+            "recommended_reading": "<h4 style='margin-top: 0.5em;'>The Reagan Presidency and the 1984 Campaign</h4><p>Jane Mayer and Doyle McManus - <a href='https://archive.org/details/landslideunmakin0000maye_p8r6/page/n5/mode/2up' target='_blank'>Landslide: the Unmaking of the President, 1984-1988</a><br>Jules Witcover and Jack Germond - <a href='https://archive.org/details/wakeuswhenitsove00germ/page/n5/mode/2up' target='_blank'>Wake Us When It's Over: Presidential Politics of 1984</a><br>Peter Goldman and Tony Fuller - <a href='https://archive.org/details/questforpreside00gold/page/n5/mode/2up' target='_blank'>The Quest for the Presidency 1984</a><br><a href='https://en.wikisource.org/wiki/Psychological_Operations_in_Guerrilla_Warfare' target='_blank'>Psychological Operations in Guerilla Warfare</a></p><h4>By the Candidates</h4><p>Walter Mondale &amp; David Hage - <a href='https://www.upress.umn.edu/9780816691661/the-good-fight/' target='_blank'>The Good Fight: A Life in Liberal Politics</a><br>Ronald Reagan - <a href='https://www.reaganfoundation.org/store/products/an-american-life-the-autobiography-by-ronald-reagan' target='_blank'>An American Life: The Autobiography</a></p>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://www.jetsimon.com/public/static/images/2012-no-majority.jpg",
+            "creator": "Dan Bryan",
+            "display_year": "1984",
+            "is_historical": true
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 19,
+        "fields": {
+            "year": 1972,
+            "display_year": "1972",
+            "summary": "<p>The 1972 election begins with President Nixon leading in the polls. While he currently has a strong advantage, Richard Nixon has faced criticism over his divisive political style. George McGovern, a liberal Democrat, is widely expected to lose in a landslide. McGovern not only has to heal the wounds of the nation, but also within his party. Some hot issues are wage and price controls, Vietnam, busing, and arms control.</p><p>In the real world, the break-in at the Watergate Hotel in June 1972 led to the resignation of Nixon in 1974.",
+            "image_url": "https://thecampaigntrail.net/static/images/1972.jpeg",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1972advisors.jpeg",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Books</h4><a href=\"https://www.amazon.com/Loathing-Campaign-Harper-Perennial-Classics/dp/0007204485\" target=\u201d_blank\u201d>Hunter S. Thompson - Fear and Loathing on the Campaign Trail '72</a></br><a href=\"https://www.amazon.com/Nixonland-Rise-President-Fracturing-America/dp/074324303X\" target=\u201d_blank\u201d>Rick Perlstein - Nixonland</a></br><a href=\"https://www.amazon.com/Boys-Bus-Timothy-Crouse/dp/0812968204\" target=\u201d_blank\u201d>Timothy Crouse - The Boys on the Bus</a></br><a href=\"https://www.amazon.com/Eighteen-Day-Running-Mate-McGovern-Eagleton/dp/0300176295\" target=\u201d_blank\u201d>Joshua Glasser - The Eighteen-Day Running Mate: McGovern, Eagleton, and a Campaign in Crisis</a></br><a href=\"https://www.amazon.com/Emerging-Republican-Majority-Kevin-Phillips/dp/0870000586\" target=\u201d_blank\u201d>Kevin Phillips - The Emerging Republican Majority</a></br><a href=\"https://www.amazon.com/Right-start-chronicle-McGovern-campaign/dp/0812903722\" target=\u201d_blank\u201d>Gary Hart - Right from the Start: A Chronicle of the McGovern Campaign</a></br><a href=\"https://www.amazon.com/Nixon/dp/B0D9LT6NX7\" target=\u201d_blank\u201d>Stephen Ambrose - Nixon</a><h4>Articles</h4><a href=\"https://www.npr.org/2012/08/04/157670201/the-thomas-eagleton-affair-haunts-candidates-today/\" target=\u201d_blank\u201d>The Thomas Eagleton Affair Haunts Candidates Today</a></br><a href=\"https://www.washingtonpost.com/history/2022/10/29/nixon-mcgovern-1972-young-voters/\" target=\u201d_blank\u201d><em>Americans under 21 first voted 50 years ago. It didn\u2019t go as expected.</em></a></br><a href=\"https://www.politico.com/news/magazine/2024/09/01/richard-nixon-kamala-harris-economy-00176374/\" target=\u201d_blank\u201d>When Richard Nixon Wrecked the Economy</a></br><a href=\"https://nsarchive2.gwu.edu/NSAEBB/NSAEBB264/\" target=\u201d_blank\u201d>Audio of Nixon-Kissinger Tapes - The National Security Archive</a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1972deadlock.jpeg"
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 18,
+        "fields": {
+            "year": 1956,
+            "summary": "<p>This 1956 election can best be defined by its lack of urgency. The war in Korea has come to a swift end, as inflation has cooled significantly from its highs 5 years ago. <ul><li>Despite his lofty lead, President Eisenhower is dealing with concerns regarding his age and fitness, as well as unfolding crises abroad.</li><li>Governor Stevenson is an energetic campaigner and a favorite of his party's base, although he is well aware victory is out of the question.</li></ul></p>",
+            "image_url": "https://thecampaigntrail.net/static/images/1956.png",
+            "winning_electoral_vote_number": 266,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1956advisors.png",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">1956 Election Books and Links</h4>William I. Hitchcock - <a href=\"https://www.amazon.com/Age-Eisenhower-America-World-1950s/dp/1439175667\" target=\"_blank\">The Age of Eisenhower</a><br>John Barlow Martin - <a href=\"https://www.amazon.com/Adlai-Stevenson-World-Life/dp/0385121792\" target=\"_blank\">Adlai Stevenson and the World</a><br>David Halberstam - <a href=\"https://www.amazon.com/Fifties-David-Halberstam/dp/0449909336\" target=\"_blank\">The Fifties</a><br>Fredrik Logevall - <a href=\"https://www.amazon.com/JFK-Coming-American-Century-1917-1956/dp/0812997131\" target=\"_blank\">JFK</a><br><a href=\"https://www.presidency.ucsb.edu/documents/republican-party-platform-1956\" target=\"_blank\">The Republican Party Platform of 1956</a><br><a href=\"https://www.presidency.ucsb.edu/documents/address-accepting-the-presidential-nomination-the-democratic-national-convention-chicago\" target=\"_blank\">Adlai Stevenson's 1956 Acceptance Speech</a><br><a href=\"https://www.politico.com/magazine/story/2017/05/14/when-jfk-won-by-losing-215115/\" target=\"_blank\">When JFK Won by Losing </a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1956nomajority",
+            "creator": "Dan Bryan",
+            "display_year": "1956"
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 23,
+        "fields": {
+            "year": 1940,
+            "summary": "<p>War rages in Europe, while President Franklin Roosevelt has used his last two terms in office to push for sweeping progressive reforms, including Social Security and public works projects. Wendell Willkie has left the Democratic Party to lead the Republicans against Roosevelt\u2019s unprecedented third term effort.\n</p><ul><li>Roosevelt will need to walk the line on foreign policy with an isolationist public, defend his decision to seek a third term, and champion his program of the last 8 years.</li><li>Willkie must convince and unite a suspicious Republican Party and bring together the internationalist and isolationist wings of his new home against the third term.\n</li></ul>",
+            "image_url": "https://thecampaigntrail.net/static/images/1940.png",
+            "winning_electoral_vote_number": 266,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1940advisors.jpeg",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Roosevelt, Willkie, and the 1940 Election</h4><a href=\"https://www.amazon.com/Third-Term-FDR-Presidential-Elections/dp/0700624023\" target=\u201d_blank\u201d>John W. Jeffries - A Third Term for FDR: The Election of 1940</a></br><a href=\"https://a.co/d/0haQr35H\" target=\u201d_blank\u201d>Sarah Dunn - 1940: FDR, Willkie, Lindbergh, Hitler\u2014The Election Amid the Storm</a></br><a href=\"https://a.co/d/0gCFlAat\" target=\u201d_blank\u201d>Richard Moe - Roosevelt's Second Act: The Election of 1940 and the Politics of War</a></br><a href=\"https://https://a.co/d/045phVf5\" target=\u201d_blank\u201d>David Levering Lewis - The Improbable Wendell Willkie</a></br><a href=\"https://a.co/d/0iFgx2UB\" target=\u201d_blank\u201d>Jean Edwards Smith - FDR </a></br><a href=\"https://a.co/d/044SNVtA\" target=\u201d_blank\u201d> Charles Peters - Five Days in Philadelphia</a><h4>Links</h4><a href=\"https://www.jstor.org/stable/273357/\" target=\u201d_blank\u201d> Military Segregation and the 1940 Presidential Election</a></br><a href=\"https://www.jstor.org/stable/2126521\" target=\u201d_blank\u201d><em> The Willkie Campaign: An Unfortunate Chapter in Republican Leadership</em></a></br><a href=\"https://news.gallup.com/vault/193148/gallup-vault-war-stirred-support-roosevelt-third-term.aspx/\" target=\u201d_blank\u201d>Gallup Vault: War Stirred Support for Roosevelt's Third Term</a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1960-no-majority-photo.jpg",
+            "creator": "Dan Bryan",
+            "display_year": "1940"
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 2,
+        "fields": {
+            "year": 1908,
+            "summary": "<p>President Roosevelt's self-imposition of term limits means that the 1908 campaign is wide open. William Howard Taft and William Jennings Bryan have both secured their parties' nominations with relative ease as they head into the fall elction.</p><ul><li>Taft runs as Roosevelt's handpicked successor, and will attempt to appease progressives and conservatives.</li><li>Bryan emphasizes a reformist platform in his third run for the office, as the currency issue becomes moot.</li></ul>",
+            "image_url": "https://thecampaigntrail.net/static/images/1908.png",
+            "winning_electoral_vote_number": 242,
+            "advisor_url": "https://thecampaigntrail.net/static/images/advisors.png",
+            "recommended_reading": "<h4 style='margin-top: 0.5em;'>Books and Links</h4><a href='https://archive.nytimes.com/www.nytimes.com/library/politics/camp/whouse/convention-ra.html#1908' target='_blank'><i> The New York Times</i> - 1908 Convention Coverage</a><br><a href='https://elections.harpweek.com/1908/Overview-1908-1.asp' target='_blank'>HarpWeek | 1908 Overview</a><br> Donald F. Anderson -- William Howard Taft: A Conservative's Conception of the Presidency<br>Paul W. Glad -- <a href='https://archive.org/details/trumpetsoundethw0000glad' target='_blank'>The trumpet soundeth: William Jennings Bryan and his democracy, 1896-1912</a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://www.jetsimon.com/public/static/images/1896-no-majority.jpg",
+            "creator": "Dan Bryan",
+            "display_year": "1908",
+            "is_historical": true
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 1,
+        "fields": {
+            "year": 1876,
+            "summary": "<p>The 1876 presidential election season opens with Republican Rutherford Hayes slightly behind Democrat Samuel Tilden as they face off in a high-turnout election. Key issues of this race include reconstruction, tariffs, and corruption, with the shadow of the Grant Administration looming large. Can Hayes secure yet another term of Republican dominance, or can Tilden flip the script? </p><p>In the real world, the results of this election were heavily disputed, with an Electoral Commission deciding the outcome and rumors of a ''Compromise of 1877'' lingering to this day.</p>",
+            "image_url": "https://itsastronomical.com/assets/1876/1876.png",
+            "winning_electoral_vote_number": 185,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1876advisors.jpg",
+            "recommended_reading": "<h4 style='margin-top: 0.5em;'>General Resources</h4><p>Library of Congress and US Election Atlas are always great sources to start with</p><a href='https://uselectionatlas.org/RESULTS/national.php?year=1876&f=0' target='_blank'>US Election Atlas - 1876 Presidential General Election Results</a><br><a href='https://guides.loc.gov/presidential-election-1876/' target='_blank'>Library of Congress - 1876 Presidential Election</a><h4>Acceptance Letters</h4><a href='https://www.rbhayes.org/hayes/1876-acceptance-speech/'>Rutherford B. Hayes Presidential Library & Museums - Governor Hayes' 1876 Acceptance Letter</a><br><a href='https://www.loc.gov/resource/rbpe.12804500/?st=text'>Library of Congress - Tilden's 1876 Letter of Acceptance</a><h4>Books</h4><a href='https://archive.org/details/byonevotedispute0000holt/mode/2up?view=theater'> Holt, Michael F. - By One Vote: The Disputed Presidential Election of 1876</a>",
+            "has_visits": 0,
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1896-no-majority.jpg",
+            "creator": "Dan Bryan",
+            "is_historical": true
+        }
+    }
+];
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1000,
+        "fields": {
+            "first_name": "Franklin D.",
+            "last_name": "Roosevelt",
+            "election": 23,
+            "party": "Democrat",
+            "state": "New York",
+            "priority": 1,
+            "description": "<p>Franklin Roosevelt enters the 1940 campaign as the two term incumbent, and already one of the most consequential Presidents in American history. During his first 4 years in office, Roosevelt passed an expansive list of social and economic programs, giving him great popularity across the nation, and allowing his historic reelection victory in 1936.\n</p><p>But with the political headwinds of his second term -- popular opposition to his court packing scheme, attempts to purge his own party in 1938, and recession -- along with the outbreak of war in Europe, have put it in serious doubt that Roosevelt can become the first President in history to win a third term.\n</p>",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/Roosevelt-1940.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1940 election.</h3><p>The two-term tradition is broken, and you have four more years. Don't celebrate too much, however. The debate over how far to go in aiding Britain is far from settled, and the draft is already proving controversial. Domestically, the tensions between organized labor and the southern wing of your party are only going to get worse. Good luck!</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1940 election.</h3><p>It seems the controversies of court packing, the recession of '37, and your attempted purge of conservative Democrats all came home to roost. Regardless, you leave office with a record of domestic achievement that will be debated for generations. Willkie has promised not to dismantle the New Deal, but he will be under enormous pressure from his own party to do exactly that.</p>",
+            "no_electoral_majority_message": "<h3>Wow! It's headed to Congress!</h3><p>The Electoral College has failed to produce a winner. The contest goes to the House, where the southern Democrats will likely decide things. They are still furious about the purge attempt in '38, and they are not inclined to do you any favors. Good luck!</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1001,
+        "fields": {
+            "first_name": "Wendell ",
+            "last_name": "Willkie",
+            "election": 23,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 2,
+            "description": "<p>Wendell Willkie, a businessman, has shocked the political establishment by successfully leaving the Republican National Convention as his party\u2019s nominee -- despite only having joined it less than half a year ago. He is a hardline internationalist and liberal who secured the nomination with major media support, often putting him at odds with Republican leadership, who believe he shares more with Roosevelt politically than he does with them. </p><p>Faced with the tough task of challenging an incumbent President, Willkie must unite the Republican Party\u2019s conservative and liberal wings, while pressing Roosevelt on the third term issue if he is to win this election. \n</p>",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/Wilkie-1940.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1940 election.</h3><p>Congratulations! You have defeated Franklin Roosevelt and ended the third term before it started. Nobody saw this coming when you walked into the Republican convention four months ago. Your first order of business will be the crisis in Europe. Churchill is desperate for American aid, and Congress will be watching closely to see how far you go. The New Deal programs are likely here to stay in some form, whatever congressional Republicans might prefer. Good luck!\n</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1940 election.</h3><p>Ultimately, the power of incumbency and the war scare in Europe were just a little too much to overcome. You ran a strong campaign for a man with no political experience, and you've established yourself as a figure of real national prominence. What will you do now?  You could run for senate, complete your take-over of the Republican party, or simply promote your ideals as a private citizen. Good luck!</p>",
+            "no_electoral_majority_message": "<h3>Wow! It's headed to Congress!</h3><p>No candidate has won a majority in the Electoral College, and the contest moves to the House of Representatives. The southern Democrats hold the balance of power, and they have grievances with Roosevelt going back to the court packing fight and the '38 purge. Whether they are willing to hand the presidency to a Republican to settle those scores remains to be seen. Good luck!</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1002,
+        "fields": {
+            "first_name": "Norman",
+            "last_name": "Thomas",
+            "election": 23,
+            "party": "Socialist",
+            "state": "New York",
+            "priority": 3,
+            "description": "'",
+            "color_hex": "#00c100",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1003,
+        "fields": {
+            "first_name": "Roger ",
+            "last_name": "Babson/Others",
+            "election": 23,
+            "party": "Prohibition",
+            "state": "Massachusetts",
+            "priority": 4,
+            "description": "'",
+            "color_hex": "#ffff00",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1005,
+        "fields": {
+            "first_name": "Henry A. ",
+            "last_name": "Wallace",
+            "election": 23,
+            "party": "Democrat",
+            "state": "Iowa",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/Wallace-1940.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Henry Wallace is the current Secretary of Agriculture and one of the chief architects of the New Deal's agricultural programs, winning loyalty from farmers across the Midwest and South through the Agricultural Adjustment Act. His home state of Iowa and neighboring farm states could be meaningfully shored up by his presence on the ticket.</p><p>Wallace has little political base beyond his bureaucratic accomplishments, and conservatives within the party find him too liberal for comfort -- though he is unlikely to cost Roosevelt any states he would otherwise carry.\n</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1004,
+        "fields": {
+            "first_name": "William B.",
+            "last_name": "Bankhead",
+            "election": 23,
+            "party": "Democrat",
+            "state": "Alabama",
+            "priority": 6,
+            "description": "'",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/Bankhead-1940.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>William Bankhead is the powerful Speaker of the House and one of the most respected figures in the Democratic Party. His selection would soothe Southern conservatives grown restless under Roosevelt's second term, shoring up the Solid South at a moment when the New Deal has strained those loyalties. </p><p>However, Bankhead is in poor health, and his association with the party's conservative wing may dampen enthusiasm among the labor and progressive voters Roosevelt will need to turn out in large numbers to win an unprecedented third term.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1008,
+        "fields": {
+            "first_name": "Paul V.",
+            "last_name": "McNutt",
+            "election": 23,
+            "party": "Democrat",
+            "state": "Indiana",
+            "priority": 7,
+            "description": "'",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/McNutt-1940.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Paul McNutt is the former Governor of Indiana and current High Commissioner to the Philippines. A serious presidential contender in his own right, his loyalty to the ticket is something of an open question. He is handsome, charismatic, and broadly popular, and Indiana would be a meaningful pickup. However, he is closely associated with the interventionist American Legion and has attracted some criticism for what opponents describe as an authoritarian governing style as Indiana's governor.</p><p>His support for social security expansion has made him popular with labor, but he has never built a strong ideological identity that would excite any particular wing of the party.\n</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1006,
+        "fields": {
+            "first_name": "Jesse H.",
+            "last_name": "Jones",
+            "election": 23,
+            "party": "Democrat",
+            "state": "Texas",
+            "priority": 7,
+            "description": "'",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/Jones-1940.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Jesse Jones is the powerful overseer of the Reconstruction Finance Corporation, a Texas businessman who has won the confidence of both Wall Street and Main Street -- a rare feat in the Roosevelt years. His selection would reassure conservatives grown wary of the New Deal, and Texas is a state Roosevelt will want firmly in his column.</p><p>Jones has frequently clashed with the administration's more liberal impulses, and his selection would be read by labor and progressives as a signal that Roosevelt is tacking right. He is also more of a boardroom figure than a campaigner, and it is not clear he has the political instincts or the appetite for the rough and tumble of a national campaign.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1009,
+        "fields": {
+            "first_name": "Charles L.",
+            "last_name": "McNary",
+            "election": 23,
+            "party": "Republican",
+            "state": "Oregon",
+            "priority": 9,
+            "description": "'",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/McNary-1940.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Charles McNary is the Senate Minority Leader from Oregon and the natural choice for a party looking to balance its ticket. Two decades in the Senate have made him a well-regarded institutionalist on both sides of the aisle, and his long advocacy for farm relief gives him appeal in the rural West, a useful counterweight to a Wall Street utility executive with no prior political experience.</p><p>However, McNary has been a consistent supporter of the public power projects that Willkie built his career fighting against, creating an awkward ideological tension at the top of the ticket. He is also in declining health, and brings little excitement to a party already gambling heavily on the unconventional Willkie as its standard bearer.\n</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1010,
+        "fields": {
+            "first_name": "Arthur",
+            "last_name": "Vandenberg",
+            "election": 23,
+            "party": "Republican",
+            "state": "Michigan",
+            "priority": 10,
+            "description": "'",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/Vandenberg-1940.jpeg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Arthur Vandenberg is the senior Senator from Michigan and one of the party's most respected figures, a serious nomination contender whose selection would help heal a convention that steamrolled the party establishment. His expertise on foreign affairs would provide institutional credibility to a ticket headed by a political newcomer.</p><p>However, Vandenberg is a committed isolationist at a moment when Willkie has broken sharply from the party mainstream by openly sympathizing with Britain. His cool relationship with Willkie and thwarted presidential ambitions may also make him a reluctant partner on the trail.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1011,
+        "fields": {
+            "first_name": "John W. ",
+            "last_name": "Bricker",
+            "election": 23,
+            "party": "Republican",
+            "state": "Ohio",
+            "priority": 11,
+            "description": "'",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/Bricker-1940.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>John Bricker is the Governor of Ohio and a stalwart of the party's conservative, isolationist wing. His selection would reassure Republicans uncomfortable with Willkie's interventionism and recent conversion from the Democrats, and his solid midwestern conservatism provides a sharp contrast to Willkie's freewheeling Wall Street persona. \n</p><p>However, the very qualities that make him appealing to the party base are liabilities in a general election. His hard isolationism will look increasingly untenable as Europe's crisis deepens, and his conventional party regularity does little to reinforce Willkie's argument that he represents something fresh in American politics.\n</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1012,
+        "fields": {
+            "first_name": "Raymond E.",
+            "last_name": "Baldwin",
+            "election": 23,
+            "party": "Republican",
+            "state": "Connecticut",
+            "priority": 12,
+            "description": "'",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/Baldwin-1940.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Raymond Baldwin is the recently elected Governor of Connecticut, a liberal internationalist and one of Willkie's most prominent convention backers -- indeed his own preferred choice for the vice presidency. His progressive Yankee Republicanism is well suited to appealing to the urban voters Willkie will need to peel away from Roosevelt. </p><p>He is, however, a relatively obscure figure nationally, and brings little institutional heft to a ticket that might benefit from a running mate who can reassure voters there are steady hands somewhere on board.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1014,
+        "fields": {
+            "first_name": "Maynard C. ",
+            "last_name": "Krueger",
+            "election": 23,
+            "party": "Socialist",
+            "state": "Illinois",
+            "priority": 14,
+            "description": "'",
+            "color_hex": "#ff0080",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1015,
+        "fields": {
+            "first_name": "Edgar ",
+            "last_name": "Moorman",
+            "election": 23,
+            "party": "Prohibition",
+            "state": "Illinois",
+            "priority": 15,
+            "description": "'",
+            "color_hex": "#8080ff",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 900,
+        "fields": {
+            "first_name": "Bill",
+            "last_name": "Clinton",
+            "election": 22,
+            "party": "Democrat",
+            "state": "Arkansas",
+            "priority": 1,
+            "description": "<p>Left for dead politically, President Bill Clinton has a tough road ahead to re-election. He\u2019s dealt with foreign policy crises, unpopular budgets, and a growing set of scandals. But with an intractable Republican Congress led by firebrand Newt Gingrich, the President\u2019s best bet to win a second term may be painting his opponents as obstructionists halting the nation\u2019s progress.</p>\n\n<p>But Clinton has problems to his left as well, with the death of his ambitious health care plan and a planned welfare reform which would delight traditional conservatives, but anger progressives and minorities. It will be a difficult balancing act to placate alienated moderates while maintaining his popularity within the Democratic Party.</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/clinton-1996.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1996 election.</h3><p>The pollsters will say this was always expected, but victory feels just as sweet. The one unfortunate note is your failure to cross the 50% line, meaning Republicans have retained their control of Congress, and the country will effectively be under minority rule for eight years. The road ahead is unclear, with Medicare, Social Security, and education all remaining top issues, but perhaps you can work out a deal with Gingrich and leave the country in good hands with your successor in four years.</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1996 election.</h3><p>Defeat is a bitter pill to swallow after the Republican Revolution of 1994, Gingrich's antics, and the seemingly endless wave of scandals that bogged down your presidency. At the very least, it seems the country is in trusted hands for the next four or eight years with Bob Dole. Perhaps he'll make progress on immigration, trade deals, and welfare where you couldn't? Unfortunately, it seems this is the end of the road on your turbulent political career. Maybe the Democrats will nominate Hillary next time?</p>",
+            "no_electoral_majority_message": "<h3>Wow! Nobody won the 1996 election.</h3><p>With Ross Perot's declining popularity, nobody saw this coming. As the House prepares to convene to select the next President, all eyes are on the billionaire Texan. No matter what, he's going to be wheeling-and-dealing every member of Congress to gain that extra inch. With the House in the iron grip of Newt Gingrich, your chances of pulling out a victory here are slim, but when has that stopped you before?</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 901,
+        "fields": {
+            "first_name": "Bob",
+            "last_name": "Dole",
+            "election": 22,
+            "party": "Republican",
+            "state": "Kansas",
+            "priority": 2,
+            "description": "<p>For years, Bob Dole has been talked about as a presidential candidate. Finally gaining the nomination this year, the Senate mainstay has a difficult task in front of him. With his party romping to a landslide in the 1994 midterms, Dole, along with the wily Newt Gingrich, now face the impossible job of governing rather than remaining a perpetual opposition party. Much of Dole\u2019s chances this year rest on whether Congress can deliver for the American people.</p>\n\n<p>It will remain a Herculean task to keep the Republican Party intact through the divisive primaries in order to stand a chance of unseating the incumbent President. But with his wartime heroism and decades in office, Dole can make a convincing case that he\u2019s a more reliable figure than Clinton, who remains dogged by ethics and personal scandals, even though Dole\u2019s age remains a top issue for voters.</p>",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/dole-1996.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You won the 1996 election.</h3><p>It was a bitter fight to the very end, but you did it. After a lifetime of public service, you will become the oldest President to start a first term in American history. Of course, this comes with plenty of implications for 2000 and the future of the Republican Party. Will it follow in Newt Gingrich's radical direction? Or will your own administration prove such a success that everyone will race to take a page out of your book?<br><br>Either way, it seems the country was sick after just four years of Bill Clinton. Maybe it was his overreach with his healthcare reform, or his actions during the shutdown, or maybe just enough scandals to finally break through? For now, you'll leave those questions to the prognosticators. You've got plenty to prepare for before January 20th, 1997.</p>",
+            "electoral_loss_message": "<h3>Sorry, you have lost the 1996 election.</h3><p>This is a disappointing blow after you started with such a wide lead. During the final weeks, as Clinton's scandals mounted, many thought you could pull it off, but it seems it just wasn't in the cards this year. The recriminations within the party will likely spare you most of the blame, but still, even with Gingrich's antics and the baggage of the religious right, for a moment, you thought you could pull it off.<br><br>As Clinton prepares for a second term, he'll no doubt try to find a way to lower the budget deficit and turn the temperature down on the chaos of the past four years. Whether he'll be successful in doing that is an open question, but for the first time in decades, you'll have almost no role to play in it. With your advanced age, another run in 2000 is unthinkable. But maybe Elizabeth could give it a shot?</p>",
+            "no_electoral_majority_message": "<h3>Wow! Nobody won the 1996 election.</h3><p>This is quite the shock after such a bitter campaign. Many of your fellow Republicans will blame Perot for playing spoiler, but it's clear the onus was on you to win a majority. Without that, the House of Representatives will convene to decide the winner.<br><br>Given Congress' Republican control, it's a near-certainty that you'll win the presidency via a contingent election. But don't expect any smooth sailing. Liberals will be furious at your victory via a technicality, the sixth Republican win in the past eight presidential elections. It'll take a lot to prove your basic legitimacy in office, let alone settling the difficult issues you'll face with the economy and world affairs.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 902,
+        "fields": {
+            "first_name": "Ross",
+            "last_name": "Perot",
+            "election": 22,
+            "party": "Reform",
+            "state": "Texas",
+            "priority": 3,
+            "description": "<p>With his stunning entry on to the American political scene in 1992, Texas billionaire Ross Perot now has his work cut out for him. By blowing past the threshold to approve federal matching funds, Perot\u2019s newly christened Reform Party has an infusion of cash to run a strong presidential campaign in 1996. The only problem is that they don\u2019t have a candidate.</p><p>After getting turned down by Bill Bradley and Colin Powell, Perot gave up the game of shopping around for another man, and accepted his role as the face of America\u2019s largest third party in decades. But outside Reform\u2019s diehards, Perot finds his standing from four years ago rapidly dissipating. With his unpopular stances on NAFTA and a growing reputation as a perennial candidate, Perot will not only have to match his previous performance to save face, he\u2019s got to keep the dream of a third party alive.\n",
+            "color_hex": "#800080",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/perot-1996.jpeg",
+            "electoral_victory_message": "<h3>What?! You won the 1996 election?</h3><p>Nobody's sure how you did it. After your precipitous decline from your heights of the Summer of '92, this has to be the greatest political upset in history.<br><br>With the markets crashing in the wake of your victory and Washington reeling, it may be best to announce a coalition government to ease concerns. Or just be your usual self and watch what happens? Either way, you have a mountain of problems ahead of you, and no easy answers. It's far harder to govern than it is to be a perpetual change candidate.</p>",
+            "electoral_loss_message": "<h3>Oh no! You didn't even get 5% of the vote.</h3><p>Even the grimmest prognostications didn't see this one coming. It was taken as a given that you'd cross the threshold to secure the necessary federal matching funds for 2000\u2014albeit half of what Democrats and Republicans receive\u2014but it seems that just wasn't to be.<br><br>The reckoning will come swift, with Lamm likely receiving his fair share of the blame for stirring up discontent within the Reform movement, but by this point it's all useless. It seems you're destined to go down in history as a fluke candidate who tapped into something real in 1992 but lost it almost as quickly. Maybe you can go back to the private sector?</p>",
+            "no_electoral_majority_message": "<h3>Wow! Nobody won the 1996 election?</h3><p>This is a stunning result. It seems Clinton had such a divisive first term, the country couldn't even settle on one candidate to elect!<br><br>With the House of Representatives convening ahead of a contingent election, all eyes are on Dole and Clinton, not you. Sure, partisans blame you for being a 'spoiler,' but come on, everyone knows you weren't relevant enough for that. Right?</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 903,
+        "fields": {
+            "first_name": "Ralph",
+            "last_name": "Nader/Others",
+            "election": 22,
+            "party": "Green",
+            "state": "Connecticut",
+            "priority": 4,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 904,
+        "fields": {
+            "first_name": "Al",
+            "last_name": "Gore",
+            "election": 22,
+            "party": "Democrat",
+            "state": "Tennessee",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#0080c0",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/gore-1996.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Al Gore is the ultimate company man. Serving four thankless years as second fiddle to President Bill Clinton, all expect the former Tennessee Senator to be biding his time until 2000, keeping a low profile for now. But this year, Gore is angling for an elevated status as not just Vice President, but an almost co-President. While he eschews all speculation of future campaigns, Gore is clearly hoping that his strength in the South and Baby Boomer youth will come in handy against an aging Dole, and win him some favor within the party.</p>\n\n<p>On a personal note, Gore has served his duties as Vice President with little fuss or bad press, despite his long-rumored bad blood with the First Lady. Hillary will no doubt be a valuable asset for the President as the Clinton campaign heats up, so Gore\u2019s presence may complicate matters.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 905,
+        "fields": {
+            "first_name": "Jack",
+            "last_name": "Kemp",
+            "election": 22,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 6,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/kemp-1996.jpeg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>After New York Congressman Jack Kemp\u2019s announcement last year that he would not seek the presidency, the seas parted for Dole\u2019s candidacy. The two have been on opposite sides of the Republican Party\u2019s ideological divide over budgeting\u2014Dole prioritizes shrinking the deficit over cutting taxes, while Kemp is a staunch free market idealist who emphasizes cutting taxes above all else.</p>\n\n<p>While beloved by the GOP\u2019s conservative faithful\u2014he was Pat Buchanan\u2019s preferred candidate in 1988\u2014Kemp is somewhat at odds with the increasingly rightward drift of the party on social issues. Kemp has criticized the Republican Congress\u2019 welfare plan, supported Affirmative Action, and has sought to expand the party base to the poor and minorities. All of that makes Kemp a highly risky pick, and that\u2019s before even getting to the long-running feud between him and Dole.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 908,
+        "fields": {
+            "first_name": "John",
+            "last_name": "McCain",
+            "election": 22,
+            "party": "Republican",
+            "state": "Arizona",
+            "priority": 7,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/mccain-1996.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Arizona Senator John McCain seems to be a highly attractive candidate for the Vice Presidency. A Vietnam War hero who spent years inside the infamous \u201cHanoi Hilton,\u201d McCain comes from Navy pedigree, and has taken aggressive stances on foreign policy issues during his time on the Armed Services Committee.</p>\n\n<p>But that\u2019s where the positives end. McCain was a member of the infamous \u201cKeating Five,\u201d raising hackles of corruption, and which would no doubt be resurfaced by Clinton\u2019s ad men, to say nothing of Perot\u2019s populist grandstanding against \u201cspecial interests.\u201d His awkward closeness to President Clinton on the issue of Vietnam normalization would also need an explanation. So would McCain\u2019s \u201cmaverick\u201d streak of independence, which often pits him against his own party, on issues ranging from pork barrel projects to Affirmative Action, and often against Bob Dole.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 906,
+        "fields": {
+            "first_name": "Carroll",
+            "last_name": "Campbell",
+            "election": 22,
+            "party": "Republican",
+            "state": "South Carolina",
+            "priority": 7,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/campbell-1996.jpeg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>South Carolina Governor Carroll Campbell has been in the running for Dole\u2019s Vice President since day one, making it known that he\u2019s happy to play ball on just about every issue, with one glaring exception: abortion. Campbell is loath to cross the GOP\u2019s vocal pro-life faction, and his record as Governor has endeared him to that all-important wing of the party.</p>\n\n<p>Outside of Moral Majority circles, Campbell is a bit of an unknown, but the Clinton campaign would be certain to pillory him as just another right-winger closing off the party to minorities, the poor, and moderates. But if Dole seeks to win the south, it\u2019ll take some doubling down on his own conservative credentials. Campbell is also well-versed in the rough-and-tumble of politics, having played an important role on both of George Bush\u2019s presidential campaigns.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 907,
+        "fields": {
+            "first_name": "Bill",
+            "last_name": "Weld",
+            "election": 22,
+            "party": "Republican",
+            "state": "Massachusetts",
+            "priority": 8,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/weld-1996.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Massachusetts Governor Bill Weld has been on the shortlist of his party\u2019s \u201crising stars\u201d for what feels like a lifetime. Running for state Attorney General when he was just 33, and already had experience as a junior counsel on the Nixon impeachment inquiry, Weld quickly rose through the ranks and earned plaudits from Republican Party stalwarts at every step along the way.</p>\n\n<p>That all has the potential to come to a screeching halt, as Weld stares down the barrel of an increasingly hopeless run for the Senate, having earlier sworn off running for Vice President. Weld is now having second thoughts, marketing himself to Dole\u2019s staff as a play for the political center, with his moderate record as Governor of the nation\u2019s bluest state opening up the liberal Northeast to the GOP. But Weld would be an incredibly audacious pick no matter what, and would certainly rile the already unsatisfied right-wing.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 909,
+        "fields": {
+            "first_name": "Pat",
+            "last_name": "Choate",
+            "election": 22,
+            "party": "Reform",
+            "state": "Oklahoma",
+            "priority": 9,
+            "description": "'",
+            "color_hex": "#800080",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/choate-1996.jpeg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Pat Choate is an economist with a PhD from the University of Oklahoma. As a staunch protectionist and an ally of Perot\u2019s during the fight to oppose NAFTA, Choate gained notice as a frequent guest on talk radio to promote Perot\u2019s candidacy, along with his own books, chiefly on foreign lobbyists and imminent fiscal armageddon.</p>\n\n<p>Choate\u2019s selection would be a clear signal that Perot\u2019s star power from four years ago is fast fading. A political novice, and a relative unknown outside the District of Columbia, the press would certainly delight in Perot\u2019s failure to gain a major political figure\u2019s endorsement, like David Boren or Linda Smith.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 910,
+        "fields": {
+            "first_name": "Richard",
+            "last_name": "Lamm",
+            "election": 22,
+            "party": "Reform",
+            "state": "Colorado",
+            "priority": 10,
+            "description": "'",
+            "color_hex": "#800080",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/lamm-1996.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>The highly controversial Colorado Governor Dick Lamm was once thought to be a shoe-in for the top of the Reform ticket in \u201896. On paper a former Democrat, Lamm\u2019s idiosyncratic political beliefs during his time in office garnered him the nickname of \u2018Governor Gloom.\u2019 He took that label one step further in a shocking bid for the Reform Party nomination this year, in which he fashioned a platform calling for the privatization of Social Security and abolishing veteran\u2019s pensions.</p>\n\n<p>Such a set of politically poisonous stances would make Lamm anathema to every voter outside of Perot\u2019s most fervent supporters. But if the Texan wants to get this show on the road and paper over any internal divisions within the Reform Party ahead of the campaign, there\u2019s an argument that Lamm may be the right choice.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 911,
+        "fields": {
+            "first_name": "Lowell",
+            "last_name": "Weicker",
+            "election": 22,
+            "party": "Independent",
+            "state": "Connecticut",
+            "priority": 11,
+            "description": "'",
+            "color_hex": "#c0c0c0",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/weicker-1996.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Lowell Weicker, the disaffected centrist and longtime Connecticut Republican, would make an intriguing choice for Vice President. His bipartisan cred on Capitol Hill could go a long way towards gaining back whatever\u2019s left of Perot\u2019s respectability from 1992. But Weicker comes with his fair share of risks too.</p>\n\n<p>With an enormous ego, it\u2019s questionable whether Weicker would ever subordinate himself as a number two, and would likely demand enormous concessions from Perot, amounting to essentially a \u201cco-presidency.\u201d Additionally, Weicker\u2019s support for Lamm in the Reform Party\u2019s nominating contest and his own considerations of running would complicate the picture, making Perot\u2019s tightrope walk that much harder. Not to mention that Weicker burned whatever support he had from mainstream Republicans a longtime ago.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 912,
+        "fields": {
+            "first_name": "Marcy",
+            "last_name": "Kaptur",
+            "election": 22,
+            "party": "Democrat",
+            "state": "Ohio",
+            "priority": 12,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/kaptur-1996.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>On paper, Ohio Representative Marcy Kaptur would make a fantastic choice for Vice President. With over a decade of fending off strong challenges from Republicans in her own district, Kaptur has a solid electoral record. Her staunch opposition to her own President\u2019s NAFTA and GATT agreements would only sweeten the deal.</p>\n\n<p>But the seven-term Congresswoman would not settle for anything less than unconditional surrender. As her terms for agreeing to join what is an all-but doomed third party bid, which would crater her standing within the Democratic Party, Kaptur would demand full rights to craft the Reform Party\u2019s platform, zero commitment to actually campaign for Perot, and a guarantee that her liberal stances on hot-button issues like abortion would become the party line.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 915,
+        "fields": {
+            "first_name": "Winona",
+            "last_name": "LaDuke",
+            "election": 22,
+            "party": "Green",
+            "state": "Wisconsin",
+            "priority": 15,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 800,
+        "fields": {
+            "first_name": "Richard",
+            "last_name": "Nixon",
+            "election": 19,
+            "party": "Republican",
+            "state": "California",
+            "priority": 1,
+            "description": "<p>Richard Nixon enters the 1972 campaign as the incumbent, after winning the presidency in the chaotic 1968 election. He has governed as a moderate Republican, visiting China and taking a liberal stance on some economic issues.</p><p>But Nixon still faces the divisive issues that plagued Johnson four years ago, with his positions on the Vietnam War and crime activating the Democrats' liberal base. Can he make the case that he's the true peace candidate who can finally move the nation beyond the difficult years of the 1960s?\n</p>",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/nixon-1972.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1972 election.</h3><p>The press will say this was always expected, but don't let them get you down. The campaign was hard-fought, and you gave it your all.</p><p>As long as you keep an eye on this Watergate business and keep the economy humming along, your successor should be able to make an argument for four more years in 1976.</p>",
+            "electoral_loss_message": "<h3>Sorry, you have lost the 1972 election.</h3><p>This is the result nobody saw coming. Whether it was the press' fixation on Watergate, Democratic dirty tricks from the Kennedys, or just an economy slowing down, this is a painful result to swallow.</p><p>McGovern will have his hands full these next four years, and it seems a long time in public office for you has come to an end. Maybe you can write your memoirs in Key Biscayne and settle into a quiet retirement.</p>",
+            "no_electoral_majority_message": "<h3>Nobody won the 1972 election?</h3><p>This comes as a shock to everyone. Whether it was the South's dirty tricks or your own strategy of exploiting the country's divisions, it seems nobody knows who the next President will be.</p><p>But after Congress has been a thorn in your side these last four years, you fear your time in public service is up. Perhaps you can move back to California with Pat and the girls and enjoy a quiet retirement.</p>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 801,
+        "fields": {
+            "first_name": "George",
+            "last_name": "McGovern",
+            "election": 19,
+            "party": "Democrat",
+            "state": "South Dakota",
+            "priority": 1,
+            "description": "<p>George McGovern has served in the Senate for nine years and ran a brief campaign in 1968 after the death of Bobby Kennedy. A liberal Democrat, McGovern is known for his dovish stance on Vietnam and some controversial economic proposals. He enters the race at a strong disadvantage.</p><p>After a divisive primary against Hubert Humphrey and George Wallace, McGovern needs to really shake up the race if he is to have any chance to win. Can he make the case that he's the right man to heal the bitter divisions of the Nixon years?\n</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/mcgovern-1972.jpeg",
+            "electoral_victory_message": "<h3>Wow! You have won the 1972 election!</h3><p>Even your staunchest supporters can hardly believe this one. Nobody quite knows how you did it. Was it populist backlash over rising inflation? Nixon's own lingering trust problem? Or the seemingly endless war in Vietnam? Only one thing's for certain, and that's that you better get ready to move into the White House this January.</p><p>As President, you'll have to disentangle America from Southeast Asia, but perhaps more importantly, revive the floundering economy. If you manage to do both of those without triggering any further crises, you might be in a good position for re-election in 1976. But that's easier said than done.</p>",
+            "electoral_loss_message": "<h3>Sorry, you have lost the 1972 election.</h3><p>This was always the likeliest outcome, but it still stings. It seems your incredible organizational skills and passionate base from the Democratic primaries couldn't be replicated against Dick Nixon. The recriminations from inside the party will be swift, and Democrats will almost certainly nominate a more mainstream candidate against Agnew or Connally in 1976.</p><p>As for you, your presidential aspirations are likely done, barring any unforseen crisis. In the meantime, you can still return to your Senate with your head held high. That seat is probably yours as long as you want it.</p>",
+            "no_electoral_majority_message": "<h3>Nobody won the 1972 election?</h3><p>This comes as a shock to everyone. As the Democratic-controlled Congress scrambles to elect the next President via a contingent election, all eyes are on you. It's unlikely the crucial Southern bloc of the Democratic Party will ever elevate you to the White House, but who knows, maybe you can work out some kind of deal? Stranger things have happened.</p><p>But for now, you've got no time to rest. Nixon is sure to throw every last dirty trick in the book at you from now until January. So be prepared, and good luck! You may just emerge from this as President of the United States.</p>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 802,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Schmitz",
+            "election": 19,
+            "party": "American Independent Party",
+            "state": "California",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 803,
+        "fields": {
+            "first_name": "Benjamin",
+            "last_name": "Spock/Others",
+            "election": 19,
+            "party": "Independent",
+            "state": "California",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#00C100",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 805,
+        "fields": {
+            "first_name": "Spiro",
+            "last_name": "Agnew",
+            "election": 19,
+            "party": "Republican",
+            "state": "Maryland",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/agnew-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Spiro Agnew is the current Vice President of the United States and former governor of Maryland. With his hardline rhetoric and theatrical antics arguably costing the Republicans valuable seats in the 1970 midterms, Nixon has a choice to make.</p><p>Every vote counts, even in a landslide year. Keeping Agnew on the ticket would please conservatives, but if the election gets close, there may be no room for his big mouth. Is the tradeoff worth it?</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 806,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Connally",
+            "election": 19,
+            "party": "Democrat",
+            "state": "Texas",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/connally-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>John Connally is the Secretary of the Treasury and the former Governor of Texas. His work during the Bretton Woods fiscal crisis made him a household name. As the Democrat closest to the President, there are few spokesmen who would serve Nixon better than Connally.</p><p>But the moderate Democrats repelled by McGovern's radical campaign may equal the staunch conservatives infuriated by Nixon rejecting Agnew for a Democrat. Is such a risky gamble worth it when Nixon enjoys a wide lead in every poll?</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 807,
+        "fields": {
+            "first_name": "Rogers",
+            "last_name": "Morton",
+            "election": 19,
+            "party": "Republican",
+            "state": "Maryland",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/morton-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Rogers Morton is Secretary of the Interior and former chair of the Republican National Committee. Serving as a Congressman from Maryland for eight years, and with his father's political roots in Kentucky, Morton could be an asset for the President in the border states. His strong party connections can also only benefit Nixon.</p><p>But as a staunch liberal Republican who endorsed Rockefeller in 1968, Morton would be anathema to the right-wing. Is it worth dropping Agnew for an unknown quantity?</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 808,
+        "fields": {
+            "first_name": "Ronald",
+            "last_name": "Reagan",
+            "election": 19,
+            "party": "Republican",
+            "state": "California",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/reagan-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Ronald Reagan is the Governor of California and a conservative darling. With his background in Hollywood, Reagan would surely provide some much-needed charisma for the Nixon campaign. He's also got proven experience after winning re-election in 1970 following a tumultuous first term.</p><p>But choosing Reagan may narrow Nixon's support. It seems unnecessary to alienate moderates and liberal Republicans in a year when the polls show the President gaining so many. But who cared about Agnew anyway?</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 809,
+        "fields": {
+            "first_name": "Thomas",
+            "last_name": "Eagleton",
+            "election": 19,
+            "party": "Democrat",
+            "state": "Missouri",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/eagleton-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Thomas Eagleton is the four-year incumbent Senator from Missouri. He wasn't initially considered a candidate for running mate, but his status as a moderate Catholic with union ties makes him an appealing suggestion. His known support for the Humphrey campaign is expected to help mend intra-party divides, and he is one of the few Democrats who is willing and eager to appear with McGovern on the ticket.</p><p>Young, Catholic, and a party boss favorite, Eagleton appears to be an ideal choice to bring the party together after the McGovern takeover, but little is known about his private life.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 810,
+        "fields": {
+            "first_name": "Kevin",
+            "last_name": "White",
+            "election": 19,
+            "party": "Democrat",
+            "state": "Massachusetts",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/white-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Kevin White has been the mayor of Boston since 1968. In a turbulent time for mayors across the country, he was one of the few to defuse the post-King assassination tensions without widespread rioting. He has proven himself as a liberal electoral force in his own right by dispatching ardent anti-busing opposition in both of his campaigns.</p>\n\n<p>White has been a shortlisted running mate for some time, and would deliver inroads with the Catholic and union votes that your campaign is struggling with. One major opponent to his candidacy is Ted Kennedy, who considers him a rival and is fervently against his selection.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 811,
+        "fields": {
+            "first_name": "Abe",
+            "last_name": "Ribicoff",
+            "election": 19,
+            "party": "Democrat",
+            "state": "Connecticut",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/ribicoff-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Abe Ribicoff is the Senator from Connecticut and a close friend of the Kennedys, but he is best known for his on-stage denunciation of Mayor Richard Daley's police tactics during the disastrous Chicago convention in 1968. As a longtime opponent of the Vietnam War and a well-established liberal ally of yours, he brings experience and gravitas to the ticket and would be the first Jewish Vice President.</p><p>Ribicoff is a top choice for the position, but his disinterest in higher office and the recent passing of his wife has made him unwilling to sign on without a guarantee that little campaigning will be expected from him. Additionally, he would be no help with the Catholic vote, and party leaders like Mayor Daley would be displeased.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 812,
+        "fields": {
+            "first_name": "Pat",
+            "last_name": "Lucey",
+            "election": 19,
+            "party": "Democrat",
+            "state": "Wisconsin",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/lucey-1972.jpeg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Patrick Lucey is the serving Governor of Wisconsin and has overseen the transformation of the state from a Republican stronghold into a political battleground. He is considered a liberal Democrat on policy, and is an inoffensive option who will neither excite nor disappoint many in the party.</p><p>Lucey is little-known nationally but has proven himself as an effective operator in his home state. He is a Catholic and should help earn their support, but your advisors are concerned that he isn't enough of a home-run swing to change the nature of the campaign.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 700,
+        "fields": {
+            "first_name": "Dwight D.",
+            "last_name": "Eisenhower",
+            "election": 18,
+            "party": "Republican",
+            "state": "Pennsylvania",
+            "priority": 1,
+            "description": "<p>Dwight Eisenhower is a war hero and the incumbent President. His time in office has been defined by domestic tranquility and reducing the threat of another World War. At home, he has pursued middle-of-the-road answers to the problems of the day, scaling back the New Deal in select industries while making use of government authority in others, to the dismay of some in his party.<br><br>Observers believe the election is Eisenhower's to take on a silver platter, although with the President's advanced age and general absence from the public eye, it could prove more complicated than it seems.</p>",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/eisenhower-1956.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1956 Presidential Election.</h3><p>While it was a foregone conclusion, it was nevertheless fairly earned. You'll return to the White House for another four years, hopefully with a Congress willing to enact your agenda. You are ineligible to run again in 1960, to the delight of the Democrats. Will Richard Nixon finally have his chance to win the White House? Or will one of your preferred candidates pull the rug on him? Either way, the Democrats have been sent to undergo a soul-searching once more, with speculation running high that Senator Kennedy may make a go for it next time around.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1956 Presidential Election.</h3><p>This is quite the embarrassment for you and your allies. Maybe this was inevitable given your advanced age and declining health, or perhaps the public just didn't trust your judgment this time around. Either way, you'll still be leaving office as a national hero, fondly remembered for your service in World War 2. Where your party goes after your loss is a mystery. They never truly had your back, and with your reputation ruptured from this loss, it seems likely party conservatives will be behind the wheel in 1960 with a man like Bill Knowland.</p>",
+            "no_electoral_majority_message": "<h3>No candidate captured an Electoral College majority.</h3><p>This is quite a confusing outcome, truly; no one knows who will benefit most from this decision. Democrats hold slim majorities in both chambers, and it's not out of the question that a deal could be cracked to elevate you and your running mate in return for some political favors. The biggest heartbreak from this result comes from the northern liberals, who came so close to a victory yet so far.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 701,
+        "fields": {
+            "first_name": "Adlai",
+            "last_name": "Stevenson\u2004II",
+            "election": 18,
+            "party": "Democrat",
+            "state": "Illinois",
+            "priority": 2,
+            "description": "<p>Adlai Stevenson is the former Governor of Illinois and the previous Democratic nominee for the Presidency. Since his loss, he has spent the last four years building his resume, touring the world, and campaigning vigorously for his party in the midterms. The nomination was supposed to be Stevenson's for the taking, though the decline of Eisenhower's health lured opponents into what became a bitterly contested primary.<br><br>Stevenson's path to the White House is slim to none, and his defeatism has discouraged him from mounting a serious campaign, although he will gladly speak to a greater cause of liberalism.</p>",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/stevenson-1956.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1956 Presidential Election.</h3><p>Wow! You've managed to pull off an upset of a magnitude higher than Truman did just 8 years ago. With, quite literally, the world against you, this achievement is nothing short of a miracle. How you'll govern is up to you. With a firmly Democratic Congress, you should have no trouble enacting said agenda. Globally, you'll surely find an ally in the Soviet Union, perhaps beginning to draw the Cold War to an end. As for 1960, judging by your instincts, you should be a shoo-in, especially if the Republicans nominate your favorite punching bag, Vice President Nixon.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1956 Presidential Election.</h3><p>This is just about what you expected. You knew the public wasn't on your side, though you can take solace in being every voter's second choice. Given the insurmountable odds, your political career doesn't have to end here. You could continue to travel the world and position yourself as a shoo-in for the next Democratic administration, or maybe you'll try your luck against whoever the Republicans put up in 1960.</p>",
+            "no_electoral_majority_message": "<h3>No candidate captured an Electoral College majority.</h3><p>Your allies have to be as frustrated as you are. Having come so close to an outright victory, but split down the middle, whether from a tie or a successful southern splinter. Your first order of business is to prevent any deals that'll see President Eisenhower elected by the Democratic House. From now until January, it seems you'll be getting extra familiar with Speaker Rayburn and Leader Johnson.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 702,
+        "fields": {
+            "first_name": "T. Coleman",
+            "last_name": "Andrews",
+            "election": 18,
+            "party": "States' Rights",
+            "state": "Virginia",
+            "priority": 3,
+            "description": "'",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/andrews-1956.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 703,
+        "fields": {
+            "first_name": "Eric",
+            "last_name": "Hass/Other",
+            "election": 18,
+            "party": "Socialist Labor",
+            "state": "New York",
+            "priority": 4,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/hass-1956.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 704,
+        "fields": {
+            "first_name": "Richard",
+            "last_name": "Nixon",
+            "election": 18,
+            "party": "Republican",
+            "state": "California",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/nixon-1956.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Richard Nixon is the current Vice President and, before that, a Senator from California. During the 1952 campaign, he caused quite a stir with allegations of corruption, and since then has been denied a major voice in your administration. He is not your ideal governing partner and will likely be made an issue during the campaign by the Democrats.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 705,
+        "fields": {
+            "first_name": "Henry Cabot",
+            "last_name": "Lodge",
+            "election": 18,
+            "party": "Republican",
+            "state": "Massachusetts",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/lodge-1956.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Henry Cabot Lodge is your former campaign manager and your current Ambassador to the United Nations. While he is not your preferred candidate to replace Vice President Nixon, he has his fans, particularly among the liberal Republicans leading the charge to oust him. By selecting him, you will be signalling that you will be running a more liberal campaign compared to 1952.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 706,
+        "fields": {
+            "first_name": "Robert B.",
+            "last_name": "Anderson",
+            "election": 18,
+            "party": "Republican",
+            "state": "Texas",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/anderson-1956.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>While he is an unknown to most of the country, Secretary of the Treasury Robert Anderson is your personal choice for running mate. You would cause a stir by selecting him for the role, as he is quite conservative and a southerner, two things you surely will have to answer for during the campaign.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 707,
+        "fields": {
+            "first_name": "Estes",
+            "last_name": "Kefauver",
+            "election": 18,
+            "party": "Democrat",
+            "state": "Tennessee",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/kefauver-1956.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Estes Kefauver has run against you for the nomination twice. He is a Senator from Tennessee and an electric campaigner. While he excited liberal voters, there is no love lost for him from the party establishment, who hold resentment towards him over his investigations into urban corruption. Despite that, enthusiasts in your camp believe your pairing with him will be the best chance to win.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 708,
+        "fields": {
+            "first_name": "John F.",
+            "last_name": "Kennedy",
+            "election": 18,
+            "party": "Democrat",
+            "state": "Massachusetts",
+            "priority": 1,
+            "description": "<p>Rich kid</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/kennedy-1956.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Senator John F. Kennedy has been a rising star in the party since his victory over Eisenhower pointman Henry Cabot Lodge in 1952. He takes flexible positions on the issues of the day, fitting with your own record, and has even curried favor with the South during the running mate selection process. It remains to be seen whether his religion will be an issue for voters.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 709,
+        "fields": {
+            "first_name": "Albert",
+            "last_name": "Gore",
+            "election": 18,
+            "party": "Democrat",
+            "state": "Tennessee",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/gore-1956.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Albert Gore is the top preference of the party establishment. He is a moderate senator from Tennessee and has no grudges with any major party faction, despite his abstaining from the Southern Manifesto. Despite his moderate record, you will be expected to take a conservative stance on civil rights and the economy to reap the benefits of his selection in the south and the west.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 710,
+        "fields": {
+            "first_name": "Hubert",
+            "last_name": "Humphrey",
+            "election": 18,
+            "party": "Democrat",
+            "state": "Minnesota",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/humphrey-1956.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Hubert Humphrey is a Senator from Minnesota and introduced the infamous Civil Rights plank at the 1948 convention. You're in quite a bind if he's not selected as he has been under the assumption you gave him the nod already to be your running mate. Should you be paired with him this fall, you will certainly open yourself up for a challenging campaign in the south and be expected to take a firm pro-civil rights stance.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 600,
+        "fields": {
+            "first_name": "Ronald",
+            "last_name": "Reagan",
+            "election": 17,
+            "party": "Republican",
+            "state": "California",
+            "priority": 1,
+            "description": "<p>Since defeating Jimmy Carter in a landslide four years ago, President Reagan has presided over a tumultuous recovery from the stagflation of the 1970s that is just now beginning to bear fruit. His personal charm has thus far allowed him to paper over any controversy that his staunch conservatism may stir up.</p><p>Accounting for a formidable electoral firewall in the Sun Belt and the divided opposition, advisors currently recommend that Reagan take a hands-off approach to the campaign. Will their confidence pay off in November?</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/reagan1984.png",
+            "electoral_victory_message": "<h3>Congratulations! You won the 1984 election!</h3><p>This was the expected outcome, but the taste of victory is still sweet. The success of your reelection candidacy has affirmed the efficacy of an optimistic, image-based campaign even in the face of Walter Mondale\u2019s lecturing.</p><p>Very few, yourself included, have considered what\u2019s in store for your second term as President. As long as mission creep doesn\u2019t get the better of your capable staff, you\u2019ll be in a good position to hand the White House off to a Republican like George Bush or Howard Baker in four years.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1984 election.</h3><p>Even with the revelation of the CIA\u2019s <q>murder manual</q> and a series of poor debate performances, almost nobody saw defeat on the horizon. Your time in national politics has almost certainly come to an end.</p><p>Walter Mondale will waste no time enacting liberal priorities like a nuclear freeze and deficit reduction, much to your dismay. Of course you hope America will prosper under his presidency, but you\u2019re also eager to believe a conservative like Jack Kemp can take back the White House in 1988\u2013with or without your involvement.</p>",
+            "no_electoral_majority_message": "<h3>Nobody has won the 1984 election!</h3><p>The electoral college has tied for the first time in over a hundred years. The race will now go to the House of Representatives, where Democrats have an advantage, but maybe you can convince enough Southerners you're more palatable to their interests than Mondale?</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 601,
+        "fields": {
+            "first_name": "Walter",
+            "last_name": "Mondale",
+            "election": 17,
+            "party": "Democrat",
+            "state": "Minnesota",
+            "priority": 2,
+            "description": "<p>Walter Mondale was Vice President under Jimmy Carter and before that a well-regarded Senator from Minnesota. A New Dealer in the mold of his mentor Hubert Humphrey, Mondale won this year\u2019s primary with strong backing from labor and the Democratic establishment.</p><p>Despite his impressive resume, Mondale is seen as adhering to an outmoded brand of liberalism and has faced criticism for his connections to divisive <q>special interests.</q> He will need to find firm footing on any number of critical issues to make a dent in President Reagan\u2019s Teflon persona this Fall.</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/mondale1984.png",
+            "electoral_victory_message": "<h3>Congratulations! You won the 1984 election!</h3><p>Even you didn\u2019t expect this outcome going into election night. Your emphasis on the issues has triumphed over Reagan\u2019s Pollyannish view of the country. Make sure to brush up on policy, because the new Democratic majority in the Senate is eager to get to work enacting the promises you made.</p><p>Noting the salience of Reagan\u2019s age in the campaign, Republicans are already hard at work diminishing the importance of your mandate. Still, they are on the backfoot after this shocking result\u2013if all goes well, you\u2019re in good shape to beat Bob Dole in four years.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1984 election.</h3><p>It\u2019s hard to say you didn\u2019t see it coming, but this loss will take years to get over. Despite his shallow campaign, Reagan will paint his victory as a renewed mandate for conservatism, and the Democratic Party is already rushing to distance itself from New Deal liberalism. It\u2019s likely that Gary Hart will be the nominee in four years, barring an unmitigated catastrophe.</p><p>For the first time in your life, you are truly a private citizen. Even as the Democrats disavow you, you command the respect of a generation of liberals\u2013maybe your influence will earn you an ambassadorship or cabinet position in the future.</p>",
+            "no_electoral_majority_message": "<h3>Nobody has won the 1984 election!</h3><p>For the first time in over a hundred years, no candidate has won a majority of electoral votes. The race now goes to the House of Representatives. On paper, you're favored in the Democrat-controlled chamber, but Reagan is already making overtures to more conservative members of the caucus. Good luck!</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 602,
+        "fields": {
+            "first_name": "Lyndon",
+            "last_name": "LaRouche/Others",
+            "election": 17,
+            "party": "Independent",
+            "state": "Massachusetts",
+            "priority": 3,
+            "description": "'",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 603,
+        "fields": {
+            "first_name": "George H. W.",
+            "last_name": "Bush",
+            "election": 17,
+            "party": "Republican",
+            "state": "Texas",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/bush1984.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>George Bush is the incumbent Vice President. Reagan's former rival has defined his new role as deferential almost to a fault, and will continue loyally in his service as long as he believes it will pay off in four years.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 604,
+        "fields": {
+            "first_name": "Geraldine",
+            "last_name": "Ferraro",
+            "election": 17,
+            "party": "Democrat",
+            "state": "New York",
+            "priority": 8,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/ferraro1984.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Geraldine Ferraro represents relatively conservative areas of Queens in the House of Representatives. A favorite of Tip O\u2019Neill, Ferraro has developed a reputation as a moderate willing to buck Democratic orthodoxy on divisive issues like busing and crime.</p><p>Interest groups and campaign advisors alike recommend that Mondale shake up the race by picking a woman. Despite a limited national profile, Ferraro would please liberals while also appealing to socially conservative <q>Reagan Democrats.</q> However, the Mondale campaign has had little time to fully vet Ferraro\u2019s personal and family finances.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 605,
+        "fields": {
+            "first_name": "Dianne",
+            "last_name": "Feinstein",
+            "election": 17,
+            "party": "Democrat",
+            "state": "California",
+            "priority": 9,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/feinstein1984.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Dianne Feinstein is the incumbent Mayor of San Francisco. A popular Democrat in Reagan's home state, Feinstein raises the possibility of winning California and scrambling the President\u2019s electoral math.</p><p>Feinstein has been very openly angling for the vice presidential slot as the Democratic Party convenes in her hometown, and would please women's groups. On the other hand, Mondale would rather not give Reagan an opportunity to tag him as a \u201cSan Francisco liberal.\u201d</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 606,
+        "fields": {
+            "first_name": "Gary",
+            "last_name": "Hart",
+            "election": 17,
+            "party": "Democrat",
+            "state": "Colorado",
+            "priority": 10,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/hart1984.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Gary Hart gave Mondale a run for his money during the surprisingly narrow Democratic primaries. A Senator from Colorado and one-time campaign manager for George McGovern, Hart represents a new breed of <q>Atari Democrats</q> more concerned with technological advancement than traditional liberal wedge issues.</p><p>After the lengthy nomination contest, Hart\u2019s selection would go a long way to bridge the gap between Mondale\u2019s campaign and younger, Reagan-friendly suburbanites. However, he would demand several policy concessions if he were to join the ticket, and offers little to supporters of Jesse Jackson.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 607,
+        "fields": {
+            "first_name": "Jesse",
+            "last_name": "Jackson",
+            "election": 17,
+            "party": "Democrat",
+            "state": "South Carolina",
+            "priority": 11,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/jackson1984.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Jesse Jackson was also a thorn in Mondale\u2019s side during the acrimonious Democratic primary. The self-proclaimed heir to the late Dr. King, Jackson commanded wide swaths of the African American vote despite running a distant third.</p><p>Jackson has kept Mondale on edge in the buildup to the Convention by threatening to withhold his endorsement unless he is considered for the Vice Presidency, but the Reverend\u2019s past comments about New York\u2019s Jewish community leave many in the inner circle wondering whether his selection would be more trouble than it\u2019s worth. Older Black leaders are also skeptical Jackson motivates African American voters as effectively as he claims.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1,
+        "fields": {
+            "first_name": "Rutherford B.",
+            "last_name": "Hayes",
+            "election": 1,
+            "party": "Republican",
+            "state": "Ohio",
+            "priority": 1,
+            "description": "<p>Rutherford B. Hayes is the incumbent Governor of Ohio, serving on and off since 1868. Hayes also served in the Union Army during the Civil War, even being brevetted Major General for his service during the Army of the Shenandoah in the Valley Campaigns of 1864.</p><p>Although he has experience and a respectable resume, he is not well known outside of Ohio and thus, he must craft a reputation for himself nationwide. He has been noted as a reformer with support for Civil Rights. Hayes will also have to balance distancing himself from President Grant and the corruption of his administration without completely bolting from some of his more well received ideas.</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#003893",
+            "is_active": 1,
+            "image_url": "https://itsastronomical.com/assets/1876/rutherford.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1876 election.</h3><p>Despite a strong challenge from Governor Tilden, you will keep the White House under Republican control. Of course, the road ahead is a tough one, as you are faced with cleaning up the corruption and pulling the nation out of this economic slump.</p><p>Depending on how your administration faces these issues, you could leave your successor with a strong economy and a clean government. It seems both the Stalwarts and the Half-Breeds are anxious for the 1880 election.</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1876 election.</h3><p>It's hard to say this was unexpected, given Tilden's initial lead. Democrats will still control the House of Representatives, albeit with a reduced margin, while the Senate remains in Republican hands.</p><p>Samuel Tilden will be the first Democrat to be elected President since James Buchanan in 1856. It seems that your political career is over -- at least the people of Ohio will remember you fondly.</p>",
+            "no_electoral_majority_message": "<h3>Sorry! You have lost in a nail-biter.</h3><p>No candidate achieved a majority of the electoral votes, marking the first time this has happened since 1824. Unfortunately for you, the majority of U.S. states have Democratic control the Congressional delegations, and they will cast their votes for Tilden accordingly.</p><p>It is unlikely you will have another chance in 1880 -- thus, it seems your political career is over.</p>",
+            "description_as_running_mate": null,
+            "candidate_score": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 2,
+        "fields": {
+            "first_name": "Samuel J.",
+            "last_name": "Tilden",
+            "election": 1,
+            "party": "Democrat",
+            "state": "New York",
+            "priority": 2,
+            "description": "<p>Samuel Tilden is the incumbent Governor of New York, leading a Democratic sweep of the statewide offices in the 1874 elections. Tilden supported the Union during the Civil War, which will help him blunt attacks from those waving the bloody shirt around. </p><p>Tilden has fought against corruption from the Tammany Hall political machine during his tenure as Governor, and had to overcome incredibly strong opposition from ''Honest John'' Kelly, the leader of Tammany Hall in order to secure the nomination. He starts out as the early favorite to win, due to the unpopularity of the Grant Administration and the lack of reputation of Governor Hayes. Tilden must emphasize his record, attack the corruption in the Grant administration, and balance the interests of the North and South.</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#FFB500",
+            "is_active": 1,
+            "image_url": "https://itsastronomical.com/assets/1876/tilden.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1876 election.</h3><p>While it may have looked close for a bit, neither side seems to doubt your victory. You will be the first Democrat elected to the White House since James Buchanan in 1856. Democrats will retain their control over the House of Representatives, whereas the Senate seems to be held by Republicans very narrowly.</p><p>You could likely pass some of your reform-minded policies with support from reformist Republicans. You also are expected to end Reconstruction as soon as possible. If you can pass civil service and other reforms, winning re-election in 1880 will be no trouble at all.</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1876 election.</h3><p>The excited convention that nominated you didn't seem to translate to an electoral win. Hayes now has the chance to give the Republican Party a fresh start with the American people, and hopefully implement similar reforms that you have promised.</p><p>If you choose to, renomination in 4 years also isn't out of the question. However, it is more likely that you will likely choose to retire.</p>",
+            "no_electoral_majority_message": "<h3>Wow! You have won a true nail-biter.</h3><p>No candidate achieved a majority of the electoral votes, marking the first time this has happened since 1824. Fortunately for you, the majority of U.S. states have Democratic controlled congressional delegations, and they will cast their votes for you accordingly.</p><p>If you can pass civil service and other reforms, winning re-election in 1880 will be no trouble at all. Best of luck, President-elect Tilden.</p>",
+            "description_as_running_mate": null,
+            "candidate_score": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 3,
+        "fields": {
+            "first_name": "Peter",
+            "last_name": "Cooper/Others",
+            "election": 1,
+            "party": "Greenback",
+            "state": "New York",
+            "priority": 3,
+            "description": "<p>Peter Cooper is the Greenback Party's nominee. It will take an insane amount of spacebarring to get him to victory.</p>",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#63eb87",
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Peter_Cooper_Photograph.jpg/800px-Peter_Cooper_Photograph.jpg",
+            "electoral_victory_message": "Congratulations!",
+            "electoral_loss_message": "Better luck next time!",
+            "no_electoral_majority_message": "Congratulations!",
+            "description_as_running_mate": null,
+            "candidate_score": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 4,
+        "fields": {
+            "first_name": "William",
+            "last_name": "Wheeler",
+            "election": 1,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 20,
+            "description": "n/a",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://itsastronomical.com/assets/1876/wheeler.png",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>William Wheeler is a member of the House of Representative from the state of New York. Being from a populus swing state, he may help bring geographic balance to the ticket giving Hayes an edge in a state that is leaning towards its very own Governor Tilden. Winning New York would practically seal an Electoral College win for Hayes, and would likely surprise Tilden, who has expected to win the Empire State.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 5,
+        "fields": {
+            "first_name": "Frederick T.",
+            "last_name": "Frelinghuysen",
+            "election": 1,
+            "party": "Republican",
+            "state": "New Jersey",
+            "priority": 22,
+            "description": "n/a",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://itsastronomical.com/assets/1876/fred.png",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>Frederick T. Frelinghuysen is an incumbent Senator from New Jersey, and a member of the well-known Frelinghuysen family. He is considered a Radical Republican, who has taken strong stances on punishing former Confederates. At the same time, he has allied himself with the Stalwart faction, which may hurt Hayes' image of a reformer.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 6,
+        "fields": {
+            "first_name": "Thomas A.",
+            "last_name": "Hendricks",
+            "election": 1,
+            "party": "Democrat",
+            "state": "Indiana",
+            "priority": 24,
+            "description": "n/a",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://itsastronomical.com/assets/1876/hendricks.png",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>Thomas Hendricks is the outgoing governor of Indiana. His presence on the ticket alone will certainly help in the crucial swing state of Indiana. While much of his agenda has been blocked by the Republican-controlled legislature, Hendricks has been noted as a reformer. He also has served as a Senator and Representative, giving him plenty of experience. However, Hendricks is is far more sympathetic to the Greenback cause, which will help or hurt the ticket depending on the state.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 7,
+        "fields": {
+            "first_name": "Winfield Scott",
+            "last_name": "Hancock",
+            "election": 1,
+            "party": "Democrat",
+            "state": "Pennsylvania",
+            "priority": 26,
+            "description": "n/a",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://itsastronomical.com/assets/1876/hancock.png",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>Winfield Scott Hancock is the Major General and Civil War hero from Pennsylvania, who also sought the Democratic nomination this year. Although he has never held public office, his Union general status can help deflect attacks from those waving the bloody shirt. His most notable service during the Civil War was as a commander at the Battle of Gettysburg. He also has not taken a stance on the money issue. Party leaders would prefer someone such as Hendricks, but if Tilden is looking to win Pennsylvania, having the convention select Hancock will certainly help.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 400,
+        "fields": {
+            "first_name": "William Howard",
+            "last_name": "Taft",
+            "election": 2,
+            "party": "Republican",
+            "state": "Ohio",
+            "priority": 2,
+            "description": "<p>William Howard Taft is the Secretary of War. President Theodore Roosevelt had designated him as his successor for the Republican nomination, despite Taft's reluctance. After facing only token opposition in the newly-established primary system, Taft is the odds-on favorite to win the election and secure a fourth term for the Republican Party.</p><p>Still, Bryan is expected to run a populist and feverish campaign, which may undercut Taft's advantage. Taft must keep both the ascendant progressive wing and the conservative faction of his party unified if he wishes to win this election. ",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/taft.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1908 election.</h3><p>This was to be expected, of course, given the prosperity of the time. You have managed to defeat Bryan in his third, and likely final attempt at the Presidency.</p><p>Where you go from here is up to you. Many are expecting tariff reform, and other progressive measures. Some worry about a rift in the party, which you should take note of when dealing with Theodore Roosevelt. Who knows what the Colonel might do...</p>",
+            "electoral_loss_message": "<h3>Sorry, you have lost the 1908 election.</h3><p>It appears that Bryan's quixotic crusade has captured the imagination of enough voters. Many Republicans believe that this election was winnable, and the party may split further along a progressive-conservative divide.</p><p>It's unknown where this leaves the country. Bryan enters office at a time of great prosperity, but he will have to deal with a Republican Senate. Hopefully, divided government can restrain his worst tendancies. It's unlikely you will be nominated again, but you don't mind all too much.</p>",
+            "no_electoral_majority_message": "<h3>No candidate has captured an Electoral College majority.</h3><p>Elections for Congress have also resulted in an even split among members, and it is extremely unclear who might ultimately win this election. Best of luck in what is sure to be a contentious process.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 401,
+        "fields": {
+            "first_name": "William Jennings",
+            "last_name": "Bryan",
+            "election": 2,
+            "party": "Democrat",
+            "state": "Nebraska",
+            "priority": 1,
+            "description": "<p>William Jennings Bryan has accepted the Democratic mantle for the third time after facing minimal opposition from his own party members. After the conservative campaign of Alton Parker four years prior, Bryan is eager to push the party towards a more progressive agenda.</p><p>It will not be an easy race for Bryan, however. Though he is expected to energize turnout in the West, the Democrats have lost the last three elections, and Bryan will need to find a way to dissuade reform-minded voters from sticking with Taft and the Republican Party.</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/bryan.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1908 election.</h3><p>After three attempts, it appears that ''The Great Commoner'' will finally become President of the United States. This will be a shock to many -- most of all, the Republicans, who mocked your campaign as a quixotic crusade. Many of your supporters are overwhelmed with joy.</p><p>It appears that with these returns, the House will be won by the Democrats, while Republicans will retain the Senate. The defeat of Speaker Joseph Cannon is <i>cause c\u00e9l\u00e8bre</i> for progressives and Democrats alike.</p>",
+            "electoral_loss_message": "<h3>Sorry, you have lost the 1908 election.</h3><p>You have failed on your third attempt to capture the Presidency. Hopefully, your returns were stronger than those you had in 1896 or 1900. Down the ballot, many progressive Democrats were able to outperform you.</p><p>It appears that Taft has been able to secure a workable Congressional majority and will put forth his agenda -- some members of Congress have begun to discuss tariff increases. Your political career is very likely over, but perhaps 1912 will be the year Democrats finally regain executive power.</p>",
+            "no_electoral_majority_message": "<h3>No candidate has captured an Electoral College majority.</h3><p>Elections for Congress have also resulted in an even split among members, and it is extremely unclear who might ultimately win this election. Best of luck in what is sure to be a contentious process.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 402,
+        "fields": {
+            "first_name": "Eugene",
+            "last_name": "Debs",
+            "election": 2,
+            "party": "Socialist",
+            "state": "Indiana",
+            "priority": 3,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 403,
+        "fields": {
+            "first_name": "Eugene",
+            "last_name": "Chafin/Others",
+            "election": 2,
+            "party": "Prohibition",
+            "state": "Illinois",
+            "priority": 4,
+            "description": "'",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 405,
+        "fields": {
+            "first_name": "James S.",
+            "last_name": "Sherman",
+            "election": 2,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 7,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/sherman.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Congressman James Sherman is the candidate of the New York delegation and, more importantly, Speaker Joe Cannon. Roosevelt's rivals hope that his nomination will provide much-needed balance to the ticket, given your role as his successor. Still, Sherman has minimal appeal to progressives within the party, which means your campaign will need to spend more time securing their support.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 406,
+        "fields": {
+            "first_name": "Albert",
+            "last_name": "Beveridge",
+            "election": 2,
+            "party": "Republican",
+            "state": "Indiana",
+            "priority": 8,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/beveridge.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>If Sherman is unappealing to Taft, Senator Beveridge of Indiana is the most likely choice should he choose to rally delegates behind him. Though hesitant to accept the nomination, Taft's managers believe he can be won over for the role with enough convincing. Beveridge has had a far more progressive tenure and is quite reform-focused. Of course, his selection may cause issues with the conservative sectors of the Republican party.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 407,
+        "fields": {
+            "first_name": "John W.",
+            "last_name": "Kern",
+            "election": 2,
+            "party": "Democrat",
+            "state": "Indiana",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/johnkern.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>John Kern has served as a state Senator in Indiana and ran twice for Governor of Indiana. Kern has a progressive reputation and is known within his state as a strong, reform-minded individual. It should come as no surprise that the Democratic Convention is more than happy to nominate him by acclamation. Still, Kern lacks serious experience and has low name recognition outside of his home state -- admittedly, an electorally important one.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 408,
+        "fields": {
+            "first_name": "Charles A.",
+            "last_name": "Towne",
+            "election": 2,
+            "party": "Democrat",
+            "state": "New York",
+            "priority": 6,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/towne.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Charles Towne is a former Congressman -- serving as both a Representative and a Senator from Minnesota, before later serving a single term in the House from New York. His ties to Minnesota, though partially severed, may help unite the party after Minnesota Governor John Johnson's failed bid against Bryan. In addition, a former Republican may be an unorthodox selection that could help him appeal to reform-minded Republicans.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 409,
+        "fields": {
+            "first_name": "Archibald",
+            "last_name": "McNeill",
+            "election": 2,
+            "party": "Democratic",
+            "state": "Connecticut",
+            "priority": 9,
+            "description": "'",
+            "color_hex": "#3400c2",
+            "secondary_color_hex": "#a3a9ff",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/mcneil.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Archibald McNeill is a businessman and former State Senator from Connecticut. Much like Bryan's running mate during his first campaign, McNeill has wealth that can help fund a campaign and appeal to the conservative wing of the party, largely located within the northeast. However, selecting a businessman with few political connections has plenty of downsides, especially with so many reform-minded voters up for grabs.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    }
+];
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194001,
+        "fields": {
+            "candidate": 1003,
+            "running_mate": 1015
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194002,
+        "fields": {
+            "candidate": 1002,
+            "running_mate": 1014
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194003,
+        "fields": {
+            "candidate": 1001,
+            "running_mate": 1009
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194004,
+        "fields": {
+            "candidate": 1000,
+            "running_mate": 1005
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194005,
+        "fields": {
+            "candidate": 1001,
+            "running_mate": 1011
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194006,
+        "fields": {
+            "candidate": 1000,
+            "running_mate": 1006
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194007,
+        "fields": {
+            "candidate": 1000,
+            "running_mate": 1008
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194008,
+        "fields": {
+            "candidate": 1001,
+            "running_mate": 1010
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 194009,
+        "fields": {
+            "candidate": 1001,
+            "running_mate": 1012
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1940010,
+        "fields": {
+            "candidate": 1000,
+            "running_mate": 1004
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199601,
+        "fields": {
+            "candidate": 903,
+            "running_mate": 915
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199602,
+        "fields": {
+            "candidate": 900,
+            "running_mate": 904
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199603,
+        "fields": {
+            "candidate": 901,
+            "running_mate": 905
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199604,
+        "fields": {
+            "candidate": 901,
+            "running_mate": 908
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199605,
+        "fields": {
+            "candidate": 902,
+            "running_mate": 909
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199606,
+        "fields": {
+            "candidate": 901,
+            "running_mate": 907
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199607,
+        "fields": {
+            "candidate": 901,
+            "running_mate": 906
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199608,
+        "fields": {
+            "candidate": 902,
+            "running_mate": 910
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 199609,
+        "fields": {
+            "candidate": 902,
+            "running_mate": 911
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1996010,
+        "fields": {
+            "candidate": 902,
+            "running_mate": 912
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 197201,
+        "fields": {
+            "candidate": 801,
+            "running_mate": 809
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 197202,
+        "fields": {
+            "candidate": 801,
+            "running_mate": 810
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 197203,
+        "fields": {
+            "candidate": 801,
+            "running_mate": 811
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1972003,
+        "fields": {
+            "candidate": 801,
+            "running_mate": 812
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 197205,
+        "fields": {
+            "candidate": 800,
+            "running_mate": 805
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 197206,
+        "fields": {
+            "candidate": 800,
+            "running_mate": 806
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 197207,
+        "fields": {
+            "candidate": 800,
+            "running_mate": 807
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 197208,
+        "fields": {
+            "candidate": 800,
+            "running_mate": 808
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 195601,
+        "fields": {
+            "candidate": 700,
+            "running_mate": 704
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 195602,
+        "fields": {
+            "candidate": 700,
+            "running_mate": 705
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 195603,
+        "fields": {
+            "candidate": 700,
+            "running_mate": 706
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 195604,
+        "fields": {
+            "candidate": 701,
+            "running_mate": 707
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 195605,
+        "fields": {
+            "candidate": 701,
+            "running_mate": 708
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 195606,
+        "fields": {
+            "candidate": 701,
+            "running_mate": 709
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 195607,
+        "fields": {
+            "candidate": 701,
+            "running_mate": 710
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19841,
+        "fields": {
+            "candidate": 600,
+            "running_mate": 603
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19842,
+        "fields": {
+            "candidate": 601,
+            "running_mate": 604
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19843,
+        "fields": {
+            "candidate": 601,
+            "running_mate": 605
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19844,
+        "fields": {
+            "candidate": 601,
+            "running_mate": 606
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19845,
+        "fields": {
+            "candidate": 601,
+            "running_mate": 607
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19081,
+        "fields": {
+            "candidate": 400,
+            "running_mate": 405
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19082,
+        "fields": {
+            "candidate": 400,
+            "running_mate": 406
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19083,
+        "fields": {
+            "candidate": 401,
+            "running_mate": 407
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19084,
+        "fields": {
+            "candidate": 401,
+            "running_mate": 408
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 19085,
+        "fields": {
+            "candidate": 401,
+            "running_mate": 409
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1,
+        "fields": {
+            "candidate": 1,
+            "running_mate": 4
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 2,
+        "fields": {
+            "candidate": 2,
+            "running_mate": 6
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 3,
+        "fields": {
+            "candidate": 2,
+            "running_mate": 7
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 4,
+        "fields": {
+            "candidate": 1,
+            "running_mate": 5
+        }
+    }
+];
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 22,
+        "candidates": [
+            900,
+            901,
+            902,
+            903
+        ]
+    },
+    {
+        "election": 17,
+        "candidates": [
+            600,
+            601,
+            602
+        ]
+    },
+    {
+        "election": 19,
+        "candidates": [
+            800,
+            801,
+            802,
+            803
+        ]
+    },
+    {
+        "election": 18,
+        "candidates": [
+            700,
+            701,
+            702,
+            703
+        ]
+    },
+    {
+        "election": 23,
+        "candidates": [
+            1000,
+            1001,
+            1002,
+            1003
+        ]
+    },
+    {
+        "election": 2,
+        "candidates": [
+            400,
+            401,
+            402,
+            403
+        ]
+    },
+    {
+        "election": 1,
+        "candidates": [
+            1,
+            2,
+            3
+        ]
+    }
+];
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 22,
+        "year": 1996,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1996"
+    },
+    {
+        "id": 17,
+        "year": 1984,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1984"
+    },
+    {
+        "id": 19,
+        "year": 1972,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1972"
+    },
+    {
+        "id": 18,
+        "year": 1956,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1956"
+    },
+    {
+        "id": 23,
+        "year": 1940,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1940"
+    },
+    {
+        "id": 2,
+        "year": 1908,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1908"
+    },
+    {
+        "id": 1,
+        "year": 1876,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1876"
+    }
+];

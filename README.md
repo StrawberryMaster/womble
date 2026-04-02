@@ -269,6 +269,15 @@ See [the mods folder](./mods) for the full list of mods.
 This is a patched version with some extra fixes for the mod, including some optimizations, other UI changes and a revamped Game Stats design. Codes can be found [here](./mods/2024%20-%20Our%20Revolution_init.txt) (Code 1) and [here](./mods/2024%20-%20Our%20Revolution_SandersHarris.txt) (Code 2). See example:
 ![Our Revolution](./images/ourrevolution.png)
 
+## TCT.net: the very best of
+This is a compilation of the mods seen in [thecampaigntrail.net](https://thecampaigntrail.net), extracted and compressed so that you are able to play several of its scenarios at once! Included here are 1996, 1984, 1972, 1956, 1940, 1908, and 1876. 1876 is a more Bryanesque remake of the existing 1876 mod made by ItsAstronomical.
+
+As of now, the 2008 and 2004 versions are not not included due to their very minimal changes in comparison to their original counterparts. 1964 has not been included because there have been no notable changes, and some of its images are broken (especially on the Goldwater side).
+
+Code 1 can be found [here](./mods/TCTdotnet_code1.txt), and the Code 2 can be found [here](./mods/TCTdotnet_code2_minified.txt). Note that because of the size of the code 2, the version above is minified to be around ~3mb. If you wish to inspect the code 2 for other mods, or want to try your hand at importing the uncompressed file, it can be found [here](./mods/TCTdotnet_code2.txt).
+
+![TCT.net](./images/tctdotnet.png)
+
 ## Year Zero
 This is a patched version of the mod *1976: Year Zero*, with some optimizations to the candidate loading screen + the music player, which will now fit on laptops and smaller screens. See code [here](./mods/1976%20-%20Year%20Zero_init.txt). See example:
 ![Year Zero](./images/yearzero.png)
