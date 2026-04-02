@@ -3,14 +3,14 @@ A series of tools/addons/etc for The Campaign Trail mods
 
 ## Addon notes
 ### Answer swapper
-The [answer swapper](./codes/answer_swapper.js) is the bread and butter for swapping answer behaviors. It exchanges which question two answers belong to, and optionally swaps their effects too. Think of it like redirecting traffic: if answer A was supposed to go to question 1, and answer B to question 2, this flips that around. The ´takeEffects` parameter controls whether all the associated scoring/feedback also gets swapped.
+The [answer swapper](./codes/answer_swapper.js) is the bread and butter for swapping answer behaviors. It exchanges which question two answers belong to, and optionally swaps their effects too. Think of it like redirecting traffic: if answer A was supposed to go to question 1, and answer B to question 2, this flips that around. The `takeEffects` parameter controls whether all the associated scoring/feedback also gets swapped.
 
 Example:
 ```javascript
 // swap answer PKs 8325 and 8549, along with their effects
 answerSwapper(8325, 8549, true);
 
-// if applesause is greater than 2, AND
+// if applesauce is greater than 2, AND
 // you're on question 4, then swap answer 8325 with 8549
 if (e.question_number === 5 && applesauce > 2) {
     answerSwapper(8325, 8549, true);
