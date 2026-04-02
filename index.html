@@ -551,6 +551,205 @@
             line-height: 1.5;
         }
 
+        body.theme-plain {
+            background: #ffffff;
+            color: #111111;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        body.theme-plain .sidebar {
+            width: 240px;
+            background: #fafafa;
+            border-right: 1px solid #c9d2da;
+            box-shadow: none;
+        }
+
+        body.theme-plain .sidebar h3 {
+            color: #003049;
+            font-family: Georgia, 'Times New Roman', serif;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 12px;
+        }
+
+        body.theme-plain .sidebar a {
+            color: #003049;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 14px;
+            border-radius: 0;
+            border-bottom: 1px solid transparent;
+        }
+
+        body.theme-plain .sidebar a:hover,
+        body.theme-plain .sidebar a.active {
+            background: transparent;
+            color: #001d2f;
+            border-bottom-color: #003049;
+        }
+
+        body.theme-plain .theme-button {
+            background: #ffffff;
+            color: #003049;
+            border: 1px solid #c9d2da;
+            border-radius: 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 400;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        body.theme-plain .theme-button:hover,
+        body.theme-plain .theme-button.active {
+            background: #f4f7fa;
+            border-color: #003049;
+            color: #001d2f;
+        }
+
+        body.theme-plain .content {
+            max-width: 760px;
+            padding: 48px 40px;
+        }
+
+        body.theme-plain .main {
+            background: #ffffff;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+        }
+
+        body.theme-plain .header {
+            border-bottom: 1px solid #c9d2da;
+        }
+
+        body.theme-plain .search-box {
+            background: #ffffff;
+            border: 1px solid #c9d2da;
+            border-radius: 0;
+            color: #111111;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        body.theme-plain .toc-toggle {
+            background: #003049;
+            border-radius: 0;
+            color: #ffffff;
+            font-family: Georgia, 'Times New Roman', serif;
+            letter-spacing: 0;
+        }
+
+        body.theme-plain .toc-toggle:hover {
+            background: #001d2f;
+            box-shadow: none;
+        }
+
+        body.theme-plain h1,
+        body.theme-plain h2,
+        body.theme-plain h3,
+        body.theme-plain h4 {
+            color: #003049;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 700;
+            letter-spacing: 0;
+            border-bottom: none;
+            border-top: none;
+        }
+
+        body.theme-plain h1 {
+            font-size: 2.2em;
+            margin: 0 0 0.4em 0;
+            padding-bottom: 0;
+        }
+
+        body.theme-plain h2 {
+            font-size: 1.5em;
+            margin: 1.4em 0 0.6em;
+            padding-top: 0;
+        }
+
+        body.theme-plain h3 {
+            font-size: 1.2em;
+            margin: 1.2em 0 0.5em;
+        }
+
+        body.theme-plain h4 {
+            font-size: 1.05em;
+            margin: 1em 0 0.5em;
+        }
+
+        body.theme-plain p,
+        body.theme-plain li {
+            line-height: 1.7;
+        }
+
+        body.theme-plain a {
+            color: #003049;
+            border-bottom: 1px solid transparent;
+        }
+
+        body.theme-plain a:hover {
+            color: #001d2f;
+            border-bottom-color: #003049;
+        }
+
+        body.theme-plain code {
+            background: #f3f5f7;
+            color: #003049;
+            border-radius: 0;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        body.theme-plain pre,
+        body.theme-plain .hljs {
+            background: #f7f7f7;
+            color: #111111;
+            border: 1px solid #d7dde3;
+            border-radius: 0;
+        }
+
+        body.theme-plain .hljs-literal,
+        body.theme-plain .hljs-number,
+        body.theme-plain .hljs-string,
+        body.theme-plain .hljs-attr,
+        body.theme-plain .hljs-function,
+        body.theme-plain .hljs-title,
+        body.theme-plain .hljs-keyword,
+        body.theme-plain .hljs-property,
+        body.theme-plain .hljs-comment,
+        body.theme-plain .hljs-variable,
+        body.theme-plain .hljs-params,
+        body.theme-plain .hljs-punctuation,
+        body.theme-plain .hljs-built_in {
+            color: inherit;
+        }
+
+        body.theme-plain blockquote {
+            border-left: 2px solid #003049;
+            color: #333333;
+            font-style: italic;
+        }
+
+        body.theme-plain hr {
+            border-top: 1px dotted #003049;
+        }
+
+        body.theme-plain table {
+            border-collapse: collapse;
+        }
+
+        body.theme-plain th,
+        body.theme-plain td {
+            border: 1px solid #c9d2da;
+        }
+
+        body.theme-plain th {
+            background: #f3f5f7;
+            color: #003049;
+        }
+
+        body.theme-plain img {
+            border-radius: 0;
+        }
+
         body.theme-metro a {
             color: #aa3300;
             font-weight: bold;
@@ -626,6 +825,14 @@
             body.theme-metro #content h1:first-of-type + * {
                 margin-top: 8.4em;
             }
+
+            body.theme-plain .content {
+                padding: 32px 24px;
+            }
+
+            body.theme-plain .sidebar {
+                width: 240px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -689,6 +896,26 @@
             body.theme-metro #content h1:first-of-type + * {
                 margin-top: 8.4em;
             }
+
+            body.theme-plain .sidebar {
+                width: 240px;
+                left: -240px;
+            }
+
+            body.theme-plain .sidebar.active {
+                left: 0;
+            }
+
+            body.theme-plain .content {
+                margin-left: 0;
+                width: 100%;
+                max-width: 100%;
+                padding: 24px 16px;
+            }
+
+            body.theme-plain .main {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -702,6 +929,7 @@
             <div class="theme-list" role="group" aria-label="Theme selector">
                 <button class="theme-button" data-theme="classic" aria-pressed="true">Classic</button>
                 <button class="theme-button" data-theme="metro" aria-pressed="false">Metro</button>
+                <button class="theme-button" data-theme="plain" aria-pressed="false">Plain</button>
             </div>
         </div>
 
@@ -715,8 +943,9 @@
         const THEME_STORAGE_KEY = 'womble-theme';
 
         function applyTheme(themeName) {
-            const theme = themeName === 'metro' ? 'metro' : 'classic';
+            const theme = themeName === 'metro' || themeName === 'plain' ? themeName : 'classic';
             document.body.classList.toggle('theme-metro', theme === 'metro');
+            document.body.classList.toggle('theme-plain', theme === 'plain');
 
             document.querySelectorAll('.theme-button').forEach((button) => {
                 const isActive = button.dataset.theme === theme;
