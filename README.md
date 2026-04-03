@@ -2,6 +2,9 @@
 A series of tools/addons/etc for The Campaign Trail mods
 
 ## Addon notes
+### Apply effects to all candidates
+By default, effects in the answer global/state JSON only apply if the candidate specified in the `candidate` field *is also* the player candidate. [This snippet](./codes/apply_all_effects.js) removes that filter, allowing effects to apply to all candidates regardless of which one the player is. No other changes are needed, and it should work on any mod without any extra setup. This is *experimental* and may cause unintended consequences, so make sure to test it out before using it in a mod!
+
 ### Answer swapper
 The [answer swapper](./codes/answer_swapper.js) is the bread and butter for swapping answer behaviors. It exchanges which question two answers belong to, and optionally swaps their effects too. Think of it like redirecting traffic: if answer A was supposed to go to question 1, and answer B to question 2, this flips that around. The `takeEffects` parameter controls whether all the associated scoring/feedback also gets swapped.
 
@@ -191,6 +194,9 @@ For an individual answer, you can set a manual volatility value by creating a `v
 ```
 This will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range. If no volatility range is set for an answer, it will generate max and min volatility values based on the global multiplier value.
 
+# 3D map effect
+*Very experimental*, but [this snippet](./codes/three_dee_effect.js) adds a 3D effect to the election night map view by applying a CSS transform to the map container.
+
 ----
 
 ## Music players
@@ -265,12 +271,16 @@ I do not own the content in these mods (unless otherwise specified), and am not 
 
 See [the mods folder](./mods) for the full list of mods.
 
+## But A Man
+This is a patched version of the mod *But A Man* with some extra fixes for the mod, primarily readability improvements to the question/tooltip text and some optimizations. Codes can be found [here](./mods/1972%20-%20But%20A%20Man_init.txt) (Code 1) and [here](./mods/1972%20-%20But%20A%20Man_HumphreyMuskie.txt) (Code 2). See example:
+![But A Man](./images/butaman.png)![alt text](image.png)
+
 ## Our Revolution
 This is a patched version with some extra fixes for the mod, including some optimizations, other UI changes and a revamped Game Stats design. Codes can be found [here](./mods/2024%20-%20Our%20Revolution_init.txt) (Code 1) and [here](./mods/2024%20-%20Our%20Revolution_SandersHarris.txt) (Code 2). See example:
 ![Our Revolution](./images/ourrevolution.png)
 
 ## TCT.net: the very best of
-This is a compilation of the mods seen in [thecampaigntrail.net](https://thecampaigntrail.net), extracted and compressed so that you are able to play several of its scenarios at once! Included here are 1996, 1984, 1972, 1956, 1940, 1908, and 1876. 1876 is a more Bryanesque remake of the existing 1876 mod made by ItsAstronomical.
+This is a compilation of the mods seen in [thecampaigntrail.net](https://thecampaigntrail.net), extracted and compressed so that you are able to play several of its scenarios at once! Included here are 1996, 1984, 1972, 1956, 1940, 1908, and 1876. (Note that 1908 is the only scenario without its authors listed.)
 
 As of now, the 2008 and 2004 versions are not not included due to their very minimal changes in comparison to their original counterparts. 1964 has not been included because there have been no notable changes, and some of its images are broken (especially on the Goldwater side).
 
