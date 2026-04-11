@@ -422,7 +422,7 @@
 
         body.theme-metro .sidebar a {
             color: #222222;
-            font-family: Tahoma, Arial, sans-serif;
+            font-family: Arial, sans-serif;
             font-size: 82%;
             font-weight: 700;
             letter-spacing: 0.15em;
@@ -443,7 +443,7 @@
         }
 
         body.theme-metro .theme-button {
-            font-family: Tahoma, Arial, sans-serif;
+            font-family: Arial, sans-serif;
             border: 1px solid #333333;
             border-radius: 0;
             background: #ffcc44;
@@ -1039,11 +1039,15 @@
 
         function generateTableOfContents() {
             const contentDiv = document.getElementById('content');
-            const headings = contentDiv.querySelectorAll('h1, h2, h3, h4');
+            const headings = Array.from(contentDiv.querySelectorAll('h1, h2, h3, h4'));
             const tocList = document.getElementById('toc-list');
             tocList.innerHTML = '';
 
-            headings.forEach((heading) => {
+            const headingsToInclude = headings.filter((heading, index) => {
+                return !(index === 0 && heading.tagName === 'H1');
+            });
+
+            headingsToInclude.forEach((heading) => {
                 const level = parseInt(heading.tagName[1]);
                 const li = document.createElement('li');
                 li.style.marginLeft = Math.max(0, (level - 1) * 15) + 'px';
@@ -1119,7 +1123,8 @@
 
         // update active link in sidebar based on scroll position
         window.addEventListener('scroll', function() {
-            const headings = document.querySelectorAll('#content h1, #content h2, #content h3, #content h4');
+            const headings = Array.from(document.querySelectorAll('#content h1, #content h2, #content h3, #content h4'))
+                .filter((heading, index) => !(index === 0 && heading.tagName === 'H1'));
             const links = document.querySelectorAll('.sidebar a');
             
             let currentHeading = null;

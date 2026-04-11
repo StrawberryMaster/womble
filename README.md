@@ -194,7 +194,7 @@ For an individual answer, you can set a manual volatility value by creating a `v
 ```
 This will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range. If no volatility range is set for an answer, it will generate max and min volatility values based on the global multiplier value.
 
-# 3D map effect
+### 3D map effect
 *Very experimental*, but [this snippet](./codes/three_dee_effect.js) adds a 3D effect to the election night map view by applying a CSS transform to the map container.
 
 ----
