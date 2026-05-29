@@ -53,6 +53,13 @@ histFunction = function() {
             HistPV = ["27,313,945","22,347,744","116,599","57,903"];
             HistPVP = ["54.74%","44.78%","0.23%","0.12%"];
             break;
+        case 24: // 1800
+            HistHexcolour = ["#0000FF","#0000FF","#ff0000","#ff0000"];
+            HistName=[" Thomas Jefferson"," Aaron Burr"," John Adams"," Charles Cotesworth Pinckney"];
+            HistEV=[73, 73, 65, 64];
+            HistPV=["45,511", "-", "29,621", "-"];
+            HistPVP=["60.6%", "-", "39.4%", "-"];
+            break;
     }
 }
 
@@ -150,7 +157,7 @@ campaignTrail_temp.election_json = [
             "recommended_reading": "<h4 style='margin-top: 0.5em;'>Books and Links</h4><a href='https://archive.nytimes.com/www.nytimes.com/library/politics/camp/whouse/convention-ra.html#1908' target='_blank'><i> The New York Times</i> - 1908 Convention Coverage</a><br><a href='https://elections.harpweek.com/1908/Overview-1908-1.asp' target='_blank'>HarpWeek | 1908 Overview</a><br> Donald F. Anderson -- William Howard Taft: A Conservative's Conception of the Presidency<br>Paul W. Glad -- <a href='https://archive.org/details/trumpetsoundethw0000glad' target='_blank'>The trumpet soundeth: William Jennings Bryan and his democracy, 1896-1912</a>",
             "has_visits": 1,
             "no_electoral_majority_image": "https://www.jetsimon.com/public/static/images/1896-no-majority.jpg",
-            "creator": "Dan Bryan",
+            "creator": "ItsAstronomical",
             "display_year": "1908",
             "is_historical": true
         }
@@ -170,13 +177,30 @@ campaignTrail_temp.election_json = [
             "creator": "ItsAstronomical",
             "is_historical": true
         }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 24,
+        "fields": {
+            "year": 1800,
+            "display_year": "1800",
+            "summary": "<p>The young American Republic roils amid international hostility, growing internal tensions, and questions about the federal government's role in enforcing order and controlling speech.</p>\n<ul><li>\nThomas Jefferson must make the case for a less restrictive federal government while avoiding controversy and fending off various schemes to thwart the democratic process.\n</li><li>\nJohn Adams must defend the unpopular Alien and Sedition Acts and his negotiations with France without being destroyed by the deep divisions within the Federalist camp.\n</li></ul>",
+            "image_url": "https://thecampaigntrail.net/static/images/1800/zoThlZ6.png",
+            "winning_electoral_vote_number": 70,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1800/qc8D16N.png",
+            "recommended_reading": "<h4 style='margin-top: 0.5em;'>General Resources</h4>Stanley Elkins, Eric McKitrick -- <a href='https://www.google.com/books/edition/The_Age_of_Federalism/IVASDAAAQBAJ' target='_blank'>The Age of Federalism</a><br>Gordon Wood -- <a href='https://academic.oup.com/book/47392' target='_blank'>Empire Of Liberty: A History of the Early Republic, 1789\u20131815</a><br>Page Smith -- <a href='https://www.archive.org/details/johnadams02smit' target='_blank'>John Adams</a><br>Dumas Malone -- <a href='https://archive.org/details/jeffersonhistime03malo' target='_blank'>Jefferson and his time, Volume III : Jefferson and The Ordeal of Liberty</a><br>Edward J. Larson -- <a href='https://www.google.com/books/edition/A_Magnificent_Catastrophe/MXcCdlmwwecC?hl=en' target='_blank'>Magnificent Catastrophe: The Tumultuous Election of 1800, America\u2019s First Presidential Campaign</a><br>John P. Kaminski -- <a href='https://csac.history.wisc.edu/publications-2/biographies/' target='_blank'>George Clinton: Yeoman Politician of the New Republic</a><br>",
+            "has_visits": 1,
+            "creator": "QuoProQuid",
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1800/gS1Jjjv.png",
+            "is_historical": true
+        }
     }
 ];
 
 campaignTrail_temp.candidate_json = [
     {
         "model": "campaign_trail.candidate",
-        "pk": 1000,
+        "pk": 11000,
         "fields": {
             "first_name": "Franklin D.",
             "last_name": "Roosevelt",
@@ -199,7 +223,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1001,
+        "pk": 11001,
         "fields": {
             "first_name": "Wendell ",
             "last_name": "Willkie",
@@ -222,7 +246,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1002,
+        "pk": 11002,
         "fields": {
             "first_name": "Norman",
             "last_name": "Thomas",
@@ -245,7 +269,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1003,
+        "pk": 11003,
         "fields": {
             "first_name": "Roger ",
             "last_name": "Babson/Others",
@@ -268,7 +292,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1005,
+        "pk": 11005,
         "fields": {
             "first_name": "Henry A. ",
             "last_name": "Wallace",
@@ -291,7 +315,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1004,
+        "pk": 11004,
         "fields": {
             "first_name": "William B.",
             "last_name": "Bankhead",
@@ -314,7 +338,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1008,
+        "pk": 11008,
         "fields": {
             "first_name": "Paul V.",
             "last_name": "McNutt",
@@ -337,7 +361,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1006,
+        "pk": 11006,
         "fields": {
             "first_name": "Jesse H.",
             "last_name": "Jones",
@@ -360,7 +384,7 @@ campaignTrail_temp.candidate_json = [
     },
     {
         "model": "campaign_trail.candidate",
-        "pk": 1009,
+        "pk": 11009,
         "fields": {
             "first_name": "Charles L.",
             "last_name": "McNary",
@@ -1891,15 +1915,198 @@ campaignTrail_temp.candidate_json = [
             "candidate_score": 0,
             "running_mate": true
         }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 200,
+        "fields": {
+            "first_name": "Thomas",
+            "last_name": "Jefferson",
+            "election": 24,
+            "party": "Republican",
+            "state": "Virginia",
+            "priority": 1,
+            "description": "<p>Thomas Jefferson is the sitting vice president. The primary author of the Declaration of Independence and leading proponent of democracy and natural rights, Jefferson is considered by many Americans to be the nation\u2019s chief thinker and philosopher.<br><br>In 1796, Jefferson narrowly lost the presidency to John Adams after the Federalists castigated him as a dangerous, godless revolutionary and the nation\u2019s \u201cchief Jacobin\u201d. To win, Jefferson will need to manage his reputation from personal attacks while warding off the machinations of Alexander Hamilton, who seeks to manipulate the Election from the shadows.</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/1800/jlFClRc.png",
+            "electoral_victory_message": "<h3>Congratulations, you appear to have won the Election of 1800.</h3><p>As expected, your party has defeated John Adams and his Federalists. However, it will soon emerge that you have not won outright but, rather, tied among the Electors with Burr. In the subsequent House contingent, Burr will attempt various schemes to steal the presidency which will only be thwarted by the concerted efforts of you, Adams, and\u2014shockingly\u2014Alexander Hamilton. The bitter feelings from this contest will destroy Burr\u2019s credibility among Republicans and indirectly lead to Hamilton\u2019s death four years later.<br><br>You will move past all of this. Your decisions on the Louisiana Purchase, the judiciary, the national debt, and more will set the model for the later development of the United States and erase Adams\u2019s vision of a centralized, industrial nation. Your successes will be immortalized while most will choose to forget or ignore your failings on slavery, your personal conduct, your aggressive acquisition of Native lands. Though you will both die on the same day, you will be immortalized as one of America\u2019s greatest presidents while Adams is reduced to a mediocrity. You, not he, shall be remembered as the father of all that transpires over the following 226 years.</p>",
+            "electoral_loss_message": "<h3>Sorry, you have lost the Election of 1800!</h3><p>Though weighed down by Federalist intrigues, you have suffered a humiliating failure in a contest that many thought skewed in the favor of you and your party. This development is dire for your party and it is also unexpectedly so for John Adams. Instead of being elevated to a second term, the would-be tyrant finds himself outschemed by Alexander Hamilton, tied in Electoral votes with his running mate, Charles Cotesworth Pinckney.<br><br>You will reject Adams\u2019s entreaties for support in the contingent, embittered by your loss and determined to retire from politics. Your coalition will help elevate Pinckney and demote Adams to the vice presidency. From Virginia, you will hear fearful developments\u2014of Hamilton handpicking Pinckney\u2019s cabinet, of Hamilton being elevated to commander-in-chief, of a military build-up in anticipation of war with Spain and France. Though many will write seeking advice, you will ignore most of these, trying to content yourself with a life of splendid mediocrity.<br><br>At one time, you might have set the mold for this Nation and its development. Instead, you shall be forced to bear witness to the awful fruits of John Adams and his success.</p>",
+            "no_electoral_majority_message": "<h3>No one has won the Election of 1800!</h3><p>You have suffered a humiliating failure in a contest many thought skewed in your favor. Your ineptitude in managing both your party and countering Federalist schemes has resulted in no candidate receiving a majority of Elector votes. As outlined in the Constitution, the Election shall now be decided by Congress deciding among the top-five vote recipients.<br><br>Adams\u2019s maladministration will be viewed as disqualifying by Federalists and your poor party management viewed similarly by Republicans. Unable to push the Congress to elevate Pinckney, Hamilton will begrudgingly support Monroe over the \u201cunprincipled\u201d Burr\u2014resulting in his election. You will leave politics to manage your estate, but not before castigating Monroe for his coup. He shall achieve little in his term and great dissatisfaction with his leadership shall cause an exodus of many members. By 1816, great disappointment with both parties and an inability to navigate amid hostile powers shall lead Winfield Scott to prevail as a nonpartisan leader. He and Washington will be immortalized as the Fathers of the Nation while you, Adams, and the parties you led descend into obscurity.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 201,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Adams",
+            "election": 24,
+            "party": "Federalist",
+            "state": "Massachusetts",
+            "priority": 1,
+            "description": "<p>John Adams is the sitting President of the United States. A distinguished lawyer, a skilled negotiator, the former vice president, and a major revolutionary thinker, John Adams believes himself the only man qualified for the Executive Mansion.<br><br>This inflated sense of self-importance has earned him many enemies. The French Revolution and his fear for what it may represent also has led him to pursue unpopular policies\u2014creating a new \u201cAdditional Army\u201d, imposing harsh taxes, and pursuing prosecutions of immigrants and political opponents. These actions have outraged Jeffersonians while doing little to satisfy the allies of Alexander Hamilton, many of whom seek a more malleable vessel for their will.</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/1800/QjqpqTx.png",
+            "electoral_victory_message": "<h3>You appear to have won the Election of 1800.</h3><p>Defying every prediction of calamity, you are astonished to find that you have prevailed over popular discontent to win this contest. But the celebrations in Quincy will be fleeting. Soon it will emerge that you have not won outright but instead tied with your running mate, Charles Cotesworth Pinckney. Then the meaning of all of Hamilton\u2019s intrigues will dawn upon you.<br><br>Though you will plead and beg, your Federalist compatriots in the Congress will abandon you. An embittered Jefferson will reject your entreaties. You will watch in horror as the House selects Pinckney and forces you back into the role of Vice President. You shall see Hamilton made commander-in-chief, your compromise with the French shredded, the Republican House ignored, the Sedition Acts employed to extremes never dreamt of.<br><br>You see all this transpire knowing that it was you and your concessions that made this possible. In thwarting the Jacobins, you midwifed a Napoleon. You, not Jefferson, shall be remembered as the man who delivered all the misfortunes that follow.</p>",
+            "electoral_loss_message": "<h3>Sorry, you have lost the Election of 1800!</h3><p>As expected the seeds of discontent and division among the Federalists and various internal turmoils have sunk your prospects for the presidency. You will console yourself in your final months by doing all you can to ensure good government\u2014 indicating your support for the principled Jefferson over the ambitious Burr in the 1801 contingent election, shepherding a convention with the French through Congress, filling as many posts as you can with Federalists to temper Jefferson\u2019s follies.<br><br>You will then return to Quincy for a life of quiet farm work. You will outlive friend and foe alike\u2014Hamilton, Abigail. Your son shall become president and then your name will recede from public memory. At the end of your life, you will come to understand why so many tormented you and accept a world that no longer has need of your ability. On your deathbed, hopeful for this Nation\u2019s future and the democratic spirit which still flows through it, you shall utter one final sentence, \u201cJefferson lives.\u201d</p>",
+            "no_electoral_majority_message": "<h3>No one has won the Election of 1800!</h3><p>While you have denied Jefferson and his Republicans a majority of votes, various schemes and your own ineptitude in managing Hamilton has resulted in no candidate receiving a majority of Elector votes. As outlined in the Constitution, the Election shall now be decided by Congress deciding among the top-five vote recipients.<br><br>You will be cast out as a contender early in this process\u2014too unpopular among all factions. Federalists fearful of an atheistic Jefferson and Republicans fearful of acting president John Marshall shall join together to elevate Aaron Burr as President, believing him to be more easily controlled. Instead, Burr shall reveal himself as an implaccable Republican force, more radical than you believed even Jefferson to be. He shall unwisely expand suffrage, break apart Federalist control of the banks, and undertake a dangerous and costly war with Britain. Sustained by a system of spoils, his popularity among the rabble, and many abuses of the Constitution, he shall serve many ignoble terms. His legacy will outshine both you and Jefferson.<br><br>You both shall die on July 4, 1824. One month later, cajoled by Philip Hamilton, New England will attempt secession. </p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1003,
+        "fields": {
+            "first_name": "Charles Cotesworth",
+            "last_name": "Pinckney",
+            "election": 24,
+            "party": "Federalist",
+            "state": "South Carolina",
+            "priority": 1,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1800/BJdfVSf.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "Majority?",
+            "description_as_running_mate": "<p>Charles Cotesworth Pinckney is best known for helping organize South Carolina\u2019s armed resistance to British rule and for helping secure ratification of the federal constitution in South Carolina. He is a successful lawyer and plantation owner who has refused multiple appointments from Washington and Adams. Most recently, Adams attempted to appoint him as an ambassador to France and his subsequent mistreatment nearly precipitated an open war.<br><br>Pinckney's presence in this race is an irritant for Adams. Though good-natured and well-liked, he is considered by Adams to be a man of marginal political talents who has been put forward by Hamilton's allies as part of a scheme to exploit federal election rules. Adams worries that Hamilton may try to weaponize Pinckney to keep both Adams and Jefferson out of the Executive Mansion.</p>",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1004,
+        "fields": {
+            "first_name": "Aaron",
+            "last_name": "Burr",
+            "election": 24,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 1,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1800/850xMgU.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "Majority?",
+            "description_as_running_mate": "<p>In an age where few men are willing to dirty their hands working the room, Aaron Burr has made a name for himself as a campaigner of his considerable talents. His ability to glad-hand with the common man and New York elites alike is unmatched in the young Republic. He is popular in his home of New York City, a former senator and attorney general, and a successful banker.<br><br>While he shares Jefferson and Adams\u2019s enmity toward Alexander Hamilton, Burr is viewed with suspicion by both men. He has a reputation for craftiness and intrigue. There are questions about the depths of his commitment to the continued leadership of Jefferson atop the Republican party and to the Republic itself.</p>",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1005,
+        "fields": {
+            "first_name": "George",
+            "last_name": "Clinton",
+            "election": 24,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 1,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1800/3t6iB9C.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "Majority?",
+            "description_as_running_mate": "<p>At 61, George Clinton is known as the Father of New York. While he had a distinguished military career in both the French and Indian War and the Revolutionary War, Clinton is now best-known as the longest serving governor in the young Republic\u2014with a tenure stretching from 1777 until his retirement in 1795. <br><br>Clinton is well-respected in Republican circles, not just for his ardent support of the farmer and yeoman class but for his deep skepticism of federal authority. He opposed the US Constitution and has consistently advocated for states\u2019 rights. His commitments here go further than even Jefferson, whom he distrusts. This combined with his age, general disinterest in campaigning, and refusal to engage in any form of intrigue could make him a difficult partner in politics and government.</p>",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1006,
+        "fields": {
+            "first_name": "Samuel",
+            "last_name": "Adams",
+            "election": 24,
+            "color_hex": "#0000FF",
+            "is_active": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1007,
+        "fields": {
+            "first_name": "James",
+            "last_name": "Monroe",
+            "election": 24,
+            "color_hex": "#0000FF",
+            "is_active": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1008,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Langdon",
+            "election": 24,
+            "color_hex": "#0000FF",
+            "is_active": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1009,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Jay",
+            "election": 24,
+            "color_hex": "#FF0000",
+            "is_active": 0
+        }
     }
 ];
 
 campaignTrail_temp.running_mate_json = [
     {
         "model": "campaign_trail.running_mate",
+        "pk": 18001,
+        "fields": {
+            "candidate": 201,
+            "running_mate": 1003
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 18002,
+        "fields": {
+            "candidate": 200,
+            "running_mate": 1004
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 18003,
+        "fields": {
+            "candidate": 200,
+            "running_mate": 1005
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
         "pk": 194001,
         "fields": {
-            "candidate": 1003,
+            "candidate": 11003,
             "running_mate": 1015
         }
     },
@@ -1907,7 +2114,7 @@ campaignTrail_temp.running_mate_json = [
         "model": "campaign_trail.running_mate",
         "pk": 194002,
         "fields": {
-            "candidate": 1002,
+            "candidate": 11002,
             "running_mate": 1014
         }
     },
@@ -1915,23 +2122,23 @@ campaignTrail_temp.running_mate_json = [
         "model": "campaign_trail.running_mate",
         "pk": 194003,
         "fields": {
-            "candidate": 1001,
-            "running_mate": 1009
+            "candidate": 11001,
+            "running_mate": 11009
         }
     },
     {
         "model": "campaign_trail.running_mate",
         "pk": 194004,
         "fields": {
-            "candidate": 1000,
-            "running_mate": 1005
+            "candidate": 11000,
+            "running_mate": 11005
         }
     },
     {
         "model": "campaign_trail.running_mate",
         "pk": 194005,
         "fields": {
-            "candidate": 1001,
+            "candidate": 11001,
             "running_mate": 1011
         }
     },
@@ -1939,23 +2146,23 @@ campaignTrail_temp.running_mate_json = [
         "model": "campaign_trail.running_mate",
         "pk": 194006,
         "fields": {
-            "candidate": 1000,
-            "running_mate": 1006
+            "candidate": 11000,
+            "running_mate": 11006
         }
     },
     {
         "model": "campaign_trail.running_mate",
         "pk": 194007,
         "fields": {
-            "candidate": 1000,
-            "running_mate": 1008
+            "candidate": 11000,
+            "running_mate": 11008
         }
     },
     {
         "model": "campaign_trail.running_mate",
         "pk": 194008,
         "fields": {
-            "candidate": 1001,
+            "candidate": 11001,
             "running_mate": 1010
         }
     },
@@ -1963,7 +2170,7 @@ campaignTrail_temp.running_mate_json = [
         "model": "campaign_trail.running_mate",
         "pk": 194009,
         "fields": {
-            "candidate": 1001,
+            "candidate": 11001,
             "running_mate": 1012
         }
     },
@@ -1971,8 +2178,8 @@ campaignTrail_temp.running_mate_json = [
         "model": "campaign_trail.running_mate",
         "pk": 1940010,
         "fields": {
-            "candidate": 1000,
-            "running_mate": 1004
+            "candidate": 11000,
+            "running_mate": 11004
         }
     },
     {
@@ -2328,10 +2535,10 @@ campaignTrail_temp.opponents_default_json = [
     {
         "election": 23,
         "candidates": [
-            1000,
-            1001,
-            1002,
-            1003
+            11000,
+            11001,
+            11002,
+            11003
         ]
     },
     {
@@ -2349,6 +2556,13 @@ campaignTrail_temp.opponents_default_json = [
             1,
             2,
             3
+        ]
+    },
+    {
+        "election": 24,
+        "candidates": [
+            200,
+            201
         ]
     }
 ];
@@ -2402,5 +2616,12 @@ campaignTrail_temp.temp_election_list = [
         "is_premium": 0,
         "is_historical": true,
         "display_year": "1876"
+    },
+    {
+        "id": 24,
+        "year": 1800,
+        "is_premium": 0,
+        "is_historical": true,
+        "display_year": "1800"
     }
 ];

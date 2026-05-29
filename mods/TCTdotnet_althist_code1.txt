@@ -1,0 +1,883 @@
+e = campaignTrail_temp;
+RecReading = true;
+
+// this is so we can use the mod historical data
+histFunction = function() {
+    switch (campaignTrail_temp.election_id) {
+        case 1968: // 1968a
+            HistHexcolour = ["#FF0000","#0000FF","#800080"];
+            HistName=[" Richard M. Nixon"," Robert F. Kennedy"," George C. Wallace"];
+            HistEV = [236, 211, 91];
+            HistPV = ["43,382,206", "40,820,080", "21,800,844"];
+            HistPVP = ["40.9%", "38.5%", "20.6%"];
+            break;
+        case 25: // 1920a
+            HistHexcolour = ["#FF0000", "#0000FF", "#00C100", "#FFFF00"];
+            HistName = ["Theodore Roosevelt","Woodrow Wilson","Eugene V. Debs","Aaron S. Watkins"];
+            HistEV = [275, 186, 70, 0];
+            HistPV = ["7,579,018", "7,573,525", "3,015,180", "188,709"];
+            HistPVP = ["42.2%", "41.1%", "16.4%", "0.7%"];
+            break;
+    }
+}
+
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 1968,
+        "fields": {
+            "year": 1968,
+            "summary": "<p>The 1968 election reaches its climax with more chaos than ever. Former Vice President Richard Nixon must rebuild the Republican brand four years after Goldwater's disaster. Senator Bobby Kennedy must live up to the lofty rhetoric of his slain brother with more action than words if he is to win back Democratic regulars. George Wallace is an Independent candidate.</p><p>Candidates will debate the best course of action on Vietnam, an overheated economy, and the War on Poverty.</p>",
+            "image_url": "https://thecampaigntrail.net/static/images/1968aIntro.jpeg",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1968aAdvisors.jpeg",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Robert Kennedy and the 1968 Election</h4><a href=\"https://www.amazon.com/Last-Campaign-Kennedy-Inspired-America/dp/0805077928\" target=\u201d_blank\u201d>Thurston Clarke - The Last Campaign: Robert F. Kennedy and 82 Days That Inspired America</a></br><a href=\"https://www.amazon.com/Robert-Kennedy-Life-Evan-Thomas/dp/0743203291\" target=\u201d_blank\u201d>Evan Thomas - Robert Kennedy: His Life</a></br><a href=\"https://www.amazon.com/Bobby-Kennedy-Making-Liberal-Icon/dp/08129835050\" target=\u201d_blank\u201d>Larry Tye - Bobby Kennedy: The Making of a Liberal Icon</a></br><a href=\"https://www.amazon.com/Robert-Kennedy-His-Own-Words/dp/055334661X\" target=\u201d_blank\u201d>Robert F. Kennedy - Robert Kennedy: In His Own Words</a></br><a href=\"https://www.amazon.com/Love-Night-American-Romance-Kennedy/dp/0684808293\" target=\u201d_blank\u201d>Ronald Steel - In Love With Night: The American Romance With Robert Kennedy</a></br><a href=\"https://www.amazon.com/All-This-Marvelous-Potential-Appalachia/dp/1641600594\" target=\u201d_blank\u201d>Matthew Algeo - All This Marvelous Potential: Robert Kennedy's 1968 Tour of Appalachia</a><h4>Links</h4><a href=\"https://www.politico.com/magazine/story/2018/06/05/rfk-bobby-kennedy-myth-legend-history-218593/\" target=\u201d_blank\u201d>The Bobby Kennedy Myth</a></br><a href=\"https://news.gallup.com/vault/235283/gallup-vault-look-back-robert-kennedy.aspx\" target=\u201d_blank\u201d><em>Gallup Vault: A Look Back at Robert Kennedy</em></a></br><a href=\"https://www.pewresearch.org/short-reads/2013/06/05/polling-flashback-remembering-rfk/\" target=\u201d_blank\u201d>Polling flashback: Remembering RFK</a></br><a href=\"https://www.pbs.org/wgbh/americanexperience/features/rfk-what-if/\" target=\u201d_blank\u201d>What if?</a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1968aDeadlock.jpeg",
+            "creator": "CTA",
+            "display_year": "1968a",
+            "is_historical": false
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 25,
+        "fields": {
+            "year": 1920,
+            "summary": "<p>The Great War grinds on in Europe as America heads to the polls in 1920. President Wilson, diminished by a devastating stroke, seeks vindication for his war policy and his vision of a League of Nations. Theodore Roosevelt has remade himself as the apostle of nationalism, preparedness, and 100% Americanism. Eugene Debs, imprisoned under the Espionage Act for his opposition to the war, runs his campaign from a federal penitentiary in Atlanta.</p><p>In the real world, German forces launched the 1918 Spring offensive as their last attempt to rout the Allies before the arrival of American forces. In this world, Germany settled in for a war of attrition, leading President Wilson to seek a third term as a wartime President.</p>",
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/bb3rnGI.png",
+            "winning_electoral_vote_number": 266,
+            "advisor_url": "https://thecampaigntrail.net/static/images/1920a/9JBbvPo.png",
+            "recommended_reading": "<ul>\n<li><a href=https://www.goodreads.com/book/show/328063.The_Perils_of_Prosperity_1914_1932_2nd_Edition?from_search=true&from_srp=true&qid=LlirpM0aIk&rank=1>The Perils of Prosperity, 1914-1932 - William E. Leuchtenburg</a></li>\n<li><a href=https://www.goodreads.com/book/show/215862.Over_Here?from_search=true&from_srp=true&qid=EPg76ksbvx&rank=2>Over Here: The First World War and American Society  - David M. Kennedy</a></li>\n<li><a href=https://www.goodreads.com/book/show/302729.Theodore_Roosevelt>Theodore Roosevelt: A Strenuous Life  - Kathleen Dalton</a></li>\n</ul>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1920a/x1BttKI.png",
+            "creator": "RouteVenus",
+            "display_year": "1920a",
+            "is_historical": false
+        }
+    }
+];
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 680,
+        "fields": {
+            "first_name": "Richard M.",
+            "last_name": "Nixon",
+            "election": 1968,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 1,
+            "description": "<p>Richard Nixon enters the 1968 election with the Republican Party largely united behind him, but struggling with disaffected Independents. With his reputation as a political loser and the stench of Goldwater and Reagan's radicalism, he will have to press the law and order message to win over weary moderates.</p><p>Nixon's strong foreign policy experience will likely give him an upper hand on the Vietnam issue, but there are fears that his \"secret plan\" for an end to the war could create problems down the line. Can Nixon make the case that he's the one who can bring us together again and finally defeat Kennedy?</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/MbGDpLX.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1968 election.</h3><p>The liberals will claim they always anticipated this after the chaos in Chicago, but just six years ago they were too busy writing your political obituary to notice the beginning of the greatest comeback since Lazarus. So take some pride in your triumph for now, you've earned it.</p><p>On the political front, however, the future is not as rosy. Congress is still in Democratic control, so you'll have a difficult time reining in spending and handling the war. There's also the issue of Bobby Kennedy. There will no doubt be calls for him to run again in 1972 or 1976. So keep an eye out for him. You don't want to be caught sleeping.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1968 election.</h3><p>There will be plenty of gloating from the liberals about how this was always expected, given your reputation as a political loser, but for a minute there, it really looked like you were on the verge of becoming President of the United States.</p><p>This loss is even more painful than it was in 1960, and the added humiliation of losing to a Kennedy brother is lost on no one. Maybe Bobby can secure an honorable exit from Vietnam and reform the current welfare system? In any event, you'll be back in the arena somehow. Whether it's by writing your memoirs, playing the role of elder statesman, or who knows, maybe making one last attempt at reaching the nation's highest office...</p>",
+            "no_electoral_majority_message": "<h3>Oh no! We all lost the 1968 election.</h3><p>This was the outcome everyone had been dreading. After the most divisive year in American history since the Civil War, the country could not agree on who to elect as their next President, effectively ceding all leverage to George Wallace for the next two months, or more.</p><p>Riots are already breaking out in the major cities, and the country is battening down the hatches for four more years of unrest and chaos, no matter who comes out of this alive. Who knows, maybe you can put some of those dirty tricks the liberals whine about so much to good use? In any event, it's going to be a bumpy ride.</p>",
+            "description_as_running_mate": "''",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 681,
+        "fields": {
+            "first_name": "Robert F.",
+            "last_name": "Kennedy",
+            "election": 1968,
+            "party": "Democrat",
+            "state": "New York",
+            "priority": 2,
+            "description": "<p>Robert F. Kennedy faces the difficult task of uniting the Democratic Party at a time when it seems to be tearing at the seams. His shocking challenge to President Johnson and even more unprecedented victory in Chicago may have electrified the nation's youth and minorities, but there are questions about whether his liberal politics can win over the hardhat vote.</p><p>Can Kennedy's brand of \"New Politics\" craft a new political coalition from the ashes of the tried and true Democratic one his brother held together eight years ago?</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/b0c2JRv.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1968 election.</h3></p><p>After the Chicago riots, you looked like a goner, but it seems the American people had other thoughts. Your supporters are ecstatic and the Kennedy family begins preparing to move back into the White House like nothing ever happened.</p><p>But you've got much bigger problems to deal with. Vietnam is the most obvious, but the deteriorating conditions of the cities, the moral crisis of rural poverty, and still-widespread inequality will make things all the more difficult. That's not even to mention the economic warnings signs blinking red. But who knows, maybe you can weather the storm and make it through to a second term?</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1968 election.</h3><p>Perhaps your campaign was always doomed after the chaos of Chicago, but you really thought you had a chance there. Your supporters are despondent at the prospect of a Nixon administration, and the party is more divided than ever over what direction to go in next. McCarthy and Johnson are no doubt crowing about your defeat right now.</p><p>You still maintain a strong base of support among liberals and minorities however, and who knows what state the country will be in after four years of Nixon. Hopefully he'll find a way to pull out of Vietnam and rein in government spending, but if not, maybe you could give it another shot? You are only 42 after all.</p>",
+            "no_electoral_majority_message": "<h3>Oh no! We all lost the 1968 election.</h3><p>This was the national nightmare everyone had been dreading. Now that it has come to pass, Wallace is already riling up his supporters by promising them nothing less than the abolition of every civil rights law on the books. Riots are breaking out in major cities and there are whispers that Johnson's going to send in the Army within the next 24 hours to quell the uprisings.</p><p>Meanwhile there's still the drama to play out in the House, where Democrats currently hold a majority. But don't get too comfortable, many within your party still haven't warmed up to your unabashed liberal idealism, to say nothing of whatever offers Wallace is throwing their way, or Nixon's pleas for unity. So fasten your seatbelts, it's going to be a bumpy ride.</p>",
+            "description_as_running_mate": "''",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 682,
+        "fields": {
+            "first_name": "George C.",
+            "last_name": "Wallace",
+            "election": 1968,
+            "party": "American Independent",
+            "state": "Alabama",
+            "priority": 3,
+            "description": "<p>George Wallace is the segregationist Governor of Alabama and the face of the anti-integration movement in the United States. The recent death of his wife, Lurleen, and widespread allegations of corruption in office may make his hopeless run even more complicated.</p><p>A hero in the South, Wallace is running an openly racist third party campaign competing in all 50 states. With no chances of winning outright, Wallace hopes to deadlock the electoral college and strong-arm the ultimate winner into repealing civil rights legislation.</p>",
+            "color_hex": "#800080",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/5HkLPni.jpeg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 2000 election.</h3><p>This was definitely not supposed to happen. Good luck!</p>",
+            "electoral_loss_message": "<h3>As expected, you have lost the 2000 election.</h3><p>The legacy of this campaign depends on a couple of factors. First of all, did you receive 5% of the popular vote? If so, congratulations! You will enable the Green Party to run a vigorous campaign in 2004 and present a true choice to the American people. Also, the Democrats were a little peeved that you \"stole\" votes from them in this election. Hopefully that doesn't lead to a backlash.</p>",
+            "no_electoral_majority_message": "<h3>Wow! No candidate received 270 electoral votes, but the House will elect George W. Bush as President.</h3><p>Did you receive 5% of the popular vote? If so, congratulations! You will enable the Green Party to run a vigorous campaign in 2004 and present a true choice to the American people. Also, the Democrats were a little peeved that you \"stole\" votes from them in this election. Hopefully that doesn't lead to a backlash, especially since they will lose the vote in the House.</p>",
+            "description_as_running_mate": "''",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 683,
+        "fields": {
+            "first_name": "Howard",
+            "last_name": "Baker",
+            "election": 1968,
+            "party": "Republican",
+            "state": "Tennessee",
+            "priority": 5,
+            "description": "''",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/WQ1Bunk.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>Howard Baker is the son-in-law of Everett Dirksen. He is also the newly elected Senator from Tennessee. Part of the Republican wave of 1966, Baker's moderation would placate northerners and liberals while probably keeping southern Republicans in line. Strom Thurmond has stated he would not oppose Baker's selection.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 684,
+        "fields": {
+            "first_name": "Charles",
+            "last_name": "Percy",
+            "election": 1968,
+            "party": "Republican",
+            "state": "Illinois",
+            "priority": 6,
+            "description": "''",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/ISgdKZu.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>Chuck Percy is a popular and recently elected Republican from Illinois. A rising star since the Eisenhower administration, Percy is well-respected within the party establishment. His endorsement of Nelson Rockefeller angered the Nixon camp however. Percy's selection would also surely upset the Southern wing, likely increasing Wallace's support, but he could potentially offset it in northern cities with his focus on urban affairs.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 685,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Lindsay",
+            "election": 1968,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 7,
+            "description": "''",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/kwxFTEg.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>John Lindsay is the Mayor of New York City. As a staunchly liberal Republican, Lindsay would appeal to minorities and potentially win over some of Kennedy's base. His stances on civil rights and other key social issues will likely turn off Southern conservatives however. Lindsay's height and good looks might gain the Nixon campaign some critical youth support though, and he will certainly garner favorable media coverage.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 686,
+        "fields": {
+            "first_name": "Spiro",
+            "last_name": "Agnew",
+            "election": 1968,
+            "party": "Republican",
+            "state": "Maryland",
+            "priority": 8,
+            "description": "''",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/BI2u62T.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>Spiro Agnew is the second-year Governor of Maryland. A supporter of Rockefeller, Agnew had a strong civil rights record until changing his tune in the wake of an increasingly militant movement and riots in 1967. His appeal to white backlash could make Nixon's attempts to win favor among black Republicans difficult. There are also corruption concerns.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 687,
+        "fields": {
+            "first_name": "Harold",
+            "last_name": "Hughes",
+            "election": 1968,
+            "party": "Democrat",
+            "state": "Iowa",
+            "priority": 9,
+            "description": "''",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/tV90YM6.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>Harold Hughes is the third term Governor of Iowa. Wildly popular in his home state, Hughes has little name recognition to most voters. Hughes could go a long way toward winning back Kennedy some of the farm vote from the Nebraska primary, but there are concerns about his readiness for the job. Hughes is beloved by his liberal colleagues despite his penchant for making strange statements to the press.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 688,
+        "fields": {
+            "first_name": "Warren",
+            "last_name": "Hearnes",
+            "election": 1968,
+            "party": "Democrat",
+            "state": "Missouri",
+            "priority": 10,
+            "description": "''",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/K8NSd7u.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>Warren Hearnes is the first term Governor of Missouri. His challenge to the remnants of the Pendergast machine endeared him to anti-machine New Politics liberals. His selection would go over well in the border states and Midwest. But his self-promotion and support for the Johnson line on Vietnam could pose a problem.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 689,
+        "fields": {
+            "first_name": "John",
+            "last_name": "McKeithen",
+            "election": 1968,
+            "party": "Democrat",
+            "state": "Louisiana",
+            "priority": 11,
+            "description": "''",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/g7mkODG.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>John McKeithen is the segregationist Governor of Louisiana. McKeithen's close relationship with the Ku Klux Klan and other white supremacist groups in his state would undoubtedly complicate his selection. There are also still unverified charges of his ties to New Orleans racketeers. McKeithen would immediately strengthen Kennedy's support in the South, but weaken him everywhere else.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 690,
+        "fields": {
+            "first_name": "Hubert",
+            "last_name": "Humphrey",
+            "election": 1968,
+            "party": "Democrat",
+            "state": "Minnesota",
+            "priority": 12,
+            "description": "''",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/IQZD72m.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>Hubert Humphrey has served as Vice President of the United States under Lyndon Johnson following their landslide election in 1964. His tenure has been tumultuous, with civil rights initiatives and the war in Vietnam roiling the party. Humphrey's selection would be seen as a sop to the very establishment Kennedy launched his campaign against and would likely turn away much of his core base. But Humphrey's strength with the badly-needed labor vote is undeniable. </p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 691,
+        "fields": {
+            "first_name": "Ezra",
+            "last_name": "Taft Benson",
+            "election": 1968,
+            "party": "Independent",
+            "state": "Utah",
+            "priority": 13,
+            "description": "''",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/SClMpWf.jpeg",
+            "electoral_victory_message": "''",
+            "electoral_loss_message": "''",
+            "no_electoral_majority_message": "''",
+            "description_as_running_mate": "<p>Ezra Taft Benson was President Eisenhower's Secretary of Agriculture. As a devout Mormon Benson could strengthen Wallace's odds out West while keeping the South in check due to his racist beliefs. Benson's anticommunist image has gained him support from the John Birch Society and other right-wing groups, but his isolationist leanings could complicate that.</p>\n\n<p>But Wallace is running out of time and money. At this rate, it'll be a miracle if he has a running mate by November at all, and he'll certainly miss the filing deadlines in a number of states. That is, if anyone will say yes to him.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 692,
+        "fields": {
+            "first_name": "Curtis",
+            "last_name": "LeMay",
+            "election": 1968,
+            "party": "Republican",
+            "state": "Ohio",
+            "priority": 1,
+            "description": "",
+            "color_hex": "#CCCCCC",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/nn74u0J.jpeg",
+            "electoral_victory_message": "Winner!",
+            "electoral_loss_message": "Loser!",
+            "no_electoral_majority_message": "Majority?",
+            "description_as_running_mate": "<p>Curtis LeMay is a General and the former Air Force Chief of Staff who served during the Second World War and is considered a hero of the Berlin Airlift. A known critic of the Kennedy and Johnson policy on Vietnam, he will certainly add a hawkish undertone to the campaign, though some fear that may be a negative, even for Wallace.</p>\n\n<p>But Wallace is running out of time and money. At this rate, it'll be a miracle if he has a running mate by November at all, and he'll certainly miss the filing deadlines in a number of states. That is, if anyone will say yes to him.</p>",
+            "candidate_score": 0,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 693,
+        "fields": {
+            "first_name": "Happy",
+            "last_name": "Chandler",
+            "election": 1968,
+            "party": "Democrat",
+            "state": "Kentucky",
+            "priority": 1,
+            "description": "Candidate description here.",
+            "color_hex": "#CCCCCC",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1968a/2wI0gVC.jpeg",
+            "electoral_victory_message": "Winner!",
+            "electoral_loss_message": "Loser!",
+            "no_electoral_majority_message": "Majority?",
+            "description_as_running_mate": null,
+            "candidate_score": 0,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 921,
+        "fields": {
+            "first_name": "Theodore",
+            "last_name": "Roosevelt",
+            "election": 25,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 1,
+            "description": "<p>Theodore Roosevelt runs as the Republican nominee after years of agitating for war and attacking Wilson's leadership. Once the champion of progressive reform, he has abandoned that cause almost entirely in favor of nationalism, the protective tariff, and hostility to <q>hyphenated Americans.</q></p><p>Roosevelt is the favorite, but the war is unpopular and his attacks on hyphenated Americans have alienated large immigrant communities. His own health has also declined since his last run. He must make the case that only he can bring the war to a victorious conclusion.</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/BemMO3H.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1920 election.</h3><p>After years of agitating for war and attacking Wilson's leadership, you have won the Presidency for a second time. The crowds that throng the streets of New York are enormous, and you can barely contain yourself as you address your loyal supporters.</p><p>On the political front, the war will now be prosecuted to its fullest extent. The League of Nations is dead, the protective tariff is secure, and the era of <i>100% Americanism</i> has begun. Whether the country can survive another year of war, and whether your health can survive the Presidency, remain open questions.</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1920 election.</h3><p>Despite your best efforts, the American people have rejected your candidacy. The war weariness that you dismissed as cowardice proved to be something deeper, and your attacks on hyphenated Americans alienated more voters than they inspired.</p><p>You return to Sagamore Hill in declining health, with the knowledge that the great cause of your life has been repudiated at the ballot box. The Republican Party will need to find a new standard-bearer. With the progressive wing you once led now scattered to the winds, word is that Philander Knox is the favorite for 1924.</p>",
+            "no_electoral_majority_message": "<h3>No candidate has captured an Electoral College majority.</h3><p>For the first time since 1824, no candidate has won a majority of the electoral votes. The election will be decided by the House of Representatives, where each state delegation casts a single vote.</p><p>The Republicans control a majority of state delegations, and after frantic negotiations, they deliver the Presidency to Theodore Roosevelt. It is not the mandate you wanted, but you have the office, and you intend to use it. Debs's handful of electoral votes are irrelevant in the House, where Socialist representation is negligible, but his supporters are staging mass demonstrations outside the Capitol demanding that the will of the people be respected. The country enters 1921 more divided than at any point since the Civil War. Good luck!</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 920,
+        "fields": {
+            "first_name": "Woodrow",
+            "last_name": "Wilson",
+            "election": 25,
+            "party": "Democratic",
+            "state": "New Jersey",
+            "priority": 2,
+            "description": "<p>Woodrow Wilson seeks an unprecedented third term after a severe stroke has left him partially incapacitated. The true extent of his condition is a closely guarded secret. The war he promised to end drags on, and the crackdowns under the Espionage Act have outraged progressives and immigrants alike.</p><p>Roosevelt's nativist campaign has made Wilson, almost by accident, the champion of immigrant voters, for better or worse. He must defend the war, promote his League of Nations, and convince the public he is fit to serve.</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/dOrxL1y.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1920 election.</h3><p>Against all expectations, you have won an unprecedented third term. Your progressive legacy is secure, and the League of Nations has been given a second life.</p><p>On the political front, the true extent of your illness remains a secret. The war drags on, the economy is strained, and the Senate remains hostile to your League. You have four more years, but the question of whether you are truly fit to serve them will not go away. Your legacy now depends on ending this war and securing the peace you have promised the world.</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1920 election.</h3><p>The American people have spoken, and they have had enough. The war you promised to end drags on, the crackdowns under the Espionage Act have outraged the very progressives you needed, and the rumors about your health have taken their toll.</p><p>You leave the White House diminished in body and reputation. The League of Nations, your life's work, will almost certainly die in the Senate without a sympathetic President to champion it. Prepare to join Grant, and ironically, Roosevelt as Presidents denied their third term.</p>",
+            "no_electoral_majority_message": "<h3>No candidate has captured an Electoral College majority.</h3><p>For the first time since 1824, no candidate has won a majority of the electoral votes. The election will be decided by the House of Representatives, where each state delegation casts a single vote.</p><p>The Republicans control a majority of state delegations, and despite your showing, they will deliver the Presidency to Theodore Roosevelt. Your supporters are outraged, and the Socialists are using this opportunity to stage mass demonstrations in favor of a general strike to end the war. You return to private life a broken man, and the League of Nations dies with your Presidency.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 922,
+        "fields": {
+            "first_name": "Eugene V.",
+            "last_name": "Debs",
+            "election": 25,
+            "party": "Socialist",
+            "state": "Georgia",
+            "priority": 3,
+            "description": "<p>Eugene Debs is running for President from Cell 2253 of a federal penitentiary in Atlanta, where he is serving a ten-year sentence for opposing the draft. He is the most famous political prisoner in the country, and his candidacy is as much a protest against wartime repression as it is a bid for office. The Socialist Party has nominated him unanimously.</p><p>Debs has no realistic path to the Presidency, but a strong showing could establish the Socialists as a permanent force in American politics. Every speech must be delivered by surrogates or by written statement from his cell.</p>",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 1,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/2jvmcDQ.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1920 election.</h3><p>From Cell 2253 of a federal penitentiary in Atlanta, Eugene V. Debs has been elected President of the United States. Nothing like this has ever happened in the history of the republic, and nothing like it is likely to happen again.</p><p>The political establishment is in a state of complete panic. Wall Street is in freefall, the major parties are in disarray, and the question of whether a prisoner can legally assume the Presidency is being debated in every courtroom and newspaper editorial page in the country. One thing is certain--the working people of America have sent a message that can never be taken back.</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 1920 election.</h3><p>You were never expected to win, and you did not. But the campaign was never really about winning. It was about proving that the Socialist movement could survive the Espionage Act, the Palmer raids, and the imprisonment of its leader.</p><p>You remain in your cell in Atlanta, but your vote total will be studied carefully by both major parties and historians to come. If the Socialists can hold this coalition together, they may yet become a permanent force in American politics. For now, you write letters, receive visitors, and wait for the pardon that may or may not come.</p>",
+            "no_electoral_majority_message": "<h3>No candidate has captured an Electoral College majority.</h3><p>For the first time since 1824, no candidate has won a majority of the electoral votes. The election will be decided by the House of Representatives, where each state delegation casts a single vote.</p><p>There is no scenario in which the House selects a Socialist prisoner as President. The delegations will choose between Roosevelt and Wilson, and you will remain in your cell regardless of the outcome. But the fact that Eugene Debs threw the election into the House from a federal penitentiary is a story that will be told for generations. A new era has arrived, and everyone knows it.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 923,
+        "fields": {
+            "first_name": "Aaron S.",
+            "last_name": "Watkins/Others",
+            "election": 25,
+            "party": "Prohibition",
+            "state": "Ohio",
+            "priority": 4,
+            "description": "'",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 924,
+        "fields": {
+            "first_name": "Thomas",
+            "last_name": "Marshall",
+            "election": 25,
+            "party": "Democratic",
+            "state": "Indiana",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/U06VqPP.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Thomas Marshall has served as Wilson's Vice President since 1913. The two have never been close, but Marshall is popular in Indiana and inoffensive everywhere else. Keeping him on the ticket avoids a distracting storyline and preserves party unity. He adds nothing in the way of excitement or energy to a campaign that could badly use both.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 925,
+        "fields": {
+            "first_name": "A. Mitchell",
+            "last_name": "Palmer",
+            "election": 25,
+            "party": "Democratic",
+            "state": "Pennsylvania",
+            "priority": 6,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/fe7STTt.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>A. Mitchell Palmer is the Attorney General and the architect of the government's crackdown on radicals, anarchists, and suspected Communists. He is from Pennsylvania, a state Wilson badly needs. His selection would shore up the law-and-order vote, but his raids on immigrant communities have made him a villain to exactly the voters that Roosevelt's nativism is driving into Wilson's arms.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 926,
+        "fields": {
+            "first_name": "Al",
+            "last_name": "Smith",
+            "election": 25,
+            "party": "Democratic",
+            "state": "New York",
+            "priority": 7,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/oA0cKyp.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Al Smith is the Governor of New York, a Tammany man, a Catholic, and a wet. In other words, he is everything that appeals to the urban immigrant voter, while driving away rural Protestant America in equal measure. His selection would energize the cities and lock down New York, but it would cause real problems in the South and the dry states. Wilson's personal feelings about Tammany Hall are well known.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 927,
+        "fields": {
+            "first_name": "Albert",
+            "last_name": "Fall",
+            "election": 25,
+            "party": "Republican",
+            "state": "New Mexico",
+            "priority": 8,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/8fX3PQz.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Albert Fall is a Senator from New Mexico and one of Roosevelt's closest allies in Congress. He is a hard-line conservative on every issue\u2014pro-war, pro-business, anti-labor, and anti-immigration. Roosevelt has called him the embodiment of <q>the best American Spirit.</q> His selection would complete the merger of the New Nationalists with the Republican old guard, but would make it very difficult to win back any progressive voters who are drifting toward Wilson or even Debs.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 928,
+        "fields": {
+            "first_name": "Albert",
+            "last_name": "Beveridge",
+            "election": 25,
+            "party": "Republican",
+            "state": "Indiana",
+            "priority": 9,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/O4HRI9u.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Albert Beveridge is the chairman of the Republican National Committee, a former Senator from Indiana and one of Roosevelt's oldest allies. He made his name fighting for the Meat Inspection Act and child labor laws, but his politics were always grounded in a fierce Anglo-Saxon nationalism. Since 1914 the reformism has fallen away entirely. He is now an opponent of the income tax, a critic of organized labor, and a leading voice for immigration restriction. His Indiana roots and role as party chairman could help in the Midwest, but he will do little to win back progressives who have already written Roosevelt off.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 929,
+        "fields": {
+            "first_name": "Hiram",
+            "last_name": "Johnson",
+            "election": 25,
+            "party": "Republican",
+            "state": "California",
+            "priority": 10,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/i2UxNNG.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Hiram Johnson is the Governor of California and Roosevelt's running mate from the 1912 Progressive ticket. He is the last credible link to the old reform movement, and his selection could hold some progressive voters in the West who might otherwise drift to Debs. Johnson had voted to join the Great War in 1917, but has grown skeptical since, and it is not clear that he and Roosevelt still see eye to eye on the biggest issue of the campaign.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 930,
+        "fields": {
+            "first_name": "Seymour",
+            "last_name": "Stedman",
+            "election": 25,
+            "party": "Socialist",
+            "state": "Illinois",
+            "priority": 11,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/n2osay7.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Seymour Stedman is a Chicago lawyer and longtime Socialist Party official. He is the respectable face of the movement\u2014articulate, well-dressed, and capable of making the party's case to middle-class progressives without frightening them. With Debs in prison, the running mate will be doing most of the actual campaigning, and Stedman is the safest pair of hands available.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 931,
+        "fields": {
+            "first_name": "Kate Richards",
+            "last_name": "O'Hare",
+            "election": 25,
+            "party": "Socialist",
+            "state": "Kansas",
+            "priority": 12,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/zU1izXe.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Kate Richards O'Hare was recently released from prison after serving time under the Espionage Act for an anti-war speech in North Dakota. Her selection would put two political prisoners on the same ticket and make government repression the central issue of the campaign. She would also be the first woman on a national ticket.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 932,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Reed",
+            "election": 25,
+            "party": "Communist Labor",
+            "state": "Oregon",
+            "priority": 13,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thecampaigntrail.net/static/images/1920a/Aw3dMEg.png",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>John Reed is a journalist and revolutionary who witnessed the Bolshevik Revolution firsthand and wrote <q>Ten Days That Shook the World.</q> He is young, charismatic, and famous, and his selection would mend fences with the party's schismatic left wing. He is also a Communist sympathizer, which will be used against the Socialist ticket every single day of the campaign by both major parties.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    }
+];
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1921,
+        "fields": {
+            "candidate": 920,
+            "running_mate": 924
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1922,
+        "fields": {
+            "candidate": 920,
+            "running_mate": 925
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1923,
+        "fields": {
+            "candidate": 920,
+            "running_mate": 926
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1924,
+        "fields": {
+            "candidate": 921,
+            "running_mate": 927
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1925,
+        "fields": {
+            "candidate": 921,
+            "running_mate": 928
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1926,
+        "fields": {
+            "candidate": 921,
+            "running_mate": 929
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1927,
+        "fields": {
+            "candidate": 922,
+            "running_mate": 930
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1928,
+        "fields": {
+            "candidate": 922,
+            "running_mate": 931
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1929,
+        "fields": {
+            "candidate": 922,
+            "running_mate": 932
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196801,
+        "fields": {
+            "candidate": 682,
+            "running_mate": 691
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196802,
+        "fields": {
+            "candidate": 680,
+            "running_mate": 683
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196803,
+        "fields": {
+            "candidate": 681,
+            "running_mate": 687
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196803,
+        "fields": {
+            "candidate": 681,
+            "running_mate": 688
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196804,
+        "fields": {
+            "candidate": 680,
+            "running_mate": 684
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196805,
+        "fields": {
+            "candidate": 681,
+            "running_mate": 689
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196806,
+        "fields": {
+            "candidate": 681,
+            "running_mate": 690
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196807,
+        "fields": {
+            "candidate": 680,
+            "running_mate": 685
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196808,
+        "fields": {
+            "candidate": 680,
+            "running_mate": 686
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 196809,
+        "fields": {
+            "candidate": 682,
+            "running_mate": 692
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 1968010,
+        "fields": {
+            "candidate": 682,
+            "running_mate": 693
+        }
+    }
+];
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 1968,
+        "candidates": [
+            680,
+            681,
+            682
+        ]
+    },
+    {
+        "election": 25,
+        "candidates": [
+            920,
+            921,
+            922,
+            923
+        ]
+    }
+];
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 1968,
+        "year": 1968,
+        "is_premium": 0,
+        "is_historical": false,
+        "display_year": "1968a"
+    },
+    {
+        "id": 25,
+        "year": 1920,
+        "is_premium": 0,
+        "is_historical": false,
+        "display_year": "1920a"
+    }
+];

@@ -288,13 +288,15 @@ This is a patched version with some extra fixes for the mod, including some opti
 ![Our Revolution](./images/ourrevolution.png)
 
 ## TCT.net: the very best of
-This is a compilation of the mods seen in [thecampaigntrail.net](https://thecampaigntrail.net), extracted and compressed so that you are able to play several of its scenarios at once! Included here are 1996, 1984, 1972, 1956, 1940, 1908, and 1876. (Note that 1908 is the only scenario without its authors listed.)
+This is a compilation of the mods seen in [thecampaigntrail.net](https://thecampaigntrail.net), extracted and compressed so that you are able to play several of its scenarios at once! Included here are 1996, 1984, 1972, 1956, 1940, 1908, 1876, and 1800.
 
 As of now, the 2008 and 2004 versions are not not included due to their very minimal changes in comparison to their original counterparts. 1964 has not been included because there have been no notable changes, and some of its images are broken (especially on the Goldwater side).
 
 Included as well is a brief patch that should let issue effects for other candidates work on either side,
 
-Code 1 can be found [here](./mods/TCTdotnet_code1.txt), and the Code 2 can be found [here](./mods/TCTdotnet_code2_minified.txt). Note that because of the size of the code 2, the version above is minified to be around ~3mb. If you wish to inspect the code 2 for other mods, or want to try your hand at importing the uncompressed file, it can be found [here](./mods/TCTdotnet_code2.txt).
+Code 1 can be found [here](./mods/TCTdotnet_code1.txt), and the Code 2 can be found [here](./mods/TCTdotnet_code2.min.txt). Note that because of the size of the code 2, the version above is minified to be around ~4mb. If you wish to inspect the code 2 for other mods, or want to try your hand at importing the uncompressed file, it can be found [here](./mods/TCTdotnet_code2.txt).
+
+The alternative history scenarios on that same site (1968a and 1920a) can be found separately, with the Code 1 [here](./mods/TCTdotnet_althist_code1.txt) and the Code 2 [here](./mods/TCTdotnet_althist_code2.txt). (See minified versions [here](./mods/TCTdotnet_althist_code2.min.txt)).
 
 ![TCT.net](./images/tctdotnet.png)
 
