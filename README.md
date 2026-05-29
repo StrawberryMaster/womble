@@ -1,5 +1,7 @@
 # womble
-A series of tools/addons/etc for The Campaign Trail mods
+A series of tools/addons/etc for The Campaign Trail mods.
+
+(Any suggestions or bug reports? Send us a note [here](https://github.com/StrawberryMaster/womble/issues/new/choose)!)
 
 ## Addon notes
 ### Apply effects to all candidates
@@ -210,9 +212,12 @@ The YouTube-powered music player shown in the mod *2016: A Lifetime of This*, bu
 The radio-themed player shown in the mod *1968: All The Way*. Shown here is a modified version of the player with some optimizations/cleanups and a more readable progress bar. See source [here](./players/atw_player.js).
 ![All The Way player](./images/atw_player.png)
 
-### American Carnage player
+### American Carnage/Infinite Carnage player
 The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version of the player initially made for *2028: An Old Cycle*. See source [here](./players/ac_player.js).
 ![American Carnage player](./images/ac_player.png)
+
+The version of the player shown in the mod *Infinite Carnage* can be seen below. See source [here](./players/ic_player.js).
+![Infinite Carnage player](./images/ic_player.png)
 
 ### An Old Cycle player
 Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See source [here](./players/aoc_player.js).
@@ -233,6 +238,9 @@ The tape recorder-like music player shown in *1972: More Than Ever*, and also in
 ### No More Maga player
 This is a modified version of the music player used in the mod *2024: No More Maga*. Shown here is a modified version of the player with a lower initial volume and other minor optimizations. See source [here](./players/nmmaga_player.js).
 ![No More Maga player](./images/nmmaga_player.png)
+
+Alternatively, here is a Spotify-themed version of the player for that same mod. See source [here](./players/nmmaga_alt_player.js).
+![No More Maga alt player](./images/nmmaga_alt_player.png)
 
 ### Project 2024 player
 Not the real player, but a loosely faithful recreation of the music player shown in the first couple of *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
