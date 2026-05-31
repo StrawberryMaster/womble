@@ -231,9 +231,12 @@ A music player with a design inspired by the 1990s-era music players, shown in t
 The YouTube-powered music player shown in the mod *2012: Little Big Man*, which was built on top of the *A Lifetime of This* player code. See source [here](./players/lbm_player.js).
 ![Little Big Man player](./images/lbm_player.png)
 
-### More Than Ever player
+### More Than Ever/Good For Me player
 The tape recorder-like music player shown in *1972: More Than Ever*, and also in *1976: Year Zero*. Shown here is a modified version of the player with some optimizations. See source [here](./players/mte_player.js).
 ![More Than Ever player](./images/mte_player.png)
+
+The *Good For Me* player, a slightly modified version of the More Than Ever player, is also shown here. See source [here](./players/gfm_player.js).
+![Good For Me player](./images/gfm_player.png)
 
 ### No More Maga player
 This is a modified version of the music player used in the mod *2024: No More Maga*. Shown here is a modified version of the player with a lower initial volume and other minor optimizations. See source [here](./players/nmmaga_player.js).
@@ -261,6 +264,10 @@ This is a modified version of the player used in *2000 ROC Redux* and other mods
 ### SoundCloud player
 A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player.See source [here](./players/soundcloud_player.js).
 ![SoundCloud player](./images/soundcloud_player.png)
+
+## Sundance player
+The iPod-inspired music player for the *Sundance 2008* mod. Shown here is a modified version of the player with album art included. See source [here](./players/sundance_player.js).
+![Sundance player](./images/sundance_player.png)
 
 ### TTNW player
 The vinyl-esque music player shown in *Things That Never Were*. Shown here is a modified version of the player with the ability to switch playlists by clicking on the album art, and some optimizations. See source [here](./players/ttnw_player.js).

@@ -1,5 +1,5 @@
-// This is a modified version of the music player
-// used in the mod 1972: More Than Ever and 1976: Year Zero.
+// This is a modified version of the MTE music player
+// used in the mod 1976: Good For Me.
 class Song {
     constructor(title, artist, coverLink, audioLink) {
         this.title = title;
@@ -40,8 +40,8 @@ let currentVolume = 50;
 
 // assets
 const ASSETS = {
-    bgPlaying: "url('https://i.imgur.com/I7jF0Ak.gif')",
-    bgPaused: "url('https://i.imgur.com/Bui2rFO.png')",
+    bgPlaying: "url('https://i.imgur.com/9r84LOy.png')",
+    bgPaused: "url('https://i.imgur.com/9r84LOy.png')",
     coverBg: "https://i.imgur.com/E2mOaNa.png"
 };
 
@@ -124,15 +124,15 @@ function setupMusicPlayer() {
 
     activePlaylist = new Playlist();
     const defaultSongs = [
-        ["April 6, 1971", "Nixon Tapes", "https://i.imgur.com/dkWThDq.png", "https://audio.jukehost.co.uk/tdtb2JXG7urdbrGhJyjjDS0lLMFAPwcQ"],
-        ["You Haven't Done Nothin'", "Stevie Wonder", "https://i.imgur.com/HzyJsHc.png", "https://audio.jukehost.co.uk/KkYkAtKwaEu3faB3UYA5uA3m6JYuej8Z"],
-        ["The Boss", "James Brown, The J.B.'s", "https://i.imgur.com/sHc82J8.png", "https://audio.jukehost.co.uk/wXKdYwHRMCY6mihDx7uCPwFb53XcozO3"],
-        ["Move On Up", "Curtis Mayfield", "https://i.imgur.com/w34qrzb.png", "https://audio.jukehost.co.uk/4Vnq14MvwlkJknbh66Vcn9bKNmQZNlKi"],
-        ["California Soul", "Marlena Shaw", "https://i.imgur.com/lMdeuTk.png", "https://audio.jukehost.co.uk/Kc7Wzzw5njxgX2u7EkPeYf97gqnwe34H"],
-        ["Walk On By", "Isaac Hayes", "https://i.imgur.com/mWQJo9Q.png", "https://audio.jukehost.co.uk/YjgdvXru9UslQahiFR0l7zxs4DHQqa6J"],
-        ["Inner City Blues", "Marvin Gaye", "https://i.imgur.com/U67Q3Sv.png", "https://audio.jukehost.co.uk/bqnaqmk7FPLLoaaOXUXSUF85Ac9D9nhP"],
-        ["Papa Was A Rolling Stone", "Roy Ayers", "https://i.imgur.com/p8HfRPE.png", "https://audio.jukehost.co.uk/uhha3of3vFulQXRvpLuJSXKJj6LNhCLU"],
-        ["I Choose You", "Willie Hutch", "https://i.imgur.com/VfLyJZH.png", "https://audio.jukehost.co.uk/Qhg5pRWDix1LiWXrxq8t9Gva4xXd1EhD"]
+        ["El Presidente", "Herb Alpert", "https://i.imgur.com/DEqMoQp.jpeg", "https://audio.jukehost.co.uk/5frfkXT0F7DzPlklwGG2vUn5wO09CApU"],
+        ["Fly Robin Fly", "Silver Convention", "https://i.imgur.com/ZnHE1cF.jpeg", "https://audio.jukehost.co.uk/E9nUqCTK8nJ8xHTUt5ISVEHnfwFWkhVm"],
+        ["A Horse With No Name", "America", "https://i.imgur.com/kkQ3Mcz.jpeg", "https://audio.jukehost.co.uk/dpui8W61ppJOf3QvgS7QDW5IfVLIDqTo"],
+        ["Political Science", "Randy Newman", "https://i.imgur.com/cuhyzpZ.jpeg", "https://audio.jukehost.co.uk/uUZ0kCigCGapRIlxmivqcqVHw3owxEtq"],
+        ["The Sun Ain't Gonna Shine Anymore", "The Walker Brothers", "https://i.imgur.com/FgyWhvT.jpeg", "https://audio.jukehost.co.uk/K0mx8h37C0f1NgcgPRCJeMcrP4B21NGy"],
+        ["Let Me Try Again (Live)", "Frank Sinatra", "https://i.imgur.com/hZRCxHy.jpeg", "https://audio.jukehost.co.uk/ZattLf5zQIWVEzIrRL73RubGoryAsBa4"],
+        ["Rhiannon", "Fleetwood Mac", "https://i.imgur.com/Rlb8eBA.jpeg", "https://audio.jukehost.co.uk/SdJcMxwTT4fGOh2qkMQ5xMhYGccIfCq1"],
+        ["Dream On", "Aerosmith", "https://i.imgur.com/HJ8siaw.jpeg", "https://audio.jukehost.co.uk/wHw2qAH38yAKyEW82tiFMe3CTFNembxL"],
+        ["50 Ways to Leave Your Lover", "Paul Simon", "https://i.imgur.com/YAF1tKV.jpeg", "https://audio.jukehost.co.uk/ahsQrPKn5saKraiJ0XDcS4Lnbc7N2a2b"]
     ];
 
     defaultSongs.forEach(data => {

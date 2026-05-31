@@ -1,6 +1,5 @@
 // This is a modified version of the music player
 // used in Things That Never Were.
-// standardized classes
 class Song {
     constructor(title, artist, coverLink, audioLink) {
         this.title = title;
@@ -136,25 +135,25 @@ function setupMusicPlayer() {
     playerContainer.id = "player";
     playerContainer.innerHTML = `
     <img id="cover" title="Click to switch playlist">
-    
+
     <div id="center-column">
       <div id="song-info">
         <p id="artist"></p>
         <h3 id="title"></h3>
       </div>
-      
+
       <div id="progress-bar-container">
         <!-- quirk: using progress element instead of input range -->
         <progress id="progress-bar" value="0" max="100"></progress>
       </div>
-      
+
       <div id="controls">
         <img id="prevButton" alt="Previous">
         <img id="playPauseButton" alt="Play/Pause">
         <img id="nextButton" alt="Next">
       </div>
     </div>
-	
+
 	<div id="volume-container">
       <div class="is-vertical">
         <input type="range" id="volumeSlider" min="0" max="9" step="1" value="${currentVolume}">
@@ -238,7 +237,7 @@ function setupMusicPlayer() {
       background-position: center;
       font-family: Arial, sans-serif;
     }
-    
+
     #cover {
       width: 176px;
       height: 176px;
@@ -246,7 +245,7 @@ function setupMusicPlayer() {
       cursor: pointer;
       z-index: 2;
     }
-    
+
     #center-column {
       display: flex;
       flex-direction: column;
@@ -256,7 +255,7 @@ function setupMusicPlayer() {
       padding-left: 20px;
       padding-right: 40px;
     }
-    
+
     #song-info {
       display: flex;
       flex-direction: column;
@@ -265,21 +264,21 @@ function setupMusicPlayer() {
 	  margin-left: 100px;
       margin-top: 5px;
     }
-    
+
     #artist {
       font-size: 18px;
       font-weight: bold;
       margin: 0 0 2px 0;
       white-space: nowrap;
     }
-    
+
     #title {
       font-size: 28px;
       font-weight: bold;
       margin: 0;
       white-space: nowrap;
     }
-    
+
     #progress-bar-container {
       width: 560px;
       height: 18px;
@@ -287,7 +286,7 @@ function setupMusicPlayer() {
 	  margin-left: 100px;
       border-radius: 5px;
     }
-    
+
     #progress-bar {
       width: 100%;
       height: 100%;
@@ -298,12 +297,12 @@ function setupMusicPlayer() {
       background-color: transparent;
       background-size: 100% 100%;
     }
-    
+
     #progress-bar::-webkit-progress-bar { background-color: transparent; }
     #progress-bar::-webkit-progress-value { background-color: var(--theme-color); }
     #progress-bar::-moz-progress-bar { background-color: var(--theme-color); }
     #progress-bar::-ms-fill { background-color: var(--theme-color); }
-    
+
     #controls {
       display: flex;
       flex-direction: row;
@@ -311,15 +310,15 @@ function setupMusicPlayer() {
       justify-content: center;
       gap: 18px;
     }
-    
+
     #controls img {
       cursor: pointer;
       height: 35px;
     }
-    
+
     #prevButton, #nextButton { width: 38px; }
     #playPauseButton { width: 57px; }
-    
+
     #volume-container {
       position: absolute;
       right: 5px;
@@ -330,7 +329,7 @@ function setupMusicPlayer() {
       justify-content: center;
       align-items: center;
     }
-    
+
     .is-vertical {
       height: 173px;
       width: 30px;
@@ -340,7 +339,7 @@ function setupMusicPlayer() {
       transform: rotate(-90deg);
       transform-origin: center;
     }
-    
+
     #volumeSlider {
       width: 173px;
       height: 10px;
@@ -352,7 +351,7 @@ function setupMusicPlayer() {
       border-right: 3px solid var(--theme-color);
       padding: 0 3px;
     }
-    
+
     #volumeSlider::-webkit-slider-runnable-track { width: 100%; height: 4px;  border-radius: 0px; }
     #volumeSlider::-moz-range-track { width: 100%; height: 4px; border-radius: 0px; }
     #volumeSlider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: var(--theme-color); border: none; width: 15px; height: 4px; margin-top: -4px; border-radius: 0px; }
