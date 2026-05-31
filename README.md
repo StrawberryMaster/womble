@@ -265,9 +265,13 @@ This is a modified version of the player used in *2000 ROC Redux* and other mods
 A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player.See source [here](./players/soundcloud_player.js).
 ![SoundCloud player](./images/soundcloud_player.png)
 
-## Sundance player
+### Sundance player
 The iPod-inspired music player for the *Sundance 2008* mod. Shown here is a modified version of the player with album art included. See source [here](./players/sundance_player.js).
 ![Sundance player](./images/sundance_player.png)
+
+### The Apple Trail player
+This simpler player, used on *The Apple Trail*, is a modified version of the *2000N* player made by DecstarG.  See source [here](./players/tat_player.js).
+![The Apple Trail player](./images/tat_player.png)
 
 ### TTNW player
 The vinyl-esque music player shown in *Things That Never Were*. Shown here is a modified version of the player with the ability to switch playlists by clicking on the album art, and some optimizations. See source [here](./players/ttnw_player.js).
