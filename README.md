@@ -281,6 +281,10 @@ The vinyl-esque music player shown in *Things That Never Were*. Shown here is a 
 The Windows Music Player-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
 ![W. player](./images/w_player.png)
 
+### 90s player
+Pretty much a generic music player with a slight 90s theme. Came from [this Reddit post](https://www.reddit.com/r/thecampaigntrail/comments/1tphs8t/comment/oob655a/) by No-Creme1061. See source [here](./players/noughties_player.js).
+![90s player](./images/noughties_player.jpeg)
+
 ----
 
 # Mod notes
