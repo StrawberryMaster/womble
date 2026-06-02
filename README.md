@@ -296,7 +296,7 @@ See [the mods folder](./mods) for the full list of mods.
 
 ## But A Man
 This is a patched version of the mod *But A Man* with some extra fixes for the mod, primarily readability improvements to the question/tooltip text and some optimizations. Codes can be found [here](./mods/1972%20-%20But%20A%20Man_init.txt) (Code 1) and [here](./mods/1972%20-%20But%20A%20Man_HumphreyMuskie.txt) (Code 2). See example:
-![But A Man](./images/butaman.png)![alt text](image.png)
+![But A Man](./images/butaman.png)
 
 ## Our Revolution
 This is a patched version with some extra fixes for the mod, including some optimizations, other UI changes and a revamped Game Stats design. Codes can be found [here](./mods/2024%20-%20Our%20Revolution_init.txt) (Code 1) and [here](./mods/2024%20-%20Our%20Revolution_SandersHarris.txt) (Code 2). See example:
