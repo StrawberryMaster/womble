@@ -30,6 +30,7 @@ let isDraggingWaveform = false;
 let waveformCache = new Map();
 let waveformBaseCanvasCache = new Map();
 let waveformRequestId = 0;
+let waveformAnimationId = null;
 
 // assets
 const ASSETS = {
@@ -47,6 +48,87 @@ const ASSETS = {
     vol: `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.14645 1.85356C7.46143 1.53858 8 1.76167 8 2.20712V13.7929C8 14.2384 7.46143 14.4614 7.14645 14.1465L4 11H1.5C1.22386 11 1 10.7762 1 10.5V5.50001C1 5.22387 1.22386 5.00001 1.5 5.00001H4L7.14645 1.85356Z" fill="currentColor"></path><path d="M15 7.99997C15 11.1453 12.5798 13.7254 9.5 13.9794V12.4725C11.75 12.2238 13.5 10.3162 13.5 7.99997C13.5 5.68369 11.75 3.77616 9.5 3.52744V2.02051C12.5798 2.27458 15 4.85464 15 7.99997Z" fill="currentColor"></path><path d="M12 7.99997C12 9.48647 10.9189 10.7205 9.5 10.9585V5.04145C10.9189 5.27949 12 6.51347 12 7.99997Z" fill="currentColor"></path></svg>`
 };
 
+// draw a placeholder waveform to show loading activity
+function drawPlaceholderWaveform() {
+    const canvas = document.getElementById("waveform-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = 2;
+    const gap = 1;
+    const stride = barWidth + gap;
+    const samples = Math.floor(canvas.width / stride);
+
+    ctx.fillStyle = "#e0e0e0";
+    for (let i = 0; i < samples; i++) {
+        const x = i * stride;
+        const h = (Math.sin(i * 0.08) * 0.12 + 0.22) * canvas.height;
+        ctx.fillRect(x, canvas.height - h, barWidth, h);
+    }
+}
+
+// animate transition from the placeholder wave to the real wave
+function animateWaveformSweep(baseCanvas) {
+    const canvas = document.getElementById("waveform-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    const duration = 650;
+    const startTime = performance.now();
+
+    function step(now) {
+        if (!canvas) return;
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const revealWidth = canvas.width * easeProgress;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // draw the placeholder waveform on the right side of the sweep threshold
+        const barWidth = 2;
+        const gap = 1;
+        const stride = barWidth + gap;
+        const samples = Math.floor(canvas.width / stride);
+
+        ctx.fillStyle = "#e0e0e0";
+        for (let i = 0; i < samples; i++) {
+            const x = i * stride;
+            if (x >= revealWidth) {
+                const h = (Math.sin(i * 0.08) * 0.12 + 0.22) * canvas.height;
+                ctx.fillRect(x, canvas.height - h, barWidth, h);
+            }
+        }
+
+        // overlay the completed real waveform on the left side of the threshold
+        ctx.drawImage(
+            baseCanvas,
+            0, 0, revealWidth, canvas.height,
+            0, 0, revealWidth, canvas.height
+        );
+
+        // update active player colors relative to decoded progress
+        const audio = getAudioElement();
+        if (audio.duration) {
+            updateWaveformProgress((audio.currentTime / audio.duration) * 100);
+        }
+
+        if (progress < 1) {
+            waveformAnimationId = requestAnimationFrame(step);
+        } else {
+            // lock down final static canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(baseCanvas, 0, 0);
+            waveformAnimationId = null;
+        }
+    }
+
+    if (waveformAnimationId) cancelAnimationFrame(waveformAnimationId);
+    waveformAnimationId = requestAnimationFrame(step);
+}
+
 // waveform engine
 async function drawWaveform(url) {
     const canvas = document.getElementById("waveform-canvas");
@@ -55,10 +137,6 @@ async function drawWaveform(url) {
 
     const ctx = canvas.getContext("2d");
     const progCtx = progCanvas.getContext("2d");
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    progCtx.clearRect(0, 0, progCanvas.width, progCanvas.height);
-    window.currentWaveformData = null;
 
     const requestId = ++waveformRequestId;
 
@@ -137,12 +215,10 @@ async function drawWaveform(url) {
         waveformBaseCanvasCache.set(url, baseCanvas);
 
         window.currentWaveformData = normalizedData;
-        ctx.drawImage(baseCanvas, 0, 0);
 
-        const audio = getAudioElement();
-        if (audio.duration) {
-            updateWaveformProgress((audio.currentTime / audio.duration) * 100);
-        }
+        // smoothly sweep-in the parsed waveform
+        animateWaveformSweep(baseCanvas);
+
     } catch (e) {
         console.warn("Waveform bypass:", e);
     }
@@ -196,6 +272,18 @@ function updateUI() {
 
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === "suspended") audioCtx.resume();
+
+    // cancel any active transitions and display the default loading placeholder
+    if (waveformAnimationId) {
+        cancelAnimationFrame(waveformAnimationId);
+        waveformAnimationId = null;
+    }
+    drawPlaceholderWaveform();
+
+    const progCanvas = document.getElementById("waveform-prog-canvas");
+    if (progCanvas) {
+        progCanvas.getContext("2d").clearRect(0, 0, progCanvas.width, progCanvas.height);
+    }
 
     requestAnimationFrame(() => {
         setTimeout(() => drawWaveform(song.audioLink), 0);
@@ -263,13 +351,13 @@ function setupMusicPlayer() {
       margin-top: 10px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    #cover { 
-      height: 100%; 
-      width: 160px; 
-      object-fit: cover; 
+    #cover {
+      height: 100%;
+      width: 160px;
+      object-fit: cover;
       border-right: 1px solid #e5e5e5;
     }
-    
+
     #sc-main-content {
         flex-grow: 1;
         display: flex;
@@ -286,39 +374,39 @@ function setupMusicPlayer() {
         width: 100%;
     }
 
-    #sc-play-info { 
-        display: flex; 
-        align-items: center; 
-        gap: 10px; 
+    #sc-play-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
     #playPauseButton {
-        width: 46px; 
+        width: 46px;
         height: 46px;
         background: #ff5500;
         border-radius: 50%;
         border: none;
         color: white;
         cursor: pointer;
-        display: flex; 
-        align-items: center; 
+        display: flex;
+        align-items: center;
         justify-content: center;
         transition: transform 0.1s;
     }
     #playPauseButton:active { transform: scale(0.95); }
-    
+
     .sc-play-svg { width: 25px; height: 25px; transform: translateX(-1px); }
     .sc-pause-svg { width: 27px; height: 27px; }
 
-    #sc-meta { 
-        display: flex; 
-        flex-direction: column; 
-        gap: 4px; 
+    #sc-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
     }
     .sc-box {
-        background: #999; 
+        background: #999;
         color: #fff;
-        font-size: 12px; 
+        font-size: 12px;
         padding: 2px 6px;
         width: fit-content;
         line-height: 1.2;
@@ -326,27 +414,27 @@ function setupMusicPlayer() {
     .sc-box.artist { background: #333; color: #ccc; }
     .sc-box.title { background: #000; font-size: 16px; }
 
-    #sc-nav { 
-        display: flex; 
-        align-items: center; 
-        gap: 15px; 
-        color: #333; 
+    #sc-nav {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: #333;
     }
-    .nav-btn { 
-        background: none; 
-        border: none; 
-        cursor: pointer; 
-        color: inherit; 
-        padding: 0; 
-        display: flex; 
-        align-items: center; 
+    .nav-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: inherit;
+        padding: 0;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
     .nav-btn svg { width: 20px; height: 20px; }
     .nav-btn:hover { color: #ff5500; }
 
     #volSlider {
-        width: 80px; 
+        width: 80px;
         accent-color: #ff5500;
         cursor: pointer;
     }
@@ -359,12 +447,12 @@ function setupMusicPlayer() {
     }
     canvas {
         position: absolute;
-        bottom: 0; 
+        bottom: 0;
         left: 0;
-        width: 100%; 
+        width: 100%;
         height: 100%;
     }
-    
+
     .time-stamp {
         position: absolute;
         bottom: 0;
@@ -455,9 +543,10 @@ function setupMusicPlayer() {
 
     const scrubWaveform = (e) => {
         if (!audio.duration || isNaN(audio.duration)) return undefined;
+        const Math_min = Math.min;
         const rect = waveArea.getBoundingClientRect();
         let pct = (e.clientX - rect.left) / rect.width;
-        pct = Math.max(0, Math.min(1, pct));
+        pct = Math.max(0, Math_min(1, pct));
 
         updateWaveformProgress(pct * 100);
         timeCurrent.textContent = formatTime(pct * audio.duration);
