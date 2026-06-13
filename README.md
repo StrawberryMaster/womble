@@ -105,6 +105,16 @@ e.RMLabel3 = "Leader's Riding";
 leads to:
 ![Example 1](./images/SLE_example.png) ![Example 2](./images/SLE_example2.png)
 
+### Data visualizer
+This [data visualizer](./codes/data_visualizer.js) is a tool that enhances the existing post-election night visualization experience by including a tab with several map viewing options, letting you see margins, state stances, candidate stances, and see how much a swing, combination, or head-to-head battle between candidates could've changed the outcome.
+
+![Data visualizer](./images/data_visualizer.jpeg)
+
+### Dynamic election night
+This [dynamic election night](./codes/dynamic_election_night.js) feature, first shown in *Little Big Man* is a tool that enhances the existing election night experience by displaying different margins for states until they are called, allowing for a more dynamic and engaging election night. It also includes a special clock to show the time the state gets called, and the ability to see the ongoing vote count.
+
+![Election night](./images/election_night.jpeg)
+
 ### Election night song
 The [election night song](./codes/election_night_song.js) changes the election night song to a custom one. To customize this, you can update the song details in the code below. This snippet should work on music players based off the *W.* and *American Carnage* player codes.
 ```javascript
