@@ -227,6 +227,10 @@ Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See 
 A music player with a design inspired by the 1990s-era music players, shown in the mod *1996: Contract With America*. Shown here is a somewhat more standardized version of the player. See source [here](./players/cwa_player.js).
 ![Contract With America player](./images/cwa_player.png)
 
+### Duke player
+The late 80s/early 90s-era music player, shown in the mod *Duke*. Fun fact: it's actually a modified version of the music player used in the *Y. of Korea* mod. See source [here](./players/duke_player.js).
+![Duke player](./images/duke_player.png)
+
 ### Little Big Man player
 The YouTube-powered music player shown in the mod *2012: Little Big Man*, which was built on top of the *A Lifetime of This* player code. See source [here](./players/lbm_player.js).
 ![Little Big Man player](./images/lbm_player.png)
@@ -262,7 +266,7 @@ This is a modified version of the player used in *2000 ROC Redux* and other mods
 ![ROC player](./images/roc_player.png)
 
 ### SoundCloud player
-A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player.See source [here](./players/soundcloud_player.js).
+A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player. See source [here](./players/soundcloud_player.js).
 ![SoundCloud player](./images/soundcloud_player.png)
 
 ### Sundance player
