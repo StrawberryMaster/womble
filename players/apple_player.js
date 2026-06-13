@@ -1,5 +1,5 @@
-// This is a modified version of the music player
-// used in the mod Vice.
+// This is a modified version of a music player
+// made by Thatchmaster.
 class Song {
   constructor(title, artist, coverLink, audioLink) {
     this.title = title;
