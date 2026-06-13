@@ -253,21 +253,9 @@ Alternatively, here is a Spotify-themed version of the player for that same mod.
 Not the real player, but a loosely faithful recreation of the music player shown in the first couple of *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
 ![Project 2024 player](./images/p24_player.png)
 
-### QuickTime player
-Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_player.js).
-![QuickTime player](./images/quicktime_player.png)
-
-### Quinto player
-This was made for the unreleased Dan Quayle presidency simulator *Quaylee*, on top of the underlying code for the player used for *Moonbeam*. See source [here](./players/quinto_player.js).
-![Quinto player](./images/quinto_player.png)
-
 ### ROC player
 This is a modified version of the player used in *2000 ROC Redux* and other mods in the ROC series, with some optimizations and positioning fixes so it aligns with other players' layouts. See source [here](./players/roc_player.js).
 ![ROC player](./images/roc_player.png)
-
-### SoundCloud player
-A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player. See source [here](./players/soundcloud_player.js).
-![SoundCloud player](./images/soundcloud_player.png)
 
 ### Sundance player
 The iPod-inspired music player for the *Sundance 2008* mod. Shown here is a modified version of the player with album art included. See source [here](./players/sundance_player.js).
@@ -285,7 +273,24 @@ The vinyl-esque music player shown in *Things That Never Were*. Shown here is a 
 The Windows Music Player-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
 ![W. player](./images/w_player.png)
 
-### 90s player
+#### Other players
+##### Apple player
+This Apple-themed music player was made by Thatchmaster. See source [here](./players/apple_player.js).
+![Apple player](./images/apple_player.png)
+
+##### QuickTime player
+Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_player.js).
+![QuickTime player](./images/quicktime_player.png)
+
+##### Quinto player
+This was made for the unreleased Dan Quayle presidency simulator *Quaylee*, on top of the underlying code for the player used for *Moonbeam*. See source [here](./players/quinto_player.js).
+![Quinto player](./images/quinto_player.png)
+
+##### SoundCloud player
+A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player. See source [here](./players/soundcloud_player.js).
+![SoundCloud player](./images/soundcloud_player.png)
+
+##### 90s player
 Pretty much a generic music player with a slight 90s theme. Came from [this Reddit post](https://www.reddit.com/r/thecampaigntrail/comments/1tphs8t/comment/oob655a/) by No-Creme1061. See source [here](./players/noughties_player.js).
 ![90s player](./images/noughties_player.jpeg)
 

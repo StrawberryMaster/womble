@@ -161,6 +161,20 @@
             font-family: 'Trebuchet MS', sans-serif;
         }
 
+        h5 {
+            font-size: 1.0em;
+            margin: 12px 0 6px 0;
+            color: #7a2c2c;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        h6 {
+            font-size: 0.9em;
+            margin: 10px 0 5px 0;
+            color: #7a2c2c;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
         p {
             margin: 15px 0;
             line-height: 1.8;
@@ -523,7 +537,9 @@
             letter-spacing: 1px;
         }
 
-        body.theme-metro h4 {
+        body.theme-metro h4,
+        body.theme-metro h5,
+        body.theme-metro h6 {
             color: #322222;
             letter-spacing: 1px;
         }
@@ -683,7 +699,9 @@
         body.theme-plain h1,
         body.theme-plain h2,
         body.theme-plain h3,
-        body.theme-plain h4 {
+        body.theme-plain h4,
+        body.theme-plain h5,
+        body.theme-plain h6 {
             color: #003049;
             font-family: Georgia, 'Times New Roman', serif;
             font-weight: 700;
@@ -696,6 +714,8 @@
         body.theme-plain h2 { font-size: 1.4em; margin: 1.2em 0 0.5em; }
         body.theme-plain h3 { font-size: 1.15em; margin: 1em 0 0.4em; }
         body.theme-plain h4 { font-size: 1em; margin: 0.8em 0 0.3em; }
+        body.theme-plain h5 { font-size: 0.95em; margin: 0.7em 0 0.25em; }
+        body.theme-plain h6 { font-size: 0.9em; margin: 0.6em 0 0.2em; }
 
         body.theme-plain p,
         body.theme-plain li {
@@ -881,7 +901,9 @@
         body.theme-scaruffi h1,
         body.theme-scaruffi h2,
         body.theme-scaruffi h3,
-        body.theme-scaruffi h4 {
+        body.theme-scaruffi h4,
+        body.theme-scaruffi h5,
+        body.theme-scaruffi h6 {
             color: #0702b6 !important;
             font-family: "Times New Roman", Times, serif !important;
             border: none !important;
@@ -1179,7 +1201,7 @@
 
         function generateTableOfContents() {
             const contentDiv = document.getElementById('content');
-            const headings = Array.from(contentDiv.querySelectorAll('h1, h2, h3, h4'));
+            const headings = Array.from(contentDiv.querySelectorAll('h1, h2, h3, h4, h5, h6'));
             const tocList = document.getElementById('toc-list');
             tocList.innerHTML = '';
 
@@ -1382,7 +1404,7 @@
                     bttBtn.classList.remove('visible');
                 }
 
-                const headings = Array.from(document.querySelectorAll('#content h1, #content h2, #content h3, #content h4'))
+                const headings = Array.from(document.querySelectorAll('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6'))
                     .filter((heading, index) => !(index === 0 && heading.tagName === 'H1'));
                 const links = document.querySelectorAll('.sidebar a');
 
