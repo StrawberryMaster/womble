@@ -291,8 +291,8 @@ A SoundCloud-themed music player, and would be useful for a 2010s onward mod. Th
 ![SoundCloud player](./images/soundcloud_player.png)
 
 ##### They'll Love Me When I'm Dead player
-Similar to the *Project 2024* player, this is a vaguely faithful recreation of the *They'll Love Me When I'm Dead* mod's music player, shown in its sneak peeks. See source [here](./players/tlmuid_player.js).
-![They'll Love Me When I'm Dead player](./images/tlmuid_player.png)
+Similar to the *Project 2024* player, this is a vaguely faithful recreation of the *They'll Love Me When I'm Dead* mod's music player, shown in its sneak peeks. See source [here](./players/tlmwid_player.js).
+![They'll Love Me When I'm Dead player](./images/tlmwid_player.png)
 
 ##### 90s player
 Pretty much a generic music player with a slight 90s theme. Came from [this Reddit post](https://www.reddit.com/r/thecampaigntrail/comments/1tphs8t/comment/oob655a/) by No-Creme1061. See source [here](./players/noughties_player.js).
