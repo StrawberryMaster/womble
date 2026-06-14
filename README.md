@@ -105,6 +105,13 @@ e.RMLabel3 = "Leader's Riding";
 leads to:
 ![Example 1](./images/SLE_example.png) ![Example 2](./images/SLE_example2.png)
 
+### County map viewer
+This [county map viewer](./codes/county_map_viewer.js), first seen in *The Major Leagues*, allows you to view county-level election results on a map. It is fairly accurate compared to the game results, and allows you to see margins, vote totals, shifts, and even redraw the states for your own liking!
+
+For best usage, change the values of `CURRENT_YEAR` and `HISTORICAL_YEAR` in the code to match the election of your choice *and* the previous election you want to compare it to. For example, if you want to compare the 2020 election to the 2016 election, set `CURRENT_YEAR` to `2020` and `HISTORICAL_YEAR` to `2016`.
+
+![County map viewer](./images/county_map_viewer.png)
+
 ### Data visualizer
 This [data visualizer](./codes/data_visualizer.js) is a tool that enhances the existing post-election night visualization experience by including a tab with several map viewing options, letting you see margins, state stances, candidate stances, and see how much a swing, combination, or head-to-head battle between candidates could've changed the outcome.
 
