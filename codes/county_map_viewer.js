@@ -363,21 +363,36 @@ async function loadAndDrawCountyMap(mode) {
     CURRENT_YEAR = activeYears.current;
     HISTORICAL_YEAR = activeYears.historical;
 
+    const loadScript = src => new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = src;
+        s.async = true;
+        s.onload = () => resolve();
+        s.onerror = (err) => reject(err);
+        document.head.appendChild(s);
+    });
+
     const scriptsToLoad = [];
-    if (!window.d3) scriptsToLoad.push($.getScript("https://d3js.org/d3.v7.min.js"));
-    if (!window.topojson) scriptsToLoad.push($.getScript("https://d3js.org/topojson.v3.min.js"));
-    if (scriptsToLoad.length > 0) await Promise.all(scriptsToLoad);
+    if (!window.d3) scriptsToLoad.push(loadScript("https://d3js.org/d3.v7.min.js"));
+    if (!window.topojson) scriptsToLoad.push(loadScript("https://d3js.org/topojson.v3.min.js"));
+    if (scriptsToLoad.length > 0) {
+        try {
+            await Promise.all(scriptsToLoad);
+        } catch (err) {
+            console.error("Could not load core D3/TopoJSON libraries:", err);
+        }
+    }
 
     if (!window.MW_SHUFFLER_DATA) {
         try {
-            await $.getScript("https://raw.githubusercontent.com/StrawberryMaster/strawberryMaster.github.io/refs/heads/master/scripts/shuffler-data.js");
+            await loadScript("https://strawberrymaster.github.io/scripts/shuffler-data.js");
         } catch (err) {
             console.warn("Could not load shuffler data script:", err);
         }
     }
     if (!window.MW_COUNTIES_TOPO) {
         try {
-            await $.getScript("https://raw.githubusercontent.com/StrawberryMaster/strawberryMaster.github.io/refs/heads/master/scripts/counties-albers-10m.js");
+            await loadScript("https://strawberrymaster.github.io/scripts/counties-albers-10m.js");
         } catch (err) {
             console.warn("Could not load counties topo script:", err);
         }
