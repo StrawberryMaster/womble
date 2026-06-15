@@ -359,7 +359,7 @@ function countyMapScreenHtml() {
 const _countyMapCache = { current: {}, historical: {}, us: null };
 
 async function loadAndDrawCountyMap(mode) {
-	const activeYears = getActiveYears();
+    const activeYears = getActiveYears();
     CURRENT_YEAR = activeYears.current;
     HISTORICAL_YEAR = activeYears.historical;
 
@@ -370,14 +370,14 @@ async function loadAndDrawCountyMap(mode) {
 
     if (!window.MW_SHUFFLER_DATA) {
         try {
-            await $.getScript("http://raw.githubusercontent.com/StrawberryMaster/strawberryMaster.github.io/refs/heads/master/scripts/shuffler-data.js");
+            await $.getScript("https://raw.githubusercontent.com/StrawberryMaster/strawberryMaster.github.io/refs/heads/master/scripts/shuffler-data.js");
         } catch (err) {
             console.warn("Could not load shuffler data script:", err);
         }
     }
     if (!window.MW_COUNTIES_TOPO) {
         try {
-            await $.getScript("http://raw.githubusercontent.com/StrawberryMaster/strawberryMaster.github.io/refs/heads/master/scripts/counties-albers-10m.js");
+            await $.getScript("https://raw.githubusercontent.com/StrawberryMaster/strawberryMaster.github.io/refs/heads/master/scripts/counties-albers-10m.js");
         } catch (err) {
             console.warn("Could not load counties topo script:", err);
         }
