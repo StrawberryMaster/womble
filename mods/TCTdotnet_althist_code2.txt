@@ -1063,8 +1063,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Alabama",
                     "abbr": "AL",
-                    "electoral_votes": 9,
-                    "popular_votes": 1672551,
+                    "electoral_votes": 10,
+                    "popular_votes": 1049917,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1077,7 +1077,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Alaska",
                     "abbr": "AK",
                     "electoral_votes": 3,
-                    "popular_votes": 285560,
+                    "popular_votes": 83035,
                     "poll_closing_time": 420,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1089,8 +1089,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Arizona",
                     "abbr": "AZ",
-                    "electoral_votes": 8,
-                    "popular_votes": 1534113,
+                    "electoral_votes": 5,
+                    "popular_votes": 486936,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1103,7 +1103,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Arkansas",
                     "abbr": "AR",
                     "electoral_votes": 6,
-                    "popular_votes": 921781,
+                    "popular_votes": 609590,
                     "poll_closing_time": 150,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1115,8 +1115,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "California",
                     "abbr": "CA",
-                    "electoral_votes": 54,
-                    "popular_votes": 10965856,
+                    "electoral_votes": 40,
+                    "popular_votes": 7251587,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1128,8 +1128,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Colorado",
                     "abbr": "CO",
-                    "electoral_votes": 8,
-                    "popular_votes": 1741365,
+                    "electoral_votes": 6,
+                    "popular_votes": 811199,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1142,7 +1142,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Connecticut",
                     "abbr": "CT",
                     "electoral_votes": 8,
-                    "popular_votes": 1459525,
+                    "popular_votes": 1256232,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1155,7 +1155,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Delaware",
                     "abbr": "DE",
                     "electoral_votes": 3,
-                    "popular_votes": 327622,
+                    "popular_votes": 214367,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1167,8 +1167,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Florida",
                     "abbr": "FL",
-                    "electoral_votes": 25,
-                    "popular_votes": 6963110,
+                    "electoral_votes": 14,
+                    "popular_votes": 2187805,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1180,8 +1180,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Georgia",
                     "abbr": "GA",
-                    "electoral_votes": 13,
-                    "popular_votes": 2596804,
+                    "electoral_votes": 12,
+                    "popular_votes": 1250266,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1194,7 +1194,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Hawaii",
                     "abbr": "HI",
                     "electoral_votes": 4,
-                    "popular_votes": 367951,
+                    "popular_votes": 236218,
                     "poll_closing_time": 360,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1207,7 +1207,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Idaho",
                     "abbr": "ID",
                     "electoral_votes": 4,
-                    "popular_votes": 501621,
+                    "popular_votes": 291183,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1219,8 +1219,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Illinois",
                     "abbr": "IL",
-                    "electoral_votes": 22,
-                    "popular_votes": 4742123,
+                    "electoral_votes": 26,
+                    "popular_votes": 4619749,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1232,8 +1232,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Indiana",
                     "abbr": "IN",
-                    "electoral_votes": 12,
-                    "popular_votes": 2199302,
+                    "electoral_votes": 13,
+                    "popular_votes": 2123597,
                     "poll_closing_time": 0,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1245,8 +1245,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Iowa",
                     "abbr": "IA",
-                    "electoral_votes": 7,
-                    "popular_votes": 1315563,
+                    "electoral_votes": 9,
+                    "popular_votes": 1167931,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1258,8 +1258,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Kansas",
                     "abbr": "KS",
-                    "electoral_votes": 6,
-                    "popular_votes": 1072216,
+                    "electoral_votes": 7,
+                    "popular_votes": 872783,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1271,8 +1271,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Kentucky",
                     "abbr": "KY",
-                    "electoral_votes": 8,
-                    "popular_votes": 1544187,
+                    "electoral_votes": 9,
+                    "popular_votes": 1055893,
                     "poll_closing_time": 0,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1284,8 +1284,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Louisiana",
                     "abbr": "LA",
-                    "electoral_votes": 9,
-                    "popular_votes": 1765656,
+                    "electoral_votes": 10,
+                    "popular_votes": 1097450,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1298,7 +1298,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Maine",
                     "abbr": "ME",
                     "electoral_votes": 4,
-                    "popular_votes": 651817,
+                    "popular_votes": 392936,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1311,7 +1311,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Maryland",
                     "abbr": "MD",
                     "electoral_votes": 10,
-                    "popular_votes": 2025480,
+                    "popular_votes": 1235039,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1323,8 +1323,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Massachusetts",
                     "abbr": "MA",
-                    "electoral_votes": 12,
-                    "popular_votes": 2702984,
+                    "electoral_votes": 14,
+                    "popular_votes": 2331752,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1336,8 +1336,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Michigan",
                     "abbr": "MI",
-                    "electoral_votes": 18,
-                    "popular_votes": 4232711,
+                    "electoral_votes": 21,
+                    "popular_votes": 3306250,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1350,7 +1350,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Minnesota",
                     "abbr": "MN",
                     "electoral_votes": 10,
-                    "popular_votes": 2438685,
+                    "popular_votes": 1588510,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1363,7 +1363,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Mississippi",
                     "abbr": "MS",
                     "electoral_votes": 7,
-                    "popular_votes": 994926,
+                    "popular_votes": 654509,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1375,8 +1375,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Missouri",
                     "abbr": "MO",
-                    "electoral_votes": 11,
-                    "popular_votes": 2359892,
+                    "electoral_votes": 12,
+                    "popular_votes": 1809502,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1388,8 +1388,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Montana",
                     "abbr": "MT",
-                    "electoral_votes": 3,
-                    "popular_votes": 410997,
+                    "electoral_votes": 4,
+                    "popular_votes": 274404,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1402,7 +1402,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Nebraska",
                     "abbr": "NE",
                     "electoral_votes": 5,
-                    "popular_votes": 697019,
+                    "popular_votes": 536851,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1414,8 +1414,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Nevada",
                     "abbr": "NV",
-                    "electoral_votes": 4,
-                    "popular_votes": 608970,
+                    "electoral_votes": 3,
+                    "popular_votes": 154218,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1428,7 +1428,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "New Hampshire",
                     "abbr": "NH",
                     "electoral_votes": 4,
-                    "popular_votes": 569081,
+                    "popular_votes": 297298,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1440,8 +1440,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "New Jersey",
                     "abbr": "NJ",
-                    "electoral_votes": 15,
-                    "popular_votes": 3187226,
+                    "electoral_votes": 17,
+                    "popular_votes": 2875395,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1453,8 +1453,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "New Mexico",
                     "abbr": "NM",
-                    "electoral_votes": 5,
-                    "popular_votes": 598605,
+                    "electoral_votes": 4,
+                    "popular_votes": 327281,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1466,8 +1466,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "New York",
                     "abbr": "NY",
-                    "electoral_votes": 33,
-                    "popular_votes": 6831178,
+                    "electoral_votes": 43,
+                    "popular_votes": 6790066,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1479,8 +1479,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "North Carolina",
                     "abbr": "NC",
-                    "electoral_votes": 14,
-                    "popular_votes": 2911262,
+                    "electoral_votes": 13,
+                    "popular_votes": 1587493,
                     "poll_closing_time": 90,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1492,8 +1492,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "North Dakota",
                     "abbr": "ND",
-                    "electoral_votes": 3,
-                    "popular_votes": 288267,
+                    "electoral_votes": 4,
+                    "popular_votes": 247882,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1505,8 +1505,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Ohio",
                     "abbr": "OH",
-                    "electoral_votes": 21,
-                    "popular_votes": 4705457,
+                    "electoral_votes": 26,
+                    "popular_votes": 3959698,
                     "poll_closing_time": 90,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1519,7 +1519,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Oklahoma",
                     "abbr": "OK",
                     "electoral_votes": 8,
-                    "popular_votes": 1234229,
+                    "popular_votes": 943086,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1531,8 +1531,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Oregon",
                     "abbr": "OR",
-                    "electoral_votes": 7,
-                    "popular_votes": 1533968,
+                    "electoral_votes": 6,
+                    "popular_votes": 819622,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1544,8 +1544,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Pennsylvania",
                     "abbr": "PA",
-                    "electoral_votes": 23,
-                    "popular_votes": 4913119,
+                    "electoral_votes": 29,
+                    "popular_votes": 4747928,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1558,7 +1558,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Rhode Island",
                     "abbr": "RI",
                     "electoral_votes": 4,
-                    "popular_votes": 409112,
+                    "popular_votes": 385000,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1571,7 +1571,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "South Carolina",
                     "abbr": "SC",
                     "electoral_votes": 8,
-                    "popular_votes": 1383777,
+                    "popular_votes": 666982,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1583,8 +1583,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "South Dakota",
                     "abbr": "SD",
-                    "electoral_votes": 3,
-                    "popular_votes": 316269,
+                    "electoral_votes": 4,
+                    "popular_votes": 281264,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1597,7 +1597,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Tennessee",
                     "abbr": "TN",
                     "electoral_votes": 11,
-                    "popular_votes": 2076181,
+                    "popular_votes": 1248617,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1609,8 +1609,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Texas",
                     "abbr": "TX",
-                    "electoral_votes": 32,
-                    "popular_votes": 6407637,
+                    "electoral_votes": 25,
+                    "popular_votes": 3079406,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1622,8 +1622,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Utah",
                     "abbr": "UT",
-                    "electoral_votes": 5,
-                    "popular_votes": 770754,
+                    "electoral_votes": 4,
+                    "popular_votes": 422568,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1636,7 +1636,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Vermont",
                     "abbr": "VT",
                     "electoral_votes": 3,
-                    "popular_votes": 294308,
+                    "popular_votes": 161404,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1648,8 +1648,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Virginia",
                     "abbr": "VA",
-                    "electoral_votes": 13,
-                    "popular_votes": 2739447,
+                    "electoral_votes": 12,
+                    "popular_votes": 1361491,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1661,8 +1661,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Washington",
                     "abbr": "WA",
-                    "electoral_votes": 11,
-                    "popular_votes": 2488745,
+                    "electoral_votes": 9,
+                    "popular_votes": 1304281,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1675,7 +1675,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Washington DC",
                     "abbr": "DC",
                     "electoral_votes": 3,
-                    "popular_votes": 201894,
+                    "popular_votes": 170578,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1687,8 +1687,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "West Virginia",
                     "abbr": "WV",
-                    "electoral_votes": 5,
-                    "popular_votes": 648124,
+                    "electoral_votes": 7,
+                    "popular_votes": 754206,
                     "poll_closing_time": 90,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1700,8 +1700,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Wisconsin",
                     "abbr": "WI",
-                    "electoral_votes": 11,
-                    "popular_votes": 2598607,
+                    "electoral_votes": 12,
+                    "popular_votes": 1691538,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -1714,7 +1714,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Wyoming",
                     "abbr": "WY",
                     "electoral_votes": 3,
-                    "popular_votes": 218351,
+                    "popular_votes": 127205,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13784,8 +13784,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Alabama",
                     "abbr": "AL",
-                    "electoral_votes": 9,
-                    "popular_votes": 1672551,
+                    "electoral_votes": 10,
+                    "popular_votes": 1049917,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13798,7 +13798,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Alaska",
                     "abbr": "AK",
                     "electoral_votes": 3,
-                    "popular_votes": 285560,
+                    "popular_votes": 83035,
                     "poll_closing_time": 420,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13810,8 +13810,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Arizona",
                     "abbr": "AZ",
-                    "electoral_votes": 8,
-                    "popular_votes": 1534113,
+                    "electoral_votes": 5,
+                    "popular_votes": 486936,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13824,7 +13824,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Arkansas",
                     "abbr": "AR",
                     "electoral_votes": 6,
-                    "popular_votes": 921781,
+                    "popular_votes": 609590,
                     "poll_closing_time": 150,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13836,8 +13836,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "California",
                     "abbr": "CA",
-                    "electoral_votes": 54,
-                    "popular_votes": 10965856,
+                    "electoral_votes": 40,
+                    "popular_votes": 7251587,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13849,8 +13849,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Colorado",
                     "abbr": "CO",
-                    "electoral_votes": 8,
-                    "popular_votes": 1741365,
+                    "electoral_votes": 6,
+                    "popular_votes": 811199,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13863,7 +13863,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Connecticut",
                     "abbr": "CT",
                     "electoral_votes": 8,
-                    "popular_votes": 1459525,
+                    "popular_votes": 1256232,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13876,7 +13876,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Delaware",
                     "abbr": "DE",
                     "electoral_votes": 3,
-                    "popular_votes": 327622,
+                    "popular_votes": 214367,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13888,8 +13888,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Florida",
                     "abbr": "FL",
-                    "electoral_votes": 25,
-                    "popular_votes": 6963110,
+                    "electoral_votes": 14,
+                    "popular_votes": 2187805,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13901,8 +13901,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Georgia",
                     "abbr": "GA",
-                    "electoral_votes": 13,
-                    "popular_votes": 2596804,
+                    "electoral_votes": 12,
+                    "popular_votes": 1250266,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13915,7 +13915,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Hawaii",
                     "abbr": "HI",
                     "electoral_votes": 4,
-                    "popular_votes": 367951,
+                    "popular_votes": 236218,
                     "poll_closing_time": 360,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13928,7 +13928,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Idaho",
                     "abbr": "ID",
                     "electoral_votes": 4,
-                    "popular_votes": 501621,
+                    "popular_votes": 291183,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13940,8 +13940,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Illinois",
                     "abbr": "IL",
-                    "electoral_votes": 22,
-                    "popular_votes": 4742123,
+                    "electoral_votes": 26,
+                    "popular_votes": 4619749,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13953,8 +13953,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Indiana",
                     "abbr": "IN",
-                    "electoral_votes": 12,
-                    "popular_votes": 2199302,
+                    "electoral_votes": 13,
+                    "popular_votes": 2123597,
                     "poll_closing_time": 0,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13966,8 +13966,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Iowa",
                     "abbr": "IA",
-                    "electoral_votes": 7,
-                    "popular_votes": 1315563,
+                    "electoral_votes": 9,
+                    "popular_votes": 1167931,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13979,8 +13979,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Kansas",
                     "abbr": "KS",
-                    "electoral_votes": 6,
-                    "popular_votes": 1072216,
+                    "electoral_votes": 7,
+                    "popular_votes": 872783,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -13992,8 +13992,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Kentucky",
                     "abbr": "KY",
-                    "electoral_votes": 8,
-                    "popular_votes": 1544187,
+                    "electoral_votes": 9,
+                    "popular_votes": 1055893,
                     "poll_closing_time": 0,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14005,8 +14005,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Louisiana",
                     "abbr": "LA",
-                    "electoral_votes": 9,
-                    "popular_votes": 1765656,
+                    "electoral_votes": 10,
+                    "popular_votes": 1097450,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14019,7 +14019,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Maine",
                     "abbr": "ME",
                     "electoral_votes": 4,
-                    "popular_votes": 651817,
+                    "popular_votes": 392936,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14032,7 +14032,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Maryland",
                     "abbr": "MD",
                     "electoral_votes": 10,
-                    "popular_votes": 2025480,
+                    "popular_votes": 1235039,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14044,8 +14044,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Massachusetts",
                     "abbr": "MA",
-                    "electoral_votes": 12,
-                    "popular_votes": 2702984,
+                    "electoral_votes": 14,
+                    "popular_votes": 2331752,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14057,8 +14057,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Michigan",
                     "abbr": "MI",
-                    "electoral_votes": 18,
-                    "popular_votes": 4232711,
+                    "electoral_votes": 21,
+                    "popular_votes": 3306250,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14071,7 +14071,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Minnesota",
                     "abbr": "MN",
                     "electoral_votes": 10,
-                    "popular_votes": 2438685,
+                    "popular_votes": 1588510,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14084,7 +14084,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Mississippi",
                     "abbr": "MS",
                     "electoral_votes": 7,
-                    "popular_votes": 994926,
+                    "popular_votes": 654509,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14096,8 +14096,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Missouri",
                     "abbr": "MO",
-                    "electoral_votes": 11,
-                    "popular_votes": 2359892,
+                    "electoral_votes": 12,
+                    "popular_votes": 1809502,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14109,8 +14109,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Montana",
                     "abbr": "MT",
-                    "electoral_votes": 3,
-                    "popular_votes": 410997,
+                    "electoral_votes": 4,
+                    "popular_votes": 274404,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14123,7 +14123,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Nebraska",
                     "abbr": "NE",
                     "electoral_votes": 5,
-                    "popular_votes": 697019,
+                    "popular_votes": 536851,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14135,8 +14135,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Nevada",
                     "abbr": "NV",
-                    "electoral_votes": 4,
-                    "popular_votes": 608970,
+                    "electoral_votes": 3,
+                    "popular_votes": 154218,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14149,7 +14149,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "New Hampshire",
                     "abbr": "NH",
                     "electoral_votes": 4,
-                    "popular_votes": 569081,
+                    "popular_votes": 297298,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14161,8 +14161,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "New Jersey",
                     "abbr": "NJ",
-                    "electoral_votes": 15,
-                    "popular_votes": 3187226,
+                    "electoral_votes": 17,
+                    "popular_votes": 2875395,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14174,8 +14174,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "New Mexico",
                     "abbr": "NM",
-                    "electoral_votes": 5,
-                    "popular_votes": 598605,
+                    "electoral_votes": 4,
+                    "popular_votes": 327281,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14187,8 +14187,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "New York",
                     "abbr": "NY",
-                    "electoral_votes": 33,
-                    "popular_votes": 6831178,
+                    "electoral_votes": 43,
+                    "popular_votes": 6790066,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14200,8 +14200,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "North Carolina",
                     "abbr": "NC",
-                    "electoral_votes": 14,
-                    "popular_votes": 2911262,
+                    "electoral_votes": 13,
+                    "popular_votes": 1587493,
                     "poll_closing_time": 90,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14213,8 +14213,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "North Dakota",
                     "abbr": "ND",
-                    "electoral_votes": 3,
-                    "popular_votes": 288267,
+                    "electoral_votes": 4,
+                    "popular_votes": 247882,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14226,8 +14226,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Ohio",
                     "abbr": "OH",
-                    "electoral_votes": 21,
-                    "popular_votes": 4705457,
+                    "electoral_votes": 26,
+                    "popular_votes": 3959698,
                     "poll_closing_time": 90,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14240,7 +14240,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Oklahoma",
                     "abbr": "OK",
                     "electoral_votes": 8,
-                    "popular_votes": 1234229,
+                    "popular_votes": 943086,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14252,8 +14252,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Oregon",
                     "abbr": "OR",
-                    "electoral_votes": 7,
-                    "popular_votes": 1533968,
+                    "electoral_votes": 6,
+                    "popular_votes": 819622,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14265,8 +14265,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Pennsylvania",
                     "abbr": "PA",
-                    "electoral_votes": 23,
-                    "popular_votes": 4913119,
+                    "electoral_votes": 29,
+                    "popular_votes": 4747928,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14279,7 +14279,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Rhode Island",
                     "abbr": "RI",
                     "electoral_votes": 4,
-                    "popular_votes": 409112,
+                    "popular_votes": 385000,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14292,7 +14292,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "South Carolina",
                     "abbr": "SC",
                     "electoral_votes": 8,
-                    "popular_votes": 1383777,
+                    "popular_votes": 666982,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14304,8 +14304,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "South Dakota",
                     "abbr": "SD",
-                    "electoral_votes": 3,
-                    "popular_votes": 316269,
+                    "electoral_votes": 4,
+                    "popular_votes": 281264,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14318,7 +14318,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Tennessee",
                     "abbr": "TN",
                     "electoral_votes": 11,
-                    "popular_votes": 2076181,
+                    "popular_votes": 1248617,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14330,8 +14330,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Texas",
                     "abbr": "TX",
-                    "electoral_votes": 32,
-                    "popular_votes": 6407637,
+                    "electoral_votes": 25,
+                    "popular_votes": 3079406,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14343,8 +14343,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Utah",
                     "abbr": "UT",
-                    "electoral_votes": 5,
-                    "popular_votes": 770754,
+                    "electoral_votes": 4,
+                    "popular_votes": 422568,
                     "poll_closing_time": 240,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14357,7 +14357,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Vermont",
                     "abbr": "VT",
                     "electoral_votes": 3,
-                    "popular_votes": 294308,
+                    "popular_votes": 161404,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14369,8 +14369,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Virginia",
                     "abbr": "VA",
-                    "electoral_votes": 13,
-                    "popular_votes": 2739447,
+                    "electoral_votes": 12,
+                    "popular_votes": 1361491,
                     "poll_closing_time": 60,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14382,8 +14382,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Washington",
                     "abbr": "WA",
-                    "electoral_votes": 11,
-                    "popular_votes": 2488745,
+                    "electoral_votes": 9,
+                    "popular_votes": 1304281,
                     "poll_closing_time": 300,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14396,7 +14396,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Washington DC",
                     "abbr": "DC",
                     "electoral_votes": 3,
-                    "popular_votes": 201894,
+                    "popular_votes": 170578,
                     "poll_closing_time": 120,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14408,8 +14408,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "West Virginia",
                     "abbr": "WV",
-                    "electoral_votes": 5,
-                    "popular_votes": 648124,
+                    "electoral_votes": 7,
+                    "popular_votes": 754206,
                     "poll_closing_time": 90,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14421,8 +14421,8 @@ if (e.election_id == 1968) { // --- 1968a ---
                 "fields": {
                     "name": "Wisconsin",
                     "abbr": "WI",
-                    "electoral_votes": 11,
-                    "popular_votes": 2598607,
+                    "electoral_votes": 12,
+                    "popular_votes": 1691538,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -14435,7 +14435,7 @@ if (e.election_id == 1968) { // --- 1968a ---
                     "name": "Wyoming",
                     "abbr": "WY",
                     "electoral_votes": 3,
-                    "popular_votes": 218351,
+                    "popular_votes": 127205,
                     "poll_closing_time": 180,
                     "winner_take_all_flg": 1,
                     "election": 1968
@@ -78360,7 +78360,7 @@ if (e.election_id == 25) { // --- 1920a ---
 
             campaignTrail_temp.questions_json[1]  = CYCLE_QUESTION(16121);
 
-            if(ans == 19701 && e.running_mate_id == 925){
+            if(ans == 19701){
                 campaignTrail_temp.running_mate_image_url = 'https://thecampaigntrail.net/static/images/1920a/hCfMAWa.png';
                 campaignTrail_temp.running_mate_last_name = 'Baker';
                 campaignTrail_temp.running_mate_state_id = '440';

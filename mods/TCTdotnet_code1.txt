@@ -1,6 +1,34 @@
 e = campaignTrail_temp;
 RecReading = true;
 
+// styling configuration for the mod box
+campaignTrail_temp.modBoxTheme = {
+    "header_color": "#700016",
+    "header_text_color": "#ffffff",
+    "description_text_color": "#000000",
+    "description_background_color": "#ddf2ff",
+    "main_color": "#bfe6ff",
+    "secondary_color": "#4e000f",
+    "ui_text_color": "#ffffff"
+};
+
+// this snippet is necessary so mods with custom IDs/PKs can load
+// overwrite realityCheck to support loose equality (==) for string/number comparisons
+window.realityCheck = function(cand, running_mate) {
+  if (!campaignTrail_temp.running_mate_json) return false;
+  const pairs = campaignTrail_temp.running_mate_json.map((f) => [
+    f.fields.candidate,
+    f.fields.running_mate
+  ]);
+  return pairs.some((pr) => pr[0] == cand && pr[1] == running_mate);
+};
+
+// sync base election datasets so custom PKs are resolvable
+if (typeof ree !== 'undefined' && ree) {
+  ree.election_json = campaignTrail_temp.election_json;
+  ree.candidate_json = campaignTrail_temp.candidate_json;
+}
+
 // this is so we can use the mod historical data
 histFunction = function() {
     switch (campaignTrail_temp.election_id) {
@@ -77,7 +105,8 @@ campaignTrail_temp.election_json = [
             "has_visits": 1,
             "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1996deadlock.jpeg",
             "creator": "CTA & Spar-kie with coding help from Mango",
-            "display_year": "1996"
+            "display_year": "1996",
+            "site_description": "<p>The very best of TCT.net, containing all scenarios hosted on the site, with their full playable sides. This collection was curated by <a href=https://strawberrymaster.github.io/womble target=blank>womble</a>, and includes engine patches to ensure all scenarios run smoothly.</p>"
         }
     },
     {
