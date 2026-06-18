@@ -621,7 +621,7 @@ function setupMusicPlayer() {
   const bernieSongs = [
     ["Joe Hill", "Joan Baez", "https://i.imgur.com/jJIYGIH.jpeg", "https://audio.jukehost.co.uk/8lqHkH2zo0QL6PM8HNKe49Ooua79xRvP"],
     ["This Land is Your Land", "Bernie Sanders and Vermont Artists", "https://i.imgur.com/lLtJgTE.jpeg", "https://audio.jukehost.co.uk/m578B1oFyTzSjaxiXpbBfZN7I5RHpeBi"],
-    ["Bread And Roses", "Judy Collins", "https://i.imgur.com/FFyGJFl.jpeg", "https://files.catbox.moe/glafj6.mp3"], // recommended by Skittie
+    ["Bread And Roses", "Judy Collins", "https://i.imgur.com/FFyGJFl.jpeg", "https://audio.jukehost.co.uk/I4D9wPtdoVAOIayHudU1fXmbd8JOMy4E"], // recommended by Skittie
     ["Song of the United Front", "Jamie O'Reilly & Michael Smith", "https://i.imgur.com/hqmbOsO.jpeg", "https://audio.jukehost.co.uk/zPdGM4qByB1oC1spsM6nYq7F8Bje08CI"],
     ["Talkin' 'bout a Revolution", "Tracy Chapman", "https://i.imgur.com/opwiD4f.jpeg", "https://audio.jukehost.co.uk/SXrxKJmPqw5c29FN8GEcQyKfHh0B3Keh"],
     ["Which Side Are You On", "Pete Seeger", "https://i.imgur.com/SgUAOLx.jpeg", "https://audio.jukehost.co.uk/Rf997sUD8el9ZvLV0S9HYR9hGQCEdXL0"],
@@ -959,7 +959,7 @@ const main = `
 		  background-color: #c4d1f0;
 		  padding: .15em .1em;
 		}
-		
+
 		/* for longer election summaries */
 		#election_description_window {
 			display: flex;
@@ -968,7 +968,7 @@ const main = `
 			height: auto;
 		}
 		#election_description_window .person_image {
-			flex-shrink: 0; 
+			flex-shrink: 0;
 		}
 		#election_summary p:first-of-type {
   		 	margin: 0;
@@ -1045,7 +1045,7 @@ const main = `
 			  flex-shrink: 0;
 			  margin: 0px;
 		   }
-		   
+
 		.inner_window_question p:last-of-type { /* so this doesn't overlap with the candidate images */
             margin-top: .5em;
             margin-bottom: .5em;
