@@ -58356,8 +58356,8 @@ function applyKamala() {
 
   //change Kamala theme, thanks to Skittie
   if (typeof nct_stuff !== 'undefined' && nct_stuff.themes && nct_stuff.themes[nct_stuff.selectedTheme]) {
-      nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1f1945";
-      nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#4c40aa";
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1f1945 !important";
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#4c40aa !important";
 
       let gameHeader = document.getElementsByClassName("game_header")[0];
       if (gameHeader) gameHeader.style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
