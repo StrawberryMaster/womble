@@ -58320,6 +58320,7 @@ function applyKamala() {
       kamalaStyle.id = "kamala-dynamic-styles";
       document.head.appendChild(kamalaStyle);
   }
+
   kamalaStyle.innerHTML = `
       body {
           background-image: url("https://i.imgur.com/zvp0Qtk.jpeg") !important;
@@ -58355,6 +58356,12 @@ function applyKamala() {
       .game_header {
           background-color: #1f1945 !important;
       }
+      #menu_container, #overall_result_container, #state_result_container {
+          background-color: #382d8d !important;
+      }
+      #overall_result h3, #state_info h3, #state_result h3 {
+          background-color: #5d4ebd !important;
+      }
       button {
           background: #bfd7ff !important;
           border: 2px solid #5d4ebd !important;
@@ -58368,8 +58375,7 @@ function applyKamala() {
   if (ticket_status == 2) {
     const popup = document.getElementById("simplePopup");
     if (popup) popup.style.backgroundImage = "url('https://i.imgur.com/X3MtJ51.jpeg')";  //code to shift memo to VP Harris
-  }
-  else if (ticket_status == 3) {
+  } else if (ticket_status == 3) {
     const popup = document.getElementById("simplePopup");
     if (popup) popup.style.backgroundImage = "url('https://i.imgur.com/40yMWtb.jpeg')";  //code to shift memo to President Harris
   }
@@ -63881,7 +63887,6 @@ async function handleFooter() {
 let observerRunning = false;
 let changeChartRunning = false;
 let processedNodes = new Set();
-// Update your handleMutations function to this:
 async function handleMutations(mutationsList, observer) {
   if (observerRunning) return;
   observerRunning = true;
@@ -63891,16 +63896,52 @@ async function handleMutations(mutationsList, observer) {
     addHeadquarterButton();
   }
 
-  // Re-apply Kamala Harris styles and header if she is active
+  // active theme supervision for Kamala Harris
+  // this looks ridiculous, but is necessary so her theme works
   if (ticket_status > 1 && !ending_2020) {
     let header = document.getElementById("header");
     if (header && !header.src.includes("V4JhoMQ.jpeg")) {
       header.src = "https://i.imgur.com/V4JhoMQ.jpeg";
     }
 
+    if (document.body.background !== "https://i.imgur.com/zvp0Qtk.jpeg") {
+      document.body.background = "https://i.imgur.com/zvp0Qtk.jpeg";
+    }
+
+    let mainContainer = document.querySelector(".container");
+    if (mainContainer) {
+      mainContainer.style.setProperty('background-color', '#382d8d', 'important');
+      mainContainer.style.setProperty('border', '.3em solid #FFFFFF', 'important');
+    }
+
+    let footer = document.querySelector(".footer");
+    if (footer) {
+      footer.style.setProperty('border-top', '10px ridge #382d8d', 'important');
+    }
+
+    let mapContainer = document.getElementById("map_container");
+    if (mapContainer) {
+      mapContainer.style.setProperty('background-image', "url('https://i.imgur.com/pkTlUov.jpeg')", 'important');
+      mapContainer.style.setProperty('background-size', 'cover', 'important');
+    }
+
+    let gameWindow = document.getElementById("game_window");
+    if (gameWindow) {
+      gameWindow.style.setProperty('background-color', '#4c40aa', 'important');
+      gameWindow.style.setProperty('background-image', "url('https://i.imgur.com/zKxvcC1.jpeg')", 'important');
+      gameWindow.style.setProperty('border', '3px solid #FFFFFF', 'important');
+    }
+
+    let gameHeader = document.querySelector(".game_header");
+    if (gameHeader) {
+      gameHeader.style.setProperty('background-color', '#1f1945', 'important');
+    }
+
     let kamalaStyle = document.getElementById("kamala-dynamic-styles");
     if (!kamalaStyle) {
-      applyKamala(); // Re-inject the style block if it was cleared
+      applyKamala();
+    } else {
+      document.head.appendChild(kamalaStyle);
     }
   }
 
