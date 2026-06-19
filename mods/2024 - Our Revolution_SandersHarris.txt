@@ -56849,9 +56849,9 @@ function checkInput() {
 					  border-width: .01em;
 					  margin: 0 auto;
 					  background-position: center 55%;
-					  width: 100%;
+					  width: 99%;
 					  height: 110px;
-					  margin-left: -0.07em;
+					  margin-left: 0.03em;
 					}
 				`;
 
@@ -58330,9 +58330,9 @@ function applyKamala() {
           border-width: .01em;
           margin: 0 auto;
           background-position: center 55%;
-          width: 100%;
+          width: 99%;
           height: 110px;
-          margin-left: -0.07em;
+          margin-left: 0.03em;
       }
       #map_container {
           background-image: url("https://i.imgur.com/pkTlUov.jpeg");
@@ -58402,9 +58402,9 @@ function applyVP(VPnum) {
 				  border-width: .01em;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 100%;
+				  width: 99%;
 				  height: 110px;
-				  margin-left: -0.07em;
+				  margin-left: 0.03em;
 				}
 			`;
   }
@@ -58427,9 +58427,9 @@ function applyVP(VPnum) {
 				  border-width: .01em;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 100%;
+				  width: 99%;
 				  height: 110px;
-				  margin-left: -0.07em;
+				  margin-left: 0.03em;
 				}
 			`;
   }
@@ -58452,9 +58452,9 @@ function applyVP(VPnum) {
 				  border-width: .01em;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 100%;
+				  width: 99%;
 				  height: 110px;
-				  margin-left: -0.07em;
+				  margin-left: 0.03em;
 				}
 			`;
   }
@@ -58477,9 +58477,9 @@ function applyVP(VPnum) {
 				  border-width: .01em;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 100%;
+				  width: 99%;
 				  height: 110px;
-				  margin-left: -0.07em;
+				  margin-left: 0.03em;
 				}
 			`;
   }
@@ -63933,9 +63933,9 @@ customStyling.innerHTML = `
 		  border-width: .01em;
 		  margin: 0 auto;
 		  background-position: center 55%;
-		  width: 100%;
+		  width: 99%;
 		  height: 110px;
-		  margin-left: -0.07em;
+		  margin-left: 0.03em;
 		}
 		`;
 document.head.appendChild(customStyling);

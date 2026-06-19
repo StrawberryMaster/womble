@@ -1273,7 +1273,7 @@ const main = `
 		#game_window {
 			background-image: url(https://i.imgur.com/j72PMtN.jpeg);
 			border: 3px solid rgba(62, 72, 166, 0.5);
-			min-height: 610px;
+			min-height: 625px;
 		}
 		.container {
 			background-color: #0650ac !important;
@@ -1325,9 +1325,10 @@ const main = `
 		#map_container {
 			background-image: url("https://i.imgur.com/AYF9wSo.jpeg");
 			background-size: cover;
+			height: 33.48em;
 		}
 		#map_container svg rect, #map_container svg text {
-			transform: translate(-50px, 0px);
+			transform: translate(-100px, 0px);
 		}
 		#menu_container, #overall_result_container {
 		  background: #323891;
