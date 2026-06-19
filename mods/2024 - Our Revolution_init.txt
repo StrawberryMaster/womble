@@ -1512,17 +1512,64 @@ applyGlobalStyles(main, 'css');
     return form;
   }
 
-  function injectSettingsUI(sliderElement) {
-    if (document.getElementById(IDS.tooltipBox)) return;
+  function createOptionSelect(id, label, tooltip, defaultValue, onChangeHandler) {
+    const form = document.createElement('form');
+    form.style.display = "inline-block";
+    form.style.padding = "0 10px";
 
-    const tooltipsForm = createOptionToggle(
-      "ToolTipCheckbox",
-      "Enable tooltips?",
-      "Unchecking removes all tooltips from the questions, answers, and feedback - regardless of category. Hover text such as this remains for the variable checker.",
-      e.tooltips_on,
-      (val) => { e.tooltips_on = val; }
+    const header = document.createElement("h3");
+    const span = document.createElement("span");
+    span.className = 'hover-value';
+    span.setAttribute("data-tooltip", tooltip);
+    span.textContent = label;
+
+    header.appendChild(span);
+    form.appendChild(header);
+
+    const select = document.createElement("select");
+    select.id = id;
+    select.style.padding = "4px";
+    select.style.borderRadius = "4px";
+    select.style.fontSize = "13px";
+
+    const options = [
+      { value: 'none', text: 'Disable Tooltips' },
+      { value: 'classic', text: 'Classic (Centered)' },
+      { value: 'smart', text: 'Smart (Side-by-Side)' }
+    ];
+
+    options.forEach(opt => {
+      const option = document.createElement("option");
+      option.value = opt.value;
+      option.textContent = opt.text;
+      if (opt.value === defaultValue) {
+        option.selected = true;
+      }
+      select.appendChild(option);
+    });
+
+    select.addEventListener("change", function () {
+      onChangeHandler(this.value);
+    });
+
+    form.appendChild(select);
+    return form;
+  }
+
+  function injectSettingsUI(sliderElement) {
+    if (document.getElementById("tooltip_box")) return;
+
+    const tooltipsForm = createOptionSelect(
+      "ToolTipSelector",
+      "Tooltip display mode:",
+      "Controls how the tooltips are structured. 'Disable' turns them off completely. 'Classic' displays them inline with centered styling. 'Smart' utilizes the modern side-by-side card layout with a few safety adjustments.",
+      e.tooltip_mode,
+      (val) => {
+        e.tooltip_mode = val;
+        applyStyleTheme(val);
+      }
     );
-    tooltipsForm.id = IDS.tooltipBox;
+    tooltipsForm.id = "tooltip_box";
     sliderElement.appendChild(tooltipsForm);
 
     const randomForm = createOptionToggle(
@@ -1835,47 +1882,176 @@ tooltipList = [
   { searchString: "Hillary", explanationText: "<img src=https://i.imgur.com/pu89D6W.jpeg><br>You didn't always agree with her, but she was brilliant and implacable. She made mistakes, no one can deny that - in 2008, she played it safe when America screamed for boldness and change; in 2016, she ran like it was owed to her, speaking policy while others spoke fire. But can you blame her, when the world can't decide if women are too emotional to lead or too cold to relate? You've tried to learn from her - to de-emphasize your identity, to campaign in those Rust Belt cities, to listen harder and not repeat those same mistakes. But you can't help but wonder - is that enough to break through? Or will you be yet another woman who dents but never quite cracks that highest and hardest glass ceiling?", color: "silver" }
 ]
 
+if (typeof e.tooltip_mode === 'undefined') {
+    e.tooltip_mode = e.tooltips_on ? 'smart' : 'none';
+}
+
+function applyStyleTheme(mode) {
+    let styleEl = document.getElementById('tooltip-theme-style');
+    if (!styleEl) {
+        styleEl = document.createElement('style');
+        styleEl.id = 'tooltip-theme-style';
+        document.head.appendChild(styleEl);
+    }
+
+    if (mode === 'classic') {
+        styleEl.textContent = `
+            .inner_window_question h3 .mytooltip {
+                background-color: lightskyblue;
+            }
+            .mytooltip {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                background-color: lightblue;
+            }
+            .mytooltip .mytooltiptext {
+                width: 525px;
+                background-color: lightblue;
+                color: black;
+                text-align: center;
+                border-radius: 6px;
+                padding: 10px;
+                position: absolute;
+                z-index: 99;
+                bottom: 20%;
+                left: 20%;
+                margin-left: -90px;
+                opacity: 0;
+                transition: opacity 0.3s;
+                border: 1px solid black;
+                pointer-events: none;
+                font-size: 13px !important;
+                line-height: 1.5em !important;
+                font-weight: normal !important;
+                font-style: normal !important;
+            }
+            .mytooltip .mytooltiptext img {
+                display: inline-block;
+                max-width: 240px;
+                height: auto;
+                margin-bottom: 8px;
+            }
+            .mytooltip:hover .mytooltiptext {
+                transform: translateX(-25%) scaleY(1);
+                opacity: 1;
+                transition-delay: 0.5s;
+            }
+        `;
+    } else if (mode === 'smart') {
+        styleEl.textContent = `
+            .mytooltip {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
+            }
+            .mytooltip .mytooltiptext {
+                position: absolute;
+                bottom: 125%;
+                left: 50%;
+                transform: translateX(-50%) translateY(8px);
+                width: 460px;
+                max-width: 88vw;
+                padding: 12px;
+                background-color: lightblue;
+                color: black;
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                border-radius: 6px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+                text-align: left;
+                font-size: 13px !important;
+                line-height: 1.4em !important;
+                font-weight: normal !important;
+                font-style: normal !important;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+                z-index: 9999;
+            }
+            .mytooltip-flex-container {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .mytooltip-images {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                gap: 4px;
+                width: 125px;
+                flex-shrink: 0;
+            }
+            .mytooltip-images img {
+                display: block;
+                width: 58px;
+                height: auto;
+                border-radius: 4px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            }
+            .mytooltip-images img:only-child {
+                width: 110px;
+                max-width: 120px;
+            }
+            .mytooltip-body {
+                flex-grow: 1;
+                color: inherit;
+            }
+            .mytooltip:hover .mytooltiptext {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+                pointer-events: auto;
+            }
+            .mytooltip .mytooltiptext.flip-bottom {
+                bottom: auto;
+                top: 125%;
+                transform: translateX(-50%) translateY(-8px);
+            }
+            .mytooltip:hover .mytooltiptext.flip-bottom {
+                transform: translateX(-50%) translateY(0);
+            }
+        `;
+    } else {
+        styleEl.textContent = '';
+    }
+}
+applyStyleTheme(e.tooltip_mode);
+
 function escapeRegExp(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-const sortedTooltipList = [...tooltipList].sort((a, b) => b.searchString.length - a.searchString.length);
+function formatExplanationHtml(explanationHtml) {
+    if (!explanationHtml) return '';
 
-function runTooltipReplacements(text) {
-    let modifiedText = text;
+    const imgRegex = /<img[^>]+>/gi;
+    const imgs = explanationHtml.match(imgRegex) || [];
 
-    for (const item of sortedTooltipList) {
-        const escaped = escapeRegExp(item.searchString);
-        const regex = new RegExp(`(?<=\\b|\\s|^)${escaped}(?=\\b|\\s|$|[.,;!?])`, 'gi');
+    let textPart = explanationHtml.replace(imgRegex, '');
+    textPart = textPart.replace(/^(<br\s*\/?>)+|(<br\s*\/?>)+$/gi, '').trim();
 
-        modifiedText = modifiedText.replace(regex, (matchedText) => {
-            const color = item.color || 'lightblue';
-            const explanation = item.explanationText || '';
-
-            if (color === 'darkgreen') {
-                return `<span class='mytooltip' style='background-color: darkgreen; color: white; border-radius: 3px; padding: 1px 4px; font-size: 0.9em; font-weight: bold; margin-right: 2px; cursor: pointer;'>[A]<span class='mytooltiptext'>${explanation}</span></span>${matchedText}`;
-            }
-
-            if (color === 'darkred') {
-                return `<span class='mytooltip' style='background-color: darkred; color: white; border-radius: 3px; padding: 1px 4px; font-size: 0.9em; font-weight: bold; margin-right: 2px; cursor: pointer;'>[!] <span class='mytooltiptext'>${explanation}</span></span>${matchedText}`;
-            }
-
-            if (color === 'darkblue') {
-                return `<span class='mytooltip' style='background-color: darkblue; color: white; border-radius: 3px; padding: 1px 4px; font-size: 0.9em; font-weight: bold; margin-right: 2px; cursor: pointer;'>[i]<span class='mytooltiptext'>${explanation}</span></span>${matchedText}`;
-            }
-
-            const textStyle = color === 'silver' ? 'color: black;' : 'color: inherit;';
-            return `<span class='mytooltip' style='background-color: ${color}; ${textStyle}'>${matchedText}<span class='mytooltiptext'>${explanation}</span></span>`;
-        });
+    if (imgs.length > 0) {
+        return `
+            <div class='mytooltip-flex-container'>
+                <div class='mytooltip-images'>${imgs.join('')}</div>
+                <div class='mytooltip-body'>${textPart}</div>
+            </div>
+        `;
     }
 
-    return modifiedText;
+    return `<div class='mytooltip-body'>${textPart}</div>`;
 }
+
+const sortedTooltipList = [...tooltipList].sort((a, b) => b.searchString.length - a.searchString.length);
 
 function applyTooltipsToTextOnly(htmlStr) {
     if (typeof htmlStr !== 'string') return htmlStr;
+    if (e.tooltip_mode === 'none') return htmlStr;
 
     const prependedBadges = [];
+    const tokenMap = {};
+    let tokenIndex = 0;
 
     const parts = htmlStr.split(/(<[^>]+>)/g);
 
@@ -1888,44 +2064,57 @@ function applyTooltipsToTextOnly(htmlStr) {
                 const regex = new RegExp(`(?<=\\b|\\s|^)${escaped}(?=\\b|\\s|$|[.,;!?])`, 'gi');
 
                 modifiedText = modifiedText.replace(regex, (matchedText) => {
+                    const token = `__TOOLTIP_TOKEN_${tokenIndex++}__`;
                     const color = item.color || 'lightblue';
-                    const explanation = item.explanationText || '';
+                    const rawExplanation = item.explanationText || '';
 
-                    if (color === 'darkgreen') {
-                        const badge = `<span class='mytooltip' style='background-color: darkgreen; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[A]<span class='mytooltiptext'>${explanation}</span></span>`;
-                        if (!prependedBadges.includes(badge)) {
-                            prependedBadges.push(badge);
+                    if (e.tooltip_mode === 'smart') {
+                        const formattedExplanation = formatExplanationHtml(rawExplanation);
+
+                        if (color === 'darkgreen') {
+                            const badge = `<span class='mytooltip' style='background-color: darkgreen; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[A]<span class='mytooltiptext'>${formattedExplanation}</span></span>`;
+                            if (!prependedBadges.includes(badge)) prependedBadges.push(badge);
+                            tokenMap[token] = matchedText;
+                            return token;
                         }
-                        return matchedText;
-                    }
 
-                    if (color === 'darkred') {
-                        const badge = `<span class='mytooltip' style='background-color: darkred; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[!] <span class='mytooltiptext'>${explanation}</span></span>`;
-                        if (!prependedBadges.includes(badge)) {
-                            prependedBadges.push(badge);
+                        if (color === 'darkred') {
+                            const badge = `<span class='mytooltip' style='background-color: darkred; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[!] <span class='mytooltiptext'>${formattedExplanation}</span></span>`;
+                            if (!prependedBadges.includes(badge)) prependedBadges.push(badge);
+                            tokenMap[token] = matchedText;
+                            return token;
                         }
-                        return matchedText;
-                    }
 
-                    if (color === 'darkblue') {
-                        const badge = `<span class='mytooltip' style='background-color: darkblue; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[i]<span class='mytooltiptext'>${explanation}</span></span>`;
-                        if (!prependedBadges.includes(badge)) {
-                            prependedBadges.push(badge);
+                        if (color === 'darkblue') {
+                            const badge = `<span class='mytooltip' style='background-color: darkblue; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[i]<span class='mytooltiptext'>${formattedExplanation}</span></span>`;
+                            if (!prependedBadges.includes(badge)) prependedBadges.push(badge);
+                            tokenMap[token] = matchedText;
+                            return token;
                         }
-                      return matchedText;
-                    }
 
-                    const textStyle = color === 'silver' ? 'color: black;' : 'color: inherit;';
-                    return `<span class='mytooltip' style='background-color: ${color}; ${textStyle}'>${matchedText}<span class='mytooltiptext'>${explanation}</span></span>`;
+                        const textStyle = color === 'silver' ? 'color: black;' : 'color: inherit;';
+                        tokenMap[token] = `<span class='mytooltip' style='background-color: ${color}; ${textStyle}'>${matchedText}<span class='mytooltiptext'>${formattedExplanation}</span></span>`;
+                        return token;
+
+                    } else {
+                        const textStyle = color === 'silver' ? 'color: black;' : 'color: inherit;';
+                        tokenMap[token] = `<span class='mytooltip' style='background-color: ${color}; ${textStyle}'>${matchedText}<span class='mytooltiptext'>${rawExplanation}</span></span>`;
+                        return token;
+                    }
                 });
             }
             parts[i] = modifiedText;
         }
     }
 
-    const finalHtml = parts.join('');
+    let finalHtml = parts.join('');
 
-    if (prependedBadges.length > 0) {
+
+    for (const token of Object.keys(tokenMap)) {
+        finalHtml = finalHtml.replace(token, tokenMap[token]);
+    }
+
+    if (e.tooltip_mode === 'smart' && prependedBadges.length > 0) {
         return prependedBadges.join(' ') + ' ' + finalHtml;
     }
 
@@ -1937,7 +2126,6 @@ function applyTooltipsToObject(obj) {
         const val = obj[key];
         if (typeof val === 'string') {
             let stored = applyTooltipsToTextOnly(val);
-
             Object.defineProperty(obj, key, {
                 get: () => stored,
                 set: (newVal) => {
@@ -1952,21 +2140,17 @@ function applyTooltipsToObject(obj) {
     }
 }
 
-if (e.tooltips_on) {
-  for (const prop of ['questions_json', 'answers_json', 'answer_feedback_json']) {
+for (const prop of ['questions_json', 'answers_json', 'answer_feedback_json']) {
     let stored = campaignTrail_temp[prop];
     Object.defineProperty(campaignTrail_temp, prop, {
-      get: () => stored,
-      set: (newVal) => {
-        if (newVal) {
-          applyTooltipsToObject(newVal);
-        }
-        stored = newVal;
-      },
-      configurable: true,
-      enumerable: true,
+        get: () => stored,
+        set: (newVal) => {
+            if (newVal) applyTooltipsToObject(newVal);
+            stored = newVal;
+        },
+        configurable: true,
+        enumerable: true,
     });
-  }
 }
 
 // automatically detect boundaries and flip tooltip layout if screen space is limited
@@ -1980,12 +2164,46 @@ document.addEventListener('mouseover', function(e) {
     if (!tooltipText) return;
 
     tooltipText.classList.remove('flip-bottom');
+    tooltipText.style.left = '';
+
+    if (e.tooltip_mode !== 'smart') return;
 
     const parentRect = tooltip.getBoundingClientRect();
-    const textHeight = tooltipText.offsetHeight || 180;
+    const textHeight = tooltipText.offsetHeight || 185;
+    const textWidth = tooltipText.offsetWidth || 460;
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
     if (parentRect.top - textHeight - 15 < 0) {
         tooltipText.classList.add('flip-bottom');
+    }
+
+    const projectedLeft = parentRect.left + (parentRect.width / 2) - (textWidth / 2);
+    const projectedRight = projectedLeft + textWidth;
+
+    let shiftX = 0;
+    const padding = 12;
+
+    if (projectedLeft < padding) {
+        shiftX = padding - projectedLeft;
+    } else if (projectedRight > viewportWidth - padding) {
+        shiftX = (viewportWidth - padding) - projectedRight;
+    }
+
+    if (shiftX !== 0) {
+        tooltipText.style.left = `calc(50% + ${shiftX}px)`;
+    }
+});
+
+document.addEventListener('mouseout', function(e) {
+    const tooltip = e.target.closest('.mytooltip');
+    if (!tooltip) return;
+
+    if (tooltip.contains(e.relatedTarget)) return;
+
+    const tooltipText = tooltip.querySelector('.mytooltiptext');
+    if (tooltipText) {
+        tooltipText.style.left = '';
+        tooltipText.classList.remove('flip-bottom');
     }
 });
 
