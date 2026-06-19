@@ -5837,19 +5837,19 @@ campaignTrail_temp.issues_json = [
 			"name": "Economics",
 			"description": "The opinion this state has regarding economic policy including taxation, health care, unions, and minimum wage.",
 			"stance_1": "Billionaires Know Best",
-			"stance_desc_1": "For people here, the conventional wisdom is as simple as it's wrong: that the wealthiest among us - the billionaires who make their fortunes off the backs of hardworking Americans - should have more control, more power, more influence over how our economy works.",
+			"stance_desc_1": "Voters here strongly favor laissez-faire capitalism and minimal state intervention, believing that market forces and private enterprise are the most efficient drivers of economic growth.",
 			"stance_2": "Trickle-Down Forever",
-			"stance_desc_2": "Let me be clear: people here continue to believe in a fantasy - a fantasy that somehow, someway, what they call trickle-down economics works. For decades, we've watched the rich get richer, while working people, the middle class, are left behind. ",
+			"stance_desc_2": "Voters here support supply-side economics, favoring deregulation and tax cuts for corporations and high-income earners to stimulate investment.",
 			"stance_3": "Right to Work",
-			"stance_desc_3": "People here, unfortunately, they believe in the so-called 'Right to Work' laws. What these laws do is weaken unions, strip workers of their bargaining power, and drive down wages for everyone while the billionaires reap the profits. That's the truth, folks.",
+			"stance_desc_3": "Voters here support a business-friendly environment, favoring policies like right-to-work laws and limited union influence to keep labor costs competitive.",
 			"stance_4": "American Dream",
-			"stance_desc_4": "Look, people here still hold on to the remnants of this old idea of the American Dream - the idea that businessmen and workers can somehow work together, that if you work hard enough, you can make it. But let me tell you, folks, the system, as it stands, it's rigged.",
+			"stance_desc_4": "Voters here favor a mixed economy, supporting traditional opportunities for upward mobility through hard work while endorsing moderate consumer and labor protections.",
 			"stance_5": "Fair Wages Now",
-			"stance_desc_5": "Look, people here are taking a step in the right direction, but let me be clear - it's not nearly enough. Raising wages and improving working conditions for people, that's great, but it's only a start, a band-aid over the real problem.",
+			"stance_desc_5": "Voters here support moderate progressive economic reforms, including incremental increases to the minimum wage and strengthening the social safety net.",
 			"stance_6": "Tax the Rich",
-			"stance_desc_6": "Look folks, people here are finally embracing the idea of taxing the rich - and let me tell you, that's a step in the right direction. Why? Because we all know the simple truth: the wealthiest among us have hoarded an unfair share of the country's resources.",
+			"stance_desc_6": "Voters here advocate for robust progressive taxation and stronger government intervention to combat wealth inequality and fund public services.",
 			"stance_7": "People Over Profits",
-			"stance_desc_7": "People here prioritize workers' rights, universal healthcare, and protecting the environment over corporate greed. That's the kind of vision we need, the vision I've been fighting my whole life for - a vision where the economy works for the people, not the other way around.",
+			"stance_desc_7": "Voters here strongly favor democratic socialist policies, supporting universal healthcare, major corporate regulations, and aggressive wealth redistribution.",
 			"election": 20
 		}
 	},
@@ -5860,19 +5860,19 @@ campaignTrail_temp.issues_json = [
 			"name": "Globalism",
 			"description": "The opinion this state has on the establishment neoliberal paradigm including support for free or fair trade, international cooperation and foreign intervention, and general trust in the system.",
 			"stance_1": "America First",
-			"stance_desc_1": "People here think we should just forget about the rest of the world and focus solely on ourselves. And I get it, folks, I really do. But let me be clear: turning inward, rejecting global cooperation, and forgetting about the broader world is not the answer.",
+			"stance_desc_1": "Voters here favor an isolationist, nationalist foreign policy that prioritizes domestic interests above international treaties and global alliances.",
 			"stance_2": "Come Home America",
-			"stance_desc_2": "Look folks, I understand the sentiment. Many people across the country, including here, are fed up with endless wars and trade deals that only benefit the rich and powerful. But let me be clear: we can't just pull back from the world and pretend nothing will happen.",
+			"stance_desc_2": "Voters here oppose foreign interventions and military entanglements, favoring a reduction in defense spending and global commitments.",
 			"stance_3": "Diplomacy First",
-			"stance_desc_3": "Let me be clear: people here believe, like I do, in the idea of putting diplomacy first. And that, my friends, is the best policy for the complex world we live in today. You see, we have to focus on understanding and respect, not guns and bombs.",
+			"stance_desc_3": "Voters here favor a diplomatic approach to foreign policy, prioritizing multilateral cooperation and international institutions to resolve conflicts.",
 			"stance_4": "Peace through Strength",
-			"stance_desc_4": "Now, look, people here, they say they believe in having a strong military to protect ourselves. But when you dig a little deeper, what you find is that it's often just a cover for maintaining the status quo - the same old military power and corporate interests.",
+			"stance_desc_4": "Voters here support a strong, well-funded military to deter adversaries and maintain international stability through strategic power.",
 			"stance_5": "Defend Human Rights",
-			"stance_desc_5": "Let me be clear: people here talk about intervening overseas to help people who are suffering, standing up against human rights abuses. It sounds good, right? But in practice, what happens, folks? More often than not, it's really about protecting economic interests or pushing military dominance.",
+			"stance_desc_5": "Voters here support a foreign policy that prioritizes humanitarian aid and intervention to protect human rights globally.",
 			"stance_6": "Defend Democracy",
-			"stance_desc_6": "Look, people here talk a lot about the ideal of defending democracies overseas when they're attacked. But too often, it's nothing more than a cover for neoconservative policies that serve the interests of big corporations and military contractors - not the interests of ordinary people.",
+			"stance_desc_6": "Voters here believe the nation has a vital role in defending and supporting democratic regimes worldwide against authoritarian aggression.",
 			"stance_7": "Export Democracy",
-			"stance_desc_7": "Let me be clear: people here support the idea of ‘exporting democracy,' which is nothing more than a cover for corporate interests and military intervention. Folks, we've seen how this policy has been used to justify endless wars and the exploitation of people around the world.",
+			"stance_desc_7": "Voters here support an active, interventionist foreign policy aimed at promoting democratic governance and free-market values globally.",
 			"election": 20
 		}
 	},
@@ -5883,19 +5883,19 @@ campaignTrail_temp.issues_json = [
 			"name": "Social Issues",
 			"description": "The opinion this state has on social issues such as LGBTQ+ rights, abortion, climate change, gender and racial equality, and the general conventions of the presidency.",
 			"stance_1": "Don't Say Gay",
-			"stance_desc_1": "Let me be clear, people: The people in this state would rather bury their heads in the sand and pretend that the last few decades of progress didn't happen! These so-called 'Don't Say Gay' policies - let me tell you - they are rooted in fear and bigotry.",
+			"stance_desc_1": "Voters here hold highly traditional social views, favoring strict limitations on LGBTQ+ representation and LGBTQ-inclusive education.",
 			"stance_2": "Stop WOKE",
-			"stance_desc_2": "Let me be clear, folks: whenever real change happens, it's always over the objections of the rich and the powerful. And unfortunately, the people here have bought into those lies about the threat posed by so-called woke ideas.",
+			"stance_desc_2": "Voters here oppose progressive social movements, viewing diversity, equity, and inclusion initiatives as culturally divisive and unnecessary.",
 			"stance_3": "Family Values",
-			"stance_desc_3": "Folks, people here like to talk about family values, but let me tell you something - those values often have nothing to do with protecting families. True family values mean guaranteeing paid maternity leave, sick leave, affordable childcare, and making sure families can live in dignity and security.",
+			"stance_desc_3": "Voters here prioritize traditional family structures and conservative social values, favoring policies that support classic household models.",
 			"stance_4": "Safe, Legal, and Rare",
-			"stance_desc_4": "This old Clintonite approach to issues like abortion and gay rights, well, it might sound reasonable to folks here, but it's rooted in a mindset that doesn't fully embrace justice for all. You know, the idea that these rights should just be something we tolerate, rather than something we accept and celebrate.",
+			"stance_desc_4": "Voters here hold moderate views on social issues, supporting abortion access with certain restrictions and favoring middle-ground consensus.",
 			"stance_5": "Freedom of Choice",
-			"stance_desc_5": "Look, folks, people here believe in personal autonomy, they believe in equality - and that's important, that's good. But, let me be clear, they don't always see the urgency, the urgency that's necessary to make real change.",
+			"stance_desc_5": "Voters here support individual autonomy and reproductive rights, favoring a pro-choice stance on abortion and general social tolerance.",
 			"stance_6": "Black Lives Matter",
-			"stance_desc_6": "Let me be clear: people here - people across this state - support the multitude of liberation movements like Black Lives Matter, movements that have emerged because of the undeniable, centuries-long injustice faced by Black people and other marginalized communities.",
+			"stance_desc_6": "Voters here strongly support racial justice initiatives and systemic reforms to address historical inequalities.",
 			"stance_7": "Liberation Now",
-			"stance_desc_7": "Look, let me be clear: the people here support the boldest push for equality and justice. We're talking about a vision where issues like abortion rights, LGBT rights, and racial justice aren't just accepted, but they are actively fought for.",
+			"stance_desc_7": "Voters here advocate for rapid, progressive social transformation, supporting extensive protections for marginalized groups and absolute reproductive freedom.",
 			"election": 20
 		}
 	},
@@ -5906,19 +5906,19 @@ campaignTrail_temp.issues_json = [
 			"name": "Immigration",
 			"description": "The opinion this state has on immigration policy such as refugees, undocumented immigration, migrant caravans, and the infamous Wall advocated by former President Trump.",
 			"stance_1": "Deport Illegals",
-			"stance_desc_1": "Sadly, folks here believe that the solution to our immigration challenges is to round up millions of undocumented immigrants and deport them en masse. This idea of suddenly, one day or maybe a night, rounding up 11 million people and taking them outside of this country is a vulgar, absurd idea that I would hope very few people in America support.",
+			"stance_desc_1": "Voters here favor strict enforcement of immigration laws, including the deportation of undocumented immigrants to maintain national sovereignty.",
 			"stance_2": "Build the Wall",
-			"stance_desc_2": "Look, folks, there are people here telling us that immigrants are some kind of threat, and that we need to build walls to separate us. But let me tell you something: this is the kind of divisive rhetoric that's pushed by the wealthy elites to distract from the real issues.",
+			"stance_desc_2": "Voters here support physical border barriers and strict enforcement policies to deter illegal immigration.",
 			"stance_3": "Secure the Borders",
-			"stance_desc_3": "Look, people here have been fed a steady diet of corporate fearmongering about some so-called invasion of undocumented people. They talk about 'protecting national security' and 'securing the borders,' but let's be clear - this is rooted in fear and misinformation.",
+			"stance_desc_3": "Voters here prioritize border security and orderly, regulated immigration processes over open integration.",
 			"stance_4": "Enforce the Laws",
-			"stance_desc_4": "Now, let me be clear: what the people here want on immigration is nothing more than enforcement of existing laws. What they want is to put punishment over compassion, leaving millions of people in limbo with no real path forward.",
+			"stance_desc_4": "Voters here support moderate enforcement of current immigration immigration laws, emphasizing rule-of-law and procedural efficiency.",
 			"stance_5": "Path to Citizenship",
-			"stance_desc_5": "Look, folks, many people here support a path to citizenship for undocumented immigrants. That's a step in the right direction. It's a recognition that immigrants contribute to our communities, and they deserve a chance to live here legally.",
+			"stance_desc_5": "Voters here support a balanced approach, combining border security with a structured pathway to legal status for undocumented residents.",
 			"stance_6": "Comprehensive Reform",
-			"stance_desc_6": "Look, people here understand the need for comprehensive immigration reform, a policy that is based on fairness, equality, and compassion. We believe that immigrants, like all people, deserve dignity and the opportunity to thrive.",
+			"stance_desc_6": "Voters here favor comprehensive immigration reform, prioritizing humanitarian asylum processes and accessible paths to citizenship.",
 			"stance_7": "Open Borders",
-			"stance_desc_7": "People here support the idea of open borders, a right-wing neoliberal proposal that would make everybody in America poorer. If you believe in a country called the United States or any other country, you have an obligation to do everything we can to help poor people, rather than an open-borders policy in which you bring in all kinds of people who work for $2 or $3 an hour.",
+			"stance_desc_7": "Voters here support highly permissive immigration policies, advocating for free movement and minimal border restrictions.",
 			"election": 20
 		}
 	},
@@ -5928,20 +5928,20 @@ campaignTrail_temp.issues_json = [
 		"fields": {
 			"name": "Inflation",
 			"description": "How much prices have risen in this state.",
-			"stance_1": "60+% price increase",
-			"stance_desc_1": "Let me be clear: people here are not just underwater, they're drowning. The increase in cost of living, folks, it's skyrocketed. More than sixty percent! No working family, no single mother, no senior on a fixed income can afford that.",
-			"stance_2": "50% price increase",
-			"stance_desc_2": "Let me be clear: we are facing an astronomical rise in prices - fifty percent - since I took office. And this, this is something that no working family can bear.",
-			"stance_3": "40% price increase",
-			"stance_desc_3": "Forty percent. Forty percent! That's the staggering, devastating rise in prices since the start of my term. Think about it! Families, working families, struggling to put food on the table, their paychecks stretched thinner and thinner every single month.",
-			"stance_4": "30% price increase",
-			"stance_desc_4": "Thirty percent! That kind of price increase since 2021 is absolutely devastating for working families. It wipes out the gains we've made in wages and job growth, and it's hurting people who are already struggling.",
-			"stance_5": "20% price increase",
-			"stance_desc_5": "Twenty percent - that's how much prices have gone up here since I took office. It's an unbearable increase, folks, especially for working families who are already struggling to make ends meet. Think about the seniors on fixed incomes, the parents who have to choose between paying rent and buying groceries.",
-			"stance_6": "10% price increase",
-			"stance_desc_6": "Ten percent! Ten percent, that's how much prices have risen here since I took office. And let me tell you something - that's not just numbers on a page! It's real pain. Real pain for working families who are struggling every day to pay rent, to buy groceries, to keep their homes warm in the winter.",
-			"stance_7": "Inflation? What Inflation?",
-			"stance_desc_7": "Look, let me be clear. As far as people here are concerned, inflation is not the serious issue it's being made out to be. The real issue is the growing wealth inequality, the concentration of power in the hands of the few, and the fact that working people are struggling every single day to make ends meet.",
+      "stance_1": "Extremely High",
+			"stance_desc_1": "Voters here are facing extreme cost-of-living increases, severely impacting household budgets and basic purchasing power.",
+			"stance_2": "Very High",
+			"stance_desc_2": "Voters here are experiencing high inflation, putting significant pressure on the affordability of essential goods and services.",
+			"stance_3": "High",
+			"stance_desc_3": "Voters here are dealing with substantial price increases, leading to noticeable strains on average family incomes.",
+			"stance_4": "Moderate",
+			"stance_desc_4": "Voters here feel the impact of moderate-to-high inflation, requiring careful household budgeting as prices rise.",
+			"stance_5": "Low-to-Moderate",
+			"stance_desc_5": "Voters here are experiencing moderate price increases, presenting minor but persistent challenges to cost-of-living stability.",
+			"stance_6": "Low",
+			"stance_desc_6": "Voters here are seeing low-to-moderate inflation, with manageable impacts on the local economy.",
+			"stance_7": "Stable",
+			"stance_desc_7": "Voters here perceive inflation as a minor concern, prioritizing larger structural economic issues instead.",
 			"election": 20
 		}
 	}
@@ -56848,7 +56848,7 @@ function checkInput() {
 					  border-width: 0;
 					  margin: 0 auto;
 					  background-position: center 55%;
-					  width: 99%;
+					  width: 100%;
 					  height: 112px;
 					  margin-left: 0.03em;
 					}
@@ -58328,13 +58328,16 @@ function applyKamala() {
           border-width: 0;
           margin: 0 auto;
           background-position: center 55%;
-          width: 99%;
+          width: 100%;
           height: 112px;
           margin-left: 0.03em;
       }
       #map_container {
-          background-image: url("https://i.imgur.com/pkTlUov.jpeg");
+          background: url("https://i.imgur.com/pkTlUov.jpeg") !important;
           background-size: cover;
+      }
+      .container {
+          background-color: #4c40aa !important;
       }
   `;
 
@@ -58354,8 +58357,8 @@ function applyKamala() {
 
   //change Kamala theme, thanks to Skittie
   if (typeof nct_stuff !== 'undefined' && nct_stuff.themes && nct_stuff.themes[nct_stuff.selectedTheme]) {
-      nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1f1945 !important";
-      nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#4c40aa !important";
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#1f1945";
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#4c40aa";
 
       let gameHeader = document.getElementsByClassName("game_header")[0];
       if (gameHeader) gameHeader.style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
@@ -58399,7 +58402,7 @@ function applyVP(VPnum) {
 				  border-width: 0;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 99%;
+				  width: 100%;
 				  height: 112px;
 				  margin-left: 0.03em;
 				}
@@ -58423,7 +58426,7 @@ function applyVP(VPnum) {
 				  border-width: 0;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 99%;
+				  width: 100%;
 				  height: 112px;
 				  margin-left: 0.03em;
 				}
@@ -58447,7 +58450,7 @@ function applyVP(VPnum) {
 				  border-width: 0;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 99%;
+				  width: 100%;
 				  height: 112px;
 				  margin-left: 0.03em;
 				}
@@ -58471,7 +58474,7 @@ function applyVP(VPnum) {
 				  border-width: 0;
 				  margin: 0 auto;
 				  background-position: center 55%;
-				  width: 99%;
+				  width: 100%;
 				  height: 112px;
 				  margin-left: 0.03em;
 				}
@@ -63926,7 +63929,7 @@ customStyling.innerHTML = `
 		  border-width: 0;
 		  margin: 0 auto;
 		  background-position: center 55%;
-		  width: 99%;
+		  width: 100%;
 		  height: 112px;
 		  margin-left: 0.03em;
 		}

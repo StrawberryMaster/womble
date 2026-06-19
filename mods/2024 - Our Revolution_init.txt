@@ -1268,6 +1268,26 @@ const main = `
 		#overall_result_container {
 			overflow: auto;
 		}
+		button {
+        background: #bfd7ff;
+        color: #000;
+        border: 2px solid #3867e7;
+        border-radius: 3px;
+        font-family: Arial, sans-serif;
+        box-shadow:
+            0 2px 4px rgba(0,0,0,.12);
+        padding: 2px 7px;
+    }
+
+    button:hover {
+        background: #254db3;
+        color: #fff;
+    }
+
+    button:active {
+        background: #173274;
+        color: #fff;
+    }
 
 
 		#game_window {
@@ -1278,6 +1298,9 @@ const main = `
 		.container {
 			background-color: #0650ac !important;
 			border: .3em solid rgba(165, 170, 220, 0.75);
+		}
+		.footer {
+		  border-top: 10px ridge #0650ac;
 		}
 		.game_header {
 		  background-color: rgb(36, 45, 128);
@@ -1913,7 +1936,7 @@ function applyStyleTheme(mode) {
                 border-radius: 6px;
                 padding: 10px;
                 position: absolute;
-                z-index: 99;
+                z-index: 9999;
                 bottom: 20%;
                 left: 20%;
                 margin-left: -90px;
@@ -1970,13 +1993,14 @@ function applyStyleTheme(mode) {
                 z-index: 9999;
             }
             .mytooltip-flex-container {
-                display: flex;
+                display: inline-flex;
                 flex-direction: row;
                 align-items: flex-start;
                 gap: 12px;
+                width: 100%;
             }
             .mytooltip-images {
-                display: flex;
+                display: inline-flex;
                 flex-flow: row wrap;
                 justify-content: center;
                 gap: 4px;
@@ -1995,6 +2019,7 @@ function applyStyleTheme(mode) {
                 max-width: 120px;
             }
             .mytooltip-body {
+                display: inline-block;
                 flex-grow: 1;
                 color: inherit;
             }
@@ -2033,14 +2058,14 @@ function formatExplanationHtml(explanationHtml) {
 
     if (imgs.length > 0) {
         return `
-            <div class='mytooltip-flex-container'>
-                <div class='mytooltip-images'>${imgs.join('')}</div>
-                <div class='mytooltip-body'>${textPart}</div>
-            </div>
+            <span class='mytooltip-flex-container'>
+                <span class='mytooltip-images'>${imgs.join('')}</span>
+                <span class='mytooltip-body'>${textPart}</span>
+            </span>
         `;
     }
 
-    return `<div class='mytooltip-body'>${textPart}</div>`;
+    return `<span class='mytooltip-body'>${textPart}</span>`;
 }
 
 const sortedTooltipList = [...tooltipList].sort((a, b) => b.searchString.length - a.searchString.length);
@@ -2048,6 +2073,10 @@ const sortedTooltipList = [...tooltipList].sort((a, b) => b.searchString.length 
 function applyTooltipsToTextOnly(htmlStr) {
     if (typeof htmlStr !== 'string') return htmlStr;
     if (e.tooltip_mode === 'none') return htmlStr;
+
+    if (htmlStr.includes('class="mytooltip"') || htmlStr.includes("class='mytooltip'")) {
+        return htmlStr;
+    }
 
     const prependedBadges = [];
     const tokenMap = {};
@@ -2108,7 +2137,6 @@ function applyTooltipsToTextOnly(htmlStr) {
     }
 
     let finalHtml = parts.join('');
-
 
     for (const token of Object.keys(tokenMap)) {
         finalHtml = finalHtml.replace(token, tokenMap[token]);
