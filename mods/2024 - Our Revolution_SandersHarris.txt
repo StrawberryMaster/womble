@@ -58499,7 +58499,7 @@ cyoAdventure = function (a) {
 
   //implement very janky quasi-Philips curve and economic effects.
   if (inflation <= -5 && economy >= -10) { //deflation bad
-    economy -= -0.4;
+    economy -= 0.4;
   }
   else if (inflation > -5 && inflation < 0.5 && economy > -5) { //possibility of Japan-style stagnation if monetary policy insufficiently permissive
     economy -= 0.15;
@@ -58577,6 +58577,9 @@ cyoAdventure = function (a) {
     }
     applyDrift(300, -0.002);
     economy_effect += -0.002
+    if (inflation > 1.5) {
+      inflation -= 0.02; // smooth out the cooling curve instead of leaving inflation frozen
+    }
   }
   else if (economy < 0 && economy >= -5) {
     inflation -= 0.1;
@@ -58606,6 +58609,7 @@ cyoAdventure = function (a) {
   }
   else if (economy < -10) { //you really messed up to get here.
     inflation -= 0.5;
+    economy -= 0.1;
     if (economy_effect <= -0.06) { //soft cap effect
       applyDrift(300, -0.1 * economy_effect)
       economy_effect *= 0.9
@@ -58954,6 +58958,7 @@ cyoAdventure = function (a) {
   }
   else if (ans == 5004) {
     stimulus += 12
+    inflation += 0.5
     political_capital -= 3
     worker_approval += 2
     party_unity -= 1
@@ -59143,7 +59148,7 @@ cyoAdventure = function (a) {
     bipartisan += 1
     if ((ans == 10002 && political_capital - senate_lost * 5 >= 3) || (ans == 10102 && political_capital - senate_lost >= 2) || (ans == 10202 && political_capital - senate_lost >= 1)) {
       stimulus += 2 //this is how to pass the Bipartisan Infrastructure Law.
-      inflation -= 0.5 //improving supply chains via infrastructure gives an inflation 'discount'
+      inflation -= 1.0 //improving supply chains via infrastructure gives an inflation 'discount'
       worker_approval += 0.5 //half a loaf
     }
   }
@@ -59590,7 +59595,7 @@ cyoAdventure = function (a) {
     party_unity -= 2
     political_capital -= 2
     worker_approval += 2 //unions likey
-    inflation += 1 //stopping the supply chain
+    inflation += 0.5 //stopping the supply chain
     economy -= 1 //when you're in the middle of a supply chain crisis
     adversary_approval += 1 //you look like an ideologue
   }
@@ -59701,7 +59706,7 @@ cyoAdventure = function (a) {
   }
   else if (ans == 23001) {
     if (coin_used == 1) {
-      inflation += 1 //less other effect because it's expected.
+      inflation += 0.5 //less other effect because it's expected.
     }
     else {
       political_capital -= 1
@@ -59732,6 +59737,8 @@ cyoAdventure = function (a) {
       party_unity -= 4 //circular firing squad
       economy -= 1 //cave to Republican demands
       inflation -= 0.5
+      r_radical += 1
+      bipartisan -= 1
       //but they do it over your objections so workers don't blame you.
       ctsAchievement("Definition of Insanity")
     }
@@ -62016,8 +62023,8 @@ cyoAdventure = function (a) {
           }
         }
         else { //hard win. PRC still loses badly.
-          economy -= 2 //Taiwan microchip factories are seriously damaged in war.
-          inflation += 2
+          economy -= 1 //Taiwan microchip factories are seriously damaged in war.
+          inflation += 1
           e.questions_json[campaignTrail_temp.question_number + 1] = tunnel(24500)
           if (Math.ceil(Math.random() * 100) <= 10 && e.random_on) {
             q24503_bad = 1
@@ -63168,7 +63175,7 @@ cyoAdventure = function (a) {
       styleTarget.id = "styleElem";
       document.head.appendChild(styleTarget);
     }
-    styleTarget.innerHTML += `#state_result_container { overflow: auto;}`;
+    //styleTarget.innerHTML += `#state_result_container { overflow: auto;}`;
 
     //add overflow protection to state result containers. This should make them have scrolling overflow for final results, but not restrict issue descriptions prior on CTS.
     biden_answers = [

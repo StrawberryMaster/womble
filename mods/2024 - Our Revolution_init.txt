@@ -1332,9 +1332,12 @@ const main = `
 		#menu_container, #overall_result_container {
 		  background: #323891;
 		}
-		#overall_result h3, #state_info h3 {
+		#overall_result h3, #state_info h3, #state_result h3 {
 		  background-color: #c4d1f0;
 		  padding: .15em .1em;
+		}
+		#state_result_container {
+		  background: #323891;
 		}
 
 		/* for longer election summaries */
