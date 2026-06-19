@@ -539,7 +539,7 @@ const bernieSongs = [
   ["My King Will Be Kind", "Inhaler", "https://yt3.googleusercontent.com/sSlmMCtQMMfC9UQWOwgtBXvLFBtFC9rwYOFDiOB08JyjQWH4Rtlh9t9pB7pYwnCj94-WvOG1wyYGPbgq=w544-h544-l90-rj", "https://music.youtube.com/watch?v=2ptNz3sFVBM"],
   ["Jackie Down The Line", "Fontaines D.C.", "https://yt3.googleusercontent.com/73tQcKFcXKcheeZyaiD81KI4LZEsRp96bQ1cmEJU35T-H7iu-tHLnTpi6MdVH8XZsaM8iBUzIrg2Bpu1=w544-h544-l90-rj", "https://music.youtube.com/watch?v=tWTU4y_t3a8"],
   ["Morning Sun", "The Sukis", "https://yt3.googleusercontent.com/jTg7uTuY64AUFAXvqgBZn1MWqqi-bWNMeAxuNWDMOB5kAzkX-IKuEw1moNT-K9lAOhOTmGS57TzLiNC9=w544-h544-l90-rj", "https://music.youtube.com/watch?v=LcNBNPNQ7L0"],
-  ["All My Favorie Songs", "Weezer, AJR", "https://yt3.googleusercontent.com/PlI9db5JXRr479Oo7gVBJF2wZsvsGC_YV1NamxPX33xZMbDIBb4uRIsLq2kgftQgQAFwUiAwenEuwF1lWA=w544-h544-l90-rj", "https://music.youtube.com/watch?v=jFIXI6OekbY"],
+  ["All My Favorite Songs", "Weezer, AJR", "https://yt3.googleusercontent.com/PlI9db5JXRr479Oo7gVBJF2wZsvsGC_YV1NamxPX33xZMbDIBb4uRIsLq2kgftQgQAFwUiAwenEuwF1lWA=w544-h544-l90-rj", "https://music.youtube.com/watch?v=jFIXI6OekbY"],
   ["Your Love (Déjà Vu)", "Glass Animals", "https://yt3.googleusercontent.com/w9WrUTZckeY-PCYJsytiVyw5tVCtFsirBtnYGRvSIby3oRjYXHaszrbJsyfmZ6mdbE2UB-c7iqjJdR0=w544-h544-l90-rj", "https://music.youtube.com/watch?v=wCoaPtaeSPw"],
   ["After Coffee", "Joywave", "https://yt3.googleusercontent.com/N0Av0O_N2fvcH3jRV2GDDYOySkzdmQzH9T-NQkBoo131PRWXalTzZj9LDhAc4II_YfOZpeBY5Z2dsqFZ=w544-h544-l90-rj", "https://music.youtube.com/watch?v=O6lPWFNuSAE"],
   ["Infinity Repeating", "Julian Casablancas, Daft Punk, The Voidz", "https://yt3.googleusercontent.com/R5gMfIj_BHfnfJv_X24gjqUskPT9gwonal56ydS9bIkxsHxaaebzNwHjbIruM54pvcMwcI9PpTJpYPAJ=w544-h544-l90-rj", "https://music.youtube.com/watch?v=f903wQHlE3w"],
@@ -1186,40 +1186,64 @@ const main = `
             position: relative;
             display: inline-block;
             cursor: pointer;
-            background-color: lightblue;
+            border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
         }
 
         .mytooltip .mytooltiptext {
-            width: 525px;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+
+            width: 420px;
+            max-width: 85vw;
+            padding: 10px 14px;
+
             background-color: lightblue;
             color: black;
-            text-align: center;
+
+            border: 1px solid rgba(0, 0, 0, 0.3);
             border-radius: 6px;
-            padding: 10px;
-            position: absolute;
-            z-index: 99;
-            bottom: 20%;
-            left: 20%;
-            margin-left: -90px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border: 1px solid black;
-            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+            text-align: left;
             font-size: 13px !important;
-            line-height: 1.5em !important;
+            line-height: 1.4em !important;
             font-weight: normal !important;
             font-style: normal !important;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+            z-index: 9999;
         }
 
         .mytooltip .mytooltiptext img {
-            max-width: 240px;
-            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+            max-height: 95px;
+            max-width: 48%;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            margin: 0 2px 6px 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
         }
 
         .mytooltip:hover .mytooltiptext {
-			transform: translateX(-25%) scaleY(1);
             opacity: 1;
-            transition-delay: 0.5s;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        .mytooltip .mytooltiptext.flip-bottom {
+            bottom: auto;
+            top: 125%;
+            transform: translateX(-50%) translateY(-8px);
+        }
+
+        .mytooltip:hover .mytooltiptext.flip-bottom {
+            transform: translateX(-50%) translateY(0);
         }
 
 		#visit_window {
@@ -1807,7 +1831,159 @@ tooltipList = [
   { searchString: "Hillary", explanationText: "<img src=https://i.imgur.com/pu89D6W.jpeg><br>You didn't always agree with her, but she was brilliant and implacable. She made mistakes, no one can deny that - in 2008, she played it safe when America screamed for boldness and change; in 2016, she ran like it was owed to her, speaking policy while others spoke fire. But can you blame her, when the world can't decide if women are too emotional to lead or too cold to relate? You've tried to learn from her - to de-emphasize your identity, to campaign in those Rust Belt cities, to listen harder and not repeat those same mistakes. But you can't help but wonder - is that enough to break through? Or will you be yet another woman who dents but never quite cracks that highest and hardest glass ceiling?", color: "silver" }
 ]
 
+function escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
+const sortedTooltipList = [...tooltipList].sort((a, b) => b.searchString.length - a.searchString.length);
+
+function runTooltipReplacements(text) {
+    let modifiedText = text;
+
+    for (const item of sortedTooltipList) {
+        const escaped = escapeRegExp(item.searchString);
+        const regex = new RegExp(`(?<=\\b|\\s|^)${escaped}(?=\\b|\\s|$|[.,;!?])`, 'gi');
+
+        modifiedText = modifiedText.replace(regex, (matchedText) => {
+            const color = item.color || 'lightblue';
+            const explanation = item.explanationText || '';
+
+            if (color === 'darkgreen') {
+                return `<span class='mytooltip' style='background-color: darkgreen; color: white; border-radius: 3px; padding: 1px 4px; font-size: 0.9em; font-weight: bold; margin-right: 2px; cursor: pointer;'>[A]<span class='mytooltiptext'>${explanation}</span></span>${matchedText}`;
+            }
+
+            if (color === 'darkred') {
+                return `<span class='mytooltip' style='background-color: darkred; color: white; border-radius: 3px; padding: 1px 4px; font-size: 0.9em; font-weight: bold; margin-right: 2px; cursor: pointer;'>[!] <span class='mytooltiptext'>${explanation}</span></span>${matchedText}`;
+            }
+
+            if (color === 'darkblue') {
+                return `<span class='mytooltip' style='background-color: darkblue; color: white; border-radius: 3px; padding: 1px 4px; font-size: 0.9em; font-weight: bold; margin-right: 2px; cursor: pointer;'>[i]<span class='mytooltiptext'>${explanation}</span></span>${matchedText}`;
+            }
+
+            const textStyle = color === 'silver' ? 'color: black;' : 'color: inherit;';
+            return `<span class='mytooltip' style='background-color: ${color}; ${textStyle}'>${matchedText}<span class='mytooltiptext'>${explanation}</span></span>`;
+        });
+    }
+
+    return modifiedText;
+}
+
+function applyTooltipsToTextOnly(htmlStr) {
+    if (typeof htmlStr !== 'string') return htmlStr;
+
+    const prependedBadges = [];
+
+    const parts = htmlStr.split(/(<[^>]+>)/g);
+
+    for (let i = 0; i < parts.length; i++) {
+        if (!parts[i].startsWith('<')) {
+            let modifiedText = parts[i];
+
+            for (const item of sortedTooltipList) {
+                const escaped = escapeRegExp(item.searchString);
+                const regex = new RegExp(`(?<=\\b|\\s|^)${escaped}(?=\\b|\\s|$|[.,;!?])`, 'gi');
+
+                modifiedText = modifiedText.replace(regex, (matchedText) => {
+                    const color = item.color || 'lightblue';
+                    const explanation = item.explanationText || '';
+
+                    if (color === 'darkgreen') {
+                        const badge = `<span class='mytooltip' style='background-color: darkgreen; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[A]<span class='mytooltiptext'>${explanation}</span></span>`;
+                        if (!prependedBadges.includes(badge)) {
+                            prependedBadges.push(badge);
+                        }
+                        return matchedText;
+                    }
+
+                    if (color === 'darkred') {
+                        const badge = `<span class='mytooltip' style='background-color: darkred; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[!] <span class='mytooltiptext'>${explanation}</span></span>`;
+                        if (!prependedBadges.includes(badge)) {
+                            prependedBadges.push(badge);
+                        }
+                        return matchedText;
+                    }
+
+                    if (color === 'darkblue') {
+                        const badge = `<span class='mytooltip' style='background-color: darkblue; color: white; border-radius: 3px; padding: 1px 5px; font-size: 0.9em; font-weight: bold; margin-right: 5px; cursor: pointer;'>[i]<span class='mytooltiptext'>${explanation}</span></span>`;
+                        if (!prependedBadges.includes(badge)) {
+                            prependedBadges.push(badge);
+                        }
+                      return matchedText;
+                    }
+
+                    const textStyle = color === 'silver' ? 'color: black;' : 'color: inherit;';
+                    return `<span class='mytooltip' style='background-color: ${color}; ${textStyle}'>${matchedText}<span class='mytooltiptext'>${explanation}</span></span>`;
+                });
+            }
+            parts[i] = modifiedText;
+        }
+    }
+
+    const finalHtml = parts.join('');
+
+    if (prependedBadges.length > 0) {
+        return prependedBadges.join(' ') + ' ' + finalHtml;
+    }
+
+    return finalHtml;
+}
+
+function applyTooltipsToObject(obj) {
+    for (const key of Object.keys(obj)) {
+        const val = obj[key];
+        if (typeof val === 'string') {
+            let stored = applyTooltipsToTextOnly(val);
+
+            Object.defineProperty(obj, key, {
+                get: () => stored,
+                set: (newVal) => {
+                    stored = typeof newVal === 'string' ? applyTooltipsToTextOnly(newVal) : newVal;
+                },
+                configurable: true,
+                enumerable: true,
+            });
+        } else if (val && typeof val === 'object') {
+            applyTooltipsToObject(val);
+        }
+    }
+}
+
+if (e.tooltips_on) {
+  for (const prop of ['questions_json', 'answers_json', 'answer_feedback_json']) {
+    let stored = campaignTrail_temp[prop];
+    Object.defineProperty(campaignTrail_temp, prop, {
+      get: () => stored,
+      set: (newVal) => {
+        if (newVal) {
+          applyTooltipsToObject(newVal);
+        }
+        stored = newVal;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+  }
+}
+
+// automatically detect boundaries and flip tooltip layout if screen space is limited
+document.addEventListener('mouseover', function(e) {
+    const tooltip = e.target.closest('.mytooltip');
+    if (!tooltip) return;
+
+    if (tooltip.contains(e.relatedTarget)) return;
+
+    const tooltipText = tooltip.querySelector('.mytooltiptext');
+    if (!tooltipText) return;
+
+    tooltipText.classList.remove('flip-bottom');
+
+    const parentRect = tooltip.getBoundingClientRect();
+    const textHeight = tooltipText.offsetHeight || 180;
+
+    if (parentRect.top - textHeight - 15 < 0) {
+        tooltipText.classList.add('flip-bottom');
+    }
+});
 
 e.mod_achievements = true
 

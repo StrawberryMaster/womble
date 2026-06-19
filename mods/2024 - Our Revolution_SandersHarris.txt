@@ -56894,19 +56894,19 @@ function checkInput() {
         console.log("Clicked on 'View Electoral Map' button.");
 
         // Observe changes in the DOM to react when 'Resume Questions' button becomes available
-        const observer = new MutationObserver(mutations => {
-          mutations.forEach(mutation => {
-            const resumeQuestionsButton = document.getElementById("resume_questions_button");
-            if (resumeQuestionsButton) {
-              // Click the 'Resume Questions' button if found
-              resumeQuestionsButton.click();
-              console.log("Clicked on 'Resume Questions' button.");
-              observer.disconnect(); // Disconnect the observer once the button is clicked
-            }
-          });
+        const observer = new MutationObserver(() => {
+          const resumeQuestionsButton = document.getElementById("resume_questions_button");
+          if (resumeQuestionsButton) {
+            // Click the 'Resume Questions' button if found
+            resumeQuestionsButton.click();
+            console.log("Clicked on 'Resume Questions' button.");
+            observer.disconnect(); // Disconnect the observer once the button is clicked
+          }
         });
+
         // Start observing changes in the DOM
-        observer.observe(document.body, { childList: true, subtree: true });
+        const targetNode = document.getElementById("game_window") || document.body;
+        observer.observe(targetNode, { childList: true, subtree: true });
       }
     }
   }
@@ -63912,85 +63912,6 @@ if (!element) {
   controlElement.style.display = 'none';
   controlElement.id = 'controlElement';
   document.body.appendChild(controlElement);
-}
-
-// Tooltips
-const compiledTooltips = tooltipList.map((tooltip, index) => {
-  const isDark = ['darkblue', 'darkred', 'darkgreen'].includes(tooltip.color);
-  const style  = tooltip.color != null
-    ? ` style='background-color:${tooltip.color}${isDark ? ';color:white' : ''}'`
-    : '';
-
-  return {
-    index,
-    regex: new RegExp(
-      `(?<=\\b|\\s|^|")${tooltip.searchString}(?=[.,;!?]?(?:\\b|\\s|"|$))`, 'g'
-    ),
-    html: `<span class='mytooltip'${style}>${tooltip.searchString}` +
-          `<span class='mytooltiptext'>${tooltip.explanationText}</span></span>`
-  };
-});
-
-function getTooltips(str) {
-  const matches = [];
-
-  for (const { regex, index } of compiledTooltips) {
-    for (const match of str.matchAll(regex)) {
-      matches.push({
-        start: match.index,
-        end:   match.index + match[0].length,
-        tooltipIndex: index
-      });
-    }
-  }
-
-  // sort by position; longer match wins on ties
-  matches.sort((a, b) => a.start - b.start || (b.end - b.start) - (a.end - a.start));
-
-  // single-pass overlap removal
-  const filtered = [];
-  let lastEnd = -1;
-  for (const m of matches) {
-    if (m.start >= lastEnd) {
-      filtered.push(m);
-      lastEnd = m.end;
-    }
-  }
-
-  return filtered;
-}
-
-function applyTooltips(str) {
-  const matches = getTooltips(str);
-  if (!matches.length) return str;
-
-  const parts = [];
-  let lastIndex = 0;
-
-  for (const { start, end, tooltipIndex } of matches) {
-    parts.push(str.slice(lastIndex, start), compiledTooltips[tooltipIndex].html);
-    lastIndex = end;
-  }
-
-  parts.push(str.slice(lastIndex));
-  return parts.join('');
-}
-
-function applyTooltipsToObject(obj) {
-  for (const key in obj) {
-    const val = obj[key];
-    if (typeof val === 'string') {
-      obj[key] = applyTooltips(val);
-    } else if (val !== null && typeof val === 'object') {
-      applyTooltipsToObject(val);
-    }
-  }
-}
-
-if (e.tooltips_on) {
-  applyTooltipsToObject(campaignTrail_temp.questions_json);
-  applyTooltipsToObject(campaignTrail_temp.answers_json);
-  applyTooltipsToObject(campaignTrail_temp.answer_feedback_json);
 }
 
 let style = document.createElement('style');
