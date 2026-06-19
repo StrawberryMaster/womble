@@ -1268,7 +1268,7 @@ const main = `
 		#overall_result_container {
 			overflow: auto;
 		}
-		button {
+		button, select {
         background: #bfd7ff;
         color: #000;
         border: 2px solid #3867e7;
@@ -1279,12 +1279,12 @@ const main = `
         padding: 2px 7px;
     }
 
-    button:hover {
+    button:hover, select:hover {
         background: #254db3;
         color: #fff;
     }
 
-    button:active {
+    button:active, select:active {
         background: #173274;
         color: #fff;
     }
@@ -1298,6 +1298,9 @@ const main = `
 		.container {
 			background-color: #0650ac !important;
 			border: .3em solid rgba(165, 170, 220, 0.75);
+		}
+		.campaign_trail_start_emphasis {
+		  background: #a3b3f07d;
 		}
 		.footer {
 		  border-top: 10px ridge #0650ac;
@@ -1471,7 +1474,7 @@ const main = `
 			color: #000;
 			padding: 6px 10px;
 			width: 500px;
-			font-family: 'Courier New', Courier, monospace;
+			font-family: IBM Courier, Consolas, 'Courier New', Courier, monospace;
 			font-size: 13px;
 			border: 1px solid #000;
 			border-radius: 5px;
@@ -1551,14 +1554,11 @@ applyGlobalStyles(main, 'css');
 
     const select = document.createElement("select");
     select.id = id;
-    select.style.padding = "4px";
-    select.style.borderRadius = "4px";
-    select.style.fontSize = "13px";
 
     const options = [
-      { value: 'none', text: 'Disable Tooltips' },
-      { value: 'classic', text: 'Classic (Centered)' },
-      { value: 'smart', text: 'Smart (Side-by-Side)' }
+      { value: 'none', text: 'Disable tooltips' },
+      { value: 'classic', text: 'Classic' },
+      { value: 'smart', text: 'Smart' }
     ];
 
     options.forEach(opt => {

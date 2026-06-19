@@ -56086,13 +56086,14 @@ else if (e.difficulty_level_id >= 5) { //hard and greater difficulty levels get 
   r_radical += 10
 }
 
-if (e.random_on) {
-  e.global_parameter_json[0].fields.global_variance = 0.01
-  e.global_parameter_json[0].fields.state_variance = 0.005
-}
-else {
-  e.global_parameter_json[0].fields.global_variance = 0 //remove all variance retroactively.
-  e.global_parameter_json[0].fields.state_variance = 0
+if (campaignTrail_temp.global_parameter_json && campaignTrail_temp.global_parameter_json[0]) {
+  if (e.random_on) {
+    e.global_parameter_json[0].fields.global_variance = 0.01;
+    e.global_parameter_json[0].fields.state_variance = 0.005;
+  } else {
+    e.global_parameter_json[0].fields.global_variance = 0; //remove all variance retroactively.
+    e.global_parameter_json[0].fields.state_variance = 0;
+  }
 }
 
 if (e.hard_midterms) {
@@ -57580,8 +57581,8 @@ function applyOpponent(OpponentValue) {
   }
   else if (OpponentValue == 2) {
 	//poll bias: smaller. Roughly +1.5% R margin at end.
-	applyDrift(301,0.04) //will be canceled out at end. Partly cancels out polling bias nationally due to less non-college dominance
-	poll_adjust-=0.04 //to be canceled out at end
+	applyDrift(301,-0.04) //will be canceled out at end. Partly cancels out polling bias nationally due to less non-college dominance
+	poll_adjust=0.04 //to be canceled out at end
 	surprise_boost = "R" //for feedback
     applySalience(110, 0.075) //increases importance of econ in the election
     applySalience(113, 0.075) //increases importance of immigration in the election
@@ -57647,8 +57648,8 @@ function applyOpponent(OpponentValue) {
   }
   else if (OpponentValue == 3) {
 	//poll bias: smaller. Roughly +1.5% R margin at end.
-	applyDrift(301,0.04) //will be canceled out at end. Partly cancels out polling bias nationally due to less non-college dominance
-	poll_adjust-=0.04 //to be canceled out at end
+	applyDrift(301,-0.04) //will be canceled out at end. Partly cancels out polling bias nationally due to less non-college dominance
+	poll_adjust=0.04 //to be canceled out at end
 	surprise_boost = "R" //for feedback
     applySalience(111, 0.075) //increases importance of globalism/foreign policy in the election
     applySalience(113, 0.075) //increases importance of immigration in the election
@@ -57713,8 +57714,8 @@ function applyOpponent(OpponentValue) {
   }
   else if (OpponentValue == 4) {
 	//poll bias: smaller. Roughly +2% R margin at end.
-	applyDrift(301,0.03) //will be canceled out at end. Partly cancels out polling bias nationally due to less non-college dominance
-	poll_adjust-=0.03 //to be canceled out at end
+	applyDrift(301,-0.03) //will be canceled out at end. Partly cancels out polling bias nationally due to less non-college dominance
+	poll_adjust=0.03 //to be canceled out at end
 	surprise_boost = "R" //for feedback
     applySalience(112, 0.075) //increases importance of social policy in the election
     applySalience(113, 0.075) //increases importance of immigration policy in the election
@@ -57969,7 +57970,9 @@ function applyOpponent(OpponentValue) {
   }
   else if (OpponentValue == 11) { //for assassination results, don't overwrite issue scores because keep the effect of previous attacks.
     //poll bias: larger. Roughly +4.5% R margin at end.
-	applyDrift(301,-0.02) //Vance is kinda Extra MAGA
+    applyDrift(301, -0.02) //Vance is kinda Extra MAGA
+    applyDrift(301, -0.01, 1108); // lose part of Trump's Florida advantage
+    applyDrift(301, 0.015, 1134);  // gain Vance's Ohio home-state advantage
 	poll_adjust+= 0.02
 	surprise_boost = "R"
 	applySalience(111, 0.15) //increases importance of globalism in the election
@@ -58162,6 +58165,7 @@ function applyOpponent(OpponentValue) {
     e.candidate_issue_score_json[8].fields.issue_score += -0.15
     applyDrift(301, -0.01, 1124) //lose part of Hawley home state effect
     applyDrift(301, 0.01, 1103) //Arkansas for Cotton home state effect
+    applyDrift(301, 0.02, 1134);  // Ohio for Vance home state effect
     opponent_maga = true
     e.candidate_json[2].fields.color_hex = "#662828" //Vance color hex
   }
@@ -58284,6 +58288,7 @@ function applyRFKEndorse() {
 function applyBernieEffect(value) {
   applyDrift(300, -0.005 * value, 1108) //at 10, -0.05 in Florida
   applyDrift(300, 0.006 * value, 1118) //at 10, +0.06 in Maine
+  applyDrift(300, 0.015 * value, 1151) //at 10, +0.15 in ME-01
   applyDrift(300, 0.022 * value, 1152) //at 10, +0.22 in ME-02
   applyDrift(300, 0.013 * value, 1128) //at 10, +0.13 in NH
   applyDrift(300, 0.02 * value, 1144) //at 10, +0.2 in VT
@@ -58291,6 +58296,18 @@ function applyBernieEffect(value) {
   //turnout effect
   for (let StateNum = 0; StateNum < 51; StateNum++) { //stop before ME-01 to NE-03
     e.states_json[StateNum].fields.popular_votes += bernie_turnout_effect[StateNum] * value //turn Bernie turnout into real-world 2024 turnout
+  }
+
+  if (e.states_json[18] && e.states_json[51] && e.states_json[52]) {
+    let me_change = bernie_turnout_effect[18] * value;
+    e.states_json[51].fields.popular_votes += Math.round(me_change * 0.52); // ME-01
+    e.states_json[52].fields.popular_votes += Math.round(me_change * 0.48); // ME-02
+  }
+  if (e.states_json[26] && e.states_json[53] && e.states_json[54] && e.states_json[55]) {
+    let ne_change = bernie_turnout_effect[26] * value;
+    e.states_json[53].fields.popular_votes += Math.round(ne_change * 0.33); // NE-01
+    e.states_json[54].fields.popular_votes += Math.round(ne_change * 0.34); // NE-02
+    e.states_json[55].fields.popular_votes += Math.round(ne_change * 0.33); // NE-03
   }
 }
 
@@ -58407,6 +58424,7 @@ function applyVP(VPnum) {
     e.running_mate_issue_score_json[2].fields.issue_score = 0.5 //very socially progressive too
     e.running_mate_issue_score_json[3].fields.issue_score = 0.5
     e.running_mate_state_id = '1131'
+    applyDrift(300, 0.015, 1131);
     document.head.lastElementChild.innerHTML = `
 			  #campaign_sign {
 				  background-image: url("https://i.imgur.com/wCTCBRD.jpeg");
@@ -58431,6 +58449,7 @@ function applyVP(VPnum) {
     e.running_mate_issue_score_json[2].fields.issue_score = 0.4
     e.running_mate_issue_score_json[3].fields.issue_score = 0.4
     e.running_mate_state_id = '1122'
+    applyDrift(300, 0.015, 1122);
     document.head.lastElementChild.innerHTML = `
 			  #campaign_sign {
 				  background-image: url("https://i.imgur.com/fE7hsMI.jpeg");
@@ -58455,6 +58474,7 @@ function applyVP(VPnum) {
     e.running_mate_issue_score_json[2].fields.issue_score = 0.1 //same on social issues; I'm letting him go with vibes more than actual policy.
     e.running_mate_issue_score_json[3].fields.issue_score = 0.1
     e.running_mate_state_id = '1116'
+    applyDrift(300, 0.015, 1116);
     document.head.lastElementChild.innerHTML = `
 			  #campaign_sign {
 				  background-image: url("https://i.imgur.com/7Robhf4.jpeg");
@@ -58475,10 +58495,11 @@ function applyVP(VPnum) {
     e.candidate_json[1].fields.state = 'Pennsylvania'
     campaignTrail_temp.running_mate_image_url = "https://i.imgur.com/PBvCd6h.jpeg"
     e.running_mate_issue_score_json[0].fields.issue_score = 0.35
-    e.running_mate_issue_score_json[0].fields.issue_score = 0.4 //probably the most globalist option.
-    e.running_mate_issue_score_json[0].fields.issue_score = 0.16 //probably more progressive than this on social issues, but by being strongly pro-Israel and moderate on some notable issues he seems to appear more moderate on vibes.
-    e.running_mate_issue_score_json[0].fields.issue_score = 0.16
+    e.running_mate_issue_score_json[1].fields.issue_score = 0.4 //probably the most globalist option.
+    e.running_mate_issue_score_json[2].fields.issue_score = 0.16 //probably more progressive than this on social issues, but by being strongly pro-Israel and moderate on some notable issues he seems to appear more moderate on vibes.
+    e.running_mate_issue_score_json[3].fields.issue_score = 0.16
     e.running_mate_state_id = '1137'
+    applyDrift(300, 0.015, 1137);
     document.head.lastElementChild.innerHTML = `
 			  #campaign_sign {
 				  background-image: url("https://i.imgur.com/4iMpnEo.jpeg");
@@ -61021,7 +61042,8 @@ cyoAdventure = function (a) {
     party_unity += 0.1
   }
   else if (ans == 38501) {
-    if (q38501_bad == 1) {
+    let is_bad_38501 = e.random_on ? (q38501_bad == 1) : (authenticity < -5);
+    if (is_bad_38501) {
       applyMultiplier(300, -0.05) //ouch.
     }
     else {
@@ -61250,7 +61272,8 @@ cyoAdventure = function (a) {
   else if (ans == 40501) {
     party_unity -= 3
     political_capital -= 1
-    if (q40501_bad == 1) {
+    let is_bad_40501 = e.random_on ? (q40501_bad == 1) : (authenticity < 3);
+    if (is_bad_40501) {
       party_unity -= 2
       political_capital -= 1
       applyMultiplier(300, -0.04)
@@ -62021,7 +62044,7 @@ cyoAdventure = function (a) {
               ReplaceFeedback(24403, `Beijing refuses to renounce conquest of Taiwan, clinging to their pride even as the blockade strangles their ports. In the streets, young people rise in protest - demanding jobs, dignity, a future - and when the PLA is ordered to fire, the soldiers refuse and join the people. And for once, you dare to hope that a new China is being born from the ashes of the old.`)
             }
           }
-          if (Math.ceil(Math.random() * 100) > 10 || !e.random_on) { //random off will always prevent nuclear war from things other than no-fly zone
+          if (!e.random_on || Math.ceil(Math.random() * 100) > 10) { //random off will always prevent nuclear war from things other than no-fly zone
             q24404_good = 1
             if (e.tooltips_on) {
               ReplaceFeedback(24404, `The footage is everywhere: <span class=\'mytooltip\' style="background-color:lightgreen;">Xi Jinping flanked by the Politburo<span class=\'mytooltiptext\'><img src=https://i.imgur.com/QCgC8yh.jpeg><br>Humiliated by peace, he stepped down after - begging forgiveness for a war that should never have happened.</span></span> as the PRC permanently rejects reunification through force, announces the return of the Penghu Islands to Taiwan. Though you lift the sanctions, few dare call it appeasement. The headlines blaze with pride: \"So much for the Chinese Century! America's still here!\"`)
@@ -62044,7 +62067,7 @@ cyoAdventure = function (a) {
               ReplaceFeedback(24403, `Beijing refuses to renounce conquest of Taiwan, clinging to their pride even as the blockade strangles their ports. In the streets, young people rise in protest - demanding jobs, dignity, a future - and when the PLA is ordered to fire, the soldiers refuse and join the people. And for once, you dare to hope that a new China is being born from the ashes of the old.`)
             }
           }
-          if (Math.ceil(Math.random() * 100) > 15 || !e.random_on) {
+          if (!e.random_on || Math.ceil(Math.random() * 100) > 15) {
             q24504_good = 1
             if (e.tooltips_on) {
               ReplaceFeedback(24504, `The footage is everywhere: <span class=\'mytooltip\' style="background-color:lightgreen;">Xi Jinping flanked by the Politburo<span class=\'mytooltiptext\'><img src=https://i.imgur.com/QCgC8yh.jpeg><br>Humiliated by peace, he stepped down after - begging forgiveness for a war that should never have happened.</span></span> as the PRC permanently rejects reunification through force, announces the return of the Penghu Islands to Taiwan. Though you lift the sanctions, few dare call it appeasement. The headlines blaze with pride: \"So much for the Chinese Century! America's still here!\"`)
