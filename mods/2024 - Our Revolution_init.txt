@@ -483,6 +483,12 @@ campaignTrail_temp.modBoxTheme = { "header_color": "#242d80", "header_image_url"
 $("#dynamic-favicon").attr("href", "https://files.catbox.moe/nv7m0s.png");
 
 //#endcode
+
+e.tooltip_mode = localStorage.getItem("OR_option_tooltip_mode") || (e.tooltips_on ? 'smart' : 'none');
+e.random_on = localStorage.getItem("OR_option_random_on") !== "false";
+e.hard_midterms = localStorage.getItem("OR_option_hard_midterms") === "true";
+e.soundtrack_mode = localStorage.getItem("OR_option_soundtrack_mode") || "classic";
+
 // music player
 class Song {
   constructor(title, artist, coverLink, audioOrYouTube) {
@@ -535,7 +541,22 @@ class Playlist {
 window.Playlist = Playlist;
 window.Song = Song;
 
-const bernieSongs = [
+const bernieClassicSongs = [
+  ["Joe Hill", "Joan Baez", "https://i.imgur.com/jJIYGIH.jpeg", "https://audio.jukehost.co.uk/8lqHkH2zo0QL6PM8HNKe49Ooua79xRvP"],
+  ["This Land is Your Land", "Bernie Sanders and Vermont Artists", "https://i.imgur.com/lLtJgTE.jpeg", "https://audio.jukehost.co.uk/m578B1oFyTzSjaxiXpbBfZN7I5RHpeBi"],
+  ["Bread And Roses", "Judy Collins", "https://i.imgur.com/FFyGJFl.jpeg", "https://audio.jukehost.co.uk/I4D9wPtdoVAOIayHudU1fXmbd8JOMy4E"],
+  ["Song of the United Front", "Jamie O'Reilly & Michael Smith", "https://i.imgur.com/hqmbOsO.jpeg", "https://audio.jukehost.co.uk/zPdGM4qByB1oC1spsM6nYq7F8Bje08CI"],
+  ["Talkin' 'bout a Revolution", "Tracy Chapman", "https://i.imgur.com/opwiD4f.jpeg", "https://audio.jukehost.co.uk/SXrxKJmPqw5c29FN8GEcQyKfHh0B3Keh"],
+  ["Which Side Are You On", "Pete Seeger", "https://i.imgur.com/SgUAOLx.jpeg", "https://audio.jukehost.co.uk/Rf997sUD8el9ZvLV0S9HYR9hGQCEdXL0"],
+  ["The Revolution Will Not Be Televised", "Gil Scott-Heron", "https://i.imgur.com/Wg0fml5.jpeg", "https://audio.jukehost.co.uk/eOuTV1mb4d0t7vhHqSEv7UArns2UKUHO"],
+  ["Masters Of War", "Bob Dylan", "https://files.catbox.moe/7zvbve.jpg", "https://audio.jukehost.co.uk/mkr6Ig31F5XQ8i9RgEhSaFMed5P5jyIK"],
+  ["Where Have All The Flowers Gone", "Bernie Sanders and Vermont Artists", "https://i.imgur.com/lLtJgTE.jpeg", "https://audio.jukehost.co.uk/gw7Qh5HGJnO80R1RgB6LojMWiZtOgAdi"],
+  ["El Quemazon", "Grupo la Meta", "https://i.imgur.com/3HjCx3Q.jpeg", "https://audio.jukehost.co.uk/BS0xqlokE9fZPQfEIdMVOzjmf43QWHEQ"],
+  ["Diamonds And Rust", "Joan Baez", "https://i.imgur.com/TiMajND.jpeg", "https://audio.jukehost.co.uk/YZ8150OYHEFp6jmmSX8rFdimeijOf99p"],
+  ["Solidarity Forever", "Tom Morello", "https://i.imgur.com/HMzKtUt.jpeg", "https://files.catbox.moe/j41wvd.mp3"]
+];
+
+const bernieModernSongs = [
   ["My King Will Be Kind", "Inhaler", "https://yt3.googleusercontent.com/sSlmMCtQMMfC9UQWOwgtBXvLFBtFC9rwYOFDiOB08JyjQWH4Rtlh9t9pB7pYwnCj94-WvOG1wyYGPbgq=w544-h544-l90-rj", "https://music.youtube.com/watch?v=2ptNz3sFVBM"],
   ["Jackie Down The Line", "Fontaines D.C.", "https://yt3.googleusercontent.com/73tQcKFcXKcheeZyaiD81KI4LZEsRp96bQ1cmEJU35T-H7iu-tHLnTpi6MdVH8XZsaM8iBUzIrg2Bpu1=w544-h544-l90-rj", "https://music.youtube.com/watch?v=tWTU4y_t3a8"],
   ["Morning Sun", "The Sukis", "https://yt3.googleusercontent.com/jTg7uTuY64AUFAXvqgBZn1MWqqi-bWNMeAxuNWDMOB5kAzkX-IKuEw1moNT-K9lAOhOTmGS57TzLiNC9=w544-h544-l90-rj", "https://music.youtube.com/watch?v=LcNBNPNQ7L0"],
@@ -576,7 +597,15 @@ const ASSETS = {
 };
 
 window.berniePlaylist = new Playlist();
-bernieSongs.forEach(data => window.berniePlaylist.addSong(new Song(...data)));
+
+function loadBerniePlaylist(mode) {
+  window.berniePlaylist.songs = [];
+  const tracks = mode === "modern" ? bernieModernSongs : bernieClassicSongs;
+  tracks.forEach(data => window.berniePlaylist.addSong(new Song(...data)));
+  window.berniePlaylist.currentSongIndex = 0;
+}
+
+loadBerniePlaylist(e.soundtrack_mode);
 
 window.kamalaPlaylist = new Playlist();
 kamalaSongs.forEach(data => window.kamalaPlaylist.addSong(new Song(...data)));
@@ -1359,6 +1388,8 @@ const main = `
 		#menu_container, #overall_result_container {
 		  background: #323891;
 		}
+		#overall_result { height: auto; overflow: auto; }
+		#state_result { height: auto; }
 		#overall_result h3, #state_info h3, #state_result h3 {
 		  background-color: #c4d1f0;
 		  padding: .15em .1em;
@@ -1538,7 +1569,7 @@ applyGlobalStyles(main, 'css');
     return form;
   }
 
-  function createOptionSelect(id, label, tooltip, defaultValue, onChangeHandler) {
+  function createOptionSelect(id, label, tooltip, defaultValue, options, onChangeHandler) {
     const form = document.createElement('form');
     form.style.display = "inline-block";
     form.style.padding = "0 10px";
@@ -1554,12 +1585,6 @@ applyGlobalStyles(main, 'css');
 
     const select = document.createElement("select");
     select.id = id;
-
-    const options = [
-      { value: 'none', text: 'Disable tooltips' },
-      { value: 'classic', text: 'Classic' },
-      { value: 'smart', text: 'Smart' }
-    ];
 
     options.forEach(opt => {
       const option = document.createElement("option");
@@ -1585,22 +1610,51 @@ applyGlobalStyles(main, 'css');
     const tooltipsForm = createOptionSelect(
       "ToolTipSelector",
       "Tooltip display mode:",
-      "Controls how the tooltips are structured. 'Disable' turns them off completely. 'Classic' displays them inline with centered styling. 'Smart' utilizes the modern side-by-side card layout with a few safety adjustments.",
+      "Controls how the tooltips are structured. 'Disable' turns them off completely. 'Classic' displays them inline with centered styling. 'Smart' utilizes the modern side-by-side card layout.",
       e.tooltip_mode,
+      [
+        { value: 'none', text: 'Disable tooltips' },
+        { value: 'classic', text: 'Classic' },
+        { value: 'smart', text: 'Smart' }
+      ],
       (val) => {
         e.tooltip_mode = val;
+        localStorage.setItem("OR_option_tooltip_mode", val);
         applyStyleTheme(val);
       }
     );
     tooltipsForm.id = "tooltip_box";
     sliderElement.appendChild(tooltipsForm);
 
+    const soundtrackForm = createOptionSelect(
+      "SoundtrackSelector",
+      "Mod soundtrack:",
+      "Choose between the original soundtrack or an alternate soundtrack.",
+      e.soundtrack_mode,
+      [
+        { value: 'classic', text: 'Classic' },
+        { value: 'modern', text: 'Modern' }
+      ],
+      (val) => {
+        e.soundtrack_mode = val;
+        localStorage.setItem("OR_option_soundtrack_mode", val);
+        loadBerniePlaylist(val);
+        if (playlist === window.berniePlaylist) {
+          changePlaylist(window.berniePlaylist);
+        }
+      }
+    );
+    sliderElement.appendChild(soundtrackForm);
+
     const randomForm = createOptionToggle(
       "RandomCheckbox",
       "Enable randomness?",
       "Unchecking removes all mechanical use of randomness inside the game. This includes the removal of risk of the Supreme Court ruling against you on controversial Constitutional interpretations, and the removal of risk from actions that can escalate foreign conflicts. It also removes the random element from mechanics like who Dan Osborn caucuses with if elected. Unchecking also completely removes all polling variance.",
       e.random_on,
-      (val) => { e.random_on = val; }
+      (val) => {
+        e.random_on = val;
+        localStorage.setItem("OR_option_random_on", val);
+      }
     );
     sliderElement.appendChild(randomForm);
 
@@ -1609,11 +1663,14 @@ applyGlobalStyles(main, 'css');
       "Enable harder midterms?",
       "Checking depresses Democratic turnout in off-year elections, hurting downballot performance for Democrats in non-presidential years by 8%. It can be argued that Bernie's Democratic Party would be much more personality-driven and reliant on young and working class voters, who may be unwilling to turn out in a midterm election where Bernie is not present akin to the Obama years. Check this for a challenge, to help win certain achievements, or benefit from backlash to an overreaching Republican Congress.",
       e.hard_midterms,
-      (val) => { e.hard_midterms = val; }
+      (val) => {
+        e.hard_midterms = val;
+        localStorage.setItem("OR_option_hard_midterms", val);
+      }
     );
     sliderElement.appendChild(midtermForm);
 
-    const diffForm = document.querySelector(IDS.difficultyForm);
+    const diffForm = document.querySelector('form[name="difficulty_level_selection"]');
     if (diffForm) {
       const h3 = diffForm.querySelector('h3');
       if (h3) {
