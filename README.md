@@ -154,6 +154,15 @@ if ([2500, 2501].includes(ans)) {
 }
 ```
 
+### Multiplayer feature
+The [multiplayer](./codes/multiplayer.js) feature allows for multiplayer functionality in Campaign Trail Showcase. Based on the original code from [The New Campaign Trail MP](https://github.com/Mrcinemazo9nn/The-New-Campaign-Trail-MP) by [Mrcinemazo9nn](https://github.com/Mrcinemazo9nn), with modifications made for *Campaign Trail Showcase*.
+
+Unlike the original code, this version is built on WebRTC (Web Real-Time Communication), which allows two browsers to talk directly to each other without needing a middleman game server. To establish a direct browser-to-browser connection, the browsers must first exchange connection metadata; normally, this is done using a signaling server. Here though, we use [ntfy.sh](https://ntfy.sh), a public, free HTTP publish/subscribe service), to facilitate the exchange of connection metadata. The host publishes their connection data to a unique topic (`tct-p2p-[RoomCode]`), and the guest listens to that same topic using an `EventSource` (SSE). Once the initial handshake completes and the direct connection is established, the ntfy.sh connection is shut down, and all communication shifts exclusively to a private RTCDataChannel (`tct_multiplayer`).
+
+Notably, it works on both the mods on that site and also on custom/local mods saved by the user (as long as the other user also has the local mod installed). Note that not all mods are compatible with multiplayer, particularly mods with only one side.
+
+![Multiplayer feature](./images/multiplayer_feature.jpeg)
+
 ### Polling blackout
 The [polling blackout](./codes/polling_blackout.js) disables the map view from a specific question onwards, similar to a Polling Blackout feature used in mods like *Y. of Korea*. (The version used here is an observer-less version made for *2028: An Old Cycle*.) To customize this, you can update the question number in the code by updating to the question number you want the blackout to start from.
 ```javascript
