@@ -1,13 +1,13 @@
 // This code allows for multiplayer functionality
 // in Campaign Trail Showcase.
 // based off the original from https://github.com/Mrcinemazo9nn/The-New-Campaign-Trail-MP
-(async function() {
+(async function () {
     console.log("Starting...");
 
     const e = campaignTrail_temp;
     const calculationCache = { qn: -1, cache: {} };
 
-    window.answerEffects = function(t) {
+    window.answerEffects = function (t) {
         if (window.stopSpacebar && $("#visit_overlay")[0]) return;
         const numT = Number(t);
         const numCand = Number(e.candidate_id);
@@ -62,7 +62,7 @@
         }
     };
 
-    window.A = function(t) {
+    window.A = function (t) {
         if (window.MP && MP.active) {
             if (calculationCache.qn !== e.question_number) {
                 calculationCache.qn = e.question_number;
@@ -109,11 +109,11 @@
             h2 = Math.imul(h4 ^ (h2 >>> 22), 2869860233);
             h3 = Math.imul(h1 ^ (h3 >>> 17), 951274213);
             h4 = Math.imul(h2 ^ (h4 >>> 19), 2716044179);
-            return [(h1^h2^h3^h4)>>>0, (h2^h1)>>>0, (h3^h1)>>>0, (h4^h1)>>>0];
+            return [(h1 ^ h2 ^ h3 ^ h4) >>> 0, (h2 ^ h1) >>> 0, (h3 ^ h1) >>> 0, (h4 ^ h1) >>> 0];
         }
 
         function sfc32(a, b, c, d) {
-            return function() {
+            return function () {
                 a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
                 var t = (a + b) | 0;
                 a = b ^ (b >>> 9);
@@ -142,6 +142,36 @@
 
             const stateFieldsByPk = new Map((e.states_json || []).map((s) => [s.pk, s.fields]));
             const stateAbbrByPk = new Map((e.states_json || []).map((s) => [s.pk, s.fields.abbr]));
+
+            function seededRandomNormal(seedStr) {
+                const seed = cyrb128(seedStr);
+                const rand = sfc32(seed[0], seed[1], seed[2], seed[3]);
+                let x, y, r2;
+                do {
+                    x = 2 * rand() - 1;
+                    y = 2 * rand() - 1;
+                    r2 = x ** 2 + y ** 2;
+                } while (r2 >= 1 || r2 === 0);
+                return x * Math.sqrt((-2 * Math.log(r2)) / r2);
+            }
+
+            const getRandNormal = (candId, stateId = null) => {
+                if (window.MP && MP.active && MP.roomId) {
+                    const suffix = stateId != null ? `_state${stateId}` : "";
+                    const seedStr = `${MP.roomId}_qn${e.question_number}_t${t}_cand${candId}${suffix}`;
+                    return seededRandomNormal(seedStr);
+                }
+                return randomNormal(candId);
+            };
+
+            const getStateRand = (stateId, salt = "") => {
+                if (window.MP && MP.active && MP.roomId) {
+                    const seedStr = `${MP.roomId}_qn${e.question_number}_t${t}_state${stateId}_${salt}`;
+                    const seed = cyrb128(seedStr);
+                    return sfc32(seed[0], seed[1], seed[2], seed[3])();
+                }
+                return Math.random();
+            };
 
             const visitCountByState = (() => {
                 const m = new Map();
@@ -181,7 +211,7 @@
 
                 const isHumanPlayer = candidate === e.candidate_id || isMpGuestCandidate;
                 const base = (isHumanPlayer && cumulScores < -0.4) ? 0.6 : 1 + cumulScores;
-                const rand = 1 + randomNormal(candidate) * variance;
+                const rand = 1 + getRandNormal(candidate) * variance;
 
                 let mult = base * rand;
                 if (candidate === e.candidate_id) {
@@ -240,7 +270,7 @@
                     throw new Error('Answer issue score can only apply to either a candidate or a state, but not both');
 
                 if (tag === 'STATE' && f.candidate != null)
-                    throw new Error('Answer issue score can only apply to either a candidate or a state, but not both');
+                    throw new Error('Answer issue score can only apply to either a state or a candidate, but not both');
 
                 if (!playerAnswersSet.has(f.answer)) continue;
 
@@ -307,7 +337,7 @@
             const candsStateMults = candIdOpponents.map((candId, idx) => {
                 const arr = csmByCandidate.get(candId) || [];
                 const stateMults = arr.map((g) => {
-                    const rand = randomNormal(g.fields.candidate);
+                    const rand = getRandNormal(g.fields.candidate, Number(g.fields.state));
                     const effectiveMult = g.fields.state_multiplier
                         * candsGAnsScores[idx].global_multiplier
                         * (1 + rand * variance);
@@ -455,7 +485,7 @@
 
                 const sf = stateFieldsByPk.get(f.state);
 
-                const M = sf ? Math.floor(sf.popular_votes * (0.95 + 0.1 * Math.random())) : 0;
+                const M = sf ? Math.floor(sf.popular_votes * (0.95 + 0.1 * getStateRand(f.state, "pop"))) : 0;
                 const total = f.result.reduce((acc, g) => acc + g.result, 0);
                 f.result.forEach((g) => {
                     const N = g.result / total;
@@ -509,18 +539,18 @@
                     window.res = latest;
                     [window.nn2] = window.res;
                     window.nn3 = window.nn2.map((c) => c.evvs || 0);
-                } catch (err) {}
+                } catch (err) { }
                 return calcStatePolls;
             }
 
             if (t === 2) {
                 const out = calcStatePolls.map((f) => {
                     const res = f.result.map((candidate) => {
-                        const G = 1 + randomNormal() * variance;
+                        const G = 1 + getRandNormal(candidate.candidate, f.state) * variance;
                         return { ...candidate, result: candidate.result * G };
                     });
                     const sf = stateFieldsByPk.get(f.state);
-                    const M = sf ? Math.floor(sf.popular_votes * (0.95 + 0.1 * Math.random())) : 0;
+                    const M = sf ? Math.floor(sf.popular_votes * (0.95 + 0.1 * getStateRand(f.state, "pop_t2"))) : 0;
                     const total = res.reduce((acc, candidate) => acc + candidate.result, 0);
                     const N = res.map((candidate) => ({
                         ...candidate,
@@ -535,7 +565,7 @@
                     window.res = latest;
                     [window.nn2] = window.res;
                     window.nn3 = window.nn2.map((c) => c.evvs || 0);
-                } catch (err) {}
+                } catch (err) { }
 
                 return out;
             }
@@ -1048,7 +1078,7 @@
                     const difficultyMultiplier = difficultyEntry ? difficultyEntry.fields.multiplier : (e.difficulty_level_multiplier || 1);
 
                     let isHostModded = false;
-                    try { if (typeof modded !== "undefined" && modded) isHostModded = true; } catch (err) {}
+                    try { if (typeof modded !== "undefined" && modded) isHostModded = true; } catch (err) { }
 
                     const config = {
                         electionId: Number(e.election_id),
@@ -1078,7 +1108,7 @@
                     closeModal();
 
                     const guestRunningMateId = config.guestRunningMateId;
-                    mergeOpponentScoringTables(config, config.guestCandidateId, guestRunningMateId, () => {});
+                    mergeOpponentScoringTables(config, config.guestCandidateId, guestRunningMateId, () => { });
                 }
             };
 
@@ -1095,7 +1125,7 @@
                     MP.timeLimitSeconds = config.timeLimitSeconds || DEFAULT_TIME_LIMIT_SECONDS;
 
                     if (config.isModded) {
-                        try { window.modded = true; } catch (err) {}
+                        try { window.modded = true; } catch (err) { }
                         if (config.modSelectVal && config.modSelectVal !== "other") {
                             await evalFromUrl(`../static/mods/${config.modSelectVal}_init.html`);
                         } else if (config.codeset1Val) {
@@ -1132,7 +1162,7 @@
             const waitForBaseData = setInterval(() => {
                 const e = campaignTrail_temp;
                 if (!(e.candidate_json && e.candidate_json.length && e.election_json && e.election_json.length &&
-                      e.opponents_default_json && e.running_mate_json)) {
+                    e.opponents_default_json && e.running_mate_json)) {
                     return;
                 }
                 clearInterval(waitForBaseData);
@@ -1145,8 +1175,8 @@
 
                 const guestCandidateId = config.guestCandidateId;
                 const guestRunningMateId = config.guestRunningMateId != null
-                ? config.guestRunningMateId
-                : firstRunningMateFor(guestCandidateId);
+                    ? config.guestRunningMateId
+                    : firstRunningMateFor(guestCandidateId);
 
                 const filename = internals.election_HTML(config.electionId, guestCandidateId, guestRunningMateId);
                 const url = "../static/questionset/" + filename;
