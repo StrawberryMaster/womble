@@ -161,6 +161,8 @@ Unlike the original code, this version is built on WebRTC (Web Real-Time Communi
 
 Notably, it works on both the mods on that site and also on custom/local mods saved by the user (as long as the other user also has the local mod installed). Note that not all mods are compatible with multiplayer, particularly mods with only one side.
 
+**How to use**: both the host and player need to paste the multiplayer code into their browser console. (It can be opened using Ctrl + Shift + J on Windows/Linux or Cmd + Option + J on Mac.) After pasting the code, you should click on the "Play Online" button that appears on the title screen of the mod. This will open a prompt where you can either create a room as the host or join an existing room as a guest.
+
 ![Multiplayer feature](./images/multiplayer_feature.jpeg)
 
 ### Polling blackout
