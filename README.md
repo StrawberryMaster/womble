@@ -179,6 +179,11 @@ mapButton.innerHTML = "Polling Blackout Period";
 mapButton.title = "It's all so hazy.";
 ```
 
+### Polling graph
+The [polling graph](./codes/polling_graph.js), shown in *The Major Leagues*, is a tool for visualizing the results of a playthrough. It adds a graph right next to the results table that shows each candidate's % and electoral votes (if applicable) at the start of each question, including the final results. For convenience, this version has been adjusted so that it will not replace the historical results table.
+
+![Polling graph](./images/polling_graph.png)
+
 ### Question swapper
 The [question swapper](./codes/question_swapper.js) is a tool for swapping the order of questions in a mod. It includes a single function, `questionSwapper()`, which takes two question numbers as arguments and swaps their order. For example:
 ```javascript
