@@ -258,6 +258,10 @@ The version of the player shown in the mod *Infinite Carnage* can be seen below.
 Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See source [here](./players/aoc_player.js).
 ![An Old Cycle player](./images/aoc_player.png)
 
+### Biden '08 player
+A Windows Media Player-themed music player, shown in the mod *Biden '08*. See source [here](./players/biden_player.js).
+![Biden '08 player](./images/biden_player.png)
+
 ### Contract With America player
 A music player with a design inspired by the 1990s-era music players, shown in the mod *1996: Contract With America*. Shown here is a somewhat more standardized version of the player. See source [here](./players/cwa_player.js).
 ![Contract With America player](./images/cwa_player.png)
@@ -283,6 +287,10 @@ This is a modified version of the music player used in the mod *2024: No More Ma
 
 Alternatively, here is a Spotify-themed version of the player for that same mod. See source [here](./players/nmmaga_alt_player.js).
 ![No More Maga alt player](./images/nmmaga_alt_player.png)
+
+### Obamanation player
+The Windows Media Center-themed player seen in the Deluxe edition of *2012: Obamanation*. See source [here](./players/obn_player.js).
+![Obamanation player](./images/obn_player.png)
 
 ### Project 2024 player
 Not the real player, but a loosely faithful recreation of the music player shown in the first couple of *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
