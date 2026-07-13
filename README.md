@@ -259,7 +259,7 @@ Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See 
 ![An Old Cycle player](./images/aoc_player.png)
 
 ### Biden '08 player
-A Windows Media Player-themed music player, shown in the mod *Biden '08*. See source [here](./players/biden_player.js).
+A Windows Media Player-themed music player, shown in the mod *Biden '08*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/biden_player.js).
 ![Biden '08 player](./images/biden_player.png)
 
 ### Contract With America player
@@ -318,7 +318,7 @@ The Windows Music Player-esque music player shown in the mods *W.* and *2004: Fo
 
 #### Other players
 ##### Apple player
-This Apple-themed music player was made by Thatchmaster. See source [here](./players/apple_player.js).
+This Apple-themed music player was reportedly made by Thatchmaster and used in *Vice*. See source [here](./players/apple_player.js).
 ![Apple player](./images/apple_player.png)
 
 ##### QuickTime player
