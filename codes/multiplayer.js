@@ -787,16 +787,23 @@
         function startHostFlow() {
             MP.pendingHostSetup = true;
             modalShell(`
-                <h3 class="title_h3" style="background-color: #BFE6FF; padding: 0.5em 0; border-bottom: double #C9C9C9; margin-top: 0;">Host Setup — Step 1</h3>
-                <p style="margin-top: 1.5em; font-size: 1.15em; line-height: 1.5em; text-align: left;">First, set up your election options (year, candidate, running mate, and difficulty) on the main page menu.</p>
+                <h3 class="title_h3" style="background-color: #BFE6FF; padding: 0.5em 0; border-bottom: double #C9C9C9; margin-top: 0;">Host Setup</h3>
+                <p style="margin-top: 1.5em; font-size: 1.15em; line-height: 1.5em; text-align: left;">First, you need to set up your election options (candidate, running mate if available, and difficulty) on the mod menu.</p>
                 <p style="font-style: italic; color: #7f8c8d; margin-top: 1em;">The multiplayer generator will pop up automatically as soon as your first question loads.</p>
-                <div style="margin-top: 2em;">
+                <div style="margin-top: 2em; display: flex; justify-content: center; gap: 10px;">
+                    <button id="mp_ready_btn"><strong>Click here to begin!</strong></button>
                     <button id="mp_back_btn">Cancel</button>
                 </div>
             `);
-            $("#mp_back_btn").click(closeModal);
-            setTimeout(closeModal, 50);
-            watchForHostSetupComplete();
+            $("#mp_back_btn").click(() => {
+                MP.pendingHostSetup = false;
+                closeModal();
+            });
+            $("#mp_ready_btn").click(() => {
+                closeModal();
+                setTimeout(() => { $("#game_start").click(); }, 80);
+                watchForHostSetupComplete();
+            });
         }
 
         function watchForHostSetupComplete() {
@@ -817,6 +824,19 @@
 
         function openHostSetupPanel() {
             const e = campaignTrail_temp;
+
+            if (String(e.game_type_id) === "3") {
+                modalShell(`
+                    <h3 class="title_h3" style="background-color: #FFB3B3; padding: 0.5em 0; border-bottom: double #C9C9C9; margin-top: 0;">Mode Unsupported</h3>
+                    <p style="margin-top: 1.5em; font-size: 1.15em; line-height: 1.5em; padding: 0 10px;">As of now, the <i>Sea to Shining Sea</i> mode is not supported in online multiplayer. Please reload and set up a standard game (Default or Proportional) to play online.</p>
+                    <div style="margin-top: 2em;">
+                        <button id="mp_ok_btn">OK</button>
+                    </div>
+                `);
+                $("#mp_ok_btn").click(closeModal);
+                return;
+            }
+
             const firstOpponentId = e.opponents_list[0];
 
             const opponentOptions = e.opponents_list
