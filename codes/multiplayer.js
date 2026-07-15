@@ -62,20 +62,20 @@
         }
     };
 
-    window.calculateResults = function (mode) {
+    window.A = function (t) {
         if (window.MP && MP.active) {
             if (calculationCache.qn !== e.question_number) {
                 calculationCache.qn = e.question_number;
                 calculationCache.cache = {};
             }
-            if (calculationCache.cache[mode]) {
-                return calculationCache.cache[mode];
+            if (calculationCache.cache[t]) {
+                return calculationCache.cache[t];
             }
         }
 
         let result;
         if (window.MP && MP.active && MP.roomId) {
-            const calculationSeed = `${MP.roomId}_qn${e.question_number}_mode${mode}`;
+            const calculationSeed = `${MP.roomId}_qn${e.question_number}_t${t}`;
             const seed = cyrb128(calculationSeed);
             const localRand = sfc32(seed[0], seed[1], seed[2], seed[3]);
 
@@ -83,16 +83,16 @@
             Math.random = localRand;
 
             try {
-                result = runCalculation(mode);
+                result = runCalculation(t);
             } finally {
                 Math.random = origRand;
             }
         } else {
-            result = runCalculation(mode);
+            result = runCalculation(t);
         }
 
         if (window.MP && MP.active) {
-            calculationCache.cache[mode] = result;
+            calculationCache.cache[t] = result;
         }
         return result;
 
@@ -126,7 +126,7 @@
             }
         }
 
-        function runCalculation(mode) {
+        function runCalculation(t) {
             const gp = PROPS.PARAMS;
             const variance = gp.global_variance;
             const candidateIssueWeight = gp.candidate_issue_weight;
@@ -158,7 +158,7 @@
             const getRandNormal = (candId, stateId = null) => {
                 if (window.MP && MP.active && MP.roomId) {
                     const suffix = stateId != null ? `_state${stateId}` : "";
-                    const seedStr = `${MP.roomId}_qn${e.question_number}_mode${mode}_cand${candId}${suffix}`;
+                    const seedStr = `${MP.roomId}_qn${e.question_number}_t${t}_cand${candId}${suffix}`;
                     return seededRandomNormal(seedStr);
                 }
                 return randomNormal(candId);
@@ -166,7 +166,7 @@
 
             const getStateRand = (stateId, salt = "") => {
                 if (window.MP && MP.active && MP.roomId) {
-                    const seedStr = `${MP.roomId}_qn${e.question_number}_mode${mode}_state${stateId}_${salt}`;
+                    const seedStr = `${MP.roomId}_qn${e.question_number}_t${t}_state${stateId}_${salt}`;
                     const seed = cyrb128(seedStr);
                     return sfc32(seed[0], seed[1], seed[2], seed[3])();
                 }
@@ -533,7 +533,7 @@
                 });
             }
 
-            if (mode === 1) {
+            if (t === 1) {
                 try {
                     const latest = getLatestRes(calcStatePolls);
                     window.res = latest;
@@ -543,7 +543,7 @@
                 return calcStatePolls;
             }
 
-            if (mode === 2) {
+            if (t === 2) {
                 const out = calcStatePolls.map((f) => {
                     const res = f.result.map((candidate) => {
                         const G = 1 + getRandNormal(candidate.candidate, f.state) * variance;
@@ -573,7 +573,7 @@
     };
 
     campaignTrail_temp.MP_internal = {
-        calculateResults: window.calculateResults,
+        A: window.A,
         n: window.answerEffects,
         nextQuestion: window.nextQuestion,
         o: window.questionHTML,
@@ -1245,7 +1245,7 @@
                     const hostRunningMateId = config.hostRunningMateId;
                     mergeOpponentScoringTables(config, config.hostCandidateId, hostRunningMateId, () => {
                         const internals2 = getInternals();
-                        internals2.o(internals2.calculateResults(RESULTS_MODE.MIDGAME));
+                        internals2.o(internals2.A(2));
                     });
                 });
             }, 200);
