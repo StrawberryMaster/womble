@@ -585,7 +585,7 @@ function countyMapScreenHtml() {
 
     // substitute historical year dynamically in the map mode label
     const activeY = getActiveYears();
-    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${activeY.historical.slice(-2)}'`);
+    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${activeY.historical.slice(-2)}`);
 
     document.getElementById("game_window").innerHTML = `
         ${headerHtml}
