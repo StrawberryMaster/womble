@@ -2,6 +2,165 @@
 let CURRENT_YEAR = "2000";
 let HISTORICAL_YEAR = "1996";
 
+// precinct assets
+const PMTILES_URLS = {
+    "2008": "https://files.catbox.moe/p5rcjl.gz",
+    "2012": "https://files.catbox.moe/it9ru8.gz",
+    "2016": "https://files.catbox.moe/rdm8eg.gz",
+    "2020": "https://files.catbox.moe/b59w5d.gz",
+    "2024": "https://files.catbox.moe/hr6fc6.gz"
+};
+
+// congressional district assets
+const CD_GEOJSON_BASE = "https://strawberrymaster.github.io/scripts/geojson";
+const CD_VOTES_BASE = "https://strawberrymaster.github.io/scripts/cd_votes_data";
+
+function getPmTilesUrl(year) {
+    return PMTILES_URLS[year] || "https://files.catbox.moe/p5rcjl.gz";
+}
+
+function getCdGeojsonUrl(vintage) {
+    return `${CD_GEOJSON_BASE}/cd_${vintage}_albers.geojson`;
+}
+
+function getCdVotesUrl(year, vintage) {
+    return `${CD_VOTES_BASE}/cd_votes_${year}_${vintage}.json`;
+}
+
+// computes district-level results
+function computeCdMargins(table, fipsResults, demCandId, repCandId) {
+    const cdMargins = {};
+    const cdTotals = {};
+
+    function parseVotes(obj) {
+        if (!obj) return { d: 0, r: 0, o: 0 };
+
+        if (Array.isArray(obj)) {
+            const d = Number(obj[0] || 0);
+            const r = Number(obj[1] || 0);
+            const total = Number(obj[2] || 0);
+            const o = Math.max(0, total - d - r);
+            return { d, r, o };
+        }
+
+        if (typeof obj === 'object') {
+            const d = Number(obj.dem || obj.d || obj.votes_dem || obj.dem_votes || obj.votes_d || 0);
+            const r = Number(obj.rep || obj.r || obj.votes_rep || obj.rep_votes || obj.votes_r || 0);
+            const o = Number(obj.other || obj.oth || obj.o || obj.votes_other || obj.other_votes || obj.votes_o || obj.votes_oth || obj.votes_oth || 0);
+            return { d, r, o };
+        }
+
+        return { d: 0, r: 0, o: 0 };
+    }
+
+    function addPiece(cdCode, fips, pieceData) {
+        if (!cdTotals[cdCode]) {
+            cdTotals[cdCode] = { dem: 0, rep: 0, other: 0 };
+        }
+
+        const cleanF = String(fips).replace(/\D/g, '').padStart(5, '0');
+        const res = fipsResults[cleanF];
+        if (!res) return;
+
+        if (typeof pieceData === 'number') {
+            const weight = pieceData;
+            cdTotals[cdCode].dem += res.curDem * weight;
+            cdTotals[cdCode].rep += res.curRep * weight;
+            cdTotals[cdCode].other += res.curOth * weight;
+        } else {
+            const { d, r, o } = parseVotes(pieceData);
+            const rD = res.baseDem > 0 ? (res.curDem / res.baseDem) : 1;
+            const rR = res.baseRep > 0 ? (res.curRep / res.baseRep) : 1;
+            const rO = res.baseOth > 0 ? (res.curOth / res.baseOth) : 1;
+
+            cdTotals[cdCode].dem += d * rD;
+            cdTotals[cdCode].rep += r * rR;
+            cdTotals[cdCode].other += o * rO;
+        }
+    }
+
+    const keys = Object.keys(table || {});
+    if (keys.length > 0) {
+        const firstKey = keys[0];
+        const firstVal = table[firstKey];
+
+        if (Array.isArray(firstVal)) {
+            for (const cdCode in table) {
+                const arr = table[cdCode];
+                if (Array.isArray(arr)) {
+                    arr.forEach(piece => {
+                        const fips = String(piece.fips || piece.f || "").replace(/\D/g, '').padStart(5, '0');
+                        addPiece(cdCode, fips, piece);
+                    });
+                }
+            }
+        } else if (typeof firstVal === 'object' && firstVal !== null) {
+            const innerKeys = Object.keys(firstVal);
+            if (innerKeys.length > 0) {
+                const firstInnerKey = innerKeys[0];
+                const isFirstKeyFips = /^(US)?\d{4,5}$/i.test(firstKey);
+                const isInnerKeyFips = /^(US)?\d{4,5}$/i.test(firstInnerKey);
+
+                if (isFirstKeyFips) {
+                    for (const fips in table) {
+                        const cdPieces = table[fips];
+                        for (const cdCode in cdPieces) {
+                            addPiece(cdCode, fips, cdPieces[cdCode]);
+                        }
+                    }
+                } else if (isInnerKeyFips) {
+                    for (const cdCode in table) {
+                        const fipsList = table[cdCode];
+                        for (const fips in fipsList) {
+                            addPiece(cdCode, fips, fipsList[fips]);
+                        }
+                    }
+                } else {
+                    for (const cdCode in table) {
+                        const val = table[cdCode];
+                        const { d, r, o } = parseVotes(val);
+
+                        const statePrefix = cdCode.includes('-') ? cdCode.split('-')[0].toUpperCase() : cdCode.slice(0, 2);
+
+                        let sumRD = 0, sumRR = 0, sumRO = 0, count = 0;
+                        for (const fips in fipsResults) {
+                            const res = fipsResults[fips];
+                            const isMatch = (res.state_po && res.state_po.toUpperCase() === statePrefix) || fips.startsWith(statePrefix);
+
+                            if (isMatch) {
+                                const rD = res.baseDem > 0 ? (res.curDem / res.baseDem) : 1;
+                                const rR = res.baseRep > 0 ? (res.curRep / res.baseRep) : 1;
+                                const rO = res.baseOth > 0 ? (res.curOth / res.baseOth) : 1;
+                                sumRD += rD; sumRR += rR; sumRO += rO;
+                                count++;
+                            }
+                        }
+                        const avgRD = count > 0 ? (sumRD / count) : 1;
+                        const avgRR = count > 0 ? (sumRR / count) : 1;
+                        const avgRO = count > 0 ? (sumRO / count) : 1;
+
+                        if (!cdTotals[cdCode]) {
+                            cdTotals[cdCode] = { dem: 0, rep: 0, other: 0 };
+                        }
+                        cdTotals[cdCode].dem += d * avgRD;
+                        cdTotals[cdCode].rep += r * avgRR;
+                        cdTotals[cdCode].other += o * avgRO;
+                    }
+                }
+            }
+        }
+    }
+
+    for (const cdCode in cdTotals) {
+        const { dem, rep, other } = cdTotals[cdCode];
+        const total = dem + rep + other;
+        const margin = total > 0 ? (dem - rep) / total : 0;
+        cdMargins[cdCode] = { dem, rep, other, margin };
+    }
+
+    return cdMargins;
+}
+
 function getCustomPreference(key, defaultVal) {
     try {
         const prefs = JSON.parse(localStorage.getItem('tml_custom_preferences')) || {};
@@ -10,6 +169,20 @@ function getCustomPreference(key, defaultVal) {
         return defaultVal;
     }
 }
+
+// suspends map re-renders while painting states or adjusting sliders
+let isUserInteracting = false;
+window.addEventListener("pointerdown", (e) => {
+    if (e.target && (e.target.tagName === "INPUT" || e.target.closest("#map_controls") || e.target.closest("#redraw_panel") || e.target.closest("#cd_vintage_selector") || e.target.closest("#more_modes_selector"))) {
+        isUserInteracting = true;
+    }
+}, { capture: true });
+window.addEventListener("pointerup", () => {
+    if (isUserInteracting) {
+        isUserInteracting = false;
+        if (window._triggerPrecinctUpdate) window._triggerPrecinctUpdate();
+    }
+}, { capture: true });
 
 // inject button into DOM
 function injectCountyMapButton() {
@@ -27,7 +200,7 @@ function injectCountyMapButton() {
 
 // shared HTML chunks
 const MAP_CONTROLS_HTML = `
-    <div id="map_controls" style="width: 100%; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 14px; background: rgba(0,0,0,0.08); padding: 10px; border-radius: 6px; color: #000;">
+    <div id="map_controls" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 14px; background: rgba(0,0,0,0.08); padding: 10px; border-radius: 6px; color: #000; align-items: center;">
        <label style="cursor:pointer;"><input type="radio" name="map_mode" value="choropleth" checked> Margin</label>
        <label style="cursor:pointer;"><input type="radio" name="map_mode" value="voteshare"> Vote Share</label>
        <label style="cursor:pointer;"><input type="radio" name="map_mode" value="binary"> Solid Colors</label>
@@ -35,7 +208,13 @@ const MAP_CONTROLS_HTML = `
        <label style="cursor:pointer;"><input type="radio" name="map_mode" value="proportional"> Proportional</label>
        <label style="cursor:pointer;"><input type="radio" name="map_mode" value="flipped"> Flipped</label>
        <label style="cursor:pointer;"><input type="radio" name="map_mode" value="shift"> Shift (from '08)</label>
-       <label style="cursor:pointer; font-weight:bold; color:#d9381e;" title="Paint your own states!"><input type="radio" name="map_mode" value="redraw"> Redraw the States</label>
+
+       <select id="more_modes_selector" style="font-size:13px; border:1px solid #ccc; border-radius:3px; padding:2px; font-family:sans-serif; cursor:pointer;">
+           <option value="" selected>More...</option>
+           <option value="redraw" style="color: #d9534f; font-weight: bold;">Redraw the States</option>
+       </select>
+
+       <select id="cd_vintage_selector" style="display:none; font-size:12px; border:1px solid #ccc; border-radius:3px; padding:2px; margin-left:10px; font-family:sans-serif;"></select>
     </div>
     <p id="county_map_status" style="margin-top: 0; text-align:center;"><i>Loading map data (this may take a moment)...</i></p>
 `;
@@ -115,6 +294,41 @@ function getActiveYears() {
     return { current, historical };
 }
 
+function populateCdVintageSelector(year) {
+    const selector = document.getElementById("cd_vintage_selector");
+    if (!selector) return;
+
+    selector.innerHTML = "";
+    const vintages = [
+        { value: "110", label: "110th Congress (2006)" },
+        { value: "111", label: "111th Congress (2008)" },
+        { value: "112", label: "112th Congress (2010)" },
+        { value: "113", label: "113th Congress (2012)" },
+        { value: "114", label: "114th Congress (2014)" },
+        { value: "115", label: "115th Congress (2016)" },
+        { value: "116", label: "116th Congress (2018)" },
+        { value: "117", label: "117th Congress (2020)" },
+        { value: "118", label: "118th Congress (2022)" },
+        { value: "119", label: "119th Congress (2024)" },
+        { value: "2026", label: "2026 (current)" }
+    ];
+
+    vintages.forEach(v => {
+        const opt = document.createElement("option");
+        opt.value = v.value;
+        opt.textContent = v.label;
+        selector.appendChild(opt);
+    });
+
+    const yr = parseInt(year, 10);
+    if (yr === 2008) selector.value = "111";
+    else if (yr === 2012) selector.value = "113";
+    else if (yr === 2016) selector.value = "115";
+    else if (yr === 2020) selector.value = "117";
+    else if (yr === 2024) selector.value = "119";
+    else selector.value = "2026";
+}
+
 // inject into election map screen
 function injectCountyMapInPlace(mode) {
     const mapContainer = document.getElementById("map_container");
@@ -156,9 +370,27 @@ function injectCountyMapInPlace(mode) {
     controlsDiv.style.marginTop = "10px";
 
     // substitute historical year dynamically in the map mode label
-    const { historical } = getActiveYears();
-    const controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${historical.slice(-2)}'`);
+    const { historical, current } = getActiveYears();
+    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${historical.slice(-2)}'`);
     controlsDiv.innerHTML = controlsHtml + getMapInstructionsHtml(mode);
+
+    // populate advanced dropdown items if precincts are active for the current year
+    const selectorElement = controlsDiv.querySelector("#more_modes_selector");
+    if (selectorElement && parseInt(current, 10) >= 2008) {
+        const precinctsOption = document.createElement("option");
+        precinctsOption.value = "precinct";
+        precinctsOption.textContent = "Precincts";
+        precinctsOption.style.color = "#0275d8";
+        precinctsOption.style.fontWeight = "bold";
+        selectorElement.appendChild(precinctsOption);
+
+        const districtsOption = document.createElement("option");
+        districtsOption.value = "districts";
+        districtsOption.textContent = "Districts";
+        districtsOption.style.color = "#17a2b8";
+        districtsOption.style.fontWeight = "bold";
+        selectorElement.appendChild(districtsOption);
+    }
 
     const mapFooter = document.getElementById("map_footer");
     if (mapFooter) {
@@ -317,8 +549,8 @@ function countyMapScreenHtml() {
     const headerHtml = gameHeader ? gameHeader.outerHTML : `<div class="game_header">${window.corrr}</div>`;
 
     // substitute historical year dynamically in the map mode label
-    const { historical } = getActiveYears();
-    const controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${historical.slice(-2)}'`);
+    const activeY = getActiveYears();
+    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${activeY.historical.slice(-2)}'`);
 
     document.getElementById("game_window").innerHTML = `
         ${headerHtml}
@@ -343,6 +575,23 @@ function countyMapScreenHtml() {
         <button class="final_menu_button" id="play_again_button">Play Again!</button>
     `;
 
+    const moreSelector = document.getElementById("more_modes_selector");
+    if (moreSelector && parseInt(activeY.current, 10) >= 2008) {
+        const pr = document.createElement("option");
+        pr.value = "precinct";
+        pr.textContent = "Precincts";
+        pr.style.color = "#0275d8";
+        pr.style.fontWeight = "bold";
+        moreSelector.appendChild(pr);
+
+        const ds = document.createElement("option");
+        ds.value = "districts";
+        ds.textContent = "Districts";
+        ds.style.color = "#17a2b8";
+        ds.style.fontWeight = "bold";
+        moreSelector.appendChild(ds);
+    }
+
     document.getElementById("overall_results_button").onclick = window.overallResultsHtml;
     document.getElementById("final_election_map_button").onclick = window.finalMapScreenHtml;
     document.getElementById("state_results_button").onclick = window.stateResultsHtml;
@@ -362,6 +611,8 @@ async function loadAndDrawCountyMap(mode) {
     const activeYears = getActiveYears();
     CURRENT_YEAR = activeYears.current;
     HISTORICAL_YEAR = activeYears.historical;
+    const curYearInt = parseInt(CURRENT_YEAR, 10);
+    const hasPrecincts = curYearInt >= 2008;
 
     const loadScript = src => new Promise((resolve, reject) => {
         const s = document.createElement("script");
@@ -373,13 +624,26 @@ async function loadAndDrawCountyMap(mode) {
     });
 
     const scriptsToLoad = [];
-    if (!window.d3) scriptsToLoad.push(loadScript("https://d3js.org/d3.v7.min.js"));
-    if (!window.topojson) scriptsToLoad.push(loadScript("https://d3js.org/topojson.v3.min.js"));
+    if (!window.d3) scriptsToLoad.push(loadScript("https://cdn.jsdelivr.net/npm/d3@7"));
+    if (!window.topojson) scriptsToLoad.push(loadScript("https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"));
+
+    if (hasPrecincts) {
+        if (!window.maplibregl) scriptsToLoad.push(loadScript("https://unpkg.com/maplibre-gl@4.1.3/dist/maplibre-gl.js"));
+        if (!window.pmtiles) scriptsToLoad.push(loadScript("https://unpkg.com/pmtiles@3.0.3/dist/pmtiles.js"));
+        if (!document.getElementById("maplibre_css")) {
+            const link = document.createElement("link");
+            link.id = "maplibre_css";
+            link.rel = "stylesheet";
+            link.href = "https://unpkg.com/maplibre-gl@4.1.3/dist/maplibre-gl.css";
+            document.head.appendChild(link);
+        }
+    }
+
     if (scriptsToLoad.length > 0) {
         try {
             await Promise.all(scriptsToLoad);
         } catch (err) {
-            console.error("Could not load core D3/TopoJSON libraries:", err);
+            console.error("Could not load core rendering libraries:", err);
         }
     }
 
@@ -478,7 +742,7 @@ async function loadAndDrawCountyMap(mode) {
                 "02282": { name: "Yakutat", d: ["02005"] },
                 "02100": { name: "Haines", d: ["02005"] },
                 "02230": { name: "Skagway", d: ["02005"] },
-                "02105": { name: "Hoonah-Angoon", d:["02005"] },
+                "02105": { name: "Hoonah-Angoon", d: ["02005"] },
                 "02063": { name: "Chugach", d:["02034"] },
                 "02066": { name: "Copper River", d:["02034"] },
                 "02261": { name: "Valdez-Cordova", d:["02034"] },
@@ -754,6 +1018,9 @@ async function loadAndDrawCountyMap(mode) {
         });
 
         // apply state-level correction multipliers and finalize
+        const fipsResults = {};
+        const fipsMultipliers = {};
+
         usCounties.forEach(d => {
             const c = baseCurrentMap[d.fips];
             const unnorm = unnormalizedCounties[d.fips];
@@ -869,7 +1136,7 @@ async function loadAndDrawCountyMap(mode) {
                 winText: `${candsInfo.get(String(winner.id))?.last_name} +${(marginPct * 100).toFixed(1)}% (${marginVotesEst.toLocaleString()} votes)`
             };
 
-            d.proj.tooltipHtml = `<strong style="font-size:16px">${d.proj.name}, ${d.proj.state}</strong><br><div style="font-size:12px; color:#bbb; margin-top:-2px; margin-bottom:8px;">Total Votes: ${unnorm.total.toLocaleString()}</div>` +
+            d.proj.tooltipHtml = `<strong style="font-size:16px">${d.proj.name}, ${d.proj.state}</strong><br><div style="font-size:12px; color:#bbb; margin-top:-2px; margin-bottom:8px;">Total votes: ${unnorm.total.toLocaleString()}</div>` +
                 finalResults.slice(0,3).map(r =>
                     `<div style="display:flex; align-items:center; margin-bottom: 4px;">
                         <span style="display:inline-block; width:12px; height:12px; background-color:${candsInfo.get(String(r.id))?.color_hex || '#888'}; margin-right:8px; border: 1px solid #aaa;"></span>
@@ -882,6 +1149,41 @@ async function loadAndDrawCountyMap(mode) {
 
             const cent = path.centroid(d);
             d.centroid = (isFinite(cent[0]) && isFinite(cent[1]) && (cent[0] !== 0 || cent[1] !== 0)) ? cent : null;
+
+            // map D3 calculations to a results reference object for MapLibre
+            const curDem = finalResults.find(r => r.id === demCandId)?.votes || 0;
+            const curRep = finalResults.find(r => r.id === repCandId)?.votes || 0;
+            const curOth = finalResults.filter(r => r.id !== demCandId && r.id !== repCandId).reduce((sum, r) => sum + r.votes, 0);
+
+            fipsResults[d.fips] = {
+                state_po: c.state_po,
+                baseDem: c.votes_dem || 0,
+                baseRep: c.votes_rep || 0,
+                baseOth: c.votes_other || 0,
+                curDem: curDem,
+                curRep: curRep,
+                curOth: curOth
+            };
+
+            const finalTPResults = finalResults.filter(r => r.id !== demCandId && r.id !== repCandId);
+            const totalTPCountyVotes = finalTPResults.reduce((sum, r) => sum + r.votes, 0);
+            const tpShares = {};
+            if (totalTPCountyVotes > 0) {
+                finalTPResults.forEach(r => {
+                    tpShares[r.id] = r.votes / totalTPCountyVotes;
+                });
+            } else if (tpCandidatesInGame.length > 0) {
+                tpCandidatesInGame.forEach(candId => {
+                    tpShares[candId] = 1 / tpCandidatesInGame.length;
+                });
+            }
+
+            fipsMultipliers[d.fips] = {
+                mD: (c.votes_dem || 0) > 0 ? curDem / (c.votes_dem || 0) : 1,
+                mR: (c.votes_rep || 0) > 0 ? curRep / (c.votes_rep || 0) : 1,
+                mO: (c.votes_other || 0) > 0 ? curOth / (c.votes_other || 0) : 1,
+                tpShares: tpShares
+            };
         });
 
         const radiusScale = d3.scaleSqrt().domain([0, maxMarginVotes]).range([0, 35]);
@@ -1392,20 +1694,585 @@ async function loadAndDrawCountyMap(mode) {
         const customBordersPath = g.append("g").attr("class", "custom-borders-layer").append("path").attr("id", "custom-borders-path").attr("fill", "none").attr("stroke", "#000").attr("stroke-linejoin", "round").attr("vector-effect", "non-scaling-stroke").attr("stroke-width", 1.2).style("pointer-events", "none").style("display", "none");
 		const customLabelsG = g.append("g").attr("class", "custom-labels-layer").style("pointer-events", "none");
 
+        // maplibre precinct map
+        let mlMap = null;
+        let mlMapReady = false;
+        let precVisCache = null;
+        let precViewDirty = true;
+        let precColorCache = {};
+        let isPrecinctUpdating = false;
+        let precinctUpdatePending = false;
+
+        let cdCurrentVintage = null;
+        let currentDistrictMargins = {};
+        let cdVotesTableCache = {};
+
+        function getPrecinctGPUColorExpression() {
+            const toRgbStr = (hex, weight = 1) => {
+                const c = d3.color(hex) || d3.color("#888888");
+                if (weight !== 1) {
+                    const w = d3.interpolateRgb("#ffffff", c)(weight);
+                    const cw = d3.color(w);
+                    return `rgb(${cw.r}, ${cw.g}, ${cw.b})`;
+                }
+                return `rgb(${c.r}, ${c.g}, ${c.b})`;
+            };
+
+            const marginExpr = [
+                "case",
+                [">", ["coalesce", ["to-number", ["get", "votes_total"]], 0], 0],
+                ["/",
+                    ["-", ["to-number", ["get", "votes_dem"]], ["to-number", ["get", "votes_rep"]]],
+                    ["to-number", ["get", "votes_total"]]
+                ],
+                0
+            ];
+
+            return [
+                "interpolate", ["linear"], marginExpr,
+                -0.60, toRgbStr(repColor, 1.0),
+                -0.40, toRgbStr(repColor, 0.8),
+                -0.20, toRgbStr(repColor, 0.6),
+                -0.05, toRgbStr(repColor, 0.3),
+                 0.00, "#ffffff",
+                 0.05, toRgbStr(demColor, 0.3),
+                 0.20, toRgbStr(demColor, 0.6),
+                 0.40, toRgbStr(demColor, 0.8),
+                 0.60, toRgbStr(demColor, 1.0)
+            ];
+        }
+
+        function throttlePrecinctUpdate() {
+            if (isPrecinctUpdating) {
+                precinctUpdatePending = true;
+                return;
+            }
+            isPrecinctUpdating = true;
+            updatePrecinctColors();
+            setTimeout(() => {
+                isPrecinctUpdating = false;
+                if ( precinctUpdatePending ) {
+                    precinctUpdatePending = false;
+                    throttlePrecinctUpdate();
+                }
+            }, 80);
+        }
+
+        window._triggerPrecinctUpdate = () => {
+            precViewDirty = true;
+            throttlePrecinctUpdate();
+        };
+
+        function initPrecinctMap() {
+            if (mlMap) return;
+            if (typeof maplibregl === "undefined" || typeof pmtiles === "undefined") {
+                console.warn("MapLibre GL or PMTiles not loaded yet. Retrying shortly...");
+                setTimeout(initPrecinctMap, 150);
+                return;
+            }
+
+            if (!window._pmtilesProtocolRegistered) {
+                const protocol = new pmtiles.Protocol();
+                maplibregl.addProtocol("pmtiles", protocol.tile);
+                window._pmtilesProtocolRegistered = true;
+            }
+
+            const tileUrl = `pmtiles://${getPmTilesUrl(CURRENT_YEAR)}`;
+
+            mlMap = new maplibregl.Map({
+                container: "precinct_map_div",
+                style: {
+                    version: 8,
+                    sources: {
+                        blockgroups: {
+                            type: "vector",
+                            url: tileUrl,
+                            promoteId: "GEOID",
+                            maxzoom: 11
+                        }
+                    },
+                    layers: [
+                        {
+                            id: "bg",
+                            type: "background",
+                            paint: { "background-color": "#e2e6ea" }
+                        },
+                        {
+                            id: "precinct-fill",
+                            type: "fill",
+                            source: "blockgroups",
+                            "source-layer": "blockgroups",
+                            filter: [">", ["coalesce", ["to-number", ["get", "votes_total"]], 0], 0],
+                            paint: {
+                                "fill-color": getPrecinctGPUColorExpression(),
+                                "fill-opacity": 1
+                            }
+                        },
+                        {
+                            id: "precinct-line",
+                            type: "line",
+                            source: "blockgroups",
+                            "source-layer": "blockgroups",
+                            filter: [">", ["coalesce", ["to-number", ["get", "votes_total"]], 0], 0],
+                            paint: {
+                                "line-color": "rgba(255,255,255,0.2)",
+                                "line-width": 0.15
+                            }
+                        }
+                    ]
+                },
+                center: [4.875, 3.05],
+                zoom: 1,
+                maxZoom: 13,
+                minZoom: 0,
+                dragRotate: false,
+                pitchWithRotate: false,
+                renderWorldCopies: false,
+                attributionControl: false,
+                fadeDuration: 0,
+                maxTileCacheSize: 512
+            });
+
+            mlMap.on("load", () => {
+                mlMapReady = true;
+
+                // force layout reflow and check dimensions before fitting bounds (fixes firefox blank-viewport errors)
+                mlMap.resize();
+                const container = mlMap.getContainer();
+                if (container && container.clientWidth > 0 && container.clientHeight > 0) {
+                    try {
+                        mlMap.fitBounds([[0, 0], [9.75, 6.1]], { padding: 0, animate: false });
+                    } catch (e) {
+                        console.warn("Could not fit bounds on load:", e);
+                    }
+                } else {
+                    mlMap.setCenter([4.875, 3.05]);
+                    mlMap.setZoom(1);
+                }
+
+                // fix race condition: ensure districts render if selected on initial map load
+                if (currentMode === "districts") {
+                    if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "none");
+                    if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "none");
+                    initDistrictLayer();
+                } else {
+                    if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "visible");
+                    if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "visible");
+                    updatePrecinctColors();
+                }
+            });
+
+            mlMap.on("moveend", () => {
+                precViewDirty = true;
+                if (!isUserInteracting) throttlePrecinctUpdate();
+            });
+
+            mlMap.on("idle", () => {
+                if (!isUserInteracting) throttlePrecinctUpdate();
+            });
+
+            let hoveredBgId = null;
+            mlMap.on("mousemove", "precinct-fill", (e) => {
+                if (!e.features || e.features.length === 0) return;
+                const feat = e.features[0];
+                const geoid = String(feat.id || (feat.properties && feat.properties.GEOID) || "");
+                if (!geoid) return;
+
+                if (hoveredBgId && hoveredBgId !== geoid) {
+                    mlMap.setFeatureState({ source: "blockgroups", sourceLayer: "blockgroups", id: hoveredBgId }, { hover: false });
+                }
+                hoveredBgId = geoid;
+                mlMap.setFeatureState({ source: "blockgroups", sourceLayer: "blockgroups", id: geoid }, { hover: true });
+
+                mlMap.getCanvas().style.cursor = "pointer";
+
+                const countyFips = geoid.length >= 5 ? geoid.slice(0, 5) : geoid;
+                const props = feat.properties || {};
+                const baseTotal = Number(props.votes_total) || 0;
+                const baseDem = Number(props.votes_dem) || 0;
+                const baseRep = Number(props.votes_rep) || 0;
+                const baseOth = Math.max(0, baseTotal - baseDem - baseRep);
+
+                const mults = fipsMultipliers[countyFips];
+                const mD = mults ? mults.mD : 1;
+                const mR = mults ? mults.mR : 1;
+                const mO = mults ? mults.mO : 1;
+
+                const dem = Math.round(baseDem * mD);
+                const rep = Math.round(baseRep * mR);
+                const oth = Math.round(baseOth * mO);
+                const total = dem + rep + oth;
+
+                const bgResults = [
+                    { id: demCandId, votes: dem, pct: total > 0 ? dem / total : 0 },
+                    { id: repCandId, votes: rep, pct: total > 0 ? rep / total : 0 }
+                ];
+
+                tpCandidatesInGame.forEach(candId => {
+                    const share = (mults && mults.tpShares && mults.tpShares[candId] !== undefined) ? mults.tpShares[candId] : (1 / Math.max(1, tpCandidatesInGame.length));
+                    const candVotes = Math.round(oth * share);
+                    bgResults.push({
+                        id: candId,
+                        votes: candVotes,
+                        pct: total > 0 ? candVotes / total : 0
+                    });
+                });
+
+                bgResults.sort((a, b) => b.votes - a.votes);
+
+                const winner = bgResults[0];
+                const second = bgResults.length > 1 ? bgResults[1] : { votes: 0, pct: 0 };
+                const marginVal = winner.pct - second.pct;
+                const side = (candsInfo.get(String(winner.id))?.last_name || "Winner");
+                const pct = (marginVal * 100).toFixed(1);
+
+                const candRowsHtml = bgResults.slice(0, 4).map(r => {
+                    const cInfo = candsInfo.get(String(r.id)) || {};
+                    const candName = (cInfo.last_name || r.id);
+                    const candColor = cInfo.color_hex || '#888';
+                    return `
+                        <div style="display:flex; align-items:center; margin-bottom: 4px;">
+                            <span style="display:inline-block; width:12px; height:12px; background-color:${candColor}; margin-right:8px; border: 1px solid #aaa;"></span>
+                            <span style="font-weight:bold;">${candName}: ${(r.pct * 100).toFixed(1)}%</span>
+                            <span style="color:#ccc; font-size:12px; margin-left:6px;">(${r.votes.toLocaleString()})</span>
+                        </div>
+                    `;
+                }).join('');
+
+                let customText = "";
+                if (countyToCustom[countyFips] && customStates[countyToCustom[countyFips]]) {
+                    const st = customStates[countyToCustom[countyFips]];
+                    customText = `<div style="color:#ffcc00; font-size:13px; margin-top:6px; border-top:1px solid #777; padding-top:4px;"><b>${st.name}</b> (${st.ev} ev)<br><b>net:</b> ${st.winName} ${st.marginText}</div>`;
+                }
+
+                tooltip.style("display", "block").html(
+                    `<strong style="font-size:16px">block group: ${geoid}</strong><br>` +
+                    `<div style="font-size:12px; color:#bbb; margin-top:-2px; margin-bottom:8px;">county: ${(props.county || "unknown")}, state: ${(props.state || "")}</div>` +
+                    candRowsHtml +
+                    `<hr style="margin:6px 0; border:0; border-top:1px solid #777;"><div style="color:#ddd; font-size:13px; margin-top:4px;"><i>Margin: ${side} +${pct}%</i></div>` +
+                    customText
+                );
+            });
+
+            mlMap.on("mouseleave", "precinct-fill", () => {
+                if (hoveredBgId) {
+                    mlMap.setFeatureState({ source: "blockgroups", sourceLayer: "blockgroups", id: hoveredBgId }, { hover: false });
+                    hoveredBgId = null;
+                }
+                mlMap.getCanvas().style.cursor = "";
+                tooltip.style("display", "none");
+            });
+
+            mlMap.on("mousemove", (e) => {
+                const ev = e.originalEvent;
+                tooltip.style("left", (ev.pageX + 15) + "px").style("top", (ev.pageY + 15) + "px");
+            });
+
+            // bind district mouse hover handler once maplibre instantiates
+            mlMap.on("mousemove", "cd-fill", (e) => {
+                if (!e.features || e.features.length === 0) return;
+                const feat = e.features[0];
+                const cdCode = String(feat.properties.cd_code || feat.id || "");
+                if (!cdCode) return;
+
+                mlMap.getCanvas().style.cursor = "pointer";
+
+                const m = currentDistrictMargins[cdCode];
+                if (!m) return;
+
+                const dem = Math.round(m.dem);
+                const rep = Math.round(m.rep);
+                const oth = Math.round(m.other);
+                const total = dem + rep + oth;
+
+                const demPct = total > 0 ? dem / total : 0;
+                const repPct = total > 0 ? rep / total : 0;
+                const othPct = total > 0 ? oth / total : 0;
+
+                const sign = m.margin >= 0 ? demName : repName;
+                const pctStr = (Math.abs(m.margin) * 100).toFixed(1);
+
+                let customText = "";
+                const matchedFips = Object.keys(countyToCustom).find(fips => countyToCustom[fips] && fips.startsWith(cdCode.slice(0, 2)));
+                if (matchedFips && customStates[countyToCustom[matchedFips]]) {
+                    const st = customStates[countyToCustom[matchedFips]];
+                    customText = `<div style="color:#ffcc00; font-size:13px; margin-top:6px; border-top:1px solid #777; padding-top:4px;"><b>${st.name}</b> (${st.ev} ev)<br><b>net:</b> ${st.winName} ${st.marginText}</div>`;
+                }
+
+                tooltip.style("display", "block").html(
+                    `<strong style="font-size:16px">District: ${cdCode}</strong><br>` +
+                    `<div style="font-size:12px; color:#bbb; margin-top:-2px; margin-bottom:8px;">Total votes: ${total.toLocaleString()}</div>` +
+                    `<div style="display:flex; align-items:center; margin-bottom: 4px;">
+                        <span style="display:inline-block; width:12px; height:12px; background-color:${demColor}; margin-right:8px; border: 1px solid #aaa;"></span>
+                        <span style="font-weight:bold;">${demName}: ${(demPct * 100).toFixed(1)}%</span>
+                        <span style="color:#ccc; font-size:12px; margin-left:6px;">(${dem.toLocaleString()})</span>
+                    </div>` +
+                    `<div style="display:flex; align-items:center; margin-bottom: 4px;">
+                        <span style="display:inline-block; width:12px; height:12px; background-color:${repColor}; margin-right:8px; border: 1px solid #aaa;"></span>
+                        <span style="font-weight:bold;">${repName}: ${(repPct * 100).toFixed(1)}%</span>
+                        <span style="color:#ccc; font-size:12px; margin-left:6px;">(${rep.toLocaleString()})</span>
+                    </div>` +
+                    (oth > 0 ?
+                    `<div style="display:flex; align-items:center; margin-bottom: 4px;">
+                        <span style="display:inline-block; width:12px; height:12px; background-color:#888; margin-right:8px; border: 1px solid #aaa;"></span>
+                        <span style="font-weight:bold;">Other: ${(othPct * 100).toFixed(1)}%</span>
+                        <span style="color:#ccc; font-size:12px; margin-left:6px;">(${oth.toLocaleString()})</span>
+                    </div>` : "") +
+                    `<hr style="margin:6px 0; border:0; border-top:1px solid #777;"><div style="color:#ddd; font-size:13px; margin-top:4px;"><i>Margin: ${sign} +${pctStr}%</i></div>` +
+                    customText
+                );
+            });
+
+            mlMap.on("mouseleave", "cd-fill", () => {
+                mlMap.getCanvas().style.cursor = "";
+                tooltip.style("display", "none");
+            });
+        }
+
+        function updatePrecinctColors() {
+            if (!mlMap || !mlMapReady || isUserInteracting) return;
+
+            let hasActiveShuffle = false;
+            for (let fips in fipsMultipliers) {
+                const mult = fipsMultipliers[fips];
+                if (Math.abs(mult.mD - 1) > 0.001 || Math.abs(mult.mR - 1) > 0.001) {
+                    hasActiveShuffle = true;
+                    break;
+                }
+            }
+
+            if (!hasActiveShuffle) {
+                try {
+                    mlMap.removeFeatureState({ source: "blockgroups", sourceLayer: "blockgroups" });
+                } catch (e) {}
+                mlMap.setPaintProperty("precinct-fill", "fill-color", getPrecinctGPUColorExpression());
+                precColorCache = {};
+                return;
+            }
+
+            if (precViewDirty || !precVisCache) {
+                let raw;
+                try {
+                    raw = mlMap.queryRenderedFeatures({ layers: ["precinct-fill"] });
+                } catch (e) {
+                    return;
+                }
+                if (!raw || raw.length === 0) return;
+                const seenB = {};
+                precVisCache = [];
+                for (let ri = 0; ri < raw.length; ri++) {
+                    const rf = raw[ri];
+                    const rg = String(rf.id || (rf.properties && rf.properties.GEOID) || "");
+                    if (!rg || seenB[rg]) continue;
+                    seenB[rg] = true;
+                    const rp = rf.properties || {};
+                    precVisCache.push({
+                        geoid: rg,
+                        cf: rg.length >= 5 ? rg.slice(0, 5) : rg,
+                        vt: Number(rp.votes_total) || 0,
+                        vd: Number(rp.votes_dem) || 0,
+                        vr: Number(rp.votes_rep) || 0
+                    });
+                }
+                precViewDirty = false;
+            }
+
+            if (precVisCache.length === 0) return;
+
+            mlMap.setPaintProperty("precinct-fill", "fill-color", ["coalesce", ["feature-state", "color"], "#ffffff"]);
+
+            requestAnimationFrame(() => {
+                const len = precVisCache.length;
+                for (let fi = 0; fi < len; fi++) {
+                    const f = precVisCache[fi];
+                    const geoid = f.geoid;
+                    const countyFips = f.cf;
+                    const baseTotal = f.vt;
+                    const baseDem = f.vd;
+                    const baseRep = f.vr;
+                    const baseOth = Math.max(0, baseTotal - baseDem - baseRep);
+
+                    const mults = fipsMultipliers[countyFips];
+                    const mD = mults ? mults.mD : 1;
+                    const mR = mults ? mults.mR : 1;
+                    const mO = mults ? mults.mO : 1;
+
+                    const dem = Math.round(baseDem * mD);
+                    const rep = Math.round(baseRep * mR);
+                    const ots = Math.round(baseOth * mO);
+                    const total = dem + rep + ots;
+
+                    let maxVotes = dem;
+                    let winnerId = demCandId;
+
+                    if (rep > maxVotes) {
+                        maxVotes = rep;
+                        winnerId = repCandId;
+                    }
+
+                    if (tpCandidatesInGame.length > 0 && mults && mults.tpShares) {
+                        tpCandidatesInGame.forEach(candId => {
+                            const share = mults.tpShares[candId] || 0;
+                            const candVotes = Math.round(ots * share);
+                            if (candVotes > maxVotes) {
+                                maxVotes = candVotes;
+                                winnerId = candId;
+                            }
+                        });
+                    }
+
+                    let secondVotes = 0;
+                    if (winnerId === demCandId) {
+                        secondVotes = rep;
+                        if (tpCandidatesInGame.length > 0 && mults && mults.tpShares) {
+                            tpCandidatesInGame.forEach(candId => {
+                                const candVotes = Math.round(ots * (mults.tpShares[candId] || 0));
+                                if (candVotes > secondVotes) secondVotes = candVotes;
+                            });
+                        }
+                    } else if (winnerId === repCandId) {
+                        secondVotes = dem;
+                        if (tpCandidatesInGame.length > 0 && mults && mults.tpShares) {
+                            tpCandidatesInGame.forEach(candId => {
+                                const candVotes = Math.round(ots * (mults.tpShares[candId] || 0));
+                                if (candVotes > secondVotes) secondVotes = candVotes;
+                            });
+                        }
+                    } else {
+                        secondVotes = Math.max(dem, rep);
+                        tpCandidatesInGame.forEach(candId => {
+                            if (candId === winnerId) return;
+                            const candVotes = Math.round(ots * (mults.tpShares[candId] || 0));
+                            if (candVotes > secondVotes) secondVotes = candVotes;
+                        });
+                    }
+
+                    const marginVal = total > 0 ? (maxVotes - secondVotes) / total : 0;
+                    const color = colorInterpolators[winnerId] ? colorInterpolators[winnerId](Math.sqrt(marginVal)) : "#888888";
+
+                    const sig = marginVal + "@" + color;
+                    if (precColorCache[geoid] === sig) continue;
+                    precColorCache[geoid] = sig;
+
+                    mlMap.setFeatureState(
+                        { source: "blockgroups", sourceLayer: "blockgroups", id: geoid },
+                        { color: color }
+                    );
+                }
+            });
+        }
+
+        async function initDistrictLayer(vintage) {
+            if (!mlMap || !mlMapReady) return;
+
+            const v = vintage || document.getElementById("cd_vintage_selector")?.value || "2026";
+
+            if (cdCurrentVintage === v && mlMap.getSource("districts-source")) {
+                recolorDistricts(v, cdVotesTableCache[v]);
+                return;
+            }
+
+            removeDistrictLayer();
+
+            try {
+                const [geojson, votesTable] = await Promise.all([
+                    fetch(getCdGeojsonUrl(v)).then(r => r.json()),
+                    fetch(getCdVotesUrl(CURRENT_YEAR, v)).then(r => {
+                        if (!r.ok) throw new Error("Votes file 404");
+                        return r.json();
+                    }).catch(() => {
+                        console.warn(`Votes file fallback activated for CD-vintage: ${v}`);
+                        return {};
+                    })
+                ]);
+
+                if (!geojson) return;
+
+                mlMap.addSource("districts-source", {
+                    type: "geojson",
+                    data: geojson,
+                    promoteId: "cd_code"
+                });
+
+                const beforeId = mlMap.getLayer("county-line") ? "county-line" : (mlMap.getLayer("precinct-line") ? "precinct-line" : undefined);
+
+                mlMap.addLayer({
+                    id: "cd-fill",
+                    type: "fill",
+                    source: "districts-source",
+                    paint: {
+                        "fill-color": "#e5e5e8",
+                        "fill-opacity": 1
+                    }
+                }, beforeId);
+
+                mlMap.addLayer({
+                    id: "cd-line",
+                    type: "line",
+                    source: "districts-source",
+                    paint: {
+                        "line-color": "#ffffff",
+                        "line-width": 0.8
+                    }
+                });
+
+                cdCurrentVintage = v;
+                cdVotesTableCache[v] = votesTable;
+                recolorDistricts(v, votesTable);
+
+            } catch (err) {
+                console.error("Error drawing districts:", err);
+            }
+        }
+
+        function removeDistrictLayer() {
+            if (!mlMap) return;
+            if (mlMap.getLayer("cd-fill")) mlMap.removeLayer("cd-fill");
+            if (mlMap.getLayer("cd-line")) mlMap.removeLayer("cd-line");
+            if (mlMap.getSource("districts-source")) mlMap.removeSource("districts-source");
+            cdCurrentVintage = null;
+            currentDistrictMargins = {};
+        }
+
+        function recolorDistricts(vintage, votesTable) {
+            if (!mlMap || !mlMapReady || !mlMap.getLayer("cd-fill")) return;
+
+            const table = votesTable || {};
+            const cdMargins = computeCdMargins(table, fipsResults, demCandId, repCandId);
+            currentDistrictMargins = cdMargins;
+
+            // a fast-path GPU match-expression pretty much
+            const colorMatchExpression = ["match", ["get", "cd_code"]];
+
+            for (const cdCode in cdMargins) {
+                const m = cdMargins[cdCode];
+                const winningId = m.margin >= 0 ? demCandId : repCandId;
+                const color = colorInterpolators[winningId] ? colorInterpolators[winningId](Math.sqrt(Math.abs(m.margin))) : "#888888";
+                colorMatchExpression.push(cdCode, color);
+            }
+
+            colorMatchExpression.push("#e5e5e8"); // fallback
+            mlMap.setPaintProperty("cd-fill", "fill-color", colorMatchExpression);
+        }
+
         function setMapMode(uiMode) {
             currentMode = uiMode;
             const isRedraw = uiMode === "redraw";
             const isProp = uiMode === "proportional";
+            const isPrecinct = uiMode === "precinct";
+            const isDistrict = uiMode === "districts";
 
             const redrawPanel = document.getElementById("redraw_panel");
             const normalInst = document.getElementById("normal_instructions");
             const redrawInst = document.getElementById("redraw_instructions");
+            const cdSelector = document.getElementById("cd_vintage_selector");
 
             if (redrawPanel) redrawPanel.style.display = isRedraw ? "flex" : "none";
             if (redrawInst) redrawInst.style.display = isRedraw ? "block" : "none";
             if (normalInst) normalInst.style.display = isRedraw ? "none" : "block";
+            if (cdSelector) cdSelector.style.display = isDistrict ? "inline-block" : "none";
 
-            realStateBorders.style("display", isRedraw ? "none" : "block");
+            realStateBorders.style("display", (isRedraw || isPrecinct || isDistrict) ? "none" : "block");
 
             if (isRedraw) {
                 const labelsChecked = document.getElementById("rs_toggle_labels") ? document.getElementById("rs_toggle_labels").checked : true;
@@ -1416,25 +2283,125 @@ async function loadAndDrawCountyMap(mode) {
                 customLabelsG.style("display", "none");
             }
 
+            const moreSelector = document.getElementById("more_modes_selector");
+            if (moreSelector) {
+                if (uiMode === "redraw") {
+                    moreSelector.style.color = "#d9534f";
+                    moreSelector.style.fontWeight = "bold";
+                } else if (uiMode === "precinct") {
+                    moreSelector.style.color = "#0275d8";
+                    moreSelector.style.fontWeight = "bold";
+                } else if (uiMode === "districts") {
+                    moreSelector.style.color = "#17a2b8";
+                    moreSelector.style.fontWeight = "bold";
+                } else {
+                    moreSelector.style.color = "";
+                    moreSelector.style.fontWeight = "";
+                }
+            }
+
             refreshMapFills();
 
             if (isProp) { const sqrtK = Math.sqrt(currentZoomK); circles.transition().duration(400).attr("r", d => d.baseR / sqrtK); }
             else circles.transition().duration(400).attr("r", 0);
+
+            // toggle maplibre precinct / district container
+            const countySvg = document.getElementById("county_svg");
+            let precinctMapDiv = document.getElementById("precinct_map_div");
+            if (countySvg) {
+                if (!precinctMapDiv) {
+                    precinctMapDiv = document.createElement("div");
+                    precinctMapDiv.id = "precinct_map_div";
+                    precinctMapDiv.style.cssText = "width: 100%; height: 100%; display: none; position: absolute; top: 0; left: 0;";
+                    countySvg.parentNode.insertBefore(precinctMapDiv, countySvg);
+                    countySvg.parentNode.style.position = "relative";
+                }
+
+                if (isPrecinct || isDistrict) {
+                    countySvg.style.display = "none";
+                    precinctMapDiv.style.display = "block";
+
+                    // force synchronous layout calculations
+                    // this is so Firefox & friends can acquire correct canvas dimensions
+                    void precinctMapDiv.offsetHeight;
+
+                    // delay maplibre resizing by one animation frame
+                    // this prevents projection NaN-failures on load
+                    requestAnimationFrame(() => {
+                        initPrecinctMap();
+
+                        if (mlMap) {
+                            mlMap.resize();
+                            if (isDistrict) {
+                                if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "none");
+                                if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "none");
+                                initDistrictLayer();
+                            } else {
+                                if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "visible");
+                                if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "visible");
+                                removeDistrictLayer();
+                                precViewDirty = true;
+                                throttlePrecinctUpdate();
+                            }
+                        }
+                    });
+                } else {
+                    countySvg.style.display = "block";
+                    precinctMapDiv.style.display = "none";
+                    removeDistrictLayer();
+                }
+            }
         }
 
         const mapControls = document.getElementById("map_controls");
         if(mapControls) {
-            mapControls.addEventListener("change", (e) => {
-                if (e.target.name === "map_mode") setMapMode(e.target.value);
+            const radios = mapControls.querySelectorAll("input[name='map_mode']");
+            const moreSelector = document.getElementById("more_modes_selector");
+
+            radios.forEach(r => {
+                r.addEventListener("change", (e) => {
+                    if (e.target.checked) {
+                        if (moreSelector) moreSelector.value = "";
+                        setMapMode(e.target.value);
+                    }
+                });
+            });
+
+            if (moreSelector) {
+                moreSelector.addEventListener("change", (e) => {
+                    const val = e.target.value;
+                    if (val) {
+                        radios.forEach(r => r.checked = false);
+                        setMapMode(val);
+                    } else {
+                        const marginRadio = mapControls.querySelector("input[value='choropleth']");
+                        if (marginRadio) {
+                            marginRadio.checked = true;
+                            setMapMode("choropleth");
+                        }
+                    }
+                });
+            }
+        }
+
+        const vintageSelector = document.getElementById("cd_vintage_selector");
+        if (vintageSelector) {
+            vintageSelector.addEventListener("change", () => {
+                if (currentMode === "districts") {
+                    initDistrictLayer(vintageSelector.value);
+                }
             });
         }
 
 		let lastZoomK = 1;
         let zoomTicking = false;
 
-        const zoom = d3.zoom().scaleExtent([1, 15])
+        const zoom = d3.zoom().scaleExtent([1, 10])
+            .translateExtent([[0, 0], [975, 610]])
+            .clickDistance(10)
             .filter(event => { if (currentMode === "redraw" && event.type === "mousedown") return event.button === 0; return !event.button; })
             .on("zoom", (event) => {
+                if (currentMode === "precinct" || currentMode === "districts") return;
 
                 // if we zoom down enough and scroll out (mouse) or pinch in (touch), switch maps smoothly
 				if (mode === 'seamless' && event.transform.k <= 1.05 && event.sourceEvent) {
@@ -1474,6 +2441,8 @@ async function loadAndDrawCountyMap(mode) {
 
         window._d3zoom = zoom;
         svg.call(zoom);
+
+        populateCdVintageSelector(CURRENT_YEAR);
 
         const statusLabel = document.getElementById("county_map_status");
         if (statusLabel) statusLabel.style.display = "none";
