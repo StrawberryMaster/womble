@@ -406,7 +406,7 @@ function injectCountyMapInPlace(mode) {
 
     // substitute historical year dynamically in the map mode label
     const { historical, current } = getActiveYears();
-    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${historical.slice(-2)}'`);
+    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${historical.slice(-2)}`);
     controlsDiv.innerHTML = controlsHtml + getMapInstructionsHtml(mode);
 
     // populate advanced dropdown items if precincts are active for the current year
