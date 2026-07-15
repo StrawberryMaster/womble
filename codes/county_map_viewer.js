@@ -28,7 +28,7 @@ function getCdVotesUrl(year, vintage) {
 }
 
 // computes district-level results
-function computeCdMargins(table, fipsResults, demCandId, repCandId) {
+function computeCdMargins(table, fipsResults, demCandId, repCandId, tpCandidatesInGame) {
     const cdMargins = {};
     const cdTotals = {};
 
@@ -55,27 +55,44 @@ function computeCdMargins(table, fipsResults, demCandId, repCandId) {
 
     function addPiece(cdCode, fips, pieceData) {
         if (!cdTotals[cdCode]) {
-            cdTotals[cdCode] = { dem: 0, rep: 0, other: 0 };
+            cdTotals[cdCode] = { dem: 0, rep: 0, other: 0, tp: {} };
         }
 
         const cleanF = String(fips).replace(/\D/g, '').padStart(5, '0');
         const res = fipsResults[cleanF];
         if (!res) return;
 
+        let pieceDem = 0;
+        let pieceRep = 0;
+        let pieceOth = 0;
+
         if (typeof pieceData === 'number') {
             const weight = pieceData;
-            cdTotals[cdCode].dem += res.curDem * weight;
-            cdTotals[cdCode].rep += res.curRep * weight;
-            cdTotals[cdCode].other += res.curOth * weight;
+            pieceDem = res.curDem * weight;
+            pieceRep = res.curRep * weight;
+            pieceOth = res.curOth * weight;
         } else {
             const { d, r, o } = parseVotes(pieceData);
             const rD = res.baseDem > 0 ? (res.curDem / res.baseDem) : 1;
             const rR = res.baseRep > 0 ? (res.curRep / res.baseRep) : 1;
             const rO = res.baseOth > 0 ? (res.curOth / res.baseOth) : 1;
 
-            cdTotals[cdCode].dem += d * rD;
-            cdTotals[cdCode].rep += r * rR;
-            cdTotals[cdCode].other += o * rO;
+            pieceDem = d * rD;
+            pieceRep = r * rR;
+            pieceOth = o * rO;
+        }
+
+        cdTotals[cdCode].dem += pieceDem;
+        cdTotals[cdCode].rep += pieceRep;
+        cdTotals[cdCode].other += pieceOth;
+
+        // distribute third party/other votes
+        const tpShares = res.tpShares || {};
+        if (tpCandidatesInGame && tpCandidatesInGame.length > 0) {
+            tpCandidatesInGame.forEach(candId => {
+                const share = (tpShares && tpShares[candId] !== undefined) ? tpShares[candId] : (1 / tpCandidatesInGame.length);
+                cdTotals[cdCode].tp[candId] = (cdTotals[cdCode].tp[candId] || 0) + (pieceOth * share);
+            });
         }
     }
 
@@ -140,11 +157,29 @@ function computeCdMargins(table, fipsResults, demCandId, repCandId) {
                         const avgRO = count > 0 ? (sumRO / count) : 1;
 
                         if (!cdTotals[cdCode]) {
-                            cdTotals[cdCode] = { dem: 0, rep: 0, other: 0 };
+                            cdTotals[cdCode] = { dem: 0, rep: 0, other: 0, tp: {} };
                         }
                         cdTotals[cdCode].dem += d * avgRD;
                         cdTotals[cdCode].rep += r * avgRR;
                         cdTotals[cdCode].other += o * avgRO;
+
+                        // scale and distribute non-breakdown third party votes
+                        if (tpCandidatesInGame && tpCandidatesInGame.length > 0) {
+                            tpCandidatesInGame.forEach(candId => {
+                                let sumShare = 0, fipsCount = 0;
+                                for (const fips in fipsResults) {
+                                    if (fips.startsWith(statePrefix)) {
+                                        const res = fipsResults[fips];
+                                        if (res.tpShares && res.tpShares[candId] !== undefined) {
+                                            sumShare += res.tpShares[candId];
+                                            fipsCount++;
+                                        }
+                                    }
+                                }
+                                const share = fipsCount > 0 ? (sumShare / fipsCount) : (1 / tpCandidatesInGame.length);
+                                cdTotals[cdCode].tp[candId] = (cdTotals[cdCode].tp[candId] || 0) + (o * avgRO * share);
+                            });
+                        }
                     }
                 }
             }
@@ -152,10 +187,10 @@ function computeCdMargins(table, fipsResults, demCandId, repCandId) {
     }
 
     for (const cdCode in cdTotals) {
-        const { dem, rep, other } = cdTotals[cdCode];
+        const { dem, rep, other, tp } = cdTotals[cdCode];
         const total = dem + rep + other;
         const margin = total > 0 ? (dem - rep) / total : 0;
-        cdMargins[cdCode] = { dem, rep, other, margin };
+        cdMargins[cdCode] = { dem, rep, other, tp, margin };
     }
 
     return cdMargins;
@@ -1037,10 +1072,8 @@ async function loadAndDrawCountyMap(mode) {
                 const targetPct = targetPcts[cr.id] || 0;
                 const simPct = (simVotes[cr.id] || 0) / stateTotalVotes;
 
-                let normVotes = cr.votes;
-                if (simPct > 0 && targetPct > 0) {
-                    normVotes = cr.votes * (targetPct / simPct);
-                } else if (simPct === 0 && targetPct > 0) {
+				let normVotes = cr.votes * (targetPct / simPct);
+                if (simPct === 0 && targetPct > 0) {
                     // edge case: county swung to 0, but state has votes, so re-distribute proportionately.
                     normVotes = unnorm.total * targetPct;
                 } else if (targetPct === 0) {
@@ -1155,16 +1188,6 @@ async function loadAndDrawCountyMap(mode) {
             const curRep = finalResults.find(r => r.id === repCandId)?.votes || 0;
             const curOth = finalResults.filter(r => r.id !== demCandId && r.id !== repCandId).reduce((sum, r) => sum + r.votes, 0);
 
-            fipsResults[d.fips] = {
-                state_po: c.state_po,
-                baseDem: c.votes_dem || 0,
-                baseRep: c.votes_rep || 0,
-                baseOth: c.votes_other || 0,
-                curDem: curDem,
-                curRep: curRep,
-                curOth: curOth
-            };
-
             const finalTPResults = finalResults.filter(r => r.id !== demCandId && r.id !== repCandId);
             const totalTPCountyVotes = finalTPResults.reduce((sum, r) => sum + r.votes, 0);
             const tpShares = {};
@@ -1177,6 +1200,17 @@ async function loadAndDrawCountyMap(mode) {
                     tpShares[candId] = 1 / tpCandidatesInGame.length;
                 });
             }
+
+            fipsResults[d.fips] = {
+                state_po: c.state_po,
+                baseDem: c.votes_dem || 0,
+                baseRep: c.votes_rep || 0,
+                baseOth: c.votes_other || 0,
+                curDem: curDem,
+                curRep: curRep,
+                curOth: curOth,
+                tpShares: tpShares
+            };
 
             fipsMultipliers[d.fips] = {
                 mD: (c.votes_dem || 0) > 0 ? curDem / (c.votes_dem || 0) : 1,
@@ -1941,7 +1975,7 @@ async function loadAndDrawCountyMap(mode) {
 
                 let customText = "";
                 if (countyToCustom[countyFips] && customStates[countyToCustom[countyFips]]) {
-                    const st = customStates[countyToCustom[countyFips]];
+                    const st = customStates[countyToCustom[matchedFips]];
                     customText = `<div style="color:#ffcc00; font-size:13px; margin-top:6px; border-top:1px solid #777; padding-top:4px;"><b>${st.name}</b> (${st.ev} ev)<br><b>net:</b> ${st.winName} ${st.marginText}</div>`;
                 }
 
@@ -1985,12 +2019,42 @@ async function loadAndDrawCountyMap(mode) {
                 const oth = Math.round(m.other);
                 const total = dem + rep + oth;
 
-                const demPct = total > 0 ? dem / total : 0;
-                const repPct = total > 0 ? rep / total : 0;
-                const othPct = total > 0 ? oth / total : 0;
+                const districtResults = [
+                    { id: demCandId, votes: dem, pct: total > 0 ? dem / total : 0 },
+                    { id: repCandId, votes: rep, pct: total > 0 ? rep / total : 0 }
+                ];
 
-                const sign = m.margin >= 0 ? demName : repName;
-                const pctStr = (Math.abs(m.margin) * 100).toFixed(1);
+                if (tpCandidatesInGame && tpCandidatesInGame.length > 0) {
+                    tpCandidatesInGame.forEach(candId => {
+                        const candVotes = Math.round(m.tp ? (m.tp[candId] || 0) : 0);
+                        districtResults.push({
+                            id: candId,
+                            votes: candVotes,
+                            pct: total > 0 ? candVotes / total : 0
+                        });
+                    });
+                }
+
+                districtResults.sort((a, b) => b.votes - a.votes);
+
+                const winner = districtResults[0];
+                const second = districtResults.length > 1 ? districtResults[1] : { votes: 0, pct: 0 };
+                const marginVal = winner.pct - second.pct;
+                const sign = (candsInfo.get(String(winner.id))?.last_name || "Winner");
+                const pctStr = (marginVal * 100).toFixed(1);
+
+                const candRowsHtml = districtResults.slice(0, 4).map(r => {
+                    const cInfo = candsInfo.get(String(r.id)) || {};
+                    const candName = (cInfo.last_name || r.id);
+                    const candColor = cInfo.color_hex || '#888';
+                    return `
+                        <div style="display:flex; align-items:center; margin-bottom: 4px;">
+                            <span style="display:inline-block; width:12px; height:12px; background-color:${candColor}; margin-right:8px; border: 1px solid #aaa;"></span>
+                            <span style="font-weight:bold;">${candName}: ${(r.pct * 100).toFixed(1)}%</span>
+                            <span style="color:#ccc; font-size:12px; margin-left:6px;">(${r.votes.toLocaleString()})</span>
+                        </div>
+                    `;
+                }).join('');
 
                 let customText = "";
                 const matchedFips = Object.keys(countyToCustom).find(fips => countyToCustom[fips] && fips.startsWith(cdCode.slice(0, 2)));
@@ -2002,22 +2066,7 @@ async function loadAndDrawCountyMap(mode) {
                 tooltip.style("display", "block").html(
                     `<strong style="font-size:16px">District: ${cdCode}</strong><br>` +
                     `<div style="font-size:12px; color:#bbb; margin-top:-2px; margin-bottom:8px;">Total votes: ${total.toLocaleString()}</div>` +
-                    `<div style="display:flex; align-items:center; margin-bottom: 4px;">
-                        <span style="display:inline-block; width:12px; height:12px; background-color:${demColor}; margin-right:8px; border: 1px solid #aaa;"></span>
-                        <span style="font-weight:bold;">${demName}: ${(demPct * 100).toFixed(1)}%</span>
-                        <span style="color:#ccc; font-size:12px; margin-left:6px;">(${dem.toLocaleString()})</span>
-                    </div>` +
-                    `<div style="display:flex; align-items:center; margin-bottom: 4px;">
-                        <span style="display:inline-block; width:12px; height:12px; background-color:${repColor}; margin-right:8px; border: 1px solid #aaa;"></span>
-                        <span style="font-weight:bold;">${repName}: ${(repPct * 100).toFixed(1)}%</span>
-                        <span style="color:#ccc; font-size:12px; margin-left:6px;">(${rep.toLocaleString()})</span>
-                    </div>` +
-                    (oth > 0 ?
-                    `<div style="display:flex; align-items:center; margin-bottom: 4px;">
-                        <span style="display:inline-block; width:12px; height:12px; background-color:#888; margin-right:8px; border: 1px solid #aaa;"></span>
-                        <span style="font-weight:bold;">Other: ${(othPct * 100).toFixed(1)}%</span>
-                        <span style="color:#ccc; font-size:12px; margin-left:6px;">(${oth.toLocaleString()})</span>
-                    </div>` : "") +
+                    candRowsHtml +
                     `<hr style="margin:6px 0; border:0; border-top:1px solid #777;"><div style="color:#ddd; font-size:13px; margin-top:4px;"><i>Margin: ${sign} +${pctStr}%</i></div>` +
                     customText
                 );
@@ -2238,7 +2287,7 @@ async function loadAndDrawCountyMap(mode) {
             if (!mlMap || !mlMapReady || !mlMap.getLayer("cd-fill")) return;
 
             const table = votesTable || {};
-            const cdMargins = computeCdMargins(table, fipsResults, demCandId, repCandId);
+            const cdMargins = computeCdMargins(table, fipsResults, demCandId, repCandId, tpCandidatesInGame);
             currentDistrictMargins = cdMargins;
 
             // a fast-path GPU match-expression pretty much
