@@ -1049,6 +1049,22 @@ function countyMapScreenHtml() {
 const _countyMapCache = { current: {}, historical: {}, us: null };
 
 async function loadAndDrawCountyMap(mode) {
+    // restore native Blob constructor
+	// seems funny, but is necessary to get it working on mods like OBN
+	try {
+        new window.Blob([]);
+    } catch (e) {
+        try {
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            window.Blob = iframe.contentWindow.Blob;
+            document.body.removeChild(iframe);
+        } catch (recoveryError) {
+            console.error("Failed to recover native Blob constructor:", recoveryError);
+        }
+    }
+
     const activeYears = getActiveYears();
     CURRENT_YEAR = activeYears.current;
     HISTORICAL_YEAR = activeYears.historical;
