@@ -47,10 +47,22 @@ function getFeatureCdCode(f) {
     if (!f || !f.properties) return null;
     const p = f.properties;
 
-    // check direct standard properties
+    // check direct standard properties if they are already fully formatted (e.g. "AL-05" or "WY-AL")
+    if (p.name && /^[A-Z]{2}-(AL|\d{2})$/i.test(p.name)) return String(p.name).toUpperCase();
     if (p.cd_code) return String(p.cd_code);
     if (p.CD_CODE) return String(p.CD_CODE);
-    if (p.cd) return String(p.cd);
+    if (p.cd && /^[A-Z]{2}-(AL|\d{2})$/i.test(p.cd)) return String(p.cd).toUpperCase();
+
+    // check if we can combine a separate state abbreviation and numeric CD property
+    const stateVal = p.state || p.STATE || p.state_po || p.STATE_PO;
+    const cdVal = p.cd !== undefined ? p.cd : p.CD;
+    if (stateVal && cdVal !== undefined) {
+        const stPo = String(stateVal).toUpperCase();
+        if (STATE_PO_TO_FIPS[stPo]) {
+            const cdStr = String(cdVal).toUpperCase() === "AL" || String(cdVal) === "0" ? "AL" : String(cdVal).padStart(2, '0');
+            return `${stPo}-${cdStr}`;
+        }
+    }
 
     // parse and normalize from GEOID (e.g. "0101" or "01001" or "3622")
     if (p.GEOID) {
@@ -71,7 +83,12 @@ function getFeatureCdCode(f) {
     // parse and normalize from STATEFP + CD field combo
     if (p.STATEFP) {
         const stPo = STATE_FIPS_TO_PO[p.STATEFP];
-        const cdNum = p.CD113FP || p.CD114FP || p.CD115FP || p.CD116FP || p.CD117FP || p.CD118FP || p.CD119FP || p.CDFP;
+        let cdNum = p.CDFP || p.CD;
+        if (cdNum === undefined) {
+            const cdKey = Object.keys(p).find(k => /^CD\d{3}FP$/i.test(k) || /^CDFP$/i.test(k));
+            if (cdKey) cdNum = p[cdKey];
+        }
+
         if (stPo && cdNum !== undefined) {
             return `${stPo}-${String(parseInt(cdNum, 10)).padStart(2, '0')}`;
         }
@@ -111,6 +128,38 @@ function getGeographicCentroid(geometry) {
         geometry.coordinates.forEach(poly => processRings(poly));
     }
     return count > 0 ? [sumX / count, sumY / count] : null;
+}
+
+// this is to project WGS84 geographic coordinates onto the flat MapLibre screen canvas
+function projectGeoJsonToScreen(geojson) {
+    const proj = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
+
+    function projectPt(pt) {
+        if (!Array.isArray(pt) || pt.length < 2) return pt;
+        const projected = proj(pt);
+        if (projected && isFinite(projected[0]) && isFinite(projected[1])) {
+            // flip the vertical y-axis to align D3's top-down space with MapLibre's bottom-up space
+            return [projected[0] / 100, (610 - projected[1]) / 100];
+        }
+        return [0, 0];
+    }
+
+    function projectCoords(coords, depth) {
+        if (depth === 0) {
+            return projectPt(coords);
+        }
+        return coords.map(c => projectCoords(c, depth - 1));
+    }
+
+    geojson.features.forEach(f => {
+        if (!f.geometry || !f.geometry.coordinates) return;
+        const type = f.geometry.type;
+        if (type === "Polygon") {
+            f.geometry.coordinates = projectCoords(f.geometry.coordinates, 2);
+        } else if (type === "MultiPolygon") {
+            f.geometry.coordinates = projectCoords(f.geometry.coordinates, 3);
+        }
+    });
 }
 
 // approximate district weights from county shapes and district GeoJSON
@@ -735,24 +784,30 @@ function getActiveYears() {
     return { current, historical };
 }
 
+function getOrdinalSuffix(i) {
+    const j = i % 10, k = i % 100;
+    if (j === 1 && k !== 11) return i + "st";
+    if (j === 2 && k !== 12) return i + "nd";
+    if (j === 3 && k !== 13) return i + "rd";
+    return i + "th";
+}
+
 function populateCdVintageSelector(year) {
     const selector = document.getElementById("cd_vintage_selector");
     if (!selector) return;
 
     selector.innerHTML = "";
-    const vintages = [
-        { value: "110", label: "110th Congress (2006)" },
-        { value: "111", label: "111th Congress (2008)" },
-        { value: "112", label: "112th Congress (2010)" },
-        { value: "113", label: "113th Congress (2012)" },
-        { value: "114", label: "114th Congress (2014)" },
-        { value: "115", label: "115th Congress (2016)" },
-        { value: "116", label: "116th Congress (2018)" },
-        { value: "117", label: "117th Congress (2020)" },
-        { value: "118", label: "118th Congress (2022)" },
-        { value: "119", label: "119th Congress (2024)" },
-        { value: "2026", label: "2026 (current)" }
-    ];
+    const vintages = [];
+
+    for (let c = 63; c <= 119; c++) {
+        const y = 1786 + c * 2;
+        vintages.push({
+            value: String(c),
+            label: `${getOrdinalSuffix(c)} Congress (${y})`
+        });
+    }
+
+    vintages.push({ value: "2026", label: "2026 (current)" });
 
     vintages.forEach(v => {
         const opt = document.createElement("option");
@@ -762,12 +817,13 @@ function populateCdVintageSelector(year) {
     });
 
     const yr = parseInt(year, 10);
-    if (yr === 2008) selector.value = "111";
-    else if (yr === 2012) selector.value = "113";
-    else if (yr === 2016) selector.value = "115";
-    else if (yr === 2020) selector.value = "117";
-    else if (yr === 2024) selector.value = "119";
-    else selector.value = "2026";
+
+    if (yr >= 1912 && yr <= 2024) {
+        const defaultCongress = Math.floor((yr - 1786) / 2);
+        selector.value = String(defaultCongress);
+    } else {
+        selector.value = "2026";
+    }
 }
 
 // inject into election map screen
@@ -2636,21 +2692,21 @@ async function loadAndDrawCountyMap(mode) {
 		// decade-level boundary-matched fallback helper
 		function getFallbackVotesUrl(year, vintage) {
 			const v = parseInt(vintage, 10);
-			if (v >= 110 && v <= 112) {
-				// 2000s boundaries (fallback to 2008)
-				return getCdVotesUrl("2008", "111");
-			} else if ((v >= 113 && v <= 117) || vintage === "113" || vintage === "115" || vintage === "117") {
-				// 2010s boundaries (fallback to 2016 or 2020)
+
+			// modern decennial boundary mappings
+			if (v >= 118) return getCdVotesUrl("2024", "119");
+			if (v >= 113 && v <= 117) {
 				const y = parseInt(year, 10);
 				if (Math.abs(y - 2020) < Math.abs(y - 2016)) {
 					return getCdVotesUrl("2020", "117");
 				} else {
 					return getCdVotesUrl("2016", "115");
 				}
-			} else {
-				// 2020s boundaries (fallback to 2024)
-				return getCdVotesUrl("2024", "119");
 			}
+			if (v >= 110 && v <= 112) return getCdVotesUrl("2008", "111");
+
+			// for older/nonexistent historical cycles
+			return "";
 		}
 
         async function initDistrictLayer(vintage) {
@@ -2682,16 +2738,22 @@ async function loadAndDrawCountyMap(mode) {
 					console.warn(`Votes file 404 for ${CURRENT_YEAR} vintage ${v}. Retrying decade-level fallback...`);
 					const fallbackUrl = getFallbackVotesUrl(CURRENT_YEAR, v);
 
-					[geojson, votesTable] = await Promise.all([
-						fetch(getCdGeojsonUrl(v)).then(r => r.json()),
-						fetch(fallbackUrl).then(r => {
-							if (!r.ok) throw new Error("Fallback votes file 404");
-							return r.json();
-						}).catch(() => {
-							// fallback to empty if even decade blueprint is unreachable
-							return {};
-						})
-					]);
+					if (fallbackUrl) {
+						[geojson, votesTable] = await Promise.all([
+							fetch(getCdGeojsonUrl(v)).then(r => r.json()),
+							fetch(fallbackUrl).then(r => {
+								if (!r.ok) throw new Error("Fallback votes file 404");
+								return r.json();
+                            }).catch(() => {
+                                // fallback to empty if even decade blueprint is unreachable
+								return {};
+							})
+						]);
+					} else {
+						// fallback if no blueprint file is specified
+						geojson = await fetch(getCdGeojsonUrl(v)).then(r => r.json());
+						votesTable = {};
+					}
 				}
 
 				if (!geojson) return;
@@ -2701,6 +2763,21 @@ async function loadAndDrawCountyMap(mode) {
 				if (!finalVotesTable || Object.keys(finalVotesTable).length === 0) {
 					console.log(`Generating dynamic spatial district weights from county shapes for ${CURRENT_YEAR} / vintage ${v}...`);
 					finalVotesTable = generateDistrictVotesTable(geojson, usCounties, fipsResults);
+				}
+
+				const firstGeom = geojson.features[0]?.geometry;
+				let isGeographic = false;
+				let firstPt = null;
+				if (firstGeom && firstGeom.coordinates) {
+					if (firstGeom.type === "Polygon") firstPt = firstGeom.coordinates[0][0];
+					else if (firstGeom.type === "MultiPolygon") firstPt = firstGeom.coordinates[0][0][0];
+				}
+				if (firstPt && Array.isArray(firstPt) && firstPt[0] < 0 && firstPt[0] >= -180) {
+					isGeographic = true;
+				}
+
+				if (isGeographic) {
+					projectGeoJsonToScreen(geojson);
 				}
 
 				mlMap.addSource("districts-source", {
@@ -2767,8 +2844,26 @@ async function loadAndDrawCountyMap(mode) {
 
 			for (const cdCode in cdMargins) {
 				const m = cdMargins[cdCode];
-				const winningId = m.margin >= 0 ? demCandId : repCandId;
-				const color = colorInterpolators[winningId] ? colorInterpolators[winningId](Math.sqrt(Math.abs(m.margin))) : "#888888";
+
+				const candidateVotes = [
+					{ id: demCandId, votes: m.dem },
+					{ id: repCandId, votes: m.rep }
+				];
+				if (m.tp) {
+					for (const candId in m.tp) {
+						candidateVotes.push({ id: candId, votes: m.tp[candId] });
+					}
+				}
+
+				candidateVotes.sort((a, b) => b.votes - a.votes);
+
+				const winner = candidateVotes[0];
+				const runnerUp = candidateVotes.length > 1 ? candidateVotes[1] : { votes: 0 };
+
+				const totalVotes = m.dem + m.rep + (m.other || 0);
+				const marginPct = totalVotes > 0 ? (winner.votes - runnerUp.votes) / totalVotes : 0;
+
+				const color = colorInterpolators[winner.id] ? colorInterpolators[winner.id](Math.sqrt(marginPct)) : "#888888";
 				colorMatchExpression.push(cdCode, color);
 			}
 
