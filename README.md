@@ -25,6 +25,19 @@ if (e.question_number === 5 && applesauce > 2) {
 answerSwapper(8325, 8549, false);
 ```
 
+### Anti-cheat system
+The [anti-cheat system](./codes/anti_cheat.js), originally made for TCT.net, is a simple tool for disabling console cheats, the benefit checker, cheat menus, and autoplay. You are able to configure which features to disable or enable, by setting the corresponding fields in the `disableConfig` object to `true` or `false`.
+
+By default, all features are disabled. The example below disables all features except autoplay.
+```javascript
+const disableConfig = {
+  console: false,
+  benefit: false,
+  cheatMenu: false,
+  autoplay: true
+};
+```
+
 ### Banner changer
 The [banner changer](./codes/banner_changer.js) is a simple tool for changing the candidate banner logos. It includes a single function, `changeImage()`, which takes an image URL as an argument and updates the banner logo to that image. For example:
 
@@ -41,7 +54,7 @@ if (e.running_mate_last_name === "Gephardt") {
 ```
 
 ### Candidate remover/restorer
-[`candidateRemover`](./codes/candidate_remover-restorer.js) is a tool for removing candidates from the election, and optionally restoring them later. It includes both `removeCandidate()` and `restoreCandidate()`. For a quick cheat-sheet:
+[`candidateRemover`](./codes/candidate_remover-restorer.js) is a tool for removing candidates from the election, and optionally restoring them later, as first shown in *2012: Obamanation*, where it is possible for Joe Lieberman to withdraw in favor of Clint Eastwood, with Eastwood taking over his support. It includes both `removeCandidate()` and `restoreCandidate()`. For a quick cheat-sheet:
 
 #### removeCandidate
 - `removeCandidate(301);` - removes candidate 301, distributes their votes proportionally among the other candidate
@@ -52,6 +65,11 @@ if (e.running_mate_last_name === "Gephardt") {
 #### restoreCandidate
 - `restoreCandidate(301, { touch: 'both' });` - restores candidate 301. I missed them
 - `restoreCandidate(301, { touch: 'final' });` - restores 301, *but* only makes them appear at the final results
+
+### Candidate renamer
+[`candidateRenamer`](./codes/candidate_renamer.js) is a tool for renaming candidates on the election map and results pages. It includes a single function, `getTargetName()`, which returns the correct name for a given state abbreviation. Although it works automatically, you can also use it to override the default name for a given state. In the example below, a candidate globally named "Ted Kennedy" is referred to, in the final results table, as "Edward Kennedy" in Massachusetts and Oregon, but as "Teddy Kennedy" elsewhere.
+
+You may need to replace all instances of "Ted Kennedy" with the name your character uses and "Teddy Kennedy" with the name you want.
 
 ### Change turnout
 The [change turnout](./codes/changeturnout.js) function is a simple tool for changing the turnout of a state or the overall turnout of the election. It includes a single function, `changeTurnout()`, which takes a percentage as an argument and updates the turnout to that percentage. For example:
@@ -183,6 +201,18 @@ mapButton.title = "It's all so hazy.";
 The [polling graph](./codes/polling_graph.js), shown in *The Major Leagues*, is a tool for visualizing the results of a playthrough. It adds a graph right next to the results table that shows each candidate's % and electoral votes (if applicable) at the start of each question, including the final results. For convenience, this version has been adjusted so that it will not replace the historical results table.
 
 ![Polling graph](./images/polling_graph.png)
+
+### Question counter
+The [question counter](./codes/question_counter.js) is a tool for customizing the question counter text in the progress bar header. Inside it, you can define a mapping of question PKs to custom route names, or rather, the text that should be displayed for each question. For example:
+```javascript
+const routeNames = {
+  1200: "Pocket Dimension Route",
+  1201: "Electric Boogaloo Route",
+  1202: "example",
+};
+```
+
+means that the question counter will display "Pocket Dimension Route" for question PK 1200, "Electric Boogaloo Route" for question PK 1201, and "example" for question PK 1202.
 
 ### Question swapper
 The [question swapper](./codes/question_swapper.js) is a tool for swapping the order of questions in a mod. It includes a single function, `questionSwapper()`, which takes two question numbers as arguments and swaps their order. For example:
