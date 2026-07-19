@@ -83,7 +83,11 @@ function getFeatureCdCode(f) {
     // parse and normalize from STATEFP + CD field combo
     if (p.STATEFP) {
         const stPo = STATE_FIPS_TO_PO[p.STATEFP];
-        let cdNum = p.CDFP || p.CD;
+
+        // direct lookup for common years
+        let cdNum = p.CDFP || p.CD || p.CD113FP || p.CD114FP || p.CD115FP || p.CD116FP || p.CD117FP || p.CD118FP || p.CD119FP || p.CD109FP || p.CD108FP || p.CD103FP;
+
+        // regex fallback for other non-listed Congress shapes
         if (cdNum === undefined) {
             const cdKey = Object.keys(p).find(k => /^CD\d{3}FP$/i.test(k) || /^CDFP$/i.test(k));
             if (cdKey) cdNum = p[cdKey];
@@ -168,12 +172,43 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
 
     const table = {};
 
-    // group CD features by State PO and normalize IDs
+    // helper to calculate geometry 2D bounding boxes
+    function getGeomBbox(geom) {
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        function processRings(rings) {
+            rings.forEach(ring => {
+                ring.forEach(pt => {
+                    if (Array.isArray(pt) && isFinite(pt[0]) && isFinite(pt[1])) {
+                        if (pt[0] < minX) minX = pt[0];
+                        if (pt[0] > maxX) maxX = pt[0];
+                        if (pt[1] < minY) minY = pt[1];
+                        if (pt[1] > maxY) maxY = pt[1];
+                    }
+                });
+            });
+        }
+        if (geom.type === "Polygon") {
+            processRings(geom.coordinates);
+        } else if (geom.type === "MultiPolygon") {
+            geom.coordinates.forEach(poly => processRings(poly));
+        }
+        return [minX, minY, maxX, maxY];
+    }
+
+    function inBbox(pt, bbox) {
+        return pt[0] >= bbox[0] && pt[0] <= bbox[2] && pt[1] >= bbox[1] && pt[1] <= bbox[3];
+    }
+
+    // group CD features by State PO, normalize IDs, and precompute bounding boxes
     const cdsByState = {};
     geojson.features.forEach(f => {
         const cdCode = getFeatureCdCode(f);
         if (!cdCode) return;
         f.properties.cd_code = cdCode;
+
+        if (f.geometry) {
+            f.bbox = getGeomBbox(f.geometry);
+        }
 
         const statePo = cdCode.includes('-') ? cdCode.split('-')[0].toUpperCase() : cdCode.slice(0, 2).toUpperCase();
         if (!cdsByState[statePo]) cdsByState[statePo] = [];
@@ -367,6 +402,10 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
 
                 for (let i = 0; i < stateCds.length; i++) {
                     const cdFeat = stateCds[i];
+
+                    // skip point-in-polygon math if test point is outside BBOX boundaries
+                    if (cdFeat.bbox && !inBbox(testPt, cdFeat.bbox)) continue;
+
                     if (pointInGeom(testPt, cdFeat.geometry)) {
                         const cdCode = cdFeat.properties.cd_code;
                         cdHits[cdCode] = (cdHits[cdCode] || 0) + 1;
@@ -945,69 +984,73 @@ function injectCountyMapInPlace(mode) {
         btnState.onclick = window._switchToStateMap;
         btnCounty.onclick = () => window._switchToCountyMap();
     } else if (mode === 'seamless') {
-        // desktop: mouse wheel zoom
-        mapContainer.addEventListener("wheel", (e) => {
-            if (countySvgContainer.style.display === "block") return;
-            if (e.deltaY < 0) {
-                e.preventDefault();
-                const rect = mapContainer.getBoundingClientRect();
-                const rx = ((e.clientX - rect.left) / rect.width) * 975;
-                const ry = ((e.clientY - rect.top) / rect.height) * 610;
-                window._switchToCountyMap(rx, ry);
-            }
-        }, {passive: false, capture: true});
+        if (!mapContainer.dataset.countyListenersAttached) {
+            mapContainer.dataset.countyListenersAttached = "true";
 
-        // mobile: pinch-to-zoom and double-tap
-        let initialPinchDist = null;
-        let lastTap = 0;
-
-        mapContainer.addEventListener("touchstart", (e) => {
-            if (countySvgContainer.style.display === "block") return;
-
-            // double tap to zoom
-            const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTap;
-            if (tapLength < 300 && tapLength > 0 && e.touches.length === 1) {
-                e.preventDefault();
-                const rect = mapContainer.getBoundingClientRect();
-                const rx = ((e.touches[0].clientX - rect.left) / rect.width) * 975;
-                const ry = ((e.touches[0].clientY - rect.top) / rect.height) * 610;
-                window._switchToCountyMap(rx, ry);
-            }
-            lastTap = currentTime;
-
-            // pinch to zoom initialize
-            if (e.touches.length === 2) {
-                initialPinchDist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-            }
-        }, {passive: false});
-
-        mapContainer.addEventListener("touchmove", (e) => {
-            if (countySvgContainer.style.display === "block" || !initialPinchDist) return;
-            if (e.touches.length === 2) {
-                const currentDist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-
-                // if user spreads fingers by more than 30px, zoom in
-                if (currentDist > initialPinchDist + 30) {
+            // desktop: mouse wheel zoom
+            mapContainer.addEventListener("wheel", (e) => {
+                if (countySvgContainer.style.display === "block") return;
+                if (e.deltaY < 0) {
                     e.preventDefault();
-                    initialPinchDist = null;
                     const rect = mapContainer.getBoundingClientRect();
-                    const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-                    const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-                    const rx = ((centerX - rect.left) / rect.width) * 975;
-                    const ry = ((centerY - rect.top) / rect.height) * 610;
+                    const rx = ((e.clientX - rect.left) / rect.width) * 975;
+                    const ry = ((e.clientY - rect.top) / rect.height) * 610;
                     window._switchToCountyMap(rx, ry);
                 }
-            }
-        }, {passive: false});
+            }, {passive: false, capture: true});
 
-        mapContainer.addEventListener("touchend", () => { initialPinchDist = null; });
+            // mobile: pinch-to-zoom and double-tap
+            let initialPinchDist = null;
+            let lastTap = 0;
+
+            mapContainer.addEventListener("touchstart", (e) => {
+                if (countySvgContainer.style.display === "block") return;
+
+                // double tap to zoom
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTap;
+                if (tapLength < 300 && tapLength > 0 && e.touches.length === 1) {
+                    e.preventDefault();
+                    const rect = mapContainer.getBoundingClientRect();
+                    const rx = ((e.touches[0].clientX - rect.left) / rect.width) * 975;
+                    const ry = ((e.touches[0].clientY - rect.top) / rect.height) * 610;
+                    window._switchToCountyMap(rx, ry);
+                }
+                lastTap = currentTime;
+
+                // pinch to zoom initialize
+                if (e.touches.length === 2) {
+                    initialPinchDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                }
+            }, {passive: false});
+
+            mapContainer.addEventListener("touchmove", (e) => {
+                if (countySvgContainer.style.display === "block" || !initialPinchDist) return;
+                if (e.touches.length === 2) {
+                    const currentDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+
+                    // if user spreads fingers by more than 30px, zoom in
+                    if (currentDist > initialPinchDist + 30) {
+                        e.preventDefault();
+                        initialPinchDist = null;
+                        const rect = mapContainer.getBoundingClientRect();
+                        const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                        const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+                        const rx = ((centerX - rect.left) / rect.width) * 975;
+                        const ry = ((centerY - rect.top) / rect.height) * 610;
+                        window._switchToCountyMap(rx, ry);
+                    }
+                }
+            }, {passive: false});
+
+            mapContainer.addEventListener("touchend", () => { initialPinchDist = null; });
+        }
     }
 }
 
@@ -1050,7 +1093,7 @@ function countyMapScreenHtml() {
     let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${activeY.historical.slice(-2)}`);
 
     document.getElementById("game_window").innerHTML = `
-        ${headerHtml}
+        ${gameHeader ? gameHeader.outerHTML : `<div class="game_header">${window.corrr}</div>`}
         <div id="main_content_area" style="padding-bottom: 20px; position:relative;">
             <h3 style="margin-bottom: 5px; color: #000;">SIMULATED COUNTY RESULTS</h3>
 
