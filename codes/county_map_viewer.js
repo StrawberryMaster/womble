@@ -1133,7 +1133,11 @@ async function loadAndDrawCountyMap(mode) {
                 usData = await fetch(usMapUrl).then(r => r.json());
             }
 
-            if (window.MW_SHUFFLER_DATA) {
+			const useShuffler = window.MW_SHUFFLER_DATA &&
+                                window.MW_SHUFFLER_DATA.years &&
+                                window.MW_SHUFFLER_DATA.years.includes(parseInt(CURRENT_YEAR, 10));
+
+            if (useShuffler) {
                 // map shuffler fields to county results format
                 window.MW_SHUFFLER_DATA.counties.forEach(c => {
                     const fips = String(c.f).padStart(5, '0');
@@ -1490,12 +1494,12 @@ async function loadAndDrawCountyMap(mode) {
                 const targetPct = targetPcts[cr.id] || 0;
                 const simPct = (simVotes[cr.id] || 0) / stateTotalVotes;
 
-				let normVotes = cr.votes * (targetPct / simPct);
-                if (simPct === 0 && targetPct > 0) {
+                let normVotes = 0;
+                if (simPct > 0) {
+                    normVotes = cr.votes * (targetPct / simPct);
+                } else if (targetPct > 0) {
                     // edge case: county swung to 0, but state has votes, so re-distribute proportionately.
                     normVotes = unnorm.total * targetPct;
-                } else if (targetPct === 0) {
-                    normVotes = 0;
                 }
                 return { ...cr, normVotes: normVotes };
             });
