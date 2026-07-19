@@ -128,7 +128,7 @@ This [county map viewer](./codes/county_map_viewer.js), first seen in *The Major
 
 For best usage, change the values of `CURRENT_YEAR` and `HISTORICAL_YEAR` in the code to match the election of your choice *and* the previous election you want to compare it to. For example, if you want to compare the 2020 election to the 2016 election, set `CURRENT_YEAR` to `2020` and `HISTORICAL_YEAR` to `2016`.
 
-Note that, as of now, the county map viewer only supports election results from 1928 onwards. (The Precincts tab supports election results from 2008 onwards, while the Districts tab includes districts from the 110th Congress (2006) onwards.)
+Note that, as of now, the county map viewer works best with election results from 1928 onwards, although results all the way back to 1824 are available. (The Precincts tab supports election results from 2008 onwards, while the Districts tab includes districts from the 63rd Congress (1912) onwards.)
 
 ![County map viewer](./images/county_map_viewer.png)
 
