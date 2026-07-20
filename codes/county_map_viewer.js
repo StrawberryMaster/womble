@@ -1,6 +1,6 @@
 // The county map feature from 2000TML
-let CURRENT_YEAR = "2000";
-let HISTORICAL_YEAR = "1996";
+let CURRENT_YEAR = "2020";
+let HISTORICAL_YEAR = "2016";
 
 // precinct assets
 const PMTILES_URLS = {
@@ -2940,6 +2940,10 @@ async function loadAndDrawCountyMap(mode) {
                 const baseRep = Number(props.votes_rep) || 0;
                 const baseOth = Math.max(0, baseTotal - baseDem - baseRep);
 
+                const countyInfo = baseCurrentMap[countyFips];
+                const countyName = countyInfo ? countyInfo.county_name : (props.county || props.COUNTY || "unknown");
+				const stateName = countyInfo ? countyInfo.state_po : (props.state || props.STATE || "");
+
                 const mults = fipsMultipliers[countyFips];
                 const mD = mults ? mults.mD : 1;
                 const mR = mults ? mults.mR : 1;
@@ -2993,8 +2997,8 @@ async function loadAndDrawCountyMap(mode) {
                 }
 
                 tooltip.style("display", "block").html(
-                    `<strong style="font-size:16px">block group: ${geoid}</strong><br>` +
-                    `<div style="font-size:12px; color:#bbb; margin-top:-2px; margin-bottom:8px;">county: ${(props.county || "unknown")}, state: ${(props.state || "")}</div>` +
+                    `<strong style="font-size:16px">Block group: ${geoid}</strong><br>` +
+                    `<div style="font-size:12px; color:#bbb; margin-top:-2px; margin-bottom:8px;">County: ${countyName}, State: ${stateName}</div>` +
                     candRowsHtml +
                     `<hr style="margin:6px 0; border:0; border-top:1px solid #777;"><div style="color:#ddd; font-size:13px; margin-top:4px;"><i>Margin: ${side} +${pct}%</i></div>` +
                     customText
