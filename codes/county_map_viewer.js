@@ -1,6 +1,6 @@
 // The county map feature from 2000TML
-let CURRENT_YEAR = "2020";
-let HISTORICAL_YEAR = "2016";
+let CURRENT_YEAR = "2000";
+let HISTORICAL_YEAR = "1996";
 
 // precinct assets
 const PMTILES_URLS = {
@@ -3288,8 +3288,9 @@ async function loadAndDrawCountyMap(mode) {
                             const refMatch = fallbackUrl.match(/cd_votes_\d+_(\d+)\.json/);
                             const refVintage = refMatch ? refMatch[1] : "0";
 
-                            // if they are in the same decennial cycle, load the fallback directly as the exact table
-                            if (getDecennialCycle(v) === getDecennialCycle(refVintage) && getDecennialCycle(v) !== 0) {
+                            // load the fallback directly if it is the EXACT same vintage
+                            // if they are different, we must run the dynamic generator instead
+                            if (String(v) === String(refVintage)) {
                                 [geojson, votesTable] = await Promise.all([
                                     fetch(getCdGeojsonUrl(v)).then(r => r.json()),
                                     fetch(fallbackUrl).then(r => {
@@ -3317,6 +3318,14 @@ async function loadAndDrawCountyMap(mode) {
 				}
 
 				if (!geojson) return;
+
+				// normalize and ensure cd_code is always populated on features
+				geojson.features.forEach(f => {
+					const cdCode = getFeatureCdCode(f);
+					if (cdCode) {
+						f.properties.cd_code = cdCode;
+					}
+				});
 
 				let finalVotesTable = votesTable;
 
