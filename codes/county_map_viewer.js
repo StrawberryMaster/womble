@@ -167,7 +167,8 @@ function projectGeoJsonToScreen(geojson) {
 }
 
 // approximate district weights from county shapes and district GeoJSON
-function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
+// approximate district weights from county shapes and district GeoJSON
+function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotesTable, refGeojson, refVotesTable) {
     if (!geojson || !geojson.features) return {};
 
     const table = {};
@@ -199,6 +200,104 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
         return pt[0] >= bbox[0] && pt[0] <= bbox[2] && pt[1] >= bbox[1] && pt[1] <= bbox[3];
     }
 
+    // helper to parse proxy votes
+    function parseProxyVotes(obj) {
+        if (!obj) return null;
+        if (Array.isArray(obj)) {
+            const dem = Number(obj[0] || 0);
+            const rep = Number(obj[1] || 0);
+            const total = Number(obj[2] || 0);
+            const other = Math.max(0, total - dem - rep);
+            return { dem, rep, other };
+        }
+        if (typeof obj === 'object') {
+            const dem = Number(obj.dem || obj.d || obj.votes_dem || obj.dem_votes || obj.votes_d || 0);
+            const rep = Number(obj.rep || obj.r || obj.votes_rep || obj.rep_votes || obj.votes_r || 0);
+            const other = Number(obj.other || obj.oth || obj.o || obj.votes_other || obj.other_votes || obj.votes_o || obj.votes_oth || 0);
+            return { dem, rep, other };
+        }
+        return null;
+    }
+
+    // helper to normalize and match CD codes (e.g., "IL-01" matches "IL-1" or "IL01")
+    function matchCdCodes(cd1, cd2) {
+        if (!cd1 || !cd2) return false;
+
+        const clean1 = String(cd1).toUpperCase().trim().replace(/[-\s]/g, '');
+        const clean2 = String(cd2).toUpperCase().trim().replace(/[-\s]/g, '');
+
+        if (clean1 === clean2) return true;
+
+        const parse = (str) => {
+            const m = str.match(/^([A-Z]{2})(AL|0*(\d+))$/);
+            if (m) {
+                return { state: m[1], num: m[2] === "AL" ? 0 : parseInt(m[3], 10) };
+            }
+            return null;
+        };
+
+        const p1 = parse(clean1);
+        const p2 = parse(clean2);
+
+        if (p1 && p2) {
+            return p1.state === p2.state && p1.num === p2.num;
+        }
+        return false;
+    }
+
+    // helper to extract CD/FIPS data from proxy tables
+    function getProxyVotes(cdCode, fips) {
+        if (!proxyVotesTable) return null;
+
+        const cleanFips = String(fips).replace(/\D/g, '').padStart(5, '0');
+
+        for (const k1 in proxyVotesTable) {
+            const k1Str = String(k1).trim();
+            const isK1Fips = /^\d+$/.test(k1Str) || /^(US)?\d{4,5}$/i.test(k1Str);
+
+            if (isK1Fips) {
+                const cleanK1 = k1Str.replace(/\D/g, '').padStart(5, '0');
+                if (cleanK1 === cleanFips) {
+                    const val = proxyVotesTable[k1];
+                    if (Array.isArray(val)) {
+                        for (let i = 0; i < val.length; i++) {
+                            const piece = val[i];
+                            const cdKey = piece.cd || piece.cd_code || piece.name || piece.cd_num;
+                            if (cdKey && matchCdCodes(cdKey, cdCode)) {
+                                return parseProxyVotes(piece);
+                            }
+                        }
+                    } else if (typeof val === 'object' && val !== null) {
+                        for (const k2 in val) {
+                            if (matchCdCodes(k2, cdCode)) {
+                                return parseProxyVotes(val[k2]);
+                            }
+                        }
+                    }
+                }
+            } else if (matchCdCodes(k1, cdCode)) {
+                const val = proxyVotesTable[k1];
+                if (Array.isArray(val)) {
+                    for (let i = 0; i < val.length; i++) {
+                        const piece = val[i];
+                        const fKey = String(piece.fips || piece.f || "").replace(/\D/g, '').padStart(5, '0');
+                        if (fKey === cleanFips) {
+                            return parseProxyVotes(piece);
+                        }
+                    }
+                } else if (typeof val === 'object' && val !== null) {
+                    for (const k2 in val) {
+                        const cleanK2 = String(k2).replace(/\D/g, '').padStart(5, '0');
+                        if (cleanK2 === cleanFips) {
+                            return parseProxyVotes(val[k2]);
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     // group CD features by State PO, normalize IDs, and precompute bounding boxes
     const cdsByState = {};
     geojson.features.forEach(f => {
@@ -215,6 +314,69 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
         cdsByState[statePo].push(f);
         table[cdCode] = {};
     });
+
+    // pre-process reference district features
+    const refCdsByState = {};
+    const refCdLookup = {};
+    let refIsGeographic = false;
+
+    if (refGeojson && refGeojson.features) {
+        refGeojson.features.forEach(f => {
+            const cdCode = getFeatureCdCode(f);
+            if (!cdCode) return;
+            f.properties.cd_code = cdCode;
+            refCdLookup[cdCode] = f;
+
+            if (f.geometry) {
+                f.bbox = getGeomBbox(f.geometry);
+            }
+
+            const statePo = cdCode.includes('-') ? cdCode.split('-')[0].toUpperCase() : cdCode.slice(0, 2).toUpperCase();
+            if (!refCdsByState[statePo]) refCdsByState[statePo] = [];
+            refCdsByState[statePo].push(f);
+        });
+
+        // detect reference coordinate system
+        const refFirstGeom = refGeojson.features[0]?.geometry;
+        let refFirstPt = null;
+        if (refFirstGeom && refFirstGeom.coordinates) {
+            if (refFirstGeom.type === "Polygon") refFirstPt = refFirstGeom.coordinates[0][0];
+            else if (refFirstGeom.type === "MultiPolygon") refFirstPt = refFirstGeom.coordinates[0][0][0];
+        }
+
+        if (refFirstPt && Array.isArray(refFirstPt) && isFinite(refFirstPt[0]) && refFirstPt[0] < 0 && refFirstPt[0] >= -180) {
+            refIsGeographic = true;
+        }
+
+        // compute reference CD centroids in their native coordinate system
+        refGeojson.features.forEach(f => {
+            if (!f.centroid && f.geometry) {
+                try {
+                    f.centroid = getGeographicCentroid(f.geometry);
+                } catch (err) {
+                    f.centroid = null;
+                }
+            }
+        });
+    }
+
+    const albersProj = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
+
+    // parse reference votes table into a lookup: refCdCode → fips → {dem, rep, other}
+    const refPartisanLookup = {};
+    if (refVotesTable && typeof refVotesTable === 'object') {
+        for (const cdCode in refVotesTable) {
+            const fipsList = refVotesTable[cdCode];
+            if (!fipsList || typeof fipsList !== 'object') continue;
+            refPartisanLookup[cdCode] = {};
+            for (const fips in fipsList) {
+                const pv = parseProxyVotes(fipsList[fips]);
+                if (pv) {
+                    refPartisanLookup[cdCode][String(fips).replace(/\D/g, '').padStart(5, '0')] = pv;
+                }
+            }
+        }
+    }
 
     // group counties by State PO
     const countiesByState = {};
@@ -367,22 +529,51 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
             } catch (err) {
                 bbox = [[cent[0] - 2, cent[1] - 2], [cent[0] + 2, cent[1] + 2]];
             }
-            let w = (bbox[1][0] - bbox[0][0]) * 0.35 || 2.0;
-            let h = (bbox[1][1] - bbox[0][1]) * 0.35 || 2.0;
 
-            const samplePoints = [
-                cent,
-                [cent[0] - w, cent[1]],
-                [cent[0] + w, cent[1]],
-                [cent[0], cent[1] - h],
-                [cent[0], cent[1] + h],
-                [cent[0] - w, cent[1] - h],
-                [cent[0] + w, cent[1] + h],
-                [cent[0] - w, cent[1] + h],
-                [cent[0] + w, cent[1] - h]
-            ];
+            // count how many CD bounding boxes overlap this county's bbox
+            // to determine the required sampling density
+            const countyBbox = [bbox[0][0], bbox[0][1], bbox[1][0], bbox[1][1]];
+            let overlappingCdCount = 0;
+            for (let i = 0; i < stateCds.length; i++) {
+                if (stateCds[i].bbox && inBbox(cent, stateCds[i].bbox)) {
+                    overlappingCdCount++;
+                } else if (stateCds[i].bbox) {
+                    // check actual bbox overlap
+                    const cb = stateCds[i].bbox;
+                    if (cb[0] <= countyBbox[2] && cb[2] >= countyBbox[0] &&
+                        cb[1] <= countyBbox[3] && cb[3] >= countyBbox[1]) {
+                        overlappingCdCount++;
+                    }
+                }
+            }
+
+            // choose grid density based on overlap count
+            let gridSize;
+            if (overlappingCdCount >= 6) {
+                gridSize = 9;
+            } else if (overlappingCdCount >= 3) {
+                gridSize = 7;
+            } else {
+                gridSize = 5;
+            }
+
+            const countyW = bbox[1][0] - bbox[0][0] || 2.0;
+            const countyH = bbox[1][1] - bbox[0][1] || 2.0;
+            const stepX = countyW / (gridSize - 1);
+            const stepY = countyH / (gridSize - 1);
+
+            const samplePoints = [];
+            for (let gx = 0; gx < gridSize; gx++) {
+                for (let gy = 0; gy < gridSize; gy++) {
+                    samplePoints.push([
+                        bbox[0][0] + gx * stepX,
+                        bbox[0][1] + gy * stepY
+                    ]);
+                }
+            }
 
             const cdHits = {};
+            const refCdHits = {};
             let totalHits = 0;
 
             samplePoints.forEach(pt => {
@@ -400,6 +591,8 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
 
                 if (!testPt) return;
 
+                let hitCdCode = null;
+
                 for (let i = 0; i < stateCds.length; i++) {
                     const cdFeat = stateCds[i];
 
@@ -407,17 +600,116 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
                     if (cdFeat.bbox && !inBbox(testPt, cdFeat.bbox)) continue;
 
                     if (pointInGeom(testPt, cdFeat.geometry)) {
-                        const cdCode = cdFeat.properties.cd_code;
-                        cdHits[cdCode] = (cdHits[cdCode] || 0) + 1;
+                        hitCdCode = cdFeat.properties.cd_code;
+                        cdHits[hitCdCode] = (cdHits[hitCdCode] || 0) + 1;
                         totalHits++;
                         break;
+                    }
+                }
+
+                // also find which reference district this point falls in (for cross-walk)
+                if (hitCdCode && Object.keys(refCdsByState).length > 0) {
+                    const refCds = refCdsByState[statePo] || [];
+
+                    // convert sample point to reference coordinate system
+                    let refTestPt = null;
+                    if (refIsGeographic) {
+                        if (coordinateSystem === "geographic" && proj) {
+                            refTestPt = testPt;
+                        } else {
+                            refTestPt = albersProj.invert(pt);
+                        }
+                    } else {
+                        refTestPt = testPt;
+                    }
+
+                    if (refTestPt && isFinite(refTestPt[0]) && isFinite(refTestPt[1])) {
+                        for (let i = 0; i < refCds.length; i++) {
+                            const refFeat = refCds[i];
+                            if (refFeat.bbox && !inBbox(refTestPt, refFeat.bbox)) continue;
+                            if (pointInGeom(refTestPt, refFeat.geometry)) {
+                                const refCdCode = refFeat.properties.cd_code;
+                                const key = hitCdCode + "||" + refCdCode;
+                                refCdHits[key] = (refCdHits[key] || 0) + 1;
+                                break;
+                            }
+                        }
                     }
                 }
             });
 
             if (totalHits > 0) {
-                for (const cdCode in cdHits) {
-                    table[cdCode][fips] = cdHits[cdCode] / totalHits;
+                // convert flat hit counts to partisan splits using reference data
+                const hasRefData = Object.keys(refPartisanLookup).length > 0 && Object.keys(refCdHits).length > 0;
+
+                if (hasRefData) {
+                    for (const cdCode in cdHits) {
+                        const refMatches = {};
+                        for (const key in refCdHits) {
+                            const parts = key.split("||");
+                            if (parts[0] === cdCode) {
+                                refMatches[parts[1]] = refCdHits[key];
+                            }
+                        }
+
+                        // try to build a partisan split from the reference data
+                        let totalRefDem = 0, totalRefRep = 0, totalRefOth = 0;
+                        let totalRefWeight = 0;
+                        let hasAnyRefMatch = false;
+
+                        for (const refCdCode in refMatches) {
+                            const refWeight = refMatches[refCdCode];
+                            const refPartisan = refPartisanLookup[refCdCode] ? refPartisanLookup[refCdCode][fips] : null;
+
+                            if (refPartisan) {
+                                totalRefDem += refPartisan.dem * refWeight;
+                                totalRefRep += refPartisan.rep * refWeight;
+                                totalRefOth += refPartisan.other * refWeight;
+                                totalRefWeight += refWeight;
+                                hasAnyRefMatch = true;
+                            }
+                        }
+
+                        if (hasAnyRefMatch && totalRefWeight > 0) {
+                            // normalize the partisan split
+                            const spatialWeight = cdHits[cdCode] / totalHits;
+                            const totalRefVotes = totalRefDem + totalRefRep + totalRefOth;
+
+                            if (totalRefVotes > 0) {
+                                table[cdCode][fips] = {
+                                    dem: (totalRefDem / totalRefVotes) * spatialWeight,
+                                    rep: (totalRefRep / totalRefVotes) * spatialWeight,
+                                    other: (totalRefOth / totalRefVotes) * spatialWeight,
+                                    _xw: true
+                                };
+                            } else {
+                                table[cdCode][fips] = spatialWeight;
+                            }
+                        } else {
+                            // try direct CD code match fallback
+                            const directRef = refPartisanLookup[cdCode] ? refPartisanLookup[cdCode][fips] : null;
+                            if (directRef) {
+                                const spatialWeight = cdHits[cdCode] / totalHits;
+                                const totalRef = directRef.dem + directRef.rep + directRef.other;
+                                if (totalRef > 0) {
+                                    table[cdCode][fips] = {
+                                        dem: (directRef.dem / totalRef) * spatialWeight,
+                                        rep: (directRef.rep / totalRef) * spatialWeight,
+                                        other: (directRef.other / totalRef) * spatialWeight,
+                                        _xw: true
+                                    };
+                                } else {
+                                    table[cdCode][fips] = spatialWeight;
+                                }
+                            } else {
+                                table[cdCode][fips] = cdHits[cdCode] / totalHits;
+                            }
+                        }
+                    }
+                } else {
+                    for (const cdCode in cdHits) {
+                        table[cdCode][fips] = cdHits[cdCode] / totalHits;
+                    }
                 }
             } else {
                 // border-splitting fallback via inverse distance weighting (IDW)
@@ -440,14 +732,194 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults) {
                     // if the second closest district is far away, the county is safely inside the closest district
                     if (!second || (second.dist / Math.max(0.1, closest.dist)) > 2.5) {
                         table[closest.cdCode][fips] = 1.0;
-                    } else {
-                        // otherwise, the county is split/on the border, so smoothly distribute weights using IDW
+                    } else if (second && !cdDists[2]) {
                         const invClosest = 1 / (closest.dist * closest.dist || 0.01);
                         const invSecond = 1 / (second.dist * second.dist || 0.01);
                         const sumInv = invClosest + invSecond;
 
                         table[closest.cdCode][fips] = invClosest / sumInv;
                         table[second.cdCode][fips] = invSecond / sumInv;
+                    } else {
+                        // otherwise, the county is split/on the border, so smoothly distribute weights using IDW
+                        const topN = cdDists.slice(0, Math.min(4, cdDists.length));
+                        let sumInv = 0;
+                        const invDists = topN.map(d => {
+                            const inv = 1 / (d.dist || 0.01);
+                            sumInv += inv;
+                            return { cdCode: d.cdCode, inv };
+                        });
+                        invDists.forEach(({ cdCode, inv }) => {
+                            table[cdCode][fips] = inv / sumInv;
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    // inject proxy split proportions if available
+    if (proxyVotesTable) {
+        for (const cdCode in table) {
+            const fipsList = table[cdCode];
+            for (const fips in fipsList) {
+                const val = fipsList[fips];
+                // only overwrite flat spatial weights
+                if (typeof val === 'number') {
+                    const pv = getProxyVotes(cdCode, fips);
+                    if (pv) {
+                        table[cdCode][fips] = pv;
+                    }
+                }
+            }
+        }
+    }
+
+    // ensure geographically small or unmatched districts are not left empty
+    for (const cdCode in table) {
+        const assignedCounties = Object.keys(table[cdCode]);
+        if (assignedCounties.length === 0) {
+            const statePo = cdCode.includes('-') ? cdCode.split('-')[0].toUpperCase() : cdCode.slice(0, 2).toUpperCase();
+            const stateCds = cdsByState[statePo] || [];
+            const cdFeat = stateCds.find(f => f.properties.cd_code === cdCode);
+
+            if (cdFeat && cdFeat.centroid) {
+                const stateCounties = countiesByState[statePo] || [];
+                let matchedCountyFips = null;
+
+                // find which county actually contains the CD's centroid
+                for (let i = 0; i < stateCounties.length; i++) {
+                    const c = stateCounties[i];
+                    if (c.geometry && pointInGeom(cdFeat.centroid, c.geometry)) {
+                        matchedCountyFips = String(c.id || c.fips || "").padStart(5, '0');
+                        break;
+                    }
+                }
+
+                // fallback check: centroid distance check
+                if (!matchedCountyFips) {
+                    let minDistance = Infinity;
+                    stateCounties.forEach(c => {
+                        const fips = String(c.id || c.fips || "").padStart(5, '0');
+                        const cent = c.centroid;
+                        if (cent) {
+                            const dx = cdFeat.centroid[0] - cent[0];
+                            const dy = cdFeat.centroid[1] - cent[1];
+                            const distSq = dx * dx + dy * dy;
+                            if (distSq < minDistance) {
+                                minDistance = distSq;
+                                matchedCountyFips = fips;
+                            }
+                        }
+                    });
+                }
+
+                if (matchedCountyFips) {
+                    const pv = getProxyVotes(cdCode, matchedCountyFips);
+                    table[cdCode][matchedCountyFips] = pv || 1.0;
+                }
+            }
+        }
+    }
+
+    // urban district rescue pass
+    for (const statePo in cdsByState) {
+        const stateCds = cdsByState[statePo];
+        const stateCounties = countiesByState[statePo] || [];
+        if (stateCds.length <= 2) continue;
+
+        stateCounties.forEach(c => {
+            const fips = String(c.id || c.fips || "").padStart(5, '0');
+            if (!c.centroid) return;
+
+            let claimingCds = 0;
+            let totalWeight = 0;
+            for (const cdCode in table) {
+                if (table[cdCode][fips] !== undefined) {
+                    claimingCds++;
+                    totalWeight += (typeof table[cdCode][fips] === 'number' ? table[cdCode][fips] : 0);
+                }
+            }
+
+            const countyBboxRaw = c.bbox || (() => {
+                try { const b = d3.geoPath().bounds(c); return [b[0][0], b[0][1], b[1][0], b[1][1]]; } catch(e) { return null; }
+            })();
+            if (!countyBboxRaw) return;
+
+            let countyBboxForOverlap;
+            if (coordinateSystem === "geographic") {
+                const corners = [
+                    albersProj.invert([countyBboxRaw[0], countyBboxRaw[1]]),
+                    albersProj.invert([countyBboxRaw[0], countyBboxRaw[3]]),
+                    albersProj.invert([countyBboxRaw[2], countyBboxRaw[1]]),
+                    albersProj.invert([countyBboxRaw[2], countyBboxRaw[3]])
+                ].filter(p => p && isFinite(p[0]) && isFinite(p[1]));
+
+                if (corners.length >= 2) {
+                    const xs = corners.map(p => p[0]);
+                    const ys = corners.map(p => p[1]);
+                    countyBboxForOverlap = [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+                } else {
+                    countyBboxForOverlap = null;
+                }
+            } else if (coordinateSystem === "scaled-screen") {
+                countyBboxForOverlap = [countyBboxRaw[0] / 100, countyBboxRaw[1] / 100, countyBboxRaw[2] / 100, countyBboxRaw[3] / 100];
+            } else {
+                countyBboxForOverlap = countyBboxRaw;
+            }
+            if (!countyBboxForOverlap) return;
+
+            let overlappingCds = 0;
+            const overlapCds = [];
+            for (let i = 0; i < stateCds.length; i++) {
+                const cdFeat = stateCds[i];
+                if (!cdFeat.bbox) continue;
+                const cb = cdFeat.bbox;
+                if (cb[0] <= countyBboxForOverlap[2] && cb[2] >= countyBboxForOverlap[0] &&
+                    cb[1] <= countyBboxForOverlap[3] && cb[3] >= countyBboxForOverlap[1]) {
+                    overlappingCds++;
+                    const xOverlap = Math.max(0, Math.min(cb[2], countyBboxForOverlap[2]) - Math.max(cb[0], countyBboxForOverlap[0]));
+                    const yOverlap = Math.max(0, Math.min(cb[3], countyBboxForOverlap[3]) - Math.max(cb[1], countyBboxForOverlap[1]));
+                    const area = xOverlap * yOverlap;
+                    overlapCds.push({ cdCode: cdFeat.properties.cd_code, area });
+                }
+            }
+
+            if (overlappingCds >= 3 && claimingCds < overlappingCds) {
+                const totalArea = overlapCds.reduce((s, d) => s + d.area, 0);
+                if (totalArea > 0) {
+                    const hasProxyData = {};
+                    for (const cdCode in table) {
+                        if (table[cdCode][fips] !== undefined && typeof table[cdCode][fips] !== 'number') {
+                            hasProxyData[cdCode] = true;
+                        }
+                    }
+
+                    overlapCds.forEach(({ cdCode, area }) => {
+                        if (!hasProxyData[cdCode]) {
+                            const weight = area / totalArea;
+                            const existing = table[cdCode][fips];
+                            if (existing === undefined || typeof existing === 'number') {
+                                if (typeof existing === 'number' && existing > 0) {
+                                    table[cdCode][fips] = existing * 0.5 + weight * 0.5;
+                                } else {
+                                    table[cdCode][fips] = weight;
+                                }
+                            }
+                        }
+                    });
+
+                    let flatSum = 0;
+                    const flatEntries = {};
+                    for (const cdCode in table) {
+                        if (table[cdCode][fips] !== undefined && typeof table[cdCode][fips] === 'number' && !hasProxyData[cdCode]) {
+                            flatSum += table[cdCode][fips];
+                            flatEntries[cdCode] = table[cdCode][fips];
+                        }
+                    }
+                    if (flatSum > 0) {
+                        for (const cdCode in flatEntries) {
+                            table[cdCode][fips] = flatEntries[cdCode] / flatSum;
+                        }
                     }
                 }
             }
@@ -559,6 +1031,17 @@ function computeCdMargins(table, fipsResults, demCandId, repCandId, tpCandidates
             pieceDem = res.curDem * weight;
             pieceRep = res.curRep * weight;
             pieceOth = res.curOth * weight;
+        } else if (pieceData && typeof pieceData === 'object' && pieceData._xw) {
+            const spatialWeight = pieceData.dem + pieceData.rep + pieceData.other;
+            if (spatialWeight > 0) {
+                const demShare = pieceData.dem / spatialWeight;
+                const repShare = pieceData.rep / spatialWeight;
+                const othShare = pieceData.other / spatialWeight;
+                const countyTotal = res.curDem + res.curRep + res.curOth;
+                pieceDem = countyTotal * spatialWeight * demShare;
+                pieceRep = countyTotal * spatialWeight * repShare;
+                pieceOth = countyTotal * spatialWeight * othShare;
+            }
         } else {
             const { d, r, o } = parseVotes(pieceData);
             const hist = countyHistTotals[cleanF];
@@ -829,6 +1312,15 @@ function getOrdinalSuffix(i) {
     if (j === 2 && k !== 12) return i + "nd";
     if (j === 3 && k !== 13) return i + "rd";
     return i + "th";
+}
+
+function getDecennialCycle(vintage) {
+    const v = parseInt(vintage, 10);
+    if (v >= 118) return 2020;
+    if (v >= 113 && v <= 117) return 2010;
+    if (v >= 108 && v <= 112) return 2000;
+    if (v >= 103 && v <= 107) return 1990;
+    return 0;
 }
 
 function populateCdVintageSelector(year) {
@@ -2746,7 +3238,8 @@ async function loadAndDrawCountyMap(mode) {
 					return getCdVotesUrl("2016", "115");
 				}
 			}
-			if (v >= 110 && v <= 112) return getCdVotesUrl("2008", "111");
+			if (v >= 108 && v <= 112) return getCdVotesUrl("2008", "111");
+			if (v >= 103 && v <= 107) return getCdVotesUrl("2008", "111");
 
 			// for older/nonexistent historical cycles
 			return "";
@@ -2765,47 +3258,96 @@ async function loadAndDrawCountyMap(mode) {
 			removeDistrictLayer();
 
 			try {
-				let geojson, votesTable;
+				let geojson, votesTable = {};
+				let exactVotesLoaded = false;
 
 				// attempt to fetch exact year/vintage CD votes file
 				try {
-					[geojson, votesTable] = await Promise.all([
-						fetch(getCdGeojsonUrl(v)).then(r => r.json()),
-						fetch(getCdVotesUrl(CURRENT_YEAR, v)).then(r => {
-							if (!r.ok) throw new Error("Votes file 404");
-							return r.json();
-						})
+					const [geoRes, votesRes] = await Promise.all([
+						fetch(getCdGeojsonUrl(v)),
+						fetch(getCdVotesUrl(CURRENT_YEAR, v))
 					]);
+
+					if (!geoRes.ok) throw new Error("GeoJSON 404");
+					if (!votesRes.ok) throw new Error("Votes file 404");
+
+					geojson = await geoRes.json();
+					votesTable = await votesRes.json();
+					exactVotesLoaded = true;
 				} catch (firstErr) {
 					// fetch boundary-matched decade fallback blueprint to retain non-homogeneous splits
 					console.warn(`Votes file 404 for ${CURRENT_YEAR} vintage ${v}. Retrying decade-level fallback...`);
 					const fallbackUrl = getFallbackVotesUrl(CURRENT_YEAR, v);
 
 					if (fallbackUrl) {
-						[geojson, votesTable] = await Promise.all([
-							fetch(getCdGeojsonUrl(v)).then(r => r.json()),
-							fetch(fallbackUrl).then(r => {
-								if (!r.ok) throw new Error("Fallback votes file 404");
-								return r.json();
-                            }).catch(() => {
-                                // fallback to empty if even decade blueprint is unreachable
-								return {};
-							})
-						]);
-					} else {
-						// fallback if no blueprint file is specified
-						geojson = await fetch(getCdGeojsonUrl(v)).then(r => r.json());
-						votesTable = {};
+                        try {
+                            const refMatch = fallbackUrl.match(/cd_votes_\d+_(\d+)\.json/);
+                            const refVintage = refMatch ? refMatch[1] : "0";
+
+                            // if they are in the same decennial cycle, load the fallback directly as the exact table
+                            if (getDecennialCycle(v) === getDecennialCycle(refVintage) && getDecennialCycle(v) !== 0) {
+                                [geojson, votesTable] = await Promise.all([
+                                    fetch(getCdGeojsonUrl(v)).then(r => r.json()),
+                                    fetch(fallbackUrl).then(r => {
+                                        if (!r.ok) throw new Error("Fallback votes file 404");
+                                        return r.json();
+                                    })
+                                ]);
+                                exactVotesLoaded = true;
+                                console.log(`Loaded matching decennial fallback directly (no generator needed): ${fallbackUrl}`);
+                            }
+                        } catch (fallErr) {
+                            console.warn("Matching decennial fallback failed, falling back to empty:", fallErr);
+                        }
 					}
+
+                    if (!exactVotesLoaded) {
+                        // otherwise, load just the GeoJSON and run the generator with proxy
+                        try {
+                            geojson = await fetch(getCdGeojsonUrl(v)).then(r => r.json());
+                        } catch (geoErr) {
+                            console.error("Could not load GeoJSON for vintage:", v);
+                            return;
+                        }
+                    }
 				}
 
 				if (!geojson) return;
 
-				// fallback to spatial overlapping weights if no blueprints are available at all
-				let finalVotesTable = votesTable || {};
-				if (!finalVotesTable || Object.keys(finalVotesTable).length === 0) {
+				let finalVotesTable = votesTable;
+
+				if (!exactVotesLoaded) {
 					console.log(`Generating dynamic spatial district weights from county shapes for ${CURRENT_YEAR} / vintage ${v}...`);
-					finalVotesTable = generateDistrictVotesTable(geojson, usCounties, fipsResults);
+
+					const fallbackUrl = getFallbackVotesUrl(CURRENT_YEAR, v);
+					let proxyTable = null;
+
+					if (fallbackUrl) {
+						try {
+							proxyTable = await fetch(fallbackUrl).then(r => {
+								if (!r.ok) throw new Error("Fallback votes file 404");
+								return r.json();
+							});
+							console.log(`Successfully loaded fallback blueprint from: ${fallbackUrl}`);
+						} catch (fallbackErr) {
+							console.warn("Could not load fallback blueprint:", fallbackErr);
+						}
+					}
+
+					let refGeojsonData = null;
+					if (proxyTable) {
+						let refVintage = "111";
+						const refMatch = fallbackUrl.match(/cd_votes_\d+_(\d+)\.json/);
+						if (refMatch) refVintage = refMatch[1];
+
+						try {
+							refGeojsonData = await fetch(getCdGeojsonUrl(refVintage)).then(r => r.json());
+						} catch (refGeoErr) {
+							console.warn("Could not load reference GeoJSON for cross-walk:", refGeoErr);
+						}
+					}
+
+					finalVotesTable = generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyTable, refGeojsonData, proxyTable);
 				}
 
 				const firstGeom = geojson.features[0]?.geometry;
