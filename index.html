@@ -377,6 +377,118 @@
             background: linear-gradient(135deg, #b85a5a 0%, #9b4a4a 100%);
         }
 
+        body.theme-dark {
+            background: linear-gradient(135deg, #141212 0%, #0d0c0c 100%);
+            color: #d1c7c7;
+        }
+
+        body.theme-dark .sidebar {
+            background: linear-gradient(180deg, #1c1818 0%, #151212 100%);
+            border-right-color: #522d2d;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        body.theme-dark .sidebar h3 {
+            color: #e58e8e;
+        }
+
+        body.theme-dark .sidebar a {
+            color: #e27d7d;
+        }
+
+        body.theme-dark .sidebar a:hover {
+            background: linear-gradient(90deg, #2b1f1f, #241a1a);
+            color: #ff9e9e;
+        }
+
+        body.theme-dark .sidebar a.active {
+            background: linear-gradient(90deg, #3d2222, #331c1c);
+            color: #ffb3b3;
+        }
+
+        body.theme-dark .theme-button {
+            border-color: #522d2d;
+            background: linear-gradient(90deg, #211919, #1c1515);
+            color: #e58e8e;
+        }
+
+        body.theme-dark .theme-button:hover {
+            background: linear-gradient(90deg, #2b1f1f, #261b1b);
+            border-color: #723e3e;
+        }
+
+        body.theme-dark .theme-button.active {
+            background: linear-gradient(90deg, #422121, #381c1c);
+            border-color: #a84a4a;
+            color: #ffb3b3;
+        }
+
+        body.theme-dark .main {
+            background: linear-gradient(135deg, #1d1818 0%, #171313 100%);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        body.theme-dark h1,
+        body.theme-dark h2,
+        body.theme-dark h3,
+        body.theme-dark h4,
+        body.theme-dark h5,
+        body.theme-dark h6 {
+            color: #f0a8a8;
+        }
+
+        body.theme-dark h1 {
+            border-bottom-color: #a84a4a;
+        }
+
+        body.theme-dark h2 {
+            border-top-color: #3d2828;
+        }
+
+        body.theme-dark hr {
+            border-top-color: #3d2828;
+        }
+
+        body.theme-dark a {
+            color: #e57373;
+        }
+
+        body.theme-dark a:hover {
+            color: #ff8a8a;
+            border-bottom-color: #ff8a8a;
+        }
+
+        body.theme-dark code {
+            background: linear-gradient(90deg, #2b1c1c, #261818);
+            color: #ff8e8e;
+        }
+
+        body.theme-dark blockquote {
+            border-left-color: #a84a4a;
+            color: #a89292;
+        }
+
+        body.theme-dark th, body.theme-dark td {
+            border-color: #522d2d;
+        }
+
+        body.theme-dark th {
+            background: linear-gradient(90deg, #281a1a, #211515);
+            color: #f0a8a8;
+        }
+
+        body.theme-dark .search-box {
+            border-color: #522d2d;
+            background: linear-gradient(90deg, #211919, #1c1515);
+            color: #e0d8d8;
+        }
+
+        body.theme-dark mark.womble-highlight {
+            background-color: #591b1b;
+            color: #ffc2c2;
+            border-bottom-color: #ff8a8a;
+        }
+
         body.theme-metro {
             background: #ffcc44;
             color: #070707;
@@ -1107,6 +1219,7 @@
             <h3>Themes</h3>
             <div class="theme-list" role="group" aria-label="Theme selector">
                 <button class="theme-button" data-theme="classic" aria-pressed="true">Classic</button>
+                <button class="theme-button" data-theme="dark" aria-pressed="false">Dark</button>
                 <button class="theme-button" data-theme="metro" aria-pressed="false">Metro</button>
                 <button class="theme-button" data-theme="plain" aria-pressed="false">Plain</button>
                 <button class="theme-button" data-theme="scaruffi" aria-pressed="false">Scaruffi</button>
@@ -1125,11 +1238,13 @@
         const THEME_STORAGE_KEY = 'womble-theme';
         const HIGHLIGHT_CLASS = 'womble-highlight';
         let searchTimeout = null;
+        let headingCache = [];
 
         function applyTheme(themeName) {
-            const themes = ['metro', 'plain', 'scaruffi'];
+            const themes = ['dark', 'metro', 'plain', 'scaruffi'];
             const theme = themes.includes(themeName) ? themeName : 'classic';
 
+            document.body.classList.toggle('theme-dark', theme === 'dark');
             document.body.classList.toggle('theme-metro', theme === 'metro');
             document.body.classList.toggle('theme-plain', theme === 'plain');
             document.body.classList.toggle('theme-scaruffi', theme === 'scaruffi');
@@ -1148,10 +1263,9 @@
         }
 
         function initializeThemes() {
-            document.querySelectorAll('.theme-button').forEach((button) => {
-                button.addEventListener('click', () => {
-                    applyTheme(button.dataset.theme);
-                });
+            document.querySelector('.theme-list').addEventListener('click', (e) => {
+                const btn = e.target.closest('.theme-button');
+                if (btn) applyTheme(btn.dataset.theme);
             });
 
             let savedTheme = 'classic';
@@ -1162,6 +1276,20 @@
             }
 
             applyTheme(savedTheme);
+        }
+
+        function updateHeadingCache() {
+            const headings = Array.from(document.querySelectorAll('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6'))
+                .filter((heading, index) => !(index === 0 && heading.tagName === 'H1'));
+
+            headingCache = headings.map(heading => {
+                const link = document.querySelector(`.sidebar a[href="#${heading.id}"]`);
+                return {
+                    element: heading,
+                    offsetTop: heading.offsetTop,
+                    link: link
+                };
+            });
         }
 
         async function loadReadme() {
@@ -1195,6 +1323,7 @@
                 addHeadingIds();
                 generateTableOfContents();
                 attachSidebarLinkHandlers();
+                updateHeadingCache();
                 scrollToHashSection();
 
                 const currentQuery = document.getElementById('sidebar-search').value;
@@ -1221,7 +1350,8 @@
             const contentDiv = document.getElementById('content');
             const headings = Array.from(contentDiv.querySelectorAll('h1, h2, h3, h4, h5, h6'));
             const tocList = document.getElementById('toc-list');
-            tocList.innerHTML = '';
+
+            const fragment = document.createDocumentFragment();
 
             const headingsToInclude = headings.filter((heading, index) => {
                 return !(index === 0 && heading.tagName === 'H1');
@@ -1233,12 +1363,15 @@
                 li.style.marginLeft = Math.max(0, (level - 1) * 15) + 'px';
 
                 const a = document.createElement('a');
-                a.href = '#' + (heading.id || slugifyHeading(heading.textContent));
+                a.href = '#' + heading.id;
                 a.textContent = heading.textContent;
 
                 li.appendChild(a);
-                tocList.appendChild(li);
+                fragment.appendChild(li);
             });
+
+            tocList.innerHTML = '';
+            tocList.appendChild(fragment);
         }
 
         function addHeadingIds() {
@@ -1248,9 +1381,7 @@
 
             headings.forEach((heading) => {
                 let baseId = heading.id || slugifyHeading(heading.textContent);
-                if (!baseId) {
-                    baseId = 'section';
-                }
+                if (!baseId) baseId = 'section';
 
                 let uniqueId = baseId;
                 let counter = 2;
@@ -1265,28 +1396,27 @@
         }
 
         function attachSidebarLinkHandlers() {
-            document.querySelectorAll('.sidebar a').forEach((link) => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
+            document.querySelector('.sidebar').addEventListener('click', function(event) {
+                const link = event.target.closest('a');
+                if (!link || !link.getAttribute('href')?.startsWith('#')) return;
 
-                    const targetId = this.getAttribute('href').slice(1);
-                    const targetHeading = document.getElementById(targetId);
+                event.preventDefault();
 
-                    if (targetHeading) {
-                        history.replaceState(null, '', '#' + targetId);
-                        targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                const targetId = link.getAttribute('href').slice(1);
+                const targetHeading = document.getElementById(targetId);
 
-                    document.querySelector('.sidebar').classList.remove('active');
-                });
+                if (targetHeading) {
+                    history.replaceState(null, '', '#' + targetId);
+                    targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                document.querySelector('.sidebar').classList.remove('active');
             });
         }
 
         function scrollToHashSection() {
             const hash = window.location.hash;
-            if (!hash) {
-                return;
-            }
+            if (!hash) return;
 
             const targetHeading = document.getElementById(hash.slice(1));
             if (targetHeading) {
@@ -1309,17 +1439,37 @@
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
-        function walkAndHighlight(node, regex) {
-            if (node.nodeType === Node.TEXT_NODE) {
+        function applyHighlights(root, query) {
+            removeHighlights(root);
+            if (!query || query.trim() === '') return;
+
+            const terms = query.toLowerCase().trim().split(/\s+/).filter(t => t.length > 0);
+            if (terms.length === 0) return;
+
+            const regexSource = terms.map(t => escapeRegExp(t)).join('|');
+            const regex = new RegExp(`(${regexSource})`, 'gi');
+
+            const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                acceptNode: function(node) {
+                    const parent = node.parentNode;
+                    if (!parent) return NodeFilter.FILTER_REJECT;
+                    const tag = parent.tagName.toUpperCase();
+                    if (['SCRIPT', 'STYLE', 'CODE', 'PRE', 'MARK'].includes(tag)) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            });
+
+            const textNodes = [];
+            while (walker.nextNode()) {
+                textNodes.push(walker.currentNode);
+            }
+
+            textNodes.forEach(node => {
                 const val = node.nodeValue;
                 regex.lastIndex = 0;
                 if (regex.test(val)) {
-                    const parent = node.parentNode;
-                    const parentTag = parent ? parent.tagName.toUpperCase() : '';
-                    if (['SCRIPT', 'STYLE', 'CODE', 'PRE', 'MARK'].includes(parentTag)) {
-                        return;
-                    }
-
                     regex.lastIndex = 0;
                     const fragment = document.createDocumentFragment();
                     let lastIdx = 0;
@@ -1344,28 +1494,9 @@
                         fragment.appendChild(document.createTextNode(val.substring(lastIdx)));
                     }
 
-                    parent.replaceChild(fragment, node);
+                    node.parentNode.replaceChild(fragment, node);
                 }
-            } else if (node.nodeType === Node.ELEMENT_NODE) {
-                const tagName = node.tagName.toUpperCase();
-                if (!['SCRIPT', 'STYLE', 'PRE', 'CODE', 'MARK'].includes(tagName)) {
-                    const children = Array.from(node.childNodes);
-                    children.forEach((child) => walkAndHighlight(child, regex));
-                }
-            }
-        }
-
-        function applyHighlights(root, query) {
-            removeHighlights(root);
-            if (!query || query.trim() === '') return;
-
-            const terms = query.toLowerCase().trim().split(/\s+/).filter(t => t.length > 0);
-            if (terms.length === 0) return;
-
-            const regexSource = terms.map(t => escapeRegExp(t)).join('|');
-            const regex = new RegExp(`(${regexSource})`, 'gi');
-
-            walkAndHighlight(root, regex);
+            });
         }
 
         function filterToc(query) {
@@ -1412,38 +1543,53 @@
 
         function initializeScrollEffects() {
             const bttBtn = document.getElementById('back-to-top');
-            const sidebar = document.querySelector('.sidebar');
             let lastActiveLink = null;
+            let ticking = false;
 
             window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    bttBtn.classList.add('visible');
-                } else {
-                    bttBtn.classList.remove('visible');
-                }
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const scrollY = window.scrollY;
 
-                const headings = Array.from(document.querySelectorAll('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6'))
-                    .filter((heading, index) => !(index === 0 && heading.tagName === 'H1'));
-                const links = document.querySelectorAll('.sidebar a');
-
-                let currentHeading = null;
-                headings.forEach((heading) => {
-                    if (heading.offsetTop - window.innerHeight / 3 < window.scrollY) {
-                        currentHeading = heading;
-                    }
-                });
-
-                links.forEach(link => {
-                    link.classList.remove('active');
-                    if (currentHeading && link.getAttribute('href') === '#' + currentHeading.id) {
-                        link.classList.add('active');
-
-                        if (link !== lastActiveLink) {
-                            lastActiveLink = link;
-                            link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        if (scrollY > 300) {
+                            bttBtn.classList.add('visible');
+                        } else {
+                            bttBtn.classList.remove('visible');
                         }
-                    }
-                });
+
+                        let currentHeadingObj = null;
+                        const threshold = window.innerHeight / 3;
+
+                        for (let i = 0; i < headingCache.length; i++) {
+                            if (headingCache[i].offsetTop - threshold < scrollY) {
+                                currentHeadingObj = headingCache[i];
+                            }
+                        }
+
+                        if (currentHeadingObj?.link) {
+                            if (lastActiveLink && lastActiveLink !== currentHeadingObj.link) {
+                                lastActiveLink.classList.remove('active');
+                            }
+                            currentHeadingObj.link.classList.add('active');
+
+                            if (lastActiveLink !== currentHeadingObj.link) {
+                                lastActiveLink = currentHeadingObj.link;
+                                currentHeadingObj.link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
+                        } else if (lastActiveLink) {
+                            lastActiveLink.classList.remove('active');
+                            lastActiveLink = null;
+                        }
+
+                        ticking = false;
+                    });
+
+                    ticking = true;
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                updateHeadingCache();
             });
 
             bttBtn.addEventListener('click', () => {
