@@ -167,9 +167,36 @@ function projectGeoJsonToScreen(geojson) {
 }
 
 // approximate district weights from county shapes and district GeoJSON
-// approximate district weights from county shapes and district GeoJSON
 function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotesTable, refGeojson, refVotesTable) {
     if (!geojson || !geojson.features) return {};
+
+    // index for proxy votes
+    const proxyLookup = new Map();
+    if (proxyVotesTable) {
+        const normalizeFips = f => String(f).replace(/\D/g, '').padStart(5, '0');
+        const normalizeCd = cd => String(cd).toUpperCase().replace(/[-\s]/g, '');
+
+        for (const k1 in proxyVotesTable) {
+            const val = proxyVotesTable[k1];
+            const isK1Fips = /^\d+$/.test(k1) || /^(US)?\d{4,5}$/i.test(k1);
+
+            if (isK1Fips) {
+                const fips = normalizeFips(k1);
+                if (typeof val === 'object' && val !== null) {
+                    for (const cd in val) {
+                        proxyLookup.set(`${fips}_${normalizeCd(cd)}`, parseProxyVotes(val[cd]));
+                    }
+                }
+            } else {
+                const cd = normalizeCd(k1);
+                if (typeof val === 'object' && val !== null) {
+                    for (const fips in val) {
+                        proxyLookup.set(`${normalizeFips(fips)}_${cd}`, parseProxyVotes(val[fips]));
+                    }
+                }
+            }
+        }
+    }
 
     const table = {};
 
@@ -248,54 +275,9 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
     // helper to extract CD/FIPS data from proxy tables
     function getProxyVotes(cdCode, fips) {
         if (!proxyVotesTable) return null;
-
         const cleanFips = String(fips).replace(/\D/g, '').padStart(5, '0');
-
-        for (const k1 in proxyVotesTable) {
-            const k1Str = String(k1).trim();
-            const isK1Fips = /^\d+$/.test(k1Str) || /^(US)?\d{4,5}$/i.test(k1Str);
-
-            if (isK1Fips) {
-                const cleanK1 = k1Str.replace(/\D/g, '').padStart(5, '0');
-                if (cleanK1 === cleanFips) {
-                    const val = proxyVotesTable[k1];
-                    if (Array.isArray(val)) {
-                        for (let i = 0; i < val.length; i++) {
-                            const piece = val[i];
-                            const cdKey = piece.cd || piece.cd_code || piece.name || piece.cd_num;
-                            if (cdKey && matchCdCodes(cdKey, cdCode)) {
-                                return parseProxyVotes(piece);
-                            }
-                        }
-                    } else if (typeof val === 'object' && val !== null) {
-                        for (const k2 in val) {
-                            if (matchCdCodes(k2, cdCode)) {
-                                return parseProxyVotes(val[k2]);
-                            }
-                        }
-                    }
-                }
-            } else if (matchCdCodes(k1, cdCode)) {
-                const val = proxyVotesTable[k1];
-                if (Array.isArray(val)) {
-                    for (let i = 0; i < val.length; i++) {
-                        const piece = val[i];
-                        const fKey = String(piece.fips || piece.f || "").replace(/\D/g, '').padStart(5, '0');
-                        if (fKey === cleanFips) {
-                            return parseProxyVotes(piece);
-                        }
-                    }
-                } else if (typeof val === 'object' && val !== null) {
-                    for (const k2 in val) {
-                        const cleanK2 = String(k2).replace(/\D/g, '').padStart(5, '0');
-                        if (cleanK2 === cleanFips) {
-                            return parseProxyVotes(val[k2]);
-                        }
-                    }
-                }
-            }
-        }
-        return null;
+        const cleanCd = String(cdCode).toUpperCase().replace(/[-\s]/g, '');
+        return proxyLookup.get(`${cleanFips}_${cleanCd}`) || null;
     }
 
     // group CD features by State PO, normalize IDs, and precompute bounding boxes
@@ -511,13 +493,15 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
             }
         });
 
+		const sharedPathGenerator = d3.geoPath(); // path generator for bounds & centroids
+
         // multi-CD state matching
         stateCounties.forEach(c => {
             const fips = String(c.id || c.fips || "").padStart(5, '0');
             let cent = c.centroid;
             if (!cent && c.geometry) {
                 try {
-                    const pathCent = d3.geoPath().centroid(c);
+                    const pathCent = sharedPathGenerator.centroid(c);
                     if (isFinite(pathCent[0]) && isFinite(pathCent[1])) cent = pathCent;
                 } catch (err) {}
             }
@@ -525,7 +509,7 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
 
             let bbox;
             try {
-                bbox = d3.geoPath().bounds(c);
+                bbox = sharedPathGenerator.bounds(c);
             } catch (err) {
                 bbox = [[cent[0] - 2, cent[1] - 2], [cent[0] + 2, cent[1] + 2]];
             }
@@ -1210,37 +1194,64 @@ function injectCountyMapButton() {
     }
 }
 
+// helper to detect if active page background is dark or light
+function getAdaptiveTextColor() {
+    try {
+        const bg = window.getComputedStyle(document.body).backgroundColor;
+        const rgb = bg.match(/\d+/g);
+        if (rgb && rgb.length >= 3) {
+            // W3C perceived brightness formula
+            const brightness = (parseInt(rgb[0], 10) * 299 + parseInt(rgb[1], 10) * 587 + parseInt(rgb[2], 10) * 114) / 1000;
+            return brightness < 128 ? '#ffffff' : '#000000';
+        }
+    } catch(e) {}
+    return 'inherit';
+}
+
+function getAdaptiveControlBg() {
+    return getAdaptiveTextColor() === '#ffffff' ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.08)';
+}
+
 // shared HTML chunks
-const MAP_CONTROLS_HTML = `
-    <div id="map_controls" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 14px; background: rgba(0,0,0,0.08); padding: 10px; border-radius: 6px; color: #000; align-items: center;">
-       <label style="cursor:pointer;"><input type="radio" name="map_mode" value="choropleth" checked> Margin</label>
-       <label style="cursor:pointer;"><input type="radio" name="map_mode" value="voteshare"> Vote Share</label>
-       <label style="cursor:pointer;"><input type="radio" name="map_mode" value="binary"> Solid Colors</label>
-       <label style="cursor:pointer;" title="Bivariate palette based on total votes to highlight populous areas"><input type="radio" name="map_mode" value="density"> Margin + Density</label>
-       <label style="cursor:pointer;"><input type="radio" name="map_mode" value="proportional"> Proportional</label>
-       <label style="cursor:pointer;"><input type="radio" name="map_mode" value="flipped"> Flipped</label>
-       <label style="cursor:pointer;"><input type="radio" name="map_mode" value="shift"> Shift (from '08)</label>
+function getMapControlsHtml(historicalYear) {
+    const histShort = historicalYear ? String(historicalYear).slice(-2) : '08';
+    const textColor = getAdaptiveTextColor();
+    const controlBg = getAdaptiveControlBg();
 
-       <select id="more_modes_selector" style="font-size:13px; border:1px solid #ccc; border-radius:3px; padding:2px; font-family:sans-serif; cursor:pointer;">
-           <option value="" selected>More...</option>
-           <option value="redraw" style="color: #d9534f; font-weight: bold;">Redraw the States</option>
-       </select>
+    return `
+        <div id="map_controls" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px; font-family: Arial, sans-serif; font-size: 14px; background: ${controlBg}; padding: 10px; border-radius: 6px; color: ${textColor}; align-items: center;">
+           <label style="cursor:pointer;"><input type="radio" name="map_mode" value="choropleth" checked> Margin</label>
+           <label style="cursor:pointer;"><input type="radio" name="map_mode" value="voteshare"> Vote Share</label>
+           <label style="cursor:pointer;"><input type="radio" name="map_mode" value="binary"> Solid Colors</label>
+           <label style="cursor:pointer;" title="Bivariate palette based on total votes to highlight populous areas"><input type="radio" name="map_mode" value="density"> Margin + Density</label>
+           <label style="cursor:pointer;"><input type="radio" name="map_mode" value="proportional"> Proportional</label>
+           <label style="cursor:pointer;"><input type="radio" name="map_mode" value="flipped"> Flipped</label>
+           <label style="cursor:pointer;"><input type="radio" name="map_mode" value="shift"> Shift (from '${histShort})</label>
 
-       <select id="cd_vintage_selector" style="display:none; font-size:12px; border:1px solid #ccc; border-radius:3px; padding:2px; margin-left:10px; font-family:sans-serif;"></select>
-    </div>
-    <p id="county_map_status" style="margin-top: 0; text-align:center;"><i>Loading map data (this may take a moment)...</i></p>
-`;
+           <select id="more_modes_selector" style="font-size:13px; border:1px solid #ccc; border-radius:3px; padding:2px; font-family:sans-serif; cursor:pointer; color:#000; background:#fff;">
+               <option value="" selected>More...</option>
+               <option value="redraw" style="color: #d9534f; font-weight: bold;">Redraw the States</option>
+           </select>
+
+           <select id="cd_vintage_selector" style="display:none; font-size:12px; border:1px solid #ccc; border-radius:3px; padding:2px; margin-left:10px; font-family:sans-serif; color:#000; background:#fff;"></select>
+        </div>
+        <p id="county_map_status" style="margin-top: 0; text-align:center; color: ${textColor};"><i>Loading map data (this may take a moment)...</i></p>
+    `;
+}
 
 function getMapInstructionsHtml(mode) {
     let baseZoomText = mode === 'seamless'
         ? "<i>Scroll to zoom, click and drag to pan. Scroll all the way out to return to State Map.</i>"
         : "<i>Scroll to zoom, click and drag to pan.</i>";
 
+    const textColor = getAdaptiveTextColor();
+    const highlightColor = textColor === '#ffffff' ? '#66b2ff' : '#0056b3';
+
     return `
-        <div id="redraw_instructions" style="margin-top:5px; font-size:12px; text-align:center; display:none; font-weight:bold; color:#0056b3;">
+        <div id="redraw_instructions" style="margin-top:5px; font-size:12px; text-align:center; display:none; font-weight:bold; color:${highlightColor};">
             Right-Click & Drag to paint. Click to paint county, Shift+Click for state. Drag map to pan.
         </div>
-        <div id="normal_instructions" style="margin-top:5px; font-size:12px; text-align:center;">
+        <div id="normal_instructions" style="margin-top:5px; font-size:12px; text-align:center; color:${textColor};">
             ${baseZoomText}
         </div>
     `;
@@ -1398,9 +1409,8 @@ function injectCountyMapInPlace(mode) {
     controlsDiv.style.marginTop = "10px";
 
     // substitute historical year dynamically in the map mode label
-    const { historical, current } = getActiveYears();
-    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${historical.slice(-2)}`);
-    controlsDiv.innerHTML = controlsHtml + getMapInstructionsHtml(mode);
+    const { historical } = getActiveYears();
+	controlsDiv.innerHTML = getMapControlsHtml(historical) + getMapInstructionsHtml(mode);
 
     // populate advanced dropdown items if precincts are active for the current year
     const selectorElement = controlsDiv.querySelector("#more_modes_selector");
@@ -1582,14 +1592,14 @@ function countyMapScreenHtml() {
 
     // substitute historical year dynamically in the map mode label
     const activeY = getActiveYears();
-    let controlsHtml = MAP_CONTROLS_HTML.replace("from '08", `from '${activeY.historical.slice(-2)}`);
+	const textColor = getAdaptiveTextColor();
 
-    document.getElementById("game_window").innerHTML = `
-        ${gameHeader ? gameHeader.outerHTML : `<div class="game_header">${window.corrr}</div>`}
-        <div id="main_content_area" style="padding-bottom: 20px; position:relative;">
-            <h3 style="margin-bottom: 5px; color: #000;">SIMULATED COUNTY RESULTS</h3>
+	document.getElementById("game_window").innerHTML = `
+		${gameHeader ? gameHeader.outerHTML : `<div class="game_header">${window.corrr}</div>`}
+		<div id="main_content_area" style="padding-bottom: 20px; position:relative;">
+			<h3 style="margin-bottom: 5px; color: ${textColor};">SIMULATED COUNTY RESULTS</h3>
 
-            ${controlsHtml}
+			${getMapControlsHtml(activeY.historical)}
 
             <div id="county_map_container" style="position:relative; width:100%; height:350px; display:flex; justify-content:center; align-items:center; background:#e2e6ea; border:1px solid #ccc; overflow:hidden;">
                <svg id="county_svg" viewBox="0 0 975 610" style="width: 100%; height: 100%; cursor: grab;"></svg>
@@ -2380,22 +2390,21 @@ async function loadAndDrawCountyMap(mode) {
 
 		function renderRSPanel() {
 			const list = document.getElementById("redraw_list");
-            if (!list) return;
+			if (!list) return;
+
+			const fragment = document.createDocumentFragment();
 			const existing = new Map([...list.querySelectorAll("[data-rs-id]")].map(el => [el.dataset.rsId, el]));
 
-            const sortMode = document.getElementById("rs_sort_mode") ? document.getElementById("rs_sort_mode").value : "id";
-            let statesArr = Object.values(customStates);
-            if (sortMode === "name") {
-                statesArr.sort((a,b) => a.name.localeCompare(b.name));
-            } else if (sortMode === "ev") {
-                statesArr.sort((a,b) => b.ev - a.ev);
-            } else {
-                statesArr.sort((a,b) => {
-                    const numA = parseInt(a.id.replace('rs_', '')) || 0;
-                    const numB = parseInt(b.id.replace('rs_', '')) || 0;
-                    return numA - numB;
-                });
-            }
+			const sortMode = document.getElementById("rs_sort_mode")?.value || "id";
+			let statesArr = Object.values(customStates);
+
+			if (sortMode === "name") {
+				statesArr.sort((a,b) => a.name.localeCompare(b.name));
+			} else if (sortMode === "ev") {
+				statesArr.sort((a,b) => b.ev - a.ev);
+			} else {
+				statesArr.sort((a,b) => (parseInt(a.id.replace('rs_', '')) || 0) - (parseInt(b.id.replace('rs_', '')) || 0));
+			}
 
 			statesArr.forEach(s => {
 				let div = existing.get(s.id);
@@ -2403,52 +2412,32 @@ async function loadAndDrawCountyMap(mode) {
 					div = document.createElement("div");
 					div.dataset.rsId = s.id;
 					div.style.cssText = `display:flex; align-items:center; padding:6px; margin-bottom:4px; border:1px solid #ddd; background:#fff; cursor:pointer; border-radius:4px; font-size:12px;`;
-
 					div.innerHTML = `
-						<div class="rs-color-dot" title="click to pan to state" style="width:14px; height:14px; border-radius:50%; background:${s.color}; border:1px solid #777; margin-right:8px; flex-shrink:0; cursor:crosshair;"></div>
+						<div class="rs-color-dot" style="width:14px; height:14px; border-radius:50%; border:1px solid #777; margin-right:8px; flex-shrink:0;"></div>
 						<div style="flex:1; min-width:0;">
 							<input type="text" class="rs-name-input" style="width:90px; font-size:11px; border:1px solid #ccc; background:transparent; font-weight:bold;">
-							<div class="rs-ev-label" style="font-size:10px; color:#555;">${s.ev} EV &nbsp;|&nbsp; ${s.winName} ${s.marginText}</div>
+							<div class="rs-ev-label" style="font-size:10px; color:#555;"></div>
 						</div>
 						<button data-rs-del="${s.id}" style="border:none; background:transparent; color:red; cursor:pointer; font-weight:bold; padding:2px 6px;">×</button>`;
 
-                    div.onclick = () => { activeRS = s.id; renderRSPanel(); };
-
-                    div.querySelector(".rs-color-dot").onclick = (e) => {
-                        e.stopPropagation();
-                        activeRS = s.id;
-                        renderRSPanel();
-                        if (rsStateCentroids[s.id]) {
-                            const cx = rsStateCentroids[s.id].x / rsStateCentroids[s.id].w;
-                            const cy = rsStateCentroids[s.id].y / rsStateCentroids[s.id].w;
-                            const svgNode = document.getElementById("county_svg");
-                            const width = svgNode.clientWidth || 975;
-                            const height = svgNode.clientHeight || 610;
-                            const k = Math.max(3, currentZoomK); // zoom in a bit automatically
-                            svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity.translate(width/2 - cx*k, height/2 - cy*k).scale(k));
-                        }
-                    };
-
-                    const inputEl = div.querySelector(".rs-name-input");
-                    inputEl.value = s.name;
-                    inputEl.onclick = (e) => e.stopPropagation();
-                    inputEl.addEventListener("input", (e) => s.name = e.target.value);
-
-                    list.appendChild(div);
+					div.querySelector(".rs-name-input").addEventListener("input", (e) => s.name = e.target.value);
+					div.onclick = () => { activeRS = s.id; renderRSPanel(); };
 				} else {
 					existing.delete(s.id);
-                    list.appendChild(div);
 				}
 
-				// always update dynamic parts
-				div.style.border = `1px solid ${activeRS === s.id ? '#000' : '#ddd'}`;
+				// update border color, background, and other styles
+				div.style.borderColor = activeRS === s.id ? '#000' : '#ddd';
 				div.style.background = activeRS === s.id ? '#eef5ff' : '#fff';
 				div.querySelector(".rs-color-dot").style.background = s.color;
-				div.querySelector(".rs-ev-label").textContent = `${s.ev} EV \u00a0|\u00a0 ${s.winName} ${s.marginText}`;
-                div.querySelector(".rs-name-input").value = s.name;
+				div.querySelector(".rs-ev-label").textContent = `${s.ev} EV | ${s.winName} ${s.marginText}`;
+				div.querySelector(".rs-name-input").value = s.name;
+
+				fragment.appendChild(div);
 			});
 
 			existing.forEach(el => el.remove());
+			list.appendChild(fragment);
 		}
 
 		function updateRSResults() {
@@ -3148,85 +3137,46 @@ async function loadAndDrawCountyMap(mode) {
             mlMap.setPaintProperty("precinct-fill", "fill-color", ["coalesce", ["feature-state", "color"], "#ffffff"]);
 
             requestAnimationFrame(() => {
-                const len = precVisCache.length;
-                for (let fi = 0; fi < len; fi++) {
-                    const f = precVisCache[fi];
-                    const geoid = f.geoid;
-                    const countyFips = f.cf;
-                    const baseTotal = f.vt;
-                    const baseDem = f.vd;
-                    const baseRep = f.vr;
-                    const baseOth = Math.max(0, baseTotal - baseDem - baseRep);
+				const len = precVisCache.length;
+				for (let fi = 0; fi < len; fi++) {
+					const f = precVisCache[fi];
+					const geoid = f.geoid;
+					const countyFips = f.cf;
 
-                    const mults = fipsMultipliers[countyFips];
-                    const mD = mults ? mults.mD : 1;
-                    const mR = mults ? mults.mR : 1;
-                    const mO = mults ? mults.mO : 1;
+					const mults = fipsMultipliers[countyFips];
+					if (!mults) continue; // skip if multipliers unchanged
 
-                    const dem = Math.round(baseDem * mD);
-                    const rep = Math.round(baseRep * mR);
-                    const ots = Math.round(baseOth * mO);
-                    const total = dem + rep + ots;
+					const mD = mults.mD;
+					const mR = mults.mR;
+					const mO = mults.mO;
 
-                    let maxVotes = dem;
-                    let winnerId = demCandId;
+					const dem = Math.round(f.vd * mD);
+					const rep = Math.round(f.vr * mR);
+					const ots = Math.round(Math.max(0, f.vt - f.vd - f.vr) * mO);
+					const total = dem + rep + ots;
 
-                    if (rep > maxVotes) {
-                        maxVotes = rep;
-                        winnerId = repCandId;
-                    }
+					// determine winner
+					let winnerId = demCandId;
+					let maxVotes = dem;
+					if (rep > maxVotes) { maxVotes = rep; winnerId = repCandId; }
 
-                    if (tpCandidatesInGame.length > 0 && mults && mults.tpShares) {
-                        tpCandidatesInGame.forEach(candId => {
-                            const share = mults.tpShares[candId] || 0;
-                            const candVotes = Math.round(ots * share);
-                            if (candVotes > maxVotes) {
-                                maxVotes = candVotes;
-                                winnerId = candId;
-                            }
-                        });
-                    }
+					// margin & color lookup
+					const secondVotes = winnerId === demCandId ? rep : dem;
+					const marginVal = total > 0 ? (maxVotes - secondVotes) / total : 0;
+					const color = colorInterpolators[winnerId] ? colorInterpolators[winnerId](Math.sqrt(marginVal)) : "#888888";
 
-                    let secondVotes = 0;
-                    if (winnerId === demCandId) {
-                        secondVotes = rep;
-                        if (tpCandidatesInGame.length > 0 && mults && mults.tpShares) {
-                            tpCandidatesInGame.forEach(candId => {
-                                const candVotes = Math.round(ots * (mults.tpShares[candId] || 0));
-                                if (candVotes > secondVotes) secondVotes = candVotes;
-                            });
-                        }
-                    } else if (winnerId === repCandId) {
-                        secondVotes = dem;
-                        if (tpCandidatesInGame.length > 0 && mults && mults.tpShares) {
-                            tpCandidatesInGame.forEach(candId => {
-                                const candVotes = Math.round(ots * (mults.tpShares[candId] || 0));
-                                if (candVotes > secondVotes) secondVotes = candVotes;
-                            });
-                        }
-                    } else {
-                        secondVotes = Math.max(dem, rep);
-                        tpCandidatesInGame.forEach(candId => {
-                            if (candId === winnerId) return;
-                            const candVotes = Math.round(ots * (mults.tpShares[candId] || 0));
-                            if (candVotes > secondVotes) secondVotes = candVotes;
-                        });
-                    }
+					// only touch internals if the state changed
+					const sig = `${winnerId}_${color}`;
+					if (precColorCache[geoid] === sig) continue;
+					precColorCache[geoid] = sig;
 
-                    const marginVal = total > 0 ? (maxVotes - secondVotes) / total : 0;
-                    const color = colorInterpolators[winnerId] ? colorInterpolators[winnerId](Math.sqrt(marginVal)) : "#888888";
-
-                    const sig = marginVal + "@" + color;
-                    if (precColorCache[geoid] === sig) continue;
-                    precColorCache[geoid] = sig;
-
-                    mlMap.setFeatureState(
-                        { source: "blockgroups", sourceLayer: "blockgroups", id: geoid },
-                        { color: color }
-                    );
-                }
-            });
-        }
+					mlMap.setFeatureState(
+						{ source: "blockgroups", sourceLayer: "blockgroups", id: geoid },
+						{ color: color }
+					);
+				}
+			});
+		}
 
 		// decade-level boundary-matched fallback helper
 		function getFallbackVotesUrl(year, vintage) {
@@ -3535,30 +3485,25 @@ async function loadAndDrawCountyMap(mode) {
                     countySvg.style.display = "none";
                     precinctMapDiv.style.display = "block";
 
-                    // force synchronous layout calculations
-                    // this is so Firefox & friends can acquire correct canvas dimensions
-                    void precinctMapDiv.offsetHeight;
-
                     // delay maplibre resizing by one animation frame
                     // this prevents projection NaN-failures on load
                     requestAnimationFrame(() => {
-                        initPrecinctMap();
-
-                        if (mlMap) {
-                            mlMap.resize();
-                            if (isDistrict) {
-                                if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "none");
-                                if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "none");
-                                initDistrictLayer();
-                            } else {
-                                if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "visible");
-                                if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "visible");
-                                removeDistrictLayer();
-                                precViewDirty = true;
-                                throttlePrecinctUpdate();
-                            }
-                        }
-                    });
+						initPrecinctMap();
+						if (mlMap) {
+							mlMap.resize();
+							if (isDistrict) {
+								if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "none");
+								if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "none");
+								initDistrictLayer();
+							} else {
+								if (mlMap.getLayer("precinct-fill")) mlMap.setLayoutProperty("precinct-fill", "visibility", "visible");
+								if (mlMap.getLayer("precinct-line")) mlMap.setLayoutProperty("precinct-line", "visibility", "visible");
+								removeDistrictLayer();
+								precViewDirty = true;
+								throttlePrecinctUpdate();
+							}
+						}
+					});
                 } else {
                     countySvg.style.display = "block";
                     precinctMapDiv.style.display = "none";
@@ -3618,7 +3563,7 @@ async function loadAndDrawCountyMap(mode) {
                 if (currentMode === "precinct" || currentMode === "districts") return;
 
                 // if we zoom down enough and scroll out (mouse) or pinch in (touch), switch maps smoothly
-				if (mode === 'seamless' && event.transform.k <= 1.05 && event.sourceEvent) {
+                if (mode === 'seamless' && event.transform.k <= 1.05 && event.sourceEvent) {
                     const isWheelOut = event.sourceEvent.type === 'wheel' && event.sourceEvent.deltaY > 0;
                     const isPinchOut = event.sourceEvent.type === 'touchmove' && currentZoomK > event.transform.k;
 
@@ -3631,7 +3576,7 @@ async function loadAndDrawCountyMap(mode) {
                             return;
                         }
                     }
-				}
+                }
 
                 currentZoomK = event.transform.k;
                 g.attr("transform", event.transform);
