@@ -165,8 +165,12 @@
             });
 
             container.querySelectorAll('a[href="/blog"]').forEach((link) => {
-                link.setAttribute("href", withDeploymentPrefix("/blog/"));
+                link.setAttribute("href", "#top");
                 link.textContent = "Back to top";
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
             });
         }
 
