@@ -139,11 +139,7 @@
             const marker = "/codes/cyoa";
             const path = window.location.pathname;
             const index = path.indexOf(marker);
-            if (index === -1) {
-                return "";
-            }
-
-            return path.slice(0, index + marker.length);
+            return index === -1 ? "" : path.slice(0, index + marker.length);
         }
 
         function withDeploymentPrefix(absolutePath) {
@@ -153,7 +149,9 @@
         const tabBar = document.getElementById("tab-bar");
         const postTitle = document.getElementById("post-title");
         const postContent = document.getElementById("post-content");
-        const postContentCache = new Map();
+
+        const postCache = new Map();
+        const tabButtons = new Map();
 
         function normalizeLoadedContent(container) {
             container.querySelectorAll('img[src^="/static/"]').forEach((img) => {
@@ -167,39 +165,42 @@
             container.querySelectorAll('a[href="/blog"]').forEach((link) => {
                 link.setAttribute("href", "#top");
                 link.textContent = "Back to top";
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                });
             });
         }
 
-        async function getPostHtml(post) {
-            const sourceUrls = [post.url];
-
-            for (const sourceUrl of sourceUrls) {
-                try {
-                    const response = await fetch(sourceUrl, { cache: "no-store" });
-                    if (!response.ok) {
-                        continue;
-                    }
-
-                    const html = await response.text();
-                    const doc = new DOMParser().parseFromString(html, "text/html");
-                    if (doc.querySelector(".blog")) {
-                        return html;
-                    }
-                } catch (error) {
-                    // try next source
-                }
+        async function fetchAndProcessPost(post) {
+            if (postCache.has(post.key)) {
+                return postCache.get(post.key);
             }
 
-            throw new Error("Unable to load post");
+            const response = await fetch(post.url, {cache: "no-store"});
+            if (!response.ok) {
+                throw new Error(`Failed to load post (${response.status})`);
+            }
+
+            const html = await response.text();
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            const sourceTitle = doc.querySelector("h1");
+            const sourceBody = doc.querySelector(".blog");
+
+            if (!sourceBody) {
+                throw new Error("Post content not found in HTML");
+            }
+
+            normalizeLoadedContent(sourceBody);
+
+            const processedData = {
+                title: sourceTitle ? sourceTitle.textContent.trim() : post.label,
+                html: sourceBody.innerHTML
+            };
+
+            postCache.set(post.key, processedData);
+            return processedData;
         }
 
         function setActiveButton(key) {
-            document.querySelectorAll(".tab-button").forEach((button) => {
-                button.classList.toggle("active", button.dataset.postKey === key);
+            tabButtons.forEach((btn, btnKey) => {
+                btn.classList.toggle("active", btnKey === key);
             });
         }
 
@@ -210,32 +211,17 @@
             postContent.innerHTML = "Loading post content...";
 
             try {
-                let html = postContentCache.get(post.key);
-                if (!html) {
-                    html = await getPostHtml(post);
-                    postContentCache.set(post.key, html);
-                }
+                const data = await fetchAndProcessPost(post);
 
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, "text/html");
-                const sourceTitle = doc.querySelector("h1");
-                const sourceBody = doc.querySelector(".blog");
-
-                postTitle.textContent = sourceTitle ? sourceTitle.textContent.trim() : post.label;
+                postTitle.textContent = data.title;
                 postContent.className = "";
-
-                if (sourceBody) {
-                    postContent.innerHTML = sourceBody.innerHTML;
-                    normalizeLoadedContent(postContent);
-                } else {
-                    throw new Error("Post content not found");
-                }
+                postContent.innerHTML = data.html;
 
                 window.location.hash = post.key;
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({top: 0, behavior: "smooth"});
             } catch (error) {
                 postContent.className = "";
-                postContent.innerHTML = "<p>Could not load this post in the reader.</p><p><a href=\"" + post.url + "\">Open post file</a></p>";
+                postContent.innerHTML = `<p>Could not load this post in the reader.</p><p><a href="${post.url}">Open post file</a></p>`;
             }
         }
 
@@ -246,7 +232,17 @@
             button.dataset.postKey = post.key;
             button.textContent = post.label;
             button.addEventListener("click", () => loadPost(post));
+
             tabBar.appendChild(button);
+            tabButtons.set(post.key, button);
+        });
+
+        postContent.addEventListener("click", (e) => {
+            const topLink = e.target.closest('a[href="#top"]');
+            if (topLink) {
+                e.preventDefault();
+                window.scrollTo({top: 0, behavior: "smooth"});
+            }
         });
 
         const initialKey = window.location.hash.replace("#", "");
