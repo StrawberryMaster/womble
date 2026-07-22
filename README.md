@@ -359,7 +359,7 @@ Based off the QuickTime player, this was initially made for *2019 DOTP*, meant t
 This was made for the unreleased Dan Quayle presidency simulator *Quaylee*, on top of the underlying code for the player used for *Moonbeam*. See source [here](./players/quinto_player.js).
 ![Quinto player](./images/quinto_player.png)
 
-#### Razistorija player
+##### Razistorija player
 With the design of an older radio player, this is a modified version of the music player used in *2012: Razistorija*. Playlist switching, if available, can be done by double-clicking on the song cover. See source [here](./players/razistorija_player.js).
 ![Razistorija player](./images/razistorija_player.jpeg)
 
