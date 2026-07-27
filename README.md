@@ -326,6 +326,9 @@ The Windows Media Center-themed player seen in the Deluxe edition of *2012: Obam
 Not the real player, but a loosely faithful recreation of the music player shown in the first couple of *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
 ![Project 2024 player](./images/p24_player.png)
 
+An alternative version of the music player from February 2024 sneak peeks can be seen [here](./players/p24alt_player.js).
+![Project 2024 alt player](./images/p24alt_player.jpeg)
+
 ### ROC player
 This is a modified version of the player used in *2000 ROC Redux* and other mods in the ROC series, with some optimizations and positioning fixes so it aligns with other players' layouts. See source [here](./players/roc_player.js).
 ![ROC player](./images/roc_player.png)
@@ -413,7 +416,7 @@ Also included, within the others folder, here are:
 - **2012: Razistorija**: Based on Yugoslavian politics, this scenario features Milorad Dodik. The code here includes some performance improvements and fixes to an achievement. Codes: [Code 1](./mods/others/2012_-_Razistorija_init.txt) | [Code 2](./mods/others/2012_-_Razistorija_DodikMilanovic.txt)
 - **2028: Smoke In The Air**: J.D. Vance vs. "an 18-year-old genderfluid Deltarune fan [that] somehow got the nomination and convinced some random dude they shitposted with 3 years ago to join the ticket." Codes: [Code 1](./mods/others/2028%20-%20Smoke%20In%20The%20Air_init.txt) | [Code 2](./mods/others/2028%20-%20Smoke%20In%20The%20Air_ExeonPerson.txt)
 - **2028: Soul of the Nation**: a Harris 2028 mod made by Mari. A Trump side was made but seemingly never released, though the Harris side is complete and available here. Minor CYOA patches have been included here, but the mod is otherwise the same as the last-available version. Codes: [Code 1](./mods/others/2028%20-%20Soul%20of%20the%20Nation_init.txt) | [Code 2](./mods/others/2028%20-%20Soul%20of%20the%20Nation_Harris_.txt)
-- **2028 Redux (The American Crossroads)**: also known as 2028 Redux. Made by gamerdoglover, this is a Gavin Newsom vs J.D. Vance mod. It was withdrawn fom the CTS mod loader for bug fixes, though it was not re-uploaded. This is a patched version that includes a fix to have the scenario map actually show up on the screen.Codes: [Code 1](./mods/others/2028Redux_init.txt) | [Code 2](./mods/others/2028Redux_NewsomWarnock.txt)
+- **2028 Redux (The American Crossroads)**: also known as 2028 Redux. Made by gamerdoglover, this is a Gavin Newsom vs J.D. Vance mod. It was withdrawn fom the CTS mod loader for bug fixes, though it was not re-uploaded. This is a patched version that includes a fix to have the scenario map actually show up on the screen. Codes: [Code 1](./mods/others/2028Redux_init.txt) | [Code 2](./mods/others/2028Redux_NewsomWarnock.txt)
 
 ----
 
