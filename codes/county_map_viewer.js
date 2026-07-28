@@ -1250,15 +1250,31 @@ function injectCountyMapButton() {
 // helper to detect if active page background is dark or light
 function getAdaptiveTextColor() {
     try {
-        const bg = window.getComputedStyle(document.body).backgroundColor;
-        const rgb = bg.match(/\d+/g);
-        if (rgb && rgb.length >= 3) {
-            // W3C perceived brightness formula
-            const brightness = (parseInt(rgb[0], 10) * 299 + parseInt(rgb[1], 10) * 587 + parseInt(rgb[2], 10) * 114) / 1000;
-            return brightness < 128 ? '#ffffff' : '#000000';
+        // start checking at game_window or main_content_area before falling back to body
+        let el = document.getElementById("game_window") || 
+                 document.getElementById("main_content_area") || 
+                 document.body;
+
+        while (el && el !== document) {
+            const bg = window.getComputedStyle(el).backgroundColor;
+            if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
+                const rgb = bg.match(/\d+/g);
+                if (rgb && rgb.length >= 3) {
+                    const r = parseInt(rgb[0], 10);
+                    const g = parseInt(rgb[1], 10);
+                    const b = parseInt(rgb[2], 10);
+                    const a = rgb.length >= 4 ? parseFloat(rgb[3]) : 1;
+                    if (a > 0) {
+                        // W3C perceived brightness formula
+                        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                        return brightness < 128 ? '#ffffff' : '#000000';
+                    }
+                }
+            }
+            el = el.parentElement;
         }
     } catch(e) {}
-    return 'inherit';
+    return '#000000';
 }
 
 function getAdaptiveControlBg() {
