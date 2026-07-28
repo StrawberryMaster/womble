@@ -166,6 +166,13 @@ function projectGeoJsonToScreen(geojson) {
     });
 }
 
+function normalizeGeoid(geoid) {
+    let s = String(geoid || "").trim();
+    if (s.length === 11 && /^\d+$/.test(s)) return "0" + s;
+    if (s.length < 12 && /^\d+$/.test(s)) return s.padStart(12, "0");
+    return s;
+}
+
 // approximate district weights from county shapes and district GeoJSON
 function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotesTable, refGeojson, refVotesTable) {
     if (!geojson || !geojson.features) return {};
@@ -347,14 +354,31 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
     // parse reference votes table into a lookup: refCdCode → fips → {dem, rep, other}
     const refPartisanLookup = {};
     if (refVotesTable && typeof refVotesTable === 'object') {
-        for (const cdCode in refVotesTable) {
-            const fipsList = refVotesTable[cdCode];
-            if (!fipsList || typeof fipsList !== 'object') continue;
-            refPartisanLookup[cdCode] = {};
-            for (const fips in fipsList) {
-                const pv = parseProxyVotes(fipsList[fips]);
-                if (pv) {
-                    refPartisanLookup[cdCode][String(fips).replace(/\D/g, '').padStart(5, '0')] = pv;
+        for (const k1 in refVotesTable) {
+            const innerObj = refVotesTable[k1];
+            if (!innerObj || typeof innerObj !== 'object') continue;
+
+            const isK1Fips = /^\d+$/.test(k1) || /^(US)?\d{4,5}$/i.test(k1);
+
+            if (isK1Fips) {
+                const cleanFips = String(k1).replace(/\D/g, '').padStart(5, '0');
+                for (const cdCode in innerObj) {
+                    const cleanCd = String(cdCode).toUpperCase().replace(/[-\s]/g, '');
+                    const pv = parseProxyVotes(innerObj[cdCode]);
+                    if (pv) {
+                        if (!refPartisanLookup[cleanCd]) refPartisanLookup[cleanCd] = {};
+                        refPartisanLookup[cleanCd][cleanFips] = pv;
+                    }
+                }
+            } else {
+                const cleanCd = String(k1).toUpperCase().replace(/[-\s]/g, '');
+                if (!refPartisanLookup[cleanCd]) refPartisanLookup[cleanCd] = {};
+                for (const fips in innerObj) {
+                    const cleanFips = String(fips).replace(/\D/g, '').padStart(5, '0');
+                    const pv = parseProxyVotes(innerObj[fips]);
+                    if (pv) {
+                        refPartisanLookup[cleanCd][cleanFips] = pv;
+                    }
                 }
             }
         }
@@ -463,7 +487,7 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
                     if (cent && isFinite(cent[0]) && isFinite(cent[1])) {
                         if (coordinateSystem === "scaled-screen") {
                             // convert back to [0, 975] screen coordinate space
-                            f.centroid = [cent[0] * 100, cent[1] * 100];
+                            f.centroid = [cent[0] * 100, 610 - (cent[1] * 100)];
                         } else {
                             f.centroid = cent;
                         }
@@ -481,7 +505,7 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
                                 const cent = proj(geoCent);
                                 f.centroid = (cent && isFinite(cent[0]) && isFinite(cent[1])) ? cent : null;
                             } else if (coordinateSystem === "scaled-screen") {
-                                f.centroid = [geoCent[0] * 100, geoCent[1] * 100];
+                                f.centroid = [geoCent[0] * 100, 610 - (geoCent[1] * 100)];
                             } else {
                                 f.centroid = geoCent;
                             }
@@ -516,10 +540,16 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
 
             // count how many CD bounding boxes overlap this county's bbox
             // to determine the required sampling density
-            const countyBbox = [bbox[0][0], bbox[0][1], bbox[1][0], bbox[1][1]];
+            let testCent = cent;
+            let countyBbox = [bbox[0][0], bbox[0][1], bbox[1][0], bbox[1][1]];
+            if (coordinateSystem === "scaled-screen") {
+                testCent = [cent[0] / 100, (610 - cent[1]) / 100];
+                countyBbox = [bbox[0][0] / 100, (610 - bbox[1][1]) / 100, bbox[1][0] / 100, (610 - bbox[0][1]) / 100];
+            }
+
             let overlappingCdCount = 0;
             for (let i = 0; i < stateCds.length; i++) {
-                if (stateCds[i].bbox && inBbox(cent, stateCds[i].bbox)) {
+                if (stateCds[i].bbox && inBbox(testCent, stateCds[i].bbox)) {
                     overlappingCdCount++;
                 } else if (stateCds[i].bbox) {
                     // check actual bbox overlap
@@ -570,7 +600,7 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
                     }
                 } else if (coordinateSystem === "scaled-screen") {
                     // downscale the county screen points to match the [0, 9.75] space
-                    testPt = [pt[0] / 100, pt[1] / 100];
+                    testPt = [pt[0] / 100, (610 - pt[1]) / 100];
                 }
 
                 if (!testPt) return;
@@ -642,8 +672,9 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
                         let hasAnyRefMatch = false;
 
                         for (const refCdCode in refMatches) {
-                            const refWeight = refMatches[refCdCode];
-                            const refPartisan = refPartisanLookup[refCdCode] ? refPartisanLookup[refCdCode][fips] : null;
+							const refWeight = refMatches[refCdCode];
+							const cleanRefCd = String(refCdCode).toUpperCase().replace(/[-\s]/g, '');
+							const refPartisan = refPartisanLookup[cleanRefCd] ? refPartisanLookup[cleanRefCd][fips] : null;
 
                             if (refPartisan) {
                                 totalRefDem += refPartisan.dem * refWeight;
@@ -671,7 +702,8 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
                             }
                         } else {
                             // try direct CD code match fallback
-                            const directRef = refPartisanLookup[cdCode] ? refPartisanLookup[cdCode][fips] : null;
+                            const cleanCdCode = String(cdCode).toUpperCase().replace(/[-\s]/g, '');
+							const directRef = refPartisanLookup[cleanCdCode] ? refPartisanLookup[cleanCdCode][fips] : null;
                             if (directRef) {
                                 const spatialWeight = cdHits[cdCode] / totalHits;
                                 const totalRef = directRef.dem + directRef.rep + directRef.other;
@@ -846,7 +878,12 @@ function generateDistrictVotesTable(geojson, usCounties, fipsResults, proxyVotes
                     countyBboxForOverlap = null;
                 }
             } else if (coordinateSystem === "scaled-screen") {
-                countyBboxForOverlap = [countyBboxRaw[0] / 100, countyBboxRaw[1] / 100, countyBboxRaw[2] / 100, countyBboxRaw[3] / 100];
+                countyBboxForOverlap = [
+                    countyBboxRaw[0] / 100,
+                    (610 - countyBboxRaw[3]) / 100,
+                    countyBboxRaw[2] / 100,
+                    (610 - countyBboxRaw[1]) / 100
+                ];
             } else {
                 countyBboxForOverlap = countyBboxRaw;
             }
@@ -1021,10 +1058,26 @@ function computeCdMargins(table, fipsResults, demCandId, repCandId, tpCandidates
                 const demShare = pieceData.dem / spatialWeight;
                 const repShare = pieceData.rep / spatialWeight;
                 const othShare = pieceData.other / spatialWeight;
+
+                const rD = res.baseDem > 0 ? (res.curDem / res.baseDem) : 1;
+                const rR = res.baseRep > 0 ? (res.curRep / res.baseRep) : 1;
+                const rO = res.baseOth > 0 ? (res.curOth / res.baseOth) : 1;
+
                 const countyTotal = res.curDem + res.curRep + res.curOth;
-                pieceDem = countyTotal * spatialWeight * demShare;
-                pieceRep = countyTotal * spatialWeight * repShare;
-                pieceOth = countyTotal * spatialWeight * othShare;
+                let scaledDem = demShare * rD;
+                let scaledRep = repShare * rR;
+                let scaledOth = othShare * rO;
+                let totalScaled = scaledDem + scaledRep + scaledOth;
+
+                if (totalScaled > 0) {
+                    pieceDem = countyTotal * spatialWeight * (scaledDem / totalScaled);
+                    pieceRep = countyTotal * spatialWeight * (scaledRep / totalScaled);
+                    pieceOth = countyTotal * spatialWeight * (scaledOth / totalScaled);
+                } else {
+                    pieceDem = countyTotal * spatialWeight * demShare;
+                    pieceRep = countyTotal * spatialWeight * repShare;
+                    pieceOth = countyTotal * spatialWeight * othShare;
+                }
             }
         } else {
             const { d, r, o } = parseVotes(pieceData);
@@ -1669,6 +1722,8 @@ async function loadAndDrawCountyMap(mode) {
     const activeYears = getActiveYears();
     CURRENT_YEAR = activeYears.current;
     HISTORICAL_YEAR = activeYears.historical;
+	
+	const loadedPmTilesYear = PMTILES_URLS[CURRENT_YEAR] ? CURRENT_YEAR : "2008";
 
     const loadScript = src => new Promise((resolve, reject) => {
         const s = document.createElement("script");
@@ -1910,6 +1965,22 @@ async function loadAndDrawCountyMap(mode) {
                 stateBase[st].other += (c.votes_other || 0);
                 stateBase[st].all += (c.votes_all || 0);
                 nationalTotalVotes += (c.votes_all || 0);
+            }
+        }
+		
+		let pmTilesCountyMap = {};
+        if (loadedPmTilesYear === CURRENT_YEAR) {
+            pmTilesCountyMap = baseCurrentMap;
+        } else if (_countyMapCache.current[loadedPmTilesYear]) {
+            _countyMapCache.current[loadedPmTilesYear].forEach(c => pmTilesCountyMap[c.fips] = c);
+        } else if (_countyMapCache.historical[loadedPmTilesYear]) {
+            _countyMapCache.historical[loadedPmTilesYear].forEach(c => pmTilesCountyMap[c.fips] = c);
+        } else {
+            try {
+                const pmRaw = await fetch(`https://raw.githubusercontent.com/StrawberryMaster/StrawberryMaster.github.io/refs/heads/master/scripts/county_results_${loadedPmTilesYear}.min.json`).then(r => r.json());
+                pmRaw.forEach(c => pmTilesCountyMap[String(c.fips).padStart(5, '0')] = c);
+            } catch (e) {
+                pmTilesCountyMap = baseCurrentMap;
             }
         }
 
@@ -2235,12 +2306,17 @@ async function loadAndDrawCountyMap(mode) {
                 tpShares: tpShares
             };
 
-            fipsMultipliers[d.fips] = {
-                mD: (c.votes_dem || 0) > 0 ? curDem / (c.votes_dem || 0) : 1,
-                mR: (c.votes_rep || 0) > 0 ? curRep / (c.votes_rep || 0) : 1,
-                mO: (c.votes_other || 0) > 0 ? curOth / (c.votes_other || 0) : 1,
-                tpShares: tpShares
-            };
+            const pmCounty = pmTilesCountyMap[d.fips] || c;
+			const pmDem = pmCounty.votes_dem || c.votes_dem || 1;
+			const pmRep = pmCounty.votes_rep || c.votes_rep || 1;
+			const pmOth = pmCounty.votes_other || c.votes_other || 1;
+
+			fipsMultipliers[d.fips] = {
+				mD: pmDem > 0 ? curDem / pmDem : 1,
+				mR: pmRep > 0 ? curRep / pmRep : 1,
+				mO: pmOth > 0 ? curOth / pmOth : 1,
+				tpShares: tpShares
+			};
         });
 
         const radiusScale = d3.scaleSqrt().domain([0, maxMarginVotes]).range([0, 35]);
@@ -2922,7 +2998,7 @@ async function loadAndDrawCountyMap(mode) {
 
                 mlMap.getCanvas().style.cursor = "pointer";
 
-                const countyFips = geoid.length >= 5 ? geoid.slice(0, 5) : geoid;
+                const countyFips = normalizeGeoid(geoid).slice(0, 5);
                 const props = feat.properties || {};
                 const baseTotal = Number(props.votes_total) || 0;
                 const baseDem = Number(props.votes_dem) || 0;
@@ -3087,14 +3163,16 @@ async function loadAndDrawCountyMap(mode) {
         function updatePrecinctColors() {
             if (!mlMap || !mlMapReady || isUserInteracting) return;
 
-            let hasActiveShuffle = false;
-            for (let fips in fipsMultipliers) {
-                const mult = fipsMultipliers[fips];
-                if (Math.abs(mult.mD - 1) > 0.001 || Math.abs(mult.mR - 1) > 0.001) {
-                    hasActiveShuffle = true;
-                    break;
-                }
-            }
+            let hasActiveShuffle = (loadedPmTilesYear !== CURRENT_YEAR);
+			if (!hasActiveShuffle) {
+				for (let fips in fipsMultipliers) {
+					const mult = fipsMultipliers[fips];
+					if (Math.abs(mult.mD - 1) > 0.001 || Math.abs(mult.mR - 1) > 0.001) {
+						hasActiveShuffle = true;
+						break;
+					}
+				}
+			}
 
             if (!hasActiveShuffle) {
                 try {
@@ -3117,13 +3195,13 @@ async function loadAndDrawCountyMap(mode) {
                 precVisCache = [];
                 for (let ri = 0; ri < raw.length; ri++) {
                     const rf = raw[ri];
-                    const rg = String(rf.id || (rf.properties && rf.properties.GEOID) || "");
-                    if (!rg || seenB[rg]) continue;
-                    seenB[rg] = true;
-                    const rp = rf.properties || {};
-                    precVisCache.push({
-                        geoid: rg,
-                        cf: rg.length >= 5 ? rg.slice(0, 5) : rg,
+                    const rg = normalizeGeoid(rf.id || (rf.properties && rf.properties.GEOID));
+					if (!rg || seenB[rg]) continue;
+					seenB[rg] = true;
+					const rp = rf.properties || {};
+					precVisCache.push({
+						geoid: rg,
+						cf: rg.slice(0, 5),
                         vt: Number(rp.votes_total) || 0,
                         vd: Number(rp.votes_dem) || 0,
                         vr: Number(rp.votes_rep) || 0

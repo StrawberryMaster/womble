@@ -326,7 +326,7 @@ The Windows Media Center-themed player seen in the Deluxe edition of *2012: Obam
 Not the real player, but a loosely faithful recreation of the music player shown in the first couple of *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
 ![Project 2024 player](./images/p24_player.png)
 
-An alternative version of the music player from February 2024 sneak peeks can be seen [here](./players/p24alt_player.js).
+An alternative version of the music player from February 2026 sneak peeks can be seen [here](./players/p24alt_player.js).
 ![Project 2024 alt player](./images/p24alt_player.jpeg)
 
 ### ROC player
