@@ -350,9 +350,12 @@ The Windows Music Player-esque music player shown in the mods *W.* and *2004: Fo
 ![W. player](./images/w_player.png)
 
 #### Other players
-##### Apple player
+##### Apple/Macintosh players
 This Apple-themed music player was reportedly made by Thatchmaster and used in *Vice*. See source [here](./players/apple_player.js).
 ![Apple player](./images/apple_player.png)
+
+Another player, this time a Macintosh player, is a redesigned version based off a player made made by HouseyHouse for a *1996: A New Age* mod mockup. See source [here](./players/mac_player.js).
+![Mac player](./images/mac_player.jpeg)
 
 ##### QuickTime player
 Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_player.js).
