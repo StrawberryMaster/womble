@@ -354,7 +354,7 @@ The Windows Music Player-esque music player shown in the mods *W.* and *2004: Fo
 This Apple-themed music player was reportedly made by Thatchmaster and used in *Vice*. See source [here](./players/apple_player.js).
 ![Apple player](./images/apple_player.png)
 
-Another player, this time a Macintosh player, is a redesigned version based off a player made made by HouseyHouse for a *1996: A New Age* mod mockup. See source [here](./players/mac_player.js).
+Another player, this time a Macintosh player, is a redesigned version based off a player made by HouseyHouse for a *1996: A New Age* mod mockup. See source [here](./players/mac_player.js).
 ![Mac player](./images/mac_player.jpeg)
 
 ##### QuickTime player
@@ -377,9 +377,12 @@ A SoundCloud-themed music player, and would be useful for a 2010s onward mod. Th
 Similar to the *Project 2024* player, this is a vaguely faithful recreation of the *They'll Love Me When I'm Dead* mod's music player, shown in its sneak peeks. See source [here](./players/tlmwid_player.js).
 ![They'll Love Me When I'm Dead player](./images/tlmwid_player.png)
 
-##### 90s player
+##### 90s players
 Pretty much a generic music player with a slight 90s theme. Came from [this Reddit post](https://www.reddit.com/r/thecampaigntrail/comments/1tphs8t/comment/oob655a/) by No-Creme1061. See source [here](./players/noughties_player.js).
 ![90s player](./images/noughties_player.jpeg)
+
+Another dark-themed 90s player, this is a redesigned version based off a player made by HouseyHouse for a *Perpetual American Terror* mod mockup. See source [here](./players/noughtiesalt_player.js).
+![90s alt player](./images/noughtiesalt_player.jpeg)
 
 ----
 
