@@ -384,6 +384,9 @@ Pretty much a generic music player with a slight 90s theme. Came from [this Redd
 Another dark-themed 90s player, this is a redesigned version based off a player made by HouseyHouse for a *Perpetual American Terror* mod mockup. See source [here](./players/noughtiesalt_player.js).
 ![90s alt player](./images/noughtiesalt_player.jpeg)
 
+This other Windows Media Player-themed 90s player is a loose recreation of one shown in the unreleased mod *Red Dusk 2000: Quayle's America*. See source [here](./players/noughtiesalt2_player.js).
+![90s alt 2 player](./images/noughtiesalt2_player.jpeg)
+
 ----
 
 # Mod notes
