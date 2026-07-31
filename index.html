@@ -388,6 +388,120 @@
             background: linear-gradient(135deg, #b85a5a 0%, #9b4a4a 100%);
         }
 
+        /* Modal base styles */
+        .womble-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .womble-modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .womble-modal {
+            background: linear-gradient(135deg, #fdfbfb 0%, #fcf8f8 100%);
+            border: 1px solid #d4a5a5;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.2);
+            width: 100%;
+            max-width: 850px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(-20px);
+            transition: transform 0.25s ease;
+        }
+
+        .womble-modal-overlay.visible .womble-modal {
+            transform: translateY(0);
+        }
+
+        .womble-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            border-bottom: 1px solid #e8d4d4;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .womble-modal-title {
+            font-size: 1.1em;
+            color: #7a2c2c;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            font-family: inherit;
+            word-break: break-all;
+        }
+
+        .womble-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .womble-modal-btn {
+            background: linear-gradient(135deg, #a84a4a 0%, #8b3a3a 100%);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .womble-modal-btn:hover {
+            background: linear-gradient(135deg, #8b3a3a 0%, #6f2e2e 100%);
+            box-shadow: 0 2px 6px rgba(139, 0, 0, 0.2);
+        }
+
+        .womble-modal-close {
+            background: transparent;
+            border: none;
+            color: #7a2c2c;
+            font-size: 24px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color 0.2s ease;
+        }
+
+        .womble-modal-close:hover {
+            color: #b83a3a;
+        }
+
+        .womble-modal-body {
+            padding: 15px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .womble-modal-body pre {
+            margin: 0;
+            max-height: 100%;
+            overflow-x: auto;
+        }
+
+        /* --- Dark Theme --- */
         body.theme-dark {
             background: linear-gradient(135deg, #141212 0%, #0d0c0c 100%);
             color: #d1c7c7;
@@ -498,6 +612,34 @@
             background-color: #591b1b;
             color: #ffc2c2;
             border-bottom-color: #ff8a8a;
+        }
+
+        body.theme-dark .womble-modal {
+            background: linear-gradient(135deg, #1d1818 0%, #171313 100%);
+            border-color: #522d2d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        body.theme-dark .womble-modal-header {
+            border-bottom-color: #3d2828;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        body.theme-dark .womble-modal-title {
+            color: #f0a8a8;
+        }
+
+        body.theme-dark .womble-modal-btn {
+            background: linear-gradient(135deg, #8b3a3a 0%, #6f2e2e 100%);
+            color: #ffb3b3;
+        }
+
+        body.theme-dark .womble-modal-btn:hover {
+            background: linear-gradient(135deg, #a84a4a 0%, #8b3a3a 100%);
+        }
+
+        body.theme-dark .womble-modal-close {
+            color: #f0a8a8;
         }
 
         body.theme-metro {
@@ -746,6 +888,46 @@
             transform: none;
         }
 
+        body.theme-metro .womble-modal {
+            background: #ffcc44;
+            border: 3px solid #000000;
+            border-radius: 0;
+            box-shadow: 8px 8px 0px #000000;
+            font-family: Arial, sans-serif;
+        }
+
+        body.theme-metro .womble-modal-header {
+            border-bottom: 2px solid #000000;
+            background: #66cc33;
+        }
+
+        body.theme-metro .womble-modal-title {
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        body.theme-metro .womble-modal-btn {
+            background: #ff0000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 0;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        body.theme-metro .womble-modal-btn:hover {
+            background: #2299dd;
+        }
+
+        body.theme-metro .womble-modal-close {
+            color: #000000;
+            font-weight: bold;
+        }
+
         body.theme-plain {
             background: #ffffff;
             color: #111111;
@@ -917,6 +1099,39 @@
             background: #ffffff;
             color: #003049;
             transform: none;
+        }
+
+        body.theme-plain .womble-modal {
+            background: #ffffff;
+            border: 1px solid #c9d2da;
+            border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        body.theme-plain .womble-modal-header {
+            border-bottom: 1px solid #c9d2da;
+            background: #fafafa;
+        }
+
+        body.theme-plain .womble-modal-title {
+            color: #003049;
+        }
+
+        body.theme-plain .womble-modal-btn {
+            background: #003049;
+            color: #ffffff;
+            border: 1px solid #003049;
+            border-radius: 0;
+            font-family: Georgia, serif;
+        }
+
+        body.theme-plain .womble-modal-btn:hover {
+            background: #001d2f;
+        }
+
+        body.theme-plain .womble-modal-close {
+            color: #003049;
         }
 
         body.theme-scaruffi {
@@ -1115,6 +1330,43 @@
             transform: none;
         }
 
+        body.theme-scaruffi .womble-modal {
+            background: #fedcba !important;
+            border: 2px solid #000000 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            font-family: "Times New Roman", Times, serif !important;
+        }
+
+        body.theme-scaruffi .womble-modal-header {
+            border-bottom: 1px solid #000000 !important;
+            background: #fedcba !important;
+        }
+
+        body.theme-scaruffi .womble-modal-title {
+            color: #0702b6 !important;
+            font-size: 16px !important;
+        }
+
+        body.theme-scaruffi .womble-modal-btn {
+            background: #fedcba !important;
+            color: #0000ff !important;
+            border: 1px solid #000000 !important;
+            border-radius: 0 !important;
+            text-decoration: underline !important;
+            font-family: inherit !important;
+        }
+
+        body.theme-scaruffi .womble-modal-btn:hover {
+            background: #0000ff !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+
+        body.theme-scaruffi .womble-modal-close {
+            color: #0000ff !important;
+        }
+
         @media screen and (max-width: 70em) {
             body.theme-metro {
                 font-size: 120%;
@@ -1250,11 +1502,27 @@
         </svg>
     </button>
 
+    <div id="womble-modal-overlay" class="womble-modal-overlay" aria-hidden="true">
+        <div class="womble-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="womble-modal-header">
+                <h3 id="modal-title" class="womble-modal-title">Code snippet</h3>
+                <div class="womble-modal-actions">
+                    <button id="modal-copy-btn" class="womble-modal-btn">Copy code</button>
+                    <button id="modal-close-btn" class="womble-modal-close" aria-label="Close modal">&times;</button>
+                </div>
+            </div>
+            <div class="womble-modal-body">
+                <pre><code id="modal-code-content" class="language-javascript"></code></pre>
+            </div>
+        </div>
+    </div>
+
     <script>
         const THEME_STORAGE_KEY = 'womble-theme';
         const HIGHLIGHT_CLASS = 'womble-highlight';
         let searchTimeout = null;
         let headingCache = [];
+        let currentModalRawCode = '';
 
         function applyTheme(themeName) {
             const themes = ['dark', 'metro', 'plain', 'scaruffi'];
@@ -1613,9 +1881,119 @@
             });
         }
 
+        async function openJsModal(url, displayTitle) {
+            const overlay = document.getElementById('womble-modal-overlay');
+            const titleElem = document.getElementById('modal-title');
+            const codeElem = document.getElementById('modal-code-content');
+            const copyBtn = document.getElementById('modal-copy-btn');
+
+            const fileName = url.split('/').pop().split('?')[0] || displayTitle || 'JavaScript code';
+            titleElem.textContent = fileName;
+            codeElem.textContent = '// Loading JavaScript snippet...';
+            delete codeElem.dataset.highlighted;
+            codeElem.className = 'language-javascript';
+
+            copyBtn.textContent = 'Copy code';
+            currentModalRawCode = '';
+
+            overlay.classList.add('visible');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                const codeText = await response.text();
+                currentModalRawCode = codeText;
+                codeElem.textContent = codeText;
+                hljs.highlightElement(codeElem);
+            } catch (err) {
+                console.error('Error fetching JS snippet:', err);
+                const errorMsg = `// Could not fetch JS snippet from: ${url}\n// Error: ${err.message}\n\n// You can click below or open directly at:\n// ${url}`;
+                currentModalRawCode = errorMsg;
+                codeElem.textContent = errorMsg;
+                hljs.highlightElement(codeElem);
+            }
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('womble-modal-overlay');
+            overlay.classList.remove('visible');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        function initializeModal() {
+            const overlay = document.getElementById('womble-modal-overlay');
+            const closeBtn = document.getElementById('modal-close-btn');
+            const copyBtn = document.getElementById('modal-copy-btn');
+
+            closeBtn.addEventListener('click', closeModal);
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    closeModal();
+                }
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('visible')) {
+                    closeModal();
+                }
+            });
+
+            copyBtn.addEventListener('click', async () => {
+                if (!currentModalRawCode) return;
+                try {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        await navigator.clipboard.writeText(currentModalRawCode);
+                    } else {
+                        const textarea = document.createElement('textarea');
+                        textarea.value = currentModalRawCode;
+                        textarea.style.position = 'fixed';
+                        textarea.style.opacity = '0';
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                    }
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy code';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text:', err);
+                    copyBtn.textContent = 'Copy failed';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy code';
+                    }, 2000);
+                }
+            });
+
+            document.getElementById('content').addEventListener('click', (event) => {
+                // allow opening in new tab via Ctrl/Cmd/Shift click or middle-click
+                if (event.ctrlKey || event.metaKey || event.shiftKey || event.button === 1) return;
+
+                const link = event.target.closest('a');
+                if (!link) return;
+
+                const href = link.getAttribute('href');
+                if (!href) return;
+
+                const cleanPath = href.split('?')[0].split('#')[0];
+                if (cleanPath.endsWith('.js') || /\.js$/i.test(cleanPath)) {
+                    event.preventDefault();
+                    openJsModal(href, link.textContent || href);
+                }
+            });
+        }
+
         initializeThemes();
         initializeSearch();
         initializeScrollEffects();
+        initializeModal();
         loadReadme();
     </script>
 </body>
