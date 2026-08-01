@@ -1887,7 +1887,8 @@
             const codeElem = document.getElementById('modal-code-content');
             const copyBtn = document.getElementById('modal-copy-btn');
 
-            const fileName = url.split('/').pop().split('?')[0] || displayTitle || 'JavaScript code';
+            const rawName = url.split('/').pop().split('?')[0];
+            const fileName = rawName ? decodeURIComponent(rawName) : (displayTitle || 'Code snippet');
             titleElem.textContent = fileName;
             codeElem.textContent = '// Loading JavaScript snippet...';
             delete codeElem.dataset.highlighted;
@@ -1983,7 +1984,10 @@
                 if (!href) return;
 
                 const cleanPath = href.split('?')[0].split('#')[0];
-                if (/\.(js|txt)$/i.test(cleanPath)) {
+                const isCodeExtension = /\.(js|txt|json)$/i.test(cleanPath);
+                const isRawGithub = href.includes('raw.githubusercontent.com');
+
+                if (isCodeExtension || isRawGithub) {
                     event.preventDefault();
                     openJsModal(href, link.textContent || href);
                 }
