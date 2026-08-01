@@ -419,10 +419,11 @@ The alternative history scenarios on that same site (1968a and 1920a) can be fou
 This is a patched version of the mod *1976: Year Zero*, with some optimizations to the candidate loading screen + the music player, which will now fit on laptops and smaller screens. See code [here](./mods/1976%20-%20Year%20Zero_init.txt). See example:
 ![Year Zero](./images/yearzero.png)
 
-## Restored/recovered mods
-These mods were either restored by a user (or group of users) or stored here in order to avoid deletion.
+## Restored/recovered/non-loader mods
+These mods were either restored by a user (or group of users), formally released but not on the mod loaders, or stored here in order to avoid deletion.
 - **1932 Irish Free State**: a general election mod for the 1932 Irish Free State election, restored by [u/Revan0001](https://www.reddit.com/user/Revan0001). Codes: [Code 1](./mods/others/1932%20Ireland_init.txt) | [Code 2](./mods/others/1932%20Ireland_FaíldeValera.txt)
 - **1960 DtK**: per [the wiki](https://thewikitrail.miraheze.org/wiki/1960DTK), this mod takes place in an alternate timeline where a bomb kills both John F. Kennedy and Richard Nixon during a debate. Only the Johnson/Tawes side is playable; the other side is unplayable. This is a copy from [metheguy](https://github.com/metheguyTNCT), patched to fix a broken background and endings. Codes: [Code 1](./mods/others/1960DtK_init.txt) | [Code 2](./mods/others/1960DtK_JohnsonTawes.txt)
+- **1972 Democrats: If Not Now, Whem?**: released on August 1, 2026, not yet on any of the loaders. Codes: [Code 1 (CTS)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Init%20(CTS)) | [Code 2 (CTS)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Democrats%20(CTS)) | [Code 1 (NCT)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Init) | [Code 2 (NCT)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Democrats)
 - **1995 Iraq**: similar to **2019 North Korea**, this mod as restored by [u/Revan0001](https://www.reddit.com/user/Revan0001). Codes: [Code 1](./mods/others/1995%20-%20Iraq_init.txt) | [Code 2](./mods/others/1995%20-%20Iraq_HusseinIDB.txt)
 
 ## Unreleased mods
