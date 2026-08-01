@@ -1983,7 +1983,7 @@
                 if (!href) return;
 
                 const cleanPath = href.split('?')[0].split('#')[0];
-                if (cleanPath.endsWith('.js') || /\.js$/i.test(cleanPath)) {
+                if (/\.(js|txt)$/i.test(cleanPath)) {
                     event.preventDefault();
                     openJsModal(href, link.textContent || href);
                 }
