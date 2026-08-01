@@ -1507,6 +1507,7 @@
             <div class="womble-modal-header">
                 <h3 id="modal-title" class="womble-modal-title">Code snippet</h3>
                 <div class="womble-modal-actions">
+                    <a id="modal-raw-btn" class="womble-modal-btn" target="_blank" rel="noopener" style="text-decoration:none;">Open raw</a>
                     <button id="modal-copy-btn" class="womble-modal-btn">Copy code</button>
                     <button id="modal-close-btn" class="womble-modal-close" aria-label="Close modal">&times;</button>
                 </div>
@@ -1887,6 +1888,9 @@
             const codeElem = document.getElementById('modal-code-content');
             const copyBtn = document.getElementById('modal-copy-btn');
 
+            const rawBtn = document.getElementById('modal-raw-btn');
+            if (rawBtn) rawBtn.href = url;
+
             const rawName = url.split('/').pop().split('?')[0];
             const fileName = rawName ? decodeURIComponent(rawName) : (displayTitle || 'Code snippet');
             titleElem.textContent = fileName;
@@ -1908,8 +1912,20 @@
                 }
                 const codeText = await response.text();
                 currentModalRawCode = codeText;
-                codeElem.textContent = codeText;
-                hljs.highlightElement(codeElem);
+
+                const MAX_PREVIEW_SIZE = 800000; // ~800 KB visual limit
+                const MAX_HIGHLIGHT_SIZE = 200000; // ~200 KB syntax highlight limit
+
+                if (codeText.length > MAX_PREVIEW_SIZE) {
+                    const sizeMb = (codeText.length / (1024 * 1024)).toFixed(2);
+                    const previewText = codeText.slice(0, MAX_PREVIEW_SIZE);
+                    codeElem.textContent = `// This is a large file (${sizeMb} MB). For this reason, this preview has been truncated.\n// Clicking "Copy code" *will* copy the full file, though!\n\n` + previewText + '\n\n... [remaining preview hidden]';
+                } else {
+                    codeElem.textContent = codeText;
+                    if (codeText.length < MAX_HIGHLIGHT_SIZE) {
+                        hljs.highlightElement(codeElem);
+                    }
+                }
             } catch (err) {
                 console.error('Error fetching JS snippet:', err);
                 const errorMsg = `// Could not fetch JS snippet from: ${url}\n// Error: ${err.message}\n\n// You can click below or open directly at:\n// ${url}`;
@@ -1954,9 +1970,10 @@
                         const textarea = document.createElement('textarea');
                         textarea.value = currentModalRawCode;
                         textarea.style.position = 'fixed';
-                        textarea.style.opacity = '0';
+                        textarea.style.left = '-9999px';
                         document.body.appendChild(textarea);
-                        textarea.select();
+                        textarea.focus();
+                        textarea.setSelectionRange(0, currentModalRawCode.length);
                         document.execCommand('copy');
                         document.body.removeChild(textarea);
                     }
