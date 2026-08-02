@@ -12969,7 +12969,7 @@ class ChartEnhancer {
 		z-index: 1;
 
 		background-color: #333;
-		color: #4c5f84;
+		color: #d3dced;
 		font-family: Segoe UI, sans-serif !important;
 		padding: 10px;
 		border-radius: 6px;
