@@ -1,0 +1,392 @@
+
+const customStyling = document.createElement("style");
+customStyling.innerHTML = `
+#election_summary {
+  padding-top: 0em;
+  padding-right: 1em;
+  text-align: left;
+}
+`;
+document.head.appendChild(customStyling);
+campaignTrail_temp.modBoxTheme = {
+  "header_color": "#0d0d4a",
+  "header_text_color": "#ffffff",
+  "description_text_color": "#000000",
+  "description_background_color": "#f5f4e5",
+  "main_color": "#585d9e",
+  "secondary_color": "#2e226b",
+  "ui_text_color": "#ffffff"
+}
+if(campaignTrail_temp.election_json.length!=1)
+{
+e=campaignTrail_temp
+campaignTrail_temp.election_json = JSON.parse("[{\"model\": \"campaign_trail.election\", \"pk\": 4, \"fields\": {\"year\": 1952, \"summary\": \"<p>Four years ago, President Henry Wallace pulled off an upset against former governor Harold Stassen for a chaotic second term. Heading into the 1952 election, defeat seems imminent for the incumbent and his party.</p><p><ul><li>President Henry Wallace becomes the second incumbent in a row to seek a third term in the White House. Despite opposition from all sides of his coalition, he remains firm in his will to win yet another impossible race. His unpopular foreign policy could prove to be his downfall.</li><li>New York Governor Thomas Dewey steps up to the plate once again following his blistering defeat by President Roosevelt in 1944 and his derailed '48 campaign. He'll have to learn from his past mistakes while traversing new issues.</li>\", \"image_url\": \"https://i.imgur.com/SdVtpG6.png\", \"winning_electoral_vote_number\": 266, \"advisor_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1166893263723180062/image.png?ex=654c2509&is=6539b009&hm=bf5155e5a8bce8c9294e798f4a6d6d6d061f98604995427279a19e64cc281723&\", \"recommended_reading\": \"<div style=\\\"overflow-y:scroll;height:357.133px;font-size:1em;\\\"><h2 style=\\\"margin-top: 0.5em;\\\">Readings</h2><p><b><a href='https://www.amazon.com/Stassen-Again-Steve-Werle/dp/0873519620'>Stassen Again</a> by Steve Werle<p><a href='https://archive.org/details/promiseskeptmemo0000mcma'>Promises Kept: A Memoir</a> by Sid McMath<p><a href='https://www.amazon.com/Korean-War-Max-Hastings/dp/067166834X/ref=pd_lpo_sccl_1/143-3844777-3125205?pd_rd_w=ItK5a&content-id=amzn1.sym.116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_p=116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_r=7F9EAXW66XDXTSNPH6RH&pd_rd_wg=pM1A1&pd_rd_r=13771b85-340b-4b29-87ce-3104c9309cf2&pd_rd_i=067166834X&psc=1'>The Korean War</a> by Max Hastings<p><a href='https://www.amazon.com/Demagogue-Life-Shadow-Senator-McCarthy/dp/1328959724'>Demagogue: The Life and Long Shadow of Senator Joe McCarthy</a> by Larry Tye</b><br><br><p><i>The election is over, the choice has been made, but the wheels of time keep turning...</i><br><br><p>CHICAGO TRIBUNE: <b>IT'LL BE STASSEN AGAIN: DEMOCRATS IN DISARRAY</b><br><br><p>NEW YORK TIMES: <b>TOGLIATTI FORMS COALITION GOVERNMENT IN ITALY, CHRISTIAN DEMOCRATS CONTEST ELECTION RESULT</b><br><br><p>THE NATION: <b>McCARTHY EYES NEW FOE, US ARMY</b><br><br><p>NEWS OF THE WORLD: <b>MAO REPORTED DEAD IN BEIJING: DETAILS OF APPARENT COUP UNCLEAR</b><br><br><p><img src='https://cdn.discordapp.com/attachments/1092480791948316763/1132543930408378389/image.png' alt='Italian Trulli' style='width:630px;height:293px;''><br><i>To be continued.</i></p><br><br>\",\"has_visits\": 1, \"no_electoral_majority_image\": \"https://historicdistrict.files.wordpress.com/2012/08/capitol-hill-4.\"}}]"); campaignTrail_temp.candidate_json = JSON.parse("[{\"model\": \"campaign_trail.candidate\", \"pk\": 24, \"fields\": {\"first_name\": \"Henry\", \"last_name\": \"Wallace\", \"election\": 4, \"party\": \"Democratic\", \"state\": \"Iowa\", \"priority\": 2, \"description\": \"<p>Henry Wallace is tired. At the age of 64, President Wallace is more than ready to retire from politics after a life of service to his nation in various ways. It seems that circumstance will not allow him to slip away so easily. Despite urging from his party to step down as standard bearer, recent global tensions, and domestic trouble have led President Henry A. Wallace to reconsider his earlier commitments.</p><p>Although he started his second term with a mandate due to the comeback election of 1948, it was quickly spoiled by failures in the Chinese Civil War and his power struggle with the Republican Congress. Now, once again unpopular, he'll have to test if his last victory was fate or skill.</p><p>As he prepares his final bid for public office, he's reminded of all the attempts against him before— conventions of the past where they tried to take him down, where he always succeeded. He smiles because he knows that just like every time he was doubted before. He'll prove the naysayers wrong and win.</p>\", \"color_hex\": \"#0020c1\", \"secondary_color_hex\": \"#0000d9\", \"is_active\": 1, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1153119812675977297/BlueWallace.jpg\", \"electoral_victory_message\": \"<h3>Oi</h3><p>ballsy</p>\", \"electoral_loss_message\": \"<h3>mo</h3><p>T</p>\", \"no_electoral_majority_message\": \"<h3>t</h3><p>t</p>\", \"description_as_running_mate\": \"'\", \"candidate_score\": 1.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 23, \"fields\": {\"first_name\": \"Thomas\", \"last_name\": \"Dewey\", \"election\": 4, \"party\": \"Republican\", \"state\": \"New York\", \"priority\": 1, \"description\": \"<p>Thomas E. Dewey has done this before. 1940, 1944, 1948, and now, once again, 1952. Few men throughout American history have been as close to the halls of the White House as he has, yet he remains so far away. In his opinion, that isn't his fault; he was young, and he listened too much to faulty polling by fools who didn't know as much as they claimed.</p><p>Despite how much he's been set back, Governor Dewey isn't deterred in his dream to become president. Once again, he's a candidate for the White House. With a weak field of minor no-names and detested candidates like Taft and MacArthur, it's no surprise he's won the nomination. For the first time in his career, the general election looks favorable for Dewey. His position as a popular governor contrasts with President Wallace's current weak standing in the court of public opinion. Although his demeanor isn't as warm as it once was, and he himself is no longer so shiny and new, Thomas E. Dewey still believes, no— he knows he will be President of the United States.</p>\", \"color_hex\": \"#c44141\", \"secondary_color_hex\": \"#d06868\", \"is_active\": 1, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152392138068336711/image.png\", \"electoral_victory_message\": \"<h3>L</h3>L</p>\", \"electoral_loss_message\": \"<h3>Sorry! You Lost the 2024 Presidential Election</h3><p>You lost sry brandon</p>\", \"no_electoral_majority_message\": \"<h3>L</h3><p>Looks like Trump was successful in deadlocking the Electoral College. The Republicans still control the house so who knows where this will go. There is still a good chance that you remain President, but who really knows what comes next.</p>\", \"description_as_running_mate\": \"'\", \"candidate_score\": 1.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 25, \"fields\": {\"first_name\": \"Strom\", \"last_name\": \"Thurmond\", \"election\": 4, \"party\": \"States Rights Democrat\", \"state\": \"Georgia\", \"priority\": 2, \"description\": \"<p>Racist</p>\", \"color_hex\": \"#c46300\", \"secondary_color_hex\": \"#ff880b\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1092480791948316763/1098302408716730438/2384.jpg\", \"electoral_victory_message\": \"<h3>t</h3></p><p>t</p>\", \"electoral_loss_message\": \"<h3>t</h3><p>t\", \"no_electoral_majority_message\": \"<h3>t</h3><p>t</p>\", \"description_as_running_mate\": \"'\", \"candidate_score\": 1.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 58, \"fields\": {\"first_name\": \"Sam\", \"last_name\": \"Rayburn\", \"election\": 4, \"party\": \"Democratic\", \"state\": \"Texas\", \"priority\": 3, \"description\": \"'\", \"color_hex\": \"#0C4686\", \"secondary_color_hex\": \"#90C0FF\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152408887618711622/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>Make no mistake about it, Sam Rayburn still doesn't like you. He never expected you to win the 1948 election or that he would actually be Vice President of the United States. Yet, here he is. While you never quite warmed up to the establishment, he remains in the deep trenches of the Washington swamp. There was some small hope from your few friends in the party that Rayburn would willingly step aside this year, however his allies have made it clear that would prove a difficult challenge.</p><p>Despite your personal tensions, it makes sense to keep him in the inner circle. After all, he's your only lifeline to the Congressional Democrats who pretend like you don't exist, and he will be key if you intend to win Texas and the upper South this November.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 59, \"fields\": {\"first_name\": \"Clinton P.\", \"last_name\": \"Anderson\", \"election\": 4, \"party\": \"Democratic\", \"state\": \"New Mexico\", \"priority\": 4, \"description\": \"'\", \"color_hex\": \"#0C4686\", \"secondary_color_hex\": \"#90C0FF\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152411653896417370/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>Henry Wallace's Henry Wallace, as the press would dub him; Secretary of Agriculture Clinton P. Anderson has led a frugal life from the plains of South Dakota, a dangerous health crisis that sent him down to New Mexico and left him unable to fight in the First World War— and then his rise through the New Mexico Democratic party. He reminds you a lot of yourself, perhaps that's why your allies want him to replace Rayburn on the ticket.</p><p>It's impossible to understate how important the job of Agriculture Secretary has been during your presidency, from the food crisis to the farm crisis— Anderson found himself a national name by leading the federal response to many post-war issues.</p><p>Considered a passive, more palatable version of you, he's a good choice if you're confident in your chances. However, although Anderson is well-liked by the establishment, it may be seen as a declaration of war against Vice President Rayburn and the smoke-filled room.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 55, \"fields\": {\"first_name\": \"Styles\", \"last_name\": \"Bridges\", \"election\": 4, \"party\": \"Republican\", \"state\": \"New Hampshire\", \"priority\": 6, \"description\": \"'\", \"color_hex\": \"#EF2F16\", \"secondary_color_hex\": \"#FFA0A0\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152409116195704832/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>A man of his party, the quiet yet controversial senator— Styles Bridges has gained many epithets during his time in politics. It could be said that you both share similar backgrounds. Your rise as a young prosecutor and lawyer, skyrocketing through New York politics, compared to his time as the youngest ever governor of New Hampshire— and that's not mentioning you both having ran for president back in 1940.<p>For every similarity shared between the two of you, there are five differences. He's made himself a sworn enemy of the Republican liberal and moderate— stuck in his personal dream of a single-minded Republican party. Bridges is also a close ally of Joe McCarthy, and Lord knows we don't need that man becoming a central campaign issue...</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 56, \"fields\": {\"first_name\": \"Richard\", \"last_name\": \"Nixon\", \"election\": 4, \"party\": \"Republican\", \"state\": \"California\", \"priority\": 7, \"description\": \"'\", \"color_hex\": \"#EF2F16\", \"secondary_color_hex\": \"#FFA0A0\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152409858251952178/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>What is there to say about Richard Nixon that hasn't already been said? It's not surprising to many people that he'd be in consideration for this— he did win his first senate election with over 60% of the vote after all. I'm sure you've read through his profile many times, so let's discuss Nixon's other side.<p>You remember it well, no? Early in the campaign, when they weren't confident in our chances at the convention— Nixon decided to back you for whatever reason. Since then, he's followed you around like a lost puppy— doing tricks at your command. He's shameless— wanting to be your running mate even if it means becoming your lesser.</p><p>I would be lying if I said I wasn't worried about his motives, and I question if going back to the 1944 mudslinging is our best idea. But at the very least, Richard Nixon would be a valuable asset on the campaign trail.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 69, \"fields\": {\"first_name\": \"William E.\", \"last_name\": \"Jenner\", \"election\": 4, \"party\": \"Republican\", \"state\": \"Indiana\", \"priority\": 7, \"description\": \"'\", \"color_hex\": \"#EF2F16\", \"secondary_color_hex\": \"#FFA0A0\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152411327197892638/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>Once the youngest member of the United States Senate and the first veteran of the Second World War elected to the institution, William E. Jenner has dedicated much of his career to conservative values— both domestic and abroad. This includes staunch opposition to foreign aid, which he has been outspoken about during the war in Egypt.</p><p>However, Senator Jenner is most known for his very public feud with Secretary of State Dean Acheson, having gone on long tirades, screaming at the man about communist infiltration in Washington—clearly a decorated McCarthy ally. </p><p>His isolationist beliefs will put you between a rock and a hard place, and, no doubt having him on the ticket will put your internationalist reputation in danger. But he might be a perfect person if you want to appease the right flank of the Republican party.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 690, \"fields\": {\"first_name\": \"Earl\", \"last_name\": \"Warren\", \"election\": 4, \"party\": \"Republican\", \"state\": \"California\", \"priority\": 7, \"description\": \"'\", \"color_hex\": \"#EF2F16\", \"secondary_color_hex\": \"#FFA0A0\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152412043404640267/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>It's no surprise that Earl Warren found his way here. The popular governor of California has found himself a mainstay in national politics, from being his state's favorite son during the 1944 Republican primary to his campaign in 1948. It was only inevitable that Warren got onto the ticket one day.</p><p>Despite what some may say— Warren has walked a firm line between conservatism and liberalism during his time in office. From cutting spending to creating new programs— from his strong support for Civil Rights to Japanese-American internment— it's hard to deny he's a unique guy.</p><p>Recently, Warren has found himself at odds with the insurgent right wing of the Republican party, choosing to crawl to the left rather than conform. Picking him would be doubling down on what we already have— while pissing off the people we need now.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 62, \"fields\": {\"first_name\": \"Strom\", \"last_name\": \"Thurmond\", \"election\": 4, \"party\": \"Democratic\", \"state\": \"South Carolina\", \"priority\": 9, \"description\": \"'\", \"color_hex\": \"#ED8217\", \"secondary_color_hex\": \"#FFFFC0\", \"is_active\": 0, \"image_url\": \"https://i.imgur.com/W4Ey7Tw.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>The leading advocate of the walkout following Wallace’s nomination in the first place, Strom Thurmond is known nationally as one of the many faces of the south and Jim Crow.  He has outwardly labeled President Wallace a communist and his attempts to usher in desegregation a “threat to civilization.”<p>Such rhetoric will be a strong draw for southern votes, but will make the prospect of gaining votes in the north unlikely.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 70, \"fields\": {\"first_name\": \"Adlai\", \"last_name\": \"Stevenson II\", \"election\": 4, \"party\": \"Democratic\", \"state\": \"Illinois\", \"priority\": 10, \"description\": \"\", \"color_hex\": \"#ED8217\", \"secondary_color_hex\": \"#FFFFC0\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152412418736132248/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>It's Ironic that the smartest man on our shortlist may also be the least willing to join the ticket. For months, rumors have circulated that Vice President Rayburn would step back and push any number of candidates to replace him on the ticket. From his young Texas protege Lyndon Johnson— to Governor Adlai E. Stevenson II of Illinois, in the end, Rayburn hasn't stepped back quite yet— but he may be willing if you offer Stevenson as a replacement.</p><p>Urbane, witty, articulate, political royalty— it's no surprise that people like Governor Stevenson as much as they do. Logical and methodical, an intelligent liberal, he might be the only choice that could satisfy the center, at the cost of angering some of your most ardent supporters, of course.</p><p>Despite his qualms with the idea, there's no doubt he would give the campaign trail his full attention if nominated.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 64, \"fields\": {\"first_name\": \"Harry F.\", \"last_name\": \"Byrd\", \"election\": 4, \"party\": \"Democratic\", \"state\": \"Virginia\", \"priority\": 11, \"description\": \"'\", \"color_hex\": \"#ED8217\", \"secondary_color_hex\": \"#FFFFC0\", \"is_active\": 0, \"image_url\": \"https://i.imgur.com/HKwoutX.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>Once a newspaper publisher and now the leader of the Byrd political machine in Virginia, Russell selecting Byrd as his running mate would guarantee Virginia and its 11 electoral votes.<p>In the Senate, Byrd was an outspoken opponent of the New Deal, a position which puts Byrd and Russell in stark contrast.  If your goal is to block the election of Stassen, Byrd would be a good choice as a member of the conservative coalition in Congress to leverage your electoral votes and come to a satisfactory agreement with Stassen.</p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 8838, \"fields\": {\"first_name\": \"Douglas\", \"last_name\": \"MacArthur\", \"election\": 4, \"party\": \"Independent\", \"state\": \"New York\", \"priority\": 0, \"description\": \"'\", \"color_hex\": \"#003700\", \"secondary_color_hex\": \"#003700\", \"is_active\": 0, \"image_url\": \"https://upload.wikimedia.org/wikipedia/commons/1/16/Vincent_Hallinan.jpg \", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"'\", \"candidate_score\": 1.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 690, \"fields\": {\"first_name\": \" E.\", \"last_name\": \"Jenner\", \"election\": 4, \"party\": \"Republican\", \"state\": \"Indiana\", \"priority\": 7, \"description\": \"'\", \"color_hex\": \"#EF2F16\", \"secondary_color_hex\": \"#FFA0A0\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152411327197892638/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>\", \"candidate_score\": 0.0}}, {\"model\": \"campaign_trail.candidate\", \"pk\": 63, \"fields\": {\"first_name\": \" E.\", \"last_name\": \"Jenner\", \"election\": 4, \"party\": \"Republican\", \"state\": \"Indiana\", \"priority\": 7, \"description\": \"'\", \"color_hex\": \"#EF2F16\", \"secondary_color_hex\": \"#FFA0A0\", \"is_active\": 0, \"image_url\": \"https://cdn.discordapp.com/attachments/1150145426503245834/1152411327197892638/image.png\", \"electoral_victory_message\": \"'\", \"electoral_loss_message\": \"'\", \"no_electoral_majority_message\": \"'\", \"description_as_running_mate\": \"<p>\", \"candidate_score\": 0.0}}]"); 
+campaignTrail_temp.running_mate_json = JSON.parse("[{\"model\": \"campaign_trail.running_mate\", \"pk\": 250, \"fields\": {\"candidate\": 24, \"running_mate\": 58}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 251, \"fields\": {\"candidate\": 24, \"running_mate\": 59}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 2510, \"fields\": {\"candidate\": 24, \"running_mate\": 70}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 253, \"fields\": {\"candidate\": 23, \"running_mate\": 55}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 254, \"fields\": {\"candidate\": 23, \"running_mate\": 56}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 256, \"fields\": {\"candidate\": 25, \"running_mate\": 62}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 257, \"fields\": {\"candidate\": 25, \"running_mate\": 63}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 258, \"fields\": {\"candidate\": 25, \"running_mate\": 64}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 259, \"fields\": {\"candidate\": 23, \"running_mate\": 69}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 260, \"fields\": {\"candidate\": 23, \"running_mate\": 690}}, {\"model\": \"campaign_trail.running_mate\", \"pk\": 2601, \"fields\": {\"candidate\": 8838, \"running_mate\": 690}}]"); 
+campaignTrail_temp.opponents_default_json = JSON.parse("[{\"election\": 20, \"candidates\": [201, 202, 203, 200]}, {\"election\": 4, \"candidates\": [23, 24, 8838, 25]}]"); 
+campaignTrail_temp.opponents_weighted_json = JSON.parse("[{\"election\": 20, \"candidates\": [201, 200, 202, 203]}, {\"election\": 4, \"candidates\": [23, 24, 8838, 25]}]"); 
+campaignTrail_temp.global_parameter_json = JSON.parse("[{\"model\": \"campaign_trail.global_parameter\", \"pk\": 1, \"fields\": {\"vote_variable\": 1.125, \"max_swing\": 0.12, \"start_point\": 0.94, \"candidate_issue_weight\": 10.0, \"running_mate_issue_weight\": 3.0, \"issue_stance_1_max\": -0.71, \"issue_stance_2_max\": -0.3, \"issue_stance_3_max\": -0.125, \"issue_stance_4_max\": 0.125, \"issue_stance_5_max\": 0.3, \"issue_stance_6_max\": 0.71, \"global_variance\": 0.0, \"state_variance\": 0.0, \"question_count\": 30, \"default_map_color_hex\": \"#C9C9C9\", \"no_state_map_color_hex\": \"#999999\"}}]"); 
+campaignTrail_temp.temp_election_list = [{"id": 4, "year": 1952, "is_premium": 0, "display_year": "1952Blue"}];
+RecReading=false
+
+var changeGameDisp = (hide) => {
+  disp = "";
+  if (hide) {
+    disp = "none";
+  }
+  document.getElementsByClassName("inner_window_w_desc")[0].style.display = disp
+};
+var changeGameDisp = (hide) => {
+    disp = "";
+    if (hide) {
+      disp = "none";
+    }
+    document.getElementsByClassName("inner_window_w_desc")[0].style.display = disp
+  };
+  e.creditsPage = () => {
+    credits_html = `
+      <h2 style='color: #000000;'>Devs</h2>
+      <h3 style='color: #000000;'>Tom</h3>
+      <p style='color: #000000;'>Co-Creator. Writer, Story/Universe Creator.</p>
+      <h3 style='color: #000000;'>Aiden</h3>
+      <p style='color: #000000;'>Co-Creator. Coder, and Graphic designer (Colors of the site, banner, and backround)</p>
+      <h3 style='color: #000000;'>u/CurrencyStandard7617</h3>
+      <p style='color: #000000;'>Secondary Writer.</p>
+      <h3 style='color: #000000;'>Playtesters</h3>
+      <p style='color: #000000;'>Gardfeld, neo, u/StockdaleForTCT, u/marinBlackMesa, maxthecat, Lurker, RealAmericanPatriot, Karoly, Jonsku, Duplicator, Chapu and TedThing</p>
+      <h3 style='color: #000000;'>Contributors</h3>
+      <p style='color: #000000;'>Banner and image help from TedThing. CYOA help from Decstar. Music Player 2000N, Banner switcher Italy1976</p>
+    `
+    changeGameDisp(true);
+    var spacer = document.createElement("amongusspacerthisisntarealelement");
+    spacer.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    document
+      .getElementsByClassName("inner_window_w_desc")[0]
+      .children[1].appendChild(spacer);
+      changeGameDisp(true);
+      var menuHeader = document.createElement("div");
+      menuHeader.classList.add("inner_window_front");
+      menuHeader.innerHTML = `<h1 style='font-family: "Cinzel";'>The 1952Red Credits</font></h1>`;
+      menuHeader.id = "SOTUheader";
+      menuHeader.style = "height: 50px;background-color:#A9A9A9";
+      var newMenu = document.createElement("div");
+      newMenu.classList.add("inner_window_front");
+      newMenu.id = "SOTUmenu";
+      newMenu.style = `height:260px;background-color:#A9A9A9;color:white;overflow-y: scroll;`;
+  
+      newMenu.innerHTML = credits_html;
+      let z = document.getElementById("game_window");
+      var backButton = document.createElement("button");
+      backButton.style =
+        "position: relative; bottom: -13px; left: -380px; width: 150px; height: 80px;font-size:40px;padding-top:5px;padding-left:8px";
+      backButton.id = "backSOTUBtn";
+      backButton.innerHTML = `<b>BACK</b>`;
+      backButton.onclick = function () {
+        document.getElementById("SOTUheader").remove();
+        document.getElementById("SOTUmenu").remove();
+        document.getElementById("backSOTUBtn").remove();
+        changeGameDisp(false);
+      };
+      z.appendChild(menuHeader);
+      z.appendChild(newMenu);
+      z.appendChild(backButton);
+  
+}
+
+e.credits = "<button onclick='e.creditsPage()'>The Redmod Team</button>"
+HistHexcolour=["#c44141","#0020c1","#506526","#c46300"]; HistName=[" Harold Stassen"," Sid McMath"," Vincent Hallinan/Other"," Unpledged Electors"]; HistEV=[401,130,0,0]; HistPV=["33,051,881","28,675,031","625,192","125,038"]; HistPVP=["52.9%","45.9%","1.0%","0.2%"];
+
+$("#game_window")[0].style.borderColor = "#00008b" 
+$(".container")[0].style.backgroundColor = "#2e226b"
+$("#game_window")[0].style.backgroundColor = "#F5F4E5"
+function changeFontColour() {
+  if (document.getElementById('final_results_description') != null) {
+      document.getElementById('final_results_description').style.color = "black"
+  }
+}
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#0d0d4a"  
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#585D9E" 
+//Banner changer thing (stole from italy1976)
+bannerlist=["https://cdn.discordapp.com/attachments/1150145426503245834/1150258422432940142/image.png"]
+document.getElementById("header").src = bannerlist[Math.floor((Math.random() * bannerlist.length))] 
+
+document.body.background = "https://cdn.britannica.com/33/79433-050-5319D87F/Supporters-Thomas-E-Dewey-Republican-National-Convention-1948.jpg" 
+
+quotes = ["“I will be President. It is written in the stars.” ~ Thomas E. Dewey"]
+customquote = quotes[Math.floor((Math.random() * quotes.length))]
+
+corrr=`\n<h2>NEW CAMPAIGN TRAIL</h2><font id='wittyquote' size='4' color='white'><em>`+customquote+`</em></font>`
+
+
+musicMode = () => {
+    // Initialise custom music
+  
+    $("#music_player")[0].children[0].style.display = "none"
+    $("#music_player")[0].children[1].style.display = "none"
+  
+    document.getElementById("modLoadReveal").style.display = "none"
+    document.getElementById("modloaddiv").style.display = "none"
+  
+    musicBox = document.getElementById("music_player")
+    musicBox.style.display = ""
+  
+    var trackSel;
+    e = campaignTrail_temp
+    e.selectedSoundtrack = 0
+  
+    toTime = (seconds) => {
+        var date = new Date(null);
+        date.setSeconds(seconds);
+        return date.toISOString().substr(11, 8);
+    }
+  
+    generateTime = () => {
+        // Get the audio element
+        var audio = document.getElementById("campaigntrailmusic");
+  
+        timeTracker = document.createElement("div");
+        timeTracker.style = `
+  text-align:left;
+  border-style:solid;
+  border-width:3px;
+  height:150px;
+  width:200px;
+  background-color:#999999;
+  float:right;
+  padding: 10px;
+  `
+        $("#trackSelParent")[0].prepend(timeTracker);
+        $("#trackSelParent")[0].prepend(document.createElement("br"));
+  
+        // Create a new element to display the current position of the audio
+        var positionDisplay = document.createElement("gg");
+        positionDisplay.id = "position-display";
+  
+        // Create a new slider element to change the time
+        var timeSlider = document.createElement("input");
+        timeSlider.type = "range";
+        timeSlider.min = 0;
+        timeSlider.max = 1;
+        timeSlider.step = 0.001;
+        timeSlider.value = 0;
+        timeSlider.style.width = "200px";
+        timeSlider.id = "time-slider";
+  
+        var pausePlay = document.createElement("button");
+        pausePlay.id = "position-display";
+        pausePlay.innerHTML = "<b>Pause</b>"
+        pausePlay.style.width = "100%";
+  
+  
+        pausePlay.addEventListener("click", event => {
+            event.preventDefault();
+            updatePositionDisplay();
+            let audio = document.getElementById("campaigntrailmusic");
+            if (audio.paused) {
+                audio.play();
+                event.target.innerHTML = "<b>Pause</b>";
+                return;
+            }
+            audio.pause();
+            event.target.innerHTML = "<b>Play</b>";
+            return;
+        })
+  
+        var volumeLabel = document.createElement("gg");
+        volumeLabel.id = "volume-label";
+        volumeLabel.innerHTML = "<br><b>Volume: </b>"
+  
+        var volumeSlider = document.createElement("input");
+        volumeSlider.type = "range";
+        volumeSlider.min = 0;
+        volumeSlider.max = 1;
+        volumeSlider.step = 0.001;
+        volumeSlider.value = 0;
+        volumeSlider.style.width = "200px";
+        volumeSlider.id = "volume-slider";
+  
+        volumeSlider.value = audio.volume;
+  
+        timeTracker.appendChild(pausePlay);
+        timeTracker.appendChild(document.createElement("br"));
+        timeTracker.appendChild(document.createElement("br"));
+        timeTracker.appendChild(positionDisplay);
+        timeTracker.appendChild(timeSlider);
+        timeTracker.appendChild(volumeLabel);
+        timeTracker.appendChild(volumeSlider);
+  
+        updatePositionDisplay();
+  
+        //for (let i = 0; i < 10; i++)
+        //timeTracker.append(document.createElement("br"));
+  
+  
+        // Function to update the position display
+        function updatePositionDisplay() {
+            positionDisplay.innerHTML = "<b>Time:</b> " + toTime(audio.currentTime) + "<br>";
+            timeSlider.value = audio.duration ? audio.currentTime / audio.duration : 0;
+        }
+  
+        // Function to change the time of the audio
+        function changeTime() {
+            positionDisplay.innerHTML = "<b>Time:</b> " + toTime(audio.currentTime) + "<br>";
+            audio.currentTime = timeSlider.value * audio.duration;
+        }
+  
+        updateVolume = event => {
+            audio.volume = event.target.value;
+        }
+  
+        // Update the position display and slider every second
+        setInterval(updatePositionDisplay, 1000);
+  
+        // Listen for changes to the time slider and change the time of the audio
+        timeSlider.addEventListener("input", changeTime);
+        volumeSlider.addEventListener("input", updateVolume)
+    }
+  
+    function newMusicPlayer() {
+        trackSel = document.createElement("div");
+        trackSel.id = "trackSelParent"
+        let z = `<br><br><br><br><br><br><br><br><br><br><div id='trackSel' style="text-align:left;border-style:solid;border-width:3px;overflow-y: scroll;overflow-x: hidden;height:200px; width:400px;background-color:#999999;float:right;">`
+        z += `<b><select id='selectSoundtrack'><option value='` + soundtracks[e.selectedSoundtrack].name + `'>` + soundtracks[e.selectedSoundtrack].name + "</option>"
+        for (i in soundtracks) {
+            if (soundtracks[e.selectedSoundtrack] != soundtracks[i]) {
+                z += `<option value='` + soundtracks[i].name + `'>` + soundtracks[i].name + `</option>`
+            }
+        }
+        z += `</select></b><br><br>`
+            // <label><input type="radio" name="option" value="option1">Option 1</label><br>
+        for (i in soundtracks[e.selectedSoundtrack].tracklist) {
+            let a = soundtracks[e.selectedSoundtrack].tracklist[i]
+            let b = `<label><input class="trackSelector" type="radio" name="trackSelector" value="` + i + `">` + a.name + `</label><br>`
+            z += b
+        }
+        z += "</div><br><br>"
+        trackSel.innerHTML = z
+  
+        // select correct song
+  
+        musicBox.appendChild(trackSel);
+        Array.from(document.getElementById("trackSel").children).filter(f => {
+            return f.tagName == "LABEL"
+        }).map(f => f.children[0])[0].checked = true
+  
+        // set soundtrack changer
+  
+        soundtrackSelector = document.getElementById("selectSoundtrack")
+        soundtrackSelector.onchange = function() {
+            for (i in soundtracks) {
+                if (soundtracks[i].name == soundtrackSelector.value) {
+                    e.selectedSoundtrack = i
+                    break
+                }
+            }
+            document.getElementById("trackSelParent").remove()
+            newMusicPlayer()
+        }
+  
+        var matches = document.querySelectorAll('.trackSelector');
+  
+        for (match in matches) {
+            matches[match].onchange = function() {
+                audio = $("#campaigntrailmusic")[0];
+                audio.src = soundtracks[e.selectedSoundtrack].tracklist[this.value].url
+                audio.currentTime = 0
+            }
+        }
+  
+        musicBox.children[2].loop = false
+        musicBox.children[2].src = soundtracks[e.selectedSoundtrack].tracklist[0].url
+  
+        musicBox.children[2].onended = function() {
+            console.log("next track")
+            let selected = Number(document.querySelector('input[name="trackSelector"]:checked').value);
+            let newSel = clamp(selected + 1, soundtracks[e.selectedSoundtrack].tracklist.length - 1, 0)
+            let buttons = Array.from(document.getElementById("trackSel").children).filter(f => {
+                    return f.tagName == "LABEL"
+                }).map(f => f.children[0])
+                //let selectedIndex = buttons.map(f=>f.children[0]).map(f=>f.checked)
+            buttons[newSel].click()
+        }
+  
+        for (w = 0; w < 7; w++) {
+            document.getElementById("trackSelParent").appendChild(document.createElement("br"))
+        }
+  
+        generateTime();
+    }
+  
+    clamp = function(a, max, min, overflow = true) {
+        if (overflow) {
+            return a > max ? min : a < min ? max : a;
+        }
+        return a > max ? max : a < min ? min : a;
+    }
+  
+  
+    // Track list
+  
+    var soundtracks = {
+        0: {
+            name: "Waltz with Wallace!",
+            tracklist: [
+              {
+                "name": "Conquest - Patti Page",
+                 "url": "https://files.catbox.moe/73cafl.mp3"
+             },
+              {
+                "name": "Sugarbush - Doris Day & Frankie Laine",
+                "url": "https://files.catbox.moe/ypcias.mp4"
+              },
+              {
+                "name": "Rock Of Gibraltar - Frankie Laine",
+                "url": "https://files.catbox.moe/a8sml2.mp3"
+              },
+              {
+                "name": "It’s A Blue World - Four Freshmen",
+                "url": "https://files.catbox.moe/yujx1k.mp3"
+              },
+          ]
+        },
+               1: {
+          name: "Dance with Dewey!",
+          tracklist: [
+            {
+               "name": "What’s The Use? - Johnnie Ray & The Four Lads",
+                "url": "https://files.catbox.moe/j9m0pq.mp3"
+            },
+            {
+                "name": "Zing A Little Zong  - Bing Crosby & Jane Wyman",
+                "url": "https://files.catbox.moe/i4jepb.mp3"
+            },
+            {
+                "name": "At Last - Ray Anthony",
+                "url": "https://files.catbox.moe/4c1tcc.mp3"
+            },
+            {
+                "name": "Don’t Let The Stars Get In Your Eyes - Perry Como",
+                "url": "https://files.catbox.moe/kfz7yg.mp3"
+            },
+  
+        ]
+      }
+    }
+
+  
+    // Set up new music player
+  
+    newMusicPlayer()
+  
+
+}
+
+  $("#game_start").click((event) => {
+    event.preventDefault();
+    $("#election_id_button").click((event) => {
+        musicMode()
+
+        setInterval(changeFontColour, 200)
+  
+    })
+  })
+}
