@@ -133,7 +133,7 @@ Note that, as of now, the county map viewer works best with election results fro
 ![County map viewer](./images/county_map_viewer.png)
 
 ### Data visualizer
-This [data visualizer](./codes/data_visualizer.js) is a tool that enhances the existing post-election night visualization experience by including a tab with several map viewing options, letting you see margins, state stances, candidate stances, and see how much a swing, combination, or head-to-head battle between candidates could've changed the outcome.
+This [data visualizer](./codes/data_visualizer.js), first seen in *Little Big Man*, is a tool that enhances the existing post-election night visualization experience by including a tab with several map viewing options, letting you see margins, state stances, candidate stances, and see how much a swing, combination, or head-to-head battle between candidates could've changed the outcome.
 
 ![Data visualizer](./images/data_visualizer.jpeg)
 
@@ -289,7 +289,7 @@ Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See 
 ![An Old Cycle player](./images/aoc_player.png)
 
 ### Biden '08 player
-A Windows Media Player-themed music player, shown in the mod *Biden '08*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/biden_player.js).
+A Windows Media Player-themed music player, shown in the mod *Biden '08*. Shown here is a modified version of the player with its Windows 7 volume bar theme included, and also the ability to click on the progress bar to seek. See source [here](./players/biden_player.js).
 ![Biden '08 player](./images/biden_player.png)
 
 ### Contract With America player
@@ -423,7 +423,7 @@ This is a patched version of the mod *1976: Year Zero*, with some optimizations 
 These mods were either restored by a user (or group of users), formally released but not on the mod loaders, or stored here in order to avoid deletion.
 - **1932 Irish Free State**: a general election mod for the 1932 Irish Free State election, restored by [u/Revan0001](https://www.reddit.com/user/Revan0001). Codes: [Code 1](./mods/others/1932%20Ireland_init.txt) | [Code 2](./mods/others/1932%20Ireland_FaíldeValera.txt)
 - **1960 DtK**: per [the wiki](https://thewikitrail.miraheze.org/wiki/1960DTK), this mod takes place in an alternate timeline where a bomb kills both John F. Kennedy and Richard Nixon during a debate. Only the Johnson/Tawes side is playable; the other side is unplayable. This is a copy from [metheguy](https://github.com/metheguyTNCT), patched to fix a broken background and endings. Codes: [Code 1](./mods/others/1960DtK_init.txt) | [Code 2](./mods/others/1960DtK_JohnsonTawes.txt)
-- **1972 Democrats: If Not Now, Whem?**: released on August 1, 2026, not yet on any of the loaders. Codes: [Code 1 (CTS)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Init%20(CTS)) | [Code 2 (CTS)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Democrats%20(CTS)) | [Code 1 (NCT)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Init) | [Code 2 (NCT)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Democrats)
+- **1972 Democrats: If Not Now, Whem?**: released on August 1, 2026, not yet on any of the loaders but is here for easier viewing of the codes. Codes: [Code 1 (CTS)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Init%20(CTS)) | [Code 2 (CTS)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Democrats%20(CTS)) | [Code 1 (NCT)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Init) | [Code 2 (NCT)](https://raw.githubusercontent.com/yupperdoo/If-Not-Now-When/refs/heads/main/1972R-Democrats)
 - **1995 Iraq**: similar to **2019 North Korea**, this mod as restored by [u/Revan0001](https://www.reddit.com/user/Revan0001). Codes: [Code 1](./mods/others/1995%20-%20Iraq_init.txt) | [Code 2](./mods/others/1995%20-%20Iraq_HusseinIDB.txt)
 
 ## Unreleased mods
@@ -436,7 +436,7 @@ These mods were unreleased for various reasons, but are still available here for
 
 ## Withdrawn mods
 These mods were released on either the subreddit [r/thecampaigntrail](https://www.reddit.com/r/thecampaigntrail), New Campaign Trail or Campaign Trail Showcase, but were later withdrawn for various reasons, either by the authors or by other circumstances. They are still available here for preservation.
-- **2012: Razistorija**: Based on Yugoslavian politics, this scenario features Milorad Dodik. The code here includes some performance improvements and fixes to an achievement. Codes: [Code 1](./mods/others/2012_-_Razistorija_init.txt) | [Code 2](./mods/others/2012_-_Razistorija_DodikMilanovic.txt)
+- **2012: Razistorija**: based on Yugoslavian politics, this scenario features Milorad Dodik. The code here includes some performance improvements and fixes to an achievement, as the copy on the developers' side has since gone down. Codes: [Code 1](./mods/others/2012_-_Razistorija_init.txt) | [Code 2](./mods/others/2012_-_Razistorija_DodikMilanovic.txt)
 - **2028: Smoke In The Air**: J.D. Vance vs. "an 18-year-old genderfluid Deltarune fan [that] somehow got the nomination and convinced some random dude they shitposted with 3 years ago to join the ticket." Codes: [Code 1](./mods/others/2028%20-%20Smoke%20In%20The%20Air_init.txt) | [Code 2](./mods/others/2028%20-%20Smoke%20In%20The%20Air_ExeonPerson.txt)
 - **2028 Redux (The American Crossroads)**: also known as 2028 Redux. Made by gamerdoglover, this is a Gavin Newsom vs J.D. Vance mod. It was withdrawn fom the CTS mod loader for bug fixes, though it was not re-uploaded. This is a patched version that includes a fix to have the scenario map actually show up on the screen. Codes: [Code 1](./mods/others/2028Redux_init.txt) | [Code 2](./mods/others/2028Redux_NewsomWarnock.txt)
 
