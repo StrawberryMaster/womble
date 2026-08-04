@@ -1,4 +1,4 @@
-// This is a modified version of the music player
+// This is the music player
 // used in the mod Biden '08.
 class Song {
   constructor(title, artist, coverLink, audioLink) {
