@@ -3179,11 +3179,11 @@ async function loadAndDrawCountyMap(mode) {
         function updatePrecinctColors() {
             if (!mlMap || !mlMapReady || isUserInteracting) return;
 
-            let hasActiveShuffle = (loadedPmTilesYear !== CURRENT_YEAR);
+            let hasActiveShuffle = (loadedPmTilesYear !== CURRENT_YEAR) || (tpCandidatesInGame && tpCandidatesInGame.length > 0);
 			if (!hasActiveShuffle) {
 				for (let fips in fipsMultipliers) {
 					const mult = fipsMultipliers[fips];
-					if (Math.abs(mult.mD - 1) > 0.001 || Math.abs(mult.mR - 1) > 0.001) {
+					if (Math.abs(mult.mD - 1) > 0.001 || Math.abs(mult.mR - 1) > 0.001 || Math.abs(mult.mO - 1) > 0.001) {
 						hasActiveShuffle = true;
 						break;
 					}
@@ -3250,12 +3250,33 @@ async function loadAndDrawCountyMap(mode) {
 					const total = dem + rep + ots;
 
 					// determine winner
-					let winnerId = demCandId;
-					let maxVotes = dem;
-					if (rep > maxVotes) { maxVotes = rep; winnerId = repCandId; }
+					const bgResults = [
+						{ id: demCandId, votes: dem },
+						{ id: repCandId, votes: rep }
+					];
+
+					if (tpCandidatesInGame && tpCandidatesInGame.length > 0) {
+						tpCandidatesInGame.forEach(candId => {
+							const share = (mults && mults.tpShares && mults.tpShares[candId] !== undefined) 
+								? mults.tpShares[candId] 
+								: (1 / Math.max(1, tpCandidatesInGame.length));
+							bgResults.push({
+								id: candId,
+								votes: Math.round(ots * share)
+							});
+						});
+					}
+
+					bgResults.sort((a, b) => b.votes - a.votes);
+
+					const winner = bgResults[0];
+					const second = bgResults.length > 1 ? bgResults[1] : { votes: 0 };
+
+					const winnerId = winner.id;
+					const maxVotes = winner.votes;
+					const secondVotes = second.votes;
 
 					// margin & color lookup
-					const secondVotes = winnerId === demCandId ? rep : dem;
 					const marginVal = total > 0 ? (maxVotes - secondVotes) / total : 0;
 					const color = colorInterpolators[winnerId] ? colorInterpolators[winnerId](Math.sqrt(marginVal)) : "#888888";
 
