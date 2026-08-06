@@ -49,8 +49,8 @@
       if (!resData) return;
 
       // find actual winner and runner up
-      let sortedRes = [...resData.result].sort((a, b) => b.votes - a.votes);
-      let winner = sortedRes[0].candidate;
+      let sortedRes = [...resData.result].filter(r => r.votes > 0).sort((a, b) => b.votes - a.votes);
+      let winner = sortedRes.length > 0 ? sortedRes[0].candidate : null;
       let runnerUp = sortedRes.length > 1 ? sortedRes[1].candidate : winner;
 
       // randomly pick a scenario
@@ -246,7 +246,7 @@
           justCalled: false,
           flashTicks: 0,
           pctReporting: 0,
-          votes: resData.result.map(r => ({ ...r, sim_votes: 0 })),
+          votes: resData.result.map(r => ({ ...r, sim_votes: 0, final_votes: r.votes })),
           leader: null,
           marginPercent: 0
         };
@@ -298,24 +298,26 @@
 
       let simResults = resData.result.map(r => {
         // get actual final percentage
-        let finalShare = r.votes / resData.total_votes_final;
+        let finalShare = resData.total_votes_final > 0 ? r.votes / resData.total_votes_final : 0;
         if (isNaN(finalShare)) finalShare = 0;
 
-        let currentShare = finalShare;
+        let currentShare = 0;
 
-        if (!isCalled) {
-          // apply mirage
-          if (r.candidate === biasData.biasCandidate) {
-            currentShare += (biasData.biasStrength * decay);
+        // only calculate shares for candidates active in this state
+        if (r.votes > 0) {
+          currentShare = finalShare;
+          if (!isCalled) {
+            // apply mirage
+            if (r.candidate === biasData.biasCandidate) {
+              currentShare += (biasData.biasStrength * decay);
+            }
+
+            // random noise (high noise early, low noise late)
+            let noise = (Math.random() - 0.5) * 0.05 * decay;
+            currentShare += noise;
+
+            if (currentShare < 0) currentShare = 0;
           }
-
-          // random noise (high noise early, low noise late)
-          let noise = (Math.random() - 0.5) * 0.05 * decay;
-          currentShare += noise;
-
-          if (currentShare < 0) currentShare = 0;
-        } else {
-          currentShare = finalShare; // exact match when called
         }
 
         return {
@@ -349,13 +351,15 @@
         return {
           candidate: r.candidate,
           sim_votes: votes,
-          percent: (normalizedShare * 100)
+          percent: (normalizedShare * 100),
+          final_votes: r.final_votes
         };
       });
 
       // find leader
-      let sortedByVotes = [...finalSimulatedVotes].sort((a,b) => b.sim_votes - a.sim_votes);
-      let leader = sortedByVotes.length > 0 ? sortedByVotes[0].candidate : null;
+      let activeSimulatedVotes = finalSimulatedVotes.filter(v => v.final_votes > 0);
+      let sortedByVotes = [...activeSimulatedVotes].sort((a,b) => b.sim_votes - a.sim_votes);
+      let leader = (sortedByVotes.length > 0 && sortedByVotes[0].sim_votes > 0) ? sortedByVotes[0].candidate : null;
 
       // calculate active margin for map shading
       let marginPct = 0;
@@ -393,7 +397,9 @@
         const closingTime = stateObj.fields.poll_closing_time;
         content += `<p>Polls close in ${Math.max(0, closingTime - time)} minutes.</p>`;
       } else {
-        let sortedVotes = [...snapshot.votes].sort((a, b) => b.sim_votes - a.sim_votes);
+        // Filter out candidates who aren't running in this state
+        let activeVotes = snapshot.votes.filter(v => v.final_votes > 0);
+        let sortedVotes = [...activeVotes].sort((a, b) => b.sim_votes - a.sim_votes);
         let statusMsg = `<p>${snapshot.pctReporting}% reporting</p>`;
 
         // too close to call status
@@ -483,7 +489,7 @@
             //if (snapshot.flashTicks > 0) {
             //    mapStyles[abbr] = { fill: "#ffffff", "fill-opacity": 0.8 };
             //} else {
-                mapStyles[abbr] = { fill: c, "fill-opacity": campaignTrail_temp.stateOpacity };
+            mapStyles[abbr] = { fill: c, "fill-opacity": campaignTrail_temp.stateOpacity };
             //}
 
           } else {
