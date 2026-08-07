@@ -274,14 +274,14 @@ The YouTube-powered music player shown in the mod *2016: A Lifetime of This*, bu
 ![A Lifetime of This player](./images/alot_player.png)
 
 ### All The Way player
-The radio-themed player shown in the mod *1968: All The Way*. Shown here is a modified version of the player with some optimizations/cleanups and a more readable progress bar. See source [here](./players/atw_player.js).
+The radio-themed player shown in the mod *1968: All The Way*. Shown here is a modified version of the player with some optimizations/cleanups and a more readable progress/volume bar. See source [here](./players/atw_player.js).
 ![All The Way player](./images/atw_player.png)
 
 ### American Carnage/Infinite Carnage player
-The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version of the player initially made for *2028: An Old Cycle*. See source [here](./players/ac_player.js).
+The Spotify-themed music player shown in the mod *American Carnage*. Shown here is a modified version that was initially made for *2028: An Old Cycle*, with fixed icons, but went unused. See source [here](./players/ac_player.js).
 ![American Carnage player](./images/ac_player.png)
 
-The version of the player shown in the mod *Infinite Carnage* can be seen below. See source [here](./players/ic_player.js).
+The version of the player shown in the American Carnage expansion *Infinite Carnage* can be seen below. See source [here](./players/ic_player.js).
 ![Infinite Carnage player](./images/ic_player.png)
 
 ### An Old Cycle player
@@ -334,7 +334,7 @@ This is a modified version of the player used in *2000 ROC Redux* and other mods
 ![ROC player](./images/roc_player.png)
 
 ### Sundance player
-The iPod-inspired music player for the *Sundance 2008* mod. Shown here is a modified version of the player with album art included. See source [here](./players/sundance_player.js).
+The iPod-inspired music player for the *Sundance 2008* mod. Shown here is a modified version of the player with some standardizations and album art included. See source [here](./players/sundance_player.js).
 ![Sundance player](./images/sundance_player.png)
 
 ### The Apple Trail player
@@ -370,18 +370,18 @@ With the design of an older radio player, this is a modified version of the musi
 ![Razistorija player](./images/razistorija_player.jpeg)
 
 ##### SoundCloud player
-A SoundCloud-themed music player, and would be useful for a 2010s onward mod. This was one of the ideas I briefly considered for *A Lifetime of This* before using the YouTube-like music player. See source [here](./players/soundcloud_player.js).
+A SoundCloud-themed music player, this was one of the ideas briefly considered for *A Lifetime of This* before the YouTube-like music player was used instead. See source [here](./players/soundcloud_player.js).
 ![SoundCloud player](./images/soundcloud_player.png)
 
 ##### They'll Love Me When I'm Dead player
-Similar to the *Project 2024* player, this is a vaguely faithful recreation of the *They'll Love Me When I'm Dead* mod's music player, shown in its sneak peeks. See source [here](./players/tlmwid_player.js).
+Similar to the *Things That Never Were* player (in fact, this was built on top of it!), this is a vaguely faithful recreation of the *They'll Love Me When I'm Dead* mod's music player, shown in its sneak peeks. See source [here](./players/tlmwid_player.js).
 ![They'll Love Me When I'm Dead player](./images/tlmwid_player.png)
 
 ##### 90s players
 Pretty much a generic music player with a slight 90s theme. Came from [this Reddit post](https://www.reddit.com/r/thecampaigntrail/comments/1tphs8t/comment/oob655a/) by No-Creme1061. See source [here](./players/noughties_player.js).
 ![90s player](./images/noughties_player.jpeg)
 
-Another dark-themed 90s player, this is a redesigned version based off a player made by HouseyHouse for a *Perpetual American Terror* mod mockup. See source [here](./players/noughtiesalt_player.js).
+Another dark-themed 90s player, this is a redesigned version based off a player made by HouseyHouse for a *Perpetual American Terror* mod mockup, shared to us by C0SMO. See source [here](./players/noughtiesalt_player.js).
 ![90s alt player](./images/noughtiesalt_player.jpeg)
 
 This other Windows Media Player-themed 90s player is a loose recreation of one shown in the unreleased mod *Red Dusk 2000: Quayle's America*. See source [here](./players/noughtiesalt2_player.js).
