@@ -44,11 +44,11 @@ let currentVolume = 1;
 const ASSETS = {
   bg: "https://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png",
   infoBg: "https://raw.githubusercontent.com/FlongydOlson/OlsonMods/refs/heads/main/Y./transparent.png",
-  btnPrev: "https://itsastronomical.com/assets/1992Duke/music/backward.png",
-  btnPlay: "https://itsastronomical.com/assets/1992Duke/music/play.png",
-  btnPause: "https://itsastronomical.com/assets/1992Duke/music/pause.png",
-  btnNext: "https://itsastronomical.com/assets/1992Duke/music/forward2.png",
-  volIcon: "https://itsastronomical.com/assets/1992Duke/music/volume.png"
+  btnPrev: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpolygon points='13,4.5 4.5,12 13,19.5' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Crect x='16.5' y='4' width='3' height='16' rx='1.5'/%3E%3C/svg%3E",
+  btnPlay: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpolygon points='6,4.5 18,12 6,19.5' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E",
+  btnPause: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Crect x='6' y='4' width='3.5' height='16' rx='1.5'/%3E%3Crect x='14.5' y='4' width='3.5' height='16' rx='1.5'/%3E%3C/svg%3E",
+  btnNext: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Crect x='4.5' y='4' width='3' height='16' rx='1.5'/%3E%3Cpolygon points='11,4.5 19.5,12 11,19.5' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E",
+  volIcon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='miter'%3E%3Cpath d='M2 8h4l5-5v18l-5-5H2z' fill='white'/%3E%3Cline x1='6' y1='8' x2='6' y2='16'/%3E%3Cpath d='M14 7c2.5 2.5 2.5 7.5 0 10'/%3E%3Cpath d='M18 5c3.5 3.5 3.5 10.5 0 14'/%3E%3C/svg%3E"
 };
 
 function changePlaylist(newPlaylist) {
@@ -172,15 +172,23 @@ function setupMusicPlayer() {
     #controls-container {
       display: flex;
       flex-direction: row;
-      align-items: left;
+      align-items: center;
       margin: 5px;
       width: 100%;
     }
     #controls {
       display: flex;
       flex-direction: row;
+      align-items: center;
       justify-content: flex-start;
-      width: 80%;
+      gap: 8px;
+    }
+    #controls img {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      object-fit: contain;
+      user-select: none;
     }
     #progress-bar-container {
       width: 200%;
@@ -234,7 +242,7 @@ function setupMusicPlayer() {
       appearance: none;
       width: 150px;
       height: 5px;
-      margin-top: 19px;
+      margin-top: 18px;
       background-color: #E3E3E3;
       border: 0px solid buttonborder;
       border-radius: 3px;
@@ -290,7 +298,7 @@ function setupMusicPlayer() {
     <div id="controls-container">
       <div id="controls">
         <img id="prevButton" src="${ASSETS.btnPrev}" alt="Previous">
-        <img id="playPauseButton" src="${ASSETS.btnPause}" alt="Play/Pause" style="width: 60%; height: 60%; margin-top: 9px;">
+        <img id="playPauseButton" src="${ASSETS.btnPause}" alt="Play/Pause">
         <img id="nextButton" src="${ASSETS.btnNext}" alt="Next">
       </div>
       <div id="progress-bar-container">
@@ -298,7 +306,7 @@ function setupMusicPlayer() {
       </div>
     </div>
     <div id="volume-container">
-      <img src="${ASSETS.volIcon}" alt="Volume" style="width: 10%; margin-top: 13px;">
+      <img src="${ASSETS.volIcon}" alt="Volume" style="width: 10%; margin-top: 12px;">
       <div class="is-horizontal" style="margin-left: 1%; height: 126px;">
         <input id="volume-slider" type="range" min="0" max="9" step="1" value="1">
       </div>
