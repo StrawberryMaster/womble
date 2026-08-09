@@ -300,6 +300,10 @@ A music player with a design inspired by the 1990s-era music players, shown in t
 The late 80s/early 90s-era music player, shown in the mod *Duke*. Fun fact: it's actually a modified version of the music player used in the *Y. of Korea* mod. See source [here](./players/duke_player.js).
 ![Duke player](./images/duke_player.png)
 
+### Icarus player
+Another Windows Media Player-themed music player, this music player was made for *2008: Icarus*. Shown here is a somewhat more standardized version of the player with fixed icons. See source [here](./players/icarus_player.js).
+![Icarus player](./images/icarus_player.png)
+
 ### Little Big Man player
 The YouTube-powered music player shown in the mod *2012: Little Big Man*, which was built on top of the *A Lifetime of This* player code. See source [here](./players/lbm_player.js).
 ![Little Big Man player](./images/lbm_player.png)
