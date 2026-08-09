@@ -326,6 +326,9 @@ Alternatively, here is a Spotify-themed version of the player for that same mod.
 The Windows Media Center-themed player seen in the Deluxe edition of *2012: Obamanation*. See source [here](./players/obn_player.js).
 ![Obamanation player](./images/obn_player.png)
 
+Similarly, the Windows Media Player-themed player from the original release can be seen [here](./players/obn).
+![Obamanation alt player](./images/obnalt_player.png)
+
 ### Project 2024 player
 Not the real player, but a loosely faithful recreation of the music player shown in the first couple of *Project 2024* sneak peeks, built on top of the *American Carnage* player. See source [here](./players/p24_player.js).
 ![Project 2024 player](./images/p24_player.png)
