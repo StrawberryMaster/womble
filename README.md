@@ -364,6 +364,10 @@ This Apple-themed music player was reportedly made by Thatchmaster and used in *
 Another player, this time a Macintosh player, is a redesigned version based off a player made by HouseyHouse for a *1996: A New Age* mod mockup. See source [here](./players/mac_player.js).
 ![Mac player](./images/mac_player.jpeg)
 
+##### Flowers in Their Nightmare player
+This music player is themed after the Technics SL-1210MK5 turntable, and is a loosely faithful recreation of the music player made for the unreleased George McGovern presidency simulator *Flowers in Their Nightmare*. See source [here](./players/fitn_player.js).
+![Flowers in Their Nightmare player](./images/fitn_player.png)
+
 ##### QuickTime player
 Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_player.js).
 ![QuickTime player](./images/quicktime_player.png)
