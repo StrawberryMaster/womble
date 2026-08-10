@@ -248,7 +248,7 @@ function setupMusicPlayer() {
       width: 440px;
       display: flex;
       flex-direction: column;
-      z-index: 4;
+      z-index: 10;
     }
 
     #song-info {
@@ -282,6 +282,7 @@ function setupMusicPlayer() {
       cursor: pointer;
       margin-top: 8px;
       overflow: hidden;
+      z-index: 10;
     }
 
     #progress {
@@ -299,12 +300,12 @@ function setupMusicPlayer() {
       font-family: monospace;
       margin-top: 6px;
     }
-	
+
     #volume-container {
       position: absolute;
-      right: 37px;
+      right: 42px;
       top: 10px;
-      width: 40px;
+      width: 30px;
       height: 170px;
       z-index: 5;
       display: flex;
@@ -312,21 +313,11 @@ function setupMusicPlayer() {
       align-items: center;
     }
 
-    .is-vertical {
-      height: 165px;
-      width: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform: rotate(-90deg);
-      transform-origin: center;
-    }
-
     #volumeSlider {
-      width: 165px;
-      height: 10px;
-      -webkit-appearance: none;
-      appearance: none;
+      writing-mode: vertical-lr;
+      direction: rtl;
+      width: 25px;
+      height: 165px;
       background: transparent;
       cursor: pointer;
       margin: 0;
@@ -336,14 +327,14 @@ function setupMusicPlayer() {
     #volumeSlider:focus { outline: none; }
 
     #volumeSlider::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 3px;
+      width: 3px;
+      height: 100%;
       background: transparent;
     }
 
     #volumeSlider::-moz-range-track {
-      width: 100%;
-      height: 3px;
+      width: 3px;
+      height: 100%;
       background: transparent;
     }
 
@@ -358,7 +349,6 @@ function setupMusicPlayer() {
       background-position: center;
       border: none;
       cursor: pointer;
-      transform: rotate(90deg);
     }
 
     #volumeSlider::-moz-range-thumb {
@@ -370,7 +360,6 @@ function setupMusicPlayer() {
       background-position: center;
       border: none;
       cursor: pointer;
-      transform: rotate(90deg);
     }
   `;
   document.head.appendChild(style);
