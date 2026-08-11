@@ -29416,8 +29416,11 @@ cyoAdventure = function(a) {
 	if(ans == 5139 || ans == 5151 || ans == 5153){
         chauvinist +=1
     }
-	if(ans == 5141 || ans == 51431 || ans == 51492 || ans == 51503 || ans == 5148 || ans == 5159 || ans == 5167){
+	if(ans == 5139 || ans == 5141 || ans == 51431 || ans == 5148 || ans == 51492 || ans == 5150 || ans == 51501 || ans == 51502 || ans == 51503 || ans == 5152 || ans == 5159 || ans == 51571 || ans == 5167 || ans == 5169 || ans == 51641 || ans == 51642 || ans == 5173 || ans == 5176 || ans == 5179 || ans == 210001){
         bureaucrats +=1
+    }
+	if(ans == 210004 || ans == 2100041){
+        bureaucrats -=1
     }
 	if(ans == 51571 || ans == 51572){
         suppression +=1
