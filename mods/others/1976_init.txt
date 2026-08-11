@@ -1,0 +1,1417 @@
+e = campaignTrail_temp;
+RecReading=true
+
+const audio = new Audio("https://file.garden/aTSzLyzGbgwzK-kK/Apple/StartupMacI.wav");
+audio.volume=0.75;
+audio.play();
+
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 49,
+            "default_map_color_hex": "#FFFFFF",
+            "no_state_map_color_hex": "#FFFFFF"
+        }
+    }
+]
+
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 10,
+        "fields": {
+            "year": 1976,
+            "display_year": "1976",
+            "summary": "<p>Since the introduction of the Altair 8800, companies have been trying to get a slice of the new personal computer pie. Previously confined to research centers, it is now only a matter of time before the computer lands in households across the world.</p>\n\n<ul>\n<li>Steve Jobs must stand out and build a long legacy of successful computers with the people around him at the newly-formed Apple Computer Company.</li>\n<li>Several other companies will strive to dominate the market on their own terms, one way or another.</li></ul><p>(<em>NOTE: demo created in February 2026, may not reflect final version.</em>)</p>",
+            "image_url": "https://i.postimg.cc/CKDXMrbS/election_image.png",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://i.postimg.cc/9QsshHRn/apple_logo_1970s.png",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Tech News and Analysis</h4><a href=\"https://www.arstechnica.com/\">Ars Technica</a> -- <a href=\"https://www.businessinsider.com/\">Business Insider</a> -- <a href=\"https://www.zdnet.com/\">ZDNET</a> -- <a href=\"https://www.theverge.com/\">The Verge</a> -- <a href=\"https://www.cnet.com/\">CNET</a> -- <a href=\"https://techcrunch.com\">Tech Crunch</a><h4>By and About the People</h4>On Steve Jobs, by Friends, Family, Colleagues with Leslie Berlin - <a href=\"https://stevejobsarchive.com/book\">Make Something Wonderful</a><br>Steve Wozniak - <a href=\"https://www.amazon.com/iWoz-Computer-Invented-Personal-Co-Founded/dp/0393330435\">iWoz: Computer Geek to Cult Icon</a><br>Bill Gates - <a href=\"https://www.amazon.com/Untitled-1581-Knopf/dp/059380158X/\">Source Code: My Beginnings</a><br>On Jack Tramiel, by Brian Bagnall - <a href=\"https://www.amazon.com/Story-Commodore-Company-Edge/dp/0973864907\">The Story of Commodore: A Company on the Edge</a><h4>Early Days of Apple</h4>Various Authors - <a href=\"https://www.folklore.org/0-index.html\">Folklore.org: The Original Macintosh</a><br>Various Contributors - <a href=\"https://en.wikipedia.org/wiki/History_of_Apple_Inc.\">History of Apple Inc.</a><h4>Miscellany</h4>Pancreatic Cancer Action Network - <a href=\"https://pancan.org/\">Research, Patient Support, Resources</a><br>Ahoy - <a href=\"https://www.youtube.com/watch?v=zB_UZsJUbwQ\">FLATLINE: How The Amiga Languished</a><br>Geoff Brumfiel - <a href=\"https://www.npr.org/2017/05/31/530235165/total-failure-the-worlds-worst-video-game\">Total Failure: The World\'s Worst Video Game</a><br>Jason Ward - <a href=\"https://www.windowscentral.com/microsofts-terry-myerson-and-others-why-windows-phone-failed-thats-fixed-now\">Former and current Microsoft staffers talk about why Windows phones failed</a>",
+            "has_visits": 0,
+            "no_electoral_majority_image": "../static/images/2012-no-majority.jpg"
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 21,
+        "fields": {
+            "year": 1985,
+            "display_year": "1985",
+            "summary": "<p>Everything has changed in the personal computer world. From front switches and lights to graphical interfaces, color displays and the first networks, it has come a long way. Though the Commodore 64 holds, the IBM PC platform is quickly catching up to it and all the other computers.</p>\n\n<ul>\n<li>Steve Jobs must rise again to finally take the market by storm to prove himself.</li>\n<li>IBM seeks to dominate the market through its PC-DOS computers.</li>\n<li>The rest will weather the storm by any means necessary.</li></ul><p>(<em>NOT PLAYABLE</em>)</p>",
+            "image_url": "https://i.postimg.cc/SK83Q1cb/election_image_1985.png",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://i.imgur.com/0dVI5zK.png",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Tech News and Analysis</h4><a href=\"https://www.arstechnica.com/\">Ars Technica</a> -- <a href=\"https://www.businessinsider.com/\">Business Insider</a> -- <a href=\"https://www.zdnet.com/\">ZDNET</a> -- <a href=\"https://www.theverge.com/\">The Verge</a> -- <a href=\"https://www.cnet.com/\">CNET</a> -- <a href=\"https://techcrunch.com\">Tech Crunch</a><h4>By and About the People</h4>On Steve Jobs, by Friends, Family, Colleagues with Leslie Berlin - <a href=\"https://stevejobsarchive.com/book\">Make Something Wonderful</a><br>Steve Wozniak - <a href=\"https://www.amazon.com/iWoz-Computer-Invented-Personal-Co-Founded/dp/0393330435\">iWoz: Computer Geek to Cult Icon</a><br>Bill Gates - <a href=\"https://www.amazon.com/Untitled-1581-Knopf/dp/059380158X/\">Source Code: My Beginnings</a><br>On Jack Tramiel, by Brian Bagnall - <a href=\"https://www.amazon.com/Story-Commodore-Company-Edge/dp/0973864907\">The Story of Commodore: A Company on the Edge</a><h4>Early Days of Apple</h4>Various Authors - <a href=\"https://www.folklore.org/0-index.html\">Folklore.org: The Original Macintosh</a><br>Various Contributors - <a href=\"https://en.wikipedia.org/wiki/History_of_Apple_Inc.\">History of Apple Inc.</a><h4>Miscellany</h4>Pancreatic Cancer Action Network - <a href=\"https://pancan.org/\">Research, Patient Support, Resources</a><br>Ahoy - <a href=\"https://www.youtube.com/watch?v=zB_UZsJUbwQ\">FLATLINE: How The Amiga Languished</a><br>Geoff Brumfiel - <a href=\"https://www.npr.org/2017/05/31/530235165/total-failure-the-worlds-worst-video-game\">Total Failure: The World\'s Worst Video Game</a><br>Jason Ward - <a href=\"https://www.windowscentral.com/microsofts-terry-myerson-and-others-why-windows-phone-failed-thats-fixed-now\">Former and current Microsoft staffers talk about why Windows phones failed</a>",
+            "has_visits": 0,
+            "no_electoral_majority_image": "../static/images/2012-no-majority.jpg"
+        }
+    },
+    {
+        "model": "campaign_trail.election",
+        "pk": 22,
+        "fields": {
+            "year": 1997,
+            "display_year": "1997",
+            "summary": "<p>Microsoft enjoys a stronghold over the personal computer market with a majority of new towers carrying Windows. Steve Jobs has emerged from relative obscurity, ready for a third chance to make things right in households, schools, and office spaces everywhere.</p>\n<p>Does Steve have what it takes to challenge his rivals after all this time? Or will he live to tell one of hundreds of failure stories in tech?</p><p>(<em>NOT PLAYABLE</em>)</p>",
+            "image_url": "https://i.postimg.cc/Zq32Ys6S/election_image_1997.png",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://i.imgur.com/0dVI5zK.png",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Tech News and Analysis</h4><a href=\"https://www.arstechnica.com/\">Ars Technica</a> -- <a href=\"https://www.businessinsider.com/\">Business Insider</a> -- <a href=\"https://www.zdnet.com/\">ZDNET</a> -- <a href=\"https://www.theverge.com/\">The Verge</a> -- <a href=\"https://www.cnet.com/\">CNET</a> -- <a href=\"https://techcrunch.com\">Tech Crunch</a><h4>By and About the People</h4>On Steve Jobs, by Friends, Family, Colleagues with Leslie Berlin - <a href=\"https://stevejobsarchive.com/book\">Make Something Wonderful</a><br>Steve Wozniak - <a href=\"https://www.amazon.com/iWoz-Computer-Invented-Personal-Co-Founded/dp/0393330435\">iWoz: Computer Geek to Cult Icon</a><br>Bill Gates - <a href=\"https://www.amazon.com/Untitled-1581-Knopf/dp/059380158X/\">Source Code: My Beginnings</a><br>On Jack Tramiel, by Brian Bagnall - <a href=\"https://www.amazon.com/Story-Commodore-Company-Edge/dp/0973864907\">The Story of Commodore: A Company on the Edge</a><h4>Early Days of Apple</h4>Various Authors - <a href=\"https://www.folklore.org/0-index.html\">Folklore.org: The Original Macintosh</a><br>Various Contributors - <a href=\"https://en.wikipedia.org/wiki/History_of_Apple_Inc.\">History of Apple Inc.</a><h4>Miscellany</h4>Pancreatic Cancer Action Network - <a href=\"https://pancan.org/\">Research, Patient Support, Resources</a><br>Ahoy - <a href=\"https://www.youtube.com/watch?v=zB_UZsJUbwQ\">FLATLINE: How The Amiga Languished</a><br>Geoff Brumfiel - <a href=\"https://www.npr.org/2017/05/31/530235165/total-failure-the-worlds-worst-video-game\">Total Failure: The World\'s Worst Video Game</a><br>Jason Ward - <a href=\"https://www.windowscentral.com/microsofts-terry-myerson-and-others-why-windows-phone-failed-thats-fixed-now\">Former and current Microsoft staffers talk about why Windows phones failed</a>",
+            "has_visits": 0,
+            "no_electoral_majority_image": "../static/images/2012-no-majority.jpg"
+        }
+    }
+]
+
+document.getElementById("inner_window_1").children[0].innerHTML = `<h3>Do you have what it takes to manage a company?</h3>`;
+document.getElementById("inner_window_1").children[1].innerHTML = `<li>Select a starting year and a figurehead to find out.</li><li>You will answer questions about your company and decisions, and also about your business strategy.</li><li>The answers will affect your market share for better or worse, whether with or outside of computers.</li><li>Walk the fine line between appealing to your base and winning a majority of the market.</li>`;
+campaignTrail_temp.credits = "u/marcART122 with help from u/CivilAd8441, u/TheBig-Boi and u/sardokars <button onclick='credits()'>(with credit to...)</button>";
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 91,
+        "fields": {
+            "first_name": "Steve",
+            "last_name": "Jobs",
+            "election": 10,
+            "party": "Apple Computer Company",
+            "state": "California",
+            "priority": 1,
+            "description": "<p>Steve Jobs enters 1976 a college dropout and soon-to-be-former Atari technician. A regular at the local Homebrew Computer Club, he and longtime friend Steve Wozniak have been busy with creating a microcomputer of their own and the prospect of starting a business. The goal is to usher in a new direction for computers as a whole. He will begin small with a family home garage, circuit boards, chips, a friend and his hopes and dreams.</p>",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://i.postimg.cc/VvsVRYTV/steve_jobs_1970s.png",
+            "electoral_victory_message": "<h3>Congratulations! You got a placeholder ending.</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "electoral_loss_message": "<h3>Sorry, you got a placeholder ending.</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "no_electoral_majority_message": "<h3>No candidate got a placeholder ending!</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 92,
+        "fields": {
+            "first_name": "Gerald",
+            "last_name": "Ford",
+            "election": 10,
+            "party": "Republican Party",
+            "state": "",
+            "priority": 2,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 93,
+        "fields": {
+            "first_name": "Eugene",
+            "last_name": "McCarthy",
+            "election": 10,
+            "party": "N/A",
+            "state": "Idaho",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#00FF00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 94,
+        "fields": {
+            "first_name": "Roger",
+            "last_name": "MacBride/Others",
+            "election": 10,
+            "party": "N/A",
+            "state": "Idaho",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 95,
+        "fields": {
+            "first_name": "",
+            "last_name": "Apple Computer Company",
+            "election": 10,
+            "party": "N/A",
+            "state": "California",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://i.postimg.cc/8zxxSgJ4/apple_1970s.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Apple is new on the block, having formed only weeks ago. Founded together by Jobs, Wozniak, and former chief draftsman of Atari, Inc. Ronald Wayne, it is a partnership that holds the promise of revolutionizing the computer as it is currently known today: a series of room-scale machines that has taken the United States to the Moon.</p><p>As a startup, Apple will determine the future of its founders and the people that may or may not join them.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 96,
+        "fields": {
+            "first_name": "",
+            "last_name": "Placeholder",
+            "election": 10,
+            "party": "",
+            "state": "Kansas",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 97,
+        "fields": {
+            "first_name": "",
+            "last_name": "Placeholder",
+            "election": 10,
+            "party": "",
+            "state": "Detroit",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 98,
+        "fields": {
+            "first_name": "",
+            "last_name": "Placeholder",
+            "election": 10,
+            "party": "",
+            "state": "California",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 208,
+        "fields": {
+            "first_name": "Steve",
+            "last_name": "Jobs",
+            "election": 21,
+            "party": "NeXT, Inc.",
+            "state": "California",
+            "priority": 1,
+            "description": "<p>Steve Jobs has served as Vice President and General Manager of the Mac department for five years and begins the rest of the year a troubled man. Through the failures of the Apple /// and the Lisa, he has just barely pulled through development of the Macintosh project, which he involved himself with after his removal from the Lisa's creation, helped by the continued success of the Apple ][. Most find his perfectionist, sometimes standoffish attitude difficult to work with.</p>",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://file.garden/aTSzLyzGbgwzK-kK/Apple/steve%20jobs%201980s%202.png",
+            "electoral_victory_message": "<h3>Congratulations! You got a placeholder ending.</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "electoral_loss_message": "<h3>Sorry, you got a placeholder ending.</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "no_electoral_majority_message": "<h3>No candidate got a placeholder ending!</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 209,
+        "fields": {
+            "first_name": "George H. W.",
+            "last_name": "Bush",
+            "election": 21,
+            "party": "Republican Party",
+            "state": "Texas",
+            "priority": 2,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 210,
+        "fields": {
+            "first_name": "Ron",
+            "last_name": "Paul",
+            "election": 21,
+            "party": "Libertarian",
+            "state": "Texas",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 211,
+        "fields": {
+            "first_name": "Lenora",
+            "last_name": "Fulani",
+            "election": 21,
+            "party": "New Alliance",
+            "state": "Pennsylvania",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF00FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 100,
+        "fields": {
+            "first_name": "",
+            "last_name": "NeXT, Inc.",
+            "election": 21,
+            "party": "N/A",
+            "state": "California",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://i.postimg.cc/k4vHKVjv/next-1980s.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>NeXT, Inc. is a brand new company started by Steve Jobs. After his symbolic ousting from the company he helped found, he and other departing employees of Apple have come together to shape the new entity however Jobs wanted. It represents a second beginning for him, but also stands to lose much more than Apple had with his unchained freedom and the same attitude that got him removed from power in his old company in the first place.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 101,
+        "fields": {
+            "first_name": "",
+            "last_name": "Microsoft Corporation",
+            "election": 21,
+            "party": "",
+            "state": "Albuquerque",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "Microsoft is a company founded in Albuquerque by hopefuls Bill Gates and Paul Allen. Initially founded to develop software for the Altair 8800, it has since grown to provide the operating system that powers the IBM PC platform: PC-DOS—or as Microsoft calls it, MS-DOS. Jobs will find people like him there for better or for worse, but he will have to balance between his own ambitions and Gates' if he wants to help propel the company to new heights.",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 102,
+        "fields": {
+            "first_name": "",
+            "last_name": "Commodore International",
+            "election": 21,
+            "party": "",
+            "state": "Pennsylvania",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "Commodore is a former market leader, once run by now-Atari Corporation CEO Jack Tramiel. The Commodore 64, once the darling of the budget computer scene, is finding itself displaced by the relatively new IBM PC platform among others. The Amiga has gone off to a slow start. Jobs will stave off the likes of Big Blue's dominance, Irving Gould's greed, and the rest of the market if he is to make the most out of the company.",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 103,
+        "fields": {
+            "first_name": "",
+            "last_name": "Apple Computer, Inc.",
+            "election": 21,
+            "party": "",
+            "state": "Pennsylvania",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "Miraculously, Apple is Jobs' current company. Founded during the Altair 8800's heyday, it has since gone on to launch such products like the Apple II, the III, the Lisa, and now the Macintosh. Not every product was a success, however, leaving its remaining co-founder in a precarious spot. Jobs will prove to current CEO John Sculley and the board of directors that he is worth keeping.",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 217,
+        "fields": {
+            "first_name": "",
+            "last_name": "",
+            "election": 21,
+            "party": "Republican Party",
+            "state": "Indiana",
+            "priority": 2,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 218,
+        "fields": {
+            "first_name": "Andre",
+            "last_name": "Marrou",
+            "election": 21,
+            "party": "Libertarian",
+            "state": "Alaska",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 219,
+        "fields": {
+            "first_name": "Joyce",
+            "last_name": "Dattner",
+            "election": 21,
+            "party": "New Alliance",
+            "state": "Illinois",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF00FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 220,
+        "fields": {
+            "first_name": "Steve",
+            "last_name": "Jobs",
+            "election": 22,
+            "party": "Apple Computer, Inc.",
+            "state": "California",
+            "priority": 1,
+            "description": "<p>Steve Jobs has risen from relative obscurity to reclaim the title that was once his and Steve Wozniak's.</p><p>Having survived Apple's meandering first incarnation and tumultuous times elsewhere, he returns a changed, strikingly familiar man. Years of success and failure alike has shaped his most refined form yet, but he knows that he cannot repeat his mistakes again. Will he finally strike diamond third try?</p>",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://file.garden/aTSzLyzGbgwzK-kK/Apple/steve%20jobs%202000s.png",
+            "electoral_victory_message": "<h3>Congratulations! You got a placeholder ending.</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "electoral_loss_message": "<h3>Sorry, you got a placeholder ending.</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "no_electoral_majority_message": "<h3>No candidate got a placeholder ending!</h3><p>As you can see, things obviously aren't finished. Some features may be missing, some things may not be final, etc. Whatever the case is, it should hopefully be taken care of sometime later.</p><p>That's about it. Cya.</p>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 209,
+        "fields": {
+            "first_name": "The",
+            "last_name": "Republicans",
+            "election": 22,
+            "party": "Republican Party",
+            "state": "Texas",
+            "priority": 2,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 210,
+        "fields": {
+            "first_name": "Ron",
+            "last_name": "Paul",
+            "election": 22,
+            "party": "Libertarian",
+            "state": "Texas",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 211,
+        "fields": {
+            "first_name": "Lenora",
+            "last_name": "Fulani",
+            "election": 22,
+            "party": "New Alliance",
+            "state": "Pennsylvania",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF00FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 212,
+        "fields": {
+            "first_name": "",
+            "last_name": "Apple Computer, Inc.",
+            "election": 22,
+            "party": "",
+            "state": "Pennsylvania",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://i.postimg.cc/Vk228PrH/apple-2000s.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Jobs' new old workplace. Apple has seen better days between the bloating of its once-simple product line and failures like the Newton.</p><p>Apple is a falling titan of the computer world, but it's not out -- yet. Jobs will try to bring it out of its dark age and make something wonderful as its interim CEO.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 213,
+        "fields": {
+            "first_name": "",
+            "last_name": "Microsoft Corporation",
+            "election": 22,
+            "party": "",
+            "state": "Albuquerque",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>Microsoft is the current market leader of the AOL age. Windows has eclipsed all the others as the dominating operating system for the decade.</p><p>Gates remains tense with Jobs, who must keep him happy if he wants to continue making his case for his stay at the company.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 215,
+        "fields": {
+            "first_name": "",
+            "last_name": "Commodore International",
+            "election": 22,
+            "party": "",
+            "state": "Pennsylvania",
+            "priority": 3,
+            "description": "",
+            "color_hex": "#a6edf7",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>A living relic of computing days past, but a competitive one at that. Commodore is enjoying its best days in a long while under the safety of current CEO Jobs.</p><p>Jobs will help it keep its small-to-medium business audience while finding a way to disrupt either the remainder of the corporate market, or the consumer market.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 217,
+        "fields": {
+            "first_name": "",
+            "last_name": "",
+            "election": 22,
+            "party": "Republican Party",
+            "state": "Indiana",
+            "priority": 2,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 218,
+        "fields": {
+            "first_name": "The",
+            "last_name": "Libertarians",
+            "election": 22,
+            "party": "Libertarian",
+            "state": "Alaska",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 219,
+        "fields": {
+            "first_name": "Joyce",
+            "last_name": "Dattner",
+            "election": 22,
+            "party": "New Alliance",
+            "state": "Illinois",
+            "priority": 4,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#FF00FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    }
+]
+
+credits = function() {
+    alert("\nSPECIAL THANKS\n- StrawberryMaster: Playtesting, bugfixing, suggestions\n- Timberwolf: Coding suggestions\n- Twingamerdudes: Soundtrack adding help\n\nBITS AND PIECES\n- 2024DM Team: \"OK\" button text code (adapted for advisor images)\n- Astrohunch_o: Question tunneling\n- Decstar1: Music player (modified CSS)\n- ItsAstronomical: Variable tracker (base)\n- Nina: Answer swapper code (modified to also change question and answer text), tooltip code (modified HTML/CSS), global effect changer\n- APA_LATCHA: Answer gray-out code (repurposed for dummying out paths)");
+}
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 157,
+        "fields": {
+            "candidate": 91,
+            "running_mate": 95
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 150,
+        "fields": {
+            "candidate": 92,
+            "running_mate": 96
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 151,
+        "fields": {
+            "candidate": 93,
+            "running_mate": 97
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 152,
+        "fields": {
+            "candidate": 94,
+            "running_mate": 98
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 158,
+        "fields": {
+            "candidate": 208,
+            "running_mate": 100
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 159,
+        "fields": {
+            "candidate": 208,
+            "running_mate": 101
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 160,
+        "fields": {
+            "candidate": 208,
+            "running_mate": 102
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 161,
+        "fields": {
+            "candidate": 208,
+            "running_mate": 103
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 162,
+        "fields": {
+            "candidate": 220,
+            "running_mate": 212
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 163,
+        "fields": {
+            "candidate": 221,
+            "running_mate": 213
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 164,
+        "fields": {
+            "candidate": 222,
+            "running_mate": 214
+        }
+    },
+]
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 10,
+        "candidates": [
+            91,
+            92,
+            93,
+            94
+        ]
+    },
+    {
+        "election": 21,
+        "candidates": [
+            200,
+            201
+        ]
+    },
+    {
+        "election": 22,
+        "candidates": [
+            200,
+            201
+        ]
+    }
+]
+
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 10,
+        "year": 1976,
+        "is_premium": 0,
+        "display_year": "1976"
+    },
+    {
+        "id": 21,
+        "year": 1985,
+        "is_premium": 0,
+        "display_year": "1985"
+    },
+    {
+        "id": 22,
+        "year": 1997,
+        "is_premium": 0,
+        "display_year": "1997"
+    }
+]
+
+e.SelectText = "Please select the year you will start in:";
+e.CandidText = "Please select your figure:";
+e.VpText = "Please select your company:";
+e.PartyText = "Affiliation:";
+e.HomeStateText = "Headquarters:";
+// Ending Popups
+e.ElectionPopup = "And with the closing of Ohio's polls, we can project that...";
+e.WinPopup = "...President Barack Obama has won re-election.";
+e.LosePopup = "...Mitt Romney has defeated President Barack Obama in an upset.";
+
+quotes = ["Think different.", "Make something wonderful.", "Stay hungry.", "Stay foolish.", "Bold. Brilliant. Brutal.", "Here's to the crazy ones."]
+customquote = quotes[Math.floor((Math.random() * quotes.length))]
+
+corrr = `\n<h2>THE APPLE TRAIL</h2><font id='wittyquote' size='4' color='white'><em>`+customquote+`</em></font>`
+
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#ffffff";
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#ffffff";
+
+document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+
+$("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+
+$(".container")[0].style.backgroundColor = "#FFFFFF";
+
+document.getElementById("header").src = "https://file.garden/aTSzLyzGbgwzK-kK/Apple/apple%20trail%20banner.png";
+
+function applyGlobalStyles(css, id = 'app-theme') {
+    let el = document.getElementById(id);
+    if (!el) {
+        el = document.createElement('style');
+        el.id = id;
+        document.head.appendChild(el);
+    }
+    el.textContent = css;
+}
+
+const css = `
+body {
+    accent-color: black;
+}
+
+.container {
+    border-width: 1px 40px;
+    border-style: solid;
+    border-color: #000;
+}
+
+button {
+    color: #000;
+    background-color: #FFFFFF;
+    border-color: #000;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    &:active,
+    &.active {
+        color: #FFF;
+        background-color: #000;
+        border-color: #FFF;
+        border-style: solid;
+        border-radius: 4px;
+    }
+}
+
+select {
+    color: #000!important;
+    background-color: #FFFFFF;
+    border-color: #000;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 2px 2px 0 -1px black;
+
+    &:active,
+    &.active {
+        color: #FFF!important;
+        background-color: #000;
+        border-color: #FFF;
+        border-style: solid;
+        box-shadow: 2px 2px 0 -1px white;
+    }
+}
+
+/*input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 31.25%;
+    border: 1px solid #000;
+    background: #FFF;
+    height: 13px;
+    width: 13px;
+    &:active,
+    &.active {
+        background: #000;
+    }
+    &:checked,
+    &.checked {
+        background: #000;
+    }
+}*/
+
+.base {
+    background: rgb(190, 187, 152);
+}
+
+#results_container {
+    color:#000000;
+}
+
+#running_mate_summary li:nth-child(2) {
+    display: none;
+}
+
+.inner_window_w_desc {
+    background-color:#ffffff!important;
+    margin: 1em 1em 0;
+    padding-top: .5em;
+}
+
+.content_single {
+    border-color: #000;
+    border-width: 1px 0;
+}
+
+.game_header {
+    background-color: #000!important;
+    border-width: 1px;
+    border-color: #000;
+    padding: .1em 0!important;
+    h2 {
+        padding: .1em 0!important;
+    }
+}
+
+#game_window {
+    --size: 2px;
+    --color-1: black;
+    --color-2: white;
+    background: conic-gradient(var(--color-1) 90deg, var(--color-2) 90deg 180deg, var(--color-1) 180deg 270deg, var(--color-2) 270deg);
+    background-repeat: repeat;
+    background-size: var(--size) var(--size);
+    background-position: top left;
+    background-attachment: fixed;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+    height: 45em;
+}
+
+#map_container {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000;
+    background: #FFF;
+    box-shadow: 1px 1px #000;
+}
+
+#menu_container {
+    height: auto;
+    background-color: #FFF;
+    box-shadow: 1px 1px #000
+}
+
+#menu_container h3 {
+    background-color: #FFF;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #000;
+    line-height: initial;
+}
+
+#overall_result_container {
+    background-color: #FFF;
+}
+
+#overall_result {
+    background-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000;
+    height: 100%
+}
+
+#state_info {
+    height: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000;
+    margin: 0 0 0;
+}
+
+#state_result {
+    background-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000;
+    margin: 0 0 0;
+    min-height: 200px;
+}
+
+#state_result_container {
+    height: 110%;
+    width: 100%;
+}
+
+.footer {
+    border-color: #000;
+    color: #000;
+    border-style: solid;
+    border-width: 1px 0 0;
+}
+
+.inner_window_front {
+    border-style: solid!important;
+    border-width: 1px!important;
+    border-color: #000!important;
+    background-color: #FFF!important;
+    box-shadow: 1px 1px #000;
+}
+
+.campaign_trail_start_emphasis {
+    background-color: #FFF;
+}
+
+#election_description_window {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+
+.inner_window_w_desc {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 1px 1px #000;
+}
+
+#inner_window_2 {
+    border-style: solid!important;
+    border-width: 1px!important;
+    border-color: #000!important;
+    background-color: #FFF!important;
+    box-shadow: 1px 1px #000;
+}
+
+.inner_window_question {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    margin: 1em 1em .7em!important;
+    padding-top: .3em!important;
+    box-shadow: 1px 1px #000;
+}
+
+.inner_inner_window h3 {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+
+.inner_window_sign_display {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 1px 1px #000;
+}
+
+#campaign_sign {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+
+#campaign_sign p {
+    color: #000;
+}
+
+.person_image img {
+    width: 220px;
+}
+
+#candidate_pic {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 1px 1px #000;
+}
+
+
+#running_mate_pic {
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 1px 1px #000;
+}
+
+.overlay {
+    opacity: 0;
+}
+
+.overlay_window {
+    background: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+
+.overlay_window_content {
+    & img {
+        background: #FFF;
+        border-style: solid;
+        border-color: #000;
+        border-width: 1px;
+    }
+
+    & h3 {
+        background: #FFF;
+        border-style: solid;
+        border-color: #000;
+        border-width: 0px 0px 1px 0px;
+        font-size: 12px;
+        height: 13px;
+        padding: 2px 1px;
+
+        &::before {
+            background: repeating-linear-gradient(#FFF, #FFF 1px, #000 1px, #000 2px);
+            background-clip: content-box;
+            height: 13px;
+            display: inline-block;
+            width: 37%;
+            float: left;
+            content: ''
+        }
+
+        &::after {
+            background: repeating-linear-gradient(#FFF, #FFF 1px, #000 1px, #000 2px);
+            background-clip: content-box;
+            height: 13px;
+            display: inline-block;
+            width: 37%;
+            float: right;
+            content: ''
+        }
+    }
+}
+
+.person_description_window {
+    background-color: #FFF;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+
+.person_image {
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+
+.description_window_small {
+    background-color: #FFF;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+
+#results_container {
+    background: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 0px 0px 1px 0px;
+    box-shadow: 1px 1px #000;
+}
+
+table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    background-color: #FFF;
+    box-shadow: 2px 2px #000;
+}
+
+th {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    background-color: #FFF;
+    box-shadow: 2px 2px #000;
+}
+
+td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    background-color: #FFF;
+    box-shadow: 2px 2px #000;
+}
+
+#overall_details_container {
+    color: #000;
+    background: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 0px 0px 1px 0px;
+    box-shadow: 1px 1px #000;
+}
+
+#main_content_area_reading {
+    color: #000;
+    background: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: 0px 0px 1px 0px;
+    box-shadow: 1px 1px #000;
+}
+
+#recommended_reading_box {
+    background-color: #FFF;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 2px 2px #000;
+}
+`;
+
+applyGlobalStyles(css);
+
+function addDynamicCSS() {
+    var css = `
+        .inner_window_question h3 .mytooltip{
+            background-color: black;
+            color: white;
+        }
+
+        .mytooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+        }
+
+        .mytooltip .mytooltiptext {
+            width: 240px;
+            background-color: transparent;
+            color: black;
+            text-align: center;
+            padding: 5px;
+            position: absolute;
+            z-index: 99;
+            bottom: 20%;
+            left: 20%;
+            margin-left: -90px;
+            opacity: 0;
+            border: 1px solid black;
+            box-shadow: 2px 2px black;
+            content-visibility: hidden;
+            pointer-events: none;
+            min-height: 19.5px;
+            font-size: 13px !important;
+            line-height: 1.5em !important;
+            font-weight: normal !important;
+            font-style: normal !important;
+        }
+
+        .mytooltip .mytooltiptext img {
+            max-width: 240px;
+            height: auto;
+        }
+
+        .mytooltip:hover .mytooltiptext {
+            opacity: 1;
+            background-color: white;
+            content-visibility: visible;
+            transition: opacity 0s 0.5s, background-color 0s 0.6s, content-visibility 0s 0.7s;
+        }
+    `;
+
+    var styleElem = document.createElement('style');
+    styleElem.type = 'text/css';
+
+    styleElem.appendChild(document.createTextNode(css));
+
+    document.head.appendChild(styleElem);
+}
+
+addDynamicCSS();
+
+tooltipList = [
+    {searchString: "Apple II", explanationText: "Simplicity is the ultimate sophistication."},
+    {searchString: "Apple III", explanationText: "A storehouse of knowledge."},
+    {searchString: "Apple Lisa", explanationText: "A Maserati for your mind."},
+    {searchString: "Macintosh", explanationText: "A computer for the rest of us."},
+    {searchString: "NeXT Computer", explanationText: "A partner in thought."},
+    {searchString: "NeXTcube", explanationText: "Nothing else like it."},
+    {searchString: "NeXTstation", explanationText: "The world needs a new computer."},
+    {searchString: "iMac", explanationText: "Sorry, no beige."},
+    {searchString: "iBook", explanationText: "iMac to go."},
+    {searchString: "iSight", explanationText: "Moments in time, snapped and filmed."},
+    {searchString: "Action Sight", explanationText: "Flight, camera, action."},
+    {searchString: "Power Sight", explanationText: "Digital Music for your Mac."},
+    {searchString: "iPod", explanationText: "A thousand songs in your pocket."},
+    {searchString: "iPhone", explanationText: "An iPod. A phone. An Internet communicator."},
+    {searchString: "iPad", explanationText: "The true third-category device."},
+    {searchString: "an empty chair", explanationText: "1976 - 1985, 1997 - 2011"},
+    {searchString: "a famous journalist", explanationText: "Face it. You loved his Einstein book."},
+];
