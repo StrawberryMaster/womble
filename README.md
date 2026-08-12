@@ -377,12 +377,16 @@ Another player, this time a Macintosh player, is a redesigned version based off 
 ![Mac player](./images/mac_player.jpeg)
 
 #### Denon player
-Based off a Denon DCP-30 CD player, this was initially made for **1992: Moonbeam** but was ultimately unused (the Walkman player seen a few players above was used instead). See source [here](./players/denon_player.js).
+Based off a Denon DCP-30 CD player, this was initially made for *1992: Moonbeam* but was ultimately unused, with the Walkman player seen above taking its place. See source [here](./players/denon_player.js).
 ![Denon player](./images/denon_player.png)
 
 ##### Flowers in Their Nightmare player
 This music player is themed after the Technics SL-1210MK5 turntable, and is a loosely faithful recreation of the music player made for the unreleased George McGovern presidency simulator *Flowers in Their Nightmare*. See source [here](./players/fitn_player.js).
 ![Flowers in Their Nightmare player](./images/fitn_player.png)
+
+##### More Perfect Union player
+This music player is themed after the QFX cassette deck, and is a loosely faithful recreation of the music player made for the unreleased 1984 mod *More Perfect Union*. **Note: very experimental!** See source [here](./players/mpu_player.js).
+![More Perfect Union player](./images/mpu_player.png)
 
 ##### QuickTime player
 Based off the QuickTime player, this was initially made for *2019 DOTP*, meant to be a remake of the *2019 North Korea* scenario. See source [here](./players/quicktime_player.js).
