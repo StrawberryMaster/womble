@@ -376,6 +376,10 @@ This Apple-themed music player was reportedly made by Thatchmaster and used in *
 Another player, this time a Macintosh player, is a redesigned version based off a player made by HouseyHouse for a *1996: A New Age* mod mockup. See source [here](./players/mac_player.js).
 ![Mac player](./images/mac_player.jpeg)
 
+#### Denon player
+Based off a Denon DCP-30 CD player, this was initially made for **1992: Moonbeam** but was ultimately unused (the Walkman player seen a few players above was used instead). See source [here](./players/denon_player.js).
+![Denon player](./images/denon_player.png)
+
 ##### Flowers in Their Nightmare player
 This music player is themed after the Technics SL-1210MK5 turntable, and is a loosely faithful recreation of the music player made for the unreleased George McGovern presidency simulator *Flowers in Their Nightmare*. See source [here](./players/fitn_player.js).
 ![Flowers in Their Nightmare player](./images/fitn_player.png)
