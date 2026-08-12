@@ -304,6 +304,10 @@ The late 80s/early 90s-era music player, shown in the mod *Duke*. Fun fact: it's
 This music player was shown in the sneak peeks/demo for the mod *2005 UK: Forward Not Back*. It's essentially identical to the music player from *W.* and *Four More Years*, but with a different background color, icons, and here, progress bar colors. See source [here](./players/fnb_player.js).
 ![Forward Not Back player](./images/fnb_player.jpeg)
 
+### Happy Days Are Here Again! player
+This old radio-like music player can be seen in the mod *1932: Happy Days Are Here Again!*, and a series of other pre-1960 mods. See source [here](./players/old_player.js).
+![Happy Days Are Here Again! player](./images/old_player.png)
+
 ### Icarus player
 Another Windows Media Player-themed music player, this music player was made for *2008: Icarus*. Shown here is a somewhat more standardized version of the player with fixed icons. See source [here](./players/icarus_player.js).
 ![Icarus player](./images/icarus_player.png)
