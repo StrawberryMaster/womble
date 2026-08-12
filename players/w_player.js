@@ -142,19 +142,51 @@ function setupMusicPlayer() {
       --xp-range-track-shadow-vertical: -1px 0 0 #fff, -1px 1px 0 #fff, 0 1px 0 #fff, 1px 0 0 #9d9c99, 1px -1px 0 #9d9c99, 0 -1px 0 #9d9c99, 1px 1px 0 #fff, -1px -1px #9d9c99;
     }
 
-    /* progress bar */
+    /* progress bar base */
     progress {
       box-sizing: border-box; appearance: none; -webkit-appearance: none; -moz-appearance: none;
       height: 14px; padding: 1px 2px 1px 0; overflow: hidden; background-color: #fff; border: 1px solid #686868; border-radius: 4px;
       -webkit-box-shadow: var(--xp-progress-shadow); -moz-box-shadow: var(--xp-progress-shadow); box-shadow: var(--xp-progress-shadow);
       cursor: pointer; /* Ensures users know they can click it */
     }
+
     progress[value]::-webkit-progress-bar { background-color: transparent; }
-    progress[value]::-webkit-progress-value, progress[value]::-moz-progress-bar { border-radius: 2px; background: var(--xp-progress-value-bg); }
+
+    /* progress bar fill - Chrome / Safari / Edge */
+    progress[value]::-webkit-progress-value {
+      border-radius: 2px;
+      background: var(--xp-progress-value-bg);
+    }
+
+    /* progress bar fill - Firefox */
+    progress[value]::-moz-progress-bar {
+      border-radius: 2px;
+      background: var(--xp-progress-value-bg);
+    }
+
+    /* indeterminate progress bar */
     progress:not([value]) { position: relative; }
-    progress:not([value])::-webkit-progress-bar, progress:not([value])::-moz-progress-bar { width: 100%; background: var(--xp-progress-indeterminate-bg); animation: sliding 2s linear infinite; }
-    progress:not([value]):before { content: ""; position: absolute; inset: 0; box-sizing: border-box; background-color: #fff; box-shadow: var(--xp-progress-shadow); }
-    progress:not([value]):after { content: ""; position: absolute; top: 1px; left: 2px; width: 100%; height: calc(100% - 2px); box-sizing: border-box; padding: 1px 2px; border-radius: 2px; background: var(--xp-progress-indeterminate-bg); animation: sliding 2s linear infinite; }
+
+    progress:not([value])::-webkit-progress-bar {
+      width: 100%;
+      background: var(--xp-progress-indeterminate-bg);
+      animation: sliding 2s linear infinite;
+    }
+
+    progress:not([value])::-moz-progress-bar {
+      width: 100%;
+      background: var(--xp-progress-indeterminate-bg);
+      animation: sliding 2s linear infinite;
+    }
+
+    progress:not([value]):before {
+      content: ""; position: absolute; inset: 0; box-sizing: border-box; background-color: #fff; box-shadow: var(--xp-progress-shadow);
+    }
+
+    progress:not([value]):after {
+      content: ""; position: absolute; top: 1px; left: 2px; width: 100%; height: calc(100% - 2px);
+      box-sizing: border-box; padding: 1px 2px; border-radius: 2px; background: var(--xp-progress-indeterminate-bg); animation: sliding 2s linear infinite;
+    }
 
     /* range */
     input[type=range] { -webkit-appearance:none; width:100%; background:transparent }
