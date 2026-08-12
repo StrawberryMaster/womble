@@ -316,6 +316,10 @@ Another Windows Media Player-themed music player, this music player was made for
 The YouTube-powered music player shown in the mod *2012: Little Big Man*, which was built on top of the *A Lifetime of This* player code. See source [here](./players/lbm_player.js).
 ![Little Big Man player](./images/lbm_player.png)
 
+### Moonbeam player
+This is the Sony Walkman-like music player shown in the mod *1992: Moonbeam, standardized to fit in with the other players/functions here. See source [here](./players/moonbeam_player.js).
+![Moonbeam player](./images/moonbeam_player.png)
+
 ### More Than Ever/Good For Me player
 The tape recorder-like music player shown in *1972: More Than Ever*, and also in *1976: Year Zero*. Shown here is a modified version of the player with some optimizations. See source [here](./players/mte_player.js).
 ![More Than Ever player](./images/mte_player.png)
