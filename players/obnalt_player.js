@@ -1,5 +1,5 @@
 // This is a modified version of the music player
-// used in the mod 2012: bamanation.
+// used in the mod 2012: Obamanation.
 class Song {
   constructor(title, artist, genre, year, coverLink, audioLink) {
     this.title = title;
