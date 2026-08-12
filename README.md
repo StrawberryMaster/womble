@@ -301,7 +301,7 @@ The late 80s/early 90s-era music player, shown in the mod *Duke*. Fun fact: it's
 ![Duke player](./images/duke_player.png)
 
 ### Forward Not Back player
-This music player was shown in the sneak peeks/demo for the mod *2005 UK: Forward Not Back*. It's essentially identical to the music player from *W.* and *Four More Years*, but with a different background color. See source [here](./players/fnb_player.js).
+This music player was shown in the sneak peeks/demo for the mod *2005 UK: Forward Not Back*. It's essentially identical to the music player from *W.* and *Four More Years*, but with a different background color, icons, and here, progress bar colors. See source [here](./players/fnb_player.js).
 ![Forward Not Back player](./images/fnb_player.jpeg)
 
 ### Icarus player
