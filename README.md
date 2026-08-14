@@ -368,6 +368,11 @@ The vinyl-esque music player shown in *Things That Never Were*. Shown here is a 
 The Windows Music Player-esque music player shown in the mods *W.* and *2004: Four More Wars*. Shown here is a modified version of the player with its Windows XP progress bar and volume control themes included, and also the ability to click on the progress bar to seek. See source [here](./players/w_player.js).
 ![W. player](./images/w_player.png)
 
+### Y. of Korea player
+This is a music player shown in the mod *Y. of Korea*. The *Duke* player was built on top of this one. See source [here](./players/yok_player.js).
+![Y. of Korea player](./images/yok_player.jpeg)
+
+
 #### Other players
 ##### Apple/Macintosh players
 This Apple-themed music player was reportedly made by Thatchmaster and used in *Vice*. See source [here](./players/apple_player.js).
