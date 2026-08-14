@@ -381,7 +381,7 @@ This Apple-themed music player was reportedly made by Thatchmaster and used in *
 Another player, this time a Macintosh player, is a redesigned version based off a player made by HouseyHouse for a *1996: A New Age* mod mockup. See source [here](./players/mac_player.js).
 ![Mac player](./images/mac_player.jpeg)
 
-#### Denon player
+##### Denon player
 Based off a Denon DCP-30 CD player, this was initially made for *1992: Moonbeam* but was ultimately unused, with the Walkman player seen above taking its place. See source [here](./players/denon_player.js).
 ![Denon player](./images/denon_player.png)
 
