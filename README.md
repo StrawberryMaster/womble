@@ -475,6 +475,7 @@ These mods were either restored by a user (or group of users), formally released
 - **1860 Alternate VPs**: hidden in the CTS mod loader, but available to play [here](https://campaigntrailshowcase.com/campaign-trail/?modName=1860).
 - **1988b**: the original viviankesandre mod, which later got a spiritual successor, [The Rainbow Trail](https://campaigntrailshowcase.com/campaign-trail/?modName=1988RB). Hidden in the CTS mod loader, but available to play [here](https://campaigntrailshowcase.com/campaign-trail/?modName=1988b).
 - **1992Redux**: Martha's redux of the 1992 mod. Hidden in the CTS mod loader, but available to play [here](https://campaigntrailshowcase.com/campaign-trail/?modName=1992Redux).
+- **2024 Washington Governor**: also called **Break the Streak** and made by ec2003, it was built on top of a "House of Cards 2016 mod" build by an unspecified AI. Only Reichert side is available. Codes: [Code 1](./mods/others/2024%20-%20Washington%20Governor_init.txt) | [Code 2](./mods/others/2024%20-%20Washington%20Governor_ReichertState%20GOP.txt)
 - **The Animal Trail**: hidden in the CTS mod loader, but available to play [here](https://campaigntrailshowcase.com/campaign-trail/?modName=2024NAT).
 - **The Apple Trail**: a demo, not in any of the mod loaders. Lets you play as Steve Jobs throughout the history of Apple. Codes: [Code 1](./mods/others/1976_init.txt) | [Code 2](./mods/others/1976_JobsApple_Computer_Company.txt)
 
