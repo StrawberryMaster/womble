@@ -1,0 +1,1364 @@
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 20,
+        "fields": {
+            "year": 2026,
+            "display_year": "Clacton By-election",
+            "summary": " The year is 2026 in the UK. The nation has suffered more than most and that's been reflected in the polls. The far right Reform UK has dominated them for more than a year. Now that seems to be less than true. With Andy Burnham in number 10, the Labour party has climbed back and even won a few polls. This spells disaster for Nigel Farage, the most infamous politician in the United Kingdom.<p> Nigel Farage comes into this By-election as the incumbent. He is running to show his own popularity  and to turn eyes away from his many controversies</p> <p> Count Binface is running because he can. He knows that this election isn't his to win but damn it will he try.",
+            "site_description": "The year is 2026 in the UK. The nation has suffered more than most and that's been reflected in the polls. The far right Reform UK has dominated them for more than a year. Now that seems to be less than true. With Andy Burnham in number 10, the Labour party has climbed back and even won a few polls. This spells disaster for Nigel Farage, the most infamous politician in the United Kingdom.<p> Nigel Farage comes into this By-election as the incumbent. He is running to show his own popularity  and to turn eyes away from his many controversies</p> <p> Count Binface is running because he can. He knows that this election isn't his to win but damn it will he try.",
+            "image_url": "https://imgs.search.brave.com/aFGkpRmycMofp_HFATH0_j7n3ipcr5vcKT5z0WyQbWQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jbm4uY29tL2Fw/aS92MS9pbWFnZXMv/c3RlbGxhci9wcm9k/LzIwMjYwNzA5LWZh/cmFnZS1iaW5mYWNl/LXNwbGl0LmpwZz9j/PTE2eDkmcT13XzEz/ODMsY19maWxs",
+            "winning_electoral_vote_number": 0,
+            "advisor_url": "https://imgs.search.brave.com/a9RpPhqk3GntHjyqpx4SbBGdIdsIP8IkWnSaVLch73s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLmd1/aW0uY28udWsvaW1n/L21lZGlhLzAxYzlh/MjI0OTZmYjQyMjIy/YzMzNzcwNGUyMjA0/OGRmMjA0MzcyNTUv/MF8wXzUwMDBfNDAw/MC9tYXN0ZXIvNTAw/MC5qcGc_d2lkdGg9/NDY1JmRwcj0xJnM9/bm9uZSZjcm9wPTU6/NA",
+            "recommended_reading": "<p><strong>Credits</strong></p> <p>Music Player = American Carnage</p>",
+            "recommended_reading_enabled": false,
+            "has_visits": 1,
+            "no_electoral_majority_image": "../static/images/2012-no-majority.jpg"
+        }
+    }
+];
+
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 20,
+        "year": 2026,
+        "is_premium": 0,
+        "display_year": "Clacton By-election"
+    }
+];
+
+
+RecReading = true;
+
+
+campaignTrail_temp.credits = "Your_Local_Bulgarian";
+
+
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 15,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+];
+
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1001,
+        "fields": {
+            "first_name": "Nigel",
+            "last_name": "Farage",
+            "election": 20,
+            "party": "Reform UK",
+            "state": "Clacton",
+            "priority": 1,
+            "description": "<p><strong>Nigel Farage</strong></p><p>NOT PLAYABLE, FOR CONTEXT ONLY</p><p>The man has become prolific in British politics. He is the instigator of Brexit, the worst decision ever made by the British nation.  He is running to try and push away from the investigation into his finances. Farage was leader of UKIP before forming the Brexit party which then became Reform UK  after Brexit actually came to be. He has been the presumptive PM in waiting since 2025.</p>",
+            "color_hex": "#22d8d5",
+            "secondary_color_hex": "#0d8f91",
+            "is_active": 1,
+            "image_url": "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/7093435.webp",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1002,
+        "fields": {
+            "first_name": "Reform ",
+            "last_name": "UK",
+            "election": 20,
+            "party": "Reform UK",
+            "state": "Britain",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#2594a3",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/birmingham-england-reform-uk-leader-nigel-farage-makes-a-speech-at-a-reform-uk-rally-on.webp",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<strong><p>Reform UK</p></strong> <p>The party that is the main opposition to the Labour party. Reform has topped the polls for the last year. Now however this has changed. After numerous failures in By-Election after By-Election, the party has seen it's polling lead fizzle out. Now with Burnham as Prime Minister, Farage's lead has evaporated. This By-Election is finally the opportunity to show Reform's strenght in politics",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1003,
+        "fields": {
+            "first_name": "Count",
+            "last_name": "Binface",
+            "election": 20,
+            "party": "Binface",
+            "state": "Recyclon",
+            "priority": 1,
+            "description": "<p><strong>Count Binface</p></strong> The man with a plan. The Count. Binface is the main challenger to Nigel Farcerage. He is the inter galactic space warrior that Clacton needs. They might not know it but he does and he is here to help them. Binface has made extremely interesting promises like building at least 1 affordable home. He hears the cheers everytime he announces a policy. Now he preparing for his voyage to the British Parliament",
+            "color_hex": "#a59c9c",
+            "secondary_color_hex": "#c4c4c4",
+            "is_active": 1,
+            "image_url": "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/image%20(1).webp",
+            "electoral_victory_message": "Winner!",
+            "electoral_loss_message": "Loser!",
+            "no_electoral_majority_message": "Majority?",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1004,
+        "fields": {
+            "first_name": "Party of",
+            "last_name": "Binface",
+            "election": 20,
+            "party": "Binface",
+            "state": "Recyclon",
+            "priority": 1,
+            "description": "<p><strong>The Inter Galactic Space Warrior's Party</strong></p>",
+            "color_hex": "#a6a6ab",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Binface_Emblem_1.svg/120px-Binface_Emblem_1.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p><strong>The Inter Galactic Space Warrior's Party</strong></p> The party has had no major successes except it's leader. Count Binface from Recyclon has come down from the heavens to lead us to victory. The rest of Britain has heard his truth yet however. We are here to show them how wrong they are.",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1005,
+        "fields": {
+            "first_name": "Various",
+            "last_name": "Candidates",
+            "election": 20,
+            "party": "Various",
+            "state": "Clacton",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#33334d",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/9b892010-826c-11f1-ba79-1ddda3eab0cb.webp",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "Description as running mate...",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    }
+];
+
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 500,
+        "fields": {
+            "candidate": 1001,
+            "running_mate": 1002
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 501,
+        "fields": {
+            "candidate": 1003,
+            "running_mate": 1004
+        }
+    }
+];
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 20,
+        "candidates": [
+            1001,
+            1003,
+            1005
+        ]
+    }
+];
+
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 20,
+        "candidates": [
+            1001,
+            1003,
+            1005
+        ]
+    }
+];
+campaignTrail_temp.modBoxTheme = {
+    "header_color": "#020617",
+    "header_text_color": "#f9fafb",
+    "description_background_color": "#1f2937",
+    "description_text_color": "#e5e7eb",
+    "main_color": "#808080",
+    "secondary_color": "#626364",
+    "ui_text_color": "#ffffff",
+    "site_title": "",
+    "site_image_url": ""
+};
+
+
+jet_data = {
+    "headerColor": "#616161",
+    "headerTextColor": "#ffffff",
+    "windowColor": "#bababa",
+    "containerColor": "#ffffff",
+    "innerWindowColor": "#a6a6a6",
+    "innerWindowTextColor": "#000000",
+    "descriptionWindowColor": "#f8f8f8",
+    "descriptionWindowTextColor": "#000000",
+    "startButtonColor": "#878282",
+    "bannerImageUrl": "https://imgs.search.brave.com/mjf1J8S5lyTUbXoC1kLxr7MKlyOitWHC_PeWJUYn_eM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pY2hl/Zi5iYmNpLmNvLnVr/L25ld3MvNDgwL2Nw/c3Byb2RwYi9jYmNj/L2xpdmUvNjQxNTM1/MzAtOTI0Yi0xMWYx/LWE2Y2UtYWZlZWUy/NzNiNDJlLmpwZy53/ZWJw",
+    "backgroundImageUrl": "https://imgs.search.brave.com/fAagsT_DQgzYyLKsweFtEDfnAy3rSXrL3j6rAvHTtfw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjI4/OTM0NDc2My9mci9w/aG90by9jbGFjdG9u/LW9uLXNlYS1lbmds/YW5kLWluZGVwZW5k/ZW50LWNhbmRpZGF0/ZS1qb3NlcGgtNzct/c3BlYWtzLXdpdGgt/bWVtYmVycy1vZi10/aGUtcHVibGljLWlu/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz02YV96cE1kZ2dC/c3BsdEhRZEVhRklU/VW5TbmdKYnY2X3g2/WG9DWVMtbVhvPQ",
+    "gameTitle": "THE CAMPAIGN TRAIL",
+    "customQuote": "",
+    "quoteTextColor": "#ffffff",
+    "endingTextColor": "#000000",
+    "modBoxTheme": {
+        "header_color": "#020617",
+        "header_text_color": "#f9fafb",
+        "description_background_color": "#1f2937",
+        "description_text_color": "#e5e7eb",
+        "main_color": "#808080",
+        "secondary_color": "#626364",
+        "ui_text_color": "#ffffff",
+        "site_title": "",
+        "site_image_url": ""
+    }
+};
+
+
+//#startcode
+function applyTheme(theme) {
+    const gameHeader = document.querySelector(".game_header");
+    if (gameHeader && theme.coloring_title) {
+        gameHeader.style.backgroundColor = theme.coloring_title;
+    }
+
+
+    const gameWindow = document.getElementById("game_window");
+    if (gameWindow && theme.coloring_window) {
+        gameWindow.style.backgroundColor = theme.coloring_window;
+    }
+
+
+    const container = document.querySelector(".container");
+    if (container && theme.coloring_container) {
+        container.style.backgroundColor = theme.coloring_container;
+    }
+
+
+    const headerImg = document.getElementById("header");
+    if (headerImg && theme.header_image) {
+        headerImg.src = theme.header_image;
+    }
+
+
+    if (theme.body_background) {
+        document.body.style.backgroundImage = `url("${theme.body_background}")`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
+    }
+
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #results_container { color: #000000; }
+      #wittyquote { color: #ffffff; }
+      .game_header h2 { color: #ffffff; }
+      .inner_window_w_desc { background-color: #a6a6a6 !important; color: #000000; }
+      .inner_window_front, .person_description_window, .election_description_window, .description_window_small { background-color: #f8f8f8 !important; color: #000000; }
+      .campaign_trail_start_emphasis { background-color: #878282 !important; }
+    `;
+    document.head.appendChild(style);
+}
+
+
+
+
+
+
+const theme = nct_stuff.themes[nct_stuff.selectedTheme];
+
+
+// define / override theme values
+theme.coloring_title     = "#616161";
+theme.coloring_window    = "#bababa";
+theme.coloring_container = "#ffffff";
+theme.header_image = "https://imgs.search.brave.com/mjf1J8S5lyTUbXoC1kLxr7MKlyOitWHC_PeWJUYn_eM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pY2hl/Zi5iYmNpLmNvLnVr/L25ld3MvNDgwL2Nw/c3Byb2RwYi9jYmNj/L2xpdmUvNjQxNTM1/MzAtOTI0Yi0xMWYx/LWE2Y2UtYWZlZWUy/NzNiNDJlLmpwZy53/ZWJw";
+theme.body_background = "https://imgs.search.brave.com/fAagsT_DQgzYyLKsweFtEDfnAy3rSXrL3j6rAvHTtfw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjI4/OTM0NDc2My9mci9w/aG90by9jbGFjdG9u/LW9uLXNlYS1lbmds/YW5kLWluZGVwZW5k/ZW50LWNhbmRpZGF0/ZS1qb3NlcGgtNzct/c3BlYWtzLXdpdGgt/bWVtYmVycy1vZi10/aGUtcHVibGljLWlu/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz02YV96cE1kZ2dC/c3BsdEhRZEVhRklU/VW5TbmdKYnY2X3g2/WG9DWVMtbVhvPQ";
+
+
+applyTheme(theme);
+//#endcode
+// This is a modified version of the music player
+// used in the mod American Carnage.
+class Song {
+  constructor(title, artist, coverLink, audioLink) {
+    this.title = title;
+    this.artist = artist;
+    this.coverLink = coverLink;
+    this.audioLink = audioLink;
+  }
+  getTitle() { return this.title; }
+  getArtist() { return this.artist; }
+  getCoverLink() { return this.coverLink; }
+  getAudioLink() { return this.audioLink; }
+}
+
+
+class Playlist {
+  constructor() {
+    this.songs = [];
+    this.currentSongIndex = 0;
+  }
+  addSong(song) { this.songs.push(song); }
+  getCurrentSong() { return this.songs[this.currentSongIndex]; }
+
+
+  playNext() {
+    if (this.songs.length === 0) return;
+    this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+  }
+
+
+  playPrevious() {
+    if (this.songs.length === 0) return;
+    this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+  }
+}
+
+
+window.Playlist = Playlist;
+window.Song = Song;
+
+
+let activePlaylist = new Playlist();
+let audioInstance = null;
+let currentVolume = 1;
+
+
+// assets
+const ASSETS = {
+  bg: "https://i.imgur.com/Ok791w6.png",
+  infoBg: "https://i.imgur.com/BB1ejv6.png",
+  btnPrev: "https://i.imgur.com/imIqTEA.png",
+  btnPlay: "https://i.imgur.com/ttdoyfG.png",
+  btnPause: "https://i.imgur.com/oQbfTxw.png",
+  btnNext: "https://i.imgur.com/7TtaN04.png",
+  volIcon: "https://i.imgur.com/0BJYsXt.png"
+};
+
+
+function changePlaylist(newPlaylist) {
+  activePlaylist = newPlaylist;
+  activePlaylist.currentSongIndex = 0;
+
+
+  updateUI(activePlaylist);
+
+
+  // ensure audio exists before trying to access it
+  const audio = getAudioElement();
+  const song = activePlaylist.getCurrentSong();
+
+
+  if (song) {
+    audio.src = song.audioLink;
+    audio.play().catch(e => console.log("Autoplay blocked or waiting for interaction", e));
+    updatePlayPauseIcon(true);
+  }
+}
+window.changePlaylist = changePlaylist;
+
+
+function updateUI(playlist) {
+  const currentSong = playlist.getCurrentSong();
+  const player = document.getElementById("player");
+
+
+  if (!player || !currentSong) return;
+
+
+  const cover = player.querySelector("#cover");
+  const title = player.querySelector("#title");
+  const artist = player.querySelector("#artist");
+
+
+  if (cover) cover.src = currentSong.getCoverLink();
+  if (title) title.textContent = currentSong.getTitle();
+  if (artist) artist.textContent = currentSong.getArtist();
+}
+window.updateUI = updateUI;
+
+
+// helpers
+function getAudioElement() {
+  if (!audioInstance) {
+    audioInstance = document.createElement("audio");
+    audioInstance.id = "audio";
+    document.body.appendChild(audioInstance);
+  }
+  return audioInstance;
+}
+
+
+function updatePlayPauseIcon(isPlaying) {
+  const btn = document.getElementById("playPauseButton");
+  if (btn) {
+    btn.src = isPlaying ? ASSETS.btnPause : ASSETS.btnPlay;
+  }
+}
+
+
+// setup
+function setupMusicPlayer() {
+  const gameWindow = document.getElementById("game_window");
+  if (!gameWindow) {
+    console.warn("game_window element not found. Player will not be attached.");
+    return;
+  }
+
+
+  // prevent duplicate players
+  if (document.getElementById("player")) return;
+
+
+  const defaultSongs = [
+    ["Count Binface", "Sheman", "https://imgs.search.brave.com/vWdw9eMy90GYeAHgOZqi-X9SKMBL24tv7GGuYkkKohA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9nby5w/cm90b25yYWRpby5j/b20vX25leHQvaW1h/Z2U_dXJsPWh0dHBz/Oi8vcHJvdG9uLWNv/dmVycy5zdG9yYWdl/Lmdvb2dsZWFwaXMu/Y29tLzcwMC80NTA1/NTYyXzI2OTIwOF83/MDAuanBnJnc9NjQw/JnE9ODA", "https://audio.jukehost.co.uk/01a005b7-3059-70a9-a2cf-3e62c8a918b6"],
+  ];
+
+
+  if (activePlaylist.songs.length === 0) {
+    defaultSongs.forEach(data => activePlaylist.addSong(new Song(...data)));
+  }
+
+
+  // inject CSS
+  const style = document.createElement("style");
+  style.textContent = `
+    #player {
+      border: 3px solid rgba(114, 113, 113, 0.5);
+      display: flex;
+      flex-direction: row;
+      height: 191px;
+      background-image: url("${ASSETS.bg}");
+      font-family: sans-serif;
+    padding: 0 .5em;
+    }
+    #display-box { display: flex; align-items: center; width: 50%; }
+    #cover { width: 176px; height: 176px; object-fit: cover; }
+    #info-container {
+      display: flex;
+      height: 178px; width: 127px; margin-top: 3px;
+      background-image: url("${ASSETS.infoBg}");
+      background-size: cover; color: white;
+    }
+    #song-info { width: 100%; padding: 5px; box-sizing: border-box; }
+    #artist { margin: 0; font-size: 12px; opacity: 0.9; }
+    #controls-container {
+      display: flex; flex-direction: column; align-items: center;
+      margin: 10px; width: 100%; padding-top: 15px;
+    }
+    #controls { display: flex; flex-direction: row; justify-content: center; gap: 10px; cursor: pointer; }
+    #controls img { transition: transform 0.1s; }
+    #controls img:active { transform: scale(0.95); }
+    #progress-bar-container { width: 100%; margin-top: 15px; text-align: center; }
+    #progress-bar { width: 80%; cursor: pointer; }
+    #volume-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: -1em; }
+    .vol-wrapper { position: relative; height: 126px; margin-top: 5px; }
+    #volumeSlider {
+      width: 8px; height: 100%;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    }
+    #volume-display { font-weight: bold; display: none; }
+  `;
+  document.head.appendChild(style);
+
+
+  // create HTML
+  const playerContainer = document.createElement("div");
+  playerContainer.id = "player";
+  playerContainer.innerHTML = `
+    <div id="display-box">
+      <img id="cover" src="">
+      <div id="info-container">
+        <div id="song-info">
+          <h3 id="title"></h3>
+          <p id="artist"></p>
+        </div>
+      </div>
+    </div>
+    <div id="controls-container">
+      <div id="controls">
+        <img id="prevButton" src="${ASSETS.btnPrev}" alt="Previous">
+        <img id="playPauseButton" src="${ASSETS.btnPlay}" alt="Play/Pause">
+        <img id="nextButton" src="${ASSETS.btnNext}" alt="Next">
+      </div>
+      <div id="progress-bar-container">
+        <input type="range" id="progress-bar" value="0" max="100" step="0.1">
+      </div>
+    </div>
+    <div id="volume-container">
+      <img src="${ASSETS.volIcon}" alt="Volume">
+      <div class="vol-wrapper">
+        <input type="range" id="volumeSlider" min="0" max="9" step="1" value="1" orient="vertical">
+      </div>
+      <span id="volume-display">1</span>
+    </div>
+  `;
+
+
+  gameWindow.insertAdjacentElement("afterend", playerContainer);
+
+
+  // set up audio & logic
+  const audio = getAudioElement();
+  const startSong = activePlaylist.getCurrentSong();
+  if (startSong) audio.src = startSong.audioLink;
+  audio.volume = currentVolume / 9;
+
+
+  const playPauseBtn = document.getElementById("playPauseButton");
+  const prevBtn = document.getElementById("prevButton");
+  const nextBtn = document.getElementById("nextButton");
+  const progressBar = document.getElementById("progress-bar");
+  const volumeSlider = document.getElementById("volumeSlider");
+  const volDisplay = document.getElementById("volume-display");
+
+
+  // play/pause
+  playPauseBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      updatePlayPauseIcon(true);
+    } else {
+      audio.pause();
+      updatePlayPauseIcon(false);
+    }
+  });
+
+
+  // next/prev
+  const playSongAtIndex = () => {
+    updateUI(activePlaylist);
+    audio.src = activePlaylist.getCurrentSong().audioLink;
+    audio.play();
+    updatePlayPauseIcon(true);
+  };
+
+
+  nextBtn.addEventListener("click", () => {
+    activePlaylist.playNext();
+    playSongAtIndex();
+  });
+
+
+  prevBtn.addEventListener("click", () => {
+    activePlaylist.playPrevious();
+    playSongAtIndex();
+  });
+
+
+  // progress bar
+  audio.addEventListener("timeupdate", () => {
+    if (Number.isFinite(audio.duration)) {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressBar.value = progress;
+    }
+  });
+
+
+  audio.addEventListener("ended", () => {
+    activePlaylist.playNext();
+    playSongAtIndex();
+  });
+
+
+  progressBar.addEventListener("input", () => {
+    if (Number.isFinite(audio.duration)) {
+      audio.currentTime = (progressBar.value / 100) * audio.duration;
+    }
+  });
+
+
+  // volume
+  volumeSlider.addEventListener("input", (e) => {
+    currentVolume = parseInt(e.target.value, 10);
+    volDisplay.textContent = currentVolume;
+    audio.volume = currentVolume / 9;
+  });
+
+
+  // initial play
+  updateUI(activePlaylist);
+  audio.play()
+    .then(() => updatePlayPauseIcon(true))
+    .catch(() => updatePlayPauseIcon(false));
+}
+setupMusicPlayer();
+// This is a dynamic election night thingy,
+// similar to that of The Political Process
+(function () {
+  //if (!window.campaignTrail_temp?.dynamicEN) return;
+
+
+  var oldElectionNight = window.electionNight;
+
+
+  // configure time increment if desired, defaults to 3 for high-frequency ticks. old was 15
+  var timeIncrement = window.campaignTrail_temp?.en_time_increment ?? 3; // minutes per tick
+  var isPaused = false;
+  var tickRate = 300; // default MS per tick. old was 1000
+
+
+  var activeStateAbbr = null;
+  var stateBiases = {};
+  var currentTickState = {};
+
+
+  var stateNextUpdate = {};
+
+
+  window.electionNight = function (type = 'general', timestep = 10, states = []) {
+    const isGeneral = type === 'general';
+    const globalParam = campaignTrail_temp.global_parameter_json ? campaignTrail_temp.global_parameter_json[0].fields : {};
+
+
+    // initialize data
+    if (campaignTrail_temp.final_state_results.length > 0 && campaignTrail_temp.final_state_results[0].result) {
+      campaignTrail_temp.final_overall_results = campaignTrail_temp.final_state_results[0].result.map((f) => ({
+        candidate: f.candidate,
+        electoral_votes: 0,
+        popular_votes: 0,
+      }));
+    }
+
+
+    const sortedCands = getSortedCands();
+    const activeStates = isGeneral ? campaignTrail_temp.states_json : states;
+    const someStatesHaveEVs = activeStates.some((f) => f.fields.electoral_votes > 0);
+    const stateMap = mapPkToFields(activeStates);
+
+
+    // reset simulation vars
+    activeStateAbbr = null;
+    isPaused = false;
+    tickRate = 300;
+    currentTickState = {};
+    stateBiases = {};
+    stateNextUpdate = {};
+
+
+    // mirages!
+    // for every state, we decide *how* it reports (e.g. urban dump, rural mirage, steady)
+    activeStates.forEach(s => {
+      const resData = campaignTrail_temp.final_state_results.find(r => r.state === s.pk);
+      if (!resData) return;
+
+
+      // find actual winner and runner up
+      let sortedRes = [...resData.result].filter(r => r.votes > 0).sort((a, b) => b.votes - a.votes);
+      let winner = sortedRes.length > 0 ? sortedRes[0].candidate : null;
+      let runnerUp = sortedRes.length > 1 ? sortedRes[1].candidate : winner;
+
+
+      // randomly pick a scenario
+      let rand = Math.random();
+      let biasCand = winner;
+      let strength = 0;
+
+
+      if (rand < 0.35) {
+        // mirage (loser leads early)
+        biasCand = runnerUp;
+        strength = 0.15 + (Math.random() * 0.25);
+      } else if (rand < 0.65) {
+        // dominance (winner leads even more early)
+        biasCand = winner;
+        strength = 0.10 + (Math.random() * 0.15);
+      } else {
+        // balanced (roughly accurate from start)
+        strength = 0.02;
+      }
+
+
+      stateBiases[s.pk] = {
+        biasCandidate: biasCand,
+        biasStrength: strength,
+        // random reporting curve speed (0.8 = fast start, 1.2 = slow start)
+        reportingSpeed: 0.8 + (Math.random() * 0.4),
+        lastDisplayedProgress: 0,
+        stagnationTicks: 0,
+        // jitter the call time by +/- 15 minutes so it's not totally predictable
+        callTimeJitter: Math.floor(Math.random() * 30) - 15
+      };
+    });
+
+
+    const s = PROPS.ELECTIONS.get(String(campaignTrail_temp.election_id));
+    const winningEV = s.winning_electoral_vote_number;
+    const evsToWin = `${someStatesHaveEVs ? `</br>${formatNumbers(winningEV)} to win` : ""}`;
+    const footerText = isGeneral ? 'Final results' : 'Back to questions';
+
+
+    // remove old windows
+    $("#election_night_overlay, #election_night_window").remove();
+
+
+    // build HTML
+    $("#game_window").html(`
+    <div class="game_header">${window.corrr}</div>
+    <div id="main_content_area">
+      <div id="map_container"></div>
+      <div id="menu_container">
+        <div id="overall_result_container">
+          <div id="overall_result">
+            <h3>${isGeneral ? 'ELECTORAL VOTES' : 'DELEGATES'}</h3>
+            <ul id="top_bar_list">
+            </ul>
+            <p id="progress_text">
+              <span id="sim_clock" style="display: inline; font-weight:bold; color:#555;">--</span><br/>
+              0% reporting
+              ${evsToWin}
+            </p>
+          </div>
+        </div>
+        <div id="state_result_container">
+          <div id="state_result">
+            <h3>STATE RESULTS</h3>
+            <p id="state_hover_info">Hover or click a state to view live returns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map_footer">
+       <div style="display:flex; align-items:center; justify-content:center; gap: 15px; margin-bottom: 8px; padding-top: 5px; border-top: 1px solid #ccc;">
+            <button id="pause_play_btn" style="width: 80px; font-weight:bold;">PAUSE</button>
+
+
+            <label style="font-size: 12px; font-weight:bold;">Speed:</label>
+            <select id="speed_selector">
+                <option value="600">Very Slow</option>
+                <option value="400">Slow</option>
+                <option value="300" selected>Default</option>
+                <option value="200">Vanilla</option>
+                <option value="150">Fast</option>
+                <option value="100">Very Fast</option>
+                <option value="0">Instant</option>
+            </select>
+      <button id="final_result_button">${footerText}</button>
+       </div>
+    </div>
+
+
+    <div class="overlay" id="election_night_overlay"></div>
+    <div class="overlay_window" id="election_night_window">
+        <div class="overlay_window_content" id="election_night_content">
+          <h3>Advisor Feedback</h3>
+          <img src="${s.advisor_url}" width="208" height="128"/>
+          <p>${isGeneral ? campaignTrail_temp.ElectionPopup : 'One of many election nights has arrived. Winning the delegates in these races will be vital to your primary victory.'}</p>
+        </div>
+      <div class="overlay_buttons" id="election_night_buttons">
+        <button id="ok_button">OK</button><br>
+      </div>
+    </div>
+  `);
+
+
+    // map config
+    const initialStyles = {};
+    activeStates.forEach(st => {
+      initialStyles[st.fields.abbr] = {
+        fill: globalParam.default_map_color_hex,
+        "fill-opacity": campaignTrail_temp.stateOpacity
+      };
+    });
+
+
+    const hoverHandler = (e, data) => {
+      activeStateAbbr = data.name;
+      updateStateSidebar(activeStateAbbr);
+    };
+
+
+    $("#map_container").usmap({
+      stateStyles: { fill: "transparent" },
+      stateHoverStyles: { fill: "transparent" },
+      stateSpecificStyles: initialStyles,
+      stateSpecificHoverStyles: initialStyles,
+      click: hoverHandler,
+      mouseover: hoverHandler
+    });
+
+
+    // pre-calc data
+    campaignTrail_temp.final_state_results.forEach((f) => {
+      const stateObj = stateMap.get(String(f.state));
+      const biasData = stateBiases[f.state];
+      let rawCallTime = marginTime(f.result, stateObj.poll_closing_time);
+      f.result_time = Math.max(stateObj.poll_closing_time + 1, rawCallTime + (biasData ? biasData.callTimeJitter : 0));
+      f.total_votes_final = f.result.reduce((a, b) => a + b.votes, 0);
+
+
+      let topV = -1;
+      let win = null;
+      f.result.forEach(r => { if (r.votes > topV) { topV = r.votes; win = r.candidate; } });
+      f.final_winner = win;
+    });
+
+
+    // interaction handlers
+    $("#ok_button").click(() => {
+      $("#election_night_overlay, #election_night_window").remove();
+      // initialize clock view on start
+      $("#sim_clock").text(formatClock(time));
+      window.results_timeout = setTimeout(loop, 1000);
+    });
+
+
+    $("#pause_play_btn").click(function () {
+      isPaused = !isPaused;
+      $(this).text(isPaused ? "PLAY" : "PAUSE");
+      if (!isPaused) loop();
+    });
+
+
+    $("#speed_selector").change(function () {
+      tickRate = parseInt($(this).val());
+      if (tickRate === 0 && !isPaused) {
+        time = 10000;
+      }
+    });
+
+
+    $("#final_result_button").click(() => {
+      clearTimeout(window.results_timeout);
+      $("#map_footer").html("<i>Processing results...</i>");
+      if (isGeneral) {
+        handleFinalResults(10000);
+        m();
+      } else {
+        campaignTrail_temp.question_number++;
+        nextQuestion();
+      }
+    });
+
+
+    // formats the in-game 'time' integer into a readable clock
+    function formatClock(t) {
+        // default: time=0 is 7:00 PM (19:00). this can be overridden
+        let baseHour = window.campaignTrail_temp?.en_base_hour ?? 19;
+        let currentMinutes = (baseHour * 60) + t;
+
+
+        while(currentMinutes < 0) currentMinutes += 24 * 60;
+
+
+        let h = Math.floor(currentMinutes / 60);
+        let m = currentMinutes % 60;
+
+
+        let ampm = h % 24 >= 12 ? "PM" : "AM";
+        let displayH = h % 12 || 12;
+        let displayM = m.toString().padStart(2, '0');
+
+
+        return `${displayH}:${displayM} ${ampm} EST`;
+    }
+
+
+    // calc snapshot for a state
+    function calculateStateSnapshot(resData, currTime, closeTime, callTime, prevSnapshot) {
+      if (currTime < closeTime) {
+        return {
+          pk: resData.state,
+          isReporting: false,
+          isCalled: false,
+          justCalled: false,
+          flashTicks: 0,
+          pctReporting: 0,
+          votes: resData.result.map(r => ({ ...r, sim_votes: 0, final_votes: r.votes })),
+          leader: null,
+          marginPercent: 0
+        };
+      }
+
+
+      const isCalled = (currTime >= callTime);
+      let wasCalledLastTick = prevSnapshot ? prevSnapshot.isCalled : false;
+      let justCalled = isCalled && !wasCalledLastTick;
+
+
+      // give called states a brief flash time to attract the eye (about 1 second at default speed)
+      let flashTicks = prevSnapshot ? prevSnapshot.flashTicks : 0;
+      if (justCalled) flashTicks = 4;
+      if (flashTicks > 0) flashTicks--;
+
+
+      // reporting %
+      // we use a curve so it starts slow and speeds up (or vice versa based on random speed)
+      let rawProgress = (currTime - closeTime) / (callTime - closeTime);
+      if (isCalled) rawProgress = 1.0;
+
+
+      const biasData = stateBiases[resData.state];
+      // reporting speed variance
+      let adjustedProgress = Math.pow(rawProgress, biasData.reportingSpeed);
+      if (adjustedProgress > 1) adjustedProgress = 1;
+      if (adjustedProgress < 0) adjustedProgress = 0;
+
+
+      // vote dumping logic
+      // states occasionally stall and don't update their reported progress, then dump a batch
+      if (!isCalled) {
+        if (biasData.stagnationTicks > 0) {
+            biasData.stagnationTicks--;
+            adjustedProgress = biasData.lastDisplayedProgress;
+        } else if (Math.random() < 0.15 && adjustedProgress < 0.95) {
+            // chance to stall for 3-10 ticks (since ticks are fast)
+            biasData.stagnationTicks = Math.floor(Math.random() * 8) + 3;
+            adjustedProgress = biasData.lastDisplayedProgress;
+        } else {
+            biasData.lastDisplayedProgress = adjustedProgress;
+        }
+      } else {
+        biasData.lastDisplayedProgress = 1.0;
+      }
+
+
+      // total votes counted so far
+      const totalCounted = Math.floor(resData.total_votes_final * adjustedProgress);
+
+
+      // vote shares with bias
+      // if progress is low, bias strength is high. as progress -> 1, bias -> 0
+      let decay = Math.pow(1 - adjustedProgress, 2);
+
+
+      let simResults = resData.result.map(r => {
+        // get actual final percentage
+        let finalShare = resData.total_votes_final > 0 ? r.votes / resData.total_votes_final : 0;
+        if (isNaN(finalShare)) finalShare = 0;
+
+
+        let currentShare = 0;
+
+
+        // only calculate shares for candidates active in this state
+        if (r.votes > 0) {
+          currentShare = finalShare;
+          if (!isCalled) {
+            // apply mirage
+            if (r.candidate === biasData.biasCandidate) {
+              currentShare += (biasData.biasStrength * decay);
+            }
+
+
+            // random noise (high noise early, low noise late)
+            let noise = (Math.random() - 0.5) * 0.05 * decay;
+            currentShare += noise;
+
+
+            if (currentShare < 0) currentShare = 0;
+          }
+        }
+
+
+        return {
+          candidate: r.candidate,
+          share: currentShare,
+          final_votes: r.votes
+        };
+      });
+
+
+      // normalize shares
+      let totalShare = simResults.reduce((a, b) => a + b.share, 0);
+      if (totalShare === 0) totalShare = 1;
+
+
+      let finalSimulatedVotes = simResults.map(r => {
+        let normalizedShare = r.share / totalShare;
+        let votes = Math.floor(totalCounted * normalizedShare);
+
+
+        // cap at final votes so a small candidate can't exceed their total
+        if (votes > r.final_votes) {
+          votes = r.final_votes;
+        }
+
+
+        // ensure votes don't go down from previous tick
+        if (prevSnapshot) {
+          let prevData = prevSnapshot.votes.find(p => p.candidate === r.candidate);
+          if (prevData && votes < prevData.sim_votes) {
+            votes = prevData.sim_votes;
+          }
+        }
+
+
+        return {
+          candidate: r.candidate,
+          sim_votes: votes,
+          percent: (normalizedShare * 100),
+          final_votes: r.final_votes
+        };
+      });
+
+
+      // find leader
+      let activeSimulatedVotes = finalSimulatedVotes.filter(v => v.final_votes > 0);
+      let sortedByVotes = [...activeSimulatedVotes].sort((a,b) => b.sim_votes - a.sim_votes);
+      let leader = (sortedByVotes.length > 0 && sortedByVotes[0].sim_votes > 0) ? sortedByVotes[0].candidate : null;
+
+
+      // calculate active margin for map shading
+      let marginPct = 0;
+      if (sortedByVotes.length >= 2 && totalCounted > 0) {
+          marginPct = (sortedByVotes[0].sim_votes - sortedByVotes[1].sim_votes) / totalCounted;
+      }
+
+
+      return {
+        pk: resData.state,
+        isReporting: true,
+        isCalled: isCalled,
+        justCalled: justCalled,
+        flashTicks: flashTicks,
+        pctReporting: Math.floor(adjustedProgress * 100),
+        votes: finalSimulatedVotes,
+        leader: leader,
+        marginPercent: marginPct,
+        final_winner: resData.final_winner
+      };
+    }
+
+
+    // sidebar update
+    function updateStateSidebar(abbr) {
+      if (!abbr) return;
+      const stateObj = activeStates.find(s => s.fields.abbr === abbr);
+      if (!stateObj) return;
+
+
+      // read from snapshot
+      const snapshot = currentTickState[stateObj.pk];
+      if (!snapshot) return;
+
+
+      let content = `<h3>${stateObj.fields.name}</h3>`;
+
+
+      if (!snapshot.isReporting) {
+        const closingTime = stateObj.fields.poll_closing_time;
+        content += `<p>Polls close in ${Math.max(0, closingTime - time)} minutes.</p>`;
+      } else {
+        // Filter out candidates who aren't running in this state
+        let activeVotes = snapshot.votes.filter(v => v.final_votes > 0);
+        let sortedVotes = [...activeVotes].sort((a, b) => b.sim_votes - a.sim_votes);
+        let statusMsg = `<p>${snapshot.pctReporting}% reporting</p>`;
+
+
+        // too close to call status
+        if (snapshot.isCalled) {
+          const w = sortedCands.find(c => c.candidate === snapshot.final_winner);
+          statusMsg = `<p style="font-weight:bold;">Projected winner: ${w ? w.last_name : "Unknown"} <span style='color:green'>&#10003;</span></p>`;
+        } else if (snapshot.pctReporting > 85 && snapshot.marginPercent < 0.02) {
+          statusMsg += `<p style="color:#d9534f; font-weight:bold; font-size: 0.9em;">TOO CLOSE TO CALL</p>`;
+        } else {
+          statusMsg += `<p>Counting...</p>`;
+        }
+        content += statusMsg;
+
+
+        content += `<table style="width:100%; font-size:0.9em; margin-top:5px;">`;
+
+
+        // sort by current simulated votes
+        sortedVotes.forEach(row => {
+          const cand = sortedCands.find(c => c.candidate === row.candidate);
+          const col = cand ? cand.color : "#ccc";
+          const name = cand ? cand.last_name : "Other";
+          const p = row.percent.toFixed(1);
+
+
+          content += `
+                    <tr>
+                        <td style="width:10px;"><div style="width:10px; height:10px; background-color:${col}; border-radius:30%;"></div></td>
+                        <td>${name}</td>
+                        <td style="text-align:right;">${formatNumbers(row.sim_votes)}</td>
+                        <td style="text-align:right; font-weight:bold;">${p}%</td>
+                    </tr>
+                 `;
+        });
+        content += `</table>`;
+
+
+        // raw margin tracker
+        if (sortedVotes.length > 1 && sortedVotes[0].sim_votes > 0) {
+            let marginVotes = sortedVotes[0].sim_votes - sortedVotes[1].sim_votes;
+            content += `<p style="font-size: 0.8em; font-style: italic; margin-top: 6px;">Lead: +${formatNumbers(marginVotes)} votes</p>`;
+        }
+
+
+        content += `<p style="margin-top:5px; font-size:0.8em; border-top:1px solid #ddd; padding-top:2px;">${stateObj.fields.electoral_votes} Electoral Votes</p>`;
+      }
+      $("#state_result").html(content);
+    }
+
+
+    // ability to set specific start times (defaults to -60, or 6:00 PM EST)
+    let enStartTime = window.campaignTrail_temp?.en_start_time ?? -60;
+    let time = enStartTime;
+    let winnerDeclared = false;
+
+
+    // main loop
+    function loop() {
+      if (isPaused) return;
+      if (tickRate === 0) time = 10000;
+
+
+      let currentEVs = {};
+      let currentPVs = {};
+      let totalNationwide = 0;
+      sortedCands.forEach(c => { currentEVs[c.candidate] = 0; currentPVs[c.candidate] = 0; });
+
+
+      let mapStyles = {};
+      let statesCalled = 0;
+
+
+      // calculate snapshot for all states
+      campaignTrail_temp.final_state_results.forEach(st => {
+        const stateObj = stateMap.get(String(st.state));
+        const abbr = stateObj.abbr;
+
+
+        const snapshot = calculateStateSnapshot(st, time, stateObj.poll_closing_time, st.result_time, currentTickState[st.state]);
+        currentTickState[st.state] = snapshot;
+
+
+        // aggregates
+        if (snapshot.isReporting) {
+          snapshot.votes.forEach(r => {
+            if (currentPVs[r.candidate] !== undefined) currentPVs[r.candidate] += r.sim_votes;
+            totalNationwide += r.sim_votes;
+          });
+
+
+          // map coloring
+          if (snapshot.isCalled) {
+            statesCalled++;
+            if (currentEVs[st.final_winner] !== undefined) currentEVs[st.final_winner] += stateObj.electoral_votes;
+
+
+            const candObj = PROPS.CANDIDATES.get(String(st.final_winner));
+            const c = candObj ? candObj.color_hex : "#ccc";
+
+
+            // flash state brightly if it was just called
+            //if (snapshot.flashTicks > 0) {
+            //    mapStyles[abbr] = { fill: "#ffffff", "fill-opacity": 0.8 };
+            //} else {
+            mapStyles[abbr] = { fill: c, "fill-opacity": campaignTrail_temp.stateOpacity };
+            //}
+
+
+          } else {
+            if (snapshot.leader) {
+              const candObj = PROPS.CANDIDATES.get(String(snapshot.leader));
+              const c = candObj ? candObj.color_hex : "#ccc";
+
+
+              // dynamic opacity scaling based on margin
+              let dynamicOpacity = Math.min(campaignTrail_temp.stateOpacity, 0.3 + (snapshot.marginPercent * 4.5));
+              mapStyles[abbr] = { fill: c, "fill-opacity": dynamicOpacity };
+            } else {
+              mapStyles[abbr] = { fill: globalParam.default_map_color_hex, "fill-opacity": campaignTrail_temp.stateOpacity };
+            }
+          }
+        } else {
+          mapStyles[abbr] = { fill: globalParam.default_map_color_hex, "fill-opacity": campaignTrail_temp.stateOpacity };
+        }
+      });
+
+
+      // top bar
+      const topBarHTML = sortedCands.map(f => {
+        let ev = currentEVs[f.candidate];
+        let pvPct = totalNationwide > 0 ? ((currentPVs[f.candidate] / totalNationwide) * 100).toFixed(1) : "0.0";
+        return `
+              <li>
+                <span style="color:${f.color}; background-color:${f.color}">--</span>
+                ${f.last_name}: ${someStatesHaveEVs ? `${ev} / ` : ""}${pvPct}%
+              </li>
+            `;
+      }).join("");
+      $("#top_bar_list").html(topBarHTML);
+
+
+      // map
+      updateMapViews(mapStyles);
+
+
+      // sidebar
+      if (activeStateAbbr) updateStateSidebar(activeStateAbbr);
+
+
+      // progress
+      let maxProgressTime = 560;
+      let prog = Math.max(0, Math.min(100, Math.floor(((time - enStartTime) / maxProgressTime) * 100)));
+      if (statesCalled === activeStates.length) prog = 100;
+
+
+      $("#progress_text").html(`
+          <span id="sim_clock" style="display: inline; font-weight:bold; color:#555;">${formatClock(time)}</span><br/>
+          ${prog}% reporting ${evsToWin}
+      `);
+
+
+      // winner check
+      if (!winnerDeclared && isGeneral) {
+        let winnerId = null;
+        for (let cid in currentEVs) {
+          if (currentEVs[cid] >= winningEV) winnerId = cid;
+        }
+        if (winnerId) {
+          winnerDeclared = true;
+          isPaused = true;
+          $("#pause_play_btn").text("PLAY");
+
+
+          let tempRes = [];
+          for (let cid in currentEVs) tempRes.push({ candidate: Number(cid), electoral_votes: currentEVs[cid] });
+          tempRes.sort((a, b) => b.electoral_votes - a.electoral_votes);
+          showOutcomePopup(campaignTrail_temp.election_id, tempRes);
+
+
+          $("#ok_button").off('click').click(() => {
+            $("#election_night_overlay, #election_night_window").remove();
+            isPaused = false;
+            $("#pause_play_btn").text("PAUSE");
+            loop();
+          });
+          return;
+        }
+      }
+
+
+      // advance
+      if (statesCalled < activeStates.length && time < 10000) {
+
+
+        let currentTickRate = tickRate;
+        // top of the hour linger. if time lands exactly on an hour mark, slow down
+    // the tick rate heavily to process the flood of poll closings
+        if (time >= 0 && time % 60 === 0 && tickRate > 0) {
+            currentTickRate = tickRate * 5;
+        }
+
+
+        window.results_timeout = setTimeout(() => {
+          time += timeIncrement;
+          loop();
+        }, currentTickRate);
+      } else {
+        $("#progress_text").html(`
+          <span id="sim_clock" style="display: inline; font-weight:bold; color:#555;">${formatClock(time)}</span><br/>
+          100% reporting ${evsToWin}
+        `);
+        handleFinalResults(10000);
+      }
+    }
+
+
+    // map update helper
+    function updateMapViews(styles) {
+      const $map = $("#map_container");
+      const plugin = $map.data("plugin-usmap");
+      if (!plugin) return;
+
+
+      plugin.options.stateSpecificStyles = styles;
+      plugin.options.stateSpecificHoverStyles = styles;
+
+
+      for (let abbr in styles) {
+        if (plugin.stateShapes[abbr]) {
+          plugin.stateShapes[abbr].attr(styles[abbr]);
+        }
+      }
+    }
+  };
+
+
+  function marginTime(results, time) {
+    results = [...results].sort((a, b) => b.votes - a.votes);
+    if (results.length < 2) return time;
+    const margin = (results[0].votes - results[1].votes) / (results[0].votes + results[1].votes);
+    if (margin < 0.0025) return 480;
+    if (margin < 0.005) return 460;
+    if (margin < 0.01) return time > 200 ? 440 : time + 240;
+    if (margin < 0.015) return time > 260 ? 440 : time + 180;
+    if (margin < 0.03) return time > 270 ? 420 : time + 150;
+    if (margin < 0.045) return time > 300 ? 420 : time + 120;
+    if (margin < 0.066) return time > 330 ? 420 : time + 90;
+    if (margin < 0.085) return time > 340 ? 420 : time + 80;
+    if (margin < 0.1) return time > 350 ? 420 : time + 70;
+    if (margin < 0.12) return time > 360 ? 420 : time + 60;
+    if (margin < 0.14) return time > 370 ? 420 : time + 50;
+    if (margin < 0.16) return time > 380 ? 420 : time + 40;
+    if (margin < 0.18) return time > 390 ? 420 : time + 30;
+    if (margin < 0.2) return time > 400 ? 420 : time + 20;
+    if (margin < 0.25) return time > 410 ? 420 : time + 10;
+    return time;
+  }
+})();
+campaignTrail_temp.achievements = {
+  "The Count of Us All":{
+    "image":"https://imgs.search.brave.com/0GjV5av2Wd1BkEBaKQrrbP05LZsUmYpFR0_uc4Egm-s/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTE5/MzYwNzYyOS9waG90/by91eGJyaWRnZS1l/bmdsYW5kLWluZGVw/ZW5kZW50LWNhbmRp/ZGF0ZS1jb3VudC1i/aW5mYWNlLWpva2Vz/LXdpdGgtbWVtYmVy/cy1vZi10aGUtbWVk/aWEtYXMtdGhlLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1r/cWFpZ0plbUhfSC1U/a2NZaTZESnptal9X/Sk1kRktPTVJ0bUZk/Vk85Wm5VPQ",
+    "description": "As Binface win",
+    "cannotBeCheated": true
+  }
+}
+
+
+

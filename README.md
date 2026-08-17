@@ -242,7 +242,7 @@ See example:
 ![ATW easter egg](./images/song_easteregg.png)
 
 ### Two-round system
-This is a basic implementation of a [two-round system](./codes/two-round_system.js) feature. It takes you to election night at a certain question. If you are above 50%, you win. Iif you aren't but qualify for a runoff, then it goes to a runoff (by continuing the questions), and if not, it ends the game. *Very experimental!*
+This is a basic implementation of a [two-round system](./codes/two-round_system.js) feature. It takes you to election night at a certain question. If you are above 50%, you win. If you aren't but qualify for a runoff, then it goes to a runoff (by continuing the questions), and if not, it ends the game. *Very experimental!*
 
 ### Volatility feature
 The [volatility applier](./codes/volatility_applier.js) snippet, as seen in *1992: Moonbeam*, applies volatility to global multipliers in the answer score global JSON. In other words, it randomly adjusts the values of global multipliers to introduce volatility into the scoring process, increasing the unpredictability of your answers.
@@ -479,6 +479,7 @@ These mods were either restored by a user (or group of users), formally released
 | **1988b** | The original viviankesandre mod, which later got a spiritual successor, [The Rainbow Trail](https://campaigntrailshowcase.com/campaign-trail/?modName=1988RB). Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=1988b) |
 | **1992Redux** | Martha's redux of the 1992 mod. Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=1992Redux) |
 | **2024 Washington Governor** | Also called *Break the Streak* and made by ec2003, it was built on top of a "House of Cards 2016 mod" build by an unspecified AI. Only Reichert side is available. | [Code 1](./mods/others/2024%20-%20Washington%20Governor_init.txt) \| [Code 2](./mods/others/2024%20-%20Washington%20Governor_ReichertState%20GOP.txt) |
+| **2026 Clacton** | Released on the subreddit by Your_Local_Historian. | [Code 1](./mods/others/Clacton%20By-election_init.txt) \| [Code 2](./mods/others/Clacton%20By-election_BinfaceBinface.txt) |
 | **The Animal Trail** | Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=2024NAT) |
 | **The Apple Trail** | A demo, not in any of the mod loaders. Lets you play as Steve Jobs throughout the history of Apple. | [Code 1](./mods/others/1976_init.txt) \| [Code 2](./mods/others/1976_JobsApple_Computer_Company.txt) |
 

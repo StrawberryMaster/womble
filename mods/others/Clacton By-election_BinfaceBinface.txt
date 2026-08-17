@@ -1,0 +1,2787 @@
+
+// Generated mapping code
+(function(e,t,n,r,i){function s(e,t,n,r){r=r instanceof Array?r:[];var i={};for(var s=0;s<r.length;s++){i[r[s]]=true}var o=function(e){this.element=e};o.prototype=n;e.fn[t]=function(){var n=arguments;var r=this;this.each(function(){var s=e(this);var u=s.data("plugin-"+t);if(!u){u=new o(s);s.data("plugin-"+t,u);if(u._init){u._init.apply(u,n)}}else if(typeof n[0]=="string"&&n[0].charAt(0)!="_"&&typeof u[n[0]]=="function"){var a=Array.prototype.slice.call(n,1);var f=u[n[0]].apply(u,a);if(n[0]in i){r=f}}});return r}}var o=370,u=215,a=10;var f={stateStyles:{fill:"#333",stroke:"#666","stroke-width":1,"stroke-linejoin":"round",scale:[1,1]},stateHoverStyles:{fill:"#33c",stroke:"#000",scale:[1.1,1.1]},stateSpecificStyles:{},stateSpecificHoverStyles:{},click:null,mouseover:null,mouseout:null,clickState:{},mouseoverState:{},mouseoutState:{},showLabels:true,labelWidth:20,labelHeight:15,labelGap:6,labelRadius:3,labelBackingStyles:{fill:"#333",stroke:"#666","stroke-width":1,"stroke-linejoin":"round",scale:[1,1]},labelBackingHoverStyles:{fill:"#33c",stroke:"#000"},stateSpecificLabelBackingStyles:{},stateSpecificLabelBackingHoverStyles:{},labelTextStyles:{fill:"#fff",stroke:"none","font-weight":300,"stroke-width":0,"font-size":"10px"},labelTextHoverStyles:{},stateSpecificLabelTextStyles:{},stateSpecificLabelTextHoverStyles:{}};var l={_init:function(t){this.options={};e.extend(this.options,f,t);var n=this.element.width();var i=this.element.height();var s=this.element.width()/o;var l=this.element.height()/u;this.scale=Math.min(s,l);this.labelAreaWidth=Math.ceil(a/this.scale);var c=o+Math.max(0,this.labelAreaWidth-a);this.paper=r(this.element.get(0),c,u);this.paper.setSize(n,i);this.paper.setViewBox(1388, 1464, 463.15411292420487, 463.15411292420487, false);this.stateHitAreas={};this.stateShapes={};this.topShape=null;this._initCreateStates();this.labelShapes={};this.labelTexts={};this.labelHitAreas={};if(this.options.showLabels){this._initCreateLabels()}},_initCreateStates:function(){var t=this.options.stateStyles;var n=this.paper;var r={"CLA":"M 1741.613281 1562.199219 C 1753.648438 1568.449219 1761.613281 1569.238281 1757.261719 1584.574219 L 1756.8125 1586.101562 L 1758.675781 1588.050781 C 1762.5625 1588.625 1761.125 1588.636719 1765.3125 1585.925781 C 1773.273438 1589.414062 1785.875 1593.414062 1794.449219 1590.210938 C 1798.050781 1587.324219 1798.125 1585.398438 1799.539062 1580.875 L 1800.039062 1579.238281 C 1803.773438 1575.898438 1812.925781 1575.398438 1817.488281 1574.460938 C 1824.574219 1573 1827.148438 1588.636719 1831.226562 1591.613281 C 1837.074219 1595.886719 1841.476562 1596.101562 1847.886719 1601.851562 C 1849.976562 1607.988281 1846.925781 1606.75 1846.011719 1615.074219 C 1852.113281 1624.960938 1873.773438 1634.261719 1882.398438 1643.363281 C 1885.476562 1656.699219 1876.648438 1664.238281 1870.925781 1674.226562 C 1845.449219 1718.675781 1816.425781 1746.238281 1771.0625 1769.824219 C 1759.011719 1776.085938 1754.050781 1787.9375 1735.9375 1794.226562 C 1721.949219 1800.375 1679.460938 1804.449219 1663.574219 1804.386719 C 1650.175781 1781.824219 1675.5 1793.886719 1646.3125 1764.988281 C 1654.601562 1761.574219 1680.601562 1751.210938 1680.210938 1740.726562 C 1679.539062 1722.273438 1669.5 1698.726562 1658.914062 1683.8125 C 1651.675781 1673.601562 1621.5625 1685.648438 1628.949219 1659.949219 C 1636.125 1651.125 1647.886719 1657.476562 1659.710938 1652.789062 C 1674.164062 1647.050781 1668.664062 1630.601562 1674.238281 1616.886719 C 1680.488281 1616.210938 1679.585938 1614.851562 1680.75 1609.511719 C 1686.925781 1607.648438 1690.363281 1621.125 1699.523438 1616.164062 L 1700.101562 1613.273438 C 1698.664062 1610.648438 1697.898438 1609.863281 1697.75 1606.886719 C 1700.988281 1604.550781 1712.800781 1596.199219 1714.4375 1593.9375 C 1726.238281 1577.625 1724.050781 1573.625 1741.613281 1562.199219 Z M 1741.613281 1562.199219 "};var tr={};var i={};for(var s in r){i={};if(this.options.stateSpecificStyles[s]){e.extend(i,t,this.options.stateSpecificStyles[s])}else{i=t}this.stateShapes[s]=n.path(r[s]).attr(i);if(tr[s]){if(this.stateShapes[s].node&&this.stateShapes[s].node.setAttribute){this.stateShapes[s].node.setAttribute("transform",tr[s])}else{this.stateShapes[s].transform(tr[s])}}this.topShape=this.stateShapes[s];this.stateHitAreas[s]=n.path(r[s]).attr({fill:"#000","stroke-width":0,opacity:0,cursor:"pointer"});if(tr[s]){if(this.stateHitAreas[s].node&&this.stateHitAreas[s].node.setAttribute){this.stateHitAreas[s].node.setAttribute("transform",tr[s])}else{this.stateHitAreas[s].transform(tr[s])}}this.stateHitAreas[s].node.dataState=s}this._onClickProxy=e.proxy(this,"_onClick");this._onMouseOverProxy=e.proxy(this,"_onMouseOver"),this._onMouseOutProxy=e.proxy(this,"_onMouseOut");for(var s in this.stateHitAreas){this.stateHitAreas[s].toFront();e(this.stateHitAreas[s].node).bind("mouseout",this._onMouseOutProxy);e(this.stateHitAreas[s].node).bind("click",this._onClickProxy);e(this.stateHitAreas[s].node).bind("mouseover",this._onMouseOverProxy)}},_initCreateLabels:function(){var t=this.paper;var n=[];var r=860;var i=220;var s=this.options.labelWidth;var o=this.options.labelHeight;var u=this.options.labelGap;var a=this.options.labelRadius;var f=s/this.scale;var l=o/this.scale;var c=(s+u)/this.scale;var h=(o+u)/this.scale*.5;var p=a/this.scale;var d=this.options.labelBackingStyles;var v=this.options.labelTextStyles;var m={};for(var g=0,y,b,w;g<n.length;++g){w=n[g];y=(g+1)%2*c+r;b=g*h+i,m={};if(this.options.stateSpecificLabelBackingStyles[w]){e.extend(m,d,this.options.stateSpecificLabelBackingStyles[w])}else{m=d}this.labelShapes[w]=t.rect(y,b,f,l,p).attr(m);m={};if(this.options.stateSpecificLabelTextStyles[w]){e.extend(m,v,this.options.stateSpecificLabelTextStyles[w])}else{e.extend(m,v)}if(m["font-size"]){m["font-size"]=parseInt(m["font-size"])/this.scale+"px"}this.labelTexts[w]=t.text(y+f/2,b+l/2,w).attr(m);this.labelHitAreas[w]=t.rect(y,b,f,l,p).attr({fill:"#000","stroke-width":0,opacity:0,cursor:"pointer"});this.labelHitAreas[w].node.dataState=w}for(var w in this.labelHitAreas){this.labelHitAreas[w].toFront();e(this.labelHitAreas[w].node).bind("mouseout",this._onMouseOutProxy);e(this.labelHitAreas[w].node).bind("click",this._onClickProxy);e(this.labelHitAreas[w].node).bind("mouseover",this._onMouseOverProxy)}},_getStateFromEvent:function(e){var t=e.target&&e.target.dataState||e.dataState;return this._getState(t)},_getState:function(e){var t=this.stateShapes[e];var n=this.stateHitAreas[e];var r=this.labelShapes[e];var i=this.labelTexts[e];var s=this.labelHitAreas[e];return{shape:t,hitArea:n,name:e,labelBacking:r,labelText:i,labelHitArea:s}},_onMouseOut:function(e){var t=this._getStateFromEvent(e);if(!t.hitArea){return}return!this._triggerEvent("mouseout",e,t)},_defaultMouseOutAction:function(t){var n={};if(this.options.stateSpecificStyles[t.name]){e.extend(n,this.options.stateStyles,this.options.stateSpecificStyles[t.name])}else{n=this.options.stateStyles}t.shape.animate(n,this.options.stateHoverAnimation);if(t.labelBacking){var n={};if(this.options.stateSpecificLabelBackingStyles[t.name]){e.extend(n,this.options.labelBackingStyles,this.options.stateSpecificLabelBackingStyles[t.name])}else{n=this.options.labelBackingStyles}t.labelBacking.animate(n,this.options.stateHoverAnimation)}},_onClick:function(e){var t=this._getStateFromEvent(e);if(!t.hitArea){return}return!this._triggerEvent("click",e,t)},_onMouseOver:function(e){var t=this._getStateFromEvent(e);if(!t.hitArea){return}return!this._triggerEvent("mouseover",e,t)},_defaultMouseOverAction:function(t){this.bringShapeToFront(t.shape);this.paper.safari();var n={};if(this.options.stateSpecificHoverStyles[t.name]){e.extend(n,this.options.stateHoverStyles,this.options.stateSpecificHoverStyles[t.name])}else{n=this.options.stateHoverStyles}t.shape.animate(n,this.options.stateHoverAnimation);if(t.labelBacking){var n={};if(this.options.stateSpecificLabelBackingHoverStyles[t.name]){e.extend(n,this.options.labelBackingHoverStyles,this.options.stateSpecificLabelBackingHoverStyles[t.name])}else{n=this.options.labelBackingHoverStyles}t.labelBacking.animate(n,this.options.stateHoverAnimation)}},_triggerEvent:function(t,n,r){var i=r.name;var s=false;var o=e.Event("usmap"+t+i);o.originalEvent=n;if(this.options[t+"State"][i]){s=this.options[t+"State"][i](o,r)===false}if(o.isPropagationStopped()){this.element.trigger(o,[r]);s=s||o.isDefaultPrevented()}if(!o.isPropagationStopped()){var u=e.Event("usmap"+t);u.originalEvent=n;if(this.options[t]){s=this.options[t](u,r)===false||s}if(!u.isPropagationStopped()){this.element.trigger(u,[r]);s=s||u.isDefaultPrevented()}}if(!s){switch(t){case"mouseover":this._defaultMouseOverAction(r);break;case"mouseout":this._defaultMouseOutAction(r);break}}return!s},trigger:function(e,t,n){t=t.replace("usmap","");e=e.toUpperCase();var r=this._getState(e);this._triggerEvent(t,n,r)},bringShapeToFront:function(e){if(this.topShape){e.insertAfter(this.topShape)}this.topShape=e}};var c=[];s(e,"usmap",l,c)})(jQuery,document,window,Raphael)
+
+campaignTrail_temp.questions_json = [
+    {
+        "model": "campaign_trail.question",
+        "pk": 10919,
+        "fields": {
+            "description": "Farage is being investigated for his expenses, more specifically 5 million dollars being donated personally to him by Christopher Harborne in early 2024. This donation has been suspected of making Farage turn back on his promise of not running in 2024. Then Christopher became the biggest donor to Reform UK, a major shift from his history of personal donation to the Conservatives. Farage's polls have dropped quite a bit since this scandal started and presents an opportunity for  you to make a statement."
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 6879,
+        "fields": {
+            "description": "Time is now Count Binface. Farage has resigned his seat in Clacton and has officially forced a By-Election to try and distract from his many controversies. You just ran in Makerfield and barely made a dent however this time no one else is running. You are the last line against Reform and Farage especially. Labour, Conservatives, Liberal Democrats and Greens have rejected participating in this election which has given Farage practically a free ride back to parliament but a Recyclon never gives up. You haven't officially announced yet but you have the chance to set the mood for your campaign. What will you talk about in your speech?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10920,
+        "fields": {
+            "description": "As the major parties have decided to sit this By-Election out, you've become the only true opponent to Farage's far right experiment. You're Britain's last chance to stop him, and you are a parody candidate. This doesn't make you unpopular however, quite the opposite. You have become the media's lovechild and social media is fawning over your campaign. You need to gain votes however, how will try to gain the support of major party's voters?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10921,
+        "fields": {
+            "description": "Recently, Green party leader Zack Polanski recently attacked Farage, claiming that this election was nothing but a political stunt, many other leaders have expressed similar sentiment which is why they boycotted it. Farage responds by claiming it's an election between Him and the Establishment...despite there being no establishment. What will you say to this whole ordeal?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10922,
+        "fields": {
+            "description": "Farage called this By-Election yet doesn't seem interested in actually campaigning. You've been doing tours and interviews with the media meanwhile he is barely seen. This gives you a surprising opportunity to steal Reform voters away from him by attacking his perceived lack of interest in the region."
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10923,
+        "fields": {
+            "description": "Good news Count. Multiple \"endorsements have come your way. Why \"endorsements\"? Well, Burnham just said nice words about you and Starmer said he can't endorse you which is basically saying \"i would if i could\". This is still really good news and will help you significantly, especially in regards to being an actual candidate."
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10924,
+        "fields": {
+            "description": "Farage was campaigning a few days ago when a woman called him a Wanker while she drove past him. She crashed right after and Farage quipped \"that's what you might call instant karma\". The incident has made Farage look sharp and quotable. You are far more sharp and quotable than him, what do you say in response to this incident?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 11899,
+        "fields": {
+            "description": "Last time there was a By-Election, in Makerfield, a televised debate was held. This time it seems unlikely but you could still try to get Farage and some of the minor candidates to agree. If Farage doesn't you could try to spin it as him being scared of you but it'll probably not work. Will you try to get him to agree to a debate?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10926,
+        "fields": {
+            "description": "Your campaign is in full swing. Your media presence is undeniable but it can always be better. Many news stations have wanted to interview you ever since you announced your intention to run. You've agreed to meet with The Independent for your first interview. They record the whole event. A barrel of laughs is the perfect way to describe the whole ordeal. The first question seems to be the most important. Do you think you'll appeal to younger or older voters?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10927,
+        "fields": {
+            "description": "British politics have clearly been in a state of flux recently. From Starmer winning a supermajority to resigning in less than a year to Andy Burnham becoming Prime Minister and Reform collapsing in the polls. It's clear that nothing is certain in British politics. You, however, are certain to run in leader's seats. Will you continue this tradition and will you comment on the state of British politics?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10928,
+        "fields": {
+            "description": "The Binface manifesto has a ton of interesting policies. You've pushed them all equally but you have the opportunity to focus on one specifically. Your policies are ridiculous to the blind eye, but to those who have read your plans, they are genius. Which policy of yours will you push to the forefront?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10929,
+        "fields": {
+            "description": "Farage is an easy punching bag. He presents so many opportunities to attack him. Your campaign has mostly focused on your own policies and what you'd do in parliament. Meanwhile you've left Farage run unopposed. You need to attack him on something. There are so many things to fight him on. What will you choose?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10930,
+        "fields": {
+            "description": "Farage has been investigated for personal finances. This is actually the reason why the by-election even came to be. Your entire campaign has come to be due to this investigation and you haven't spoken much about it. You'll need to speak about it at least once and what better time would there be than now."
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10931,
+        "fields": {
+            "description": "Parliamentary rules are incredible annoying. You are probably going to have to take off the Binhead. It's the entirety of your personality. Your persona will be lost if you take off the helmet. However if you do win, you'll probably be forced to take the mask down or resign your seat. What will you do if you win?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10932,
+        "fields": {
+            "description": "It's time, the campaign is ending, Farage has decided to sit out the vote counting in Clacton because of \"security reasons\". You, with all the other candidates, actually appeared. It's time for a final small speech before the votes are counted. You can attack Farage or talk about something else. What do you do?"
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 10925,
+        "fields": {
+            "description": "Last time there was a By-Election, in Makerfield, a televised debate was held. This time it seems unlikely but you could still try to get Farage and some of the minor candidates to agree. If Farage doesn't you could try to spin it as him being scared of you but it'll probably not work. Will you try to get him to agree to a debate?"
+        }
+    }
+];
+
+campaignTrail_temp.answers_json = [
+    {
+        "model": "campaign_trail.answer",
+        "pk": 6880,
+        "fields": {
+            "question": 6879,
+            "description": "We need to emphasize our revolutionary policies such as building one affordable home. A never before seen promise. We need to show these policies off as much as possible."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 10933,
+        "fields": {
+            "question": 6879,
+            "description": "We need a simple, repetitive message that will stick with people. How about \"Vote for the bin not the rubbish\"? It might be a little aggressive but it'll resonate."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 10934,
+        "fields": {
+            "question": 6879,
+            "description": "Clacton voters, i hear your cries. Farage has failed you all in parliament but Binface will never fail any one of you. I'll make sure that in parliament we'll pass a bill that will raise tax on everyone apart from you."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 10935,
+        "fields": {
+            "question": 6879,
+            "description": "We need to get the media behind us. They dislike Farage and his style of serious politics just as we do. Our ideologies are compatible, we should go on interviews and show off our policies."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11870,
+        "fields": {
+            "question": 10919,
+            "description": "We will hold out for a second. He said he'll make an announcement soon so we'll wait and see what opportunities this presents."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11872,
+        "fields": {
+            "question": 10920,
+            "description": "We will simply focus on how serious Farage is. It's clear that he's a joke just like us but take himself too seriously."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11874,
+        "fields": {
+            "question": 10921,
+            "description": "He thinks this is him against the establishment? He's wrong. It's me against the establishment. He is now the candidate who represents classic Westminster politics."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11876,
+        "fields": {
+            "question": 10922,
+            "description": "We obviously won't win Reform voters against their leader. It would be a waste of time if we try. let's just keep making people laugh and focus on getting undecided and major party voters on our side."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11878,
+        "fields": {
+            "question": 10923,
+            "description": "We graciously accept these endorsements. Our crusade has moved from the stars, down to the United Kingdom and now, with help, it will move to Parliament."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11879,
+        "fields": {
+            "question": 10924,
+            "description": "Farage might seem sharp in the moment but I'm a lot sharper than him. Bins are better than rubbish"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11880,
+        "fields": {
+            "question": 10925,
+            "description": "We will hope that Farage agrees and for us to win the debate"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11881,
+        "fields": {
+            "question": 10926,
+            "description": "Well my manifesto is meant to be broadly appealing, I like to imagine that our support is broad and doesn't restrict itself to one age range. The best way to describe it is as a suite of policies across the ages"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11882,
+        "fields": {
+            "question": 10927,
+            "description": "We have seen major realignments in Britain and it's clear that we will be the next step in that progression. Our victory in Clacton will serve as the first step until we become the leaders of the United Kingdom."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11883,
+        "fields": {
+            "question": 10928,
+            "description": "We should focus on our tax plan. We will lower your taxes and raise everyone else's. It just makes sense to do so.  It will bring so much money to us that the debt will be completely gone"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11884,
+        "fields": {
+            "question": 10929,
+            "description": "We will attack him on his policies. He hates migrants which means he hates me. I can't let him continue to hate people like me for no reason"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11885,
+        "fields": {
+            "question": 10930,
+            "description": "Farage has taken millions from billionaires to run again and again. he would've retired in 2024 had it not been for this donation. How can we trust him if we can just pay him to do what we want?"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11886,
+        "fields": {
+            "question": 10931,
+            "description": "They are basically asking me to take my head off. It would be a decapitation, we don't live in 1800's France. I will not \"take off my head\" i will be the way i am."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11887,
+        "fields": {
+            "question": 10932,
+            "description": "I would like to thank everyone who has voted and supported me through the campaign. If i lose this by-election i will temporarily go back to Sigma-IX but i will always help those who want me."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11905,
+        "fields": {
+            "question": 10920,
+            "description": "Farage is obviously unpopular with them, so we need to play into that with our campaigning. We need to appeal to them as much as possible."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11909,
+        "fields": {
+            "question": 10920,
+            "description": "We should take this part seriously, the rest of the campaign can be jokes but if we want to win or even have a chance of it, we need to meet with politician's from every party to try and get them to support us."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11915,
+        "fields": {
+            "question": 10921,
+            "description": "This election is a farce, that's the reason we are even a viable candidate. Why he takes it seriously i don't know. I'm just going to keep doing what i do."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11920,
+        "fields": {
+            "question": 10921,
+            "description": "We don't need to respond, this is a nothingburger of a conversation. A Recyclon doesn't answer to childish bickering"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11926,
+        "fields": {
+            "question": 10922,
+            "description": "We should run an ad campaign showing all of Farage's failures and our great promises. I think the tax one will especially be accepted by the population of Clacton"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11928,
+        "fields": {
+            "question": 10922,
+            "description": "We will give a speech showing our incredible policies to a group of Reform voters. It'll be shared on our social medias to show how popular we are."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11937,
+        "fields": {
+            "question": 10924,
+            "description": "Clacton residents have made their voices heard, they also dislike Farage. Not looking at the road doesn't change that. She was distracted by the Binface poster and it's beauty."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11943,
+        "fields": {
+            "question": 10924,
+            "description": "This incident does bring laughs. I'm going to say that this reminds me of myself more than a supposed \"serious\" candidate."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11948,
+        "fields": {
+            "question": 11899,
+            "description": "It would be a waste, just keep making posts on Instagram and Tiktok especially to try shore up the young vote."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11949,
+        "fields": {
+            "question": 11899,
+            "description": "We will invite Farage to debate. If he declines we will just make posts on our Social media making him appear cowardly and bowing to Count Binface's greatness"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11950,
+        "fields": {
+            "question": 11899,
+            "description": "We will invite Farage to debate. If he declines we will just make posts on our Social media making him appear cowardly and bowing to Count Binface's greatness"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11967,
+        "fields": {
+            "question": 10926,
+            "description": "I do believe that age doesn't matter in politics. Our policies are appealing to everyone who listens to them. If you don't support my policies it just means you aren't interested in a great Clacton"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11971,
+        "fields": {
+            "question": 10926,
+            "description": "Our appeal is mostly with younglings if we are being honest. Our campaign will need to try and appeal to the older vote if we want to win however our policies do appeal to all sides if they are willing to hear me out."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11976,
+        "fields": {
+            "question": 10926,
+            "description": "We appeal mostly to young voters, it isn't a big secret. We will keep our current appeal as it is because the young are the future. Binface will live on through the years with them."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11981,
+        "fields": {
+            "question": 10927,
+            "description": "Binface is here to stay, if we perform the way we expect to it'll show that Binface is a movement that people want to see. I'll stay as long as there are criticisms and votes for us."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11983,
+        "fields": {
+            "question": 10928,
+            "description": "Our plan to nationalize Adele is actually one of the lesser appreciated parts of our manifesto. It'll bring a whole new source of revenue to the British nation."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11984,
+        "fields": {
+            "question": 10928,
+            "description": "We will highlight our policy of building at least one affordable home. A great promise that most will support."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11985,
+        "fields": {
+            "question": 10928,
+            "description": "We shouldn't focus on one policy over another. Our entire manifesto is equally important."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 11997,
+        "fields": {
+            "question": 10931,
+            "description": "If I won't be allowed to represent our constituents due to the mask I'll have to take it off. "
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 12003,
+        "fields": {
+            "question": 10929,
+            "description": "We should attack him on his personal controversies. He has been paid off by billionaires who don't care about your well being. Binface does care. and i will fight for all of you, without any money"
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 12004,
+        "fields": {
+            "question": 10929,
+            "description": "We will attack Reform UK in general. the Count Binface Party represents the people who vote for it. Reform UK are just performers who pretend to care."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 12010,
+        "fields": {
+            "question": 10932,
+            "description": "Farage has decided to sit out a tradition for no reason. That just speaks to his quality as a leader for Clacton."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 12012,
+        "fields": {
+            "question": 10932,
+            "description": "We will speak about the fate of Clacton, Farage doesn't care about you. If you choose him again you'll regret it. I've given you an out and you can choose it if you want."
+        }
+    },
+    {
+        "model": "campaign_trail.answer",
+        "pk": 12017,
+        "fields": {
+            "question": 10930,
+            "description": "This donation needs to be called what it is. A bribe. A bribe that has kept him in government for 2 more years, and presumably more. I am angered just as much as all of you."
+        }
+    }
+];
+
+campaignTrail_temp.states_json = [
+    {
+        "model": "campaign_trail.state",
+        "pk": 11851,
+        "fields": {
+            "name": "Clacton",
+            "abbr": "CLA",
+            "electoral_votes": 1,
+            "popular_votes": 35111,
+            "poll_closing_time": 120,
+            "winner_take_all_flg": 1,
+            "election": "20"
+        },
+        "d": "M 1741.613281 1562.199219 C 1753.648438 1568.449219 1761.613281 1569.238281 1757.261719 1584.574219 L 1756.8125 1586.101562 L 1758.675781 1588.050781 C 1762.5625 1588.625 1761.125 1588.636719 1765.3125 1585.925781 C 1773.273438 1589.414062 1785.875 1593.414062 1794.449219 1590.210938 C 1798.050781 1587.324219 1798.125 1585.398438 1799.539062 1580.875 L 1800.039062 1579.238281 C 1803.773438 1575.898438 1812.925781 1575.398438 1817.488281 1574.460938 C 1824.574219 1573 1827.148438 1588.636719 1831.226562 1591.613281 C 1837.074219 1595.886719 1841.476562 1596.101562 1847.886719 1601.851562 C 1849.976562 1607.988281 1846.925781 1606.75 1846.011719 1615.074219 C 1852.113281 1624.960938 1873.773438 1634.261719 1882.398438 1643.363281 C 1885.476562 1656.699219 1876.648438 1664.238281 1870.925781 1674.226562 C 1845.449219 1718.675781 1816.425781 1746.238281 1771.0625 1769.824219 C 1759.011719 1776.085938 1754.050781 1787.9375 1735.9375 1794.226562 C 1721.949219 1800.375 1679.460938 1804.449219 1663.574219 1804.386719 C 1650.175781 1781.824219 1675.5 1793.886719 1646.3125 1764.988281 C 1654.601562 1761.574219 1680.601562 1751.210938 1680.210938 1740.726562 C 1679.539062 1722.273438 1669.5 1698.726562 1658.914062 1683.8125 C 1651.675781 1673.601562 1621.5625 1685.648438 1628.949219 1659.949219 C 1636.125 1651.125 1647.886719 1657.476562 1659.710938 1652.789062 C 1674.164062 1647.050781 1668.664062 1630.601562 1674.238281 1616.886719 C 1680.488281 1616.210938 1679.585938 1614.851562 1680.75 1609.511719 C 1686.925781 1607.648438 1690.363281 1621.125 1699.523438 1616.164062 L 1700.101562 1613.273438 C 1698.664062 1610.648438 1697.898438 1609.863281 1697.75 1606.886719 C 1700.988281 1604.550781 1712.800781 1596.199219 1714.4375 1593.9375 C 1726.238281 1577.625 1724.050781 1573.625 1741.613281 1562.199219 Z M 1741.613281 1562.199219 ",
+        "transform": ""
+    }
+];
+
+campaignTrail_temp.issues_json = [
+    {
+        "model": "campaign_trail.issue",
+        "pk": 104,
+        "fields": {
+            "name": "Farage Popularity",
+            "description": "",
+            "stance_1": "Hated",
+            "stance_desc_1": "'",
+            "stance_2": "Unpopular",
+            "stance_desc_2": "'",
+            "stance_3": "dissatisfied",
+            "stance_desc_3": "'",
+            "stance_4": "Neutral",
+            "stance_desc_4": "'",
+            "stance_5": "Satisfied",
+            "stance_desc_5": "'",
+            "stance_6": "Approving",
+            "stance_desc_6": "'",
+            "stance_7": "Popular",
+            "stance_desc_7": "'",
+            "election": 20
+        }
+    },
+    {
+        "model": "campaign_trail.issue",
+        "pk": 11080,
+        "fields": {
+            "name": "Government Dissatisfaction",
+            "description": "",
+            "stance_1": "Hated",
+            "stance_desc_1": "'",
+            "stance_2": "Unpopular",
+            "stance_desc_2": "'",
+            "stance_3": "dissatisfied",
+            "stance_desc_3": "'",
+            "stance_4": "Neutral",
+            "stance_desc_4": "'",
+            "stance_5": "Satisfied",
+            "stance_desc_5": "'",
+            "stance_6": "Approving",
+            "stance_desc_6": "'",
+            "stance_7": "Popular",
+            "stance_desc_7": "'",
+            "election": 20
+        }
+    },
+    {
+        "model": "campaign_trail.issue",
+        "pk": 11085,
+        "fields": {
+            "name": "Affordability",
+            "description": "",
+            "stance_1": "3 jobs aren't enough",
+            "stance_desc_1": "'",
+            "stance_2": "Extremely expensive",
+            "stance_desc_2": "'",
+            "stance_3": "Expensive",
+            "stance_desc_3": "'",
+            "stance_4": "Normal",
+            "stance_desc_4": "'",
+            "stance_5": "Affordable",
+            "stance_desc_5": "'",
+            "stance_6": "Extremely Affordable",
+            "stance_desc_6": "'",
+            "stance_7": "Pennies are Enough",
+            "stance_desc_7": "'",
+            "election": 20
+        }
+    }
+];
+
+campaignTrail_temp.state_issue_score_json = [
+    {
+        "model": "campaign_trail.state_issue_score",
+        "pk": 11855,
+        "fields": {
+            "state": 11851,
+            "issue": 104,
+            "state_issue_score": 0.75,
+            "weight": 1.5
+        }
+    },
+    {
+        "model": "campaign_trail.state_issue_score",
+        "pk": 11856,
+        "fields": {
+            "state": 11851,
+            "issue": 11080,
+            "state_issue_score": -0.5,
+            "weight": 1.5
+        }
+    },
+    {
+        "model": "campaign_trail.state_issue_score",
+        "pk": 11857,
+        "fields": {
+            "state": 11851,
+            "issue": 11085,
+            "state_issue_score": 0.3,
+            "weight": 1.5
+        }
+    }
+];
+
+campaignTrail_temp.candidate_issue_score_json = [
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 10911,
+        "fields": {
+            "candidate": 1001,
+            "issue": 104,
+            "issue_score": 0.8
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 10914,
+        "fields": {
+            "candidate": 1003,
+            "issue": 104,
+            "issue_score": -0.75
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11081,
+        "fields": {
+            "candidate": 1001,
+            "issue": 11080,
+            "issue_score": -0.7
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11082,
+        "fields": {
+            "candidate": 1003,
+            "issue": 11080,
+            "issue_score": -0.5
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11086,
+        "fields": {
+            "candidate": 1001,
+            "issue": 11085,
+            "issue_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11087,
+        "fields": {
+            "candidate": 1003,
+            "issue": 11085,
+            "issue_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11092,
+        "fields": {
+            "candidate": 1005,
+            "issue": 104,
+            "issue_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11093,
+        "fields": {
+            "candidate": 1005,
+            "issue": 11080,
+            "issue_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11094,
+        "fields": {
+            "candidate": 1005,
+            "issue": 11085,
+            "issue_score": 0
+        }
+    }
+];
+
+campaignTrail_temp.running_mate_issue_score_json = [
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 1049,
+        "fields": {
+            "candidate": 209,
+            "issue": 104,
+            "issue_score": 0.45
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11083,
+        "fields": {
+            "candidate": 209,
+            "issue": 11080,
+            "issue_score": 0.45
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_issue_score",
+        "pk": 11088,
+        "fields": {
+            "candidate": 209,
+            "issue": 11085,
+            "issue_score": 0.45
+        }
+    }
+];
+
+campaignTrail_temp.candidate_state_multiplier_json = [
+    {
+        "model": "campaign_trail.candidate_state_multiplier",
+        "pk": 11852,
+        "fields": {
+            "candidate": 1001,
+            "state": 11851,
+            "state_multiplier": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_state_multiplier",
+        "pk": 11853,
+        "fields": {
+            "candidate": 1003,
+            "state": 11851,
+            "state_multiplier": 0.15
+        }
+    },
+    {
+        "model": "campaign_trail.candidate_state_multiplier",
+        "pk": 11854,
+        "fields": {
+            "candidate": 1005,
+            "state": 11851,
+            "state_multiplier": 1.35
+        }
+    }
+];
+
+campaignTrail_temp.answer_score_global_json = [
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11859,
+        "fields": {
+            "answer": 6880,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11860,
+        "fields": {
+            "answer": 6880,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.05
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11862,
+        "fields": {
+            "answer": 10933,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.045
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11863,
+        "fields": {
+            "answer": 10933,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11865,
+        "fields": {
+            "answer": 10934,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11866,
+        "fields": {
+            "answer": 10934,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.004
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11868,
+        "fields": {
+            "answer": 10935,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.06
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11869,
+        "fields": {
+            "answer": 10935,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11871,
+        "fields": {
+            "answer": 11870,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.75
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11873,
+        "fields": {
+            "answer": 11872,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.04
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11875,
+        "fields": {
+            "answer": 11874,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.05
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11877,
+        "fields": {
+            "answer": 11876,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.05
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11888,
+        "fields": {
+            "answer": 11878,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 1
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11901,
+        "fields": {
+            "answer": 11870,
+            "candidate": 1003,
+            "affected_candidate": 1005,
+            "global_multiplier": -0.85
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11902,
+        "fields": {
+            "answer": 11870,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": 0.75
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11904,
+        "fields": {
+            "answer": 11872,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11907,
+        "fields": {
+            "answer": 11905,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11908,
+        "fields": {
+            "answer": 11905,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11911,
+        "fields": {
+            "answer": 11909,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11912,
+        "fields": {
+            "answer": 11909,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": 0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11914,
+        "fields": {
+            "answer": 11874,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11917,
+        "fields": {
+            "answer": 11915,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11918,
+        "fields": {
+            "answer": 11915,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11919,
+        "fields": {
+            "answer": 11915,
+            "candidate": 1003,
+            "affected_candidate": 1005,
+            "global_multiplier": 0.001
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11922,
+        "fields": {
+            "answer": 11920,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": 0.002
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11923,
+        "fields": {
+            "answer": 11920,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": -0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11930,
+        "fields": {
+            "answer": 11928,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": -0.015
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11931,
+        "fields": {
+            "answer": 11928,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11933,
+        "fields": {
+            "answer": 11878,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "global_multiplier": -0.03
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_global",
+        "pk": 11999,
+        "fields": {
+            "answer": 11997,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "global_multiplier": -0.05
+        }
+    }
+];
+
+campaignTrail_temp.answer_score_issue_json = [];
+
+campaignTrail_temp.answer_score_state_json = [
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11938,
+        "fields": {
+            "answer": 11879,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.015
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11939,
+        "fields": {
+            "answer": 11879,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": -0.03
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11941,
+        "fields": {
+            "answer": 11937,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11942,
+        "fields": {
+            "answer": 11937,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11945,
+        "fields": {
+            "answer": 11943,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11946,
+        "fields": {
+            "answer": 11943,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11952,
+        "fields": {
+            "answer": 11948,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11955,
+        "fields": {
+            "answer": 11949,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11956,
+        "fields": {
+            "answer": 11949,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": -0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11957,
+        "fields": {
+            "answer": 11950,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": -0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11958,
+        "fields": {
+            "answer": 11950,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": 0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11962,
+        "fields": {
+            "answer": 11880,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 1
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11963,
+        "fields": {
+            "answer": 11880,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": -0.75
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11965,
+        "fields": {
+            "answer": 11881,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.015
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11966,
+        "fields": {
+            "answer": 11881,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11969,
+        "fields": {
+            "answer": 11967,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11970,
+        "fields": {
+            "answer": 11967,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": 0.002
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11974,
+        "fields": {
+            "answer": 11971,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11975,
+        "fields": {
+            "answer": 11971,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11980,
+        "fields": {
+            "answer": 11882,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11987,
+        "fields": {
+            "answer": 11883,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11990,
+        "fields": {
+            "answer": 11983,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11992,
+        "fields": {
+            "answer": 11984,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.001
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11993,
+        "fields": {
+            "answer": 11985,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 11996,
+        "fields": {
+            "answer": 11886,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.005
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12001,
+        "fields": {
+            "answer": 11884,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": -0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12002,
+        "fields": {
+            "answer": 11884,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12006,
+        "fields": {
+            "answer": 12003,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12009,
+        "fields": {
+            "answer": 11887,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12014,
+        "fields": {
+            "answer": 12012,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": -0.02
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12016,
+        "fields": {
+            "answer": 11885,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12018,
+        "fields": {
+            "answer": 11885,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1001,
+            "state_multiplier": -0.01
+        }
+    },
+    {
+        "model": "campaign_trail.answer_score_state",
+        "pk": 12020,
+        "fields": {
+            "answer": 12017,
+            "state": 11851,
+            "candidate": 1003,
+            "affected_candidate": 1003,
+            "state_multiplier": 0.002
+        }
+    }
+];
+
+campaignTrail_temp.answer_feedback_json = [
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11858,
+        "fields": {
+            "answer": 6880,
+            "candidate": 1003,
+            "answer_feedback": "People hear your promises and start listening, some even start supporting you. You don't have polling but expect that your numbers rise slightly "
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11861,
+        "fields": {
+            "answer": 10933,
+            "candidate": 1003,
+            "answer_feedback": "Your campaign is still seen as a joke but people are at least happy you're taking it somewhat seriously and not just doing it for laughs. You are actually criticizing "
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11864,
+        "fields": {
+            "answer": 10934,
+            "candidate": 1003,
+            "answer_feedback": "You hear them laughing, the people and the media, but you know some truly believe in you and that's all that matters. Binface isn't just a personality. It's a movement"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11867,
+        "fields": {
+            "answer": 10935,
+            "candidate": 1003,
+            "answer_feedback": "Your interviews are watched by thousands and many even beyond Clacton, beyond Britain. You know that Farage is scared but he would never admit it."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11900,
+        "fields": {
+            "answer": 11870,
+            "candidate": 1003,
+            "answer_feedback": "Farage announces his resignation from parliament, triggering a By-Election in Clacton. However he is running to win his own seat. At this announcement all the major parties, including Restore have announced a boycott. You know this will be your chance to run."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11903,
+        "fields": {
+            "answer": 11872,
+            "candidate": 1003,
+            "answer_feedback": "Farage is obviously infuriated, he responds with insults on twitter and other social media but most people find it funny rather than considering the attack"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11906,
+        "fields": {
+            "answer": 11905,
+            "candidate": 1003,
+            "answer_feedback": "Farage's extreme stances put off many voters but your lack of seriousness also puts many off. Most people just stay home. You do pull some votes to your side but it's not nearly enough to unseat Farage"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11910,
+        "fields": {
+            "answer": 11909,
+            "candidate": 1003,
+            "answer_feedback": "This fails spectacularly. Not only does no one endorse you but people are mad that you've dropped the parody and jokes."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11913,
+        "fields": {
+            "answer": 11874,
+            "candidate": 1003,
+            "answer_feedback": "Farage doesn't respond but you know that he just can't. You've won yet another victory against him. Some more and you might be an actual threat."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11916,
+        "fields": {
+            "answer": 11915,
+            "candidate": 1003,
+            "answer_feedback": "This strategy works well, you don't make many gains but don't lose anyone either."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11921,
+        "fields": {
+            "answer": 11920,
+            "candidate": 1003,
+            "answer_feedback": "You lose some ground due to your lack of a response. "
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11925,
+        "fields": {
+            "answer": 11876,
+            "candidate": 1003,
+            "answer_feedback": "This seems to be the best strategy. You gain voters but Farage doesn't lose any. "
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11927,
+        "fields": {
+            "answer": 11926,
+            "candidate": 1003,
+            "answer_feedback": "The ad campaign isn't effective at all. Not because it wasn't a good idea but because it didn't reach the Reform voters. This doesn't affect the polls in any way"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11929,
+        "fields": {
+            "answer": 11928,
+            "candidate": 1003,
+            "answer_feedback": "Half of them leave in the middle of the speech, the other half don't care and say they'll still vote Reform. Not a good look Count."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11932,
+        "fields": {
+            "answer": 11878,
+            "candidate": 1003,
+            "answer_feedback": "Your chances at victory go from practically zero to a few percent. It's low, but it's more than zero."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11936,
+        "fields": {
+            "answer": 11879,
+            "candidate": 1003,
+            "answer_feedback": "This seems to annoy Farage to no end. He posts a rant on many social media saying that you were a waste of space in Clacton and that you didn't deserve to be on the ballot."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11940,
+        "fields": {
+            "answer": 11937,
+            "candidate": 1003,
+            "answer_feedback": "Farage says that the situation is cut and dry. You disagree and your comment makes people laugh. You gain slightly from this whole situation."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11944,
+        "fields": {
+            "answer": 11943,
+            "candidate": 1003,
+            "answer_feedback": "Saying that Farage sounds like you isn't a good idea at all. You seem to lose some ground."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11951,
+        "fields": {
+            "answer": 11948,
+            "candidate": 1003,
+            "answer_feedback": "This seems to work well for you and you get more attention. A poll is released showing you at just 20% of the vote compared to Farage's"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11953,
+        "fields": {
+            "answer": 11949,
+            "candidate": 1003,
+            "answer_feedback": "He declines, you make the posts and they gain traction nationwide. The polls for Reform UK look dire and Farage leaves the ordeal embarassed."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11954,
+        "fields": {
+            "answer": 11950,
+            "candidate": 1003,
+            "answer_feedback": "He declines, you make the posts and nothing happens. People still don't take anything you say or do seriously. You are seen as a novelty. Reform Polling stabilizes nationwide"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11961,
+        "fields": {
+            "answer": 11880,
+            "candidate": 1003,
+            "answer_feedback": "Farage agrees, surprisingly. The debate starts normally however halfway through he starts rambling like a madman, losing cohesion. You thought he was having a stroke. The post debate poll had you rising by 20% but you knew it could be higher."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11964,
+        "fields": {
+            "answer": 11881,
+            "candidate": 1003,
+            "answer_feedback": "This is the most reasonable answer you give through the whole interview. The rest of it is just you showing off your charm and humour, as if they didn't already know it. This interview certainly helps you."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11968,
+        "fields": {
+            "answer": 11967,
+            "candidate": 1003,
+            "answer_feedback": "This answer is seen as you joking as always but it does put off some people. In general the interview went well and gave you some more publicity. "
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11972,
+        "fields": {
+            "answer": 11971,
+            "candidate": 1003,
+            "answer_feedback": "This is a good answer that is taken seriously and appeals to all sides. The interview gives you a ton of good publicity and some older voters seem to listen to your policies more."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11978,
+        "fields": {
+            "answer": 11976,
+            "candidate": 1003,
+            "answer_feedback": "Reform voters are older in age and this stance doesn't appeal to them in any way. You don't lose votes but you don't gain in any way."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11979,
+        "fields": {
+            "answer": 11882,
+            "candidate": 1003,
+            "answer_feedback": "This answer isn't taken seriously, especially the last point but they find the confidence endearing.  Your response is seen positively from what you see on social media."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11982,
+        "fields": {
+            "answer": 11981,
+            "candidate": 1003,
+            "answer_feedback": "People are glad that you are confirming your continued presence in politics. This doesn't answer the main question about the state of politics but people never really expected you to."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11986,
+        "fields": {
+            "answer": 11883,
+            "candidate": 1003,
+            "answer_feedback": "The individualism in society comes in to your benefit. People seem to actually agree with your plan."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11988,
+        "fields": {
+            "answer": 11983,
+            "candidate": 1003,
+            "answer_feedback": "They laugh but you know the truth. If you win your plan will save every single problem in the British nation. Adele is just the first part."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11991,
+        "fields": {
+            "answer": 11984,
+            "candidate": 1003,
+            "answer_feedback": "Clacton is already considered affordable compared to the rest of the United Kingdom so the promise of affordability does stick the landing as well as it would've in other places."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11994,
+        "fields": {
+            "answer": 11985,
+            "candidate": 1003,
+            "answer_feedback": "Farage attacks you, saying that you were just wasting Clacton's time.  This time however the attacks stick, the joke is no longer accepted the same way."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11995,
+        "fields": {
+            "answer": 11886,
+            "candidate": 1003,
+            "answer_feedback": "The people are happy, they support you mostly for your appearance and funny personality. Losing one would be devastating to your image."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 11998,
+        "fields": {
+            "answer": 11997,
+            "candidate": 1003,
+            "answer_feedback": "This removes half of your entire appeal. You're no longer seen as a satire candidate. You lose a ton of support over this decision"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12000,
+        "fields": {
+            "answer": 11884,
+            "candidate": 1003,
+            "answer_feedback": "This could work in other places but Clacton is probably the worst place to do this. The attack falls completely flat"
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12005,
+        "fields": {
+            "answer": 12003,
+            "candidate": 1003,
+            "answer_feedback": "You get laughs but people actually hear the sentiment. They are angry with Farage's corruption and your claim of not getting money get you a ton of support."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12007,
+        "fields": {
+            "answer": 12004,
+            "candidate": 1003,
+            "answer_feedback": "Clacton voters usually are highly supportive of Reform UK but they do hear your words. They won't support you  but they do listen at least."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12008,
+        "fields": {
+            "answer": 11887,
+            "candidate": 1003,
+            "answer_feedback": "A good short speech to close off the campaign. Good luck my Count."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12011,
+        "fields": {
+            "answer": 12010,
+            "candidate": 1003,
+            "answer_feedback": "People hear the message but you being a joke candidate does limit the reach of the speech."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12013,
+        "fields": {
+            "answer": 12012,
+            "candidate": 1003,
+            "answer_feedback": "Somber, true in your opinion, but somber. You aren't taken seriously and this speech ruins the whole fun personality you had throughout the campaign."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12015,
+        "fields": {
+            "answer": 11885,
+            "candidate": 1003,
+            "answer_feedback": "Farage says that his decision wasn't inspired by the money but everyone knows he's lying. Your social media grows due to this attack as people start to listen more."
+        }
+    },
+    {
+        "model": "campaign_trail.answer_feedback",
+        "pk": 12019,
+        "fields": {
+            "answer": 12017,
+            "candidate": 1003,
+            "answer_feedback": "Farage doesn't care to respond and your attack fizzles out quietly. Despite the fact that it's a great way to attack him it doesn't hit him."
+        }
+    }
+];
+
+campaignTrail_temp.candidate_image_url = "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/image%20(1).webp";
+campaignTrail_temp.running_mate_image_url = "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/binface-1.webp";
+campaignTrail_temp.candidate_last_name = "Count";
+campaignTrail_temp.running_mate_last_name = "Binface";
+
+// [JETS_ENDINGS_START]
+campaignTrail_temp.multiple_endings = true;
+
+const endingDefs = [
+    {
+        "id": 1786927342028,
+        "variable": 0,
+        "operator": "==",
+        "amount": 1,
+        "endingTitle": "Count Binface no more",
+        "endingSubtitle": "Jon Harvey wins Clacton",
+        "endingText": "Congratulations on your victory Count. It's sad to see this night be somewhat tarnished by the fact that you're forced to take off the Binhead but at least your message resonated. You made an impact and now you've entered parliament. Despite your jokes you take this job seriously, you decide not to run for re-election despite many calls for it. You're just happy that you made an impact. Reform UK collapsed because of you and Satire Candidates have gained more than just your one seat.",
+        "endingImage": "",
+        "endingHideImage": false,
+        "endingSlidesJson": "[\n  {\n    \"variable\": 0,\n    \"operator\": \"==\",\n    \"amount\": 1,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Count Binface no more\",\n    \"subtitle\": \"Jon Harvey wins Clacton\",\n    \"content\": \"Congratulations on your victory Count. It's sad to see this night be somewhat tarnished by the fact that you're forced to take off the Binhead but at least your message resonated. You made an impact and now you've entered parliament. Despite your jokes you take this job seriously, you decide not to run for re-election despite many calls for it. You're just happy that you made an impact. Reform UK collapsed because of you and Satire Candidates have gained more than just your one seat.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"has\",\n    \"answerConditionAnswer\": \"11997\",\n    \"answerConditionAnswers\": \"11997\"\n  },\n  {\n    \"variable\": 0,\n    \"operator\": \"==\",\n    \"amount\": 1,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Binface wins Clacton\",\n    \"subtitle\": \"\",\n    \"content\": \"Wow wow wow. That's all you could say. Clacton actually chose you. Whether it was the debate or an act of god, you have actually won. Your time in Parliament will probably be short, one term or so. You keep running as a novelty candidate with the honor of being the only one to actually win a seat in parliament. You make votes that some people agree with but mostly they ignore you. Your victory is popular with the young generation but after you win that excitement is lost. You run a few more times then hang up the mask gracefully a few years later.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"not_has\",\n    \"answerConditionAnswer\": \"11997\",\n    \"answerConditionAnswers\": \"11997\"\n  },\n  {\n    \"variable\": 1,\n    \"operator\": \">\",\n    \"amount\": 30,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Binface embarrasses Farage\",\n    \"subtitle\": \"\",\n    \"content\": \"Well you've expectedly lost, however you've overperformed all the polls. You've gotten more than 30% of the vote. Farage leaves the whole ordeal embarrassed, Reform polling drops significantly due to his underperformance. You gain traction and do well in a few other by-elections before losing steam. You become a large name comedian after your \\\"political\\\" career is over. Reform ends up in third place in 2029 and ultimately collapses into multiple smaller parties that then join back into the conservatives. Some however stay together and form a Reform-esque party that gains around 5 to 10 percent of the vote.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"ignore\",\n    \"answerConditionAnswer\": \"\",\n    \"answerConditionAnswers\": \"\"\n  },\n  {\n    \"variable\": 1,\n    \"operator\": \"<=\",\n    \"amount\": 30,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Farage wins By-Election\",\n    \"subtitle\": \"\",\n    \"content\": \"Well you've expectedly lost and have gotten about as much as expected. Your vote total was less than 30% which was exactly the expected amount. Farage doesn't get the win he wanted but he survives. You run in another by election a few years later but can't recreate the magic of this run. Binface lives on as a cultural icon but no one actually votes for him anymore. You decide to hang up the mask after a few more years. You try a comedy career and manage to become a moderately successful comedian.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"ignore\",\n    \"answerConditionAnswer\": \"\",\n    \"answerConditionAnswers\": \"\"\n  }\n]",
+        "audioTitle": "",
+        "audioArtist": "",
+        "audioCover": "",
+        "audioUrl": "",
+        "endingAccentColor": "#11299e",
+        "endingBackgroundColor": "#ffffff",
+        "endingTextColor": "#000000",
+        "variableConditions": [],
+        "variableConditionOperator": "AND",
+        "outcomeCondition": "ignore",
+        "answerConditionType": "has",
+        "answerConditionAnswer": "11997",
+        "answerConditionAnswers": "11997"
+    }
+];
+
+const opMap = {
+    ">": (a, b) => a > b,
+    ">=": (a, b) => a >= b,
+    "==": (a, b) => a == b,
+    "<=": (a, b) => a <= b,
+    "<": (a, b) => a < b,
+    "!=": (a, b) => a != b
+};
+
+const getEndingImageEl = () => {
+    const imageContainer = document.querySelector(".person_image");
+    if (!imageContainer) return null;
+    if (imageContainer.tagName && imageContainer.tagName.toLowerCase() === "img") {
+        return imageContainer;
+    }
+    return imageContainer.querySelector("img");
+};
+
+const readVariable = (name) => {
+    if (!name || typeof name !== "string") return undefined;
+    if (!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(name)) return undefined;
+    try {
+        return eval("(typeof " + name + " !== 'undefined') ? " + name + " : undefined;");
+    } catch (_err) {
+        return undefined;
+    }
+};
+
+const parseConditionValue = (value) => {
+    if (value == null || value === "") return "";
+    const n = Number(value);
+    if (!Number.isNaN(n)) return n;
+    return value;
+};
+
+const checkOutcomeCondition = (entry, finalOutcome) => {
+    const cond = String(entry?.outcomeCondition || "ignore");
+    if (cond === "ignore") return true;
+    return cond === String(finalOutcome || "");
+};
+
+const matchesPrimaryCondition = (entry, quickstats, finalOutcome) => {
+    if (!checkOutcomeCondition(entry, finalOutcome)) return false;
+
+    const cond = String(entry?.outcomeCondition || "ignore");
+    if (cond !== "ignore") {
+        // explicit outcome match bypasses stat threshold checks
+        return true;
+    }
+
+    const opFn = opMap[entry?.operator] || opMap[">"];
+    const left = quickstats?.[Number(entry?.variable) || 0];
+    const right = Number(entry?.amount) || 0;
+    return opFn(left, right);
+};
+
+const checkExtraConditions = (entry, playerAnswers) => {
+    // check variable conditions
+    if (Array.isArray(entry.variableConditions) && entry.variableConditions.length > 0) {
+        const operator = entry.variableConditionOperator || "AND";
+        const results = entry.variableConditions.map((cond) => {
+            const left = readVariable(cond.variable);
+            const right = parseConditionValue(cond.value);
+            const opFn = opMap[cond.comparator] || opMap["=="];
+            return opFn(left, right);
+        });
+
+        if (operator === "AND") {
+            if (!results.every((r) => r)) return false;
+        } else if (operator === "OR") {
+            if (!results.some((r) => r)) return false;
+        }
+    }
+
+    const answerType = entry.answerConditionType || "ignore";
+    if (answerType !== "ignore") {
+        const rawAnswers = String(entry.answerConditionAnswers || entry.answerConditionAnswer || "").trim();
+        const answerIds = rawAnswers
+            .split(/[s,]+/)
+            .filter((v) => v.length > 0)
+            .map((v) => Number(v))
+            .filter((v) => Number.isFinite(v));
+
+        if (answerIds.length === 0) return false;
+
+        const hasAny = Array.isArray(playerAnswers) && answerIds.some((id) => playerAnswers.includes(id));
+        if (answerType === "has" && !hasAny) return false;
+        if (answerType === "not_has" && hasAny) return false;
+    }
+
+    return true;
+};
+
+const playEndingSong = (title, artist, cover, url) => {
+    if (!url) return;
+    const PlaylistCtor = (typeof window !== "undefined" && window.Playlist)
+        || (typeof Playlist !== "undefined" ? Playlist : null);
+    const SongCtor = (typeof window !== "undefined" && window.Song)
+        || (typeof Song !== "undefined" ? Song : null);
+    const changePlaylistFn = (typeof window !== "undefined" && window.changePlaylist)
+        || (typeof changePlaylist === "function" ? changePlaylist : null);
+
+    if (PlaylistCtor && SongCtor && typeof changePlaylistFn === "function") {
+        try {
+            const playlist = new PlaylistCtor();
+            const song = new SongCtor(title || "", artist || "", cover || "", url);
+            if (typeof playlist.addSong === "function") {
+                playlist.addSong(song);
+                changePlaylistFn(playlist);
+                return;
+            }
+        } catch (err) {
+            console.warn("Failed to route ending song:", err);
+        }
+    }
+
+    // fallback for custom players: drive the shared audio element directly
+    const audioEl = document.getElementById("audio") || document.querySelector("audio#audio, audio");
+    if (!audioEl) return;
+
+    if (audioEl.src !== url) {
+        audioEl.src = url;
+    }
+
+    const player = document.getElementById("player");
+    if (player) {
+        const titleEl = player.querySelector("#title");
+        const artistEl = player.querySelector("#artist");
+        const coverEl = player.querySelector("#cover");
+        if (titleEl) titleEl.textContent = title || "";
+        if (artistEl) artistEl.textContent = artist || "";
+        if (coverEl && cover) coverEl.src = cover;
+    }
+
+    const playPromise = audioEl.play?.();
+    if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+    }
+};
+
+const styleEndingDescription = () => {
+    const desc = document.querySelector("#final_results_description");
+    if (!desc) return;
+
+    const e = campaignTrail_temp;
+    const theme = e._endingTheme || {};
+    const bg = theme.backgroundColor || "#ffffff";
+    const fg = theme.textColor || "#000000";
+    const border = theme.accentColor || "#11299e";
+
+    Object.assign(desc.style, {
+        textAlign: "left",
+        width: "72%",
+        maxHeight: "20em",
+        minHeight: "8em",
+        height: "auto",
+        display: "block",
+        margin: "0 auto",
+        overflowY: "auto",
+        overflowX: "hidden",
+        whiteSpace: "normal",
+        overflowWrap: "anywhere",
+        wordBreak: "break-word",
+        transform: "translateZ(0)",
+        backgroundColor: bg,
+        color: fg,
+        border: "2px solid " + border,
+        borderRadius: "4px",
+        padding: "10px"
+    });
+
+    desc.dataset.endingStyled = "1";
+};
+
+const applyEndingImage = (slide) => {
+    const imageEl = getEndingImageEl();
+    if (!imageEl || !slide) return;
+
+    if (slide.image === false) {
+        imageEl.style.display = "none";
+        imageEl.removeAttribute("src");
+        return;
+    }
+
+    if (!imageEl.dataset.endingStyled) {
+        const e = campaignTrail_temp;
+        const theme = e._endingTheme || {};
+        const border = theme.accentColor || "#11299e";
+        Object.assign(imageEl.style, {
+            border: "3px solid " + border,
+            display: "block",
+            width: "210px",
+            height: "250px",
+            objectFit: "cover"
+        });
+        imageEl.dataset.endingStyled = "1";
+    } else {
+        imageEl.style.display = "block";
+        const e = campaignTrail_temp;
+        const theme = e._endingTheme || {};
+        imageEl.style.border = "3px solid " + (theme.accentColor || "#11299e");
+    }
+
+    if (slide.image && imageEl.getAttribute("src") !== slide.image) {
+        imageEl.src = slide.image;
+    }
+};
+
+const applyEndingButtons = () => {
+    const e = campaignTrail_temp;
+    const theme = e._endingTheme || {};
+    const imageEl = getEndingImageEl();
+    if (!imageEl || !imageEl.parentNode) return;
+
+    let btnContainer = document.getElementById("ending_slide_buttons");
+    if (!btnContainer) {
+        btnContainer = document.createElement("div");
+        btnContainer.id = "ending_slide_buttons";
+        Object.assign(btnContainer.style, {
+            display: "flex",
+            gap: "20px",
+            left: "13px",
+            top: "280px",
+            position: "absolute"
+        });
+        imageEl.parentNode.insertBefore(btnContainer, imageEl.nextSibling);
+    }
+
+    let buttonsHtml = "";
+    if (e.page > 0) {
+        buttonsHtml += '<button onclick="endingConstructor(-1)">Back</button>';
+    }
+    if (e.page < e.endingSlides.length - 1) {
+        buttonsHtml += '<button onclick="endingConstructor(1)">Next</button>';
+    }
+
+    if (btnContainer.innerHTML !== buttonsHtml) {
+        btnContainer.innerHTML = buttonsHtml;
+    }
+
+    const buttonBg = theme.accentColor || "#11299e";
+    const buttonText = "#ffffff";
+    btnContainer.querySelectorAll("button").forEach((btn) => {
+        Object.assign(btn.style, {
+            backgroundColor: buttonBg,
+            border: "1px solid " + buttonBg,
+            color: buttonText,
+            padding: "4px 10px",
+            cursor: "pointer"
+        });
+    });
+};
+
+const syncEndingSlideDom = () => {
+    const e = campaignTrail_temp;
+    const slide = e.endingSlides?.[e.page];
+    if (!slide) return;
+
+    styleEndingDescription();
+    applyEndingImage(slide);
+    applyEndingButtons();
+
+    if (slide.audio && slide.audio.url) {
+        const key = [slide.audio.title || "", slide.audio.artist || "", slide.audio.url || ""].join("|");
+        const globalKey = (typeof window !== "undefined" && window.__tctLastEndingAudioKey) || "";
+
+        const currentAudioEl = document.getElementById("audio") || document.querySelector("audio#audio, audio");
+        const currentSrc = currentAudioEl ? (currentAudioEl.currentSrc || currentAudioEl.src || "") : "";
+        const sameSrcLoaded = !!currentSrc && currentSrc.includes(slide.audio.url);
+
+        if (e._endingAudioPlayedKey !== key && globalKey !== key && !sameSrcLoaded) {
+            playEndingSong(slide.audio.title, slide.audio.artist, slide.audio.cover, slide.audio.url);
+        }
+
+        e._endingAudioPlayedKey = key;
+        if (typeof window !== "undefined") {
+            window.__tctLastEndingAudioKey = key;
+        }
+    }
+};
+
+const syncEndingSlideDomDeferred = () => {
+    requestAnimationFrame(() => {
+        syncEndingSlideDom();
+    });
+};
+
+const buildSlides = (entry, quickstats, finalOutcome) => {
+    if (entry && entry.endingSlidesJson) {
+        try {
+            const parsed = JSON.parse(entry.endingSlidesJson);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                const normalizeSlide = (slide) => ({
+                    variable: Number(slide?.variable ?? 0),
+                    operator: slide?.operator || ">",
+                    amount: Number(slide?.amount ?? 0),
+                    outcomeCondition: slide?.outcomeCondition || "ignore",
+                    title: slide?.title || "",
+                    subtitle: slide?.subtitle || "",
+                    content: slide?.content || "",
+                    image: slide?.image,
+                    audio: slide?.audio && slide.audio.url ? {
+                        title: slide.audio.title || "",
+                        artist: slide.audio.artist || "",
+                        cover: slide.audio.cover || "",
+                        url: slide.audio.url || ""
+                    } : undefined
+                });
+
+                const hasGroups = parsed.some((slide) => slide && slide.slideGroup);
+                if (!hasGroups) {
+                    return parsed.map((slide) => normalizeSlide(slide));
+                }
+
+                const groupMap = new Map();
+                const groupOrder = [];
+                for (const slide of parsed) {
+                    const groupKey = slide?.slideGroup || "main";
+                    if (!groupMap.has(groupKey)) {
+                        groupMap.set(groupKey, []);
+                        groupOrder.push(groupKey);
+                    }
+                    groupMap.get(groupKey).push(slide);
+                }
+
+                const playerAnswers = campaignTrail_temp?.player_answers || [];
+                const selectedSlides = [];
+
+                for (const groupKey of groupOrder) {
+                    const groupSlides = groupMap.get(groupKey) || [];
+                    let selected = groupSlides.find((slide) => {
+                        return matchesPrimaryCondition(slide, quickstats, finalOutcome)
+                            && checkExtraConditions(slide, playerAnswers);
+                    });
+                    if (!selected) selected = groupSlides[0];
+                    if (selected) selectedSlides.push(normalizeSlide(selected));
+                }
+
+                return selectedSlides;
+            }
+        } catch (err) {
+            console.warn("Invalid endingSlidesJson for ending", entry?.id, err);
+        }
+    }
+
+    const fallbackSlide = {
+        title: entry?.endingTitle || "",
+        subtitle: entry?.endingSubtitle || "",
+        content: entry?.endingText || "",
+        image: entry?.endingHideImage ? false : (entry?.endingImage || undefined)
+    };
+
+    if (entry?.audioUrl) {
+        fallbackSlide.audio = {
+            title: entry.audioTitle || "",
+            artist: entry.audioArtist || "",
+            cover: entry.audioCover || "",
+            url: entry.audioUrl || ""
+        };
+    }
+
+    return [fallbackSlide];
+};
+
+const constructSlide = (direction = 1) => {
+    const e = campaignTrail_temp;
+    if (!Array.isArray(e.endingSlides) || e.endingSlides.length === 0) return "";
+
+    e.page += direction;
+    if (e.page < 0) e.page = 0;
+    if (e.page >= e.endingSlides.length) e.page = e.endingSlides.length - 1;
+
+    const currentSlide = e.endingSlides[e.page];
+    if (!currentSlide) return "";
+
+    let html = "";
+    if (currentSlide.title) html += "<h3>" + currentSlide.title + "</h3>";
+    if (currentSlide.subtitle) html += "<h4>" + currentSlide.subtitle + "</h4>";
+    html += (currentSlide.content || "") + "<br><br>";
+    return html;
+};
+
+endingConstructor = (direction = 1) => {
+    const desc = document.querySelector("#final_results_description");
+    if (!desc) return;
+    desc.innerHTML = constructSlide(direction);
+    syncEndingSlideDomDeferred();
+};
+
+endingPicker = (out, totv, aa, quickstats) => {
+    const playerAnswers = campaignTrail_temp?.player_answers || [];
+    for (const entry of endingDefs) {
+        let isMatch = false;
+
+        try {
+            const parsed = entry.endingSlidesJson ? JSON.parse(entry.endingSlidesJson) : [];
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                const groupMap = new Map();
+                for (const slide of parsed) {
+                    const groupKey = slide?.slideGroup || "main";
+                    if (!groupMap.has(groupKey)) {
+                        groupMap.set(groupKey, []);
+                    }
+                    groupMap.get(groupKey).push(slide);
+                }
+
+                const mainSlides = groupMap.get("main") || parsed;
+                let validMain = mainSlides.find((slide) => {
+                    return matchesPrimaryCondition(slide, quickstats, out)
+                        && checkExtraConditions(slide, playerAnswers);
+                });
+
+                if (validMain) isMatch = true;
+            } else {
+                // legacy format without json slides
+                if (matchesPrimaryCondition(entry, quickstats, out) && checkExtraConditions(entry, playerAnswers)) {
+                    isMatch = true;
+                }
+            }
+        } catch(e) {
+            // legacy format without json slides
+            if (matchesPrimaryCondition(entry, quickstats, out) && checkExtraConditions(entry, playerAnswers)) {
+                isMatch = true;
+            }
+        }
+
+        if (isMatch) {
+            const e = campaignTrail_temp;
+            e.multiple_endings = true;
+            e.page = -1;
+            e._endingTheme = {
+                accentColor: entry?.endingAccentColor || "#11299e",
+                backgroundColor: entry?.endingBackgroundColor || "#ffffff",
+                textColor: entry?.endingTextColor || "#000000"
+            };
+            e.endingSlides = buildSlides(entry, quickstats, out);
+            e._endingAudioPlayedKey = (typeof window !== "undefined" && window.__tctLastEndingAudioKey) || "";
+
+            const html = constructSlide(1);
+            syncEndingSlideDomDeferred();
+            return html;
+        }
+    }
+
+    return "";
+endingPicker = (out, totv, aa, quickstats) => {
+    const finalStates = Array.isArray(campaignTrail_temp.final_state_results) ? campaignTrail_temp.final_state_results : [];
+    const stateWinnersByAbbr = new Map(
+      finalStates.map(st => [st.abbr, st.result?.candidate])
+    );
+    const playerWonStates = (...abbrs) => abbrs.every(abbr => stateWinnersByAbbr.get(abbr) === campaignTrail_temp.candidate_id);
+
+if (quickstats[0] == 1) {
+    unlockAchievement("The Count of Us All");
+    }
+
+};
+};
+
+// [JETS_ENDINGS_END]
+
+//#startcode
+// CYOA Variables
+var Farage = 0;
+var Cancer = 0;
+
+campaignTrail_temp.multiple_endings = true;
+
+campaignTrail_temp.cyoa = true;
+
+// pk -> index lookup for questions
+let _questionIdxByPk = null;
+
+function _rebuildQuestionIdxMap() {
+  _questionIdxByPk = new Map();
+  const arr = campaignTrail_temp.questions_json;
+  for (let i = 0; i < arr.length; i++) {
+    _questionIdxByPk.set(Number(arr[i].pk), i);
+  }
+}
+
+// returns the true array index (>= 0) or -1 if not found
+function getQuestionIndexFromPk(pk) {
+  const n = Number(pk);
+  if (!_questionIdxByPk) _rebuildQuestionIdxMap();
+
+  let idx = _questionIdxByPk.get(n);
+  // if map is stale, rebuild once
+  if (idx == null || campaignTrail_temp.questions_json[idx]?.pk !== n) {
+    _rebuildQuestionIdxMap();
+    idx = _questionIdxByPk.get(n);
+  }
+  return idx ?? -1;
+}
+
+// index to assign into question_number before nextQuestion()
+function getJumpIndexFromPk(pk) {
+  const idx = getQuestionIndexFromPk(pk);
+  return idx >= 0 ? idx - 1 : -1;
+}
+
+// for backwards compatibility
+function getQuestionNumberFromPk(pk) {
+  return getJumpIndexFromPk(pk);
+}
+
+function questionSwapper(pk1, pk2) {
+    const questionData = campaignTrail_temp.questions_json;
+
+    // find indices of the questions
+    const index1 = getQuestionIndexFromPk(pk1);
+    const index2 = getQuestionIndexFromPk(pk2);
+
+    // validate both questions exist
+    if (index1 === -1 || index2 === -1) {
+        console.warn(`questionSwapper: Could not find question(s) with pk ${pk1} and/or ${pk2}`);
+        return false;
+    }
+
+    // swap the entire question objects
+    [questionData[index1], questionData[index2]] = [questionData[index2], questionData[index1]];
+
+    // rebuild the index map since positions changed
+    _rebuildQuestionIdxMap();
+
+    return true;
+}
+
+function answerSwapper(pk1, pk2, takeEffects = true) {
+    const answerData = campaignTrail_temp.answers_json;
+
+   // find the indices of the objects with the specified PKs
+    const index1 = answerData.findIndex(item => Number(item.pk) === Number(pk1));
+    const index2 = answerData.findIndex(item => Number(item.pk) === Number(pk2));
+
+    // check if objects with those PKs exist
+    if (index1 === -1 || index2 === -1) return;
+
+    // swap the question assignment
+    const tempQuestion = answerData[index1].fields.question;
+    answerData[index1].fields.question = answerData[index2].fields.question;
+    answerData[index2].fields.question = tempQuestion;
+
+    // if takeEffects is true, answers swap effects also
+    if (takeEffects) {
+        const otherJsons = [
+            campaignTrail_temp.answer_score_global_json,
+            campaignTrail_temp.answer_score_issue_json,
+            campaignTrail_temp.answer_score_state_json,
+            campaignTrail_temp.answer_feedback_json
+        ];
+
+        otherJsons.forEach(jsonData => {
+            if (!jsonData) return;
+            jsonData.forEach(item => {
+                const itemAns = Number(item.fields.answer);
+                if (itemAns === Number(pk1)) {
+                    item.fields.answer = pk2;
+                } else if (itemAns === Number(pk2)) {
+                    item.fields.answer = pk1;
+                }
+            });
+        });
+    }
+}
+
+// Candidate switching wahoo - from Moonbeam
+function setCandidateIdentity(candidatePk, options) {
+    const cand = campaignTrail_temp.candidate_json.find(p => Number(p.pk) === Number(candidatePk));
+    if (cand?.fields) {
+        if (options.first !== undefined) cand.fields.first_name = options.first;
+        if (options.last !== undefined) cand.fields.last_name = options.last;
+        if (options.color !== undefined) cand.fields.color_hex = options.color;
+    }
+
+    if (Number(campaignTrail_temp.candidate_id) === Number(candidatePk)) {
+        if (options.last !== undefined) campaignTrail_temp.candidate_last_name = options.last;
+        if (options.first !== undefined) campaignTrail_temp.candidate_first_name = options.first;
+    }
+
+    if (options.issueScores && campaignTrail_temp.candidate_issue_score_json) {
+        const updateScore = (issueId, score) => {
+            let targetScore = campaignTrail_temp.candidate_issue_score_json.find(
+                item => Number(item.fields.candidate) === Number(candidatePk) &&
+                        Number(item.fields.issue) === Number(issueId)
+            );
+
+            if (targetScore?.fields) {
+                targetScore.fields.issue_score = Number(score);
+            } else {
+                campaignTrail_temp.candidate_issue_score_json.push({
+                    model: "campaign_trail.candidate_issue_score",
+                    fields: {
+                        candidate: Number(candidatePk),
+                        issue: Number(issueId),
+                        issue_score: Number(score)
+                    }
+                });
+            }
+        };
+
+        if (!Array.isArray(options.issueScores) && typeof options.issueScores === 'object') {
+            Object.entries(options.issueScores).forEach(([issueId, score]) => {
+                updateScore(issueId, score);
+            });
+        }
+        else if (Array.isArray(options.issueScores)) {
+            options.issueScores.forEach(({ issue, score }) => {
+                updateScore(issue, score);
+            });
+        }
+    }
+}
+cyoAdventure = function (a) {
+    const ans = campaignTrail_temp.player_answers[campaignTrail_temp.player_answers.length - 1];
+    e.noCounter = campaignTrail_temp.player_answers.length;
+function questionSwapper(pk1, pk2) {
+const questionData = campaignTrail_temp.questions_json;
+
+// find indices of the questions
+const index1 = getQuestionIndexFromPk(pk1);
+const index2 = getQuestionIndexFromPk(pk2);
+
+// validate both questions exist
+if (index1 === -1 || index2 === -1) {
+console.warn(`questionSwapper: Could not find question(s) with pk ${pk1} and/or ${pk2}`);
+return false;
+}
+
+// swap the entire question objects
+[questionData[index1], questionData[index2]] = [questionData[index2], questionData[index1]];
+
+// rebuild the index map since positions changed
+_rebuildQuestionIdxMap();
+
+return true;
+}
+if (ans == 11872 && 11879 && 10933) {
+questionSwapper(11899, 10925);
+}
+    // question swap CYOA here
+    if (Farage == 3) {
+        questionSwapper(11899, 10925);
+    }
+
+    // [JETS_CYOA_VARIABLE_EFFECTS_START]
+    // +1 Farage
+    if ([11872, 11879, 11880, 10933].includes(ans)) {
+        Farage += 1;
+    }
+    // [JETS_CYOA_VARIABLE_EFFECTS_END]
+}
+
+// [JETS_CYOA_CAMPAIGN_DATA_START]
+;(() => {
+    const styleEl = document.createElement("style");
+    styleEl.textContent = `
+        #gameStatsPopup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background-color: #3b3e44;
+            border: 2px solid #000000;
+            border-radius: 2px;
+            padding: 10px 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            z-index: 10000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #2e72d1;
+            cursor: move;
+        }
+        #gameStatsContent { pointer-events: none; }
+        #gameStatsPopup h3 {
+            margin: 0 0 8px;
+            font-weight: bold;
+            border-bottom: 1px solid #475569;
+            padding-bottom: 4px;
+            font-size: 16px;
+        }
+        .stats-list { line-height: 1.5; }
+        #btn_game_stats { margin-left: 1.5em; }
+    `;
+    document.head.appendChild(styleEl);
+
+    const cyoaTitle = "Campaign Data";
+
+    const bold = (text, color) =>
+        `<span style="color: ${color}; font-weight: bold">${text}</span>`;
+
+    const escapeHtml = (text) =>
+        String(text ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    function matchTier(value, tiers) {
+        for (const [max, text, color] of tiers) {
+            if (value <= max) return [text, color];
+        }
+        const fallback = tiers.at(-1);
+        return [fallback?.[1] || "", fallback?.[2] || "#e6e6e6"];
+    }
+
+    // parts wrapped in asterisks (*word*) are colored, while unmarked parts stay plain
+    // if the text has no asterisks, the whole sentence is colored
+    function highlight(text, color) {
+        const parts = String(text || "").split("*");
+        if (parts.length <= 1) return bold(text || "", color);
+        let out = "";
+        for (let i = 0; i < parts.length; i++) {
+            const seg = parts[i];
+            if (!seg) continue;
+            if (i % 2 === 1) {
+                out += bold(seg, color);
+            } else {
+                out += escapeHtml(seg);
+            }
+        }
+        return out;
+    }
+
+    const STATS = [
+    {
+            getValue: () => Farage,
+            label: `Farage's anger`,
+            showLabel: false,
+            tiers: [
+                [0, `Farage doesn't care about you`, "#ffffff"],
+                [1, `Farage is getting angry with you`, "#c86a6a"],
+                [2, `Farage is fuming because of you`, "#992121"],
+                [3, `Farage loathes you`, "#fa0000"],
+                [4, `Farage has lost his mind because of you`, "#000000"]
+            ],
+        }
+    ];
+
+    function updateGameStatsPopup() {
+        const content = document.getElementById("gameStatsContent");
+        if (!content) return;
+
+        const lines = STATS.map(({ getValue, tiers, label, showLabel }) => {
+            const value = Number(getValue?.());
+            const score = Number.isFinite(value) ? value : 0;
+            const [text, color] = matchTier(score, tiers);
+            const prefix = showLabel && label ? escapeHtml(label) + ": " : "";
+            return "• " + prefix + highlight(text, color) + " " + bold("(" + score + ")", color);
+        });
+
+        content.innerHTML = `
+            <h3>${cyoaTitle}</h3>
+            <div class="stats-list">${lines.join("<br>")}</div>
+        `;
+    }
+
+    function createGameStatsPopup() {
+        if (document.getElementById("gameStatsPopup")) return;
+
+        const popup = document.createElement("div");
+        popup.id = "gameStatsPopup";
+        popup.style.display = "none";
+        popup.innerHTML = '<div id="gameStatsContent"></div>';
+        document.body.appendChild(popup);
+
+        makePopupDraggable(popup);
+        updateGameStatsPopup();
+    }
+
+    function makePopupDraggable(el) {
+        let offsetX, offsetY;
+
+        function onMouseMove(e) {
+            const maxX = window.innerWidth - el.offsetWidth;
+            const maxY = window.innerHeight - el.offsetHeight;
+            el.style.left   = `${Math.max(0, Math.min(e.clientX - offsetX, maxX))}px`;
+            el.style.top    = `${Math.max(0, Math.min(e.clientY - offsetY, maxY))}px`;
+            el.style.bottom = "auto";
+            el.style.right  = "auto";
+        }
+
+        function onMouseUp() {
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
+        }
+
+        el.addEventListener("mousedown", (e) => {
+            const rect = el.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+        });
+    }
+
+    function toggleGameStatsPopup() {
+        const popup = document.getElementById("gameStatsPopup");
+        if (!popup) return;
+        const showing = popup.style.display === "none";
+        popup.style.display = showing ? "block" : "none";
+        if (showing) updateGameStatsPopup();
+    }
+
+    function injectGameStatsButton() {
+        if (document.getElementById("btn_game_stats")) return;
+        const anchor = document.getElementById("view_electoral_map");
+        if (!anchor) return;
+
+        const btn = document.createElement("button");
+        btn.id = "btn_game_stats";
+        btn.textContent = "Campaign Data";
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            toggleGameStatsPopup();
+        });
+        anchor.insertAdjacentElement("afterend", btn);
+    }
+
+    createGameStatsPopup();
+
+    const gameWindow = document.getElementById("game_window");
+    if (gameWindow) {
+        new MutationObserver(() => {
+            injectGameStatsButton();
+            updateGameStatsPopup();
+        }).observe(gameWindow, { childList: true, subtree: true });
+    }
+})();
+// [JETS_CYOA_CAMPAIGN_DATA_END]
+//#endcode
+
+campaignTrail_temp.jet_data = [{
+    "nicknames": {
+        "1001": "Farage",
+        "1002": "Maxime Bernier",
+        "1003": "Binface",
+        "1004": "New Democratic Party",
+        "1005": "Various Others",
+        "1007": "Yves-François  Blanchet",
+        "NaN": "Rumen Radev"
+    },
+    "banner_data": {
+        "canName": "Count",
+        "canImage": "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/image%20(1).webp",
+        "runName": "Binface",
+        "runImage": "https://file.garden/ajctXfqJL0tJxyhI/Clacton%202026/binface-1.webp"
+    },
+    "mapping_data": {
+        "mapSvg": "",
+        "x": 463.15411292420487,
+        "y": 463.15411292420487,
+        "dx": 1388,
+        "dy": 1464,
+        "electionPk": "20"
+    },
+    "bunnyhop_pools": [
+        {
+            "id": 1782321570722,
+            "index": 0,
+            "spots": 1,
+            "spotsCond": ""
+        }
+    ],
+    "mapping_enabled": true,
+    "player_candidate": 1003,
+    "banner_enabled": true,
+    "cyoa_enabled": true,
+    "cyoa_variables": {
+        "1786839500563": {
+            "id": 1786839500563,
+            "name": "Farage",
+            "defaultValue": 0
+        }
+    },
+    "cyoa_variable_effects": {
+        "11924": {
+            "id": 11924,
+            "answer": 11872,
+            "variable": "Farage",
+            "operation": "add",
+            "amount": 1
+        },
+        "11959": {
+            "id": 11959,
+            "answer": 11879,
+            "variable": "Farage",
+            "operation": "add",
+            "amount": 1
+        },
+        "11960": {
+            "id": 11960,
+            "answer": 11880,
+            "variable": "Farage",
+            "operation": "add",
+            "amount": 1
+        },
+        "11977": {
+            "id": 11977,
+            "answer": 10933,
+            "variable": "Farage",
+            "operation": "add",
+            "amount": 1
+        }
+    },
+    "cyoa_campaign_data_enabled": true,
+    "cyoa_campaign_data_stats": {
+        "1786839510098": {
+            "id": 1786839510098,
+            "variable": "Farage",
+            "label": "Farage's anger",
+            "lowMax": 0,
+            "midMax": 1,
+            "lowText": "Farage doesn't care about you",
+            "midText": "Farage is getting angry with you",
+            "highText": "Farage loathes you"
+        }
+    },
+    "campaign_data_style": {
+        "tierLow": "#ffffff",
+        "tierMid": "#c86a6a",
+        "tierHigh": "#fa0000",
+        "border": "#000000",
+        "text": "#2e72d1",
+        "bg": "#3b3e44"
+    },
+    "cyoa_question_swaps": {
+        "1786886687021": {
+            "id": 1786886687021,
+            "conditions": [
+                {
+                    "variable": "Farage",
+                    "comparator": "==",
+                    "value": 3
+                }
+            ],
+            "conditionOperator": "AND",
+            "swaps": [
+                {
+                    "pk1": 11899,
+                    "pk2": 10925
+                }
+            ]
+        }
+    },
+    "endings_enabled": true,
+    "ending_data": {
+        "1786927342028": {
+            "id": 1786927342028,
+            "variable": 0,
+            "operator": "==",
+            "amount": 1,
+            "endingTitle": "Count Binface no more",
+            "endingSubtitle": "Jon Harvey wins Clacton",
+            "endingImage": "",
+            "endingText": "Congratulations on your victory Count. It's sad to see this night be somewhat tarnished by the fact that you're forced to take off the Binhead but at least your message resonated. You made an impact and now you've entered parliament. Despite your jokes you take this job seriously, you decide not to run for re-election despite many calls for it. You're just happy that you made an impact. Reform UK collapsed because of you and Satire Candidates have gained more than just your one seat.",
+            "endingSlidesJson": "[\n  {\n    \"variable\": 0,\n    \"operator\": \"==\",\n    \"amount\": 1,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Count Binface no more\",\n    \"subtitle\": \"Jon Harvey wins Clacton\",\n    \"content\": \"Congratulations on your victory Count. It's sad to see this night be somewhat tarnished by the fact that you're forced to take off the Binhead but at least your message resonated. You made an impact and now you've entered parliament. Despite your jokes you take this job seriously, you decide not to run for re-election despite many calls for it. You're just happy that you made an impact. Reform UK collapsed because of you and Satire Candidates have gained more than just your one seat.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"has\",\n    \"answerConditionAnswer\": \"11997\",\n    \"answerConditionAnswers\": \"11997\"\n  },\n  {\n    \"variable\": 0,\n    \"operator\": \"==\",\n    \"amount\": 1,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Binface wins Clacton\",\n    \"subtitle\": \"\",\n    \"content\": \"Wow wow wow. That's all you could say. Clacton actually chose you. Whether it was the debate or an act of god, you have actually won. Your time in Parliament will probably be short, one term or so. You keep running as a novelty candidate with the honor of being the only one to actually win a seat in parliament. You make votes that some people agree with but mostly they ignore you. Your victory is popular with the young generation but after you win that excitement is lost. You run a few more times then hang up the mask gracefully a few years later.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"not_has\",\n    \"answerConditionAnswer\": \"11997\",\n    \"answerConditionAnswers\": \"11997\"\n  },\n  {\n    \"variable\": 1,\n    \"operator\": \">\",\n    \"amount\": 30,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Binface embarrasses Farage\",\n    \"subtitle\": \"\",\n    \"content\": \"Well you've expectedly lost, however you've overperformed all the polls. You've gotten more than 30% of the vote. Farage leaves the whole ordeal embarrassed, Reform polling drops significantly due to his underperformance. You gain traction and do well in a few other by-elections before losing steam. You become a large name comedian after your \\\"political\\\" career is over. Reform ends up in third place in 2029 and ultimately collapses into multiple smaller parties that then join back into the conservatives. Some however stay together and form a Reform-esque party that gains around 5 to 10 percent of the vote.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"ignore\",\n    \"answerConditionAnswer\": \"\",\n    \"answerConditionAnswers\": \"\"\n  },\n  {\n    \"variable\": 1,\n    \"operator\": \"<=\",\n    \"amount\": 30,\n    \"outcomeCondition\": \"ignore\",\n    \"title\": \"Farage wins By-Election\",\n    \"subtitle\": \"\",\n    \"content\": \"Well you've expectedly lost and have gotten about as much as expected. Your vote total was less than 30% which was exactly the expected amount. Farage doesn't get the win he wanted but he survives. You run in another by election a few years later but can't recreate the magic of this run. Binface lives on as a cultural icon but no one actually votes for him anymore. You decide to hang up the mask after a few more years. You try a comedy career and manage to become a moderately successful comedian.\",\n    \"image\": \"\",\n    \"slideGroup\": \"main\",\n    \"variableConditions\": [],\n    \"variableConditionOperator\": \"AND\",\n    \"answerConditionType\": \"ignore\",\n    \"answerConditionAnswer\": \"\",\n    \"answerConditionAnswers\": \"\"\n  }\n]",
+            "audioTitle": "",
+            "audioArtist": "",
+            "audioCover": "",
+            "audioUrl": "",
+            "endingAccentColor": "#11299e",
+            "endingBackgroundColor": "#ffffff",
+            "endingTextColor": "#000000",
+            "variableConditionOperator": "AND",
+            "outcomeCondition": "ignore",
+            "answerConditionType": "has",
+            "answerConditionAnswer": "11997",
+            "answerConditionAnswers": "11997",
+            "variableConditionName": "",
+            "variableConditionValue": "",
+            "endingMode": "simple"
+        }
+    }
+}
+]
+
+
