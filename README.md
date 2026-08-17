@@ -227,6 +227,10 @@ if (e.question_number === 4 && ans === 2500) {
 }
 ```
 
+### State highlighter
+The [state highlighter](./codes/state_highlighter.js) feature, first seen in *2025 New Jersey Governor Election*, does exactly what you'd expect: it highlights a state when you hover over it. For example, in the image below, South Dakota is colored differently from the rest.
+![State highlighter](./images/state_highlighter.png)
+
 ### Temporary song easter egg
 In *All The Way*, clicking candidate/running mate images a total of six (6) times unlocks a new song in the music player. This is the [temporary song easter egg](./codes/song_easteregg.js) feature; here, we have a cleaned up version that lets it work in the players shown here. To customize it, you need to replace the image link that will trigger the songs, and also the song data you want, as shown here:
 ```javascript
