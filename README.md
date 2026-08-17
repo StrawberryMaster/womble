@@ -241,6 +241,9 @@ In *All The Way*, clicking candidate/running mate images a total of six (6) time
 See example:
 ![ATW easter egg](./images/song_easteregg.png)
 
+### Two-round system
+This is a basic implementation of a [two-round system](./codes/two-round_system.js) feature. It takes you to election night at a certain question. If you are above 50%, you win. Iif you aren't but qualify for a runoff, then it goes to a runoff (by continuing the questions), and if not, it ends the game. *Very experimental!*
+
 ### Volatility feature
 The [volatility applier](./codes/volatility_applier.js) snippet, as seen in *1992: Moonbeam*, applies volatility to global multipliers in the answer score global JSON. In other words, it randomly adjusts the values of global multipliers to introduce volatility into the scoring process, increasing the unpredictability of your answers.
 
