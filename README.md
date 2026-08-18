@@ -441,6 +441,9 @@ Another dark-themed 90s player, this is a redesigned version based off a player 
 This other Windows Media Player-themed 90s player is a loose recreation of one shown in the unreleased mod *Red Dusk 2000: Quayle's America*. See source [here](./players/noughtiesalt2_player.js).
 ![90s alt 2 player](./images/noughtiesalt2_player.jpeg)
 
+And this other, smaller, more compactt player is a loose recreation of one shown in the mockup *1992+*. See source [here](./players/92plus_player.js).
+![1992+ player](./images/92plus_player.jpeg)
+
 ----
 
 # Mod notes
