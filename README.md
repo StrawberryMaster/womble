@@ -334,6 +334,10 @@ Another Windows Media Player-themed music player, this music player was made for
 The YouTube-powered music player shown in the mod *2012: Little Big Man*, which was built on top of the *A Lifetime of This* player code. See source [here](./players/lbm_player.js).
 ![Little Big Man player](./images/lbm_player.png)
 
+### March on Washington player
+Very similar to the *Happy Days Are Here Again!* player, this music player was shown in the mod *1936: March on Washington*. See source [here](./players/mow_player.js).
+![March on Washington player](./images/mow_player.jpeg)
+
 ### Moonbeam player
 This is the Sony Walkman-like music player shown in the mod *1992: Moonbeam, standardized to fit in with the other players/functions here. See source [here](./players/moonbeam_player.js).
 ![Moonbeam player](./images/moonbeam_player.png)
@@ -369,6 +373,10 @@ An alternative version of the music player from February 2026 sneak peeks can be
 ### ROC player
 This is a modified version of the player used in *2000 ROC Redux* and other mods in the ROC series, with some optimizations and positioning fixes so it aligns with other players' layouts. See source [here](./players/roc_player.js).
 ![ROC player](./images/roc_player.png)
+
+### Ross for Boss player
+This radio-themed music player was shown in the mod *1992: Ross for Boss*, replacing the original player (which was from *No More Maga*). See source [here](./players/rfb_player.js).
+![Ross for Boss player](./images/rfb_player.jpeg)
 
 ### Sundance player
 The iPod-inspired music player for the *Sundance 2008* mod. Shown here is a modified version of the player with some standardizations and album art included. See source [here](./players/sundance_player.js).
