@@ -307,6 +307,10 @@ A music player with a design inspired by the 1990s-era music players, shown in t
 The late 80s/early 90s-era music player, shown in the mod *Duke*. Fun fact: it's actually a modified version of the music player used in the *Y. of Korea* mod. See source [here](./players/duke_player.js).
 ![Duke player](./images/duke_player.png)
 
+### Final Cut player
+This 1980s music player was shown in the announcement post for the mod *Final Cut*. It's very similar to the *All The Way* player and was likely built on top of it; this recreation maintains the same functionality and design elements. See source [here](./players/fc_player.js).
+![Final Cut player](./images/fc_player.png)
+
 ### Forward Not Back player
 This music player was shown in the sneak peeks/demo for the mod *2005 UK: Forward Not Back*. It's essentially identical to the music player from *W.* and *Four More Years*, but with a different background color, icons, and here, progress bar colors. See source [here](./players/fnb_player.js).
 ![Forward Not Back player](./images/fnb_player.jpeg)
