@@ -299,6 +299,13 @@ Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See 
 A Windows Media Player-themed music player, shown in the mod *Biden '08*. Shown here is a modified version of the player with its Windows 7 volume bar theme included, and also the ability to click on the progress bar to seek. See source [here](./players/biden_player.js).
 ![Biden '08 player](./images/biden_player.png)
 
+### Bob's Macarena player
+A Windows Media Player-themed music player, shown in the mod *Bob's Macarena* (Service Pack 2). Shown here is a modified version of the player with the ability to click on the progress bar to seek, plus some of its theming elements. See source [here](./players/bm_player.js).
+![Bob's Macarena player](./images/bm_player.jpeg)
+
+Similarly, this one is a recreation of the first version made for the release version of the same mod (labeled as ArmyTwoPointOh's Music Player). See source [here](./players/bmalt_player.js).
+![Bob's Macarena alt player](./images/bmalt_player.jpeg)
+
 ### Contract With America player
 A music player with a design inspired by the 1990s-era music players, shown in the mod *1996: Contract With America*. Shown here is a somewhat more standardized version of the player. See source [here](./players/cwa_player.js).
 ![Contract With America player](./images/cwa_player.png)
