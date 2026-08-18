@@ -339,7 +339,7 @@ Very similar to the *Happy Days Are Here Again!* player, this music player was s
 ![March on Washington player](./images/mow_player.jpeg)
 
 ### Moonbeam player
-This is the Sony Walkman-like music player shown in the mod *1992: Moonbeam, standardized to fit in with the other players/functions here. See source [here](./players/moonbeam_player.js).
+This is the Sony Walkman-like music player shown in the mod *1992: Moonbeam*, standardized to fit in with the other players/functions here. See source [here](./players/moonbeam_player.js).
 ![Moonbeam player](./images/moonbeam_player.png)
 
 ### More Than Ever/Good For Me player
