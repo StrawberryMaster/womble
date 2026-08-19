@@ -415,6 +415,10 @@ Based off a Denon DCP-30 CD player, this was initially made for *1992: Moonbeam*
 This music player is themed after the Technics SL-1210MK5 turntable, and is a loosely faithful recreation of the music player made for the unreleased George McGovern presidency simulator *Flowers in Their Nightmare*. See source [here](./players/fitn_player.js).
 ![Flowers in Their Nightmare player](./images/fitn_player.png)
 
+#### Frutiger Aero player
+Inspired by the Frutiger Aero aesthetic, this is a recreation of a player shown in the *[Get It BiDone](https://www.reddit.com/r/imaginaryelections/s/qjRdPA9CIa)* mockup. See source [here](./players/frutiger_player.js).
+![Frutiger Aero player](./images/frutiger_player.jpeg)
+
 ##### More Perfect Union player
 This music player is themed after the QFX cassette deck, and is a loosely faithful recreation of the music player made for the unreleased 1984 mod *More Perfect Union*. **Note: very experimental!** See source [here](./players/mpu_player.js).
 ![More Perfect Union player](./images/mpu_player.png)
