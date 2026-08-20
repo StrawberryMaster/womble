@@ -257,17 +257,51 @@ function louisianaPurchase() {
         e.candidate_json[id].fields.last_name = "Clinton"   
         e.candidate_json[id].fields.color_hex = "#8ac8ff"
         opponentIndex += 5;
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 27)[0].fields.issue_score = -0.8
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 28)[0].fields.issue_score = 0.6
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 29)[0].fields.issue_score = 0.5
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 30)[0].fields.issue_score = 0.52
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 31)[0].fields.issue_score = -0.9
+        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 27)[0].fields.issue_score = -0.3;
+        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 28)[0].fields.issue_score = 0.6;
+        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 29)[0].fields.issue_score = 0.5;
+        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 30)[0].fields.issue_score = 0.52;
+        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 31)[0].fields.issue_score = -0.7;
+
+        // other balancing fixes
+        const redStatesToFix = [181, 184, 190, 194, 204, 207, 214, 216, 220, 224];
+        redStatesToFix.forEach(stateId => {
+            let match = e.candidate_state_multiplier_json.find(x => x.fields.candidate == 12240 && x.fields.state == stateId);
+            if (match) match.fields.state_multiplier = 1.0;
+        });
+
+        let arDem = e.candidate_state_multiplier_json.find(x => x.fields.candidate == 12354 && x.fields.state == 184);
+        if (arDem) arDem.fields.state_multiplier = 1.25;
     }
     function gravelLibertarian() {
         var id = e.candidate_json.map(p=>p.pk).indexOf(20001)
         e.candidate_json[id].fields.first_name = "Mike"
         e.candidate_json[id].fields.last_name = "Gravel"   
         e.candidate_json[id].fields.color_hex = "#32a883"
+
+        // other balancing fixes
+        for (let stateId = 181; stateId <= 231; stateId++) {
+            let match = e.candidate_state_multiplier_json.find(x => x.fields.candidate == 20001 && x.fields.state == stateId);
+            if (match) {
+                match.fields.state_multiplier = 0.05;
+            }
+        }
+
+        let ak = e.candidate_state_multiplier_json.find(x => x.fields.candidate == 20001 && x.fields.state == 182);
+        if (ak) ak.fields.state_multiplier = 0.80;
+
+        const westernGravelStates = [
+            { id: 217, mult: 0.15 }, // Oregon
+            { id: 227, mult: 0.15 }, // Washington
+            { id: 206, mult: 0.12 }, // Montana
+            { id: 186, mult: 0.10 }, // Colorado
+            { id: 225, mult: 0.15 }  // Vermont
+        ];
+
+        westernGravelStates.forEach(item => {
+            let match = e.candidate_state_multiplier_json.find(x => x.fields.candidate == 20001 && x.fields.state == item.id);
+            if (match) match.fields.state_multiplier = item.mult;
+        });
     }
     function daSSchle() {
         var id = e.candidate_json.map(p=>p.pk).indexOf(12354)
@@ -309,12 +343,18 @@ function louisianaPurchase() {
         e.candidate_json[id].fields.first_name = "John"
         e.candidate_json[id].fields.last_name = "Edwards"
         opponentIndex += 8;
-        e.candidate_state_multiplier_json.filter((x) => x.fields.candidate == 12354 && x.fields.state == 213)[0].fields.state_multiplier = 1.2
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 27)[0].fields.issue_score = 0.56
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 28)[0].fields.issue_score = 0.35
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 29)[0].fields.issue_score = 0.35
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 30)[0].fields.issue_score = 0
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 31)[0].fields.issue_score = -0.4
+        e.candidate_state_multiplier_json.find(x => x.fields.candidate == 12354 && x.fields.state == 213).fields.state_multiplier = 1.25;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 27).fields.issue_score = 0.40;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 28).fields.issue_score = 0.20;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 29).fields.issue_score = 0.25;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 30).fields.issue_score = -0.50; // Protectionist/Fair Trade
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 31).fields.issue_score = -0.50;
+
+        const safeRedStates = [181, 184, 192, 194, 204, 207, 214, 216, 220, 224]; // AL, AR, ID, IN, MS, NE, ND, OK, SC, UT
+        safeRedStates.forEach(stateId => {
+            let match = e.candidate_state_multiplier_json.find(x => x.fields.candidate == 12240 && x.fields.state == stateId);
+            if (match) match.fields.state_multiplier = 1.0;
+        });
     }
     function patchDaschleTrack() {
         const qUpdates = {
