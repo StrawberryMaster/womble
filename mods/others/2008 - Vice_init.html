@@ -441,22 +441,22 @@ body.dyslexia-active option {
 .inner_window_question {
     height: 54%;
 }
-  .overlay_window {
-	position: absolute;
-	opacity: 1;
-	filter: alpha(opacity=100);
-	background: #000;
-	border-style: double;
-	border-color: #C9C9C9;
-	height: 72%;
-	width: 54%;
-	top: 17%;
-	left: 25%;
-	z-index: 101
-    transition: opacity 0.1s;
-    -webkit-filter: blur(0px);
-    -webkit-animation: fadein linear 0.15s;
+
+.overlay_window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 72%;
+  width: 54%;
+  z-index: 101;
+  background: #000;
+  border-style: double;
+  border-color: #C9C9C9;
+  transition: opacity 0.1s;
+  animation: fadein linear 0.15s;
 }
+
 .overlay_window h3 {
 	margin: 0;
 	padding: .3em 0 .1em;
@@ -542,57 +542,33 @@ body.dyslexia-active option {
   text-align: center;
   color: #fff;
   /* animation properties */
-  -moz-transform: translateY(100%);
-  -webkit-transform: translateY(100%);
   transform: translateY(100%);
-  
-  -moz-animation: my-animation 10s linear infinite;
-  -webkit-animation: my-animation 10s linear infinite;
   animation: my-animation 10s linear infinite;
 }
 
-/* for Firefox */
-@-moz-keyframes my-animation {
-  from { -moz-transform: translateY(100%); }
-  to { -moz-transform: translateY(-100%); }
-}
-
-/* for Chrome */
-@-webkit-keyframes my-animation {
-  from { -webkit-transform: translateY(100%); }
-  to { -webkit-transform: translateY(-100%); }
-}
-
 @keyframes my-animation {
-  from {
-    -moz-transform: translateY(100%);
-    -webkit-transform: translateY(100%);
-    transform: translateY(100%);
-  }
-  to {
-    -moz-transform: translateY(-100%);
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
-  }
+  from { transform: translateY(100%); }
+  to { transform: translateY(-100%); }
 }
-@-webkit-keyframes fadein {
-   0% {    -webkit-filter: opacity(0%) blur(5px);}
-  50% { -webkit-filter: opacity(100%)  blur(2px);}
- 100% {  -webkit-filter: opacity(100%) blur(0px);}
+
+@keyframes fadein {
+  0% { filter: opacity(0%) blur(5px); }
+  50% { filter: opacity(100%) blur(2px); }
+  100% { filter: opacity(100%) blur(0px); }
 }
+
 .overlay {
-    z-index: 1000;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #000;
-    opacity: .1;
-    filter: alpha(opacity = 0);
-    visibility: visible;
-    z-index: 100;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  opacity: .1;
+  visibility: visible;
+  z-index: 100;
 }
+
 .highlighted {
     transition: background 0.5s;
     transition: color 0.5s;
@@ -601,7 +577,7 @@ body.dyslexia-active option {
 }
   body {display:flex!important;}
   
-  #game_window{max-width:1000px;}
+  #game_window{max-width:1000px; border: 1px solid var(--w7-el-bd-h); }
   #map_container {
     height: 90%;
     width: 75%;
@@ -612,6 +588,34 @@ body.dyslexia-active option {
     border-color: #fff;
     background: linear-gradient(31deg, rgba(32, 32, 36, 1) 0%, rgb(61 61 82) 22%, rgb(60 61 81) 31%, rgb(56 59 79) 44%, rgb(51 65 79) 56%, rgba(45, 72, 82, 1) 100%)
   }
+
+#menu_container {
+  background-color: transparent;
+}
+
+#overall_result_container,
+#state_result_container {
+  background: transparent;
+}
+
+#overall_result h3,
+#state_info h3 {
+  background-color: #000;
+  color: #fff;
+  border-bottom: 2px double #707070;
+  padding: 4px 2px;
+}
+
+#overall_result p,
+#state_info p,
+#overall_result ul,
+#state_info ul,
+#state_info li,
+#state_info span,
+#switchingEst {
+  color: #000;
+}
+
   
     </style>`
 function addDynamicCSS() {
