@@ -316,6 +316,69 @@ function louisianaPurchase() {
         e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 30)[0].fields.issue_score = 0
         e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 31)[0].fields.issue_score = -0.4
     }
+    function patchDaschleTrack() {
+        const qUpdates = {
+            130011: "Daschle's theme of \"unity and progress\" in the face of your supposed \"defeatist\" right-wing agenda continues being his strongest slogan against you. How will you address the fact he's essentially <i>outflanked</i> you on National Security?",
+            130021: "The most baffling event of this election season has been the formation of a \"Hawkish swing vote\", which appears to increasingly back Daschle due to your perceived inaction in a hostile and terrorist-laden Middle East. How will you approach this sudden collapse of your stranglehold on the foreign policy establishment?",
+            130031: "Polling suggests this is the most unpopular duo of tickets in American history. Daschle’s approval ratings rival your own in their mediocrity, even as he attempts to reach out to doves as the \"clearly better option\", a nod to being the \"lesser of two evils\". How do you address this mutual unpopularity?",
+            130041: "Daschle continues his tirade against the American taxpayer as he has resurrected his old healthcare reform ambitions, accusing you of negligence towards the healthcare crisis. His plan focuses on expanding access through a federal health board and heavy subsidies. How do you counter this?",
+            130051: "Daschle is no stranger to allegations of obstruction and influence-peddling, from his tenure as Senate Majority Leader to his lucrative post-Senate K Street consulting. He nonetheless persists in painting himself as a steady, reliable and trustworthy hand. How do you get him off his high horse?",
+            130061: "The near-miss in the American economy proves almost impossible to ignore. Although your business connections managed to get on top of it before stocks could truly plummet to rock bottom, there is still the constant whining from Daschle that you haven't done nearly enough, with anemic bailouts and poor stimulus. How do you defend your record?",
+            130089: "It's June and the first Presidential debates are coming up. Although you were never one for charismatic one-liners, your campaigning experience has given you an unusually strong command of crowds, in addition to your experiences in 2000 and 2004. Tom Daschle waltzes in with his soft-spoken, calculating smirk printed on his face. You enter in your cold and calculated demeanor, but remain civil in shaking his hand. What theme will you hammer home?"
+        };
+
+        const aUpdates = {
+            130012: "The 90s Democratic leadership was representative of one of the most divisive and obstructionist times for America, and it's no surprise voters are concerned about bringing back the chief obstructionist himself. Hammering on how he's dangerous for American stability is essential.",
+            130015: "Americans don't need reckless hostility to foreign nations, and Daschle's sudden pivot to hawkish opportunism with the nations of the world shows how irresponsible he would be as a leader. Voters understand that, and they see me as the alternative for keeping things stable and firm.",
+            130018: "He talks about defeatism. What kind of defeatist would make Iran accountable for the murder of our President? What kind of defeatist keeps a hostile and do-nothing Congress accountable? If that makes somebody a defeatist, then I guess I am one.",
+            130022: "Incredible. Not only has Daschle become completely out of touch with his South Dakota roots, he has become out of touch with the nation as a whole. Americans want to make terrorists accountable, not colonize the world. We're smart about our foreign policy, unlike him.",
+            130025: "What has Tom Daschle accomplished as Senator internationally? Has he visited African nations? Has he gone to India? He spent decades buried under Senate committee paperwork. He has no real foreign policy credentials.",
+            130035: "Voters clearly want to reduce divisiveness and find solutions that work for everybody. Yet, looking at Daschle's record, you can see he was the principal architect of modern Senate obstruction. We were a better country before he weaponized gridlock.",
+            130038: "Redirect the conversation to policy. Daschle loves wallowing around in partisan rhetoric. We need someone who can get things done and solve the crises of our changing times. His profile as a career D.C. insider is not fitting for that.",
+            130042: "What we've done with Cheneycare has been outstanding, and to suggest that we've somehow failed Americans by creating reasonable and effective healthcare reform shows how out of touch he is.",
+            130045: "Although not as much progress has happened as I'd have liked, we try to do what we can with the Congress we've gotten, and it certainly isn't a friendly one. Focus on how Daschle spent his entire leadership career filibustering every commonsense reform.",
+            130048: "His healthcare plans sound great until you get to who's paying for it. We're talking massive new federal boards, heavy tax hikes, and a total disruption of private plans. What is he trying to do? Turn American healthcare into a bureaucratic nightmare?",
+            130052: "We need to be merciless. He's been an entrenched K Street influence-peddler since losing in '04, and we need to remind voters of his shadiness and why South Dakota threw him out in the first place.",
+            130055: "We need to avoid getting into too much muck. Sure, we can produce some ads addressing his lobbyist ties and lack of transparency, but it's unbecoming of an incumbent to tear a new one in an opponent over personal issues.",
+            130058: "He's the ultimate career politician; he's been on both sides of every farm bill and procedural vote his whole life. Dig up his flip-flops and run ads hammering his lack of core principles.",
+            130062: "The Bush tax cuts being upheld during my Administration show that we've always prioritized regular Americans and their ability to thrive through free enterprise. We'll do the simplest approach: Daschle will repeal your tax cuts.",
+            130065: "We need to come clean with the data: we were tipped off by corporate agents that toxic assets were in near-collapse, and through tenacity and firm leadership, we kept the worst excesses from coming out to the public. Would Daschle ever have the quick thinking for that?",
+            130068: "Daschle's tax-and-spend policies will stifle growth. It's as simple as that. We need policies which encourage investment and maintain business confidence. It's basic economics.",
+            130090: "Strength through experienced, firm leadership. He can talk all he wants about \"unity\", but this is a dangerous, multifaceted world which I am uniquely equipped to tackle.",
+            130094: "Results, not rhetoric. He speaks in vague procedural platitudes about process and idealism, but we’ve delivered on the economy, national security, and decisive executive leadership.",
+            130098: "Emphasize trust in these tough times. He represents decades of Congressional gridlock and K Street lobbying; I represent executive resolve. Who do you want in the Oval Office when the next crisis hits?"
+        };
+
+        const fUpdates = {
+            130013: "Reminding voters that this man spent the entire Clinton presidency playing hall monitor in the Senate does wonders. People don't want a return to 1990s legislative shutdowns over nothing; they want a President who can bully Congress into submission without crying to the press. You can do that.",
+            130016: "Watching someone like Daschle try to out-hawk Dick Cheney is the height of political comedy. Anti-war progressives are throwing up in their mouths, and the defense establishment looks at him as if he were a lost tourist who wandered onto a military firing range.",
+            130023: "\"This is one hell of an election\", says Jimmy Kimmel in his late-night episode dedicated to the election. \"We got the choice between...\" Kimmel checks his notes. \"A dove Cheney and a Tom \"Rambo\" Daschle. Truly incredible times.\". You can't help but chuckle along.",
+            130026: "What's he going to do when Russia mobilizes, file a motion to recommit? Voters might think you're a heartless ghoul, but at least you know which button turns enemy airfields into glass. Daschle's entire foreign policy portfolio consists of an exchange trip to Ottawa twenty years ago.",
+            130036: "Daschle is running on 2004 resentment, nothing more than that. Reminding everyone that South Dakota fired his ass the second John Thune gave them an alternative brings a warm cruelty to your campaign. He's a sore loser.",
+            130039: "He has no platform! He spent twenty years behind a mahogany desk mastering parliamentary delays, and now he thinks he can lead the free world on vibes and ethanol subsidies. Voters see right through his folksy choirboy routine.",
+            130043: "You already passed healthcare reform. Watching Daschle wave around his bloated federal health board proposals while CheneyCare is literally mailing checks to hospitals makes him look like a homeless man shouting at an aircraft carrier.",
+            130046: "The delicious irony of Daschle lecturing on healthcare after his own former caucus crossed the aisle to sign your bill is not lost on anyone. He's a general without an army, wandering the cable news circuit looking for relevance.",
+            130053: "The K Street millions. The swanky Georgetown mansion. His lobbyist wife. It all comes unfurling out in rapid-fire attack ads. It reminds the Rust Belt that their \"humble\" prairie preacher has been cashing seven-figure checks from special interests ever since voters kicked him out of the Capitol.",
+            130059: "Every town hall he holds in Ohio turns into a bloodbath as conservative plant questions grill him on his corporate consulting gigs. He stammers and adjusts his little wire glasses while your ad men pop champagne in D.C.",
+            130063: "Threatening Middle America with tax hikes is like taking candy from a baby. Daschle tries explaining the nuances of federal revenue brackets, but all the median voter hears is that the Dakota City-slicker wants their paycheck.",
+            130091: "The visual contrast is art. You stand there in your dark suit, cold, slouching, while Daschle looks like an office boy. The debate was over before the opening statements ended.",
+            130099: "Digging up the corpse of 90s legislative dysfunction proves effective. Most Americans were ten years younger when Daschle mattered, but reminding them of the endless, boring gridlock keeps the fear of Democratic impotence alive."
+        };
+
+        for (let pk in qUpdates) {
+            let q = campaignTrail_temp.questions_json.find(x => x.pk == pk);
+            if (q) q.fields.description = qUpdates[pk];
+        }
+        for (let pk in aUpdates) {
+            let a = campaignTrail_temp.answers_json.find(x => x.pk == pk);
+            if (a) a.fields.description = aUpdates[pk];
+        }
+        for (let pk in fUpdates) {
+            let f = campaignTrail_temp.answer_feedback_json.find(x => x.pk == pk);
+            if (f) f.fields.answer_feedback = fUpdates[pk];
+        }
+    }
+
 campaignTrail_temp.cyoa = true;
 	e = campaignTrail_temp
 
@@ -812,7 +875,7 @@ cyoAdventure = function (a) {
         campaignTrail_temp.questions_json[20] = tunnel(129831);
     }
     //THE OPPONENTINATOR
-    if(e.noCounter == 15 && VariableThatIRenamedFromOGVice == 1 && payYourBills == 1 && e.player_answers.includes(12664) && warCount < 5){
+    if (e.noCounter == 15 && VariableThatIRenamedFromOGVice == 1 && payYourBills == 1 && warCount < 5) {
         louisianaPurchase();
         gravelLibertarian();
         campaignTrail_temp.questions_json[16] = tunnel(13000);
@@ -823,31 +886,9 @@ cyoAdventure = function (a) {
         campaignTrail_temp.questions_json[23] = tunnel(129859);
         campaignTrail_temp.questions_json[25] = tunnel(129871);
         campaignTrail_temp.questions_json[26] = tunnel(129263);
-        console.log("hillbilly lady")
+        console.log("hillbilly lady");
     }
-    else if(e.noCounter == 15 && Win == 1 && Securitate > 0 && cheneyCare == 0){
-        Kookinich();
-        campaignTrail_temp.questions_json[16] = tunnel(13083);
-        campaignTrail_temp.questions_json[18] = tunnel(129167);
-        campaignTrail_temp.questions_json[23] = tunnel(129252);
-        campaignTrail_temp.questions_json[26] = tunnel(129263);
-        campaignTrail_temp.questions_json[22] = tunnel(130580);
-    }
-    else if(e.noCounter == 15 && warCount >= 5 && (e.vpIndex == 3 || e.vpIndex == 1) && invadedSyria == 1 && cheneyCare == 0 ){
-        hanoiFonda();
-        campaignTrail_temp.questions_json[16] = tunnel(12943);
-        campaignTrail_temp.questions_json[17] = tunnel(129167);
-        campaignTrail_temp.questions_json[18] = tunnel(129151);
-        campaignTrail_temp.questions_json[19] = tunnel(129187); 
-        campaignTrail_temp.questions_json[20] = tunnel(129205);
-        campaignTrail_temp.questions_json[21] = tunnel(129220);
-        campaignTrail_temp.questions_json[22] = tunnel(129237);
-        campaignTrail_temp.questions_json[23] = tunnel(129252);
-        campaignTrail_temp.questions_json[25] = tunnel(129303);
-        campaignTrail_temp.questions_json[26] = tunnel(129445);
-        console.log("fonda")
-    }
-    else if(e.noCounter == 15 && e.vpIndex == 4 && warCount == 5 && invadedSyria == 1 && Win == 1 && cheneyCare == 1 && e.player_answers.includes(12683) && e.player_answers.includes(12830) && e.player_answers.includes(13115)){
+    else if (e.noCounter == 15 && e.vpIndex == 4 && warCount >= 4 && cheneyCare == 1) {
         mcGovernment();
         ctsAchievement("Under God");
         campaignTrail_temp.questions_json[16] = tunnel(13049);
@@ -860,9 +901,9 @@ cyoAdventure = function (a) {
         campaignTrail_temp.questions_json[23] = tunnel(129252);
         campaignTrail_temp.questions_json[25] = tunnel(130191);
         campaignTrail_temp.questions_json[26] = tunnel(130176);
-        console.log("Geege")
+        console.log("Geege");
     }
-    else if(e.noCounter == 15 && (e.vpIndex == 5 || e.vpIndex == 2) && (e.player_answers.includes(12664) || e.player_answers.includes(12652)) && warCount >= 3 && (e.player_answers.includes(12718)) && cheneyCare == 1){
+    else if (e.noCounter == 15 && (e.vpIndex == 2 || e.vpIndex == 5) && warCount >= 3 && cheneyCare == 1) {
         gravelman();
         campaignTrail_temp.questions_json[16] = tunnel(129042);
         campaignTrail_temp.questions_json[17] = tunnel(129167);
@@ -874,8 +915,23 @@ cyoAdventure = function (a) {
         campaignTrail_temp.questions_json[23] = tunnel(129252);
         campaignTrail_temp.questions_json[25] = tunnel(129670);
         campaignTrail_temp.questions_json[26] = tunnel(129263);
+        console.log("gravel");
     }
-    else if(e.noCounter == 15 && invadedSyria == 1 && payYourBills == 1 && e.player_answers.includes(12751) && !e.player_answers.includes(12664) && cheneyCare == 0){
+    else if (e.noCounter == 15 && (e.vpIndex == 1 || e.vpIndex == 3) && warCount >= 5 && cheneyCare == 0) {
+        hanoiFonda();
+        campaignTrail_temp.questions_json[16] = tunnel(12943);
+        campaignTrail_temp.questions_json[17] = tunnel(129167);
+        campaignTrail_temp.questions_json[18] = tunnel(129151);
+        campaignTrail_temp.questions_json[19] = tunnel(129187); 
+        campaignTrail_temp.questions_json[20] = tunnel(129205);
+        campaignTrail_temp.questions_json[21] = tunnel(129220);
+        campaignTrail_temp.questions_json[22] = tunnel(129237);
+        campaignTrail_temp.questions_json[23] = tunnel(129252);
+        campaignTrail_temp.questions_json[25] = tunnel(129303);
+        campaignTrail_temp.questions_json[26] = tunnel(129445);
+        console.log("fonda");
+    }
+    else if (e.noCounter == 15 && payYourBills == 1 && cheneyCare == 0) {
         poorMansKennedy();
         campaignTrail_temp.questions_json[16] = tunnel(129044);
         campaignTrail_temp.questions_json[17] = tunnel(129167);
@@ -883,17 +939,41 @@ cyoAdventure = function (a) {
         campaignTrail_temp.questions_json[19] = tunnel(129897); 
         campaignTrail_temp.questions_json[20] = tunnel(129906);
         campaignTrail_temp.questions_json[21] = tunnel(129915);
-        if(warCount >= 5){
+        if (warCount >= 5) {
             campaignTrail_temp.questions_json[22] = tunnel(129252);
-        }
-        else{
+        } else {
             campaignTrail_temp.questions_json[22] = tunnel(129263);
         }
         campaignTrail_temp.questions_json[23] = tunnel(129990);
         campaignTrail_temp.questions_json[25] = tunnel(129924);
         campaignTrail_temp.questions_json[26] = tunnel(129933);
+        console.log("edwards");
     }
-    else if(e.noCounter == 15 && warCount >= 5){
+    else if (e.noCounter == 15 && Securitate > 0 && cheneyCare == 0) {
+        Kookinich();
+        campaignTrail_temp.questions_json[16] = tunnel(13083);
+        campaignTrail_temp.questions_json[18] = tunnel(129167);
+        campaignTrail_temp.questions_json[22] = tunnel(130580);
+        campaignTrail_temp.questions_json[23] = tunnel(129252);
+        campaignTrail_temp.questions_json[26] = tunnel(129263);
+        console.log("kucinich");
+    }
+    else if (e.noCounter == 15 && cheneyCare == 1 && warCount <= 3) {
+        daSSchle();
+        patchDaschleTrack();
+        campaignTrail_temp.questions_json[16] = tunnel(129040);
+        campaignTrail_temp.questions_json[17] = tunnel(129167);
+        campaignTrail_temp.questions_json[18] = tunnel(130011);
+        campaignTrail_temp.questions_json[19] = tunnel(130021);
+        campaignTrail_temp.questions_json[20] = tunnel(130031);
+        campaignTrail_temp.questions_json[21] = tunnel(130041);
+        campaignTrail_temp.questions_json[22] = tunnel(129263);
+        campaignTrail_temp.questions_json[23] = tunnel(130051);
+        campaignTrail_temp.questions_json[25] = tunnel(130061);
+        campaignTrail_temp.questions_json[26] = tunnel(130089);
+        console.log("daschle");
+    }
+    else if (e.noCounter == 15 && warCount >= 5) {
         Obunga();
         demStrengthVarHandler = 10;
         campaignTrail_temp.questions_json[16] = tunnel(13017);
@@ -909,7 +989,7 @@ cyoAdventure = function (a) {
         console.log("obamanation");
         console.log("warCount" + warCount);
     }
-    else if(e.noCounter == 15 && warCount <= 4){
+    else if (e.noCounter == 15 && warCount <= 4) {
         KKKlinton();
         gravelLibertarian();
         demStrengthVarHandler = 2;
