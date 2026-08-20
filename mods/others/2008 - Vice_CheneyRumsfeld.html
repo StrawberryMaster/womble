@@ -23832,10 +23832,15 @@ function updateQuestions(mutationList, observer) {
             continue;
         }
         answer.classList.add("done");
-        let answerObject = campaignTrail_temp.answers_json.filter((x) => x.pk == answer.value)[0];
+        
+        let answerObject = campaignTrail_temp.answers_json.find((x) => x.pk == answer.value);
 
-        if (answerObject.fields.condition != null) {
-            answer.disabled = !(eval(answerObject.fields.condition));
+        if (answerObject && answerObject.fields && answerObject.fields.condition != null) {
+            try {
+                answer.disabled = !(eval(answerObject.fields.condition));
+            } catch (err) {
+                console.error("Condition eval error on PK " + answer.value, err);
+            }
         }
     }
 }
@@ -24455,109 +24460,174 @@ campaignTrail_temp.jet_data = [{
 ]
 
 //tooltip maker by NaiminaOS, thank you
-// Create the tooltip element
-const tooltip = document.createElement("div");
-tooltip.setAttribute("id", "tt");
-tooltip.innerHTML = ``;
-tooltip.style.position = "absolute";
-//tooltip.style.backgroundColor = "#eee";
-//tooltip.style.color = "#000";
-tooltip.style.padding = "8px";
-//tooltip.style.borderRadius = "5px";
-tooltip.style.visibility = "hidden";
-tooltip.style.fontSize = "14px";
-tooltip.style.zIndex = "1000";
-tooltip.style.whiteSpace = "normal";
-tooltip.style.wordWrap = "break-word";
-//tooltip.style.border = "1px solid #444"; // Add thin black border
-//tooltip.style.borderRadius = "5px"; // Optional: rounded corners
-//tooltip.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)"; // Optional: subtle shadow
-tooltip.style.maxWidth = "230px"; // Adjust this to customize the max width.
-tooltip.class = "tooltip is-top is-right"
-tooltip.role = "tooltip"
-
-document.body.appendChild(tooltip);
-
-// Show the tooltip and make it follow the mouse
-
-window.tooltip_on = function(html) {
-    if (tooltip_dict[html] != null) {
-        tooltip.innerHTML = tooltip_dict[html];
+//rewritten for Bruce.
+;(function initOriginalTooltips() {
+    if (!document.getElementById("tct-tooltip-styles")) {
+        const style = document.createElement("style");
+        style.id = "tct-tooltip-styles";
+        style.textContent = `
+            .tct-tooltip-trigger {
+                cursor: pointer;
+                background: #6f747d;
+                display: inline;
+                color: #fff;
+                font-family: inherit;
+                font-size: inherit;
+                padding: 1px 5px;
+            }
+            .tct-tooltip-trigger:focus-visible {
+                outline: 2px solid #ffffff;
+                outline-offset: 1px;
+            }
+        `;
+        document.head.appendChild(style);
     }
-    tooltip.style.visibility = "visible";
-    document.onmousemove = (event) => {
-        tooltip.style.left = `${event.pageX + 10}px`; // Use this and the line below to
-        tooltip.style.top = `${event.pageY + 10}px`; // adjust the relative position of the tooltip.
+
+    let tooltipEl = document.getElementById("tt");
+    if (!tooltipEl) {
+        tooltipEl = document.createElement("div");
+        tooltipEl.id = "tt";
+        tooltipEl.className = "tooltip is-top is-right";
+        tooltipEl.setAttribute("role", "tooltip");
+        tooltipEl.setAttribute("aria-hidden", "true");
+        
+        tooltipEl.style.position = "absolute";
+        tooltipEl.style.padding = "8px";
+        tooltipEl.style.fontSize = "14px";
+        tooltipEl.style.zIndex = "1000";
+        tooltipEl.style.whiteSpace = "normal";
+        tooltipEl.style.wordWrap = "break-word";
+        tooltipEl.style.maxWidth = "230px";
+        tooltipEl.style.visibility = "hidden";
+        
+        document.body.appendChild(tooltipEl);
+    }
+
+    window.tooltip_dict = {
+        "Islamic Republic of Iran": "<img src='https://i.ibb.co/X3C4Sh4/image.png' alt='Iran Map'>Killed Dubya. Intel says so!",
+        "Rummy": "<img src='https://i.ibb.co/r0JmdL9/Donald-Rumsfeld-Exec-Dir-Cost-of-Living-Council-1.jpg' alt='Donald Rumsfeld'><br>Old Don from the Nixon years.",
+        "Iraq is a sovereign nation": "Part of the game of play-pretend called \"international relations\".",
+        "Khuzestan": "<img src='https://i.ibb.co/pnYZnDC/image.png' alt='Khuzestan Province'>Plurality-Arab province in Iran with lots of oil.",
+        "OPLAN 8044": "<img src='https://upload.wikimedia.org/wikipedia/commons/f/f4/Julin_Divider.gif' alt='Nuclear Explosion'>Tick tock.",
+        "Prison of Nations": "Another word for archaic Empires.",
+        "Abu Ghraib": "<img src='https://i.ibb.co/ZzxpXJb/image.png' alt='Abu Ghraib'>Girls just wanna have fun!",
+        "Hamid Karzai": "<img src='https://i.ibb.co/w7P6tFT/image.png' alt='Hamid Karzai'>2 assassination attempts and counting...",
+        "Joe Lieberman": "<img src='https://i.ibb.co/5RwCD3h/image.png' alt='Joe Lieberman'>Congress Pole.",
+        "American soldiers best used elsewhere": "<img src='https://i.ibb.co/Ph4ZZYx/image.png' alt='Military deployment'>Blowing up sunshine across the World.",
+        "Mitch McConnell": "<img src='https://i.ibb.co/WHRrLfK/image.png' alt='Mitch McConnell'>Walks the line.",
+        "Hank Paulson": "<img src='https://i.ibb.co/jkPMhtt/image.png' alt='Hank Paulson'>Moneybags.",
+        "Carrier Strike Group 5": "<img src='https://i.ibb.co/JBpdctN/image.png' alt='Aircraft Carrier'>Home of the USS George Washington.",
+        "Zarqawi": "<img src='https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2010/8/6/1281092015089/Abu-Musab-al-Zarqawi-in-a-006.jpg?width=465&dpr=1&s=none&crop=none' alt='Abu Musab al-Zarqawi'>Abu Musab al-Zarqawi, anti-Shia psycho.",
+        "Median Voter": "<img src='https://notesonliberty.com/wp-content/uploads/2017/03/median_voter_model.png?w=640' alt='Median Voter Bell Curve'><i>shrugs</i>",
+        "Unitary Executive Theory": "Führer Cheney's favorite interpretation of the Constitution.",
+        "Hussein": "<img src='https://i.ibb.co/pKfqLqT/n2rltg.png' alt='Barack Obama caricature'>Hmmm...",
+        "is from Indonesia": "Soetoro. Look it up!",
+        "Clinton Coalition": "<img src='https://i.ibb.co/KmGqmw0/vsbu23.png' alt='Clinton campaign banner'>Nightmare.",
+        "Ancestral Democrats": "<img src='https://i.ibb.co/9GK7xrQ/4q8f9a.png' alt='Historical Voting Map'>Previously thought to be extinct.",
+        "that hippie whore": "<img src='https://upload.wikimedia.org/wikipedia/commons/e/e1/Valerie_plame_wilson_2014.jpg' alt='Valerie Plame'>Valerie Plame. Formerly served the CIA.",
+        "Gonzales": "<img src='https://upload.wikimedia.org/wikipedia/commons/9/9f/Alberto_Gonzales_-_official_DoJ_photograph.jpg' alt='Alberto Gonzales'>Alberto Gonzales, US Attorney General.",
+        "the other whiny pestering Texan": "<img src='https://i.ibb.co/X4nyXJv/Ron-Paul-official-Congressional-photo-portrait-2007-1-1.jpg' alt='Ron Paul'>Ron Paul, Texas Congressman."
     };
-};
 
+    function positionTooltipAt(x, y) {
+        const pad = 10;
+        const width = tooltipEl.offsetWidth || 230;
+        const height = tooltipEl.offsetHeight || 80;
+        const maxX = window.scrollX + document.documentElement.clientWidth;
+        const maxY = window.scrollY + document.documentElement.clientHeight;
 
-window.tooltip_off = function() {
-    tooltip.style.visibility = "hidden";
-    document.onmousemove = null; // Stop tracking the mouse
-};
+        let left = x + pad;
+        let top = y + pad;
 
-function tooltip_replace(text, terms) { // Thank you ChatGPT
-    // Escape special characters in terms for regex
-    const escapedTerms = terms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-    
-    // Create a regex to match any term in the list (whole words only)
-    const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'g');
+        if (left + width > maxX - 5) left = x - width - pad;
+        if (top + height > maxY - 5) top = y - height - pad;
 
-    // Replace terms with the span-wrapped version
-    return text.replace(regex, (match) => {
-        return `<span style="cursor: pointer; background: #6f747d;" 
-                    onmouseover="tooltip_on(this.innerHTML);" 
-                    onmouseout="tooltip_off()">`+match+`</span>`;
+        tooltipEl.style.left = `${Math.max(window.scrollX + 5, left)}px`;
+        tooltipEl.style.top = `${Math.max(window.scrollY + 5, top)}px`;
+    }
+
+    window.tooltip_on = function(termKey, x, y) {
+        if (!window.tooltip_dict[termKey]) return;
+        tooltipEl.innerHTML = window.tooltip_dict[termKey];
+        tooltipEl.style.visibility = "visible";
+        tooltipEl.setAttribute("aria-hidden", "false");
+        if (x !== undefined && y !== undefined) {
+            positionTooltipAt(x, y);
+        }
+    };
+
+    window.tooltip_off = function() {
+        tooltipEl.style.visibility = "hidden";
+        tooltipEl.setAttribute("aria-hidden", "true");
+    };
+
+    document.body.addEventListener("pointerover", (e) => {
+        const trigger = e.target.closest(".tct-tooltip-trigger");
+        if (trigger) window.tooltip_on(trigger.dataset.term, e.pageX, e.pageY);
     });
-}
-function add_tooltips() {
-    let temp_terms = [];
-    for (let n in tooltip_dict) {
-        temp_terms.push(n);
-    }
-    for (let m in campaignTrail_temp.questions_json) {
-        let temp_text = campaignTrail_temp.questions_json[m]["fields"]["description"];
-        campaignTrail_temp.questions_json[m]["fields"]["description"] = tooltip_replace(temp_text, temp_terms);
-    }
-    for (let m in campaignTrail_temp.answers_json) {
-        let temp_text = campaignTrail_temp.answers_json[m]["fields"]["description"]
-        campaignTrail_temp.answers_json[m]["fields"]["description"] = tooltip_replace(temp_text, temp_terms);
-    }
-}
 
-tooltip_dict = {
-    "Islamic Republic of Iran": "<img src=https://i.ibb.co/X3C4Sh4/image.png> Killed Dubya. Intel says so!",
-     "Rummy": "<img src=https://i.ibb.co/r0JmdL9/Donald-Rumsfeld-Exec-Dir-Cost-of-Living-Council-1.jpg><br>Old Don from the Nixon years.",
-     "Iraq is a sovereign nation": "Part of the game of play-pretend called \"international relations\".",
-     "Khuzestan": "<img src=https://i.ibb.co/pnYZnDC/image.png> Plurality-Arab province in Iran with lots of oil.",
-     "OPLAN 8044": "<img src=https://upload.wikimedia.org/wikipedia/commons/f/f4/Julin_Divider.gif> Tick tock.",
-     "Prison of Nations": "Another word for archaic Empires.",
-     "Abu Ghraib": "<img src=https://i.ibb.co/ZzxpXJb/image.png> Girls just wanna have fun!",
-     "Hamid Karzai": "<img src=https://i.ibb.co/w7P6tFT/image.png> 2 assassination attempts and counting...",
-     "Joe Lieberman": "<img src=https://i.ibb.co/5RwCD3h/image.png> Congress Pole.",
-     "American soldiers best used elsewhere": "<img src=https://i.ibb.co/Ph4ZZYx/image.png> Blowing up sunshine across the World.",
-     "Mitch McConnell": "<img src=https://i.ibb.co/WHRrLfK/image.png> Walks the line.",
-     "Hank Paulson": "<img src=https://i.ibb.co/jkPMhtt/image.png> Moneybags.",
-     "Carrier Strike Group 5": "<img src=https://i.ibb.co/JBpdctN/image.png> Home of the USS George Washington.",
-     "Zarqawi": "<img src=https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2010/8/6/1281092015089/Abu-Musab-al-Zarqawi-in-a-006.jpg?width=465&dpr=1&s=none&crop=none> Abu Musab al-Zarqawi, anti-Shia psycho.",
-     "Median Voter": "<img src=https://notesonliberty.com/wp-content/uploads/2017/03/median_voter_model.png?w=640> <i>shrugs</i>",
-     "Unitary Executive Theory": "Führer Cheney's favorite interpretation of the Constitution.",
-     "Hussein": "<img src=https://i.ibb.co/pKfqLqT/n2rltg.png> Hmmm...",
-     "is from Indonesia": "Soetoro. Look it up!",
-     "Clinton Coalition": "<img src=https://i.ibb.co/KmGqmw0/vsbu23.png> Nightmare.",
-     "Ancestral Democrats": "<img src=https://i.ibb.co/9GK7xrQ/4q8f9a.png> Previously thought to be extinct.",
-     "that hippie whore": "<img src=https://upload.wikimedia.org/wikipedia/commons/e/e1/Valerie_plame_wilson_2014.jpg> Valerie Plame. Formerly served the CIA.",
-     "Gonzales": "<img src=https://upload.wikimedia.org/wikipedia/commons/9/9f/Alberto_Gonzales_-_official_DoJ_photograph.jpg> Alberto Gonzales, US Attorney General.",
-     "the other whiny pestering Texan": "<img src=https://i.ibb.co/X4nyXJv/Ron-Paul-official-Congressional-photo-portrait-2007-1-1.jpg> Ron Paul, Texas Congressman"
-}
+    document.body.addEventListener("pointermove", (e) => {
+        if (tooltipEl.getAttribute("aria-hidden") === "false") {
+            positionTooltipAt(e.pageX, e.pageY);
+        }
+    });
 
-add_tooltips();
-if(highlighterToggle == 0){
-    add_highlight();
-}
-else {
-}
+    document.body.addEventListener("pointerout", (e) => {
+        if (e.target.closest(".tct-tooltip-trigger")) window.tooltip_off();
+    });
+
+    document.body.addEventListener("focusin", (e) => {
+        const trigger = e.target.closest(".tct-tooltip-trigger");
+        if (trigger) {
+            const rect = trigger.getBoundingClientRect();
+            window.tooltip_on(trigger.dataset.term, rect.left + window.scrollX, rect.bottom + window.scrollY);
+        }
+    });
+
+    document.body.addEventListener("focusout", (e) => {
+        if (e.target.closest(".tct-tooltip-trigger")) window.tooltip_off();
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && tooltipEl.getAttribute("aria-hidden") === "false") {
+            window.tooltip_off();
+        }
+    });
+
+    function tooltip_replace(text, terms) {
+        if (!text) return "";
+        const sortedTerms = terms.slice().sort((a, b) => b.length - a.length);
+        const escapedTerms = sortedTerms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+        const regex = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'g');
+
+        return text.replace(regex, (match) => {
+            return `<span class="tct-tooltip-trigger" tabindex="0" role="button" aria-describedby="tt" data-term="${match}">${match}</span>`;
+        });
+    }
+
+    window.add_tooltips = function() {
+        const terms = Object.keys(window.tooltip_dict);
+        
+        if (campaignTrail_temp.questions_json) {
+            campaignTrail_temp.questions_json.forEach(q => {
+                if (q.fields && q.fields.description) {
+                    q.fields.description = tooltip_replace(q.fields.description, terms);
+                }
+            });
+        }
+
+        if (campaignTrail_temp.answers_json) {
+            campaignTrail_temp.answers_json.forEach(a => {
+                if (a.fields && a.fields.description) {
+                    a.fields.description = tooltip_replace(a.fields.description, terms);
+                }
+            });
+        }
+    };
+
+    window.add_tooltips();
+})();
+
 //player helper mechanic
 function addusefulstatsButton() {
     if (document.getElementById('usefulstats_button')) {
