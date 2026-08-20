@@ -24663,8 +24663,8 @@ function openusefulstats() {
 
     let usDiv = document.createElement('div');
     usDiv.id = 'usefulstats';
-    usDiv.style.height='60%'
-    usDiv.style.marginLeft ='2em'
+    usDiv.style.height = '60%';
+    usDiv.style.marginLeft = '2em';
     setupMainArea(usDiv, questions); // Setup the dynamic image area
     questions.parentNode.insertBefore(usDiv, questions.nextSibling);
 }
@@ -24677,38 +24677,27 @@ function createBackButton(parentDiv, toggleDiv) {
     };
     return backButton;
 }
-window.tabHandler = function (e, tabButtons) {
-    const newTabButtons = container.querySelectorAll("[role=tab]");
-    
-    for (const tabButton of newTabButtons) {
-      if (tabButton.classList.contains("done")) {
-        continue;
-      }
-      tabButton.addEventListener("click", (e) => tabHandler(e, newTabButtons));
-      tabButton.classList.add("done");
-    }
-  
-    e.target = document.querySelector("[aria-controls=wars]");
-    const tabContainer = e.target.parentElement.parentElement;
-    const targetId = e.target.getAttribute("aria-controls");
-  
-    for (const _tabButton of newTabButtons) {
-      _tabButton.setAttribute("aria-selected", false);
-    }
-    
-    e.target.setAttribute("aria-selected", true);
-    e.target.focus();
-    
+window.tabHandler = function (evt) {
+    const btn = (evt && evt.currentTarget) ? evt.currentTarget : (evt && evt.target ? evt.target : document.querySelector("[role=tab][aria-selected='true']") || document.querySelector("[role=tab]"));
+    if (!btn) return;
+    const tabList = btn.closest("[role=tablist]");
+    if (!tabList) return;
+    const tabContainer = tabList.parentElement;
+    const targetId = btn.getAttribute("aria-controls");
+
+    const allTabs = tabList.querySelectorAll("[role=tab]");
+    allTabs.forEach(t => t.setAttribute("aria-selected", "false"));
+    btn.setAttribute("aria-selected", "true");
+
     const tabPanels = tabContainer.querySelectorAll("[role=tabpanel]");
-    for (const tabPanel of tabPanels) {
-      tabPanel.setAttribute("hidden", true);
+    tabPanels.forEach(p => p.setAttribute("hidden", "true"));
+
+    const targetPanel = tabContainer.querySelector(`[role=tabpanel]#${targetId}`);
+    if (targetPanel) {
+        targetPanel.removeAttribute("hidden");
     }
-    
-    tabContainer
-      .querySelector(`[role=tabpanel]#${targetId}`)
-      .removeAttribute("hidden");
-  };
-  function cyoaWarList(){
+};
+function cyoaWarList(){
     warList.forEach(item => {
         if(item === "Syria" && invadedSyria == 0) return;
         if(item === "Iran" && invadedIran == 0) return;
@@ -24720,7 +24709,7 @@ window.tabHandler = function (e, tabButtons) {
         const listItem = document.createElement("li");
         listItem.textContent = item; // Set the text of the <li>
         list.appendChild(listItem); // Append <li> to <ul>
-      });
+    });
 }
 function setupMainArea(parentDiv, toggleDiv) {
     let headerDiv = createHeader(parentDiv, toggleDiv);
@@ -24729,23 +24718,34 @@ function setupMainArea(parentDiv, toggleDiv) {
     let containerr = document.createElement('div');
     containerr.style.position = 'relative';
     containerr.style.height = '90%'; // Set the height of the container
-    containerr.style.padding = '1em';
+    containerr.style.padding = '0.5em';
     containerr.id = 'conconc';
     //scriptedTextThings();
     scriptedDataThing();
     const deliveryInjection = scriptedDataThing();
     containerr.insertAdjacentHTML("afterbegin", deliveryInjection);
     parentDiv.appendChild(containerr);
+
+    const closeBtn = containerr.querySelector('button[aria-label="Close"]');
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            parentDiv.remove();
+            toggleDiv.style.display = '';
+        };
+    }
+
     setTimeout(() => {
-        console.log("Event target:", e.target);
-        const tabList = document.querySelector("[aria-label='wintab']");
-        const tabButtons = tabList.querySelectorAll("[role=tab]");
-        tabHandler(e, tabButtons);
-        window.warList = ["Iraq", "Afghanistan", "North Korea", "China", "Iran", "Sudan", "Syria", "Venezuela"]
+        const firstTab = containerr.querySelector("[role=tab]");
+        if (firstTab) {
+            firstTab.click();
+        }
+        window.warList = ["Iraq", "Afghanistan", "North Korea", "China", "Iran", "Sudan", "Syria", "Venezuela"];
         window.list = document.getElementById("listofWarsP");
-        cyoaWarList();
-        console.log("Target ID:", targetId);
-      }, 0);
+        if (window.list) {
+            window.list.innerHTML = "";
+            cyoaWarList();
+        }
+    }, 0);
 }
   
 //function scriptedTextThings(){
@@ -24785,54 +24785,54 @@ function setupMainArea(parentDiv, toggleDiv) {
 //}
 function scriptedDataThing(){
     return `
-    <div class="window active" style="max-width: 860px; --window-background-color: #363636;">
+    <div class="window glass active" style="z-index: 1; max-width: 860px; width: 100%; margin: 0 auto; box-shadow: 0 8px 24px rgba(0,0,0,0.45);">
     <div class="title-bar">
       <div class="title-bar-text">Threat Assessment</div>
       <div class="title-bar-controls">
         <button aria-label="Close"></button>
       </div>
     </div>
-    <div class="window-body has-space">
+    <div class="window-body has-space" style="margin: 8px;">
       <menu role="tablist" aria-label="wintab">
-        <button role="tab" onclick="tabHandler(e, wars)" aria-controls="wars" aria-selected="true">Wars</button>
-        <button role="tab" onclick="tabHandler(e, democraps)" aria-controls="democraps">Dems</button>
-        <button role="tab" onclick="tabHandler(e, domwins)" aria-controls="domwins">Victories</button>
-        <button role="tab" onclick="tabHandler(e, congress)" aria-controls="congress">Congress</button>
-        </menu>
-      <article role="tabpanel" id="wars" class="has-scrollbar">
-        <p>Currently, we are embroiled in:</p>
+        <button role="tab" onclick="tabHandler(event)" aria-controls="wars" aria-selected="true">Wars</button>
+        <button role="tab" onclick="tabHandler(event)" aria-controls="democraps">Dems</button>
+        <button role="tab" onclick="tabHandler(event)" aria-controls="domwins">Victories</button>
+        <button role="tab" onclick="tabHandler(event)" aria-controls="congress">Congress</button>
+      </menu>
+      <article role="tabpanel" id="wars" class="has-scrollbar" style="min-height: 220px; max-height: 320px; overflow-y: auto;">
+        <p style="margin: 6px 0 10px;">Currently, we are embroiled in:</p>
         <fieldset>
-          <legend id="listofWars">${warCount} Wars</legend>
-          <ul id="listofWarsP"></ul>
+          <legend id="listofWars">${warCount} Active Conflicts</legend>
+          <ul id="listofWarsP" class="tree-view" style="min-height: 100px; padding: 6px 12px; margin: 4px 0;"></ul>
         </fieldset>
       </article>
   
-      <article role="tabpanel" hidden id="democraps">
-      <fieldset>
-      <legend id="DomWins">Democratic Party Health</legend>
-      <li>The Democratic Party's mood, according to internal data, is: ${demStrengthVar}</li>
-     </fieldset>
+      <article role="tabpanel" hidden id="democraps" style="min-height: 220px; max-height: 320px; overflow-y: auto;">
+        <fieldset>
+          <legend id="DomWins">Democratic Party Health</legend>
+          <p style="margin: 8px 0;">The Democratic Party's mood, according to internal data, is: ${demStrengthVar}</p>
+        </fieldset>
       </article>
   
-      <article role="tabpanel" hidden id="domwins">
-      <fieldset>
-      <legend id="DemocratHealth">Domestic Wins</legend>
-      <li>We have had ${Victories} domestic policy successes so far.</li>
-     </fieldset>
+      <article role="tabpanel" hidden id="domwins" style="min-height: 220px; max-height: 320px; overflow-y: auto;">
+        <fieldset>
+          <legend id="DemocratHealth">Domestic Wins</legend>
+          <p style="margin: 8px 0;">We have achieved <strong>${Victories}</strong> major domestic policy successes so far.</p>
+        </fieldset>
       </article>
-      <article role="tabpanel" hidden id="congress" class="has-scrollbar">
-      <fieldset>
-      <legend id="HouseComposition">House Composition: ${housemaj}</legend>
-      <img src=${housecompos} id="house_compos">
-     </fieldset>
-     <br>
-     <fieldset>
-     <legend id="SenateComposition">Senate Composition: ${senatemaj}</legend>
-     <img src=${senatecompos} id="senate_compos">
-    </fieldset>
+      
+      <article role="tabpanel" hidden id="congress" class="has-scrollbar" style="min-height: 220px; max-height: 320px; overflow-y: auto;">
+        <fieldset style="margin-bottom: 12px;">
+          <legend id="HouseComposition">House Composition: ${housemaj}</legend>
+          <img src="${housecompos}" id="house_compos" style="max-width: 100%; height: auto; display: block; margin: 6px auto; border-radius: 2px;">
+        </fieldset>
+        <fieldset>
+          <legend id="SenateComposition">Senate Composition: ${senatemaj}</legend>
+          <img src="${senatecompos}" id="senate_compos" style="max-width: 100%; height: auto; display: block; margin: 6px auto; border-radius: 2px;">
+        </fieldset>
       </article>
     </div>
-  </div>`
+  </div>`;
 }
 
 let observerRunning = false;
