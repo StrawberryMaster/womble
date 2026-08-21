@@ -533,5 +533,18 @@ These mods were released on either the subreddit [r/thecampaigntrail](https://ww
 
 ----
 
+# Useful modding tools
+
 ## Nina's CYOA guide
 This is a guide for making CYOA questions, made by Nina. It includes tips and tricks for making good CYOA questions, as well as some common pitfalls to avoid. A copy of it is kept here for preservation as the original site it was hosted has since gone down. See [the guide here](./codes/cyoa/index.html).
+
+## Other modding tools
+| Tool name | Description | Link |
+| :--- | :--- | :--- |
+| **Jet's TCT Mod Tool** | A browser-based GUI code 1 and 2 editor, made by Jet Simon. Supports all code 2 features as well as custom mapping. | [Code 1](https://jetsimon.com/jets-code-one-tool/) \| [Code 2](https://jetsimon.com/Jets-The-Campaign-Trail-Mod-Tool-Website/) |
+| **SM's fork of Jet's TCT Mod Tool** | A fork of Jet's TCT Mod Tool with more features. | [Code 1](https://strawberrymaster.github.io/tct-mod-tool/code1.html) \| [Code 2](https://strawberrymaster.github.io/tct-mod-tool/) |
+| **zon2tct** | Made by munastronaut, it lets you create mods withn a single file with a hierarchical data structure. | [Open here](https://github.com/munastronaut/zon2tct) |
+| **CampaignScript** | A tool that generates code 2 from a more simple text format. | [Open here](https://script.newcampaigntrail.com/) \| [SM's fork](https://strawberrymaster.github.io/script/) |
+| **OSEG Editor** | A mod creator and tool used to create mods for The Community Trail. | [Open here](https://jetsimon.com/open-source-election-game/#/editor) |
+| **CTS mod box tool** | A tool to help design the ModBox in CTS. | [Open here](https://jetsimon.com/cts-mod-box-tool/) |
+| **Further Reading Wizard** | A tool to help design the further reading section of mods. | [Open here](https://hunchonautilus.github.io/nct-further-reading-wizard/) |
