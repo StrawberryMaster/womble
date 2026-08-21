@@ -548,3 +548,9 @@ This is a guide for making CYOA questions, made by Nina. It includes tips and tr
 | **OSEG Editor** | A mod creator and tool used to create mods for The Community Trail. | [Open here](https://jetsimon.com/open-source-election-game/#/editor) |
 | **CTS mod box tool** | A tool to help design the ModBox in CTS. | [Open here](https://jetsimon.com/cts-mod-box-tool/) |
 | **Further Reading Wizard** | A tool to help design the further reading section of mods. | [Open here](https://hunchonautilus.github.io/nct-further-reading-wizard/) |
+
+Other useful links:
+- [Tips for first-time coders coming from a first-time coder](https://www.reddit.com/r/thecampaigntrail/comments/1q2q1bs/tips_for_firsttime_coders_coming_from_a_firsttime/) by Old_Box_1317
+- [Resources for Modders](https://www.reddit.com/r/thecampaigntrail/comments/13q178b/resources_for_modders/) by Calgar77
+- [CYOA Guide](https://www.reddit.com/r/thecampaigntrail/comments/1pnmxzj/cyoa_guide/) by National7317
+  - [Polling-based CYOA](https://www.reddit.com/r/thecampaigntrail/comments/14zg17w/guide_pollingbased_cyoa/) by Vilvilea
