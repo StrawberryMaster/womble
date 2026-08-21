@@ -152,11 +152,11 @@ function louisianaPurchase() {
 
         opponentIndex += 4;
         
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 27)[0].fields.issue_score = -0.7
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 28)[0].fields.issue_score = -0.4
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 29)[0].fields.issue_score = 0.77
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 30)[0].fields.issue_score = -0.66
-        e.candidate_issue_score_json.filter((x) => x.fields.candidate == 12354 && x.fields.issue == 31)[0].fields.issue_score = -0.44
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 27).fields.issue_score = -0.70;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 28).fields.issue_score = -0.40;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 29).fields.issue_score = 0.77;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 30).fields.issue_score = -0.66;
+        e.candidate_issue_score_json.find(x => x.fields.candidate == 12354 && x.fields.issue == 31).fields.issue_score = -0.44;
         //ALABAMA
         //no change
         //ALASKA
@@ -24028,6 +24028,8 @@ ending_image_dict = {
     "100evsz": "https://i.ibb.co/Cb0Bp5d/image-2.jpg",
     "jebloseimg": "https://i.ibb.co/tw0jYdR/image.png",
     "fivethirtyeightimg": "https://i.ibb.co/349qgsQ/image.png",
+    "daschle_winimg": "https://upload.wikimedia.org/wikipedia/commons/4/45/TomDaschle_%282%29.jpg",
+    "daschle_lossimg": "https://thumb.spokesman.com/-yLZM93qUxTSkFD7iLP_A5Rfr98=/2500x2500/smart/media.spokesman.com/photos/2004/11/20/DASCHLES_FAREWELL_11-20-2004_DF33MPT.jpg",
 //slide 2s
     "euronewsimg": "https://m.media-amazon.com/images/I/61AoX6PgjGL.png",
     "whereassadimg": "https://i.ibb.co/56J6GqS/image.png"
@@ -24041,6 +24043,7 @@ endingPicker = (out, totv, aa, quickstats) => {
     e.pages = []
     e.executable = []
     orderID = [aa[0].candidate, aa[1].candidate, aa[2].candidate];
+
     if(quickstats[0] > 269 && e.vpIndex == 666){
         add_slide(ending_image_dict["jebloseimg"],slide_dict["jebb"], true, false);
         ctsAchievement("Midnight, The Stars And You");
@@ -24065,45 +24068,6 @@ endingPicker = (out, totv, aa, quickstats) => {
         );
         Jeb.addSong(JebSong);
         changePlaylist(Jeb);
-    }
-    else if (quickstats[0] < 101) {
-		add_slide(ending_image_dict["dickie"],slide_dict["dickietxt"], true, false);
-		//unlockAchievement("The Final Countdown");
-        const dickieEnd = new Playlist();
-        const dickieEndSong = new Song(
-          "Apply Some Pressure",
-          "Maximo Park",
-          "https://f4.bcbits.com/img/a3556921907_10.jpg",
-          "https://audio.jukehost.co.uk/qEhDzNJdorcVr2AD62bqpYob8zqnYNTR"
-        );
-        dickieEnd.addSong(dickieEndSong);
-        changePlaylist(dickieEnd);
-	}
-    else if (quickstats[0] == 269) {
-		add_slide(ending_image_dict["stalemateimg"],slide_dict["stalemate"], true, false);
-		ctsAchievement("Pachelbel");
-        const tieEnd = new Playlist();
-        const tieEndSong = new Song(
-          "Brotherhood of Man (excerpt)",
-          "Predator Vision",
-          "https://i.discogs.com/MPJlxFOQq2lBhaemHXPNWDUIBhueMhL8SPR0RwlrBUE/rs:fit/g:sm/q:90/h:312/w:320/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxNzMy/MDUtMTI5Nzk2ODIy/NS5qcGVn.jpeg",
-          "https://audio.jukehost.co.uk/3UzVy6kDhG7wlk0mVi4kEuNXumuT6Jum"
-        );
-        tieEnd.addSong(tieEndSong);
-        changePlaylist(tieEnd);
-	}
-    else if (quickstats[0] < 269 && invadedChina == 1){
-		add_slide(ending_image_dict["ww3img"],slide_dict["ww3"], true, false);
-		ctsAchievement("I Guess The Lord Must Be...");
-        const ww3End = new Playlist();
-        const ww3EndSong = new Song(
-          "I Guess The Lord Must Be In New York City",
-          "Makeout Videotape",
-          "https://f4.bcbits.com/img/a0533336418_16.jpg",
-          "https://audio.jukehost.co.uk/mYopYik4QEbZqPEHNG7IRCdZj0VmqUBv"
-        );
-        ww3End.addSong(ww3EndSong);
-        changePlaylist(ww3End);
     }
     else if(quickstats[0] == 538 ){ //easter egg
         add_slide(ending_image_dict["fivethirtyeightimg"],slide_dict["fivethirtyeight"], true, false);
@@ -24131,31 +24095,31 @@ endingPicker = (out, totv, aa, quickstats) => {
         nuclearlandslideEnd.addSong(nuclearlandslideEndSong);
         changePlaylist(nuclearlandslideEnd);
     }
-    else if(quickstats[0] > 429){
-        add_slide(ending_image_dict["nuclearlandslideimg"],slide_dict["landslide"], true, false);
-		//unlockAchievement("The Final Countdown");
-        const nuclearlandslideEnd = new Playlist();
-        const nuclearlandslideEndSong = new Song(
-          "Carmen, Overture",
-          "Georges Bizet",
-          "https://m.media-amazon.com/images/I/91MRX79LypL._AC_UF1000,1000_QL80_.jpg",
-          "https://audio.jukehost.co.uk/H3vIwetRS1bEEBmPsyS4gwmJZD3lZQqu"
+    else if (quickstats[0] == 269) {
+		add_slide(ending_image_dict["stalemateimg"],slide_dict["stalemate"], true, false);
+		ctsAchievement("Pachelbel");
+        const tieEnd = new Playlist();
+        const tieEndSong = new Song(
+          "Brotherhood of Man (excerpt)",
+          "Predator Vision",
+          "https://i.discogs.com/MPJlxFOQq2lBhaemHXPNWDUIBhueMhL8SPR0RwlrBUE/rs:fit/g:sm/q:90/h:312/w:320/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxNzMy/MDUtMTI5Nzk2ODIy/NS5qcGVn.jpeg",
+          "https://audio.jukehost.co.uk/3UzVy6kDhG7wlk0mVi4kEuNXumuT6Jum"
         );
-        nuclearlandslideEnd.addSong(nuclearlandslideEndSong);
-        changePlaylist(nuclearlandslideEnd);
-    }
-    else if(quickstats[0] > 349){
-		add_slide(ending_image_dict["landslidechen"],slide_dict["landslide"], true, false);
-		//unlockAchievement("The Final Countdown");
-        const landslideEnd = new Playlist();
-        const landslideEndSong = new Song(
-          "Op. 64 / Act I: Dance Of The Knights",
-          "Sergei Prokofiev",
-          "https://i.scdn.co/image/ab67616d0000b2738af0e6e8cd90c28749ccbcd9",
-          "https://audio.jukehost.co.uk/DPKNMbeTz5fVmj4RrFKnIxtNrtTev88Q"
+        tieEnd.addSong(tieEndSong);
+        changePlaylist(tieEnd);
+	}
+    else if (quickstats[0] < 269 && invadedChina == 1){
+		add_slide(ending_image_dict["ww3img"],slide_dict["ww3"], true, false);
+		ctsAchievement("I Guess The Lord Must Be...");
+        const ww3End = new Playlist();
+        const ww3EndSong = new Song(
+          "I Guess The Lord Must Be In New York City",
+          "Makeout Videotape",
+          "https://f4.bcbits.com/img/a0533336418_16.jpg",
+          "https://audio.jukehost.co.uk/mYopYik4QEbZqPEHNG7IRCdZj0VmqUBv"
         );
-        landslideEnd.addSong(landslideEndSong);
-        changePlaylist(landslideEnd);
+        ww3End.addSong(ww3EndSong);
+        changePlaylist(ww3End);
     }
 	else if (quickstats[0] < 232 && opponentIndex == 1) { //only possible on cruelty
 		add_slide(ending_image_dict["fonda_winimg"],slide_dict["fonda_winlandslide"], true, false);
@@ -24171,42 +24135,57 @@ endingPicker = (out, totv, aa, quickstats) => {
         fondaEnd.addSong(fondaEndSong);
         changePlaylist(fondaEnd);
 	}
+	else if (quickstats[0] < 269 && opponentIndex == 1) {
+		add_slide(ending_image_dict["jan6"],slide_dict["fonda_win"], true, false);
+		ctsAchievement("The Youngold Will Overcome");
+        const fondaEnd = new Playlist();
+        const fondaEndSong = new Song(
+          "Look At Your Love (Alternate Take)",
+          "Manson Family",
+          "https://i.discogs.com/pF7dD7UMBWYfhOwknXIwbscQekaQHTM2A3m3bT69n78/rs:fit/g:sm/q:90/h:600/w:557/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1MzE2/MzgtMTUzOTM0ODYy/MS0zNDg5LmpwZWc.jpeg",
+          "https://audio.jukehost.co.uk/X13iL6LfRUkAeNEs7lQiRdsCqzhCeur8"
+        );
+        fondaEnd.addSong(fondaEndSong);
+        changePlaylist(fondaEnd);
+	}
+	else if (quickstats[0] > 269 && opponentIndex == 1) {
+		add_slide(ending_image_dict["jan6"],slide_dict["fonda_lose"], true, false);
+	}
+    else if(quickstats[0] < 269 && opponentIndex == 2){ //MCGOVERNS ALL OVER THE PLACE
+        add_slide(ending_image_dict["McDonaldsGovernment"],slide_dict["mcgovern_win"], true, false);
+        const mcGovernmentEnd = new Playlist();
+        const mcGovernmentSong = new Song(
+          "Lucifer Sam",
+          "Pink Floyd",
+          "https://i.discogs.com/hb2vfQoi-csFMlMpGEHrDNUFVlOnLUVQgWYyFyXOQNs/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5MDEy/MDMtMTYwNzE4NTk0/OS0xNDMxLmpwZWc.jpeg",
+          "https://audio.jukehost.co.uk/Cc6raaqwwudNmknSyRyk9Ckkuy6AdJeZ"
+        );
+        mcGovernmentEnd.addSong(mcGovernmentSong);
+        changePlaylist(mcGovernmentEnd);
+    }
+    else if(quickstats[0] > 269 && opponentIndex == 2){ //MCCHENEYS ALL OVER THE PLACE
+        add_slide(ending_image_dict["McCheneyGovernment"],slide_dict["mcgovern_lose"], true, false);
+        const mcGovernmentEnd = new Playlist();
+        const mcGovernmentSong = new Song(
+          "Pigs On The Wing (Part 1)",
+          "Pink Floyd",
+          "https://i.discogs.com/_hYJ-UiHBq0KtuIlz26o-4Ar82o9589HIFIE5XOXuVU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5MTMy/Mi0xNjkxNTYzMjc4/LTYwODAuanBlZw.jpeg",
+          "https://audio.jukehost.co.uk/ML9CDYsLiy0KxbqzCo0JGxRUP2eE6ZRD"
+        );
+        mcGovernmentEnd.addSong(mcGovernmentSong);
+        changePlaylist(mcGovernmentEnd);
+    }
 	else if (quickstats[0] < 269 && opponentIndex == 3) {
 		add_slide(ending_image_dict["hussein"],slide_dict["obunga"], true, false);
         const OsamaHusseinEnd = new Playlist();
         const OsamaHusseinEndSong = new Song(
-          "The Throning",
+          "The发挥Throning",
           "Hype Williams",
           "https://i.discogs.com/fyrlhekMu4LW1YTuplnHc3ruom4FVWdmDN3BQHN_SUc/rs:fit/g:sm/q:90/h:432/w:432/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1OTgy/NDItMTI5MjQzNDg5/NC5qcGVn.jpeg",
           "https://audio.jukehost.co.uk/6SGbPUsyhYHAtku4nSJBqsIGe8fNDdXG"
         );
         OsamaHusseinEnd.addSong(OsamaHusseinEndSong);
         changePlaylist(OsamaHusseinEnd);
-	}
-	else if (quickstats[0] < 269 && opponentIndex == 9) {
-		add_slide(ending_image_dict["powellwinz"],slide_dict["powell_win"], true, false);
-        const powell = new Playlist();
-        const powellSong = new Song(
-          "Babylon (is Fallen)",
-          "Swan Arcade",
-          "https://i.discogs.com/mZ_PB7rYAdf4ynOQkPWpTOeXs-WTATXMap2rgmzLVpM/rs:fit/g:sm/q:90/h:399/w:399/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjE3/NDMtMTIzOTE3NzEy/My5qcGVn.jpeg",
-          "https://audio.jukehost.co.uk/qcTPpqeMevCdbHkpQe5jUnLyCTONfFK8"
-        );
-        powell.addSong(powellSong);
-        changePlaylist(powell);
-	}
-	else if (quickstats[0] > 269 && opponentIndex == 9) {
-		add_slide(ending_image_dict["powellsucks"],slide_dict["kuwell_lose"], true, false);
-        const powellsux = new Playlist();
-        ctsAchievement("Slant-eye Necktie");
-        const powellsuxSong = new Song(
-          "Alien in Hollywood",
-          "Lamborghini Crystal",
-          "https://i.discogs.com/eCOSzmQ_dN5aJdb5VdbYs9fK1hT1-aUTjsl4LVYmdXs/rs:fit/g:sm/q:90/h:547/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMjQx/MTMtMTE4NjY2MDg3/OS5qcGVn.jpeg",
-          "https://audio.jukehost.co.uk/g1XPbflcozCgGk9ni8iiUVjSmewizUo7"
-        );
-        powellsux.addSong(powellsuxSong);
-        changePlaylist(powellsux);
 	}
 	else if (quickstats[0] > 269 && opponentIndex == 3 && campaignTrail_temp.difficulty_level_multiplier < 0.85) {
         ctsAchievement("Deez Ruins You See");
@@ -24234,68 +24213,6 @@ endingPicker = (out, totv, aa, quickstats) => {
         OsamaHusseinEnd.addSong(OsamaHusseinEndSong);
         changePlaylist(OsamaHusseinEnd);
 	}
-	else if (quickstats[0] < 269 && opponentIndex == 1) {
-		add_slide(ending_image_dict["jan6"],slide_dict["fonda_win"], true, false);
-		ctsAchievement("The Youngold Will Overcome");
-        const fondaEnd = new Playlist();
-        const fondaEndSong = new Song(
-          "Look At Your Love (Alternate Take)",
-          "Manson Family",
-          "https://i.discogs.com/pF7dD7UMBWYfhOwknXIwbscQekaQHTM2A3m3bT69n78/rs:fit/g:sm/q:90/h:600/w:557/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1MzE2/MzgtMTUzOTM0ODYy/MS0zNDg5LmpwZWc.jpeg",
-          "https://audio.jukehost.co.uk/X13iL6LfRUkAeNEs7lQiRdsCqzhCeur8"
-        );
-        fondaEnd.addSong(fondaEndSong);
-        changePlaylist(fondaEnd);
-	}
-    else if(quickstats[0] < 269 &&  opponentIndex == 2){ //MCGOVERNS ALL OVER THE PLACE
-        add_slide(ending_image_dict["McDonaldsGovernment"],slide_dict["mcgovern_win"], true, false);
-        const mcGovernmentEnd = new Playlist();
-        const mcGovernmentSong = new Song(
-          "Lucifer Sam",
-          "Pink Floyd",
-          "https://i.discogs.com/hb2vfQoi-csFMlMpGEHrDNUFVlOnLUVQgWYyFyXOQNs/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5MDEy/MDMtMTYwNzE4NTk0/OS0xNDMxLmpwZWc.jpeg",
-          "https://audio.jukehost.co.uk/Cc6raaqwwudNmknSyRyk9Ckkuy6AdJeZ"
-        );
-        mcGovernmentEnd.addSong(mcGovernmentSong);
-        changePlaylist(mcGovernmentEnd);
-    }
-    else if(quickstats[0] > 269 &&  opponentIndex == 2){ //MCCHENEYS ALL OVER THE PLACE
-        add_slide(ending_image_dict["McCheneyGovernment"],slide_dict["mcgovern_lose"], true, false);
-        const mcGovernmentEnd = new Playlist();
-        const mcGovernmentSong = new Song(
-          "Pigs On The Wing (Part 1)",
-          "Pink Floyd",
-          "https://i.discogs.com/_hYJ-UiHBq0KtuIlz26o-4Ar82o9589HIFIE5XOXuVU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5MTMy/Mi0xNjkxNTYzMjc4/LTYwODAuanBlZw.jpeg",
-          "https://audio.jukehost.co.uk/ML9CDYsLiy0KxbqzCo0JGxRUP2eE6ZRD"
-        );
-        mcGovernmentEnd.addSong(mcGovernmentSong);
-        changePlaylist(mcGovernmentEnd);
-    }
-    else if(quickstats[0] < 269 &&  opponentIndex == 5){
-        add_slide(ending_image_dict["kkklinton"],slide_dict["klinton_win"], true, false);
-        const klintonEnd = new Playlist();
-        const klintonEndSong = new Song(
-          "Toilet Toad TV Overdrive",
-          "James Ferraro",
-          "https://i.discogs.com/q3dy3tKq3uxBo6wu9_CVgrIP9HJjbJy29VIoCDn5Zvs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIwMDI4/MTAtMTU3MTk3MzYy/NC0xMjM2LnBuZw.jpeg",
-          "https://audio.jukehost.co.uk/xjQyBu8l0GXFlJyIe81S1PhJcVf0whCr"
-        );
-        klintonEnd.addSong(klintonEndSong);
-        changePlaylist(klintonEnd);
-    }
-    else if(quickstats[0] > 269 &&  opponentIndex == 5){
-        add_slide(ending_image_dict["kkklintonlose"],slide_dict["klinton_lose"], true, false);
-        ctsAchievement("America First");
-        const klintonEnd = new Playlist();
-        const klintonEndSong = new Song(
-          "T.V. Dinner Underneath A Full Moon",
-          "James Ferraro",
-          "https://i.discogs.com/Xqdvc89NE1aNxncmuthAin6vdvxIlrTFMEvLrxHQ6Rw/rs:fit/g:sm/q:90/h:509/w:520/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyOTM2/MzYtMTI3NTUzNDM1/Ni5qcGVn.jpeg",
-          "https://audio.jukehost.co.uk/qdYNgKgZ0IzCUuLyxBZ7KrFRQrH8zWmO"
-        );
-        klintonEnd.addSong(klintonEndSong);
-        changePlaylist(klintonEnd);
-    }
 	else if (quickstats[0] < 269 && opponentIndex == 4 && bipartisanLandrieu == 1) {
 		add_slide(ending_image_dict["hillbilly"],slide_dict["landrieu_win_bp"], true, false);
 		ctsAchievement("Getting Things Done");
@@ -24346,6 +24263,55 @@ endingPicker = (out, totv, aa, quickstats) => {
         landrieuChudEnd.addSong(landrieuChudEndSong);
         changePlaylist(landrieuChudEnd);
 	}
+    else if(quickstats[0] < 269 && opponentIndex == 5){
+        add_slide(ending_image_dict["kkklinton"],slide_dict["klinton_win"], true, false);
+        const klintonEnd = new Playlist();
+        const klintonEndSong = new Song(
+          "Toilet Toad TV Overdrive",
+          "James Ferraro",
+          "https://i.discogs.com/q3dy3tKq3uxBo6wu9_CVgrIP9HJjbJy29VIoCDn5Zvs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIwMDI4/MTAtMTU3MTk3MzYy/NC0xMjM2LnBuZw.jpeg",
+          "https://audio.jukehost.co.uk/xjQyBu8l0GXFlJyIe81S1PhJcVf0whCr"
+        );
+        klintonEnd.addSong(klintonEndSong);
+        changePlaylist(klintonEnd);
+    }
+    else if(quickstats[0] > 269 && opponentIndex == 5){
+        add_slide(ending_image_dict["kkklintonlose"],slide_dict["klinton_lose"], true, false);
+        ctsAchievement("America First");
+        const klintonEnd = new Playlist();
+        const klintonEndSong = new Song(
+          "T.V. Dinner Underneath A Full Moon",
+          "James Ferraro",
+          "https://i.discogs.com/Xqdvc89NE1aNxncmuthAin6vdvxIlrTFMEvLrxHQ6Rw/rs:fit/g:sm/q:90/h:509/w:520/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyOTM2/MzYtMTI3NTUzNDM1/Ni5qcGVn.jpeg",
+          "https://audio.jukehost.co.uk/qdYNgKgZ0IzCUuLyxBZ7KrFRQrH8zWmO"
+        );
+        klintonEnd.addSong(klintonEndSong);
+        changePlaylist(klintonEnd);
+    }
+    else if(quickstats[0] < 269 && opponentIndex == 6){
+        add_slide(ending_image_dict["daschle_winimg"], slide_dict["dickietxt"], true, false);
+        const dickieEnd = new Playlist();
+        const dickieEndSong = new Song(
+          "Apply Some Pressure",
+          "Maximo Park",
+          "https://f4.bcbits.com/img/a3556921907_10.jpg",
+          "https://audio.jukehost.co.uk/qEhDzNJdorcVr2AD62bqpYob8zqnYNTR"
+        );
+        dickieEnd.addSong(dickieEndSong);
+        changePlaylist(dickieEnd);
+    }
+    else if(quickstats[0] > 269 && opponentIndex == 6){
+        add_slide(ending_image_dict["daschle_lossimg"], slide_dict["landslide"], true, false);
+        const landslideEnd = new Playlist();
+        const landslideEndSong = new Song(
+          "Op. 64 / Act I: Dance Of The Knights",
+          "Sergei Prokofiev",
+          "https://i.scdn.co/image/ab67616d0000b2738af0e6e8cd90c28749ccbcd9",
+          "https://audio.jukehost.co.uk/DPKNMbeTz5fVmj4RrFKnIxtNrtTev88Q"
+        );
+        landslideEnd.addSong(landslideEndSong);
+        changePlaylist(landslideEnd);
+    }
     else if(quickstats[0] < 269 && opponentIndex == 7){ //graveldefeat
         add_slide(ending_image_dict["gravel"],slide_dict["gravel_win"], true, false);
         //unlockAchievement("The Final Countdown");
@@ -24399,24 +24365,94 @@ endingPicker = (out, totv, aa, quickstats) => {
         edwardsWin.addSong(edwardsWinSong);
         changePlaylist(edwardsWin);
     }
+	else if (quickstats[0] < 269 && opponentIndex == 9) {
+		add_slide(ending_image_dict["powellwinz"],slide_dict["powell_win"], true, false);
+        const powell = new Playlist();
+        const powellSong = new Song(
+          "Babylon (is Fallen)",
+          "Swan Arcade",
+          "https://i.discogs.com/mZ_PB7rYAdf4ynOQkPWpTOeXs-WTATXMap2rgmzLVpM/rs:fit/g:sm/q:90/h:399/w:399/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjE3/NDMtMTIzOTE3NzEy/My5qcGVn.jpeg",
+          "https://audio.jukehost.co.uk/qcTPpqeMevCdbHkpQe5jUnLyCTONfFK8"
+        );
+        powell.addSong(powellSong);
+        changePlaylist(powell);
+	}
+	else if (quickstats[0] > 269 && opponentIndex == 9) {
+		add_slide(ending_image_dict["powellsucks"],slide_dict["kuwell_lose"], true, false);
+        const powellsux = new Playlist();
+        ctsAchievement("Slant-eye Necktie");
+        const powellsuxSong = new Song(
+          "Alien in Hollywood",
+          "Lamborghini Crystal",
+          "https://i.discogs.com/eCOSzmQ_dN5aJdb5VdbYs9fK1hT1-aUTjsl4LVYmdXs/rs:fit/g:sm/q:90/h:547/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMjQx/MTMtMTE4NjY2MDg3/OS5qcGVn.jpeg",
+          "https://audio.jukehost.co.uk/g1XPbflcozCgGk9ni8iiUVjSmewizUo7"
+        );
+        powellsux.addSong(powellsuxSong);
+        changePlaylist(powellsux);
+	}
+    else if(quickstats[0] > 429){
+        add_slide(ending_image_dict["nuclearlandslideimg"],slide_dict["landslide"], true, false);
+		//unlockAchievement("The Final Countdown");
+        const nuclearlandslideEnd = new Playlist();
+        const nuclearlandslideEndSong = new Song(
+          "Carmen, Overture",
+          "Georges Bizet",
+          "https://m.media-amazon.com/images/I/91MRX79LypL._AC_UF1000,1000_QL80_.jpg",
+          "https://audio.jukehost.co.uk/H3vIwetRS1bEEBmPsyS4gwmJZD3lZQqu"
+        );
+        nuclearlandslideEnd.addSong(nuclearlandslideEndSong);
+        changePlaylist(nuclearlandslideEnd);
+    }
+    else if(quickstats[0] > 349){
+		add_slide(ending_image_dict["landslidechen"],slide_dict["landslide"], true, false);
+		//unlockAchievement("The Final Countdown");
+        const landslideEnd = new Playlist();
+        const landslideEndSong = new Song(
+          "Op. 64 / Act I: Dance Of The Knights",
+          "Sergei Prokofiev",
+          "https://i.scdn.co/image/ab67616d0000b2738af0e6e8cd90c28749ccbcd9",
+          "https://audio.jukehost.co.uk/DPKNMbeTz5fVmj4RrFKnIxtNrtTev88Q"
+        );
+        landslideEnd.addSong(landslideEndSong);
+        changePlaylist(landslideEnd);
+    }
+    else if (quickstats[0] < 101) {
+		add_slide(ending_image_dict["dickie"],slide_dict["dickietxt"], true, false);
+		//unlockAchievement("The Final Countdown");
+        const dickieEnd = new Playlist();
+        const dickieEndSong = new Song(
+          "Apply Some Pressure",
+          "Maximo Park",
+          "https://f4.bcbits.com/img/a3556921907_10.jpg",
+          "https://audio.jukehost.co.uk/qEhDzNJdorcVr2AD62bqpYob8zqnYNTR"
+        );
+        dickieEnd.addSong(dickieEndSong);
+        changePlaylist(dickieEnd);
+	}
+
     //slide 2
-    if (quickstats[0] < 269 && invadedChina == 1){
-		add_slide(ending_image_dict["ww3img"],slide_dict["ww3slide2"], false, false);
+    if (quickstats[0] < 269 && invadedChina == 1) {
+        add_slide(ending_image_dict["ww3img"], slide_dict["ww3slide2"], false, false);
     }
-    else if(quickstats[0] > 269 && aa[1].popular_votes > aa[0].popular_votes){
-        add_slide(ending_image_dict["rigged"],slide_dict["riggedel"], false, false);
+    else if (quickstats[0] < 101) {
+        add_slide(ending_image_dict["100evsz"], slide_dict["100evs"], false, false);
     }
-    else if(payYourBills == 1 && e.player_answers.includes(12751)){
-        add_slide(ending_image_dict["euronewsimg"],slide_dict["euronews"], false, false);
+    else if (invadedSyria == 1) {
+        add_slide(ending_image_dict["whereassadimg"], slide_dict["whereassad"], false, false);
     }
-    else if(invadedSyria == 1){
-        add_slide(ending_image_dict["whereassadimg"],slide_dict["whereassad"], false, false);
+    else if (payYourBills == 1 || e.player_answers.includes(12751) || e.player_answers.includes(12774)) {
+        add_slide(ending_image_dict["euronewsimg"], slide_dict["euronews"], false, false);
     }
-    else if(quickstats[0] < 101){
-        add_slide(ending_image_dict["100evsz"],slide_dict["100evs"], false, false);
+    else if (quickstats[0] > 269 && aa[1].popular_votes > aa[0].popular_votes) {
+        add_slide(ending_image_dict["rigged"], slide_dict["riggedel"], false, false);
     }
-    else{
+    else if (quickstats[0] > 269) {
+        add_slide(ending_image_dict["whereassadimg"], slide_dict["whereassad"], false, false);
     }
+    else {
+        add_slide(ending_image_dict["100evsz"], slide_dict["100evs"], false, false);
+    }
+
     //slide 3
     if(quickstats[0] < 269 && invadedChina == 1){
         add_slide(ending_image_dict["ww3img"],slide_dict["ww3slide3"], false, true);
@@ -24430,6 +24466,7 @@ endingPicker = (out, totv, aa, quickstats) => {
     else {
         add_slide(ending_image_dict["tyforplay"],slide_dict["tyforplay"], false, true);
     }
+
     //special achievements
     if(warCount < 3){
         ctsAchievement("Do U Even Cheney Bro?");
