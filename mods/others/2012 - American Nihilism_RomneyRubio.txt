@@ -1,0 +1,943 @@
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 20,
+        "fields": {
+            "year": 2016,
+            "summary": "<div style=\"overflow-y:scroll;height:200px;\"><h1>American Nihilism</h1>\n\n<p>Lead-up, Belly Up, late Massachusetts governor 𝘔𝘪𝘵𝘵 𝘙𝘰𝘮𝘯𝘦𝘺 finds himself marching with the banner of a Republican Party which no longer loves or cares about “Compassionate Conservatism” it’s so sicking watching this Rich Aristocrat spit a Chewed Out America, sold a bag of cigarettes once told to be candy, now bled with the regret of the borderline Socialism that’s come out of this Obamanation, Lie and Flip Flop your way out of this, please, please, please trick again more Americans into a butcher house but when the sun sleeps behind a mountain range, make sure you can still call yourself a man when you shut your eyes. American Nihilism.</p></div>",
+            "image_url": "https://static01.nyt.com/images/2011/09/22/us/22romney1_cnd/22romney1_cnd-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "https://preview.redd.it/lmvcfxtr3a9e1.png?width=300&format=png&auto=webp&s=cb9a884808e4fddcd96f43463992ad8165151dbb",
+            "recommended_reading": "<ul style=\"list-style-type: none; padding: 0; margin: 0;\">\n  <li>\"Well... First of all we eat... Then a nap... and after that, let’s think of something.\"</li>\n</ul>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://www.jetsimon.com/public/static/images/2012-no-majority.jpg",
+            "creator": "Dan Bryan",
+            "display_year": "2012",
+            "recommended_reading_enabled": true,
+            "site_description": "<div style=\"overflow-y:scroll;height:200px;\"><h1>American Nihilism</h1>\n\n<p>Lead-up, Belly Up, late Massachusetts governor 𝘔𝘪𝘵𝘵 𝘙𝘰𝘮𝘯𝘦𝘺 finds himself marching with the banner of a Republican Party which no longer loves or cares about “Compassionate Conservatism” it’s so sicking watching this Rich Aristocrat spit a Chewed Out America, sold a bag of cigarettes once told to be candy, now bled with the regret of the borderline Socialism that’s come out of this Obamanation, Lie and Flip Flop your way out of this, please, please, please trick again more Americans into a butcher house but when the sun sleeps behind a mountain range, make sure you can still call yourself a man when you shut your eyes. American Nihilism.</p></div>"
+        }
+    }
+];
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 20,
+        "year": 2016,
+        "is_premium": 0,
+        "display_year": "2012"
+    }
+];
+
+RecReading = true;
+
+campaignTrail_temp.credits = "<button onclick='credits()'>𝐰𝐚𝐣𝐣𝐚𝐫𝐡𝐨𝐫𝐧𝐢𝐭</button>"
+
+  credits = function() {
+    c = ["This mod was orginally made by 𝐰𝐚𝐣𝐣𝐚𝐫𝐡𝐨𝐫𝐧𝐢𝐭/2johls_19955","Music player addition, slight QoL changes, and imported into CTS by chezburger.", "Music player from Biden 08.", "Banner Image code from 1988: TTWH", "Code 1 and 2 worked on Strawberrymaster's forks of Jet's Code 1 and 2."]
+    text = "CREDITS:\n\n"
+    for (i in c) {
+        text += c[i] + "\n"
+    }
+    alert(text)
+  }
+
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 30,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+];
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 200,
+        "fields": {
+            "first_name": "Mitt",
+            "last_name": "Romney",
+            "election": 20,
+            "party": "Republican",
+            "state": "Massachusetts",
+            "priority": 1,
+            "description": "<p>\"𝙝𝙤𝙬 𝙢𝙪𝙘𝙝 𝙬𝙤𝙪𝙡𝙙 𝙮𝙤𝙪 𝙨𝙤𝙪𝙡 𝙘𝙤𝙨𝙩?\"\n\n<h3> his eyes have seen the 𝘿𝙚𝙖𝙩𝙝 𝙤𝙛 𝙈𝙘𝘾𝙖𝙞𝙣, once in line to be the GOP’s nominee in 2008, ᴍɪᴛᴛ ʀᴏᴍɴᴇʏ ᴅᴏᴅɢᴇᴅ ᴀɴ ᴇᴀʀʟʏ ʙᴜʟʟᴇᴛ being lucky enough to lose the nomination just like his father in 𝟏𝟗𝟔𝟖, Romney is the adopted father of a party which has dropped the “𝐂𝐨𝐦𝐩𝐚𝐬𝐬𝐢𝐨𝐧 𝐎𝐟 𝐓𝐡𝐞 𝐂𝐨𝐧𝐬𝐞𝐫𝐯𝐚𝐭𝐢𝐯𝐞” after conservatism spent its political power on ᴳᵉᵒʳᵍᵉ ᵂ. ᴮᵘˢʰ, who slaughtered millions of Iraqis and crashed an economy like a middle school bus, accept the way the wind is blowing or attempt to grab a dying breed of Republican, 𝐌𝐢𝐭𝐭 𝐑𝐨𝐦𝐧𝐞𝐲.</p>",
+            "color_hex": "#985252",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 1,
+            "image_url": "https://i.redd.it/g36c33c0kp7e1.gif",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 2016 election.</h3><p>In spite of a hard-fought challenge from Hillary Clinton, you have shocked the world with your election victory.</p><p>On the political front, you have the bully pulpit in your favor, but support in Congress in uncertain. Will you govern as a more traditional conservative, or will you make a break from orthodoxy?</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 2016 election.</h3><p>Many of your supporters are despondent that you have faltered to the likes of Hillary Clinton. Republicans in general believe this was a very winnable election, and are enraged that you came in to blow it. Luckily, there are any number of ways for you to take advantage of your newfound exposure. One rumor even has you founding a television station to profit from the aggrieved sensibilities of your followers. The future is in your hands.</p>",
+            "no_electoral_majority_message": "<h3>Wow! You have pulled out 2016 election.</h3><p>No candidate secured a majority in the Electoral College. However, the Republicans won a majority in Congress and will elevate you to the Presidency. Time will tell how things go in that regard. Any mutual affection between you and Congress is predicted to be short-lived, but you've pulled off a number of surprises to get this far.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 201,
+        "fields": {
+            "first_name": "Barack",
+            "last_name": "Obama",
+            "election": 20,
+            "party": "Democrat",
+            "state": "New York",
+            "priority": 2,
+            "description": "<p>As expected, Hillary Clinton has carried her party's nomination, and now faces an unexpected opponent in Donald Trump. She was traditionally known as a mainstream Democrat, but tacked significantly to the left during the primary campaign. Clinton enters the general election in a strong position, but she'll be under relentless attack on a number of fronts. Can she make the case that she truly in touch with the American people -- or that Trump would be an even worse option?</p>",
+            "color_hex": "#26415e",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/hillary-clinton-2016.jpg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 2016 election.</h3><p>In spite of a hard-fought challenge from Donald Trump, you have become the first woman elected to serve as President.</p><p>On the political front, it is unclear how much of your agenda you will be able to push forward with the current Congress. Hopefully your victory has helped Democrats further down the ballot. Start packing and prepare to move back into the White House!</p>",
+            "electoral_loss_message": "<h3>Sorry! You have lost the 2016 election.</h3><p>Many of your supporters are despondent that you have faltered to the likes of Donald Trump. Many in the left wing of the party are furious that you pushed their candidate aside, only to lose. Time will tell how Trump operates as President. As for you, a long and sometimes ambiguous political career seems to be coming to its end.</p>",
+            "no_electoral_majority_message": "<h3>Sorry! You have lost the 2016 election.</h3><p>No candidate secured a majority in the Electoral College. However, the Republicans won a majority in Congress and will elevate Trump to the Presidency. Time will tell how things go in that regard. As for you, a long and sometimes ambiguous political career seems to be coming to its end.</p>",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 202,
+        "fields": {
+            "first_name": "Rudy",
+            "last_name": "Giuliani",
+            "election": 20,
+            "party": "Tea Party",
+            "state": "New York",
+            "priority": 3,
+            "description": "'",
+            "color_hex": "#685136",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 203,
+        "fields": {
+            "first_name": "",
+            "last_name": "Green Party",
+            "election": 20,
+            "party": "Green",
+            "state": "Massachusetts",
+            "priority": 4,
+            "description": "'",
+            "color_hex": "#1c591c",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 204,
+        "fields": {
+            "first_name": "Marco",
+            "last_name": "Rubio",
+            "election": 20,
+            "party": "Republican",
+            "state": "Florida",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://i.redd.it/d8cbh2c0kp7e1.gif",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<h3>“ɴᴇᴡ ꜰᴀᴄᴇꜱ, ɴᴇᴡ ᴄᴀꜱᴇꜱ.”\n\n\n\n<p> ᴋɪᴅꜱ ɪɴ ᴀᴍᴇʀɪᴄᴀ, a sensitive young man, Marco Rubio is a Florida beach boy fresh 𝐟𝐫𝐞𝐬𝐡𝐦𝐚𝐧 𝐬𝐞𝐧𝐚𝐭𝐨𝐫 who rode the 𝘛𝘦𝘢 𝘗𝘢𝘳𝘵𝘺 waves during the 2010 midterms, being a Tea Party crewmate his tricky stumbling into the ticket makes him nothing but a bridge for Romney, his career isn’t important enough to be remembered now but how he’s framed and handled by Romney will ultimately decide his reputation in the GOP, to mitt he’s nothing but a cutting knife to open any possible 3rd party resistance from the Tea Party, but that 𝐰𝐨𝐧’𝐭 𝐡𝐚𝐩𝐩𝐞𝐧 𝐫𝐢𝐠𝐡𝐭? Marco Rubio </p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 209,
+        "fields": {
+            "first_name": "Tim",
+            "last_name": "Kaine",
+            "election": 20,
+            "party": "Democrat",
+            "state": "Virginia",
+            "priority": 9,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/tim-kaine-2016.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Tim Kaine has served as a Governor and Senator from Virginia, and shares similar political views to Hillary Clinton. He is fluent in both Spanish and English.</p><p>A lot of people see Kaine as a safe, experienced pick. He has little to offer to the wing of the party that supported Bernie Sanders during the nomination fight.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 210,
+        "fields": {
+            "first_name": "Bernie",
+            "last_name": "Sanders",
+            "election": 20,
+            "party": "Democrat",
+            "state": "Vermont",
+            "priority": 10,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/bernie-sanders-2016.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Bernie Sanders was your main opponent in the nomination battle. There's no pretending that the two of you have a warm relationship, but he does have fierce support from many of your potential voters. On the other hand, if you want to make the case that you're a moderate alternative to Trump's extremism, having Bernie on the ticket will not help on that front.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 211,
+        "fields": {
+            "first_name": "Cory",
+            "last_name": "Booker",
+            "election": 20,
+            "party": "Democrat",
+            "state": "New Jersey",
+            "priority": 11,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/cory-booker-2016.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Cory Booker is a Senator from New Jersey and was also the Mayor of Newark for several years. Politically, he is a mainstream Democrat, relatively similar to Barack Obama. He is also relatively youthful, with somewhat of a national profile. Turning out the black vote, and preventing even a handful of defectors to Trump, will be essential to a Clinton victory. However, Booker inspires limited enthusiasm amongst Sanders supporters.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 212,
+        "fields": {
+            "first_name": "Elizabeth",
+            "last_name": "Warren",
+            "election": 20,
+            "party": "Democrat",
+            "state": "Massachusetts",
+            "priority": 12,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/elizabeth-warren-2016.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Elizabeth Warren is a Senator from Massachusetts and an icon to progressive Democrats. Selecting her could be a good way to appeal to supporters of Bernie Sanders, but she will expect Clinton to adhere to progressive stances throughout the campaign, as a condition of joining the ticket. Some observers think that having two women on the ticket may be a bit much, and also point out that Warren's home state is safely Democratic.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 213,
+        "fields": {
+            "first_name": "Sherrod",
+            "last_name": "Brown",
+            "election": 20,
+            "party": "Democrat",
+            "state": "Ohio",
+            "priority": 13,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/sherrod-brown-2016.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Sherrod Brown is a Senator from Ohio with a long history in that crucial state. He has generally been on the liberal end of the Democratic spectrum, but could help Clinton compete in the Midwest. Brown is reluctant to serve as a running mate this year. Clinton will need to give assurances that her change of position on trade issues, like the Trans-Pacific Partnership, is a permanent change, and was not one of political expediency.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 214,
+        "fields": {
+            "first_name": "William",
+            "last_name": "Weld",
+            "election": 20,
+            "party": "Libertarian",
+            "state": "Massachusetts",
+            "priority": 14,
+            "description": "'",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 215,
+        "fields": {
+            "first_name": "Ajamu",
+            "last_name": "Baraka",
+            "election": 20,
+            "party": "Green",
+            "state": "Washington DC",
+            "priority": 15,
+            "description": "'",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    }
+];
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 161,
+        "fields": {
+            "candidate": 203,
+            "running_mate": 215
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 160,
+        "fields": {
+            "candidate": 202,
+            "running_mate": 214
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 155,
+        "fields": {
+            "candidate": 201,
+            "running_mate": 209
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 150,
+        "fields": {
+            "candidate": 200,
+            "running_mate": 204
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 157,
+        "fields": {
+            "candidate": 201,
+            "running_mate": 211
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 159,
+        "fields": {
+            "candidate": 201,
+            "running_mate": 213
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 156,
+        "fields": {
+            "candidate": 201,
+            "running_mate": 210
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 158,
+        "fields": {
+            "candidate": 201,
+            "running_mate": 212
+        }
+    }
+];
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 20,
+        "candidates": [
+            200,
+            201,
+            202,
+            203
+        ]
+    }
+];
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 20,
+        "candidates": [
+            200,
+            201,
+            202,
+            203
+        ]
+    }
+];
+
+campaignTrail_temp.modBoxTheme = {
+    "header_color": "#3e3f70",
+    "header_text_color": "#ffffff",
+    "description_background_color": "#ffffff",
+    "description_text_color": "#111827",
+    "main_color": "#d1d1d1",
+    "secondary_color": "#3e3f70",
+    "ui_text_color": "#f8f8f8",
+    "site_title": "",
+    "site_image_url": ""
+};
+
+jet_data = {
+    "headerColor": "#3e3f70",
+    "headerTextColor": "#ffffff",
+    "windowColor": "#d1d1d1",
+    "containerColor": "#ffffff",
+    "innerWindowColor": "#d6d6d6",
+    "innerWindowTextColor": "#111827",
+    "descriptionWindowColor": "#ffffff",
+    "descriptionWindowTextColor": "#111827",
+    "startButtonColor": "#ffa0a0",
+    "bannerImageUrl": "https://preview.redd.it/dcb5rzu16h7e1.png?auto=webp&s=3c2e3798592e8d7d7f9e015f32337e3fcb76025a",
+    "backgroundImageUrl": "https://i.postimg.cc/6WwS7w57/Wind7Ult64-img0.jpg?dl=1",
+    "gameTitle": "American Nihilism",
+    "customQuote": "",
+    "quoteTextColor": "#ffffff",
+    "endingTextColor": "#000000",
+    "modBoxTheme": {
+        "header_color": "#3e3f70",
+        "header_text_color": "#ffffff",
+        "description_background_color": "#ffffff",
+        "description_text_color": "#111827",
+        "main_color": "#d1d1d1",
+        "secondary_color": "#3e3f70",
+        "ui_text_color": "#f8f8f8",
+        "site_title": "",
+        "site_image_url": ""
+    }
+};
+
+//#startcode
+function applyTheme(theme) {
+    const gameHeader = document.querySelector(".game_header");
+    if (gameHeader && theme.coloring_title) {
+        gameHeader.style.backgroundColor = theme.coloring_title;
+    }
+
+    const gameWindow = document.getElementById("game_window");
+    if (gameWindow && theme.coloring_window) {
+        gameWindow.style.backgroundColor = theme.coloring_window;
+    }
+
+    const container = document.querySelector(".container");
+    if (container && theme.coloring_container) {
+        container.style.backgroundColor = theme.coloring_container;
+    }
+
+    const headerImg = document.getElementById("header");
+    if (headerImg && theme.header_image) {
+        headerImg.src = theme.header_image;
+    }
+
+    if (theme.body_background) {
+        document.body.style.backgroundImage = `url("${theme.body_background}")`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
+    }
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #results_container { color: #000000; }
+      #wittyquote { color: #ffffff; }
+      .game_header h2 { color: #ffffff; }
+      .inner_window_w_desc { background-color: #d6d6d6 !important; color: #111827; }
+      .inner_window_front, .person_description_window, .election_description_window, .description_window_small { background-color: #ffffff !important; color: #111827; }
+      .campaign_trail_start_emphasis { background-color: #ffa0a0 !important; }
+    `;
+    document.head.appendChild(style);
+}
+
+// This is the music player
+// used in the mod Biden '08.
+class Song {
+  constructor(title, artist, coverLink, audioLink) {
+    this.title = title;
+    this.artist = artist;
+    this.coverLink = coverLink;
+    this.audioLink = audioLink;
+  }
+  getTitle() { return this.title; }
+  getArtist() { return this.artist; }
+  getCoverLink() { return this.coverLink; }
+  getAudioLink() { return this.audioLink; }
+}
+
+class Playlist {
+  constructor() {
+    this.songs = [];
+    this.currentSongIndex = 0;
+  }
+  addSong(song) { this.songs.push(song); }
+  getCurrentSong() { return this.songs[this.currentSongIndex]; }
+
+  playNext() {
+    if (this.songs.length === 0) return;
+    this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+  }
+
+  playPrevious() {
+    if (this.songs.length === 0) return;
+    this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+  }
+}
+
+window.Playlist = Playlist;
+window.Song = Song;
+
+let activePlaylist = new Playlist();
+let audioInstance = null;
+let currentVolume = 1;
+
+// assets
+const ASSETS = {
+  bg: "https://i.postimg.cc/43VRTVXv/Qbn-Mi4s-Imgur-(1).png",
+  infoBg: "",
+  btnPrev: "https://file.garden/aNxawo8jlVkymd8s/joe%2008/election%20%2B%20music%20play/emaVVZr%20-%20Imgur.png",
+  btnPlay: "https://file.garden/aNxawo8jlVkymd8s/joe%2008/election%20%2B%20music%20play/roCPjJ7%20-%20Imgur.png",
+  btnPause: "https://file.garden/aNxawo8jlVkymd8s/joe%2008/election%20%2B%20music%20play/CxAJHDS%20-%20Imgur.png",
+  btnNext: "https://file.garden/aNxawo8jlVkymd8s/joe%2008/election%20%2B%20music%20play/prB8JyH%20-%20Imgur.png",
+  volIcon: "https://file.garden/aNxawo8jlVkymd8s/joe%2008/election%20%2B%20music%20play/fIQkAed%20-%20Imgur.png"
+};
+
+function changePlaylist(newPlaylist) {
+  activePlaylist = newPlaylist;
+  activePlaylist.currentSongIndex = 0;
+
+  updateUI(activePlaylist);
+
+  const audio = getAudioElement();
+  const song = activePlaylist.getCurrentSong();
+
+  if (song) {
+    audio.src = song.audioLink;
+    audio.play().catch(e => console.log("Autoplay blocked or waiting for interaction", e));
+    updatePlayPauseIcon(true);
+  }
+}
+window.changePlaylist = changePlaylist;
+
+function updateUI(playlist) {
+  const currentSong = playlist.getCurrentSong();
+  const player = document.getElementById("player");
+
+  if (!player || !currentSong) return;
+
+  const cover = player.querySelector("#cover");
+  const title = player.querySelector("#title");
+  const artist = player.querySelector("#artist");
+
+  if (cover) cover.src = currentSong.getCoverLink();
+  if (title) title.textContent = currentSong.getTitle();
+  if (artist) artist.textContent = currentSong.getArtist();
+}
+window.updateUI = updateUI;
+
+// helpers
+function getAudioElement() {
+  if (!audioInstance) {
+    audioInstance = document.createElement("audio");
+    audioInstance.id = "audio";
+    document.body.appendChild(audioInstance);
+  }
+  return audioInstance;
+}
+
+function updatePlayPauseIcon(isPlaying) {
+  const btn = document.getElementById("playPauseButton");
+  if (btn) {
+    btn.src = isPlaying ? ASSETS.btnPause : ASSETS.btnPlay;
+  }
+}
+
+// setup
+function setupMusicPlayer() {
+  const gameWindow = document.getElementById("game_window");
+  if (!gameWindow) {
+    console.warn("game_window element not found. Player will not be attached.");
+    return;
+  }
+
+  // prevent duplicate players
+  if (document.getElementById("player")) return;
+
+  const defaultSongs = [
+    ["The Throning", "Hype Williams", "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a7/0a/be/a70abe2f-3f88-4f7a-feb1-de8741d99c1b/840200586955_cover.jpg/296x296bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/tt"],
+    ["Sea, Swallow Me", "Cocteau Twins, Harold Budd", "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/20/96/39/2096390c-a094-aecb-1f54-e093d680b16c/652637061185.png/296x296bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/ssm"],
+    ["Inside Out", "Duster", "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/4e/87/0c/4e870c4a-f447-2c91-5b7a-53eabb2eb9a1/cover.jpg/300x300bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/io"],
+    ["Head in the Ceiling Fan", "Title Fight", "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4d/15/bb/4d15bb56-54f3-2b4f-1513-5e8ca4f3fa51/109570.jpg/208x208bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/hitcf"],
+	["Married With Children", "Oasis", "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9f/e7/ea/9fe7eac2-87dc-c1df-3333-dc30b82bdd74/5051961006100.jpg/300x300bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/mwc"],
+    ["NOT THAT I'M ANYWHERE", "Cities Aviv", "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5a/72/15/5a721500-b521-c586-bf2d-ea6b3848f8e3/840200591485_cover.jpg/296x296bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/ntia"],
+    ["Aisatsana [102]", "Aphex Twin", "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d5/7f/6e/d57f6e8e-068c-ef83-2a62-663e47d3f002/Syro_digital_packshot_RGB_1400.jpg/208x208bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/asis"],
+	["Blue (Flightcamp)", "Cats Millionaire", "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ea/9e/92/ea9e92cb-f2dd-9860-3b41-ad87533d9a87/cover_195069981411.jpg/316x316bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/bf"],
+    ["A Quick One Before the Enternal Worm Devours Connecticut", "Have a Nice Life", "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dd/6f/aa/dd6faa7e-c8be-2cca-30b9-678405e978b6/723175699267.jpg/296x296bb.webp", "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/aqobbewdc"]
+  ];
+
+  if (activePlaylist.songs.length === 0) {
+    defaultSongs.forEach(data => activePlaylist.addSong(new Song(...data)));
+  }
+
+  // inject CSS
+  const style = document.createElement("style");
+  style.textContent = `
+    #player {
+      border: 3px solid #8586c0;
+      display: flex;
+      flex-direction: row;
+      height: 191px;
+      background:
+          linear-gradient(
+              135deg,
+              rgba(255,255,255,.95),
+              rgba(250,252,255,.88),
+              rgba(240,246,254,.65),
+              rgba(248,251,255,.82),
+              rgba(255,255,255,.95)
+          )/*,
+          url("${ASSETS.bg}")*/;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 2px 8px rgba(0,0,0,.18);
+      font-family: sans-serif;
+    }
+    #display-box { display: flex; align-items: center; width: 50%; }
+    #cover { width: 176px; height: 176px; border: .125em solid #243956; box-shadow: inset 0 0 0 1px rgba(255,255,255,.4), 0 2px 6px rgba(0,0,0,.25); }
+    #info-container {
+      display: flex;
+      flex-direction: row;
+      height: 178px; width: 127px; margin-top: 3px;
+      color: black;
+      background:
+          linear-gradient(
+              180deg,
+              rgba(255,255,255,.88),
+              rgba(238,243,251,.82),
+              rgba(214,223,239,.78)
+          );
+      border-left: 1px solid rgba(90,110,150,.35);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+    }
+    #song-info { width: 100%; padding: 5px; }
+    #title { font-weight: bold; font-size: 16px; color: #243956; text-shadow: 0 1px 0 rgba(255,255,255,.95); }
+    #artist { font-size: 12px; color: #17191e; letter-spacing: .15px; }
+    #controls-container {
+      display: flex; flex-direction: column; align-items: center;
+      margin: 10px; width: 100%; padding-top: 15px;
+    }
+    .is-vertical #volumeSlider {
+      width: 125px; margin: 0;
+    }
+    #controls { display: flex; flex-direction: row; justify-content: center; width: 80%; gap: 5px; cursor: pointer; }
+    #controls img { transition: transform 0.1s; }
+    #controls img:active { transform: scale(0.95); }
+    #progress-bar-container { width: 100%; }
+    #progress-bar { width: 80%; margin: auto; display: flex; margin-top: 20px; cursor: pointer; }
+    #volume-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 1em; }
+    #volume-display { font-weight: bold; display: none; }
+
+    :root {
+      --w7-sdt-w: 10px;
+      --w7-sdt-h: 18px;
+      --w7-surface: #f0f0f0;
+      --w7-sdt-icon: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAASCAYAAABit09LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAC7SURBVHgBlZLBCYQwEEVj9CDYgRfbswF7sRAbsArPdhBICDmEzPoDE9CdXeKH0eHP48fINOrSPM+k/mhd16YDtCyLmqZJhM7zxIs6PAF570WQAzJIRLkksd89DUl939eB1Ym3b0wpiQBmIYSXiTFGZYwRgWEY6o8uIPQLZGlu2rYtP54L3g3c912N45gHSEahh4dZERZj2zZyztFxHLnQw/vaLIattbmeULkMdg6XxLFaa3WB7MlCirTIHxVUkxicbwSEAAAAAElFTkSuQmCC");
+      --w7-sdt-icon-h: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAASCAMAAABVab95AAAAWlBMVEUAAAAAjf8AVpo8f7G44/v5/f7l9P3g8/za8Pzp9v32+/7u+f695v2z4PmWvdjr9/1onMKu3vjQ4e2Zv9l+pcJLc5GTu9eMtNGCqseLrcVhlbt0l7BWfptOdpOMIi2BAAAAA3RSTlMADUenYG6gAAAAWklEQVQI113GRwKAIAwEwCBBRaUo9vL/b0qWG3MaaqKG2FBcDCw3aWPB6NwW6nYgHUoHaQ9VxwlGKUPVwC7joOlIgeeZQ3pJnd46Z/2miNTqbZl8918efj2yH/8dBY1fB+zGAAAAAElFTkSuQmCC");
+      --w7-sdt-icon-a: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAASCAYAAABit09LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACsSURBVHgB3ZKxCoMwEIYvJWOn0r10LHTuVDp1KIU+RN+gT9FZ6AP0LYqDY+nQWXAScXMQdRYh+ouRqEF0cPGHHJfcl7sbfkaFroYlqEefx5lxQK/blu6rjRZ6R34RLcFxAWSkmRZEbUkeLWigZgVymZhuoid264lGjwMvTkhmtYsqvKEGMQQY43jYNwoy//7t0j31b8DPXyBOcVYe5Kr9mDpKdoY6ndoCrDNyDnRZRNbxQWFyAAAAAElFTkSuQmCC");
+    }
+
+        input[type=range] {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background: transparent;
+          padding: 10px 1px;
+          width: 100%;
+        }
+        input[type=range]:focus-visible {
+          outline: 1px dotted #000;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          background: var(--w7-sdt-icon);
+          filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.125));
+          height: var(--w7-sdt-h);
+          transform: translateY(-7px);
+          width: var(--w7-sdt-w);
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+          background: var(--w7-sdt-icon-h);
+        }
+        input[type=range]::-webkit-slider-thumb:active {
+          background: var(--w7-sdt-icon-a);
+        }
+
+        input[type=range]::-moz-range-thumb {
+          background: var(--w7-sdt-icon);
+          border: 0;
+          border-radius: 0;
+          filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.125));
+          height: var(--w7-sdt-h);
+          width: var(--w7-sdt-w);
+        }
+        input[type=range]::-moz-range-thumb:hover {
+          background: var(--w7-sdt-icon-h);
+        }
+        input[type=range]::-moz-range-thumb:active {
+          background: var(--w7-sdt-icon-a);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+          background: var(--w7-surface);
+          box-shadow: inset 1px 1px 1px #999, inset -1px 0 #999, 0 1px #fff;
+          box-sizing: border-box;
+          height: 3px;
+          width: 100%;
+        }
+        input[type=range]::-moz-range-track {
+          background: var(--w7-surface);
+          box-shadow: inset 1px 1px 1px #999, inset -1px 0 #999, 0 1px #fff;
+          box-sizing: border-box;
+          height: 3px;
+          width: 100%;
+        }
+
+        .is-vertical {
+          display: inline-block;
+          height: 150px;
+          transform: translateY(50%);
+          width: 4px;
+        }
+        .is-vertical > input[type=range] {
+          height: 4px;
+          margin: 0 16px 0 10px;
+          transform: rotate(270deg) translateX(calc(-50% + 8px));
+          transform-origin: left;
+          width: 150px;
+        }
+        .is-vertical > input[type=range]::-webkit-slider-thumb {
+          transform: translateY(-8px) scaleX(-1);
+        }
+        .is-vertical > input[type=range]::-moz-range-thumb {
+          transform: translateY(2px) scaleX(-1);
+        }
+
+  `;
+  document.head.appendChild(style);
+
+  // create HTML
+  const playerContainer = document.createElement("div");
+  playerContainer.id = "player";
+  playerContainer.innerHTML = `
+    <div id="display-box">
+      <img id="cover" src="">
+      <div id="info-container">
+        <div id="song-info">
+          <h3 id="title"></h3>
+          <p id="artist"></p>
+        </div>
+      </div>
+    </div>
+    <div id="controls-container">
+      <div id="controls">
+        <img id="prevButton" src="${ASSETS.btnPrev}" alt="Previous">
+        <img id="playPauseButton" src="${ASSETS.btnPlay}" alt="Play/Pause">
+        <img id="nextButton" src="${ASSETS.btnNext}" alt="Next">
+      </div>
+      <div id="progress-bar-container">
+        <progress id="progress-bar" value="0" max="100"></progress>
+      </div>
+    </div>
+    <div id="volume-container">
+      <img src="${ASSETS.volIcon}" alt="Volume" style="margin-bottom: 1em;">
+      <div class="is-vertical" style="height: 126px;">
+        <input type="range" id="volumeSlider" min="0" max="9" step="1" value="1">
+      </div>
+      <span id="volume-display" style="font-weight: bold; display: none;">1</span>
+    </div>
+  `;
+  
+  const originalElectionNight = electionNight;
+
+  electionNight = function (...args) {
+  const electionPlaylist = new Playlist();
+  const electionSong = new Song(
+    "Welcome! | おいでやす！",
+    "essenceォ液ー",
+    "https://f4.bcbits.com/img/a0320617799_10.jpg",
+    "https://file.garden/aTj_6KIR4zgOaWxK/american%20nil%20music/welcom"
+  );
+  electionPlaylist.addSong(electionSong);
+  changePlaylist(electionPlaylist);
+
+  return originalElectionNight.apply(this, args);
+};
+
+  gameWindow.insertAdjacentElement("afterend", playerContainer);
+
+  // set up audio & logic
+  const audio = getAudioElement();
+  const startSong = activePlaylist.getCurrentSong();
+  if (startSong) audio.src = startSong.audioLink;
+  audio.volume = currentVolume / 9;
+
+  const playPauseBtn = document.getElementById("playPauseButton");
+  const prevBtn = document.getElementById("prevButton");
+  const nextBtn = document.getElementById("nextButton");
+  const progressBar = document.getElementById("progress-bar");
+  const volumeSlider = document.getElementById("volumeSlider");
+  const volDisplay = document.getElementById("volume-display");
+
+  // play/pause
+  playPauseBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      updatePlayPauseIcon(true);
+    } else {
+      audio.pause();
+      updatePlayPauseIcon(false);
+    }
+  });
+
+  // next/prev
+  const playSongAtIndex = () => {
+    updateUI(activePlaylist);
+    audio.src = activePlaylist.getCurrentSong().audioLink;
+    audio.play();
+    updatePlayPauseIcon(true);
+  };
+
+  nextBtn.addEventListener("click", () => {
+    activePlaylist.playNext();
+    playSongAtIndex();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    activePlaylist.playPrevious();
+    playSongAtIndex();
+  });
+
+  // progress bar
+  audio.addEventListener("timeupdate", () => {
+    if (Number.isFinite(audio.duration)) {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressBar.value = progress;
+    }
+  });
+
+  audio.addEventListener("ended", () => {
+    activePlaylist.playNext();
+    playSongAtIndex();
+  });
+
+  // native progress click-to-seek functionality
+  progressBar.addEventListener("click", (e) => {
+    if (Number.isFinite(audio.duration)) {
+      const rect = progressBar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.right - rect.left;
+      const seekTime = (clickX / width) * audio.duration;
+      audio.currentTime = seekTime;
+    }
+  });
+
+  // volume
+  volumeSlider.addEventListener("input", (e) => {
+    currentVolume = parseInt(e.target.value, 10);
+    volDisplay.textContent = currentVolume;
+    audio.volume = currentVolume / 9;
+  });
+
+  // initial play
+  updateUI(activePlaylist);
+  audio.play()
+    .then(() => updatePlayPauseIcon(true))
+    .catch(() => updatePlayPauseIcon(false));
+}
+setupMusicPlayer();
+
+corrr = '\n              <h2>American Nihilism</h2>\n            ';
+
+const theme = nct_stuff.themes[nct_stuff.selectedTheme];
+
+// define / override theme values
+theme.coloring_title     = "#3e3f70";
+theme.coloring_window    = "#d1d1d1";
+theme.coloring_container = "#ffffff";
+theme.header_image = "https://preview.redd.it/dcb5rzu16h7e1.png?auto=webp&s=3c2e3798592e8d7d7f9e015f32337e3fcb76025a";
+theme.body_background = "https://i.postimg.cc/6WwS7w57/Wind7Ult64-img0.jpg?dl=1";
+
+applyTheme(theme);
+//#endcode
+
+HistHexcolour=["#985252","#26415e","#685136","#1c591c"];
+HistName=["Mitt Romney", "Barack Obama","Rudy Giuliani","Green Party"];
+HistEV=["356","182","0","0"];
+HistPV=["66,701,611","58,801,593","10,490,785","1,298,033"];
+HistPVP=["48.6%","42.8%","7.6%","0.9%"];
