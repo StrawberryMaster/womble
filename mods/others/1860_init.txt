@@ -1,0 +1,343 @@
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 25,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+]
+
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 8,
+        "fields": {
+            "year": 1860,
+            "summary": "<p>Abraham Lincoln runs as the Republican against his rival Stephen A. Douglas. Slavery is the dominant issue and has caused two splinter candidates to step forward -- Breckinridge and Bell -- both with Southern roots.</p><ul><li>Lincoln begins with the lead, and must simply hold his Northern coalition together to take the victory.</li><li>The other three candidates must find some way to prevent a Lincoln victory. In that case, the House of Representatives will choose.</li>\r</ul>",
+            "image_url": "https://i.imgur.com/tgjgMD9.png",
+            "winning_electoral_vote_number": 152,
+            "advisor_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/President-Jefferson-Davis.jpg/960px-President-Jefferson-Davis.jpg?",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">General Resources</h4>\rDavid Herbert Donald - <a href=\"http://www.amazon.com/exec/obidos/ASIN/068482535X/amhius20-20\">Lincoln</a><br>\rRobert W. Johannsen - <a href=\"http://www.amazon.com/exec/obidos/ASIN/0252066359/amhius20-20\">Stephen A. Douglas</a><br>\rHarriet Jacobs - <a href=http://docsouth.unc.edu/fpn/jacobs/jacobs.html\">Incidents in the Life of a Slave Girl</a><br>\rSolomon Northup - <a href=\"http://docsouth.unc.edu/fpn/northup/northup.html\">Twelve Years a Slave</a><br>\r<a href=\"https://suite.io/michael-streich/3cr92nv\">Abraham Lincoln, Stephen Douglas, and the Election of 1860</a><br>\r<a href=\"http://www.greatamericanhistory.net/nomination.htm\">How Lincoln Won the 1860 Republican Nomination</a><br>\r<a href=\"http://flattopshistorywarpolitics.yuku.com/topic/619/John-Bell-for-president-1860#.U8BmbY1dVZ0\">John Bell for President, 1860</a><br>\r<a href=\"http://faculty.virginia.edu/jajenkins/ES.pdf\">Running to Lose? The Candidacy of John C. Breckinridge</a>",
+            "has_visits": 0,
+            "no_electoral_majority_image": "https://www.jetsimon.com/public/static/images/1896-no-majority.jpg",
+            "creator": "Dan Bryan",
+            "display_year": "1860"
+        }
+    }
+]
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 69,
+        "fields": {
+            "first_name": "Abraham",
+            "last_name": "Lincoln",
+            "election": 8,
+            "party": "Republican",
+            "state": "Illinois",
+            "priority": 40,
+            "description": "<p>Abraham Lincoln begins the campaign in a strong position. The new Republican Party is largely united, and his advantage in several Northern states is overwhelming. The challenge will be to win the closer states, like Illinois, New York, and Ohio. To do so he must finesse several hot issues of the day, not the least of which is slavery.</p><p>Other Republican issues such as tariffs, homesteads, and a trans-continental railroad also dominate the discussion.</p>",
+            "color_hex": "#800000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Abraham_Lincoln_by_Alexander_Hesler%2C_1860-restored_%283x4_cropped%29.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1860 Presidential Election.</h3><p>Don't celebrate just yet, however. Word has already arrived that South Carolina is planning a secession convention, with other states soon to follow. Your Presidency will surely be defined by how you deal with this challenge. Will you take a hard line against this action, seek a compromise Amendment to protect slavery, or simply allow the states to secede? There are few good choices for you.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1860 Presidential Election.</h3><p>You began this campaign as the heavy favorite, but somehow things just didn't come together for you. Hopefully the nation will survive the next four years, at which point the Republicans can field a candidate who promises to win. The only positive you can take out of this is that the Southern threats of secession seem to have quieted down with your defeat.</p>",
+            "no_electoral_majority_message": "<h3>No candidate captured an Electoral College majority.</h3><p>This leaves everyone in a bad situation. Congress will now choose from the top three candidates in the electoral vote count. You are highly unlikely to be the compromise candidate in this situation, however. It is unclear whether Congress will select Douglas or Bell, or if they will deadlock and precipitate a Constitutional crisis. If Douglas is selected, how would the South react? There are even whispers about a civil war.</p>",
+            "description_as_running_mate": "n/a",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 68,
+        "fields": {
+            "first_name": "Stephen A.",
+            "last_name": "Douglas",
+            "election": 8,
+            "party": "Democrat",
+            "state": "Illinois",
+            "priority": 41,
+            "description": "<p>Stephen Douglas, thanks to a Democratic schism, has little hope of winning the election outright. His path to victory involves throwing the election the House, and finishing in the top three in the electoral vote count. In this case, he could win or at least deny the Republicans a victory.</p><p>Douglas has been a proponent of 'popular sovereignty', but this compromise has lost its luster in North and South alike. If he is to deny Lincoln a majority, he must carry some Northern states.</p>",
+            "color_hex": "#012b84",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Senator_Stephen_A._Douglas_%28edited%29.png/960px-Senator_Stephen_A._Douglas_%28edited%29.png",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1860 Presidential Election.</h3><p>How on earth did you pull this off? Hopefully you can soothe the frayed nerves from this turbulent campaign, and move the country past its slavery issues of the 1850s. Your supporters are already preparing a compromise amendment, offering permanent protection for slavery in the South in return for the admission of more free states. An invasion of Cuba may also be in order.</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1860 Presidential Election.</h3><p>You began this campaign as the heavy underdog, and sure enough you were shut out of the North and South alike. Depending on what happens next, you may be called upon to keep the Democratic Party loyal to the Union. There are already rumblings of secession from several Southern states.</p>",
+            "no_electoral_majority_message": "<h3>No candidate captured an Electoral College majority.</h3><p>Congress will now choose from the top three candidates in the electoral vote count. If you are in the top three, you have a great chance. Otherwise, Bell will be the favorite. Your supporters are already preparing a compromise amendment, offering permanent protection for slavery in the South in return for the admission of more free states. You will likely have to make such promises to prevent a deadlock in the House vote.</p>",
+            "description_as_running_mate": "n/a",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 67,
+        "fields": {
+            "first_name": "John C.",
+            "last_name": "Breckinridge",
+            "election": 8,
+            "party": "Southern Democrat",
+            "state": "Kentucky",
+            "priority": 42,
+            "description": "<p>John C. Breckinridge is the current vice president of the United States and is the Southern answer to Stephen Douglas as Democrat nominee. Like Douglas, Breckinridge has little chance of winning the election outright. He does have a good chance of winning all or most of the Southern states, though.</p><p>As an ardent pro-slavery candidate (a \"Fire-Eater\"), it is Breckenridge's job to defend the <em>Dred Scott</em> decision and represent the slaveholding interests in any House negotiations that would ensue after a deadlocked Electoral College.</p>",
+            "color_hex": "#005b32",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 1,
+            "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg/960px-John_C._Breckinridge_1860_portrait_%283x4_cropped%29.jpg",
+            "electoral_victory_message": "<h3>Congratulations! You have won the 1860 Presidential Election.</h3><p>Wow! You somehow beat Abraham Lincoln and All other candidates in such a divisive and tense election cycle. The North is very disappointed with your victory; however, they are unlikely to take any drastic actions in response to your victory. Meanwhile, your supporters in the South are extremely pleased with your triumph in this election. Your first order of business is to push for a constitutional amendment to protect slavery; however, many Northerners and abolitionists will push back heavily on this. So you Will have to find some sort of compromise with them on this issue. Which your base in the South will certainly not like.\n</p>",
+            "electoral_loss_message": "<h3>Sorry. You have lost the 1860 Presidential Election.</h3><p>Unfortunately, despite your best efforts, you were unable to defeat Lincoln or deadlock the Electoral College. Word has it that in South Carolina, they are planning to hold a vote on whether to succeed from the union or not. Many states across the South are doing the same. Will you stand with the Union despite your disagreements with Lincoln? Or will you join the secessionist movement?\n</p>",
+            "no_electoral_majority_message": "<h3>No candidate captured an Electoral College majority.</h3><p>Congress will now choose from the top three candidates in the electoral vote count. If you are in the top three, you are highly unlikely to be the compromise candidate in this situation. But that does not mean you can't do anything. You could strike a deal with Douglas to prevent a house deadlock.\n</p>",
+            "description_as_running_mate": "n/a",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 70,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Bell",
+            "election": 8,
+            "party": "Constitutional Union",
+            "state": "Tennessee",
+            "priority": 43,
+            "description": "<p>John Bell is a former Whig who has no stated position on the slavery issue, in spite of himself being a slaveholder. Bell's only position is to fight for the preservation of the Union under any circumstance. The vagueness of this stance is both an asset and a liability.</p><p>Bell's stronghold is the border states. His goal is to be another voice at the table, should Lincoln fail to win the Electoral College, and broker a compromise that would prevent the secession of any Southern states.</p>",
+            "color_hex": "#ba8e22",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/John_Bell_%28Restored%29-cropped.png/960px-John_Bell_%28Restored%29-cropped.png",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "n/a",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 73,
+        "fields": {
+            "first_name": "Hannibal",
+            "last_name": "Hamlin",
+            "election": 8,
+            "party": "Republican",
+            "state": "Maine",
+            "priority": 44,
+            "description": "n/a",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/hannibal-hamlin-1860.jpg",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>Hannibal Hamlin is a Senator and former Governor from Maine and a long-time opponent of slavery. It was this issue that caused him to change his allegiance from the Democratic Party in 1856, in the aftermath of the Kansas-Nebraska Act. Hamlin will help to balance the ticket regionally and give it name recognition.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 72,
+        "fields": {
+            "first_name": "Herschel",
+            "last_name": "Johnson",
+            "election": 8,
+            "party": "Democrat",
+            "state": "Georgia",
+            "priority": 45,
+            "description": "n/a",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/herschel-johnson-1860.jpg",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>Herschel Johnson is a former Governor of Georgia with a stated opposition to the Fire-Eaters and talk of secession. He is one of the last leading Democrats of the South to have not bolted to the Southern Democrat splinter party. Unfortunately, it is not very likely that Johnson's presence will help Douglas compete with Breckenridge or Bell in the South.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 71,
+        "fields": {
+            "first_name": "Joseph",
+            "last_name": "Lane",
+            "election": 8,
+            "party": "Southern Democrat",
+            "state": "Oregon",
+            "priority": 46,
+            "description": "n/a",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Joseph_Lane_%28cwpbh-02170%29_%28cropped_closein_3x4%29.jpg",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>Joseph Lane is the first Governor of Oregon and a supporter of slavery, in spite of that state's free-soil status. His original home state is North Carolina. He agrees with Breckinridge on all major issues, and gives him a chance to pick up a few electoral votes in a place very distant from the Deep South.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 76,
+        "fields": {
+            "first_name": "Edward",
+            "last_name": "Everett",
+            "election": 8,
+            "party": "Constitutional Union",
+            "state": "Massachusetts",
+            "priority": 47,
+            "description": "n/a",
+            "color_hex": "#00C100",
+            "secondary_color_hex": "#A1FFA1",
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/static/images/edward-everett-1860.jpg",
+            "electoral_victory_message": "n/a",
+            "electoral_loss_message": "n/a",
+            "no_electoral_majority_message": "n/a",
+            "description_as_running_mate": "<p>Edward Everett is nearing the end of an illustrious political career that includes time served in the House, Senate, as Governor of Massachusetts, Secretary of State, and as President of Harvard. Long known as a conservative, Everett hopes to provide regional balance to the Constitutional Union ticket, and to have the same moderating effect on northern abolitionists that Bell hopes to have on southern fire-eaters.</p>",
+            "candidate_score": 0,
+            "running_mate": true
+        }
+    }
+]
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 46,
+        "fields": {
+            "candidate": 69,
+            "running_mate": 73
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 47,
+        "fields": {
+            "candidate": 70,
+            "running_mate": 76
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 44,
+        "fields": {
+            "candidate": 67,
+            "running_mate": 71
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 45,
+        "fields": {
+            "candidate": 68,
+            "running_mate": 72
+        }
+    }
+]
+
+campaignTrail_temp.credits = "u/Dry-Investigator1857"
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 8,
+        "candidates": [
+            69,
+            68,
+            67,
+            70
+        ]
+    }
+]
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 8,
+        "candidates": [
+            69,
+            68,
+            67,
+            70
+        ]
+    }
+]
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 8,
+        "year": 1860,
+        "is_premium": 0,
+        "display_year": "1860"
+    }
+]
+
+jet_data = {
+    "headerColor": "#5c0700",
+    "windowColor": "#38571a",
+    "containerColor": "#000000",
+    "innerWindowColor": "#38571a",
+    "bannerImageUrl": "https://encyclopediavirginia.org/wp-content/uploads/2020/11/835hpr_70a0003741e46fc-1200x808.jpg",
+    "backgroundImageUrl": "https://cdn.thecollector.com/wp-content/uploads/2022/09/cotton-plantation-mississippi-antebellum-south.jpg",
+    "endingTextColor": "#000000",
+    "customQuote": ""
+}
+
+//#startcode
+
+
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#5c0700";
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#38571a";
+
+document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+
+$("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+
+$(".container")[0].style.backgroundColor = "#000000";
+
+document.getElementById("header").src = "https://encyclopediavirginia.org/wp-content/uploads/2020/11/835hpr_70a0003741e46fc-1200x808.jpg";
+
+document.body.background = "https://cdn.thecollector.com/wp-content/uploads/2022/09/cotton-plantation-mississippi-antebellum-south.jpg";
+
+document.head.innerHTML += "<style>#results_container {color:#fff;} .inner_window_w_desc {background-color:#38571a!important;} .inner_window_w_desc img { object-fit: cover; } .inner_window_w_desc h3, .inner_window_w_desc #credits { color: #fff; } .overlay_window img { object-fit: cover; object-position: top; }</style>";
+
+campaignTrail_temp.modBoxTheme = {
+  "main_color": "#38571a",
+  "header_color": "#5c0700",
+  "secondary_color": "#400500",
+  "description_background_color": "#1d2e0e",
+  "header_text_color": "#fff",
+  "description_text_color": "#fff",
+  "ui_text_color": "#fff"
+};
+
+//#endcode
