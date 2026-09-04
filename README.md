@@ -465,6 +465,10 @@ I do not own the content in these mods (unless otherwise specified), and am not 
 
 See [the mods folder](./mods) for the full list of mods.
 
+## American Nihilism
+This is a patched version of the original *American Nihilism* mod by chezburger, with a music player and slightly new design. Codes can be found [here](./mods/others/2012%20-%20American%20Nihilism_init.txt) (Code 1) and [here](./mods/others/2012%20-%20American%20Nihilism_RomneyRubio.txt) (Code 2). See example:
+![American Nihilism](./images/americannihilism.png)
+
 ## But A Man
 This is a patched version of the mod *But A Man* with some extra fixes for the mod, primarily readability improvements to the question/tooltip text and some optimizations. Codes can be found [here](./mods/1972%20-%20But%20A%20Man_init.txt) (Code 1) and [here](./mods/1972%20-%20But%20A%20Man_HumphreyMuskie.txt) (Code 2). See example:
 ![But A Man](./images/butaman.png)
@@ -510,7 +514,6 @@ These mods were either restored by a user (or group of users), formally released
 | **1860 Alternate VPs** | Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=1860) |
 | **1988b** | The original viviankesandre mod, which later got a spiritual successor, [The Rainbow Trail](https://campaigntrailshowcase.com/campaign-trail/?modName=1988RB). Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=1988b) |
 | **1992Redux** | Martha's redux of the 1992 mod. Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=1992Redux) |
-| **American Nihilism** | A patched version of the original American Nihilism mod by chezburger, with a music player and slightly new design. | [Code 1](./mods/others/2012%20-%20American%20Nihilism_init.txt) \| [Code 2](./mods/others/2012%20-%20American%20Nihilism_RomneyRubio.txt) |
 | **2024 Washington Governor** | Also called *Break the Streak* and made by ec2003, it was built on top of a "House of Cards 2016 mod" build by an unspecified AI. Only Reichert side is available. | [Code 1](./mods/others/2024%20-%20Washington%20Governor_init.txt) \| [Code 2](./mods/others/2024%20-%20Washington%20Governor_ReichertState%20GOP.txt) |
 | **2026 Clacton** | Released on the subreddit by Your_Local_Historian. | [Code 1](./mods/others/Clacton%20By-election_init.txt) \| [Code 2](./mods/others/Clacton%20By-election_BinfaceBinface.txt) |
 | **The Animal Trail** | Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=2024NAT) |
