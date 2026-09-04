@@ -12,6 +12,80 @@ campaignTrail_temp.modBoxTheme = {
     "ui_text_color": "#ffffff"
 };
 
+// helper function to update mod credits based on the selected scenario
+updateCredits = function(id) {
+    var targetId = (id !== undefined && id !== null && id !== "") ? id : campaignTrail_temp.election_id;
+    if (targetId === undefined || targetId === null || targetId === "") {
+        var sel = document.getElementById("election_id");
+        if (sel && sel.value) {
+            targetId = sel.value;
+        }
+    }
+    
+    var cur = (campaignTrail_temp.election_json || []).find(function(el) {
+        return el.pk == targetId;
+    }) || (campaignTrail_temp.election_json || [])[0];
+
+    if (cur && cur.fields && cur.fields.creator) {
+        campaignTrail_temp.credits = cur.fields.creator;
+        var els = document.querySelectorAll("#mod_credits, #credits, .mod_credits, .credits, #mod-credits");
+        if (els && els.length > 0) {
+            els.forEach(function(el) {
+                el.innerHTML = cur.fields.creator;
+            });
+        } else {
+            var el = document.getElementById("mod_credits") || document.getElementById("credits");
+            if (el) {
+                el.innerHTML = cur.fields.creator;
+            }
+        }
+    }
+};
+
+// automatically update credits
+var _election_id = campaignTrail_temp.election_id;
+try {
+    Object.defineProperty(campaignTrail_temp, "election_id", {
+        get: function() {
+            return _election_id;
+        },
+        set: function(val) {
+            _election_id = val;
+            updateCredits(val);
+        },
+        configurable: true,
+        enumerable: true
+    });
+} catch (err) {
+    console.log("Property observer fallback", err);
+}
+
+// update credits when the election dropdown changes on the start screen
+document.addEventListener("change", function(e) {
+    if (e.target && (e.target.id === "election_id" || e.target.name === "election_id")) {
+        _election_id = e.target.value;
+        updateCredits(e.target.value);
+    }
+});
+
+if (typeof $ !== 'undefined') {
+    $(document).on("change", "#election_id", function() {
+        _election_id = $(this).val();
+        updateCredits($(this).val());
+    });
+}
+
+// check when clicking "Continue"
+document.addEventListener("click", function(e) {
+    if (e.target && (e.target.id === "election_id_button" || e.target.id === "game_start")) {
+        var sel = document.getElementById("election_id");
+        if (sel && sel.value) {
+            _election_id = sel.value;
+            updateCredits(sel.value);
+        }
+    }
+});
+
 // this snippet is necessary so mods with custom IDs/PKs can load
 // overwrite realityCheck to support loose equality (==) for string/number comparisons
 window.realityCheck = function(cand, running_mate) {
@@ -31,6 +105,7 @@ if (typeof ree !== 'undefined' && ree) {
 
 // this is so we can use the mod historical data
 histFunction = function() {
+    updateCredits();
     switch (campaignTrail_temp.election_id) {
         case 1968: // 1968a
             HistHexcolour = ["#FF0000","#0000FF","#800080"];
@@ -47,7 +122,7 @@ histFunction = function() {
             HistPVP = ["42.2%", "41.1%", "16.4%", "0.7%"];
             break;
     }
-}
+};
 
 campaignTrail_temp.election_json = [
     {
@@ -59,7 +134,7 @@ campaignTrail_temp.election_json = [
             "image_url": "https://thecampaigntrail.net/static/images/1968aIntro.jpeg",
             "winning_electoral_vote_number": 270,
             "advisor_url": "https://thecampaigntrail.net/static/images/1968aAdvisors.jpeg",
-            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Robert Kennedy and the 1968 Election</h4><a href=\"https://www.amazon.com/Last-Campaign-Kennedy-Inspired-America/dp/0805077928\" target=\u201d_blank\u201d>Thurston Clarke - The Last Campaign: Robert F. Kennedy and 82 Days That Inspired America</a></br><a href=\"https://www.amazon.com/Robert-Kennedy-Life-Evan-Thomas/dp/0743203291\" target=\u201d_blank\u201d>Evan Thomas - Robert Kennedy: His Life</a></br><a href=\"https://www.amazon.com/Bobby-Kennedy-Making-Liberal-Icon/dp/08129835050\" target=\u201d_blank\u201d>Larry Tye - Bobby Kennedy: The Making of a Liberal Icon</a></br><a href=\"https://www.amazon.com/Robert-Kennedy-His-Own-Words/dp/055334661X\" target=\u201d_blank\u201d>Robert F. Kennedy - Robert Kennedy: In His Own Words</a></br><a href=\"https://www.amazon.com/Love-Night-American-Romance-Kennedy/dp/0684808293\" target=\u201d_blank\u201d>Ronald Steel - In Love With Night: The American Romance With Robert Kennedy</a></br><a href=\"https://www.amazon.com/All-This-Marvelous-Potential-Appalachia/dp/1641600594\" target=\u201d_blank\u201d>Matthew Algeo - All This Marvelous Potential: Robert Kennedy's 1968 Tour of Appalachia</a><h4>Links</h4><a href=\"https://www.politico.com/magazine/story/2018/06/05/rfk-bobby-kennedy-myth-legend-history-218593/\" target=\u201d_blank\u201d>The Bobby Kennedy Myth</a></br><a href=\"https://news.gallup.com/vault/235283/gallup-vault-look-back-robert-kennedy.aspx\" target=\u201d_blank\u201d><em>Gallup Vault: A Look Back at Robert Kennedy</em></a></br><a href=\"https://www.pewresearch.org/short-reads/2013/06/05/polling-flashback-remembering-rfk/\" target=\u201d_blank\u201d>Polling flashback: Remembering RFK</a></br><a href=\"https://www.pbs.org/wgbh/americanexperience/features/rfk-what-if/\" target=\u201d_blank\u201d>What if?</a>",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">Robert Kennedy and the 1968 Election</h4><a href=\"https://www.amazon.com/Last-Campaign-Kennedy-Inspired-America/dp/0805077928\" target=”_blank”>Thurston Clarke - The Last Campaign: Robert F. Kennedy and 82 Days That Inspired America</a></br><a href=\"https://www.amazon.com/Robert-Kennedy-Life-Evan-Thomas/dp/0743203291\" target=”_blank”>Evan Thomas - Robert Kennedy: His Life</a></br><a href=\"https://www.amazon.com/Bobby-Kennedy-Making-Liberal-Icon/dp/08129835050\" target=”_blank”>Larry Tye - Bobby Kennedy: The Making of a Liberal Icon</a></br><a href=\"https://www.amazon.com/Robert-Kennedy-His-Own-Words/dp/055334661X\" target=”_blank”>Robert F. Kennedy - Robert Kennedy: In His Own Words</a></br><a href=\"https://www.amazon.com/Love-Night-American-Romance-Kennedy/dp/0684808293\" target=”_blank”>Ronald Steel - In Love With Night: The American Romance With Robert Kennedy</a></br><a href=\"https://www.amazon.com/All-This-Marvelous-Potential-Appalachia/dp/1641600594\" target=”_blank”>Matthew Algeo - All This Marvelous Potential: Robert Kennedy's 1968 Tour of Appalachia</a><h4>Links</h4><a href=\"https://www.politico.com/magazine/story/2018/06/05/rfk-bobby-kennedy-myth-legend-history-218593/\" target=”_blank”>The Bobby Kennedy Myth</a></br><a href=\"https://news.gallup.com/vault/235283/gallup-vault-look-back-robert-kennedy.aspx\" target=”_blank”><em>Gallup Vault: A Look Back at Robert Kennedy</em></a></br><a href=\"https://www.pewresearch.org/short-reads/2013/06/05/polling-flashback-remembering-rfk/\" target=”_blank”>Polling flashback: Remembering RFK</a></br><a href=\"https://www.pbs.org/wgbh/americanexperience/features/rfk-what-if/\" target=”_blank”>What if?</a>",
             "has_visits": 1,
             "no_electoral_majority_image": "https://thecampaigntrail.net/static/images/1968aDeadlock.jpeg",
             "creator": "CTA",
@@ -146,7 +221,7 @@ campaignTrail_temp.candidate_json = [
             "priority": 3,
             "description": "<p>George Wallace is the segregationist Governor of Alabama and the face of the anti-integration movement in the United States. The recent death of his wife, Lurleen, and widespread allegations of corruption in office may make his hopeless run even more complicated.</p><p>A hero in the South, Wallace is running an openly racist third party campaign competing in all 50 states. With no chances of winning outright, Wallace hopes to deadlock the electoral college and strong-arm the ultimate winner into repealing civil rights legislation.</p>",
             "color_hex": "#800080",
-            "secondary_color_hex": "#A1FFA1",
+            "secondary_color_hex": "#b87bb8",
             "is_active": 0,
             "image_url": "https://thecampaigntrail.net/static/images/1968a/5HkLPni.jpeg",
             "electoral_victory_message": "<h3>Congratulations! You have won the 2000 election.</h3><p>This was definitely not supposed to happen. Good luck!</p>",
@@ -589,7 +664,7 @@ campaignTrail_temp.candidate_json = [
             "electoral_victory_message": "'",
             "electoral_loss_message": "'",
             "no_electoral_majority_message": "'",
-            "description_as_running_mate": "<p>Albert Fall is a Senator from New Mexico and one of Roosevelt's closest allies in Congress. He is a hard-line conservative on every issue\u2014pro-war, pro-business, anti-labor, and anti-immigration. Roosevelt has called him the embodiment of <q>the best American Spirit.</q> His selection would complete the merger of the New Nationalists with the Republican old guard, but would make it very difficult to win back any progressive voters who are drifting toward Wilson or even Debs.</p>",
+            "description_as_running_mate": "<p>Albert Fall is a Senator from New Mexico and one of Roosevelt's closest allies in Congress. He is a hard-line conservative on every issue—pro-war, pro-business, anti-labor, and anti-immigration. Roosevelt has called him the embodiment of <q>the best American Spirit.</q> His selection would complete the merger of the New Nationalists with the Republican old guard, but would make it very difficult to win back any progressive voters who are drifting toward Wilson or even Debs.</p>",
             "candidate_score": 0,
             "running_mate": true
         }
@@ -658,7 +733,7 @@ campaignTrail_temp.candidate_json = [
             "electoral_victory_message": "'",
             "electoral_loss_message": "'",
             "no_electoral_majority_message": "'",
-            "description_as_running_mate": "<p>Seymour Stedman is a Chicago lawyer and longtime Socialist Party official. He is the respectable face of the movement\u2014articulate, well-dressed, and capable of making the party's case to middle-class progressives without frightening them. With Debs in prison, the running mate will be doing most of the actual campaigning, and Stedman is the safest pair of hands available.</p>",
+            "description_as_running_mate": "<p>Seymour Stedman is a Chicago lawyer and longtime Socialist Party official. He is the respectable face of the movement—articulate, well-dressed, and capable of making the party's case to middle-class progressives without frightening them. With Debs in prison, the running mate will be doing most of the actual campaigning, and Stedman is the safest pair of hands available.</p>",
             "candidate_score": 0,
             "running_mate": true
         }
@@ -910,3 +985,5 @@ campaignTrail_temp.temp_election_list = [
         "display_year": "1920a"
     }
 ];
+
+updateCredits();

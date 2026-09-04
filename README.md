@@ -478,11 +478,11 @@ This is a patched version with a couple of extra fixes for the mod, primarily in
 ![Our Revolution](./images/ourrevolution.jpeg)
 
 ## TCT.net: the very best of
-This is a compilation of the mods seen in [thecampaigntrail.net](https://thecampaigntrail.net), extracted and compressed so that you are able to play several of its scenarios at once! Included here are 1996, 1984, 1972, 1956, 1940, 1908, 1876, and 1800. Included as well is a brief patch that should let issue effects for other candidates work on either side.
+This is a compilation of the mods seen in [thecampaigntrail.net](https://thecampaigntrail.net), extracted and compressed so that you are able to play several of its scenarios at once! Included here are 1996, 1984, 1980, 1972, 1964, 1956, 1940, 1932, 1908, 1892, 1888, 1884, 1876, 1872, 1828, 1800, and 1788. Included as well is a brief patch that should let issue effects for other candidates work on either side.
 
-As of now, the 2008, 2004, and 1964 mods are not not included due to their very minimal changes in comparison to their original counterparts (aside from images in the case of the first two). They may be added in the future if there are significant changes.
+As of now, the 2008 and 2004 mods are not not included due to their very minimal changes in comparison to their original counterparts (aside from image changes). They may be added in the future if there are significant changes.
 
-Code 1 can be found [here](./mods/TCTdotnet_code1.txt), and the Code 2 can be found [here](./mods/TCTdotnet_code2.min.txt). Note that because of the size of the code 2, the version above is minified to be around ~4mb. If you wish to inspect the code 2 for other mods, or want to try your hand at importing the uncompressed file, it can be found [here](./mods/TCTdotnet_code2.txt).
+Code 1 can be found [here](./mods/TCTdotnet_code1.txt), and the Code 2 can be found [here](./mods/TCTdotnet_code2.min.txt). Note that because of the size of the code 2, the version above is minified.. If you wish to inspect the code 2 for other mods, or want to try your hand at importing the uncompressed file, it can be found [here](./mods/TCTdotnet_code2.txt).
 
 The alternative history scenarios on that same site (1968a and 1920a) can be found separately, with the Code 1 [here](./mods/TCTdotnet_althist_code1.txt) and the Code 2 [here](./mods/TCTdotnet_althist_code2.txt). (See minified versions [here](./mods/TCTdotnet_althist_code2.min.txt)).
 
