@@ -466,7 +466,7 @@ I do not own the content in these mods (unless otherwise specified), and am not 
 See [the mods folder](./mods) for the full list of mods.
 
 ## American Nihilism
-This is a patched version of the original *American Nihilism* mod by chezburger, with a music player and slightly new design. Codes can be found [here](./mods/others/2012%20-%20American%20Nihilism_init.txt) (Code 1) and [here](./mods/others/2012%20-%20American%20Nihilism_RomneyRubio.txt) (Code 2). See example:
+This is a patched version of the original *American Nihilism* mod by chezburger, with a music player and slightly new design. Codes can be found [here](./mods/2012%20-%20American%20Nihilism_init.txt) (Code 1) and [here](./mods/2012%20-%20American%20Nihilism_RomneyRubio.txt) (Code 2). See example:
 ![American Nihilism](./images/americannihilism.png)
 
 ## But A Man
