@@ -5,7 +5,9 @@ A series of tools/addons/etc for The Campaign Trail mods.
 
 ## Addon notes
 ### Apply effects to all candidates
-By default, effects in the answer global/state JSON only apply if the candidate specified in the `candidate` field *is also* the player candidate. [This snippet](./codes/apply_all_effects.js) removes that filter, allowing effects to apply to all candidates regardless of which one the player is. No other changes are needed, and it should work on any mod without any extra setup. This is *experimental* and may cause unintended consequences, so make sure to test it out before using it in a mod!
+By default, effects in the answer global/state JSON only apply if the candidate specified in the `candidate` field *is also* the player candidate. [This snippet](./codes/apply_all_effects.js) removes that filter, allowing effects to apply to all candidates regardless of which one the player is. No other changes are needed, and it should work on any mod without any extra setup.
+
+Note: this is *experimental* and may cause unintended consequences, so make sure to test it out before using it in a mod! It should be most useful in older mods.
 
 ### Answer swapper
 The [answer swapper](./codes/answer_swapper.js) is the bread and butter for swapping answer behaviors. It exchanges which question two answers belong to, and optionally swaps their effects too. Think of it like redirecting traffic: if answer A was supposed to go to question 1, and answer B to question 2, this flips that around. The `takeEffects` parameter controls whether all the associated scoring/feedback also gets swapped.
@@ -26,7 +28,7 @@ answerSwapper(8325, 8549, false);
 ```
 
 ### Anti-cheat system
-The [anti-cheat system](./codes/anti_cheat.js), originally made for TCT.net, is a simple tool for disabling console cheats, the benefit checker, cheat menus, and autoplay. You are able to configure which features to disable or enable, by setting the corresponding fields in the `disableConfig` object to `true` or `false`.
+The [anti-cheat system](./codes/anti_cheat.js), originally made for [TCT.net](https://thecampaigntrail.net/), is a simple tool for disabling console cheats, the benefit checker, cheat menus, and autoplay. You are able to configure which features to disable or enable, by setting the corresponding fields in the `disableConfig` object to `true` or `false`.
 
 By default, all features are disabled. The example below disables all features except autoplay.
 ```javascript
@@ -39,7 +41,7 @@ const disableConfig = {
 ```
 
 ### Banner changer
-The [banner changer](./codes/banner_changer.js) is a simple tool for changing the candidate banner logos. It includes a single function, `changeImage()`, which takes an image URL as an argument and updates the banner logo to that image. For example:
+The [banner changer](./codes/banner_changer.js), as seen in *Moonbeam*, is a simple tool for changing the candidate banner logos. It includes a single function, `changeImage()`, which takes an image URL as an argument and updates the banner logo to that image. For example:
 
 ```javascript
 changeImage("https://i.imgur.com/A1674e8.png");
@@ -108,7 +110,7 @@ gameStart.innerHTML = "Your text here";
 ```
 
 ### Candidate label editor
-The [candidate label editor](./codes/startscreen_label_editor.js) is a tool for changing the labels of candidates at their introduction screens. It lets you define individual labels for candidates and running mates separately, alllowing for those you don't want to be hidden. For example:
+The [candidate label editor](./codes/startscreen_label_editor.js), used in *The Apple Trail*, is a tool for changing the labels of candidates at their introduction screens. It lets you define individual labels for candidates and running mates separately, alllowing for those you don't want to be hidden. For example:
 
 ```javascript
 e.CandLabel1 = "Candidate";
@@ -143,7 +145,7 @@ This [dynamic election night](./codes/dynamic_election_night.js) feature, first 
 ![Election night](./images/election_night.jpeg)
 
 ### Election night song
-The [election night song](./codes/election_night_song.js) changes the election night song to a custom one. To customize this, you can update the song details in the code below. This snippet should work on music players based off the *W.* and *American Carnage* player codes.
+The [election night song](./codes/election_night_song.js) changes the election night song to a custom one. To customize this, you can update the song details in the code below. This snippet should work on music players based off the *W.* and *American Carnage* player codes (including the music players listed here).
 ```javascript
 const electionPlaylist = new Playlist();
 const electionSong = new Song(
@@ -173,7 +175,7 @@ if ([2500, 2501].includes(ans)) {
 ```
 
 ### Multiplayer feature
-The [multiplayer](./codes/multiplayer.js) feature allows for multiplayer functionality in Campaign Trail Showcase. Based on the original code from [The New Campaign Trail MP](https://github.com/Mrcinemazo9nn/The-New-Campaign-Trail-MP) by [Mrcinemazo9nn](https://github.com/Mrcinemazo9nn), with modifications made for *Campaign Trail Showcase*.
+The [multiplayer](./codes/multiplayer.js) feature allows for multiplayer functionality in *Campaign Trail Showcase*. Based on the original code from [The New Campaign Trail MP](https://github.com/Mrcinemazo9nn/The-New-Campaign-Trail-MP) by [Mrcinemazo9nn](https://github.com/Mrcinemazo9nn), though with modifications made to work on CTS.
 
 Unlike the original code, this version is built on WebRTC (Web Real-Time Communication), which allows two browsers to communicate directly with each other without requiring a dedicated game server. Before a WebRTC connection can be established, the browsers must exchange connection information through a process known as signaling. Normally, this is handled by a signaling server. Here though, we use [ntfy.sh](https://ntfy.sh), a free public publish/subscribe service, to facilitate the exchange of connection metadata. The host publishes its connection data to a unique topic (`tct-p2p-[RoomCode]`), while the guest subscribes to that topic using Server-Sent Events (SSE). Once the WebRTC handshake is complete and the peer connection is established, the ntfy.sh signaling channel is closed and all further communication occurs exclusively through a private `RTCDataChannel` (`tct_multiplayer`).
 
@@ -212,7 +214,7 @@ const routeNames = {
 };
 ```
 
-means that the question counter will display "Pocket Dimension Route" for question PK 1200, "Electric Boogaloo Route" for question PK 1201, and "example" for question PK 1202.
+means that the question counter will display "Pocket Dimension Route" for question PK 1200, "Electric Boogaloo Route" for question PK 1201, and "example" for question PK 1202. It can, however, be very useful for e.g. using dates instead of labels for the questions.
 
 ### Question swapper
 The [question swapper](./codes/question_swapper.js) is a tool for swapping the order of questions in a mod. It includes a single function, `questionSwapper()`, which takes two question numbers as arguments and swaps their order. For example:
@@ -343,7 +345,7 @@ This is the Sony Walkman-like music player shown in the mod *1992: Moonbeam*, st
 ![Moonbeam player](./images/moonbeam_player.png)
 
 ### More Than Ever/Good For Me player
-The tape recorder-like music player shown in *1972: More Than Ever*, and also in *1976: Year Zero*. Shown here is a modified version of the player with some optimizations. See source [here](./players/mte_player.js).
+This is the tape recorder-like music player shown in *1972: More Than Ever*, and also in *1976: Year Zero*, and reportedly made by Thatchmaster. Shown here is a modified version of the player with some optimizations. See source [here](./players/mte_player.js).
 ![More Than Ever player](./images/mte_player.png)
 
 The *Good For Me* player, a slightly modified version of the More Than Ever player, is also shown here. See source [here](./players/gfm_player.js).
