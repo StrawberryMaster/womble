@@ -1,0 +1,364 @@
+nct_stuff.themes[nct_stuff.selectedTheme] = {
+    name: "1868 Reconstruction",
+    background: "https://i.imgur.com/JCDChXB.png",
+    background_cover: true,
+    banner: "https://i.imgur.com/P06wuPZ.png",
+    coloring_window: "#600c0c",
+    coloring_container: "#110707",
+    coloring_title: "#160404",
+    text_col: "white",
+    mod_override: false,
+    window_url: "https://i.imgur.com/SQ2lzkH.png"
+}
+selectedTheme = nct_stuff.themes[nct_stuff.selectedTheme]
+
+updateBannerAndStyling();
+
+e = campaignTrail_temp
+
+e.credits = "u/AquaAppreciator1"
+
+campaignTrail_temp.modBoxTheme = {
+    header_color: "#160404",
+    header_text_color: "#ffffff",
+    main_color: "#600c0c",
+    description_background_color: "#110707",
+    description_text_color: "#f0f0f0",
+    secondary_color: "#160404",
+    secondary_hover_color: "#801111",
+    ui_text_color: "#ffffff",
+    scrollbar_color: "#600c0c #110707",
+    scrollbar_width: "thin"
+};
+
+e.modDesc = [
+    `<p>The party system of old has been disrupted in this alternate timeline. The year is 1868, and the United States is in a fragile state of reconstruction after a prolonged and divisive Civil War. The Democratic Party, traditionally associated with the Southern states, has transformed itself in an effort to promote national unity and reconciliation.</p><p>The Democrats have nominated John C. Breckinridge, a former vice president and Confederate general, as their presidential candidate. Breckinridge is a charismatic figure who advocates for a peaceful reunification of the country, emphasizing the need for healing and rebuilding. He proposes measures to revive the economy and infrastructure while offering limited concessions to ensure the civil rights of African Americans.</p>
+    
+    <button style="position:absolute;bottom:210px;left:26px;" onclick='this.parentElement.innerHTML=e.modDesc[1]'><b>MORE INFO:</b> The New Republic</button>`,
+    `<p>In response to the Democratic Party's transformation, the Republican Party experiences a split in this alternate scenario. Some Republicans endorse a more lenient approach towards the South, while others remain committed to protecting the rights of freed slaves. This division leads to the formation of a new party, the National Equality Party (NEP), which nominates Thaddeus Stevens, a prominent Radical Republican known for his unwavering stance on civil rights.</p><p>The election campaign revolves around the fundamental question of national unity versus racial equality. Breckinridge, the Democratic candidate, emphasizes his military background and advocates for healing and reconciliation, proposing moderate measures for the rights of African Americans. Stevens, the NEP candidate, champions the cause of racial equality and calls for aggressive Reconstruction efforts, including securing land and voting rights for freed slaves and pursuing strict punishments for former Confederates involved in war crimes.</p>
+    
+    <button style="position:absolute;bottom:210px;left:26px;" onclick='this.parentElement.innerHTML=e.modDesc[0]'>Back</button>`
+]
+
+RecReading=true
+
+e.election_json = [{
+    "model": "campaign_trail.election",
+    "pk": 20,
+    "fields": {
+        "year": 1868,
+        "image_url": "https://i.imgur.com/7wlvJy4.png",
+        "winning_electoral_vote_number": 177,
+        "advisor_url": "https://i.imgur.com/A3wqocj.png",
+		"site_description": "<p>The party system of old has been disrupted in this alternate timeline. The year is 1868, and the United States is in a fragile state of reconstruction after a prolonged and divisive Civil War. The Democratic Party, traditionally associated with the Southern states, has transformed itself in an effort to promote national unity and reconciliation.</p><p>The Democrats have nominated John C. Breckinridge, a former vice president and Confederate general, as their presidential candidate. Breckinridge is a charismatic figure who advocates for a peaceful reunification of the country, emphasizing the need for healing and rebuilding. He proposes measures to revive the economy and infrastructure while offering limited concessions to ensure the civil rights of African Americans.</p>",
+        "recommended_reading": "<div style='color: black; padding: 20px;'><h3 style='color: #333333; margin-bottom: 10px;'>Recommended Reading:</h3><ul style='list-style-type: disc; margin-left: 20px;'><li>The Reconstruction Era: A Very Short Introduction by Allen C. Guelzo</li><li>Thaddeus Stevens: Nineteenth-Century Egalitarian by Hans L. Trefousse</li><li>John C. Breckinridge and the Creation of the Confederate Identity by William C. Davis</li><li>Radical Reconstruction: A Brief History with Documents by Eric Foner</li></ul></div>",
+        "has_visits": 1,
+        "no_electoral_majority_image": "https://i.imgur.com/CDiKpPx.png"
+    }
+}]
+
+e.election_json[0].fields.summary = `<div style='overflow-y:scroll;height:185px;'>${e.modDesc[0]}</div>`;
+
+e.temp_election_list = [{
+    "id": 20,
+    "year": 1868,
+    "is_premium": 0,
+    "display_year": "1868;Reconvergence"
+}]
+
+e.descs = {}
+e.descs.johnDesc = [
+    `<p><em>"I believe that it is in the best interest of our nation to heal the wounds of war and strive for unity. We must rebuild our country together, ensuring the rights and opportunities for all."</em></p><p>In this alternate timeline, John C. Breckinridge emerges as the Democratic candidate for the 1868 presidential election. As a former vice president and Confederate general, Breckinridge brings a unique perspective to the campaign. He emphasizes the need for reconciliation, highlighting his military background and proposing measures to revive the economy and infrastructure. While advocating for limited concessions, Breckinridge aims to secure the civil rights of African Americans to foster a more harmonious nation.</p>
+    
+    <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.johnDesc[1]'>More</button>`,
+    `<p>John C. Breckinridge, a charismatic figure, aims to bridge the divide and promote national unity. He understands the scars left by the Civil War and seeks to ensure a peaceful reunification of our country. Breckinridge's vision for America includes a focus on healing and rebuilding, allowing us to move forward from the remnants of war and establish a stronger and more prosperous future for all citizens.</p>
+    
+    <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.johnDesc[0]'>Back</button>`
+]
+
+e.descs.thaddeusDesc = [
+    `<p><em>"We cannot compromise when it comes to the rights and equality of all Americans. It is our duty to secure justice and freedom for every individual, regardless of their race or background."</em></p><p>In this alternate scenario, Thaddeus Stevens becomes the nominee for the National Equality Party (NEP) in the 1868 presidential election. Known for his unwavering commitment to civil rights, Stevens presents a stark contrast to the Democratic candidate. He advocates for a more aggressive approach to Reconstruction, demanding land and voting rights for freed slaves while pushing for strict punishment of former Confederates involved in war crimes.</p>
+    
+    <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.thaddeusDesc[1]'>More</button>`,
+    `<p>Thaddeus Stevens, a prominent Radical Republican, stands as a symbol of racial equality in this campaign. He firmly believes in securing the rights gained by African Americans during the war and advancing their social and political status. Stevens' unyielding dedication to civil rights and his push for justice serve as a driving force behind his candidacy, inspiring many who share his vision of an equitable and inclusive America.</p>
+    
+    <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.thaddeusDesc[0]'>Back</button>`
+]
+
+
+e.opponents_default_json = [
+    {
+        "election": 20,
+        "candidates": [
+          200,
+          201
+        ]
+    }
+]
+
+e.opponents_weighted_json = [
+    {
+      "election": 20,
+      "candidates": [
+        200,
+        201
+      ]
+    }
+]
+
+e.descs.johnVPs = [
+    {
+        name: "johnson",
+        desc: [
+            `<p>Andrew Johnson, a former Democratic senator from Tennessee, brings a wealth of experience and a commitment to national unity to the ticket. As the 17th president of the United States, Johnson played a crucial role in the post-Civil War reconstruction efforts. His selection as vice president would further emphasize Breckinridge's focus on reconciliation and healing the nation's wounds.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.johnVPs[e.descs.johnVPs.map(f=>f.name).indexOf(\`johnson\`)].desc[1]'>More</button>`,
+            `<p>Johnson's political career and dedication to preserving the Union make him a valuable addition to Breckinridge's campaign. His understanding of the challenges faced by both the North and the South could help bridge the divide and foster a sense of unity among the American people.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.johnVPs[e.descs.johnVPs.map(f=>f.name).indexOf(\`johnson\`)].desc[0]'>Back</button>`
+        ]
+    },
+    {
+        name: "butler",
+        desc: [
+            `<p>Benjamin F. Butler, a prominent Union general and member of the Democratic Party, would bring a strong military background to the vice presidential role. His selection would demonstrate Breckinridge's commitment to rebuilding the nation and ensuring the protection of civil rights.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.johnVPs[e.descs.johnVPs.map(f=>f.name).indexOf(\`butler\`)].desc[1]'>More</button>`,
+            `<p>Butler's reputation as a military leader and his involvement in post-war efforts could bolster Breckinridge's campaign, particularly in terms of highlighting the importance of rebuilding the economy and infrastructure while safeguarding the rights of all citizens.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.johnVPs[e.descs.johnVPs.map(f=>f.name).indexOf(\`butler\`)].desc[0]'>Back</button>`
+        ]
+    }
+]
+
+e.descs.stevensVPs = [
+    {
+        name: "charles",
+        desc: [
+            `<p>Charles Sumner, a Radical Republican senator from Massachusetts, is a powerful advocate for civil rights and equality. His selection as vice president would strengthen Stevens' commitment to racial equality and social justice.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.stevensVPs[e.descs.stevensVPs.map(f=>f.name).indexOf(\`charles\`)].desc[1]'>More</button>`,
+            `<p>Sumner's unwavering dedication to securing the rights of freed slaves and advancing social reforms makes him an ideal running mate for Stevens. His experience in the Senate and his prominent role in the fight for equality could energize supporters and amplify the NEP's message.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.stevensVPs[e.descs.stevensVPs.map(f=>f.name).indexOf(\`charles\`)].desc[0]'>Back</button>`
+        ]
+    },
+    {
+        name: "frederick",
+        desc: [
+            `<p>Frederick Douglass, a renowned abolitionist, author, and speaker, would bring an influential voice and firsthand perspective to the vice presidential role. His selection would highlight the NEP's commitment to securing the rights and liberties of African Americans.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.stevensVPs[e.descs.stevensVPs.map(f=>f.name).indexOf(\`frederick\`)].desc[1]'>More</button>`,
+            `<p>Douglass' tireless advocacy for racial equality and his powerful storytelling could resonate with voters, helping to amplify the NEP's message and garner support. His presence on the ticket would symbolize the party's dedication to achieving true equality for all Americans.</p>
+            
+            <button style="position:absolute;bottom:110px;left:26px;" onclick='this.parentElement.innerHTML=e.descs.stevensVPs[e.descs.stevensVPs.map(f=>f.name).indexOf(\`frederick\`)].desc[0]'>Back</button>`
+        ]
+    }
+]
+
+
+e.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 200,
+        "fields": {
+          "first_name": "John C.",
+          "last_name": "Breckinridge",
+          "election": 20,
+          "party": "Democratic",
+          "state": "Kentucky",
+          "priority": 1,
+          "description": "<gg id='breaker'>"+e.descs.johnDesc[0]+"</gg>",
+          "color_hex": "#1a2744",
+          "secondary_color_hex": "#00C100",
+          "is_active": 1,
+          "image_url": "https://i.imgur.com/VDpMHzX.png",
+          "electoral_victory_message": "<h3>the ending codes broke</h3><p>sorry uwu</p>",
+          "electoral_loss_message": "<h3>the ending codes broke</h3><p>sorry uwu</p>",
+          "no_electoral_majority_message": "<h3>the ending codes broke</h3><p>sorry uwu</p>",
+          "description_as_running_mate": null,
+          "candidate_score": 1.0
+        }
+    },
+    {
+      "model": "campaign_trail.candidate",
+      "pk": 201,
+      "fields": {
+        "first_name": "Thaddeus",
+        "last_name": "Stevens",
+        "election": 20,
+        "party": "National Equality Party",
+        "state": "Vermont",
+        "priority": 1,
+        "description": "<gg id='breaker'>"+e.descs.thaddeusDesc[0]+"</gg>",
+        "color_hex": "#621624",
+        "secondary_color_hex": "#FF0000",
+        "is_active": 1,
+        "image_url": "https://i.imgur.com/lFuowAy.png",
+        "electoral_victory_message": "<h3>the ending codes broke</h3><p>sorry uwu</p>",
+        "electoral_loss_message": "<h3>the ending codes broke</h3><p>sorry uwu</p>",
+        "no_electoral_majority_message": "<h3>the ending codes broke</h3><p>sorry uwu</p>",
+        "description_as_running_mate": null,
+        "candidate_score": 1.0
+      }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 202,
+        "fields": {
+            "first_name": "Andrew",
+            "last_name": "Johnson",
+            "election": 20,
+            "party": "Democratic",
+            "state": "Tennessee",
+            "priority": 1,
+            "description": null,
+            "color_hex": "#e7ed74",
+            "secondary_color_hex": "#e7ed74",
+            "is_active": 0,
+            "image_url": "https://i.imgur.com/EUCTlNn.png",
+            "electoral_victory_message": null,
+            "electoral_loss_message": null,
+            "no_electoral_majority_message": null,
+            "description_as_running_mate": `<div>${e.descs.johnVPs[0].desc[0]}</div>`,
+            "candidate_score": 1.0        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 203,
+        "fields": {
+            "first_name": "Benjamin F.",
+            "last_name": "Butler",
+            "election": 20,
+            "party": "Democratic",
+            "state": "Massachusetts",
+            "priority": 1,
+            "description": null,
+            "color_hex": "#e7ed74",
+            "secondary_color_hex": "#e7ed74",
+            "is_active": 0,
+            "image_url": "https://i.imgur.com/djCNZ8N.png",
+            "electoral_victory_message": null,
+            "electoral_loss_message": null,
+            "no_electoral_majority_message": null,
+            "description_as_running_mate": `<div>${e.descs.johnVPs[1].desc[0]}</div>`,
+            "candidate_score": 1.0        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 204,
+        "fields": {
+            "first_name": "Charles",
+            "last_name": "Sumner",
+            "election": 20,
+            "party": "National Equality Party",
+            "state": "Massachusetts",
+            "priority": 1,
+            "description": null,
+            "color_hex": "#e7ed74",
+            "secondary_color_hex": "#e7ed74",
+            "is_active": 0,
+            "image_url": "https://i.imgur.com/djCNZ8N.png",
+            "electoral_victory_message": null,
+            "electoral_loss_message": null,
+            "no_electoral_majority_message": null,
+            "description_as_running_mate": `<div>${e.descs.stevensVPs[0].desc[0]}</div>`,
+            "candidate_score": 1.0        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 205,
+        "fields": {
+            "first_name": "Frederick",
+            "last_name": "Douglass",
+            "election": 20,
+            "party": "National Equality Party",
+            "state": "New York",
+            "priority": 1,
+            "description": null,
+            "color_hex": "#e7ed74",
+            "secondary_color_hex": "#e7ed74",
+            "is_active": 0,
+            "image_url": "https://i.imgur.com/05YNzww.png",
+            "electoral_victory_message": null,
+            "electoral_loss_message": null,
+            "no_electoral_majority_message": null,
+            "description_as_running_mate": `<div>${e.descs.stevensVPs[1].desc[0]}</div>`,
+            "candidate_score": 1.0        }
+    }
+]
+
+
+e.running_mate_json = [
+  {
+    "model": "campaign_trail.running_mate",
+    "pk": 100,
+    "fields": {
+      "candidate": 200,
+      "running_mate": 202
+    }
+  },
+  {
+    "model": "campaign_trail.running_mate",
+    "pk": 101,
+    "fields": {
+      "candidate": 200,
+      "running_mate": 203
+    }
+  },
+  {
+    "model": "campaign_trail.running_mate",
+    "pk": 102,
+    "fields": {
+      "candidate": 201,
+      "running_mate": 204
+    }
+  },
+  {
+    "model": "campaign_trail.running_mate",
+    "pk": 103,
+    "fields": {
+      "candidate": 201,
+      "running_mate": 205
+    }
+  }
+]
+
+e.global_parameter_json = [
+    {
+      "model": "campaign_trail.global_parameter",
+      "pk": 1,
+      "fields": {
+        "vote_variable": 1.125,
+        "max_swing": 0.12,
+        "start_point": 0.94,
+        "candidate_issue_weight": 10,
+        "running_mate_issue_weight": 0,
+        "issue_stance_1_max": -0.71,
+        "issue_stance_2_max": -0.3,
+        "issue_stance_3_max": -0.125,
+        "issue_stance_4_max": 0.125,
+        "issue_stance_5_max": 0.3,
+        "issue_stance_6_max": 0.71,
+        "global_variance": 0.01,
+        "state_variance": 0.005,
+        "question_count": 25,
+        "default_map_color_hex": "#C9C9C9",
+        "no_state_map_color_hex": "#999999"
+      }
+    }
+]
+
+const custom_styling = document.createElement("style");
+custom_styling.innerHTML = `
+#question_form {
+  overflow-y: scroll;
+  height: 85%;
+}
+#visit_content p {
+  overflow-y: scroll;
+  height: 30%;
+}
+`
+
+document.head.appendChild(custom_styling);
