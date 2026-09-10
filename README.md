@@ -561,7 +561,10 @@ This is a guide for making CYOA questions, made by Nina. It includes tips and tr
 | **CTS mod box tool** | A tool to help design the ModBox in CTS. | [Open here](https://jetsimon.com/cts-mod-box-tool/) |
 | **Further Reading Wizard** | A tool to help design the further reading section of mods. | [Open here](https://hunchonautilus.github.io/nct-further-reading-wizard/) |
 
-Other useful links:
+## Other useful links
+- [Astrohuncho's New Campaign Trail](https://hxnchohxnch0.github.io/oldnewcampaigntrail/www.americanhistoryusa.com/campaign-trail/index.html), an older but retooled version of New Campaign Trail
+- [New Campaign Trail Mod Jam](https://nctmodjam.github.io/campaign-trail/index.html), which hosts mods made for the Mod Jam contests that aren't on either loaders
+
 - [Tips for first-time coders coming from a first-time coder](https://www.reddit.com/r/thecampaigntrail/comments/1q2q1bs/tips_for_firsttime_coders_coming_from_a_firsttime/) by Old_Box_1317
 - [Resources for Modders](https://www.reddit.com/r/thecampaigntrail/comments/13q178b/resources_for_modders/) by Calgar77
 - [CYOA Guide](https://www.reddit.com/r/thecampaigntrail/comments/1pnmxzj/cyoa_guide/) by National7317
