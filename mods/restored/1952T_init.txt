@@ -1,0 +1,458 @@
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 12,
+        "fields": {
+            "year": 1952,
+            "summary": "<p>The year is 1952. Just four years ago, Harry S. Truman came roaring back from behind to defeat Thomas Dewey and secure a second term. Since then, however, his administration has taken a nosedive, with war still raging in Korea, Kefauver's corruption investigations heating up, and labor disputes sapping the nation's economic strength.</p>\n\n<ul><li>Harry S. Truman must draw on every ounce of political acumen he possesses to revive his presidency and forge a legacy of his own.</li><li>Dwight D. Eisenhower promises normalcy and steady governance, but must balance the competing wings of his party to avoid another '48.</li></ul>\n",
+            "image_url": "https://i.imgur.com/HDtMyrT.png",
+            "winning_electoral_vote_number": 266,
+            "advisor_url": "/static/images/clifford-bridges-1948.jpg",
+            "recommended_reading": "<h4 style=\"margin-top: 0.5em;\">1948 Election Books and Links</h4>David McCullough - <a href=\"http://www.amazon.com/exec/obidos/ASIN/B000FC0VVQ/amhius20-20\" target=\"_blank\">Truman</a></br>Andrew E. Busch - <a href=\"http://www.amazon.com/exec/obidos/ASIN/0700618678/amhius20-20\" target=\"_blank\">Truman's Triumphs: The 1948 Election and the Making of Postwar America</a></br>David Pietruza - <a href=\"http://www.amazon.com/exec/obidos/ASIN/140276748X/amhius20-20\" target=\"_blank\">1948: Harry Truman's Improbable Victory and the Year that Transformed America</a></br>Richard Norton Smith - <a href=\"http://www.amazon.com/exec/obidos/ASIN/067141741X/amhius20-20\" target=\"_blank\">Thomas E. Dewey and His Times</a></br><a href=\"https://www.youtube.com/watch?v=rJABgG4YDwM\" target=\"_blank\">The 1948 Democratic Convention (newsreel footage)</a></br><a href=\"https://www.youtube.com/watch?v=ogg9YsxGQm4\" target=\"_blank\">The 1948 Republican Convention (newsreel footage)</a></br><a href=\"https://www.youtube.com/watch?v=LW2ae0Fznwg\" target=\"_blank\">The 1948 Election Explained (video)</a>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "/static/images/1960-no-majority-photo.jpg",
+            "recommended_reading_enabled": true,
+            "display_year": "1952T"
+        }
+    }
+];
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 12,
+        "year": 1952,
+        "is_premium": 0,
+        "display_year": "1952T"
+    }
+];
+
+RecReading = true;
+
+campaignTrail_temp.credits = "Triplemtob (writer) and Polak Rodak (coder)";
+
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 25,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+];
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 116,
+        "fields": {
+            "first_name": "Harry",
+            "last_name": "Truman",
+            "election": 12,
+            "party": "Democrat",
+            "state": "Missouri",
+            "priority": 1,
+            "description": "<div style=\"overflow:auto; height: 200px\">“<i>The unfettered soul of free man offers a spiritual defense unconquered and unconquerable.</i>”\n\n<p>Harry S. Truman is a man who needs no introduction. A former senator and vice president, Truman assumed the presidency following Franklin Roosevelt’s death and shocked the world by winning reelection in 1948 against all odds, defeating Thomas Dewey.</p>\n\n<p>Since then, however, his approval rating has collapsed, and crisis after crisis has battered his presidency. Korea, domestic Communism, China, and the New Deal are the issues of the day — and Truman has suffered setbacks on every front. Many in his own party are privately furious that he chose to run again, convinced that his unpopularity makes another victory all but impossible.</p>\n\n<p>Now, Truman must take control of the situation and turn his presidency around, lest he go down in the history books as a fool.</p></div>",
+            "color_hex": "#ADD8E6",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://karsh.org/wordpress/wp-content/uploads/2016/10/Yousuf-Karsh-Harry-Truman-1948-1551x1960.jpg",
+            "electoral_victory_message": "",
+            "no_electoral_majority_message": "",
+            "description_as_running_mate": "'",
+            "candidate_score": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 117,
+        "fields": {
+            "first_name": "Mr.",
+            "last_name": "Republican",
+            "election": 12,
+            "party": "Republican",
+            "state": "New York",
+            "priority": 2,
+            "description": "<p>Thomas Dewey, Governor of New York, makes his second attempt at the Presidency. He became famous for his prosecutions of Mafia figures in New York, and is an exemplar of the Republican Party's eastern business establishment. Dewey waged a hard-hitting campaign against Roosevelt in 1944 that alienated some voters. Advisors this time are recommending that he take a more cautious, conciliatory approach, especially in light of the huge lead he enjoys.</p>",
+            "color_hex": "#E0115F",
+            "secondary_color_hex": "#FF7F7F",
+            "is_active": 0,
+            "image_url": "/static/images/thomas-dewey-1948.jpg",
+            "description_as_running_mate": "'",
+            "candidate_score": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 118,
+        "fields": {
+            "first_name": "",
+            "last_name": "Unpledged Electors",
+            "election": 12,
+            "party": "Dixiecrat",
+            "state": "South Carolina",
+            "priority": 3,
+            "description": "'",
+            "color_hex": "#fffd8d",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 120,
+        "fields": {
+            "first_name": "Alben",
+            "last_name": "Barkley",
+            "election": 12,
+            "party": "Democrat",
+            "state": "Kentucky",
+            "priority": 5,
+            "description": "'",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Alben_Barkley%2C_Vice-President.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<div style=\"overflow:auto; height: 200px\">“<i>I would rather be a servant in the house of the Lord than to sit in the seats of the mighty.</i>”\n\n<p>Born the eldest of eight children to tenant farmers in Kentucky, Alben W. Barkley has come a long way. From a humble law clerk to the vice presidency, he has seen nearly everything a political career can offer, and is ready to face whatever the next challenge may be.</p>\n\n<p>Barkley has been your loyal Vice President since you chose him as your running mate in 1948. Since then, he has helped mend fences with party bosses, keep Congress in line, and smooth over the occasional rough patch in your administration.</p>\n\n<p>By now, Barkley is an indispensable part of your administration. Replacing him is simply out of the question.</p></div>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 121,
+        "fields": {
+            "first_name": "Earl",
+            "last_name": "Warren",
+            "election": 12,
+            "party": "Republican",
+            "state": "California",
+            "priority": 6,
+            "description": "'",
+            "color_hex": "#fffee0",
+            "secondary_color_hex": "#FFFFED",
+            "is_active": 0,
+            "image_url": "/static/images/earl-warren-1948.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Earl Warren is the current Governor of California, and enjoys massive popularity in that state. He has pursued a modernizing agenda in California, building a huge, well-funded highway and university system, and other public works projects. He would add a number of crucial votes in his home state, and would distinguish the ticket nationally as a sensible, moderate alternative to Truman.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 122,
+        "fields": {
+            "first_name": "Harold",
+            "last_name": "Stassen",
+            "election": 12,
+            "party": "Republican",
+            "state": "Minnesota",
+            "priority": 7,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "/static/images/harold-stassen-1948.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Harold Stassen is a former Governor of Minnesota who resigned to serve in World World II. He was an opponent of isolationism and is a youthful, rising star within the party. He made his own bid for the Republican nomination this year, providing a serious challenge to Dewey. He is from the liberal wing of the Party and might help slightly in the Plains states. He has also opposed Dewey throughout the nomination process.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 123,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Bricker",
+            "election": 12,
+            "party": "Republican",
+            "state": "Ohio",
+            "priority": 8,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "/static/images/john-bricker-1948.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>John Bricker is a former Governor and current Senator from Ohio who served as Dewey's running mate in 1944, on a ticket that lost to FDR. He is closely aligned with Robert Taft and the conservative wing of the party. Both Bricker and Taft are popular in Ohio, and they helped Dewey win that state in 1944. If the election tightens up this time, Bricker's influence in Ohio could prove critical. However, the country does seem to be moving away from Bricker's brand of isolationism.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 124,
+        "fields": {
+            "first_name": "Arthur",
+            "last_name": "Vandenberg",
+            "election": 12,
+            "party": "Republican",
+            "state": "Michigan",
+            "priority": 9,
+            "description": "'",
+            "color_hex": "#FF0000",
+            "secondary_color_hex": "#FFA0A0",
+            "is_active": 0,
+            "image_url": "/static/images/arthur-vandenberg-1948.jpg",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "<p>Arthur Vandenberg was influential in the founding of the United Nations, and has built his reputation as an expert on international affairs. His selection would send a clear message that the days of Republican isolationism are over. He has supported many of Truman's policies, such as the Marshall Plan and the proposed NATO organization. On the other hand, he was also a leading opponent of Roosevelt's later domestic policies.</p>",
+            "candidate_score": 0
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 125,
+        "fields": {
+            "first_name": "Fielding",
+            "last_name": "Wright",
+            "election": 12,
+            "party": "Dixiecrat",
+            "state": "Mississippi",
+            "priority": 10,
+            "description": "'",
+            "color_hex": "#FFFF00",
+            "secondary_color_hex": "#FFFFC0",
+            "is_active": 0,
+            "image_url": "'",
+            "electoral_victory_message": "'",
+            "electoral_loss_message": "'",
+            "no_electoral_majority_message": "'",
+            "description_as_running_mate": "'",
+            "candidate_score": 0
+        }
+    }
+];
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 76,
+        "fields": {
+            "candidate": 116,
+            "running_mate": 120
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 81,
+        "fields": {
+            "candidate": 118,
+            "running_mate": 125
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 77,
+        "fields": {
+            "candidate": 117,
+            "running_mate": 121
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 78,
+        "fields": {
+            "candidate": 117,
+            "running_mate": 122
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 79,
+        "fields": {
+            "candidate": 117,
+            "running_mate": 123
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 80,
+        "fields": {
+            "candidate": 117,
+            "running_mate": 124
+        }
+    }
+];
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 12,
+        "candidates": [
+            116,
+            117,
+            118,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125
+        ]
+    }
+];
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 12,
+        "candidates": [
+            116,
+            117,
+            118,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125
+        ]
+    }
+];
+
+campaignTrail_temp.modBoxTheme = {
+    "header_color": "#0f172a",
+    "header_text_color": "#ffffff",
+    "description_background_color": "#ffffff",
+    "description_text_color": "#111827",
+    "main_color": "#bfe6ff",
+    "secondary_color": "#2563eb",
+    "ui_text_color": "#ffffff",
+    "site_title": "",
+    "site_image_url": ""
+};
+
+jet_data = {
+    "headerColor": "#272111",
+    "headerTextColor": "#ffffff",
+    "windowColor": "#ffe7bd",
+    "containerColor": "#503534",
+    "innerWindowColor": "#ffe5e5",
+    "innerWindowTextColor": "#000000",
+    "descriptionWindowColor": "#f8f8f8",
+    "descriptionWindowTextColor": "#000000",
+    "startButtonColor": "#ffa0a0",
+    "bannerImageUrl": "https://i.imgur.com/SLsFMCU.png",
+    "backgroundImageUrl": "https://media.wired.com/photos/5f68bdf1e72ff1cdd9941982/master/pass/Oped_Red-Scare-50559030.jpg",
+    "gameTitle": "The Campaign Trail",
+    "customQuote": "",
+    "quoteTextColor": "#ffffff",
+    "endingTextColor": "#000000",
+    "modBoxTheme": {
+        "header_color": "#0f172a",
+        "header_text_color": "#ffffff",
+        "description_background_color": "#ffffff",
+        "description_text_color": "#111827",
+        "main_color": "#bfe6ff",
+        "secondary_color": "#2563eb",
+        "ui_text_color": "#ffffff",
+        "site_title": "",
+        "site_image_url": ""
+    }
+};
+
+//#startcode
+function applyTheme(theme) {
+    const gameHeader = document.querySelector(".game_header");
+    if (gameHeader && theme.coloring_title) {
+        gameHeader.style.backgroundColor = theme.coloring_title;
+    }
+
+    const gameWindow = document.getElementById("game_window");
+    if (gameWindow && theme.coloring_window) {
+        gameWindow.style.backgroundColor = theme.coloring_window;
+    }
+
+    const container = document.querySelector(".container");
+    if (container && theme.coloring_container) {
+        container.style.backgroundColor = theme.coloring_container;
+    }
+
+    const headerImg = document.getElementById("header");
+    if (headerImg && theme.header_image) {
+        headerImg.src = theme.header_image;
+    }
+
+    if (theme.body_background) {
+        document.body.style.backgroundImage = `url("${theme.body_background}")`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
+    }
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #results_container { color: #000000; }
+      #wittyquote { color: #ffffff; }
+      .game_header h2 { color: #ffffff; }
+      .inner_window_w_desc { background-color: #ffe5e5 !important; color: #000000; }
+      .inner_window_front, .person_description_window, .election_description_window, .description_window_small { background-color: #f8f8f8 !important; color: #000000; }
+      .campaign_trail_start_emphasis { background-color: #ffa0a0 !important; }
+		
+		.inner_window_question h3, .overlay_window h3 {
+			background: #ffefd5;
+			border-color: #5e2c00;
+			padding: .2em .5em;
+		}
+		
+		#campaign_sign {
+			background-color: #193A63;
+			border-color: #9B1C31;
+		}
+		
+		.overlay_window {
+			height: auto;
+		}
+	  
+		.person_image img {
+		  object-fit: cover;
+		}
+
+		#candidate_pic, #running_mate_pic {
+		  object-fit: cover;
+		  object-position: top;
+		  width: 155px;
+		}
+    `;
+    document.head.appendChild(style);
+}
+
+corrr = "\n              <h2>The Campaign Trail</h2>\n            ";
+
+const theme = nct_stuff.themes[nct_stuff.selectedTheme];
+
+// define / override theme values
+theme.coloring_title     = "#272111";
+theme.coloring_window    = "#ffe7bd";
+theme.coloring_container = "#503534";
+theme.header_image = "https://i.imgur.com/SLsFMCU.png";
+theme.body_background = "https://media.wired.com/photos/5f68bdf1e72ff1cdd9941982/master/pass/Oped_Red-Scare-50559030.jpg";
+
+applyTheme(theme);
+//#endcode

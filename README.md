@@ -467,6 +467,10 @@ I do not own the content in these mods (unless otherwise specified), and am not 
 
 See [the mods folder](./mods) for the full list of mods.
 
+## 1952T
+This is a patched version of the original *1952T* mod on NCT, with *partially* fixed images and other minor design improvements. Codes can be found [here](./mods/restored/1952T_init.txt) (Code 1) and [here](./mods/restored/1952T_TrumanBarkley.txt) (Code 2). See example:
+![1952T](./images/1952T.png)
+
 ## American Nihilism
 This is a patched version of the original *American Nihilism* mod by chezburger, with a music player and slightly new design. Codes can be found [here](./mods/2012%20-%20American%20Nihilism_init.txt) (Code 1) and [here](./mods/2012%20-%20American%20Nihilism_RomneyRubio.txt) (Code 2). See example:
 ![American Nihilism](./images/americannihilism.png)
