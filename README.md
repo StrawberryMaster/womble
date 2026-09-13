@@ -247,6 +247,12 @@ In *All The Way*, clicking candidate/running mate images a total of six (6) time
 See example:
 ![ATW easter egg](./images/song_easteregg.png)
 
+### Two-party preferred system
+The [two-party preferred system](./codes/two-party_preferred.js) feature allows you to view the two-party preferred (TPP) results of an election, especially useful for Australian mods. It takes the votes of all candidates and redistributes them to the two main parties based on their preferences. This is useful for analyzing the results of an election and understanding how the votes were distributed.
+
+See example on 2010 Australia:
+![Two-party preferred system](./images/two-candidatepreferred.png)
+
 ### Two-round system
 This is a basic implementation of a [two-round system](./codes/two-round_system.js) feature. It takes you to election night at a certain question. If you are above 50%, you win. If you aren't but qualify for a runoff, then it goes to a runoff (by continuing the questions), and if not, it ends the game. *Very experimental!*
 
