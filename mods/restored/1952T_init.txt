@@ -425,6 +425,23 @@ function applyTheme(theme) {
 			background-color: #193A63;
 			border-color: #9B1C31;
 		}
+
+        #map_container {
+            background-color: #fff8e8;
+        }
+
+        #menu_container, #overall_result_container, #overall_result {
+            background-color: #f8f8f8;
+        }
+
+        #menu_container h3 {
+            background-color: #ffd2b8;
+        }
+
+        #results_container .person_image {
+            width: 230px;
+            object-fit: cover;
+        }
 		
 		.overlay_window {
 			height: auto;
@@ -448,8 +465,8 @@ corrr = "\n              <h2>The Campaign Trail</h2>\n            ";
 const theme = nct_stuff.themes[nct_stuff.selectedTheme];
 
 // define / override theme values
-theme.coloring_title     = "#272111";
-theme.coloring_window    = "#ffe7bd";
+theme.coloring_title = "#272111";
+theme.coloring_window = "#ffe7bd";
 theme.coloring_container = "#503534";
 theme.header_image = "https://i.imgur.com/SLsFMCU.png";
 theme.body_background = "https://media.wired.com/photos/5f68bdf1e72ff1cdd9941982/master/pass/Oped_Red-Scare-50559030.jpg";
