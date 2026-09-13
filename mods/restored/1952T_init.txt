@@ -338,15 +338,13 @@ campaignTrail_temp.opponents_weighted_json = [
 ];
 
 campaignTrail_temp.modBoxTheme = {
-    "header_color": "#0f172a",
+    "header_color": "#272111",
     "header_text_color": "#ffffff",
-    "description_background_color": "#ffffff",
-    "description_text_color": "#111827",
-    "main_color": "#bfe6ff",
-    "secondary_color": "#2563eb",
-    "ui_text_color": "#ffffff",
-    "site_title": "",
-    "site_image_url": ""
+    "description_background_color": "#fffbf2",
+    "description_text_color": "#1c140e",
+    "main_color": "#ffe7bd",
+    "secondary_color": "#503534",
+    "ui_text_color": "#ffffff"
 };
 
 jet_data = {
