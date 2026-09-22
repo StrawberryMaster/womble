@@ -282,7 +282,12 @@ This will set a volatility range of 0.0005 to 0.0009 for that answer, meaning th
 ----
 
 ## Music players
-If the credits/attribution for the music players here is inaccurate, please contact me so I can update it. All credit goes to the original creators of the players, so please preserve the annotations in the source code so that everyone is properly credited. Note that, for some lesser used players, you may still have to ask the original creators for permission to use/modify the players.
+If the credits/attribution for the music players here is inaccurate, please contact me so I can update it. All credit goes to the original creators of the players, so please preserve the annotations in the source code so that everyone is properly credited. Note that, for some lesser used players, you may 
+still have to ask the original creators for permission to use/modify the players.
+
+### A Billionaire, A Revolutionary player
+A modified version of the YouTube-powered music player use in *A Billionaire, A Revolutionary*, with shuffle/repeat/volume controls. See source [here](./players/abar_player.js).
+![A Billionaire, A Revolutionary player](./images/abar_player.png)
 
 ### A Lifetime of This player
 The YouTube-powered music player shown in the mod *2016: A Lifetime of This*, built on top of the *W.* player code. See source [here](./players/alot_player.js).
