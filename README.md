@@ -483,8 +483,12 @@ This is a patched version of the original *1952T* mod on NCT, with fixed images 
 ![1952T](./images/1952T.png)
 
 ## 1976Preach
-This is a patched version of the original *1976Preach* mod on NCT, with the addition of the Udalla nd Jackson sides (from the original repo but not on NCT) and a brand new Glenn side, with fixed images and other minor design improvements. Codes can be found [here](./mods/restored/1976Preach_init.txt) (Code 1) and [here](./mods/restored/1976Preach_ChurchCarter.txt) (Code 2). See example:
+This is a patched version of the original *1976Preach* mod on NCT, with the addition of the Udall and Jackson sides (from the original repo but not on NCT) and a brand new Glenn side, with fixed images and other minor design improvements. Codes can be found [here](./mods/restored/1976Preach_init.txt) (Code 1) and [here](./mods/restored/1976Preach_ChurchCarter.txt) (Code 2). See example:
 ![1976Preach](./images/1976Preach.png)
+
+## 1964 Scoop
+This is a patched version of the original *1964 Scoop* mod on NCT and CTS. It includes, alongside image patches (including some original images recovered by HelloLyndon), it also includes a new music player and other minor design improvements. Codes can be found [here](./mods/restored/1964Scoop_init.txt) (Code 1) and [here](./mods/restored/1964Scoop_JacksonConnally.txt) (Code 2). See example:
+![1964Scoop](./images/1964Scoop.png)
 
 ## American Nihilism
 This is a patched version of the original *American Nihilism* mod by chezburger, with a music player and slightly new design. Codes can be found [here](./mods/2012%20-%20American%20Nihilism_init.txt) (Code 1) and [here](./mods/2012%20-%20American%20Nihilism_RomneyRubio.txt) (Code 2). See example:
