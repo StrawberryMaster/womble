@@ -1,0 +1,863 @@
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 1993,
+        "fields": {
+            "year": 1993,
+            "summary": "<p>The year is 1993. The Union Aerospace Corporation’s interdimensional teleportation experiments on the moons of Mars have gone catastrophically wrong. A distress signal from the Phobos facility reports that something evil is coming through the gateways, while Deimos has mysteriously vanished. A military response is sent to investigate, but the squad is quickly overwhelmed.</p><ul><li>As the lone surviving marine on Phobos, you must rely on grit, combat reflexes, and an expanding arsenal to fight your way through the overrun UAC facility.</li><li>Survive the demonic invasion, uncover what happened to Deimos, and find a way back to Earth before Hell’s forces can spread beyond the moons of Mars.</li></ul>",
+            "image_url": "https://cdn.gracza.pl/galeria/html/pliki/369211281.jpg",
+            "winning_electoral_vote_number": 270,
+            "advisor_url": "/static/images/clifford-bridges-1948.jpg",
+            "has_visits": 0,
+            "no_electoral_majority_image": "/static/images/1960-no-majority-photo.jpg",
+            "recommended_reading_enabled": false,
+            "display_year": "1993 - DOOM"
+        }
+    }
+];
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 1993,
+        "year": 1993,
+        "is_premium": 0,
+        "display_year": "1993 - DOOM"
+    }
+];
+
+RecReading = false;
+
+// DOOM credits
+campaignTrail_temp.credits = "id Software.<br>Many thanks to caiiiycuk for the js-dos WASM implementation,<br>and Decstar for the original 1993 Doom mod.<br>This mod was restored as part of the Womble Restoration Project";
+
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 25,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+];
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 666,
+        "fields": {
+            "first_name": "Doom",
+            "last_name": "Slayer",
+            "election": 1993,
+            "party": "UAC Marine Corps",
+            "state": "Phobos",
+            "priority": 1,
+            "description": "<p>A veteran of Earth's military, this Marine was reassigned to the Martian penal garrison after assaulting a commanding officer who ordered his unit to fire on civilians. He was stationed on Phobos when the UAC's teleportation experiments opened a gateway to Hell, prompting the military to send a squad into the facility. Within minutes, the entire unit was dead, leaving him alone on the moon with a pistol and little explanation for what had happened.</p><p>With the UAC facilities overrun and something considerably less human moving through them, the Marine has little choice but to make his way through Phobos and find out what went wrong. The disappearance of Deimos, the increasingly strange reports from the remaining personnel, and the sudden appearance of demons suggest that the problem is more than a failed experiment. His immediate concern, however, is rather simpler: stay alive long enough to find a way out.</p>",
+            "color_hex": "#107c10",
+            "secondary_color_hex": "#228b22",
+            "is_active": 1,
+            "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/57/Doom_cover_art.jpg/220px-Doom_cover_art.jpg",
+            "description_as_running_mate": "'",
+            "candidate_score": 1
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 667,
+        "fields": {
+            "first_name": "Icon of",
+            "last_name": "Sin",
+            "election": 1993,
+            "party": "Demonic Horde",
+            "state": "Hell",
+            "priority": 2,
+            "description": "<p>sample</p>",
+            "color_hex": "#8b0000",
+            "secondary_color_hex": "#aa0000",
+            "is_active": 0,
+            "image_url": "",
+            "description_as_running_mate": "'",
+            "candidate_score": 1
+        }
+    }
+];
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 666,
+        "fields": {
+            "candidate": 666,
+            "running_mate": 667
+        }
+    }
+];
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 1993,
+        "candidates": [666, 667]
+    }
+];
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 1993,
+        "candidates": [666, 667]
+    }
+];
+
+campaignTrail_temp.modBoxTheme = {
+    "header_color": "#2b0000",
+    "header_text_color": "#ffffff",
+    "description_background_color": "#1c140e",
+    "description_text_color": "#ffffff",
+    "main_color": "#3d0808",
+    "secondary_color": "#8b0000",
+    "ui_text_color": "#ffffff"
+};
+
+jet_data = {
+    "headerColor": "#2b0000",
+    "headerTextColor": "#ffffff",
+    "windowColor": "#1c140e",
+    "containerColor": "#111111",
+    "innerWindowColor": "#261a1a",
+    "innerWindowTextColor": "#ffffff",
+    "descriptionWindowColor": "#1a1212",
+    "descriptionWindowTextColor": "#e0e0e0",
+    "startButtonColor": "#8b0000",
+    "bannerImageUrl": "https://web.archive.org/web/20231212012212if_/https://cdn.discordapp.com/attachments/810034515334004766/1076666882565865533/cmapianger.png",
+    "backgroundImageUrl": "https://c1.staticflickr.com/5/4220/34015007503_122a5e3a99_b.jpg",
+    "gameTitle": "The Campaign Trail - DOOM (1993)",
+    "customQuote": "",
+    "quoteTextColor": "#ffffff",
+    "endingTextColor": "#000000",
+    "modBoxTheme": campaignTrail_temp.modBoxTheme
+};
+
+//#startcode
+// apply election and candidate theme
+function applyTheme(theme) {
+    const gameHeader = document.querySelector(".game_header");
+    if (gameHeader && theme.coloring_title) {
+        gameHeader.style.backgroundColor = theme.coloring_title;
+    }
+
+    const gameWindow = document.getElementById("game_window");
+    if (gameWindow && theme.coloring_window) {
+        gameWindow.style.backgroundColor = theme.coloring_window;
+    }
+
+    const container = document.querySelector(".container");
+    if (container && theme.coloring_container) {
+        container.style.backgroundColor = theme.coloring_container;
+    }
+
+    const headerImg = document.getElementById("header");
+    if (headerImg && theme.header_image) {
+        headerImg.src = theme.header_image;
+    }
+
+    if (theme.body_background) {
+        document.body.style.backgroundImage = `url("${theme.body_background}")`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
+    }
+
+    // styling for election and candidate menus
+    $("#tct_initial_theme").remove();
+    const style = document.createElement("style");
+    style.id = "tct_initial_theme";
+    style.textContent = `
+      #results_container { color: #ffffff; }
+      #wittyquote { color: #ffcccc; }
+      .game_header h2 { color: #ffffff; }
+      .inner_window_w_desc { 
+        background-color: #241d1d !important; 
+        color: #ffffff !important; 
+        border: 1px solid #4a2828 !important; 
+      }
+      .inner_window_front, .person_description_window, .election_description_window, .description_window_small { 
+        background-color: #1a1414 !important; 
+        color: #e0e0e0 !important; 
+        border: 1px solid #3d1f1f !important; 
+      }
+      .person_description_window p, .election_description_window p {
+        color: #dddddd !important; 
+      }
+      .campaign_trail_start_emphasis { 
+        background-color: #8b0000 !important; 
+        color: #ffffff !important; 
+      }
+      #candidate_id_button, #candidate_id_back, #election_id_button {
+        background-color: #2d1818;
+        color: #ffffff;
+        border: 1px solid #632222;
+        padding: 6px 14px;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+      #candidate_id_button:hover, #election_id_button:hover {
+        background-color: #8b0000;
+      }
+      .person_image img {
+        object-fit: cover;
+		object-position: -85px center;
+      }
+    `;
+    document.head.appendChild(style);
+}
+
+corrr = "\n              <h2>The Campaign Trail</h2>\n            ";
+
+const theme = nct_stuff.themes[nct_stuff.selectedTheme];
+
+theme.coloring_title = "#2b0000";
+theme.coloring_window = "#1c140e";
+theme.coloring_container = "#111111";
+theme.header_image = "https://web.archive.org/web/20231212012212if_/https://cdn.discordapp.com/attachments/810034515334004766/1076666882565865533/cmapianger.png";
+theme.body_background = "https://c1.staticflickr.com/5/4220/34015007503_122a5e3a99_b.jpg";
+
+applyTheme(theme);
+
+// script loader helper
+const loadScript = (url) => new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${url}"]`)) return resolve();
+    const s = document.createElement("script");
+    s.src = url;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+});
+
+let keyCtrl = null;
+
+// DOOM launcher
+const startDoom = async () => {
+    const e = window.campaignTrail_temp || campaignTrail_temp;
+    e.code2Loaded = true;
+    e.doom = true;
+    window.stopSpacebar = true;
+
+    $("#bottomBar").hide();
+    $("#featured-mods-area").hide();
+
+    // styles
+    $("#tct_doom_styles").remove();
+    const doomStyle = document.createElement("style");
+    doomStyle.id = "tct_doom_styles";
+    doomStyle.textContent = `
+      #game_window {
+        background-color: #1a1a1a !important;
+        border: 3px double #990000 !important;
+        width: 960px !important;
+        max-width: 98vw !important;
+        margin: 0 auto !important;
+        min-height: 750px !important;
+        text-align: center !important;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .game_header {
+        background-color: #3b0505 !important;
+        border-bottom: 2px solid #770000 !important;
+        margin: 0 0 10px 0 !important;
+        padding: 6px 0 !important;
+      }
+      .game_header h2 { 
+        margin: 4px 0 !important; 
+        letter-spacing: 2px !important; 
+      }
+      #wittyquote { 
+        display: block !important; 
+        margin-top: 3px !important; 
+      }
+      .doom-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 0 12px 0;
+      }
+      #jsdos {
+        width: 800px !important;
+        max-width: 96% !important;
+        height: auto !important;
+        aspect-ratio: 4 / 3 !important;
+        background: #000;
+        border: 2px solid #555;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.95);
+        cursor: crosshair;
+        touch-action: none;
+        outline: none;
+        image-rendering: pixelated;
+      }
+      :fullscreen #doom_fullscreen_target, :-webkit-full-screen #doom_fullscreen_target {
+        background: #000;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+      }
+      :fullscreen #jsdos, :-webkit-full-screen #jsdos {
+        width: auto !important;
+        height: calc(100vh - 100px) !important;
+        max-width: 100vw;
+        max-height: calc(100vh - 100px);
+        aspect-ratio: 4 / 3;
+        border: none;
+      }
+      .doom-btn-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        margin: 8px 0;
+      }
+      .doom-action-btn {
+        padding: 6px 14px;
+        cursor: pointer;
+        background: #242424;
+        color: #ddd;
+        border: 1px solid #666;
+        font-family: monospace;
+        font-size: 13px;
+        border-radius: 4px;
+        touch-action: manipulation;
+        transition: background 0.15s, border-color 0.15s;
+      }
+      .doom-action-btn:hover { background: #3d0808; color: #fff; border-color: #aa2222; }
+      .doom-action-btn:active, .doom-action-btn.active-lock { background: #8b0000; color: #fff; border-color: #ff4444; }
+
+      /* touch controls for mobile */
+      #virtual_controller {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 680px;
+        margin-top: 6px;
+        padding: 4px 8px;
+        box-sizing: border-box;
+        touch-action: none;
+      }
+      .vpad-cluster {
+        display: grid;
+        grid-template-columns: repeat(3, 50px);
+        grid-template-rows: repeat(3, 44px);
+        gap: 4px;
+      }
+      .action-cluster {
+        display: grid;
+        grid-template-columns: repeat(2, 70px);
+        grid-template-rows: repeat(3, 42px);
+        gap: 5px;
+      }
+      .touch-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #2a2a2a;
+        color: #fff;
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 13px;
+        border: 2px solid #555;
+        border-radius: 6px;
+        box-shadow: 0 2px #111;
+        cursor: pointer;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .touch-btn:active, .touch-btn.pressed {
+        background: #880000 !important;
+        border-color: #ff3333 !important;
+        transform: translateY(2px);
+        box-shadow: none;
+      }
+      .touch-btn-fire { background: #661111; border-color: #992222; }
+      .touch-btn-use { background: #115511; border-color: #228822; }
+      .touch-btn-active-toggle { background: #1a4d1a !important; border-color: #00ff00 !important; }
+    `;
+    document.head.appendChild(doomStyle);
+
+    window.corrr = `<h2><font color='red'>RIP</font> AND <font color='red'>TEAR</font></h2>
+    <font id="wittyquote" size="4" color="white"><em>"For he will walk among us, and he will smite the evil from this earth." — Corrax Tablet 3:13</em></font>`;
+
+    const gameWindow = document.getElementById("game_window");
+    if (!gameWindow) return;
+
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+    gameWindow.innerHTML = `
+      <div class="game_header">
+        ${window.corrr}
+      </div>
+      <div class="doom-wrapper" id="doom_fullscreen_target">
+        <div id="doom_status" style="color: #00ff00; font-family: monospace; margin-bottom: 6px;">
+          Starting sound engine...
+        </div>
+        <canvas id="jsdos" tabindex="1"></canvas>
+        
+        <div class="doom-btn-bar">
+          <button class="doom-action-btn" id="doom_fs_btn" title="Toggle Fullscreen (with Esc Key Lock)">Fullscreen</button>
+          <button class="doom-action-btn" id="doom_mouse_btn" title="Toggle Raw Mouse Look">Lock mouse</button>
+          <button class="doom-action-btn" id="doom_esc_btn" title="Open in-game menu or pause">Menu (Esc)</button>
+          <button class="doom-action-btn" id="doom_toggle_pad">Toggle touchpad</button>
+          <button class="doom-action-btn" id="doom_back_btn">Back to candidate selection</button>
+        </div>
+
+        <div id="virtual_controller" style="${isTouch ? 'display:flex;' : 'display:none;'}">
+          <div class="vpad-cluster">
+            <div></div>
+            <div class="touch-btn" data-keycode="38">▲</div>
+            <div></div>
+            <div class="touch-btn" data-keycode="37">◀</div>
+            <div></div>
+            <div class="touch-btn" data-keycode="39">▶</div>
+            <div></div>
+            <div class="touch-btn" data-keycode="40">▼</div>
+            <div></div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:5px;">
+            <div class="touch-btn" data-keycode="27" style="width:70px; height:36px; font-size:11px;">ESC</div>
+            <div class="touch-btn" data-keycode="13" style="width:70px; height:36px; font-size:11px;">ENTER</div>
+            <div class="touch-btn" data-keycode="9" style="width:70px; height:36px; font-size:11px;">MAP</div>
+            <div class="touch-btn" id="btn_autorun" style="width:70px; height:36px; font-size:10px;">RUN: OFF</div>
+            <div class="touch-btn" id="btn_cycle_weapon" style="width:70px; height:36px; font-size:10px;">GUN [1]</div>
+          </div>
+
+          <div class="action-cluster">
+            <div class="touch-btn" data-keycode="188" style="font-size:11px;">STRAFE ◀</div>
+            <div class="touch-btn" data-keycode="190" style="font-size:11px;">STRAFE ▶</div>
+            <div class="touch-btn" data-keycode="18" style="font-size:11px;">ALT</div>
+            <div class="touch-btn touch-btn-use" data-keycode="32">USE</div>
+            <div class="touch-btn" data-keycode="16" style="font-size:11px;">SPEED</div>
+            <div class="touch-btn touch-btn-fire" data-keycode="17">FIRE</div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const statusText = document.getElementById("doom_status");
+    const canvas = document.getElementById("jsdos");
+
+    // send key to DOSBox
+    const sendKey = (keyCode, pressed) => {
+        if (window.doomCi && typeof window.doomCi.simulateKeyEvent === "function") {
+            window.doomCi.simulateKeyEvent(keyCode, pressed);
+            return;
+        }
+
+        const type = pressed ? "keydown" : "keyup";
+        const ev = new KeyboardEvent(type, {
+            bubbles: true,
+            cancelable: true,
+            keyCode: keyCode,
+            which: keyCode
+        });
+        Object.defineProperty(ev, "keyCode", { get: () => keyCode });
+        Object.defineProperty(ev, "which", { get: () => keyCode });
+        if (canvas) canvas.dispatchEvent(ev);
+        window.dispatchEvent(ev);
+    };
+
+    // focus game and resume audio
+    const focusGame = () => {
+        canvas.focus();
+        try {
+            const audioCtx = window.doomCi?.dos?.instance?.SDL?.audio?.context;
+            if (audioCtx && audioCtx.state === "suspended") {
+                audioCtx.resume();
+            }
+        } catch (_) {}
+    };
+
+    canvas.addEventListener("click", focusGame);
+    canvas.addEventListener("touchstart", focusGame, { passive: true });
+
+    // clean up any previous listeners
+    if (keyCtrl) keyCtrl.abort();
+    keyCtrl = new AbortController();
+    const { signal } = keyCtrl;
+
+    // key mappings for DOOM and DOSBox
+    const doomKeyMap = {
+        // enter keys (menu confirm / intro advance / messaging)
+        Enter: 13,
+        NumpadEnter: 13,
+
+        // space / use (open doors / activate switches)
+        Space: 32,
+
+        // escape / menu
+        Escape: 27,
+
+        // tab / automap
+        Tab: 9,
+
+        // arrows / movement
+        ArrowUp: 38,
+        ArrowDown: 40,
+        ArrowLeft: 37,
+        ArrowRight: 39,
+
+        // modern WASD + E controls
+        KeyW: 38,  // forward
+        KeyS: 40,  // back
+        KeyA: 188, // strafe left (comma)
+        KeyD: 190, // strafe right (period)
+        KeyE: 32,  // use (space)
+
+        // classic strafe keys
+        Comma: 188,
+        Period: 190,
+
+        // action modifiers
+        ControlLeft: 17,
+        ControlRight: 17,
+        ShiftLeft: 16,
+        ShiftRight: 16,
+        AltLeft: 18,
+        AltRight: 18,
+
+        // weapon selection 1-7
+        Digit1: 49,
+        Digit2: 50,
+        Digit3: 51,
+        Digit4: 52,
+        Digit5: 53,
+        Digit6: 54,
+        Digit7: 55,
+        Numpad1: 49,
+        Numpad2: 50,
+        Numpad3: 51,
+        Numpad4: 52,
+        Numpad5: 53,
+        Numpad6: 54,
+        Numpad7: 55,
+
+        // prompt confirmation keys (e.g. quit y/n)
+        KeyY: 89,
+        KeyN: 78,
+        Backspace: 8
+    };
+
+    // handle game keys and prevent browser/TCT conflicts
+    window.addEventListener("keydown", (evt) => {
+        if (!e.doom) return;
+
+        const keyCode = doomKeyMap[evt.code] || doomKeyMap[evt.key];
+        if (keyCode !== undefined) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            sendKey(keyCode, true);
+            return;
+        }
+
+        // prevent scrolling on untracked navigation keys
+        if (evt.key === " " || evt.key === "Tab" || evt.key.startsWith("Arrow")) {
+            evt.preventDefault();
+            evt.stopPropagation();
+        }
+    }, { capture: true, signal, passive: false });
+
+    window.addEventListener("keyup", (evt) => {
+        if (!e.doom) return;
+
+        const keyCode = doomKeyMap[evt.code] || doomKeyMap[evt.key];
+        if (keyCode !== undefined) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            sendKey(keyCode, false);
+            return;
+        }
+
+        if (evt.key === " " || evt.key === "Tab" || evt.key.startsWith("Arrow")) {
+            evt.stopPropagation();
+        }
+    }, { capture: true, signal, passive: false });
+
+    // bind touch buttons
+    const bindTouch = (el, keyCode) => {
+        const press = (ev) => {
+            ev.preventDefault();
+            focusGame();
+            el.classList.add("pressed");
+            sendKey(keyCode, true);
+        };
+        const release = (ev) => {
+            ev.preventDefault();
+            el.classList.remove("pressed");
+            sendKey(keyCode, false);
+        };
+
+        el.addEventListener("touchstart", press, { passive: false });
+        el.addEventListener("touchend", release, { passive: false });
+        el.addEventListener("touchcancel", release, { passive: false });
+        el.addEventListener("mousedown", press);
+        el.addEventListener("mouseup", release);
+        el.addEventListener("mouseleave", release);
+    };
+
+    document.querySelectorAll(".touch-btn[data-keycode]").forEach((btn) => {
+        bindTouch(btn, Number(btn.getAttribute("data-keycode")));
+    });
+
+    // autorun toggle
+    let autoRun = false;
+    const runBtn = document.getElementById("btn_autorun");
+    runBtn?.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        autoRun = !autoRun;
+        sendKey(16, autoRun);
+        if (autoRun) {
+            runBtn.classList.add("touch-btn-active-toggle");
+            runBtn.innerText = "RUN: ON";
+        } else {
+            runBtn.classList.remove("touch-btn-active-toggle");
+            runBtn.innerText = "RUN: OFF";
+        }
+        focusGame();
+    });
+
+    // cycle weapons 1-7
+    let gunIndex = 1;
+    const gunBtn = document.getElementById("btn_cycle_weapon");
+    gunBtn?.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        gunIndex = (gunIndex % 7) + 1;
+        gunBtn.innerText = `GUN [${gunIndex}]`;
+        const gunKeyCode = 48 + gunIndex;
+        sendKey(gunKeyCode, true);
+        setTimeout(() => sendKey(gunKeyCode, false), 80);
+        focusGame();
+    });
+
+    // menu button (ESC)
+    document.getElementById("doom_esc_btn")?.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        focusGame();
+        sendKey(27, true);
+        setTimeout(() => sendKey(27, false), 80);
+    });
+
+    // toggle mobile touchpad
+    document.getElementById("doom_toggle_pad")?.addEventListener("click", () => {
+        const pad = document.getElementById("virtual_controller");
+        if (pad) pad.style.display = pad.style.display === "none" ? "flex" : "none";
+    });
+
+    // pointer lock and raw mouse look
+    let mouseLocked = false;
+    const mouseBtn = document.getElementById("doom_mouse_btn");
+
+    const lockPointer = () => {
+        focusGame();
+        try {
+            canvas.requestPointerLock({ unadjustedMovement: true });
+        } catch (_) {
+            if (canvas.requestPointerLock) canvas.requestPointerLock();
+        }
+    };
+
+    const unlockPointer = () => {
+        if (document.pointerLockElement) {
+            try { document.exitPointerLock(); } catch (_) {}
+        }
+    };
+
+    mouseBtn?.addEventListener("click", () => {
+        if (document.pointerLockElement === canvas) {
+            unlockPointer();
+        } else {
+            lockPointer();
+        }
+    });
+
+    // lock mouse on canvas click on desktop
+    canvas.addEventListener("click", () => {
+        if (!isTouch && document.pointerLockElement !== canvas) {
+            lockPointer();
+        }
+    });
+
+    document.addEventListener("pointerlockchange", () => {
+        const isLocked = (document.pointerLockElement === canvas);
+        if (mouseBtn) {
+            if (isLocked) {
+                mouseBtn.innerText = "Unlock Mouse (Esc)";
+                mouseBtn.classList.add("active-lock");
+            } else {
+                mouseBtn.innerText = "Lock Mouse";
+                mouseBtn.classList.remove("active-lock");
+                // open menu to pause if unlocked via esc
+                if (mouseLocked) {
+                    sendKey(27, true);
+                    setTimeout(() => sendKey(27, false), 80);
+                }
+            }
+        }
+        mouseLocked = isLocked;
+    }, { signal });
+
+    // fullscreen handling with keyboard lock
+    const fsBtn = document.getElementById("doom_fs_btn");
+    const fsTarget = document.getElementById("doom_fullscreen_target") || canvas;
+
+    const toggleFullscreen = async () => {
+        focusGame();
+        const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        try {
+            if (!isFull) {
+                if (fsTarget.requestFullscreen) {
+                    await fsTarget.requestFullscreen();
+                } else if (fsTarget.webkitRequestFullscreen) {
+                    await fsTarget.webkitRequestFullscreen();
+                }
+                if (navigator.keyboard && navigator.keyboard.lock) {
+                    try {
+                        await navigator.keyboard.lock(["Escape", "KeyW", "KeyA", "KeyS", "KeyD", "Tab"]);
+                    } catch (_) {}
+                }
+            } else {
+                if (navigator.keyboard && navigator.keyboard.unlock) {
+                    try { navigator.keyboard.unlock(); } catch (_) {}
+                }
+                if (document.exitFullscreen) {
+                    await document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    await document.webkitExitFullscreen();
+                }
+            }
+        } catch (err) {
+            console.warn("Fullscreen toggle warning:", err);
+        }
+    };
+
+    fsBtn?.addEventListener("click", toggleFullscreen);
+
+    const onFullscreenChange = () => {
+        const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        if (fsBtn) {
+            fsBtn.innerText = isFull ? "Exit fullscreen" : "Fullscreen";
+            if (isFull) {
+                fsBtn.classList.add("active-lock");
+                if (navigator.keyboard && navigator.keyboard.lock) {
+                    navigator.keyboard.lock(["Escape", "KeyW", "KeyA", "KeyS", "KeyD", "Tab"]).catch(() => {});
+                }
+            } else {
+                fsBtn.classList.remove("active-lock");
+                if (navigator.keyboard && navigator.keyboard.unlock) {
+                    try { navigator.keyboard.unlock(); } catch (_) {}
+                }
+            }
+        }
+        focusGame();
+    };
+
+    document.addEventListener("fullscreenchange", onFullscreenChange, { signal });
+    document.addEventListener("webkitfullscreenchange", onFullscreenChange, { signal });
+
+    // boot js-dos and run DOOM
+    try {
+        if (!window.Dos) {
+            await loadScript("https://js-dos.com/6.22/current/js-dos.js");
+        }
+
+        window.Dos(canvas, {
+            wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+            autolock: false
+        }).ready((fs, main) => {
+            statusText.innerText = "Extracting DOOM shareware data...";
+
+            fs.extract("https://js-dos.com/cdn/upload/DOOM-@evilution.zip").then(() => {
+                statusText.style.display = "none";
+                focusGame();
+
+                main(["-c", "cd DOOM", "-c", "DOOM.EXE"]).then((ci) => {
+                    window.doomCi = ci;
+                });
+            });
+        });
+
+        // back button to return to candidate selection
+        document.getElementById("doom_back_btn")?.addEventListener("click", (evt) => {
+            unlockPointer();
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                try {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                } catch (_) {}
+            }
+            if (window.doomCi?.exit) {
+                try { window.doomCi.exit(); } catch (_) {}
+            }
+            if (keyCtrl) {
+                keyCtrl.abort();
+                keyCtrl = null;
+            }
+            window.stopSpacebar = false;
+            e.code2Loaded = false;
+            e.doom = false;
+            $("#tct_doom_styles").remove();
+            $("#bottomBar").show();
+            $("#featured-mods-area").show();
+            corrr = "\n              <h2>The Campaign Trail</h2>\n            ";
+            applyTheme(theme);
+            window.candSel(evt);
+        });
+
+    } catch (err) {
+        statusText.style.color = "red";
+        statusText.innerText = `Boot failed: ${err.message}`;
+    }
+};
+
+// candidate button click interceptor
+window.vpSelect = (evt) => {
+    if (evt?.preventDefault) evt.preventDefault();
+    startDoom();
+};
+
+document.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "candidate_id_button") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        startDoom();
+    }
+}, true);
+
+// candidate screen enter key listener
+document.addEventListener("keydown", (evt) => {
+    if (!window.campaignTrail_temp?.doom && (evt.key === "Enter" || evt.code === "Enter")) {
+        const candBtn = document.getElementById("candidate_id_button");
+        if (candBtn && candBtn.offsetParent !== null) {
+            evt.preventDefault();
+            evt.stopImmediatePropagation();
+            startDoom();
+        }
+    }
+}, true);
+//#endcode
