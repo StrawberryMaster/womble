@@ -1,16 +1,20 @@
 // This is a Denon DCP-30 CD player
 // made for 1992: Moonbeam.
 class Song {
-  constructor(title, artist, coverLink, audioLink) {
+  constructor(title, artist, coverLink, audioOrYouTube) {
     this.title = title;
     this.artist = artist;
     this.coverLink = coverLink;
-    this.audioLink = audioLink;
+
+    // detect and parse YouTube IDs, otherwise treat as a standard audio link
+    this.youtubeId = extractYouTubeId(audioOrYouTube);
+    this.audioLink = this.youtubeId ? null : (audioOrYouTube || null);
   }
   getTitle() { return this.title; }
   getArtist() { return this.artist; }
   getCoverLink() { return this.coverLink; }
   getAudioLink() { return this.audioLink; }
+  getYouTubeId() { return this.youtubeId; }
 }
 
 class Playlist {
@@ -45,6 +49,244 @@ let activePlaylist = new Playlist();
 let audioInstance = null;
 let currentVolume = 5;
 
+// YouTube URL support
+let ytApiReady = false;
+let ytPlayer = null;
+let ytPlayerReady = false;
+let ytConstructing = false;
+let ytReadyPending = false;
+let ytProgressTimer = null;
+let backendVolume = 1;
+
+const ytHooks = {
+  onEnded: null,
+  onProgress: null
+};
+
+const ytCallbacks = [];
+
+function flushYTCallbacks() {
+  while (ytCallbacks.length) {
+    const cb = ytCallbacks.shift();
+    try {
+      cb?.();
+    } catch (e) {
+      console.log("YouTube player callback failed.", e);
+    }
+  }
+}
+
+function extractYouTubeId(url) {
+  if (typeof url !== "string") return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/);
+  return match ? match[1] : null;
+}
+
+function isYouTubeSong(song) {
+  return !!song?.getYouTubeId?.();
+}
+
+(function injectYouTubeAPI() {
+  if (document.getElementById("yt-iframe-api")) return;
+  const tag = document.createElement("script");
+  tag.id = "yt-iframe-api";
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+})();
+
+window.onYouTubeIframeAPIReady = function () {
+  ytApiReady = true;
+};
+
+function applyVolumeToYT() {
+  if (!ytPlayer) return;
+  try {
+    ytPlayer.setVolume(Math.round(backendVolume * 100));
+    if (backendVolume === 0) ytPlayer.mute();
+    else ytPlayer.unMute();
+  } catch (e) {}
+}
+
+function ensureYTPlayer(onReady) {
+  if (onReady) ytCallbacks.push(onReady);
+  if (ytPlayer && ytPlayerReady) {
+    flushYTCallbacks();
+    return;
+  }
+  if (ytConstructing) return;
+
+  const createPlayer = () => {
+    const holder = document.getElementById("ytplayer") || (() => {
+      const el = document.createElement("div");
+      el.id = "ytplayer";
+      el.style.width = "0px";
+      el.style.height = "0px";
+      el.style.position = "absolute";
+      el.style.overflow = "hidden";
+      el.style.pointerEvents = "none";
+      document.body.appendChild(el);
+      return el;
+    })();
+
+    ytConstructing = true;
+    try {
+      ytPlayer = new YT.Player(holder, {
+        height: "0",
+        width: "0",
+        videoId: "",
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          rel: 0,
+          playsinline: 1
+        },
+        events: {
+          onReady: () => {
+            if (ytConstructing) {
+              ytReadyPending = true;
+              return;
+            }
+            ytPlayerReady = true;
+            applyVolumeToYT();
+            flushYTCallbacks();
+          },
+          onStateChange: (e) => {
+            if (e.data === YT.PlayerState.ENDED) {
+              ytHooks.onEnded?.();
+            }
+            if (e.data === YT.PlayerState.PLAYING) {
+              applyVolumeToYT();
+            }
+          }
+        }
+      });
+    } catch (e) {
+      ytConstructing = false;
+      console.log("Could not create the YouTube player.", e);
+      return;
+    }
+    ytConstructing = false;
+
+    if (ytReadyPending) {
+      ytReadyPending = false;
+      ytPlayerReady = true;
+      applyVolumeToYT();
+      flushYTCallbacks();
+    }
+  };
+
+  if (ytApiReady && window.YT && window.YT.Player) {
+    createPlayer();
+  } else {
+    const timer = setInterval(() => {
+      if (ytApiReady && window.YT && window.YT.Player) {
+        clearInterval(timer);
+        createPlayer();
+      }
+    }, 50);
+  }
+}
+
+function stopYTProgressPump() {
+  if (ytProgressTimer) {
+    clearInterval(ytProgressTimer);
+    ytProgressTimer = null;
+  }
+}
+
+function startYTProgressPump() {
+  stopYTProgressPump();
+  ytProgressTimer = setInterval(() => {
+    ytHooks.onProgress?.(backendGetCurrentTime(), backendGetDuration());
+  }, 250);
+}
+
+function backendSetSrcAndLoad(song, audio) {
+  if (!song) return;
+
+  if (isYouTubeSong(song)) {
+    stopYTProgressPump();
+    ensureYTPlayer(() => {
+      ytPlayer.loadVideoById(song.getYouTubeId());
+      applyVolumeToYT();
+    });
+    audio.pause();
+    audio.removeAttribute("src");
+    audio.load();
+  } else {
+    stopYTProgressPump();
+    if (ytPlayer) {
+      try { ytPlayer.stopVideo(); } catch (e) {}
+    }
+    audio.src = song.getAudioLink() || "";
+    audio.load();
+  }
+}
+
+function ytCurrentSong() { return activePlaylist.getCurrentSong(); }
+function ytAudioElement() { return getAudioElement(); }
+
+function backendPlay(audio) {
+  const song = ytCurrentSong();
+  if (!song) return Promise.resolve();
+
+  if (isYouTubeSong(song)) {
+    return new Promise((resolve) => {
+      ensureYTPlayer(() => {
+        ytPlayer.playVideo();
+        resolve();
+      });
+    });
+  }
+
+  return audio.play().catch(e => {
+    console.log("Playback deferred for user interaction.", e);
+  });
+}
+
+function backendPause(audio) {
+  const song = ytCurrentSong();
+  if (!song) return;
+
+  if (isYouTubeSong(song)) {
+    ytPlayer?.pauseVideo?.();
+  } else {
+    audio.pause();
+  }
+}
+
+function backendSetVolume(audio, volume) {
+  backendVolume = volume;
+  audio.volume = volume;
+  if (isYouTubeSong(ytCurrentSong())) applyVolumeToYT();
+}
+
+function backendGetCurrentTime() {
+  const song = ytCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) return ytPlayer.getCurrentTime?.() || 0;
+  const audio = ytAudioElement();
+  return audio ? audio.currentTime || 0 : 0;
+}
+
+function backendGetDuration() {
+  const song = ytCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) return ytPlayer.getDuration?.() || 0;
+  const audio = ytAudioElement();
+  return audio ? audio.duration || 0 : 0;
+}
+
+function backendSeekTo(seconds) {
+  const song = ytCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) {
+    ytPlayer.seekTo(seconds, true);
+  } else {
+    const audio = ytAudioElement();
+    if (audio && Number.isFinite(audio.duration)) audio.currentTime = seconds;
+  }
+}
+
 function changePlaylist(newPlaylist) {
   activePlaylist = newPlaylist;
   activePlaylist.currentSongIndex = 0;
@@ -54,10 +296,12 @@ function changePlaylist(newPlaylist) {
   const audio = getAudioElement();
   const song = activePlaylist.getCurrentSong();
 
-  if (song && song.getAudioLink()) {
-    audio.src = song.getAudioLink();
-    audio.play().catch(e => console.log("Autoplay blocked or waiting for interaction", e));
-    updatePlayPauseIcon(true);
+  if (song && (song.getAudioLink() || isYouTubeSong(song))) {
+    backendSetSrcAndLoad(song, audio);
+    startYTProgressPump();
+    backendPlay(audio)
+      .then(() => updatePlayPauseIcon(true))
+      .catch(e => console.log("Autoplay blocked or waiting for interaction", e));
   }
 }
 window.changePlaylist = changePlaylist;
@@ -118,7 +362,9 @@ function setupMusicPlayer() {
   }
 
   // prevent duplicate players
-  if (document.getElementById("player") || document.querySelector(".denon-player")) return;
+  const existingPlayer = document.getElementById("player")
+    || document.querySelector(".denon-player");
+  if (existingPlayer && existingPlayer.classList?.contains("denon-player")) return;
 
   const defaultSongs = [
     ["We Are Sex Bob-Omb", "Nigel Godrich", "https://upload.wikimedia.org/wikipedia/en/5/59/Scott_Pilgrim_soundtrack_cover.jpg", "https://file.garden/Zrv1pPC1HzBK0svl/We%20Are%20Sex%20Bob-Omb%204.mp3"],
@@ -367,8 +613,9 @@ function setupMusicPlayer() {
   // set up audio & logic
   const audio = getAudioElement();
   const startSong = activePlaylist.getCurrentSong();
-  if (startSong && startSong.getAudioLink()) audio.src = startSong.getAudioLink();
-  audio.volume = currentVolume / 10;
+  if (startSong && (startSong.getAudioLink() || isYouTubeSong(startSong))) backendSetSrcAndLoad(startSong, audio);
+  startYTProgressPump();
+  backendSetVolume(audio, currentVolume / 10);
 
   const playPauseBtn = playerContainer.querySelector(".denon-player__btn--playpause");
   const stopBtn = playerContainer.querySelector(".denon-player__btn--stop");
@@ -379,11 +626,26 @@ function setupMusicPlayer() {
 
   // play/pause
   playPauseBtn.addEventListener("click", () => {
+    if (isYouTubeSong(activePlaylist.getCurrentSong())) {
+      const isPlaying = window.YT?.PlayerState
+        ? ytPlayer?.getPlayerState?.() === YT.PlayerState.PLAYING
+        : false;
+      if (isPlaying) {
+        backendPause(audio);
+        updatePlayPauseIcon(false);
+      } else {
+        startYTProgressPump();
+        backendPlay(audio);
+        updatePlayPauseIcon(true);
+      }
+      return;
+    }
+
     if (audio.paused) {
-      audio.play();
+      backendPlay(audio);
       updatePlayPauseIcon(true);
     } else {
-      audio.pause();
+      backendPause(audio);
       updatePlayPauseIcon(false);
     }
   });
@@ -391,10 +653,12 @@ function setupMusicPlayer() {
   const playSongAtIndex = () => {
     updateUI(activePlaylist);
     const song = activePlaylist.getCurrentSong();
-    if (song && song.getAudioLink()) {
-      audio.src = song.getAudioLink();
-      audio.play().catch(e => console.log("Autoplay blocked or waiting for interaction", e));
-      updatePlayPauseIcon(true);
+    if (song && (song.getAudioLink() || isYouTubeSong(song))) {
+      backendSetSrcAndLoad(song, audio);
+      startYTProgressPump();
+      backendPlay(audio)
+        .then(() => updatePlayPauseIcon(true))
+        .catch(e => console.log("Autoplay blocked or waiting for interaction", e));
     }
   };
 
@@ -404,15 +668,16 @@ function setupMusicPlayer() {
   });
 
   stopBtn.addEventListener("click", () => {
-    audio.pause();
-    audio.currentTime = 0;
+    backendPause(audio);
+    backendSeekTo(0);
     updatePlayPauseIcon(false);
   });
 
   // progress bar updates
   const updateProgress = () => {
-    if (Number.isFinite(audio.duration) && audio.duration > 0) {
-      const progressPercent = (audio.currentTime / audio.duration) * 100;
+    const duration = backendGetDuration();
+    if (Number.isFinite(duration) && duration > 0) {
+      const progressPercent = (backendGetCurrentTime() / duration) * 100;
       const safePercent = isNaN(progressPercent) ? 0 : progressPercent;
       progressBarDisplay.value = safePercent;
       progressBarInteractive.value = safePercent;
@@ -422,26 +687,36 @@ function setupMusicPlayer() {
   audio.addEventListener("timeupdate", updateProgress);
   audio.addEventListener("loadedmetadata", updateProgress);
 
+  ytHooks.onEnded = () => {
+    activePlaylist.playNext();
+    playSongAtIndex();
+  };
+
+  ytHooks.onProgress = () => {
+    updateProgress();
+  };
+
   audio.addEventListener("ended", () => {
     activePlaylist.playNext();
     playSongAtIndex();
   });
 
   progressBarInteractive.addEventListener("input", (e) => {
-    if (Number.isFinite(audio.duration)) {
-      audio.currentTime = (e.target.value / 100) * audio.duration;
+    const duration = backendGetDuration();
+    if (Number.isFinite(duration)) {
+      backendSeekTo((e.target.value / 100) * duration);
     }
   });
 
   // volume
   volumeSlider.addEventListener("input", (e) => {
     currentVolume = parseInt(e.target.value, 10);
-    audio.volume = currentVolume / 10;
+    backendSetVolume(audio, currentVolume / 10);
   });
 
   // initial play
   updateUI(activePlaylist);
-  audio.play()
+  backendPlay(audio)
     .then(() => updatePlayPauseIcon(true))
     .catch(() => updatePlayPauseIcon(false));
 }

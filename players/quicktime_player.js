@@ -1,18 +1,23 @@
 // A QuickTime player implementation, initially
 // made for 2019 DOTP, a remake of 2019NK.
+
 class Song {
-  constructor(title, artist, album, coverLink, audioLink) {
+  constructor(title, artist, album, coverLink, audioOrYouTube) {
     this.title = title;
     this.artist = artist;
     this.album = album;
     this.coverLink = coverLink;
-    this.audioLink = audioLink;
+
+    // detect and parse YouTube IDs, otherwise treat as a standard audio link
+    this.youtubeId = extractYouTubeId(audioOrYouTube);
+    this.audioLink = this.youtubeId ? null : (audioOrYouTube || null);
   }
   getTitle() { return this.title; }
   getArtist() { return this.artist; }
   getAlbum() { return this.album; }
   getCoverLink() { return this.coverLink; }
   getAudioLink() { return this.audioLink; }
+  getYouTubeId() { return this.youtubeId; }
 }
 
 class Playlist {
@@ -42,6 +47,244 @@ class Playlist {
 window.Playlist = Playlist;
 window.Song = Song;
 
+// YouTube URL support
+let ytApiReady = false;
+let ytPlayer = null;
+let ytPlayerReady = false;
+let ytConstructing = false;
+let ytReadyPending = false;
+let ytProgressTimer = null;
+let backendVolume = 1;
+
+const ytHooks = {
+  onEnded: null,
+  onProgress: null
+};
+
+const ytCallbacks = [];
+
+function flushYTCallbacks() {
+  while (ytCallbacks.length) {
+    const cb = ytCallbacks.shift();
+    try {
+      cb?.();
+    } catch (e) {
+      console.log("YouTube player callback failed.", e);
+    }
+  }
+}
+
+function extractYouTubeId(url) {
+  if (typeof url !== "string") return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/);
+  return match ? match[1] : null;
+}
+
+function isYouTubeSong(song) {
+  return !!song?.getYouTubeId?.();
+}
+
+(function injectYouTubeAPI() {
+  if (document.getElementById("yt-iframe-api")) return;
+  const tag = document.createElement("script");
+  tag.id = "yt-iframe-api";
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+})();
+
+window.onYouTubeIframeAPIReady = function () {
+  ytApiReady = true;
+};
+
+function applyVolumeToYT() {
+  if (!ytPlayer) return;
+  try {
+    ytPlayer.setVolume(Math.round(backendVolume * 100));
+    if (backendVolume === 0) ytPlayer.mute();
+    else ytPlayer.unMute();
+  } catch (e) {}
+}
+
+function ensureYTPlayer(onReady) {
+  if (onReady) ytCallbacks.push(onReady);
+  if (ytPlayer && ytPlayerReady) {
+    flushYTCallbacks();
+    return;
+  }
+  if (ytConstructing) return;
+
+  const createPlayer = () => {
+    const holder = document.getElementById("ytplayer") || (() => {
+      const el = document.createElement("div");
+      el.id = "ytplayer";
+      el.style.width = "0px";
+      el.style.height = "0px";
+      el.style.position = "absolute";
+      el.style.overflow = "hidden";
+      el.style.pointerEvents = "none";
+      document.body.appendChild(el);
+      return el;
+    })();
+
+    ytConstructing = true;
+    try {
+      ytPlayer = new YT.Player(holder, {
+        height: "0",
+        width: "0",
+        videoId: "",
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          rel: 0,
+          playsinline: 1
+        },
+        events: {
+          onReady: () => {
+            if (ytConstructing) {
+              ytReadyPending = true;
+              return;
+            }
+            ytPlayerReady = true;
+            applyVolumeToYT();
+            flushYTCallbacks();
+          },
+          onStateChange: (e) => {
+            if (e.data === YT.PlayerState.ENDED) {
+              ytHooks.onEnded?.();
+            }
+            if (e.data === YT.PlayerState.PLAYING) {
+              applyVolumeToYT();
+            }
+          }
+        }
+      });
+    } catch (e) {
+      ytConstructing = false;
+      console.log("Could not create the YouTube player.", e);
+      return;
+    }
+    ytConstructing = false;
+
+    if (ytReadyPending) {
+      ytReadyPending = false;
+      ytPlayerReady = true;
+      applyVolumeToYT();
+      flushYTCallbacks();
+    }
+  };
+
+  if (ytApiReady && window.YT && window.YT.Player) {
+    createPlayer();
+  } else {
+    const timer = setInterval(() => {
+      if (ytApiReady && window.YT && window.YT.Player) {
+        clearInterval(timer);
+        createPlayer();
+      }
+    }, 50);
+  }
+}
+
+function stopYTProgressPump() {
+  if (ytProgressTimer) {
+    clearInterval(ytProgressTimer);
+    ytProgressTimer = null;
+  }
+}
+
+function startYTProgressPump() {
+  stopYTProgressPump();
+  ytProgressTimer = setInterval(() => {
+    ytHooks.onProgress?.(backendGetCurrentTime(), backendGetDuration());
+  }, 250);
+}
+
+function backendSetSrcAndLoad(song, audio) {
+  if (!song) return;
+
+  if (isYouTubeSong(song)) {
+    stopYTProgressPump();
+    ensureYTPlayer(() => {
+      ytPlayer.loadVideoById(song.getYouTubeId());
+      applyVolumeToYT();
+    });
+    audio.pause();
+    audio.removeAttribute("src");
+    audio.load();
+  } else {
+    stopYTProgressPump();
+    if (ytPlayer) {
+      try { ytPlayer.stopVideo(); } catch (e) {}
+    }
+    audio.src = song.getAudioLink() || "";
+    audio.load();
+  }
+}
+
+function ytCurrentSong() { return activePlaylist.getCurrentSong(); }
+function ytAudioElement() { return getAudioElement(); }
+
+function backendPlay(audio) {
+  const song = ytCurrentSong();
+  if (!song) return Promise.resolve();
+
+  if (isYouTubeSong(song)) {
+    return new Promise((resolve) => {
+      ensureYTPlayer(() => {
+        ytPlayer.playVideo();
+        resolve();
+      });
+    });
+  }
+
+  return audio.play().catch(e => {
+    console.log("Playback deferred for user interaction.", e);
+  });
+}
+
+function backendPause(audio) {
+  const song = ytCurrentSong();
+  if (!song) return;
+
+  if (isYouTubeSong(song)) {
+    ytPlayer?.pauseVideo?.();
+  } else {
+    audio.pause();
+  }
+}
+
+function backendSetVolume(audio, volume) {
+  backendVolume = volume;
+  audio.volume = volume;
+  if (isYouTubeSong(ytCurrentSong())) applyVolumeToYT();
+}
+
+function backendGetCurrentTime() {
+  const song = ytCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) return ytPlayer.getCurrentTime?.() || 0;
+  const audio = ytAudioElement();
+  return audio ? audio.currentTime || 0 : 0;
+}
+
+function backendGetDuration() {
+  const song = ytCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) return ytPlayer.getDuration?.() || 0;
+  const audio = ytAudioElement();
+  return audio ? audio.duration || 0 : 0;
+}
+
+function backendSeekTo(seconds) {
+  const song = ytCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) {
+    ytPlayer.seekTo(seconds, true);
+  } else {
+    const audio = ytAudioElement();
+    if (audio && Number.isFinite(audio.duration)) audio.currentTime = seconds;
+  }
+}
+
 let activePlaylist = new Playlist();
 let audioInstance = null;
 let currentVolume = 0.7;
@@ -56,8 +299,9 @@ function changePlaylist(newPlaylist) {
   const song = activePlaylist.getCurrentSong();
 
   if (song) {
-    audio.src = song.audioLink;
-    audio.play().catch(e => console.log("Autoplay blocked or waiting for interaction", e));
+    backendSetSrcAndLoad(song, audio);
+    startYTProgressPump();
+    backendPlay(audio).catch(e => console.log("Autoplay blocked or waiting for interaction", e));
     updatePlayPauseIcon(true);
   }
 }
@@ -559,14 +803,14 @@ function setupMusicPlayer() {
   // set up audio & logic
   const audio = getAudioElement();
   const startSong = activePlaylist.getCurrentSong();
-  if (startSong) audio.src = startSong.audioLink;
-  audio.volume = currentVolume;
+  if (startSong) backendSetSrcAndLoad(startSong, audio);
+  backendSetVolume(audio, currentVolume);
 
   const playSongAtIndex = () => {
     updateUI(activePlaylist);
-    audio.src = activePlaylist.getCurrentSong().audioLink;
-    audio.play();
-    updatePlayPauseIcon(true);
+    backendSetSrcAndLoad(activePlaylist.getCurrentSong(), audio);
+    startYTProgressPump();
+    backendPlay(audio).then(() => updatePlayPauseIcon(true));
   };
 
   function addAndPlaySong(song) {
@@ -588,6 +832,20 @@ function setupMusicPlayer() {
 
   // play/pause
   playPauseBtn.addEventListener("click", () => {
+    if (isYouTubeSong(ytCurrentSong())) {
+      const playing = window.YT?.PlayerState
+        ? ytPlayer?.getPlayerState?.() === YT.PlayerState.PLAYING
+        : false;
+      if (playing) {
+        backendPause(audio);
+        updatePlayPauseIcon(false);
+      } else {
+        backendPlay(audio);
+        updatePlayPauseIcon(true);
+      }
+      return;
+    }
+
     if (audio.paused) {
       audio.play();
       updatePlayPauseIcon(true);
@@ -596,6 +854,12 @@ function setupMusicPlayer() {
       updatePlayPauseIcon(false);
     }
   });
+
+  ytHooks.onEnded = () => {
+    updatePlayPauseIcon(false);
+    activePlaylist.playNext();
+    playSongAtIndex();
+  };
 
   // next/prev
   nextBtn.addEventListener("click", () => {
@@ -610,15 +874,15 @@ function setupMusicPlayer() {
 
   // stop
   stopBtn.addEventListener("click", () => {
-    audio.pause();
-    audio.currentTime = 0;
+    backendPause(audio);
+    backendSeekTo(0);
     updatePlayPauseIcon(false);
     updateProgress();
   });
 
   // start
   startBtn.addEventListener("click", () => {
-    audio.currentTime = 0;
+    backendSeekTo(0);
     updateProgress();
   });
 
@@ -631,8 +895,8 @@ function setupMusicPlayer() {
   };
 
   const updateProgress = () => {
-    const currentTime = audio.currentTime;
-    const duration = audio.duration;
+    const currentTime = backendGetCurrentTime();
+    const duration = backendGetDuration();
     const progressPercent = (currentTime / duration) * 100;
     const safePercent = isNaN(progressPercent) ? 0 : progressPercent;
 
@@ -642,6 +906,8 @@ function setupMusicPlayer() {
 
   audio.addEventListener("timeupdate", updateProgress);
   audio.addEventListener("loadedmetadata", updateProgress);
+
+  ytHooks.onProgress = () => updateProgress();
 
   audio.addEventListener("ended", () => {
     updatePlayPauseIcon(false);
@@ -658,8 +924,9 @@ function setupMusicPlayer() {
   const seek = (clientX) => {
     const rect = progressWrapper.getBoundingClientRect();
     const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    if (Number.isFinite(audio.duration)) {
-      audio.currentTime = percent * audio.duration;
+    const duration = backendGetDuration();
+    if (Number.isFinite(duration)) {
+      backendSeekTo(percent * duration);
     }
   };
 
@@ -684,12 +951,13 @@ function setupMusicPlayer() {
   // volume
   volumeSlider.addEventListener("input", (e) => {
     currentVolume = parseFloat(e.target.value);
-    audio.volume = currentVolume;
+    backendSetVolume(audio, currentVolume);
   });
 
   // initial play
   updateUI(activePlaylist);
-  audio.play()
+  startYTProgressPump();
+  backendPlay(audio)
     .then(() => updatePlayPauseIcon(true))
     .catch(() => updatePlayPauseIcon(false));
 }
