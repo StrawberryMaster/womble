@@ -82,7 +82,7 @@ const ASSETS = {
   volIcon: "https://i.imgur.com/jjUzV10.png"
 };
 
-// YouTube & Audio Backend Helpers
+// YouTube & Audio backend helpers
 function isYouTubeSong(song) {
   return !!song?.getYouTubeId?.();
 }
