@@ -55,6 +55,12 @@ if (e.running_mate_last_name === "Gephardt") {
 }
 ```
 
+### Candidate blocker
+[`candidateBlocker`](./codes/candidate_blocker.js) is a simple tool for blocking candidates from being selected in the election. It includes a mutation observer that listens for changes to the game window and automatically removes the Continue button from being chosen when a "bad" candidate (that is, a candidate that is unavailable to play) is selected. `BAD_CANDIDATE_IDS` defines the list of candidate IDs that are considered "bad" and should be blocked, while `RESET_CANDIDATE_ID` defines the player candidate, and so the observer's effects will not apply to them.
+
+For example, this (tested on 2012 Redux) shows Romney unable to be selected:
+![Candidate blocker example](./images/candidate_blocker.png)
+
 ### Candidate remover/restorer
 [`candidateRemover`](./codes/candidate_remover-restorer.js) is a tool for removing candidates from the election, and optionally restoring them later, as first shown in *2012: Obamanation*, where it is possible for Joe Lieberman to withdraw in favor of Clint Eastwood, with Eastwood taking over his support. It includes both `removeCandidate()` and `restoreCandidate()`. For a quick cheat-sheet:
 
@@ -158,6 +164,17 @@ electionPlaylist.addSong(electionSong);
 changePlaylist(electionPlaylist);
 ```
 
+### Ending song caller
+The [ending song caller](./codes/ending_song_caller.js) is a simple constant that allows for playing the ending song after the election is over. It includes a single function, `playEndingSong()`, which takes the song title, artist, cover URL, and audio URL as arguments and plays the song. For example:
+```javascript
+playEndingSong(
+        "songname",
+        "artistname",
+        "songcover",
+        "songURL"
+    );
+``
+
 ### Feedback updater
 The [feedback updater](./codes/feedback_updater.js) is a tool for changing the feedback text that appears after answering a question. It includes a single function, `updateFeedback()`, which takes a string as an argument and updates the feedback text to that string. Note it supports both answer PKs and feedback PKs. For example:
 ```javascript
@@ -229,6 +246,9 @@ if (e.question_number === 4 && ans === 2500) {
 }
 ```
 
+### Running mate skipper
+The [running mate skipper](./codes/running_mate_skipper.js) is allows you to skipping the running mate screen in a mod. It's as simple as that, and can be very useful in mods where the running mate is only selected later during gameplay. After selecting a candidate, it will skip you to the game difficulty screen, and you'll be unable to see your running mate there (even with keyboard shortcuts, as some older tools do).
+
 ### State highlighter
 The [state highlighter](./codes/state_highlighter.js) feature, first seen in *2025 New Jersey Governor Election*, does exactly what you'd expect: it highlights a state when you hover over it. For example, in the image below, South Dakota is colored differently from the rest.
 ![State highlighter](./images/state_highlighter.png)
@@ -275,6 +295,11 @@ For an individual answer, you can set a manual volatility value by creating a `v
     },
 ```
 This will set a volatility range of 0.0005 to 0.0009 for that answer, meaning the global multipliers will be randomly adjusted within that range. If no volatility range is set for an answer, it will generate max and min volatility values based on the global multiplier value.
+
+### VP table
+The [VP table](./codes/vp_table.js) is a tool for displaying the election's running mates in the election results table, alongside the actual candidates. Within the VP table code (shown here is one from Obamanation), you can set each character and their VPs inside `window.vpTable`. (You can also use `vpName` to set the player's running mate name, if it changes.) The same thing can be done with `vpTableHistorical` for the historical results of the election.
+
+For example, the Obamanation results tables: ![Obamanation VP table](./images/vp_table.png)
 
 ### 3D map effect
 *Very experimental*, but [this snippet](./codes/three_dee_effect.js) adds a 3D effect to the election night map view by applying a CSS transform to the map container.
