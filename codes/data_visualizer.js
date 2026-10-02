@@ -170,10 +170,10 @@
     const key = `margin_${baseColor}_${(margin * 1000 | 0)}`;
     if (colorCache[key]) return colorCache[key];
     let factor = margin < 0.01 ? 0.15 :
-                 margin < 0.05 ? 0.15 + (margin - 0.01) * 8 :
-                 margin < 0.10 ? 0.47 + (margin - 0.05) * 5 :
-                 margin < 0.15 ? 0.72 + (margin - 0.10) * 3 :
-                 0.87 + Math.min((margin - 0.15) * 1.3, 0.13);
+      margin < 0.05 ? 0.15 + (margin - 0.01) * 8 :
+        margin < 0.10 ? 0.47 + (margin - 0.05) * 5 :
+          margin < 0.15 ? 0.72 + (margin - 0.10) * 3 :
+            0.87 + Math.min((margin - 0.15) * 1.3, 0.13);
     return colorCache[key] = rgbToHex(...interpolateColor([255, 255, 255], hexToRgb(baseColor), factor));
   }
 
@@ -247,15 +247,15 @@
   function getCompetitivenessColor(margin) {
     const m = margin;
     return m < 0.01 ? "#FF0000" : m < 0.025 ? "#FF3300" : m < 0.05 ? "#FF6600" :
-           m < 0.075 ? "#FF9900" : m < 0.10 ? "#FFCC00" : m < 0.15 ? "#FFFF00" :
-           m < 0.20 ? "#AADD00" : m < 0.30 ? "#55BB00" : "#0000FF";
+      m < 0.075 ? "#FF9900" : m < 0.10 ? "#FFCC00" : m < 0.15 ? "#FFFF00" :
+        m < 0.20 ? "#AADD00" : m < 0.30 ? "#55BB00" : "#0000FF";
   }
 
   function getTurnoutChangeColor(c) {
     return c <= -10 ? "#8B0000" : c <= -7.5 ? "#B22222" : c <= -5 ? "#FF0000" :
-           c <= -2.5 ? "#FF6347" : c <= -1 ? "#FFA07A" : c < 1 ? "#F5F5F5" :
-           c < 2.5 ? "#90EE90" : c < 5 ? "#3CB371" : c < 7.5 ? "#2E8B57" :
-           c < 10 ? "#228B22" : "#006400";
+      c <= -2.5 ? "#FF6347" : c <= -1 ? "#FFA07A" : c < 1 ? "#F5F5F5" :
+        c < 2.5 ? "#90EE90" : c < 5 ? "#3CB371" : c < 7.5 ? "#2E8B57" :
+          c < 10 ? "#228B22" : "#006400";
   }
 
   function getStanceNumber(val) {
@@ -294,7 +294,7 @@
     if ((range.max - range.min) <= 0.15) {
       const w = Math.min(weight, 1.0);
       return w < 0.1 ? "#F8F8FF" : w < 0.25 ? "#E6E6FA" : w < 0.4 ? "#B0C4DE" :
-             w < 0.55 ? "#87CEEB" : w < 0.7 ? "#4682B4" : w < 0.85 ? "#1E90FF" : "#0000CD";
+        w < 0.55 ? "#87CEEB" : w < 0.7 ? "#4682B4" : w < 0.85 ? "#1E90FF" : "#0000CD";
     }
     return rgbToHex(...interpolateColor([248, 248, 255], [0, 0, 205], Math.max(0, Math.min(1, (weight - range.min) / (range.max - range.min)))));
   }
@@ -302,7 +302,7 @@
   function getCandidateIssueAlignment(sScore, cScore) {
     const a = Math.abs(sScore - cScore);
     return a < 0.2 ? "#006400" : a < 0.4 ? "#228B22" : a < 0.6 ? "#32CD32" :
-           a < 0.8 ? "#FFD700" : a < 1.0 ? "#FF8C00" : a < 1.2 ? "#FF4500" : "#8B0000";
+      a < 0.8 ? "#FFD700" : a < 1.0 ? "#FF8C00" : a < 1.2 ? "#FF4500" : "#8B0000";
   }
 
   function blendVoteShareColor(baseColor, voteShare) {
@@ -492,6 +492,60 @@
     return out;
   }
 
+  function getEffectiveCandidateIssueScore(candPk, issuePk) {
+    const baseObj = campaignTrail_temp.candidate_issue_score_json?.find(
+      ci => ci.fields.candidate === candPk && ci.fields.issue === issuePk
+    );
+    if (!baseObj) return null;
+
+    const gp = campaignTrail_temp.global_parameter_json?.[0]?.fields ?? {};
+    const candWeight = gp.candidate_issue_weight ?? 1;
+    const rmWeight = gp.running_mate_issue_weight ?? 0;
+    const isPlayer = String(candPk) === String(campaignTrail_temp.candidate_id);
+
+    let rmScore = 0;
+    let activeRmWeight = 0;
+    if (isPlayer) {
+      const rmIssue = campaignTrail_temp.running_mate_issue_score_json?.find(
+        x => x.fields.issue === issuePk
+      );
+      if (rmIssue) {
+        rmScore = rmIssue.fields.issue_score;
+        activeRmWeight = rmWeight;
+      }
+    }
+
+    let g = 0, b = 0;
+    const answers = campaignTrail_temp.player_answers || [];
+    if (answers.length > 0 && campaignTrail_temp.answer_score_issue_json) {
+      const answersSet = new Set(answers);
+      for (const answ of campaignTrail_temp.answer_score_issue_json) {
+        const f = answ.fields;
+        if (f.issue !== issuePk || !answersSet.has(f.answer)) continue;
+
+        let tag = f.tag;
+        if (!tag) {
+          if (f.candidate != null && f.state == null) tag = 'CANDIDATE';
+          else if (f.state != null && f.candidate == null) tag = 'STATE';
+          else if (f.candidate == null && f.state == null) tag = 'CANDIDATE';
+        }
+
+        if (tag === 'CANDIDATE') {
+          const targetCand = f.candidate ?? campaignTrail_temp.candidate_id;
+          if (String(targetCand) === String(candPk)) {
+            g += f.issue_score * f.issue_importance;
+            b += f.issue_importance;
+          }
+        }
+      }
+    }
+
+    const denom = candWeight + activeRmWeight + b;
+    return denom > 0
+      ? (baseObj.fields.issue_score * candWeight + rmScore * activeRmWeight + g) / denom
+      : baseObj.fields.issue_score;
+  }
+
   function prepareStyles() {
     if (Object.keys(styleCache).length > 0) return;
     applyColorVariations();
@@ -508,9 +562,9 @@
       else if (r.rep > r.dem && r.rep > (r.trd || 0)) { winC = "#DD2929"; m = r.rep - Math.max(r.dem, r.trd || 0); }
       else if ((r.trd || 0) > 0) { winC = "#FFDE3A"; m = r.trd - Math.max(r.dem, r.rep); }
       const hm = blendMarginColor(winC, m), hg = (winC === "#C9C9C9") ? "#CCCCCC" : (
-        ['D','R','I'][['#0487E6','#DD2929','#FFDE3A'].indexOf(winC)] === SENATE_INCUMBENT_PARTIES[abbr]
-          ? {'D':'#92C5DE','R':'#F48882','I':'#999999'} : {'D':'#0671B0','R':'#CA0120','I':'#666666'}
-      )[['D','R','I'][['#0487E6','#DD2929','#FFDE3A'].indexOf(winC)]];
+        ['D', 'R', 'I'][['#0487E6', '#DD2929', '#FFDE3A'].indexOf(winC)] === SENATE_INCUMBENT_PARTIES[abbr]
+          ? { 'D': '#92C5DE', 'R': '#F48882', 'I': '#999999' } : { 'D': '#0671B0', 'R': '#CA0120', 'I': '#666666' }
+      )[['D', 'R', 'I'][['#0487E6', '#DD2929', '#FFDE3A'].indexOf(winC)]];
       styleCache.senate_races[abbr] = { solidFill: winC, solidHoverFill: darkenColor(winC), marginFill: hm, marginHoverFill: darkenColor(hm), holdsGainsFill: hg, holdsGainsHoverFill: darkenColor(hg) };
     });
 
@@ -546,9 +600,9 @@
                 styleCache.issue_weight[abbr][iIdx] = { fill: wc, hoverFill: darkenColor(wc) };
                 styleCache.candidate_issue_alignment[abbr][iIdx] = {};
                 getActiveCandidates().forEach((cand, cIdx) => {
-                  const cid = campaignTrail_temp.candidate_issue_score_json?.find(ci => ci.fields.candidate === cand.pk && ci.fields.issue === iss.pk);
-                  const alignC = cid ? getCandidateIssueAlignment(ss, cid.fields.issue_score) : "#C9C9C9";
-                  styleCache.candidate_issue_alignment[abbr][iIdx][cIdx] = { fill: alignC, hoverFill: darkenColor(alignC), alignment: cid ? Math.abs(ss - cid.fields.issue_score) : 999 };
+                  const cScore = getEffectiveCandidateIssueScore(cand.pk, iss.pk);
+                  const alignC = cScore != null ? getCandidateIssueAlignment(ss, cScore) : "#C9C9C9";
+                  styleCache.candidate_issue_alignment[abbr][iIdx][cIdx] = { fill: alignC, hoverFill: darkenColor(alignC), alignment: cScore != null ? Math.abs(ss - cScore) : 999 };
                 });
               }
             });
@@ -560,8 +614,8 @@
               getActiveCandidates().forEach((cand, cIdx) => {
                 let t = 0, c = 0;
                 campaignTrail_temp.issues_json.forEach(iss => {
-                  const cid = campaignTrail_temp.candidate_issue_score_json?.find(ci => ci.fields.candidate === cand.pk && ci.fields.issue === iss.pk);
-                  if (cid) { t += cid.fields.issue_score; c++; }
+                  const cScore = getEffectiveCandidateIssueScore(cand.pk, iss.pk);
+                  if (cScore != null) { t += cScore; c++; }
                 });
                 const cavg = c > 0 ? t / c : 0;
                 const alignC = c > 0 ? getCandidateIssueAlignment(avg, cavg) : "#C9C9C9";
@@ -596,9 +650,9 @@
   function processStateUpdateQueue() {
     if (!stateUpdateQueue.length) return;
     if (window._isExporting) {
-        stateUpdateQueue.forEach(u => u.shape.attr('fill', u.fill));
-        stateUpdateQueue.length = 0;
-        return;
+      stateUpdateQueue.forEach(u => u.shape.attr('fill', u.fill));
+      stateUpdateQueue.length = 0;
+      return;
     }
     if (animationFrameRequested) return;
     animationFrameRequested = true;
@@ -636,11 +690,11 @@
   function getTippingPointColor(pos, req, def, len, hex) {
     const [r, g, b] = hexToRgb(hex);
     const p = r > Math.max(g, b) + 50 ? ["#8B0000", "#B22222", "#DC143C", "#FF4500", "#FF6347", "#FFA500", "#FFD700"] :
-            b > Math.max(r, g) + 50 ? ["#000080", "#0000CD", "#4169E1", "#6A5ACD", "#8A2BE2", "#DA70D6", "#DDA0DD"] :
-            g > Math.max(r, b) + 50 ? ["#006400", "#228B22", "#32CD32", "#00CED1", "#40E0D0", "#48D1CC", "#AFEEEE"] :
-            ["#4B0082", "#800080", "#9932CC", "#BA55D3", "#DA70D6", "#DDA0DD", "#E6E6FA"];
+      b > Math.max(r, g) + 50 ? ["#000080", "#0000CD", "#4169E1", "#6A5ACD", "#8A2BE2", "#DA70D6", "#DDA0DD"] :
+        g > Math.max(r, b) + 50 ? ["#006400", "#228B22", "#32CD32", "#00CED1", "#40E0D0", "#48D1CC", "#AFEEEE"] :
+          ["#4B0082", "#800080", "#9932CC", "#BA55D3", "#DA70D6", "#DDA0DD", "#E6E6FA"];
     let idx = len <= 5 ? Math.min(pos - 1, 4) : len <= 10 ? Math.min(Math.floor((pos - 1) * (6 / (len - 1))), 6) :
-            pos <= 3 ? pos - 1 : pos <= Math.ceil(len * 0.3) ? 3 : pos <= Math.ceil(len * 0.6) ? 4 : pos <= Math.ceil(len * 0.8) ? 5 : 6;
+      pos <= 3 ? pos - 1 : pos <= Math.ceil(len * 0.3) ? 3 : pos <= Math.ceil(len * 0.6) ? 4 : pos <= Math.ceil(len * 0.8) ? 5 : 6;
     return p[idx];
   }
 
@@ -1048,7 +1102,7 @@
   function updateControls() {
     let ctrl = document.getElementById('map_controls');
 
-	if (ctrl && !document.getElementById('grid_export_btn')) {
+    if (ctrl && !document.getElementById('grid_export_btn')) {
       ctrl.remove();
       ctrl = null;
     }
@@ -1116,8 +1170,8 @@
     });
 
     const stateOpts = [{ v: 'National', t: 'National Swing' }];
-    (campaignTrail_temp.states_json || []).sort((a,b) => a.fields.abbr.localeCompare(b.fields.abbr)).forEach(s => stateOpts.push({ v: s.fields.abbr, t: `${s.fields.abbr} - ${s.fields.name}` }));
-    const stSel = sel('coalition_state_selector', stateOpts, coalitionTargetState, function() {
+    (campaignTrail_temp.states_json || []).sort((a, b) => a.fields.abbr.localeCompare(b.fields.abbr)).forEach(s => stateOpts.push({ v: s.fields.abbr, t: `${s.fields.abbr} - ${s.fields.name}` }));
+    const stSel = sel('coalition_state_selector', stateOpts, coalitionTargetState, function () {
       coalitionTargetState = this.value; uVL();
     });
 
@@ -1434,8 +1488,8 @@
     f.appendChild(sDiv);
     const sm = window.currentSenateMode || 'solid';
     const items = sm === 'holds_gains' ? [{ color: '#92C5DE', label: 'Democratic hold' }, { color: '#0671B0', label: 'Democratic gain' }, { color: '#F48882', label: 'Republican hold' }, { color: '#CA0120', label: 'Republican gain' }] :
-                  sm === 'margins' ? [{ color: '#0487E6', label: 'Democratic wins' }, { color: '#DD2929', label: 'Republican wins' }] :
-                  [{ color: '#0487E6', label: 'Democratic win' }, { color: '#DD2929', label: 'Republican win' }, { color: '#FFDE3A', label: 'Independent win' }, { color: '#E0E0E0', label: 'No election' }];
+      sm === 'margins' ? [{ color: '#0487E6', label: 'Democratic wins' }, { color: '#DD2929', label: 'Republican wins' }] :
+        [{ color: '#0487E6', label: 'Democratic win' }, { color: '#DD2929', label: 'Republican win' }, { color: '#FFDE3A', label: 'Independent win' }, { color: '#E0E0E0', label: 'No election' }];
     f.appendChild(makeLegendTable(items));
     return cr('div', {}, { width: '100%', fontSize: '11px' }, [f]);
   }
@@ -1460,17 +1514,17 @@
     const c = getActiveCandidates()[cIdx]; if (!c) return null;
     let cS = 0, cN = 1;
     if (isA) {
-      let t = 0, ct = 0; campaignTrail_temp.issues_json.forEach(i => { const d = campaignTrail_temp.candidate_issue_score_json?.find(x => x.fields.candidate === c.pk && x.fields.issue === i.pk); if (d) { t += d.fields.issue_score; ct++; } });
+      let t = 0, ct = 0; campaignTrail_temp.issues_json.forEach(i => { const score = getEffectiveCandidateIssueScore(c.pk, i.pk); if (score != null) { t += score; ct++; } });
       cS = ct > 0 ? t / ct : 0; cN = getStanceNumber(cS);
     } else {
-      const d = campaignTrail_temp.candidate_issue_score_json?.find(x => x.fields.candidate === c.pk && x.fields.issue === iss.pk);
-      if (!d) return null; cS = d.fields.issue_score; cN = getStanceNumber(cS);
+      const score = getEffectiveCandidateIssueScore(c.pk, iss.pk);
+      if (score == null) return null; cS = score; cN = getStanceNumber(cS);
     }
     let bA = 2, wA = 0, bS = '', wS = '';
     campaignTrail_temp.final_state_results.forEach(r => {
-      let a = 999;
-      if (isA) a = styleCache.candidate_issue_alignment[r.abbr]?.average?.[cIdx]?.alignment ?? 999;
-      else { const d = campaignTrail_temp.state_issue_score_json?.find(x => x.fields.state === r.state && x.fields.issue === iss.pk); if (d) a = Math.abs(d.fields.state_issue_score - cS); }
+      const a = isA
+        ? (styleCache.candidate_issue_alignment[r.abbr]?.average?.[cIdx]?.alignment ?? 999)
+        : (styleCache.candidate_issue_alignment[r.abbr]?.[iIdx]?.[cIdx]?.alignment ?? 999);
       if (a < 999) { if (a < bA) { bA = a; bS = r.abbr; } if (a > wA) { wA = a; wS = r.abbr; } }
     });
     const f = document.createDocumentFragment();
@@ -1491,8 +1545,8 @@
     [{ t: 'Candidate', a: 'left' }, { t: 'Best match', a: 'center' }].forEach(h => { const c = hR.insertCell(); c.textContent = h.t; Object.assign(c.style, { fontWeight: 'bold', fontSize: '9px', padding: '3px', textAlign: h.a }); });
     selectedComparisonCandidates.filter(i => i < cands.length).forEach(i => {
       const c = cands[i], r = t.insertRow(); let cS = 0;
-      if (isA) { let tS = 0, ct = 0; campaignTrail_temp.issues_json.forEach(iss2 => { const d = campaignTrail_temp.candidate_issue_score_json?.find(x => x.fields.candidate === c.pk && x.fields.issue === iss2.pk); if (d) { tS += d.fields.issue_score; ct++; } }); cS = ct > 0 ? tS / ct : 0; }
-      else cS = campaignTrail_temp.candidate_issue_score_json?.find(x => x.fields.candidate === c.pk && x.fields.issue === iss.pk)?.fields.issue_score || 0;
+      if (isA) { let tS = 0, ct = 0; campaignTrail_temp.issues_json.forEach(iss2 => { const score = getEffectiveCandidateIssueScore(c.pk, iss2.pk); if (score != null) { tS += score; ct++; } }); cS = ct > 0 ? tS / ct : 0; }
+      else cS = getEffectiveCandidateIssueScore(c.pk, iss.pk) ?? 0;
       const nC = r.insertCell(); nC.style.fontSize = '9px'; nC.style.padding = '3px';
       nC.appendChild(cr('span', {}, { display: 'inline-block', width: '10px', height: '10px', backgroundColor: c.fields.color_hex, marginRight: '4px', border: '1px solid #999' }));
       nC.appendChild(document.createTextNode(`${c.fields.last_name} (${cS.toFixed(2)})`));
@@ -1587,44 +1641,44 @@
 
   window.bobertTasks.push(initialTasks);
 
-    let scheduled = false;
+  let scheduled = false;
 
-    const runTasks = () => {
-        scheduled = false;
-        const tasks = window.bobertTasks;
+  const runTasks = () => {
+    scheduled = false;
+    const tasks = window.bobertTasks;
 
-        if (tasks.length === 0) {
-            if (window.bobert) window.bobert.disconnect();
-            return;
-        }
-
-        for (let i = tasks.length - 1; i >= 0; i--) {
-            try {
-                if (tasks[i]() === true) tasks.splice(i, 1);
-            } catch (e) {
-                console.error("bobert task failed:", e);
-            }
-        }
-
-        if (tasks.length === 0 && window.bobert) {
-            window.bobert.disconnect();
-        }
-    };
-
-    const handleMutations = () => {
-        if (scheduled || window.bobertTasks.length === 0) return;
-        scheduled = true;
-        requestAnimationFrame(runTasks);
-    };
-
-    const targetNode = document.getElementById("game_window");
-
-    if (targetNode) {
-        window.bobert = new MutationObserver(handleMutations);
-        window.bobert.observe(targetNode, { childList: true, subtree: true });
-        handleMutations();
-		//console.log("bobert...");
-    } else {
-    console.warn("Zoinks! Bobert could not find game_window.");
+    if (tasks.length === 0) {
+      if (window.bobert) window.bobert.disconnect();
+      return;
     }
+
+    for (let i = tasks.length - 1; i >= 0; i--) {
+      try {
+        if (tasks[i]() === true) tasks.splice(i, 1);
+      } catch (e) {
+        console.error("bobert task failed:", e);
+      }
+    }
+
+    if (tasks.length === 0 && window.bobert) {
+      window.bobert.disconnect();
+    }
+  };
+
+  const handleMutations = () => {
+    if (scheduled || window.bobertTasks.length === 0) return;
+    scheduled = true;
+    requestAnimationFrame(runTasks);
+  };
+
+  const targetNode = document.getElementById("game_window");
+
+  if (targetNode) {
+    window.bobert = new MutationObserver(handleMutations);
+    window.bobert.observe(targetNode, { childList: true, subtree: true });
+    handleMutations();
+    //console.log("bobert...");
+  } else {
+    console.warn("Zoinks! Bobert could not find game_window.");
+  }
 })();
