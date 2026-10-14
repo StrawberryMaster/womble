@@ -191,6 +191,10 @@ if ([2500, 2501].includes(ans)) {
 }
 ```
 
+### Guide menu
+Similar to the NovaTCT Guide Menu, the [guide menu](./codes/guide_menu.js) has received a new design and other fixes so that it would allow for easier copy and pasting of guides (in particular for updates on The Wiki Trail). It also allows for pasting a guide into it, and highlighting its answers throughout your gameplay.
+![Guide menu](./images/guide_menu.png)
+
 ### Multiplayer feature
 The [multiplayer](./codes/multiplayer.js) feature allows for multiplayer functionality in *Campaign Trail Showcase*. Based on the original code from [The New Campaign Trail MP](https://github.com/Mrcinemazo9nn/The-New-Campaign-Trail-MP) by [Mrcinemazo9nn](https://github.com/Mrcinemazo9nn), though with modifications made to work on CTS.
 
