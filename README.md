@@ -191,6 +191,11 @@ if ([2500, 2501].includes(ans)) {
 }
 ```
 
+### Force candidate on tables
+The [force candidate on tables](./codes/force_candidate.js) feature allows a candidate to be forced onto a table, even if they are not on the state's ballot/end up with 0% of the popular vote. It was made for the 1892 scenario on TCT.net, but can be used anywhere.
+
+![Force candidate on tables](./images/force_candidate.png)
+
 ### Guide menu
 Similar to the NovaTCT Guide Menu, the [guide menu](./codes/guide_menu.js) has received a new design and other fixes so that it would allow for easier copy and pasting of guides (in particular for updates on The Wiki Trail). It also allows for pasting a guide into it, and highlighting its answers throughout your gameplay.
 ![Guide menu](./images/guide_menu.png)
