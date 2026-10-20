@@ -9164,7 +9164,7 @@ cyoAdventure = function (a) {
     if (!e.player_answers || e.player_answers.length === 0) return false;
     let ans = e.player_answers[e.player_answers.length - 1];
 
-    if (ans === 3594) {
+    if (vp === "Kennedy" && ans === 3594) {
         e.question_number = getQuestionNumberFromPk(447);
         if (e.candidate_json && e.candidate_json[0]) {
             e.candidate_json[0].fields.first_name = "Robert F.";
@@ -9273,7 +9273,13 @@ const endingDefs = [
         "endingAccentColor": "#5c418f",
         "endingBackgroundColor": "#ffffff",
         "endingTextColor": "#000000",
-        "variableConditions": [],
+        "variableConditions": [
+            {
+                "variable": "vp",
+                "comparator": "==",
+                "value": "Kennedy"
+            }
+        ],
         "variableConditionOperator": "AND",
         "outcomeCondition": "ignore",
         "answerConditionType": "has",
