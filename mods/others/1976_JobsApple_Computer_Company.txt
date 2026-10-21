@@ -716,20 +716,15 @@ cyoAdventure = function (a) {
 
     //**q14**
     if (e.question_number == 12) {
-        if (frustration >= 1) {
+        let status = (applesuccess1 >= 6) ? "coveted executive" : "scrappy underdog";
+
+        if (frustration == 0) {
             updateAnswer(2043, "Microsoft reminds me of myself, doesn't it? Bill's a fellow underdog, and we're becoming closer friends by the week, so if I have to get back at Apple with their own main competitor, then we can make a dynamic duo like no other. It's only natural that I join them.");
-            updateFeedback(3043, "It’s almost second nature as you phone Gates. He instantly accepts your offer, excited to see a trusted partner and {{tempText}} join his company at the Albuquerque headquarters. Welcome to Microsoft.");
-            if (applesuccess1 >= 6) {
-                tempText = "coveted executive";
-            } else {
-                tempText = "scrappy underdog";
-            }
+            updateFeedback(3043, `It’s almost second nature as you phone Gates. He instantly accepts your offer, excited to see a trusted partner and ${status} join his company at the Albuquerque headquarters. Welcome to Microsoft.`);
         } else {
-            if (applesuccess1 >= 6) {
-                tempText = "a coveted executive";
-            } else {
-                tempText = "another scrappy underdog";
-            }
+            let statusWithArticle = (applesuccess1 >= 6) ? "a coveted executive" : "another scrappy underdog";
+            updateAnswer(2043, "Microsoft reminds me of myself, doesn't it? Bill's a fellow underdog, and I know he's not the most imaginative guy, but if I have to get back at Apple with their own main competitor, then I have to swallow my pride. It's only natural that I join them.");
+            updateFeedback(3043, `Bill Gates is shocked by your sudden appearance at the Albuquerque headquarters. Nonetheless, he readily accepts your offer, excited to see ${statusWithArticle} like you join his company despite Steve Ballmer's worries. Welcome to Microsoft.`);
         }
     }
 
@@ -822,9 +817,9 @@ cyoAdventure = function (a) {
     if (ans == 2080) {
         updateQuestion(129, "With Perot out of the picture for good, you've resigned yourself to watching the outcome of the 1992 election. You wonder what could have been as Governor Clinton sweeps the nation.");
         updateAnswer(2081, "Damn.");
-        changeGlobalEffect(93, 2084, 0);
-        changeGlobalEffect(93, 2085, 0);
-        changeGlobalEffect(93, 12016, 0);
+        changeGlobalEffect(93, 2084, 30);
+        changeGlobalEffect(93, 2085, 30);
+        changeGlobalEffect(93, 12016, 30);
     }
 
     //**q30; election p3**
@@ -1175,7 +1170,7 @@ cyoAdventure = function (a) {
         //**q25**
         if (e.question_number == 23) {
             if (nextsuccess >= 1) {
-                tempText = "He's found his next calling in life"
+                tempText = "He's found his next calling in life";
                 updateFeedback(3068, "It's nothing against you Steve but... I have my own company to tend to. Plus, there's a new fight coming to throw the hypocritical rascals out of Washington. It may be a fluke, but I'd like to see if I can make real change.")
             } else {
                 tempText = "We're losing more money than we thought";
@@ -1945,7 +1940,7 @@ cyoAdventure = function (a) {
                     if (nextsuccess >= 4) {
                         updateQuestion(10007, "November, 1996. Once again, you're at the top of the computer world along with the people at Microsoft. Apple, meanwhile, has just filed for bankruptcy. As you meet with Apple's lawyers, you know deep down what to do.");
                         updateAnswer(12016, "Buy them out. Merge them in. Take their name. <i>Apple will rise again like a phoenix.</i>");
-                        updateFeedback(13007, "In a case of King David slaying a derelict Goliath past his prime, Apple's CEO Gil Amelio has no choice but to agree to the terms. Pretty soon, NeXT takes the form of the company you once founded. Welcome back, Apple.");
+                        updateFeedback(13016, "In a case of King David slaying a derelict Goliath past his prime, Apple's CEO Gil Amelio has no choice but to agree to the terms. Pretty soon, NeXT takes the form of the company you once founded. Welcome back, Apple.");
                     }
                 }
             }
@@ -1972,7 +1967,7 @@ cyoAdventure = function (a) {
                     if (nextsuccess >= 4) {
                         updateQuestion(10007, "November, 1996. Once again, you're at the top of the computer world along with the people at Microsoft. Apple, meanwhile, has just filed for bankruptcy. As you meet with Apple's lawyers, you know deep down what to do.");
                         updateAnswer(12016, "Buy them out. Merge them in. Take their name. <i>Apple will rise again like a phoenix.</i>");
-                        updateFeedback(13007, "In a case of King David slaying a derelict Goliath past his prime, Apple's CEO Gil Amelio has no choice but to agree to the terms. Pretty soon, NeXT takes the form of the company you once founded. Welcome back, Apple.");
+                        updateFeedback(13016, "In a case of King David slaying a derelict Goliath past his prime, Apple's CEO Gil Amelio has no choice but to agree to the terms. Pretty soon, NeXT takes the form of the company you once founded. Welcome back, Apple.");
                     }
                 }
             }
@@ -2012,7 +2007,7 @@ cyoAdventure = function (a) {
             ]
         }
         selectedSoundtrack = 1;
-        document.getElementById("trackSelParent").remove();
+        document.getElementById("trackSelParent")?.remove();
         newMusicPlayer();
     }
     if (ans == 2041) {
@@ -2026,7 +2021,7 @@ cyoAdventure = function (a) {
             ]
         }
         selectedSoundtrack = 1;
-        document.getElementById("trackSelParent").remove();
+        document.getElementById("trackSelParent")?.remove();
         newMusicPlayer();
     }
 
@@ -2044,7 +2039,7 @@ cyoAdventure = function (a) {
                 ]
             }
             selectedSoundtrack = 1;
-            document.getElementById("trackSelParent").remove();
+            document.getElementById("trackSelParent")?.remove();
             newMusicPlayer();
         }
         //**q34; returning**
@@ -2059,7 +2054,7 @@ cyoAdventure = function (a) {
                 ]
             }
             selectedSoundtrack = 2;
-            document.getElementById("trackSelParent").remove();
+            document.getElementById("trackSelParent")?.remove();
             newMusicPlayer();
         }
         //**q35; bankrupt in 1999 **
@@ -2075,7 +2070,7 @@ cyoAdventure = function (a) {
                     ]
                 }
                 selectedSoundtrack = 3;
-                document.getElementById("trackSelParent").remove();
+                document.getElementById("trackSelParent")?.remove();
                 newMusicPlayer();
             } else {
                 soundtracks[3] = {
@@ -2088,7 +2083,7 @@ cyoAdventure = function (a) {
                     ]
                 }
                 selectedSoundtrack = 3;
-                document.getElementById("trackSelParent").remove();
+                document.getElementById("trackSelParent")?.remove();
                 newMusicPlayer();
             }
         }
@@ -2106,7 +2101,7 @@ cyoAdventure = function (a) {
                         ]
                     }
                     selectedSoundtrack = 3;
-                    document.getElementById("trackSelParent").remove();
+                    document.getElementById("trackSelParent")?.remove();
                     newMusicPlayer();
                 } else {
                     soundtracks[3] = {
@@ -2119,7 +2114,7 @@ cyoAdventure = function (a) {
                         ]
                     }
                     selectedSoundtrack = 3;
-                    document.getElementById("trackSelParent").remove();
+                    document.getElementById("trackSelParent")?.remove();
                     newMusicPlayer();
                 }
             }
@@ -2137,7 +2132,7 @@ cyoAdventure = function (a) {
                     ]
                 }
                 selectedSoundtrack = 3;
-                document.getElementById("trackSelParent").remove();
+                document.getElementById("trackSelParent")?.remove();
                 newMusicPlayer();
             }
         }
@@ -2156,7 +2151,7 @@ cyoAdventure = function (a) {
                         ]
                     }
                     selectedSoundtrack = 3;
-                    document.getElementById("trackSelParent").remove();
+                    document.getElementById("trackSelParent")?.remove();
                     newMusicPlayer();
                 } else if (e.player_answers.includes(12032)) { //steve lives and quits
                     soundtracks[3] = {
@@ -2169,7 +2164,7 @@ cyoAdventure = function (a) {
                         ]
                     }
                     selectedSoundtrack = 3;
-                    document.getElementById("trackSelParent").remove();
+                    document.getElementById("trackSelParent")?.remove();
                     newMusicPlayer();
                 }
             }
@@ -2190,7 +2185,7 @@ cyoAdventure = function (a) {
                 ]
             }
             selectedSoundtrack = 1;
-            document.getElementById("trackSelParent").remove();
+            document.getElementById("trackSelParent")?.remove();
             newMusicPlayer();
         }
         //**q33**
@@ -2206,7 +2201,7 @@ cyoAdventure = function (a) {
                 ]
             }
             selectedSoundtrack = 2;
-            document.getElementById("trackSelParent").remove();
+            document.getElementById("trackSelParent")?.remove();
             newMusicPlayer();
         }
     }
@@ -2702,12 +2697,12 @@ function appendStyle() {
                     box-shadow: inset -1px -1px rgb(165,165,214), inset 1px 1px rgb(206,206,255);
 
                     &::before {
-                        background: repeating-linear-gradient(rgb(239,239,239), rgb(239,239,239) 1px, rgb(115,115,115) 1px, rgb(115,115,115) 2px)
+                        background: repeating-linear-gradient(rgb(239,239,239), rgb(239,239,239) 1px, rgb(115,115,115) 1px, rgb(115,115,115) 2px);
                         width: 38%;
                     }
 
                     &::after {
-                        background: repeating-linear-gradient(rgb(239,239,239), rgb(239,239,239) 1px, rgb(115,115,115) 1px, rgb(115,115,115) 2px)
+                        background: repeating-linear-gradient(rgb(239,239,239), rgb(239,239,239) 1px, rgb(115,115,115) 1px, rgb(115,115,115) 2px);
                         width: 38%;
                     }
                 }
@@ -2964,9 +2959,13 @@ function answerSwapper(pk1, pk2, takeEffects = true) {
 
         otherJsons.forEach(jsonData => {
             jsonData.forEach(item => {
-                if (item.fields.answer === pk1) {
-                    item.fields.answer = pk2;
-                }
+                if (item.fields.answer === pk1) item.fields.answer = -99999;
+            });
+            jsonData.forEach(item => {
+                if (item.fields.answer === pk2) item.fields.answer = pk1;
+            });
+            jsonData.forEach(item => {
+                if (item.fields.answer === -99999) item.fields.answer = pk2;
             });
         });
     }
@@ -17117,6 +17116,7 @@ function openHeadquarter() {
         // Hide headquarters and show the original content
         hqDiv.remove();
         questions.style.display = '';
+        addHeadquarterButton();
     }
     headerDiv.appendChild(backButton);
 
@@ -17236,7 +17236,7 @@ function openHeadquarter() {
                     }
                 }
 
-                if (ans == 2027) {
+                if (e.player_answers.includes(2027)) {
                     a.innerHTML += 'N/A';
                 }
             }
@@ -17423,7 +17423,7 @@ function openHeadquarter() {
                     a.innerHTML += 'Recovered';
                 }
             } else {
-                a.innerHTML += 'Failiing';
+                a.innerHTML += 'Failing';
             }
         }
 
@@ -17431,7 +17431,7 @@ function openHeadquarter() {
         a.innerHTML += '<br>Apple: ';
 
         if (applestrength3 >= 1) {
-            a.innerHTML += 'Rejuevenated';
+            a.innerHTML += 'Rejuvenated';
         } else {
             a.innerHTML += 'Bloated';
         }

@@ -82,6 +82,20 @@ document.getElementById("inner_window_1").children[0].innerHTML = `<h3>Do you ha
 document.getElementById("inner_window_1").children[1].innerHTML = `<li>Select a starting year and a figurehead to find out.</li><li>You will answer questions about your company and decisions, and also about your business strategy.</li><li>The answers will affect your market share for better or worse, whether with or outside of computers.</li><li>Walk the fine line between appealing to your base and winning a majority of the market.</li>`;
 campaignTrail_temp.credits = "u/marcART122 with help from u/CivilAd8441, u/TheBig-Boi and u/sardokars <button onclick='credits()'>(with credit to...)</button>";
 
+campaignTrail_temp.modBoxTheme = {
+    "header_color": "#cfd1d4",
+    "header_text_color": "#111827",
+    "description_background_color": "#d2d2d2",
+    "description_text_color": "#000000",
+    "main_color": "#ffffff",
+    "secondary_color": "#d2d2d2",
+    "secondary_hover_color": "#dbdcdf",
+    "scrollbar_color": "#ffffff #ffffff",
+    "scrollbar_width": "auto",
+    "image_border": "4px solid #111827",
+    "ui_text_color": "#111827"
+};
+
 campaignTrail_temp.candidate_json = [
     {
         "model": "campaign_trail.candidate",
