@@ -589,6 +589,7 @@ These mods were either restored by a user (or group of users), formally released
 | **Hongkong ’97** | A port of the infamous Super Famicom game by astrohuncho. Not on any of the mod loaders, it served as a testing ground for his [bunnyhop](https://hunchonautilus.github.io/nct-mod-code-retrieval/bunnyhop/index.html) system. | [Code 1](./mods/others/1997HK_init.txt) \| [Code 2](./mods/others/1997HK_ChinPatten.txt) |
 | **The Animal Trail** | Hidden in the CTS mod loader, but available to play. | [Play Here](https://campaigntrailshowcase.com/campaign-trail/?modName=2024NAT) |
 | **The Apple Trail** | A demo, not in any of the mod loaders. Lets you play as Steve Jobs throughout the history of Apple. | [Code 1](./mods/others/1976_init.txt) \| [Code 2](./mods/others/1976_JobsApple_Computer_Company.txt) |
+| **Unburdened by What Has Been** | A mod released on April 1, 2025 by IjbolVeteran. This version includes some fixes and a new soundtrack. | [Code 1](./mods/others/2025%20to%202029_init.txt) \| [Code 2](./mods/others/2025%20to%202029_HarrisWalz.txt) |
 
 ## Unreleased mods
 These mods were unreleased for various reasons, but are still available here for preservation. Some of them may be incomplete or buggy, and may not work properly. If you are the creator or responsible for any of the content in these mods and would like it removed, please contact me so I can take it down.
