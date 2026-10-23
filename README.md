@@ -276,6 +276,12 @@ In *All The Way*, clicking candidate/running mate images a total of six (6) time
 See example:
 ![ATW easter egg](./images/song_easteregg.png)
 
+### Tooltips
+[Tooltips](./codes/tooltips.js) were first introduced in 2021DE (the Germany mod) by Nina (see her original tooltip guide [here](https://strawberrymaster.github.io/womble/codes/cyoa/index.html#post1)) and have made appearances in different forms in several other mods. They are especially useful to give the players more context into some of its names, characters, events, and other useful information they may want to know.
+
+The code here is a revised version of one first seen in The Major Leagues, which keeps the tooltip code into one easy-to-copy snippet, compared to the original version (which sometimes would be split into the code 1 and 2, or would fail to work when some questions were switched/replaced). The tooltips can also be easily customized. See example:
+![Tooltips](./images/tooltips.png)
+
 ### Two-party preferred system
 The [two-party preferred system](./codes/two-party_preferred.js) feature allows you to view the two-party preferred (TPP) results of an election, especially useful for Australian mods. It takes the votes of all candidates and redistributes them to the two main parties based on their preferences. This is useful for analyzing the results of an election and understanding how the votes were distributed.
 
