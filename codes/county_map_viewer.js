@@ -2705,13 +2705,14 @@ async function loadAndDrawCountyMap(mode) {
             const baseStateOthShare = stBase.all > 0 ? stBase.other / stBase.all : 0;
             const stateGrowth = baseStateOthShare > 0 ? (tgtTpShare / baseStateOthShare) : 1.0;
 
-            const maxMultiplier = Math.max(2.5, stateGrowth * 2.5);
-            const ratio = clampVal(stateGrowth, 0.1, maxMultiplier);
+            const ratio = clampVal(stateGrowth, 0.1, Math.min(4.0, Math.max(2.0, stateGrowth * 1.5)));
 
             const countyBaseOth = plan.baseOthShare > 0 ? plan.baseOthShare : (baseStateOthShare || tgtTpShare);
             const rawTpShare = countyBaseOth * ratio * (1 + 0.25 * plan.noise);
 
-            const maxAllowedTp = Math.min(0.92, Math.max(0.08, tgtTpShare * 2.5 + 0.03));
+            const maxAllowedTp = tgtTpShare > 0.25
+              ? 0.90
+              : Math.min(0.45, Math.max(tgtTpShare * 1.5, tgtTpShare * 2.2 + 0.02));
             tpShare = clampVal(rawTpShare, 0, maxAllowedTp);
           }
 
@@ -2791,8 +2792,22 @@ async function loadAndDrawCountyMap(mode) {
             if (have <= 0) return;
           }
 
-          const factor = want / have;
-          rows.forEach(r => r.results.forEach(cr => { if (cr.id === cid) cr.votes *= factor; }));
+          const isThirdParty = tpCandidatesInGame.includes(cid);
+          const factor = isThirdParty ? clampVal(want / have, 0.2, 2.5) : (want / have);
+
+          const targetShare = targetPcts[cid] || 0;
+          const maxCountyShare = targetShare > 0.25 ? 0.90 : Math.min(0.45, Math.max(targetShare * 2.2 + 0.02, 0.04));
+
+          rows.forEach(r => {
+            r.results.forEach(cr => {
+              if (cr.id === cid) {
+                cr.votes *= factor;
+                if (isThirdParty && r.total > 0) {
+                  cr.votes = Math.min(cr.votes, r.total * maxCountyShare);
+                }
+              }
+            });
+          });
         });
       });
 
