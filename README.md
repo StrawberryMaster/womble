@@ -242,6 +242,9 @@ const routeNames = {
 
 means that the question counter will display "Pocket Dimension Route" for question PK 1200, "Electric Boogaloo Route" for question PK 1201, and "example" for question PK 1202. It can, however, be very useful for e.g. using dates instead of labels for the questions.
 
+### Portrait switcher
+The [portrait switcher](./codes/portrait_switcher.js) allows you to switch a candidate's portrait for every question, as it works in *A Billionaire, A Revolutionary*. Make sure to replace `imgA` with the candidate image and `imgB` with the running mate image, though.
+
 ### Question swapper
 The [question swapper](./codes/question_swapper.js) is a tool for swapping the order of questions in a mod. It includes a single function, `questionSwapper()`, which takes two question numbers as arguments and swaps their order. For example:
 ```javascript
