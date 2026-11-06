@@ -28,7 +28,7 @@ campaignTrail_temp.temp_election_list = [
 RecReading = false;
 
 // DOOM credits
-campaignTrail_temp.credits = "id Software.<br>Many thanks to caiiiycuk for the js-dos WASM implementation,<br>and Decstar for the original 1993 Doom mod.<br>This mod was restored as part of the Womble Restoration Project";
+campaignTrail_temp.credits = "id Software.<br>Many thanks to caiiiycuk for the js-dos WASM implementation,<br>and Decstar for the original 1993 Doom mod.<br>This mod was restored as part of the Womble Restoration Project.";
 
 campaignTrail_temp.global_parameter_json = [
     {

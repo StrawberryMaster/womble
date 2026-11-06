@@ -1,0 +1,414 @@
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 5,
+        "fields": {
+            "year": 1896,
+            "summary": "<div style='overflow:auto;height:210px;margin-top: -1em;'><p>Four years after the turbulent election of 1896, the U.S. is prepared to enter the twentieth century on much better footing, emerging from the Spanish-American War victorious with a strong economy to boot. The rebound has dimmed the flames of the Free Silver movement, and Democratic party insiders seized their opportunity to topple the charismatic Boy Orator and replace him with someone more malleable. </p><p>At the convention in Kansas City, bosses and operatives worked together to block the seemingly inevitable nomination of William Jennings Bryan, though he remains the towering leader of the party's progressive wing. The nomination instead falls to the admirable Admiral George Dewey, veteran of the recent war and hero of the Battle of Manila Bay.</p><ul><li>William McKinley starts with the lead, having overseen the economic turnaround and the war victory. He will defend his record as a staunch imperialist and a committed tariff man.</li><li>George Dewey, while well-respected as a military man, has little political experience or knowledge, and is prone to gaffes. He will need a smart campaign and some lucky breaks in order to convince the American people to put such an outsider in the White House.</li></ul><p>This election will center around tariffs, the relationship between business and labor, social issues, and foreign policy, particularly the ongoing Philippine-American War.</p></div>",
+            "image_url": "https://i.imgur.com/zyfLO7g.png",
+            "winning_electoral_vote_number": 224,
+            "advisor_url": "https://i.imgur.com/jdV8hDm.png",
+            "recommended_reading": "<p>In 1897, 'Dewey' was the 111th most popular boys' name in the U.S. In 1898, it was the 11th.</p><p>Admiral George Dewey's decisive victory at the Battle of Manila Bay in the Spanish-American War made him a hero to many Americans, and one of the biggest national celebrities of his time. On the heels of his triumphant welcome home, Dewey made a brief foray into politics, seeking the Democratic nomination for President in 1900 on an anti-imperialist platform, opposing President McKinley's efforts to re-subjugate the islands that Dewey himself had helped liberate from Spanish rule. It quickly became clear that Dewey knew little of politics, even admitting that he had never voted in his life. He soon dropped out of the race, and settled into a comfortable life in the naval administration, while Bryan once again took the nomination and once again fell to McKinley.</p><p>Dewey likely never would have been able to secure the nomination on his own. But what if he had a little bit of help -- from insiders who sought to block Bryan's takeover of the party? What kind of campaign would have unfolded between two of America's most respected men, two friends, each at the height of their stardom?</p><p>1900 Dewey seeks to answer this question, presenting a timeline in which the conservative faction of the Democrats shepherd Dewey's fledgling primary campaign in order to dethrone the Great Commoner, in the hopes that the amateur Admiral will be more malleable. Dewey has a fighting spirit, however, and with the proper guidance, he can make a name for himself as a statesman. With luck, he might even be able to take down McKinley. At the crossroads of imperialism, the tariff debate, and an ongoing re-evaluation of the rights of women, the influence of big business, and the temperance movement, will Dewey sail to victory, charting a new course for his nation and party? Or will the mines that lurk in the murky seas of politics torpedo his campaign?</p><p style='text-align: center;'><a href='https://www.reddit.com/r/thecampaigntrail/comments/13wwp7e/mod_release_1900_dewey/'>Mod announcement here</a></p>",
+            "has_visits": 0,
+            "no_electoral_majority_image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/United_States_Capitol_Building_Interior_1860.png"
+        }
+    }
+];
+
+RecReading = true
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 5,
+        "year": 1896,
+        "is_premium": 0,
+        "display_year": "1900 Dewey"
+    }
+];
+
+campaignTrail_temp.credits = "u/dcmetro7; special thanks to u/tom1923 for creating the banner image,<br> and to everyone who helped playtest over on discord; shoutout to u/StockdaleForTCT for keeping Deweymania alive.<br>This mod received some design enhancements/image fixes as part of the Womble Restoration Project";
+
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 25,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+];
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 20,
+        "fields": {
+            "first_name": "William",
+            "last_name": "McKinley",
+            "election": 5,
+            "party": "Republican",
+            "state": "Ohio",
+            "priority": 1,
+            "description": "Dummy Example is a veteran from Hell. He loves puppies and magic! Dummy Example will unite America!<br><br>New line<br><br>This is <b>bold</b> and this <i>italic</i>!",
+            "color_hex": "#ff0000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/McKinley_%28cropped%29.jpg",
+            "electoral_victory_message": "<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
+            "electoral_loss_message": "<h3>Fake News?</h3>",
+            "no_electoral_majority_message": "<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false,
+            "scrollable": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 21,
+        "fields": {
+            "first_name": "George",
+            "last_name": "Dewey",
+            "election": 5,
+            "party": "Democratic",
+            "state": "Vermont",
+            "priority": 1,
+            "description": "<div style='overflow:auto;height:210px;margin-top: -1em;'><p>Admiral George Dewey's path to the nomination was nearly derailed on multiple occasions by his frequent gaffes that suggest a slight unfamiliarity with what the President actually does -- such as when he suggested that the job of the President would be easy, because all he would have to do is obey Congress. There's also the tiny problem that, by his own public admission, Dewey has never voted in a presidential election in his life. Eager to derail Bryan, cringing Democratic insiders guided Dewey carefully past these pitfalls, securing his route to Kansas City and ensuring he ended up with the nomination, slamming the doors in the Great Commoner’s face.</p><p>Dewey has his plate full -- he will need to forge a political identity while also balancing the conservative and progressive factions of the Democratic party, and he will need to avoid campaign-busting missteps while also convincing the American people to reject the popular incumbent in favor of a outsider. He’ll need excellent luck to win, and a miracle to do so without becoming simply a figurehead, controlled by his handlers.</p><p>Godspeed, Admiral!</p></div>",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": null,
+            "is_active": 1,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Adm._George_Dewey_%28flipped%29.jpg",
+            "electoral_victory_message": "<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
+            "electoral_loss_message": "<h3>Fake News?</h3>",
+            "no_electoral_majority_message": "<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false,
+            "scrollable": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 1003,
+        "fields": {
+            "first_name": "Adlai",
+            "last_name": "Stevenson",
+            "election": 5,
+            "party": "Democratic",
+            "state": "Illinois",
+            "priority": 1,
+            "description": "<p>Adlai Stevenson has had a long career that has winded through most of the major political currents of the Democratic party. Sympathetic to silver, yet he served as VP for the fiscally conservative Cleveland. An avowed enforcer of patronage, yet he was seen as fair and nonpartisan when he presided over the Senate. He had his thunder stolen by Bryan in '96, yet went on to support the man when so many other Democrats deserted him.</p><p>Many think this ticket is doomed, and thus few want to run as VP. Stevenson is a team player, however, and he'll provide political support and mentorship to the Washington amateur Dewey, and provide a fine contrast to the former's outsider status.</p>",
+            "color_hex": "#0000ff",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Adlai_Stevenson_I_by_Saroney_c1892.jpg",
+            "electoral_victory_message": "<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
+            "electoral_loss_message": "<h3>Fake News?</h3>",
+            "no_electoral_majority_message": "<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
+            "description_as_running_mate": "<p>Adlai Stevenson has had a long career that has winded through most of the major political currents of the Democratic party. Sympathetic to silver, yet he served as Vice President for the fiscally conservative Cleveland. An avowed enforcer of patronage, yet he was seen as fair and nonpartisan when he presided over the Senate. He had his thunder stolen by Bryan in '96, yet went on to support the man when so many other Democrats deserted him. </p><p>Many think this ticket is doomed, and thus few want to run as VP. Stevenson is a team player, however, and he'll provide a fine contrast to Dewey's outsider status with his insider cred and experience.</p>",
+            "candidate_score": 1,
+            "running_mate": true,
+            "scrollable": false,
+            "partner": "1"
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 22,
+        "fields": {
+            "first_name": "Julian",
+            "last_name": "Carr",
+            "election": 5,
+            "party": "Southern Democratic",
+            "state": "North Carolina",
+            "priority": 1,
+            "description": "Dummy Example is a veteran from Hell. He loves puppies and magic! Dummy Example will unite America!<br><br>New line<br><br>This is <b>bold</b> and this <i>italic</i>!",
+            "color_hex": "#eeee00",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Julian_Shakespeare_Carr_%281845-1924%29.jpg",
+            "electoral_victory_message": "<h3>REAL PATRIOT DUMMY EXAMPLE SWEEPS</h3>",
+            "electoral_loss_message": "<h3>Fake News?</h3>",
+            "no_electoral_majority_message": "<h3>DUMMY EXAMPLE RETURNS TO HELL</h3>",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false,
+            "scrollable": false
+        }
+    }
+];
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 2001,
+        "fields": {
+            "candidate": 21,
+            "running_mate": 1003
+        }
+    }
+];
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 5,
+        "candidates": [
+            20,
+            21,
+            22,
+            1003
+        ]
+    }
+];
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 5,
+        "candidates": [
+            20,
+            21,
+            22,
+            1003
+        ]
+    }
+];
+
+campaignTrail_temp.modBoxTheme = {
+    "header_color": "#686868",
+    "header_text_color": "#ffffff",
+    "description_background_color": "#f8f8f8",
+    "description_text_color": "#111827",
+    "main_color": "#63628b",
+    "secondary_color": "#B22234",
+    "ui_text_color": "#ffffff"
+};
+
+jet_data = {
+    "headerColor": "#686868",
+    "headerTextColor": "#ffffff",
+    "windowColor": "#63628b",
+    "containerColor": "#B22234",
+    "innerWindowColor": "#f0f0f5",
+    "innerWindowTextColor": "#000000",
+    "descriptionWindowColor": "#f8f8f8",
+    "descriptionWindowTextColor": "#000000",
+    "startButtonColor": "#B22234",
+    "bannerImageUrl": "https://web.archive.org/web/20231211225821if_/https://cdn.discordapp.com/attachments/1113683492065263647/1113684914794151947/image.png",
+    "backgroundImageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Admiral_George_Dewey_standing_on_the_bridge_of_a_ship%29_-_Frank_A._Nankivell_%2789_LCCN2012647342_%28cropped%29.jpg",
+    "gameTitle": "The Campaign Trail",
+    "customQuote": "",
+    "quoteTextColor": "#ffffff",
+    "endingTextColor": "#000000"
+};
+
+//#startcode
+function applyTheme(theme) {
+    const gameHeader = document.querySelector(".game_header");
+    if (gameHeader && theme.coloring_title) {
+        gameHeader.style.backgroundColor = theme.coloring_title;
+    }
+
+    const gameWindow = document.getElementById("game_window");
+    if (gameWindow && theme.coloring_window) {
+        gameWindow.style.backgroundColor = theme.coloring_window;
+    }
+
+    const container = document.querySelector(".container");
+    if (container && theme.coloring_container) {
+        container.style.backgroundColor = theme.coloring_container;
+    }
+
+    const headerImg = document.getElementById("header");
+    if (headerImg && theme.header_image) {
+        headerImg.src = theme.header_image;
+    }
+
+    if (theme.body_background) {
+        document.body.style.backgroundImage = `url("${theme.body_background}")`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
+    }
+
+    const style = document.createElement("style");
+    style.textContent = `
+        #results_container { color: #fff; }
+        #wittyquote { color: #ffffff; }
+        .game_header h2 { color: #ffffff; }
+        .inner_window_w_desc { background-color: #f0f0f5 !important; color: #000000; }
+        .inner_window_front, .person_description_window, .election_description_window, .description_window_small { 
+            background-color: #f8f8f8 !important; 
+            color: #000000; 
+        }
+        .campaign_trail_start_emphasis { 
+            background-color: #B22234 !important; 
+            color: #ffffff !important; 
+        }
+		
+		#game_window { border-color: #ffda94; }
+        
+        .inner_window_question h3, .overlay_window h3 {
+            background: #e8e8f2;
+            border-color: #63628b;
+            padding: .2em .5em;
+        }
+        
+        #campaign_sign {
+            background-color: #63628b;
+            border-color: #B22234;
+        }
+
+        #map_container {
+            background-color: #fff8e8;
+        }
+
+        #menu_container, #overall_result_container, #overall_result {
+            background-color: #f8f8f8;
+        }
+
+        #menu_container h3 {
+            background-color: #cfcee2;
+        }
+
+        #results_container .person_image {
+            width: 230px;
+            object-fit: cover;
+        }
+        
+        .overlay_window {
+            height: auto;
+        }
+      
+        .person_image img {
+            object-fit: cover;
+        }
+
+        #candidate_pic, #running_mate_pic {
+            object-fit: cover;
+            object-position: top;
+            width: 155px;
+        }
+		
+		/* mobile compatibility fixes et al. */
+		#game_window {
+		  position: relative;
+		  display: flex;
+		  flex-direction: column;
+		  min-height: 575px;
+		  height: auto;
+		  /* necessary so tooltips don't break */
+		  overflow-x: visible !important;
+		  overflow-y: visible !important;
+		}
+
+		.inner_window_question {
+		  min-height: 305px;
+		  height: auto !important;
+		  display: flex;
+		  flex-direction: column;
+		}
+
+		#game_window g {
+		  display: flex;
+		  flex-flow: row wrap;
+		  justify-content: center;
+		  align-items: center;
+		  gap: 6px;
+		  padding: 5px 0;
+		}
+
+		  #candidate_pic, img#candidate_pic {
+			  order: 1;
+			  width: 13em;
+			  height: 14em;
+			  flex-shrink: 0;
+			  margin: 0;
+		   }
+
+
+		   #running_mate_pic, img#running_mate_pic {
+			  order: 3;
+			  width: 13em;
+			  height: 14em;
+			  flex-shrink: 0;
+			  margin: 0;
+		   }
+
+		.inner_window_sign_display {
+		  order: 2;
+		  flex: 1;
+		  min-width: 180px;
+		  max-width: 290px;
+		  min-height: 160px;
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  margin: .5em;
+		}
+
+		#map_container {
+		  height: 30.78em;
+		}
+
+		.person_description_window {
+		  display: flex;
+		  height: 320px;
+		}
+
+		.person_summary ul {
+		  padding: 0;
+		}
+
+		#map_footer {
+			margin: 2.5em;
+		}
+
+		#election_description_window { height: 210px; }
+
+		#inner_window_2 {
+			height: 465px;
+		}
+		#inner_window_3, #inner_window_4 {
+			height: 475px;
+		}
+		
+		#game_window:has(#overall_results_button) table th { 
+			background: #63628b !important; 
+			color: #ffffff !important; 
+		}
+
+		#game_window:has(#overall_results_button) table td { 
+			background: #f4f4f8 !important; 
+			color: #1f1e2e !important; 
+		}
+		
+    `;
+    document.head.appendChild(style);
+}
+
+corrr = "\n              <h2>The Campaign Trail</h2>\n            ";
+
+const theme = nct_stuff.themes[nct_stuff.selectedTheme];
+
+theme.coloring_title = "#686868";
+theme.coloring_window = "#63628b";
+theme.coloring_container = "#B22234";
+theme.header_image = "https://web.archive.org/web/20231211225821if_/https://cdn.discordapp.com/attachments/1113683492065263647/1113684914794151947/image.png";
+theme.body_background = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Admiral_George_Dewey_standing_on_the_bridge_of_a_ship%29_-_Frank_A._Nankivell_%2789_LCCN2012647342_%28cropped%29.jpg";
+
+applyTheme(theme);
+//#endcode
