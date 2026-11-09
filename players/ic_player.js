@@ -60,6 +60,17 @@ let ytPlayer = null;
 let ytPlayerReady = false;
 let ytProgressTimer = null;
 let ytAutoAdvancing = false;
+let ytConstructing = false;
+
+const ytCallbacks = [];
+
+function flushYTCallbacks() {
+  if (!ytPlayer || typeof ytPlayer.loadVideoById !== "function") return;
+  while (ytCallbacks.length > 0) {
+    const callback = ytCallbacks.shift();
+    callback?.();
+  }
+}
 
 (function injectYouTubeAPI() {
   if (document.getElementById("yt-iframe-api")) return;
@@ -147,13 +158,18 @@ function syncYTVolumeFromSlider() {
 }
 
 function ensureYTPlayer(onReady) {
-  const createPlayer = () => {
-    if (ytPlayer) {
-      onReady?.();
-      return;
-    }
+  if (onReady) ytCallbacks.push(onReady);
 
-    const holder = document.getElementById("ytplayer") || (() => {
+  if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === "function") {
+    flushYTCallbacks();
+    return;
+  }
+
+  if (ytConstructing) return;
+
+  const createPlayer = () => {
+    let holder = document.getElementById("ytplayer");
+    if (!holder) {
       const el = document.createElement("div");
       el.id = "ytplayer";
       el.style.width = "0px";
@@ -162,10 +178,12 @@ function ensureYTPlayer(onReady) {
       el.style.overflow = "hidden";
       el.style.pointerEvents = "none";
       document.body.appendChild(el);
-      return el;
-    })();
+      holder = el;
+    }
 
-    ytPlayer = new YT.Player(holder, {
+    ytConstructing = true;
+    try {
+      ytPlayer = new YT.Player("ytplayer", {
       height: "0",
       width: "0",
       videoId: "",
@@ -178,10 +196,12 @@ function ensureYTPlayer(onReady) {
         playsinline: 1
       },
       events: {
-        onReady: () => {
+        onReady: (event) => {
+          ytConstructing = false;
+          ytPlayer = event.target;
           ytPlayerReady = true;
           syncYTVolumeFromSlider();
-          onReady?.();
+          flushYTCallbacks();
         },
         onStateChange: (e) => {
           if (e.data === YT.PlayerState.ENDED) {
@@ -194,7 +214,11 @@ function ensureYTPlayer(onReady) {
           }
         }
       }
-    });
+      });
+    } catch (e) {
+      ytConstructing = false;
+      console.log("Could not create the YouTube player.", e);
+    }
   };
 
   if (!ytApiReady || !window.YT || !window.YT.Player) {

@@ -49,7 +49,6 @@ let ytApiReady = false;
 let ytPlayer = null;
 let ytPlayerReady = false;
 let ytConstructing = false;
-let ytReadyPending = false;
 let ytProgressTimer = null;
 let backendVolume = 1;
 
@@ -61,6 +60,7 @@ const ytHooks = {
 const ytCallbacks = [];
 
 function flushYTCallbacks() {
+  if (!ytPlayer || typeof ytPlayer.loadVideoById !== "function") return;
   while (ytCallbacks.length) {
     const cb = ytCallbacks.shift();
     try {
@@ -94,7 +94,7 @@ window.onYouTubeIframeAPIReady = function () {
 };
 
 function applyVolumeToYT() {
-  if (!ytPlayer) return;
+  if (!ytPlayer || typeof ytPlayer.setVolume !== "function") return;
   try {
     ytPlayer.setVolume(Math.round(backendVolume * 100));
     if (backendVolume === 0) ytPlayer.mute();
@@ -104,14 +104,15 @@ function applyVolumeToYT() {
 
 function ensureYTPlayer(onReady) {
   if (onReady) ytCallbacks.push(onReady);
-  if (ytPlayer && ytPlayerReady) {
+  if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === "function") {
     flushYTCallbacks();
     return;
   }
   if (ytConstructing) return;
 
   const createPlayer = () => {
-    const holder = document.getElementById("ytplayer") || (() => {
+    let holder = document.getElementById("ytplayer");
+    if (!holder) {
       const el = document.createElement("div");
       el.id = "ytplayer";
       el.style.width = "0px";
@@ -121,11 +122,11 @@ function ensureYTPlayer(onReady) {
       el.style.pointerEvents = "none";
       document.body.appendChild(el);
       return el;
-    })();
+    }
 
     ytConstructing = true;
     try {
-      ytPlayer = new YT.Player(holder, {
+      ytPlayer = new YT.Player("ytplayer", {
         height: "0",
         width: "0",
         videoId: "",
@@ -138,11 +139,9 @@ function ensureYTPlayer(onReady) {
           playsinline: 1
         },
         events: {
-          onReady: () => {
-            if (ytConstructing) {
-              ytReadyPending = true;
-              return;
-            }
+          onReady: (event) => {
+            ytConstructing = false;
+            ytPlayer = event.target;
             ytPlayerReady = true;
             applyVolumeToYT();
             flushYTCallbacks();
@@ -162,14 +161,7 @@ function ensureYTPlayer(onReady) {
       console.log("Could not create the YouTube player.", e);
       return;
     }
-    ytConstructing = false;
 
-    if (ytReadyPending) {
-      ytReadyPending = false;
-      ytPlayerReady = true;
-      applyVolumeToYT();
-      flushYTCallbacks();
-    }
   };
 
   if (ytApiReady && window.YT && window.YT.Player) {

@@ -58,6 +58,17 @@ let ytPlayer = null;
 let ytPlayerReady = false;
 let ytProgressTimer = null;
 let ytAutoAdvancing = false;
+let ytConstructing = false;
+
+const ytCallbacks = [];
+
+function flushYTCallbacks() {
+  if (!ytPlayer || typeof ytPlayer.loadVideoById !== "function") return;
+  while (ytCallbacks.length > 0) {
+    const callback = ytCallbacks.shift();
+    callback?.();
+  }
+}
 
 (function injectYouTubeAPI() {
   if (document.getElementById("yt-iframe-api")) return;
@@ -114,54 +125,66 @@ function syncYTVolumeFromSlider() {
 }
 
 function ensureYTPlayer(onReady) {
+  if (onReady) ytCallbacks.push(onReady);
+
+  if (ytPlayer && ytPlayerReady && typeof ytPlayer.loadVideoById === "function") {
+    flushYTCallbacks();
+    return;
+  }
+
+  if (ytConstructing) return;
+
   const createPlayer = () => {
-    if (ytPlayer) {
-      onReady?.();
-      return;
+    let holder = document.getElementById("ytplayer");
+    if (!holder) {
+      holder = document.createElement("div");
+      holder.id = "ytplayer";
+      holder.style.width = "0px";
+      holder.style.height = "0px";
+      holder.style.position = "absolute";
+      holder.style.overflow = "hidden";
+      holder.style.pointerEvents = "none";
+      document.body.appendChild(holder);
     }
 
-    const holder = document.getElementById("ytplayer") || (() => {
-      const el = document.createElement("div");
-      el.id = "ytplayer";
-      el.style.width = "0px";
-      el.style.height = "0px";
-      el.style.position = "absolute";
-      el.style.overflow = "hidden";
-      el.style.pointerEvents = "none";
-      document.body.appendChild(el);
-      return el;
-    })();
-
-    ytPlayer = new YT.Player(holder, {
-      height: "0",
-      width: "0",
-      videoId: "",
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        disablekb: 1,
-        fs: 0,
-        rel: 0,
-        playsinline: 1
-      },
-      events: {
-        onReady: () => {
-          ytPlayerReady = true;
-          syncYTVolumeFromSlider();
-          onReady?.();
+    ytConstructing = true;
+    try {
+      ytPlayer = new YT.Player("ytplayer", {
+        height: "0",
+        width: "0",
+        videoId: "",
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          rel: 0,
+          playsinline: 1
         },
-        onStateChange: (e) => {
-          if (e.data === YT.PlayerState.ENDED) {
-            ytAutoAdvancing = true;
-            window._onSongEnded?.();
-          }
-          if (e.data === YT.PlayerState.PLAYING && ytAutoAdvancing) {
+        events: {
+          onReady: (event) => {
+            ytConstructing = false;
+            ytPlayer = event.target;
+            ytPlayerReady = true;
             syncYTVolumeFromSlider();
-            ytAutoAdvancing = false;
+            flushYTCallbacks();
+          },
+          onStateChange: (e) => {
+            if (e.data === YT.PlayerState.ENDED) {
+              ytAutoAdvancing = true;
+              window._onSongEnded?.();
+            }
+            if (e.data === YT.PlayerState.PLAYING && ytAutoAdvancing) {
+              syncYTVolumeFromSlider();
+              ytAutoAdvancing = false;
+            }
           }
         }
-      }
-    });
+      });
+    } catch (e) {
+      ytConstructing = false;
+      console.log("Could not create the YouTube player.", e);
+    }
   };
 
   if (!ytApiReady || !window.YT || !window.YT.Player) {
