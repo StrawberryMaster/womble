@@ -347,6 +347,9 @@ The Spotify-themed music player shown in the mod *American Carnage*. Shown here 
 The version of the player shown in the American Carnage expansion *Infinite Carnage* can be seen below. See source [here](./players/ic_player.js).
 ![Infinite Carnage player](./images/ic_player.png)
 
+We also have this alternative version of the player. I'm not sure which mod or mockup it was made for, but we did some adjustments to it. See source [here](./players/acalt_player.js).
+![American Carnage alt player](./images/acalt_player.png)
+
 ### An Old Cycle player
 Also a Spotify-themed music player, this was made for *2028: An Old Cycle*. See source [here](./players/aoc_player.js).
 ![An Old Cycle player](./images/aoc_player.png)
