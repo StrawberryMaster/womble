@@ -1,0 +1,1435 @@
+campaignTrail_temp.global_parameter_json = [
+    {
+        "model": "campaign_trail.global_parameter",
+        "pk": 1,
+        "fields": {
+            "vote_variable": 1.125,
+            "max_swing": 0.12,
+            "start_point": 0.94,
+            "candidate_issue_weight": 10,
+            "running_mate_issue_weight": 3,
+            "issue_stance_1_max": -0.71,
+            "issue_stance_2_max": -0.3,
+            "issue_stance_3_max": -0.125,
+            "issue_stance_4_max": 0.125,
+            "issue_stance_5_max": 0.3,
+            "issue_stance_6_max": 0.71,
+            "global_variance": 0.01,
+            "state_variance": 0.005,
+            "question_count": 25,
+            "default_map_color_hex": "#C9C9C9",
+            "no_state_map_color_hex": "#999999"
+        }
+    }
+]
+
+function addDynamicCSS() {
+    var css = `
+
+        label {
+          display:inline;
+        }
+
+        .inner_window_question h3 .mytooltip{
+            background-color: lightskyblue;
+        }
+
+        .mytooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            background-color: #d8dee8;
+        }
+
+        .mytooltip .mytooltiptext {
+            width: 240px;
+            background-color: #d8dee8;
+            color: black;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 99;
+            bottom: 20%;
+            left: 20%;
+            margin-left: -90px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid black;
+            pointer-events: none;
+            font-size: 13px !important;
+            line-height: 1.5em !important;
+            font-weight: normal !important;
+            font-style: normal !important;
+        }
+
+        .mytooltip .mytooltiptext img {
+            max-width: 240px;
+            height: auto;
+        }
+
+        .mytooltip:hover .mytooltiptext {
+            opacity: 1;
+            transition-delay: 0.5s;
+        }
+    `;
+
+    var styleElem = document.createElement('style');
+    styleElem.type = 'text/css';
+    
+    styleElem.appendChild(document.createTextNode(css));
+    
+    document.head.appendChild(styleElem);
+}
+
+
+addDynamicCSS();
+
+tooltipList = [
+  {searchString: "Foro", explanationText: "The São Paulo Forum, an international conference of socialist parties"},
+  {searchString: "Flávio Dino", explanationText: "<img src=https://files.catbox.moe/re2ig1.png>Fatass communist in one of the poorest states. What a man."},   
+  {searchString: "Flávio", explanationText: "<img src=https://files.catbox.moe/0j0y1e.png>Your son. Manages your social media account occasionally."},
+  {searchString: "Alliance for Brazil", explanationText: "<img src=https://conteudo.imguol.com.br/c/noticias/c4/2019/11/12/simbolo-do-alianca-pelo-brasil-novo-partido-do-presidente-jair-bolsonaro-1573595405405_v2_900x506.png>Your dead-in-the-water attempt at forming your own party."},
+  {searchString: "Vaccine Man", explanationText: "<img src=https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Eduardo_Pazuello_%28cropped%29.jpg/800px-Eduardo_Pazuello_%28cropped%29.jpg>Eduardo Pazuello, Brazilian Army general and Secretary of Strategic Studies. Was responsible for vaccine delays in Brazil during the pandemic."},  
+  {searchString: "man from AMAN", explanationText: "<img src=https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Aman_entrada.JPG/300px-Aman_entrada.JPG>AMAN refers to the Military Academy of Agulhas Negras in Rio de Janeiro. Prestigious, partly responsible for Positivism in Brazil and the formation of the Republic"},
+  {searchString: "My family.", explanationText: "<img src=https://f.i.uol.com.br/fotografia/2020/12/03/16070253505fc942c64657b_1607025350_3x2_md.jpg>God's gifts to me."},    
+  {searchString: "Pedetismo", explanationText: "In reference to the nationalist and populist Democratic Labour Party in Brazil."},
+  {searchString: "Centrão", explanationText: "Refers to the very large centrist base that exists in Brazil. Translates to \"the big Center\"."},
+  {searchString: "Enéas", explanationText: "<img src=https://www.camara.leg.br/internet/deputado/bandep/74269.jpgmaior.jpg>Enéas Carneiro. Syncretic nationalist politiican whom many of your supporters love."},
+  
+  {searchString: "Braga Netto", explanationText: "<img src=https://files.catbox.moe/xg25ly.png>Walter Souza Braga Netto: a four-star Army General, former Defense Minister, and chief intervenor of Rio de Janeiro's public security in 2018."},
+  {searchString: "Mourão", explanationText: "<img src=https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/08/hamilton_mourao_vice_presidente_07.jpg?w=1200&h=1200&crop=1>General Hamilton Mourão, your Vice President (2019–2022)."},
+  {searchString: "Renata Abreu", explanationText: "<img src=https://files.catbox.moe/e0kpcx.png>Federal Deputy and national president of Podemos."},
+  {searchString: "Capitão Assumção", explanationText: "<img src=https://files.catbox.moe/kdd8sz.png>Lucínio Assumção, a hardline Military Police captain and state deputy from Espírito Santo. Has a pro-gun stance, hard-right rhetoric, and past arrest for leading police strikes."},
+  {searchString: "Paulo Abi-Ackel", explanationText: "<img src=https://files.catbox.moe/xffz1o.png>A PSDB Federal Deputy from Minas Gerais. Very much an archetype of an unexciting, backroom traditional establishment politician. You never heard of him."},
+  {searchString: "Romeu Zema", explanationText: "<img src=https://images.jota.info/wp-content/uploads/2022/10/ffe8babb43c17c3ad1bdde780c4a4556-15402223999205-2120953067.jpg>Businessman and Governor of Minas Gerais from the so-called libertarian-leaning party NOVO. Known for his pro-market reforms, anti-PT stance, folksy Minas accent, and complete lack of charisma."},
+  {searchString: "Luís Felipe Belmonte", explanationText: "<img src=https://files.catbox.moe/6knpfq.png>Wealthy lawyer, businessman, and political operator who bankrolled your attempts to build the Aliança pelo Brasil party."},
+  {searchString: "Havan Man", explanationText: "<img src=https://www.cartacapital.com.br/wp-content/uploads/2021/01/Untitled-13-4.jpg>Luciano Hang, billionaire owner of the Havan retail chain. Famous for his bright neon green suits, anti-leftist rants, and financing pro-Bolsonaro rallies and online campaigns."},
+  {searchString: "Tarcísio de Freitas", explanationText: "<img src=https://conjur.com.br/wp-content/uploads/2024/01/tarcisio-gomes-freitas-republicanos.jpeg>Tarcísio Gomes de Freitas: Your popular former Infrastructure Minister and AMAN graduate, running as the conservative standard-bearer for Governor of São Paulo."},
+  {searchString: "Coronel Meira", explanationText: "<img src=https://cdn.folhape.com.br/img/pc/1100/1/dn_arquivo/2022/03/coronel-meira_1.jpg>Luiz Meira, retired Military Police colonel and conservative deputy from Pernambuco. He acts as your political enforcer in the Northeast."},
+  
+  {searchString: "Alexandre de Moraes", explanationText: "<img src=https://f.i.uol.com.br/fotografia/2022/11/07/1667860936636989c89aa01_1667860936_3x2_rt.jpg>Supreme Federal Court (STF) Justice and President of the Electoral Court. Perhaps your absolute arch-nemesis."},
+  {searchString: "Supreme Federal Court", explanationText: "The Supremo Tribunal Federal (STF), Brazil's supreme court. Possesses immense constitutional power, including lifetime judicial appointments and the power to strike down executive decrees."},
+  {searchString: "Superior Electoral Court", explanationText: "The Tribunal Superior Eleitoral (TSE), the high court responsible for regulating elections, counting electronic ballots, policing political ads, and banning disinformation."},
+  {searchString: "Francischini", explanationText: "Fernando Francischini, a state deputy from Paraná whose mandate was revoked by the TSE for making live-streamed claims that electronic voting machines had been rigged in 2018."},
+  {searchString: "Pedro Guimarães", explanationText: "Your President of state bank Caixa Econômica Federal and loyal confidant."},
+  {searchString: "evangelical pastors", explanationText: "Pastors Arilton Moura and Gilmar Santos, who supposedly illegally brokered federal Education Ministry (MEC) grants to pro-government mayors in exchange for bribes and kickbacks."},
+  {searchString: "Operation Car Wash", explanationText: "Operação Lava Jato: The massive federal anti-corruption investigation (2014–2021) that uncovered billions in kickbacks between state oil giant Petrobras, major construction cartels, and political parties."},
+  
+  {searchString: "Bolsa Família", explanationText: "The flagship conditional cash-transfer welfare program created under Lula in 2003, providing monthly stipends to poor families whose children attend school and get vaccinated (rebranded by your government as Auxílio Brasil)."},
+  {searchString: "Petrobras", explanationText: "Petróleo Brasileiro S.A., Brazil's state-controlled multinational energy corporation. A national symbol of industrial power to the left, and a bloated graft target to the right."},
+  {searchString: "pre-salt", explanationText: "Massive, ultra-deep offshore oil and natural gas reserves discovered under miles of ocean salt layers off the southeastern coast of Brazil in 2006."},
+  {searchString: "FIES", explanationText: "The federal student financing fund created to pay private university tuition fees for lower-income students with subsidized repayment terms."},
+  {searchString: "Embratur", explanationText: "<img src=https://www.cartacapital.com.br/wp-content/uploads/2019/07/embratur-1024x618.png> The Brazilian Agency for International Tourism Promotion, responsible for marketing Brazilian travel destinations abroad. <i>Visit and love us.</i>"},
+  
+  {searchString: "Vargas", explanationText: "<img src=https://elimeira.com.br/wp-content/uploads/2019/11/getulio-vargas.jpg>The dictator and president who modernized Brazil's state apparatus."},
+  {searchString: "FHC", explanationText: "Fernando Henrique Cardoso (PSDB), sociologist and President of Brazil from 1995 to 2002. Tamed hyperinflation with the Plano Real and remains the only candidate to win the presidency in the first round twice."},
+  {searchString: "Sarneys", explanationText: "The political oligarchy of José Sarney (President 1985–1990) and his family, who controlled the state of Maranhão and congressional patronage networks for over fifty years."},
+  {searchString: "Plano Piloto", explanationText: "<img src=https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Bras%C3%ADlia_yesterday%2C_seen_by_brazilian_CBERS4_satellite.jpg/1280px-Bras%C3%ADlia_yesterday%2C_seen_by_brazilian_CBERS4_satellite.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail>The airplane-shaped modernist administrative master plan of Brasília, designed by Lúcio Costa and Oscar Niemeyer to house Brazil's Three Powers."}
+ ];
+
+campaignTrail_temp.election_json = [
+    {
+        "model": "campaign_trail.election",
+        "pk": 21,
+        "fields": {
+            "year": 2020,
+            "summary": "<p>President Jair Messias Bolsonaro of the Federative Republic of Brazil is singlehandedly poised to be contemporary Brazil's history-etcher; burning through federal funds - which resulted in the worst federal debt of any incumbent in Brazilian history - burning through every institution that attempted to defy him; and lastly, burned through every inch of political capital he had. Bolsonaro, now a disgraced developmentalist like every other bastard President of this shithole, has few notable accomplishments under his belt. As the country eeks into increasingly large numbers of gun owners and a decreased crime rate, many still believe in him as a symbol of a revitalized Brazilian Right; yet, despite feverish fans across the country, Jair M. Bolsonaro is one of the objectively lower-tier Presidents in a country with very few good ones. At least, he can pretend that the next 4 years will be kinder to him.",
+            "image_url": "https://files.catbox.moe/242rly.jpg",
+            "winning_electoral_vote_number": 1,
+            "advisor_url": "https://files.catbox.moe/lm7c7x.jpg",
+            "recommended_reading": "<ul>\n<li><a href=https://www.chicagotribune.com/opinion/editorials/ct-edit-chicago-tribune-biden-endorsement-20200925-lnyxsb5qvrftnjjmj3rnzj33jy-story.html>Our Case For Joe Biden</a></li>\n<li><a href=https://nationalinterest.org/feature/case-trump-166808>The Case For Trump</a></li>\n<li><a href=https://www.npr.org/2020/11/18/935730100/how-biden-won-ramping-up-the-base-and-expanding-margins-in-the-suburbs>How Biden Won: Ramping Up The Base And Expanding Margins In The Suburbs</a></li>\n<li><a href=https://www.prospectmagazine.co.uk/politics/donald-trump-joe-biden-us-election-almost-win-votes-concede>Why Did Trump Almost Win?</a></li>\n<li><a href=https://www.hoover.org/research/no-evidence-voter-fraud-guide-statistical-claims-about-2020-election>No Evidence For Voter Fraud: A Guide To Statistical Claims About The 2020 Election</a></li>\n</ul>",
+            "has_visits": 1,
+            "no_electoral_majority_image": "https://www.jetsimon.com/public/static/images/2012-no-majority.jpg",
+            "creator": "/u/ragythekindahipster",
+            "display_year": "2022JAIR"
+        }
+    }
+]
+
+campaignTrail_temp.candidate_json = [
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 300,
+        "fields": {
+            "first_name": "Jair M.",
+            "last_name": "Bolsonaro",
+            "election": 21,
+            "party": "PL",
+            "state": "Rio de Janeiro",
+            "priority": 1,
+            "description": "<p>Despite having been in politics for 3 decades now, Jair Bolsonaro has been seen as a great outsider politician, one that would clean up Brazil's endemic corruption and take this country forward. Nonetheless, this narrative quickly died down as few accomplishments were successfully completed under his single term. Nonetheless, he has deep faith in his followers, who will take him to another term to keep Brazil above Everything, and God above All.<br>That said, Bolsonaro represents to many the worst excesses of the Brazilian nation-state: White supremacy, extreme conservatism, market fundamentalism and American-imported ideologies. To many others, however, he is a defender of the family, a protector of the country's Christian faith, and a guardian of Brazil's fundamentally Western values, social fabric, and its free market economy. The truth, of course, has long died in the dank halls of WhatsApp chat groups, where he is either the Antichrist or <i>o Mito</i>, the Myth.  Now, he has to claw his way back to a second term, regardless of the truth's whines and sensibilities of limp-wristed liberals. </p>",
+            "color_hex": "#00b3ff",
+            "secondary_color_hex": "#90C0FF",
+            "is_active": 1,
+            "image_url": "https://files.catbox.moe/iscl3y.jpg",
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": "",
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 301,
+        "fields": {
+            "first_name": "PL",
+            "last_name": "Committee",
+            "election": 21,
+            "party": "PL",
+            "state": "Distrito Federal",
+            "priority": 1,
+            "description": "<p>Put description here</p>",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://files.catbox.moe/cdvuc0.jpg",
+            "electoral_victory_message": "This guy wins!",
+            "electoral_loss_message": "This guy loses!",
+            "no_electoral_majority_message": "We all win?",
+            "description_as_running_mate": "<p>As Bolsonaro dug through the dozens of parties after his departure from the Social Liberal Party, including an abortive self-made party, he finally found something that worked for him: The rotting Liberal Party, a merger of PRONA and another PL from 2006. Despite the party's moribund infrastructure, it was able to be revived under Bolsonaro's vision. Now, however, as part of the agreement for Bolsonaro's entry into the party, the Party's primaries will decide who will be his running mate, to the chagrin of Hamilton Mourão.</p>",
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 302,
+        "fields": {
+            "first_name": "The",
+            "last_name": "Worker's Party",
+            "election": 21,
+            "party": "PT",
+            "state": "São Paulo",
+            "priority": 1,
+            "description": ".",
+            "color_hex": "#a10000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 306,
+        "fields": {
+            "first_name": "Luiz Inácio",
+            "last_name": "Lula da Silva",
+            "election": 21,
+            "party": "PT",
+            "state": "São Paulo",
+            "priority": 1,
+            "description": ".",
+            "color_hex": "#a10000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png", //thismightnotmatter
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 307,
+        "fields": {
+            "first_name": "Marina",
+            "last_name": "Silva", //mainline PTlulaticket
+            "election": 21,
+            "party": "REDE",
+            "state": "São Paulo",
+            "priority": 4,
+            "description": ".",
+            "color_hex": "#a10000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png", //thismightnotmatter
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 431600037,
+        "fields": {
+            "first_name": "Blank or",
+            "last_name": "Other",
+            "election": 21,
+            "party": "PSDB-PSB-NOVO",
+            "state": "Minas Gerais",
+            "priority": 2,
+            "description": ".",
+            "color_hex": "#c76306",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png", //thismightnotmatter
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 308,
+        "fields": {
+            "first_name": "Eduardo",
+            "last_name": "Leite", //dissident third party ticket
+            "election": 21,
+            "party": "PSDB",
+            "state": "São Paulo",
+            "priority": 2,
+            "description": ".",
+            "color_hex": "#c76306",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png", //thismightnotmatter
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 307,
+        "fields": {
+            "first_name": "Orlando",
+            "last_name": "Silva", //mainline PCDOBPTNotLulaTicket
+            "election": 21,
+            "party": "PCdoB",
+            "state": "São Paulo",
+            "priority": 1,
+            "description": ".",
+            "color_hex": "#a10000",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png", //thismightnotmatter
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 303,
+        "fields": {
+            "first_name": "veep",
+            "last_name": "pt",
+            "election": 21,
+            "party": "PT",
+            "state": "Piauí",
+            "priority": 1,
+            "description": ".",
+            "color_hex": "#0000FF",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 304,
+        "fields": {
+            "first_name": "Mr.",
+            "last_name": "Third Party",
+            "election": 21,
+            "party": "Unknown",
+            "state": "Piauí",
+            "priority": 3,
+            "description": ".",
+            "color_hex": "#00c90a",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": false
+        }
+    },
+    {
+        "model": "campaign_trail.candidate",
+        "pk": 305,
+        "fields": {
+            "first_name": "Veep",
+            "last_name": "Third Party",
+            "election": 21,
+            "party": "Unknown",
+            "state": "Piauí",
+            "priority": 3,
+            "description": ".",
+            "color_hex": "#00c90a",
+            "secondary_color_hex": null,
+            "is_active": 0,
+            "image_url": "https://www.jetsimon.com/public/candidateexample.png",
+            "electoral_victory_message": ".",
+            "electoral_loss_message": ".",
+            "no_electoral_majority_message": ".",
+            "description_as_running_mate": null,
+            "candidate_score": 1,
+            "running_mate": true
+        }
+    }
+]
+
+campaignTrail_temp.running_mate_json = [
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 92538,
+        "fields": {
+            "candidate": 300,
+            "running_mate": 301
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 123612,
+        "fields": {
+            "candidate": 431600037,
+            "running_mate": 308
+        }
+    },
+    {
+        "model": "campaign_trail.running_mate",
+        "pk": 123611,
+        "fields": {
+            "candidate": 302,
+            "running_mate": 303
+        }
+    }
+]
+
+campaignTrail_temp.credits = "/u/ragythekindahipster"
+
+campaignTrail_temp.opponents_default_json = [
+    {
+        "election": 21,
+        "candidates": [
+            300,
+            302,
+            431600037
+        ]
+    }
+]
+
+campaignTrail_temp.opponents_weighted_json = [
+    {
+        "election": 21,
+        "candidates": [
+            300,
+            302,
+            431600037
+        ]
+    }
+]
+
+campaignTrail_temp.temp_election_list = [
+    {
+        "id": 21,
+        "year": 2020,
+        "is_premium": 0,
+        "display_year": "2022JAIR"
+    }
+]
+
+jet_data = {
+    "headerColor": "#007013",
+    "headerTextColor": "#FFFFFF",
+    "windowColor": "#007013",
+    "containerColor": "#2e427f",
+    "innerWindowColor": "#90b4bb",
+    "innerWindowTextColor": "#FFFFFF",
+    "descriptionWindowColor": "#2e5735",
+    "descriptionWindowTextColor": "#FFFFFF",
+    "startButtonColor": "#ffa0a0",
+    "bannerImageUrl": "https://files.catbox.moe/wyt1h5.png",
+    "backgroundImageUrl": "https://f.i.uol.com.br/fotografia/2022/03/27/1648392111624077afb64fc_1648392111_3x2_rt.jpg",
+    "gameTitle": "𝑱𝑨𝑰𝑹.",
+    "customQuote": "",
+    "quoteTextColor": "#ffffff",
+    "endingTextColor": "#000000",
+    "modBoxTheme": {
+        "header_color": "#007013",
+        "header_text_color": "#FFFFFF",
+        "description_background_color": "#2e5735",
+        "description_text_color": "#FFFFFF",
+        "main_color": "#b3b007",
+        "secondary_color": "#383838",
+        "ui_text_color": "#FFFFFF",
+        "site_title": "",
+        "site_image_url": ""
+    }
+};
+
+//#startcode
+function applyTheme(theme) {
+    const gameHeader = document.querySelector(".game_header");
+    if (gameHeader && theme.coloring_title) {
+        gameHeader.style.backgroundColor = theme.coloring_title;
+    }
+
+    const gameWindow = document.getElementById("game_window");
+    if (gameWindow && theme.coloring_window) {
+        gameWindow.style.backgroundColor = theme.coloring_window;
+    }
+
+    const container = document.querySelector(".container");
+    if (container && theme.coloring_container) {
+        container.style.backgroundColor = theme.coloring_container;
+    }
+
+    const headerImg = document.getElementById("header");
+    if (headerImg && theme.header_image) {
+        headerImg.src = theme.header_image;
+    }
+
+    if (theme.body_background) {
+        document.body.style.backgroundImage = `url("${theme.body_background}")`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
+    }
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #results_container { color: #fff; }
+      #wittyquote { color: #ffffff; }
+      .game_header h2 { color: #FFFFFF; }
+      .inner_window_w_desc { background: linear-gradient(90deg, #90b4bb 0%, #f4a261 60%, #e76f51 100%) !important; color: #000; }
+      .inner_window_front, .person_description_window, .election_description_window, .description_window_small { background-color: #2e5735 !important; color: #FFFFFF; }
+      .campaign_trail_start_emphasis { background-color: #ffa0a0 !important; }
+    `;
+    document.head.appendChild(style);
+}
+
+corrr = '\n              <h2>𝑱𝑨𝑰𝑹.</h2>\n            ';
+
+const theme = nct_stuff.themes[nct_stuff.selectedTheme];
+
+// define / override theme values
+theme.coloring_title     = "#007013";
+theme.coloring_window    = "#007013";
+theme.coloring_container = "#2e427f";
+theme.header_image = "https://files.catbox.moe/wyt1h5.png";
+theme.body_background = "https://f.i.uol.com.br/fotografia/2022/03/27/1648392111624077afb64fc_1648392111_3x2_rt.jpg";
+
+applyTheme(theme);
+
+//#startcode
+
+    document.head.innerHTML += `<style>
+    h3 {
+      font-size:1.17em!important;
+    }
+    wartext {
+        color: #FFFFFF;
+        background-color: #001240;
+        font-size:1em!important;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif!important;
+    }
+    cetxt {
+        color: #FFFFFF;
+        background-color: #001240;
+    }
+    label {
+      font-size:1em!important;
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif!important;
+    }
+  body {display:flex!important;}
+  #game_window{max-width:1000px;}
+  
+.inner_window_question h3 {
+    margin: 0 1em .5em;
+    padding: .35em .6em;
+    border: 2px solid #8fa6b8;
+    border-radius: 2px;
+    background-color: #dbe7ef;
+    color: #243746;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+
+.inner_window_question {
+    background-color: #f4f7f9;
+    border: 2px solid #8fa6b8;
+    text-align: center;
+    height: 52%;
+    position: relative;
+    clear: both;
+    box-sizing: border-box;
+}
+
+#game_window {
+    border: 2px solid #667d8c;
+    box-shadow:
+        inset 1px 1px 0 #ffffff,
+        inset -1px -1px 0 #9aaeb9;
+    color: #263746;
+}
+
+
+.game_header {
+    border-bottom: 2px solid #8fa6b8;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #18252e;
+    opacity: .62;
+    visibility: visible;
+    z-index: 100;
+}
+
+.overlay_window {
+    position: absolute;
+    opacity: 1;
+    background: #f4f7f9;
+    border: 3px double #8fa6b8;
+    box-shadow:
+        0 3px 10px rgba(20, 35, 45, .35),
+        inset 1px 1px 0 #ffffff;
+    height: 62%;
+    width: 50%;
+    top: 17%;
+    left: 25%;
+    z-index: 101;
+    color: #263746;
+    box-sizing: border-box;
+}
+
+.overlay_window h3 {
+    margin: 0;
+    padding: .35em .6em .25em;
+    font-weight: 700;
+    font-size: 1.5em;
+    background-color: #dbe7ef;
+    color: #243746;
+    border-bottom: 2px solid #8fa6b8;
+    box-shadow: inset 0 1px 0 #ffffff;
+}
+
+.overlay_window p {
+    padding: 0 1em;
+    color: #263746;
+}
+
+.overlay_window img {
+    margin-top: .7em;
+    border: 3px double #8fa6b8;
+    box-shadow: 0 1px 3px rgba(30, 45, 55, .2);
+}
+
+.overlay_window_content {
+    height: 76%;
+    font-weight: 700;
+    color: #263746;
+}
+  
+    </style>`
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#007013";
+
+nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#007013";
+
+document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+
+$("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+
+$(".container")[0].style.backgroundColor = "#2e427f";
+
+document.getElementById("header").src = "https://s2-oglobo.glbimg.com/egyzE3F1K9eP4V3nd3nnQh-f1zs=/0x0:1191x387/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2022/P/f/OzKjijQfeEAVD4nrF9Fg/pl-doacao.jpg" // "https://files.catbox.moe/wyt1h5.png";
+
+//document.body.background = "https://files.catbox.moe/7yxia6.png";
+
+document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#90b4bb!important;}</style>";
+
+
+
+campaignTrail_temp.modBoxTheme = {
+  "header_color" : "#007013",
+  "header_text_color" : "#FFFFFF",
+  "description_text_color" : "#FFFFFF",
+  "description_background_color" : "#2e5735",
+  "main_color" : "#b3b007",
+  "secondary_color" : "#383838",
+  "ui_text_color": "#FFFFFF"
+}
+
+campaignTrail_temp.achievements = {
+  "We Don't Need Ro(un)ds" : {
+      "image" : "https://files.catbox.moe/39zn2k.png",
+      "description" : "Win outright in the first round.",
+      "cannotBeCheated" : true
+  },
+  "The Worst Ever" : {
+      "image" : "https://files.catbox.moe/p53d76.png",
+      "description" : "Win without a majority.",
+      "cannotBeCheated" : true
+  },
+  "Public Enemy Number One" : {
+    "image" : "https://files.catbox.moe/e12666.png",
+    "description" : "Rig the election and lose.",
+    "cannotBeCheated" : true
+  },
+"The Nuclear Option" : {
+  "image" : "https://files.catbox.moe/qsjpaj.png",
+  "description" : "Enact a violent coup -- and succeed.",
+  "cannotBeCheated" : true
+},
+"Jeitinho" : {
+  "image" : "https://files.catbox.moe/rip8q9.png",
+  "description" : "Steal the election.",
+  "cannotBeCheated" : true
+},
+"Glass Cannon" : {
+  "image" : "https://files.catbox.moe/inoayz.png",
+  "description" : "Break under pressure.",
+  "cannotBeCheated" : true
+},
+"Dust To Dust" : {
+  "image" : "https://files.catbox.moe/4gh18u.png",
+  "description" : "Burn it all away.",
+  "cannotBeCheated" : true
+},
+"Row The Boat Ashore" : {
+  "image" : "https://files.catbox.moe/okonzj.png",
+  "description" : "Die like a dog.",
+  "cannotBeCheated" : true
+},
+"Buddha" : {
+  "image" : "https://files.catbox.moe/5q36hr.png",
+  "description" : "Do no harm.",
+  "cannotBeCheated" : true
+},
+"NAZBOL GANG" : {
+  "image" : "https://i.ibb.co/L5sPnKK/image.png",
+  "description" : "WHAT?",
+  "cannotBeCheated" : true
+},
+"Ai, Que Pecado" : {
+  "image" : "https://files.catbox.moe/pv8u4k.png",
+  "description" : "Be an angel.",
+  "cannotBeCheated" : true
+}
+
+}
+
+// Music player
+// This is a modified version of the music player
+// used in the mod Infinite Carnage.
+class Song {
+  constructor(title, artist, coverLink, audioOrYouTube) {
+    this.title = title;
+    this.artist = artist;
+    this.coverLink = coverLink;
+
+    // detect and parse YouTube IDs, otherwise treat as a standard audio link
+    const ytMatch = audioOrYouTube?.match(
+      /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/
+    );
+
+    if (ytMatch) {
+      this.youtubeId = ytMatch[1];
+      this.audioLink = null;
+    } else {
+      this.youtubeId = null;
+      this.audioLink = audioOrYouTube || null;
+    }
+  }
+
+  getTitle() { return this.title; }
+  getArtist() { return this.artist; }
+  getCoverLink() { return this.coverLink; }
+  getAudioLink() { return this.audioLink; }
+  getYouTubeId() { return this.youtubeId; }
+}
+
+class Playlist {
+  constructor() {
+    this.songs = [];
+    this.currentSongIndex = 0;
+  }
+  addSong(song) {
+    this.songs.push(song);
+  }
+  getCurrentSong() {
+    return this.songs[this.currentSongIndex];
+  }
+  playNext() {
+    if (this.songs.length === 0) return;
+    this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+  }
+  playPrevious() {
+    if (this.songs.length === 0) return;
+    this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+  }
+}
+
+window.Playlist = Playlist;
+window.Song = Song;
+
+let playlist = null;
+let currentPlaylistIndex = 0;
+let isRepeat = false;
+
+let ytApiReady = false;
+let ytPlayer = null;
+let ytPlayerReady = false;
+let ytProgressTimer = null;
+let ytAutoAdvancing = false;
+
+(function injectYouTubeAPI() {
+  if (document.getElementById("yt-iframe-api")) return;
+  const tag = document.createElement("script");
+  tag.id = "yt-iframe-api";
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+})();
+
+window.onYouTubeIframeAPIReady = function () {
+  ytApiReady = true;
+};
+
+const ASSETS = {
+  bg: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/musicplaerbackground.png",
+  infoBg: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/spotify.png",
+  btnPlaylist: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/shuffle.png",
+  btnPrev: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/back2.png",
+  btnPlay: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/play2.png",
+  btnPause: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/pause2.png",
+  btnNext: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/forward2.png",
+  btnRepeat: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/Repeat.png",
+  volIcon: "https://file.garden/aZpOy1sRbiDb3nw_/AC%20File%20Change/volume2.png"
+};
+
+const allPlaylists = [
+  [
+	new Song(
+	  "Pontos de Exclamação",
+	  "Jovem Dionisio",
+	  "https://yt3.googleusercontent.com/4Y8ZHk2FlGxNULf1EsjUkQYczw7GRXHu03KOMqZpOEuaj9Eb-RMs9WFE6IjBPDCTcpOUZjlzeCka1x8=w544-h544-l90-rj",
+	  "https://music.youtube.com/watch?v=of1iF9fSGaQ"
+	),
+
+	new Song(
+	  "Roda Gigante",
+	  "Terno Rei",
+	  "https://yt3.googleusercontent.com/IcYqu4RyeuUBdTNgDEXCDdR5Co32gvNcIQQXT1szC4gcBTtRXNrGJiNmVoy7GcO00coAxdU7fAs-WsA=w544-h544-l90-rj",
+	  "https://music.youtube.com/watch?v=_ctOfRxoyqA"
+	),
+
+	new Song(
+	  "Última Vez",
+	  "Tim Bernardes",
+	  "https://yt3.googleusercontent.com/cD1O0c5HzW8sNwq-46z6wQjGbwjHUbS-o3eHWdYrtcz28Rc719JCogrohecgk3VmXG6a8vknArFdh27b=w544-h544-l90-rj",
+	  "https://music.youtube.com/watch?v=r8e4bQEzUqc"
+	),
+
+	new Song(
+	  "Pode Se Achegar",
+	  "Tiago Iorc, Agnes Nunes",
+	  "https://yt3.googleusercontent.com/Q5h2SN45T3Hdjyj3qeN-zBWN-bzMeOk7SXSmfbnoSH7OURB5EG6PtlpQW7XcIH-pombvwLCMJ89A_w8=w544-h544-l90-rj",
+	  "https://music.youtube.com/watch?v=suI9Hj_TzOE"
+	),
+
+	new Song(
+	  "Furta-Cor",
+	  "Scalene, Xênia França",
+	  "https://yt3.googleusercontent.com/VrI6klRKsxDBDKtyU1azEA8X4D0iju13iCyjuBuDTy740bZRfVoqAuODn_43m8FClEipDnZNUyOcr53u=w544-h544-l90-rj",
+	  "https://music.youtube.com/watch?v=0moRcfAhljs"
+	),
+
+	new Song(
+	  "CUBA",
+	  "Johnny Hooker",
+	  "https://yt3.googleusercontent.com/cjdLRj8DuYHRiuggjxHhP-fJapUPmJjl-4kDjX3jBRNnp0-5PNAt0C0cOFZU7QhoIHrga8SUxOA4e193Eg=w544-h544-l90-rj",
+	  "https://music.youtube.com/watch?v=w2r8z7OAzlA"
+	)
+	
+  ]
+];
+
+function isYouTubeSong(song) {
+  return !!song?.getYouTubeId?.();
+}
+
+function getScaledVolume(volumeStep) {
+  const normalized = volumeStep / 9;
+  return Math.pow(normalized, 3);
+}
+
+function stopYTProgressPump() {
+  if (ytProgressTimer) {
+    clearInterval(ytProgressTimer);
+    ytProgressTimer = null;
+  }
+}
+
+function startYTProgressPump(progressBar) {
+  stopYTProgressPump();
+  ytProgressTimer = setInterval(() => {
+    if (!progressBar) return;
+    const duration = backendGetDuration();
+    const current = backendGetCurrentTime();
+    const progress = duration > 0 ? (current / duration) * 100 : 0;
+    progressBar.value = progress;
+    progressBar.style.background =
+      `linear-gradient(to right, #16893f ${progress}%, #ddd ${progress}%)`;
+  }, 250);
+}
+
+function syncYTVolumeFromSlider() {
+  const volumeSlider = document.getElementById("volumeSlider");
+  if (!volumeSlider || !ytPlayer) return;
+
+  const volumeStep = parseInt(volumeSlider.value, 10);
+  const scaled = getScaledVolume(volumeStep);
+
+  ytPlayer.setVolume(Math.round(scaled * 100));
+  if (scaled === 0) ytPlayer.mute();
+  else ytPlayer.unMute();
+}
+
+function ensureYTPlayer(onReady) {
+  const createPlayer = () => {
+    if (ytPlayer) {
+      onReady?.();
+      return;
+    }
+
+    const holder = document.getElementById("ytplayer") || (() => {
+      const el = document.createElement("div");
+      el.id = "ytplayer";
+      el.style.width = "0px";
+      el.style.height = "0px";
+      el.style.position = "absolute";
+      el.style.overflow = "hidden";
+      el.style.pointerEvents = "none";
+      document.body.appendChild(el);
+      return el;
+    })();
+
+    ytPlayer = new YT.Player(holder, {
+      height: "0",
+      width: "0",
+      videoId: "",
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        disablekb: 1,
+        fs: 0,
+        rel: 0,
+        playsinline: 1
+      },
+      events: {
+        onReady: () => {
+          ytPlayerReady = true;
+          syncYTVolumeFromSlider();
+          onReady?.();
+        },
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.ENDED) {
+            ytAutoAdvancing = true;
+            window._spotifyOnYTEnded?.();
+          }
+          if (e.data === YT.PlayerState.PLAYING && ytAutoAdvancing) {
+            syncYTVolumeFromSlider();
+            ytAutoAdvancing = false;
+          }
+        }
+      }
+    });
+  };
+
+  if (!ytApiReady || !window.YT || !window.YT.Player) {
+    const timer = setInterval(() => {
+      if (ytApiReady && window.YT && window.YT.Player) {
+        clearInterval(timer);
+        createPlayer();
+      }
+    }, 50);
+  } else {
+    createPlayer();
+  }
+}
+
+function backendSetSrcAndLoad(song, audio, progressBar) {
+  if (!song) return;
+
+  if (isYouTubeSong(song)) {
+    ensureYTPlayer(() => {
+      const id = song.getYouTubeId();
+      if (ytAutoAdvancing) {
+        try { ytPlayer.mute(); } catch (e) {}
+        ytPlayer?.loadVideoById?.(id);
+      } else {
+        ytPlayer?.loadVideoById?.(id);
+        syncYTVolumeFromSlider();
+      }
+      if (progressBar) startYTProgressPump(progressBar);
+    });
+
+    audio.pause();
+    audio.src = "";
+    audio.load();
+  } else {
+    stopYTProgressPump();
+    if (ytPlayer) ytPlayer.stopVideo?.();
+    audio.src = song.getAudioLink() || "";
+    audio.load();
+  }
+}
+
+function backendPlay(audio) {
+  const song = playlist?.getCurrentSong();
+  if (!song) return;
+
+  if (isYouTubeSong(song)) {
+    ensureYTPlayer(() => {
+      ytPlayer?.playVideo?.();
+    });
+  } else {
+    audio.play().catch(e => console.log("Direct playback deferred for user interaction.", e));
+  }
+}
+
+function backendPause(audio) {
+  const song = playlist?.getCurrentSong();
+  if (!song) return;
+
+  if (isYouTubeSong(song)) {
+    ytPlayer?.pauseVideo?.();
+  } else {
+    audio.pause();
+  }
+}
+
+function backendSetVolume(audio, volume) {
+  audio.volume = volume;
+  const song = playlist?.getCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) {
+    ytPlayer.setVolume(Math.round(volume * 100));
+    if (volume === 0) ytPlayer.mute();
+    else ytPlayer.unMute();
+  }
+}
+
+function backendGetCurrentTime() {
+  const song = playlist?.getCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) {
+    return ytPlayer.getCurrentTime?.() || 0;
+  }
+  const audio = document.getElementById("audio");
+  return audio ? audio.currentTime || 0 : 0;
+}
+
+function backendGetDuration() {
+  const song = playlist?.getCurrentSong();
+  if (isYouTubeSong(song) && ytPlayer) {
+    return ytPlayer.getDuration?.() || 0;
+  }
+  const audio = document.getElementById("audio");
+  return audio ? audio.duration || 0 : 0;
+}
+
+function backendSeekTo(seconds) {
+  const song = playlist?.getCurrentSong();
+  const audio = document.getElementById("audio");
+  if (isYouTubeSong(song) && ytPlayer) {
+    ytPlayer.seekTo(seconds, true);
+  } else if (audio && audio.duration > 0) {
+    audio.currentTime = seconds;
+  }
+}
+
+function updateUI(activePlaylist) {
+  const currentSong = activePlaylist.getCurrentSong();
+  const player = document.getElementById("player");
+  if (!player || !currentSong) return;
+
+  player.querySelector("#cover").src = currentSong.getCoverLink() || "";
+  player.querySelector("#title").textContent = currentSong.getTitle();
+  player.querySelector("#artist").textContent = currentSong.getArtist();
+}
+window.updateUI = updateUI;
+
+function changePlaylist(newPlaylist) {
+  playlist = newPlaylist;
+  playlist.currentSongIndex = 0;
+  updateUI(playlist);
+
+  const audio = document.getElementById("audio");
+  const progressBar = document.getElementById("progress-bar");
+  const playPauseButton = document.getElementById("playPauseButton");
+
+  if (audio && progressBar) {
+    backendSetSrcAndLoad(playlist.getCurrentSong(), audio, progressBar);
+    backendPlay(audio);
+    if (playPauseButton) playPauseButton.src = ASSETS.btnPause;
+  }
+}
+window.changePlaylist = changePlaylist;
+
+function setupMusicPlayer() {
+  const gameWindow = document.getElementById("game_window");
+  if (!gameWindow) return;
+  if (document.getElementById("player")) return;
+
+  isRepeat = localStorage.getItem("IC_repeat_mode") === "true";
+  currentPlaylistIndex = parseInt(localStorage.getItem("IC_selected_playlist") || "0", 10);
+  const savedSongIndex = parseInt(localStorage.getItem("IC_selected_song") || "0", 10);
+  const savedVolume = localStorage.getItem("IC_music_volume");
+  const initialVolume = savedVolume !== null ? parseInt(savedVolume, 10) : 1;
+
+  playlist = new Playlist();
+  allPlaylists[currentPlaylistIndex].forEach(data => playlist.addSong(data));
+  playlist.currentSongIndex = (savedSongIndex >= 0 && savedSongIndex < playlist.songs.length) ? savedSongIndex : 0;
+
+  const style = document.createElement("style");
+  style.textContent = `
+    #player {
+      border: 3px solid #C9C9C9;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 191px;
+      background-image: url("${ASSETS.bg}");
+      font-family: sans-serif;
+    }
+    #display-box {
+      display: flex;
+      align-items: center;
+      width: 50%;
+    }
+    #cover {
+      width: 176px;
+      height: 176px;
+      object-fit: cover;
+    }
+    #info-container {
+      display: flex;
+      flex-direction: row;
+      height: 178px;
+      width: 127px;
+      margin-top: 3px;
+      background-image: url("${ASSETS.infoBg}");
+      background-size: cover;
+      color: white;
+    }
+    #song-info {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    #title {
+      font-weight: normal;
+      white-space: pre-line;
+      margin: 10px 2px;
+      font-size: 14px;
+    }
+    #artist {
+      margin: 0;
+      font-size: 11px;
+      margin: auto 2px;
+      opacity: 0.8;
+    }
+    #controls-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px;
+      width: 100%;
+      padding-bottom: 3%;
+    }
+    #controls {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      gap: 5px;
+    }
+    #controls img {
+      cursor: pointer;
+      transition: opacity 0.1s;
+    }
+    #controls img:hover {
+      opacity: 0.8;
+    }
+    #progress-bar-container {
+      width: 100%;
+    }
+    #progress-bar {
+      width: 80%;
+      margin: 20px auto 0 auto;
+      display: flex;
+      height: 10px;
+      background: #ddd;
+      border-radius: 5px;
+      appearance: none;
+      cursor: pointer;
+      background-image: linear-gradient(to right, #16893f 0%, #ddd 0%);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    #progress-bar::-webkit-slider-thumb {
+      appearance: none;
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      background: #767676;
+      margin-top: -1px;
+      border: none;
+      box-shadow: none;
+    }
+    #progress-bar::-moz-range-thumb {
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      background: #767676;
+      border: none;
+      box-shadow: none;
+    }
+    #volume-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #volume-slider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 126px;
+      margin-top: auto;
+    }
+    #volumeSlider {
+      appearance: none;
+      transform: rotate(-90deg);
+      height: 10px;
+      width: 100px;
+      background: #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      background-image: linear-gradient(to right, #16893f 0%, #ddd 0%);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+    }
+    #volumeSlider::-webkit-slider-thumb {
+      appearance: none;
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      background: #767676;
+      border: none;
+      margin-top: -1px;
+    }
+    #volumeSlider::-moz-range-thumb {
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      background: #767676;
+      border: none;
+    }
+  `;
+  document.head.appendChild(style);
+
+  const playerContainer = document.createElement("div");
+  playerContainer.id = "player";
+  playerContainer.innerHTML = `
+    <div id="display-box">
+      <img id="cover" src="">
+      <div id="info-container">
+        <div id="song-info">
+          <h3 id="title"></h3>
+          <p id="artist"></p>
+        </div>
+      </div>
+    </div>
+    <div id="controls-container">
+      <div id="controls">
+        <img id="playlistSwitcher" src="${ASSETS.btnPlaylist}" style="height: 49px; margin-right: 15px;" alt="Playlist">
+        <img id="prevButton" src="${ASSETS.btnPrev}" alt="Prev">
+        <img id="playPauseButton" src="${ASSETS.btnPause}" alt="Play/Pause">
+        <img id="nextButton" src="${ASSETS.btnNext}" alt="Next">
+        <img id="repeatButton" src="${ASSETS.btnRepeat}" style="height: 49px; margin-left: 15px" alt="Repeat">
+      </div>
+      <div id="progress-bar-container">
+        <input type="range" id="progress-bar" min="0" max="100" value="0" step="0.1">
+      </div>
+    </div>
+    <div id="volume-container">
+      <img src="${ASSETS.volIcon}" alt="Volume">
+      <div id="volume-slider-container">
+        <input type="range" id="volumeSlider" min="0" max="9" step="1">
+      </div>
+    </div>
+  `;
+
+  gameWindow.insertAdjacentElement("afterend", playerContainer);
+
+  const playPauseButton = document.getElementById("playPauseButton");
+  const playlistSwitcher = document.getElementById("playlistSwitcher");
+  const prevButton = document.getElementById("prevButton");
+  const nextButton = document.getElementById("nextButton");
+  const repeatButton = document.getElementById("repeatButton");
+  const progressBar = document.getElementById("progress-bar");
+  const volumeSlider = document.getElementById("volumeSlider");
+
+  const audio = document.createElement("audio");
+  audio.id = "audio";
+  document.body.appendChild(audio);
+
+  volumeSlider.value = initialVolume;
+  const initialVolumePercent = (initialVolume / 9) * 100;
+  volumeSlider.style.background = `linear-gradient(to right, #16893f ${initialVolumePercent}%, #ddd ${initialVolumePercent}%)`;
+  audio.volume = getScaledVolume(initialVolume);
+
+  repeatButton.style.opacity = isRepeat ? "0.5" : "1.0";
+
+  window._spotifyOnYTEnded = function () {
+    if (isRepeat) {
+      backendSetSrcAndLoad(playlist.getCurrentSong(), audio, progressBar);
+      backendPlay(audio);
+      playPauseButton.src = ASSETS.btnPause;
+    } else {
+      playlist.playNext();
+      updateUI(playlist);
+      backendSetSrcAndLoad(playlist.getCurrentSong(), audio, progressBar);
+      backendPlay(audio);
+      playPauseButton.src = ASSETS.btnPause;
+      localStorage.setItem("IC_selected_song", playlist.currentSongIndex);
+    }
+  };
+
+  audio.addEventListener("timeupdate", () => {
+    const duration = backendGetDuration();
+    const current = backendGetCurrentTime();
+    const progress = duration > 0 ? (current / duration) * 100 : 0;
+    progressBar.value = progress;
+    progressBar.style.background = `linear-gradient(to right, #16893f ${progress}%, #ddd ${progress}%)`;
+  });
+
+  audio.addEventListener("ended", () => {
+    window._spotifyOnYTEnded();
+  });
+
+  progressBar.addEventListener("input", () => {
+    const duration = backendGetDuration();
+    const seekTime = (progressBar.value / 100) * duration;
+    backendSeekTo(seekTime);
+  });
+
+  volumeSlider.addEventListener("input", () => {
+    const volumeStep = parseInt(volumeSlider.value, 10);
+    const scaled = getScaledVolume(volumeStep);
+    backendSetVolume(audio, scaled);
+
+    const percent = (volumeStep / 9) * 100;
+    volumeSlider.style.background = `linear-gradient(to right, #16893f ${percent}%, #ddd ${percent}%)`;
+    localStorage.setItem("IC_music_volume", volumeStep);
+  });
+
+  playPauseButton.addEventListener("click", () => {
+    const song = playlist.getCurrentSong();
+    let isPaused = true;
+
+    if (isYouTubeSong(song)) {
+      const state = ytPlayer?.getPlayerState?.();
+      isPaused = !(state === YT.PlayerState.PLAYING);
+    } else {
+      isPaused = audio.paused;
+    }
+
+    if (isPaused) {
+      backendPlay(audio);
+      playPauseButton.src = ASSETS.btnPause;
+    } else {
+      backendPause(audio);
+      playPauseButton.src = ASSETS.btnPlay;
+    }
+  });
+
+  prevButton.addEventListener("click", () => {
+    playlist.playPrevious();
+    updateUI(playlist);
+    backendSetSrcAndLoad(playlist.getCurrentSong(), audio, progressBar);
+    backendPlay(audio);
+    playPauseButton.src = ASSETS.btnPause;
+    localStorage.setItem("IC_selected_song", playlist.currentSongIndex);
+  });
+
+  nextButton.addEventListener("click", () => {
+    playlist.playNext();
+    updateUI(playlist);
+    backendSetSrcAndLoad(playlist.getCurrentSong(), audio, progressBar);
+    backendPlay(audio);
+    playPauseButton.src = ASSETS.btnPause;
+    localStorage.setItem("IC_selected_song", playlist.currentSongIndex);
+  });
+
+  playlistSwitcher.addEventListener("click", () => {
+    currentPlaylistIndex = (currentPlaylistIndex + 1) % allPlaylists.length;
+    playlist = new Playlist();
+    allPlaylists[currentPlaylistIndex].forEach(data => playlist.addSong(data));
+    playlist.currentSongIndex = 0;
+
+    updateUI(playlist);
+    backendSetSrcAndLoad(playlist.getCurrentSong(), audio, progressBar);
+    backendPlay(audio);
+    playPauseButton.src = ASSETS.btnPause;
+
+    localStorage.setItem("IC_selected_playlist", currentPlaylistIndex);
+    localStorage.setItem("IC_selected_song", 0);
+  });
+
+  repeatButton.addEventListener("click", () => {
+    isRepeat = !isRepeat;
+    repeatButton.style.opacity = isRepeat ? "0.5" : "1.0";
+    localStorage.setItem("IC_repeat_mode", isRepeat);
+  });
+
+  updateUI(playlist);
+  backendSetSrcAndLoad(playlist.getCurrentSong(), audio, progressBar);
+  backendPlay(audio);
+}
+
+setupMusicPlayer();
+//#endcode

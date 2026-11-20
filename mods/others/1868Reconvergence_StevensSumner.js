@@ -1,0 +1,1908 @@
+  // states init
+  
+  e.states_json = [
+    {"model":"campaign_trail.state","pk":1000,"fields":{"name":"Alabama","abbr":"AL","electoral_votes":8,"popular_votes":280000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1003,"fields":{"name":"Arkansas","abbr":"AR","electoral_votes":5,"popular_votes":190000,"poll_closing_time":150,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1004,"fields":{"name":"California","abbr":"CA","electoral_votes":6,"popular_votes":340000,"poll_closing_time":300,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1006,"fields":{"name":"Connecticut","abbr":"CT","electoral_votes":6,"popular_votes":140000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1007,"fields":{"name":"Delaware","abbr":"DE","electoral_votes":3,"popular_votes":80000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1008,"fields":{"name":"Florida","abbr":"FL","electoral_votes":4,"popular_votes":160000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1009,"fields":{"name":"Georgia","abbr":"GA","electoral_votes":9,"popular_votes":320000,"poll_closing_time":60,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1012,"fields":{"name":"Illinois","abbr":"IL","electoral_votes":16,"popular_votes":600000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1013,"fields":{"name":"Indiana","abbr":"IN","electoral_votes":13,"popular_votes":410000,"poll_closing_time":0,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1014,"fields":{"name":"Iowa","abbr":"IA","electoral_votes":8,"popular_votes":240000,"poll_closing_time":240,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1015,"fields":{"name":"Kansas","abbr":"KS","electoral_votes":3,"popular_votes":130000,"poll_closing_time":240,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1016,"fields":{"name":"Kentucky","abbr":"KY","electoral_votes":11,"popular_votes":390000,"poll_closing_time":0,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1017,"fields":{"name":"Louisiana","abbr":"LA","electoral_votes":7,"popular_votes":250000,"poll_closing_time":180,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1018,"fields":{"name":"Maine","abbr":"ME","electoral_votes":5,"popular_votes":120000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1019,"fields":{"name":"Maryland","abbr":"MD","electoral_votes":8,"popular_votes":270000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1020,"fields":{"name":"Massachusetts","abbr":"MA","electoral_votes":13,"popular_votes":370000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1021,"fields":{"name":"Michigan","abbr":"MI","electoral_votes":8,"popular_votes":300000,"poll_closing_time":180,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1022,"fields":{"name":"Minnesota","abbr":"MN","electoral_votes":5,"popular_votes":220000,"poll_closing_time":180,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1023,"fields":{"name":"Mississippi","abbr":"MS","electoral_votes":6,"popular_votes":200000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1024,"fields":{"name":"Missouri","abbr":"MO","electoral_votes":11,"popular_votes":370000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1026,"fields":{"name":"Nebraska","abbr":"NE","electoral_votes":5,"popular_votes":160000,"poll_closing_time":180,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1027,"fields":{"name":"Nevada","abbr":"NV","electoral_votes":3,"popular_votes":70000,"poll_closing_time":240,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1028,"fields":{"name":"New Hampshire","abbr":"NH","electoral_votes":5,"popular_votes":100000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1029,"fields":{"name":"New Jersey","abbr":"NJ","electoral_votes":7,"popular_votes":230000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1031,"fields":{"name":"New York","abbr":"NY","electoral_votes":33,"popular_votes":1100000,"poll_closing_time":180,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1032,"fields":{"name":"North Carolina","abbr":"NC","electoral_votes":10,"popular_votes":330000,"poll_closing_time":90,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1034,"fields":{"name":"Ohio","abbr":"OH","electoral_votes":21,"popular_votes":640000,"poll_closing_time":90,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1036,"fields":{"name":"Oregon","abbr":"OR","electoral_votes":6,"popular_votes":150000,"poll_closing_time":300,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1037,"fields":{"name":"Pennsylvania","abbr":"PA","electoral_votes":26,"popular_votes":690000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1038,"fields":{"name":"Rhode Island","abbr":"RI","electoral_votes":5,"popular_votes":80000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1039,"fields":{"name":"South Carolina","abbr":"SC","electoral_votes":8,"popular_votes":200000,"poll_closing_time":60,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1041,"fields":{"name":"Tennessee","abbr":"TN","electoral_votes":11,"popular_votes":300000,"poll_closing_time":120,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1042,"fields":{"name":"Texas","abbr":"TX","electoral_votes":29,"popular_votes":800000,"poll_closing_time":180,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1044,"fields":{"name":"Vermont","abbr":"VT","electoral_votes":3,"popular_votes":70000,"poll_closing_time":60,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1045,"fields":{"name":"Virginia","abbr":"VA","electoral_votes":12,"popular_votes":390000,"poll_closing_time":60,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1048,"fields":{"name":"West Virginia","abbr":"WV","electoral_votes":4,"popular_votes":140000,"poll_closing_time":90,"winner_take_all_flg":1,"election":20}},
+    {"model":"campaign_trail.state","pk":1049,"fields":{"name":"Wisconsin","abbr":"WI","electoral_votes":9,"popular_votes":270000,"poll_closing_time":180,"winner_take_all_flg":1,"election":20}}
+  ]
+  
+e.candidate_state_multiplier_json = [{"model":"campaign_trail.candidate_state_multiplier","pk":1000,"fields":{"candidate":200,"state":1000,"state_multiplier":0.6}},{"model":"campaign_trail.candidate_state_multiplier","pk":1050,"fields":{"candidate":201,"state":1000,"state_multiplier":0.4}},{"model":"campaign_trail.candidate_state_multiplier","pk":1001,"fields":{"candidate":200,"state":1003,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1051,"fields":{"candidate":201,"state":1003,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1002,"fields":{"candidate":200,"state":1004,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1052,"fields":{"candidate":201,"state":1004,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1003,"fields":{"candidate":200,"state":1006,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1053,"fields":{"candidate":201,"state":1006,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1004,"fields":{"candidate":200,"state":1007,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1054,"fields":{"candidate":201,"state":1007,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1005,"fields":{"candidate":200,"state":1008,"state_multiplier":0.575}},{"model":"campaign_trail.candidate_state_multiplier","pk":1055,"fields":{"candidate":201,"state":1008,"state_multiplier":0.425}},{"model":"campaign_trail.candidate_state_multiplier","pk":1006,"fields":{"candidate":200,"state":1009,"state_multiplier":0.625}},{"model":"campaign_trail.candidate_state_multiplier","pk":1056,"fields":{"candidate":201,"state":1009,"state_multiplier":0.375}},{"model":"campaign_trail.candidate_state_multiplier","pk":1007,"fields":{"candidate":200,"state":1012,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1057,"fields":{"candidate":201,"state":1012,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1008,"fields":{"candidate":200,"state":1013,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1058,"fields":{"candidate":201,"state":1013,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1009,"fields":{"candidate":200,"state":1014,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1059,"fields":{"candidate":201,"state":1014,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1010,"fields":{"candidate":200,"state":1015,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1060,"fields":{"candidate":201,"state":1015,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1011,"fields":{"candidate":200,"state":1016,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1061,"fields":{"candidate":201,"state":1016,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1012,"fields":{"candidate":200,"state":1017,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1062,"fields":{"candidate":201,"state":1017,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1013,"fields":{"candidate":200,"state":1018,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1063,"fields":{"candidate":201,"state":1018,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1014,"fields":{"candidate":200,"state":1019,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1064,"fields":{"candidate":201,"state":1019,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1015,"fields":{"candidate":200,"state":1020,"state_multiplier":0.4}},{"model":"campaign_trail.candidate_state_multiplier","pk":1065,"fields":{"candidate":201,"state":1020,"state_multiplier":0.6}},{"model":"campaign_trail.candidate_state_multiplier","pk":1016,"fields":{"candidate":200,"state":1021,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1066,"fields":{"candidate":201,"state":1021,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1017,"fields":{"candidate":200,"state":1022,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1067,"fields":{"candidate":201,"state":1022,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1018,"fields":{"candidate":200,"state":1023,"state_multiplier":0.625}},{"model":"campaign_trail.candidate_state_multiplier","pk":1068,"fields":{"candidate":201,"state":1023,"state_multiplier":0.375}},{"model":"campaign_trail.candidate_state_multiplier","pk":1019,"fields":{"candidate":200,"state":1024,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1069,"fields":{"candidate":201,"state":1024,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1020,"fields":{"candidate":200,"state":1026,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1070,"fields":{"candidate":201,"state":1026,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1021,"fields":{"candidate":200,"state":1027,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1071,"fields":{"candidate":201,"state":1027,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1022,"fields":{"candidate":200,"state":1028,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1072,"fields":{"candidate":201,"state":1028,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1023,"fields":{"candidate":200,"state":1029,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1073,"fields":{"candidate":201,"state":1029,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1024,"fields":{"candidate":200,"state":1031,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1074,"fields":{"candidate":201,"state":1031,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1025,"fields":{"candidate":200,"state":1032,"state_multiplier":0.6}},{"model":"campaign_trail.candidate_state_multiplier","pk":1075,"fields":{"candidate":201,"state":1032,"state_multiplier":0.4}},{"model":"campaign_trail.candidate_state_multiplier","pk":1026,"fields":{"candidate":200,"state":1034,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1076,"fields":{"candidate":201,"state":1034,"state_multiplier":0.525}},{"model":"campaign_trail.candidate_state_multiplier","pk":1027,"fields":{"candidate":200,"state":1036,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1077,"fields":{"candidate":201,"state":1036,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1028,"fields":{"candidate":200,"state":1037,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1078,"fields":{"candidate":201,"state":1037,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1029,"fields":{"candidate":200,"state":1038,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1079,"fields":{"candidate":201,"state":1038,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1030,"fields":{"candidate":200,"state":1039,"state_multiplier":0.625}},{"model":"campaign_trail.candidate_state_multiplier","pk":1080,"fields":{"candidate":201,"state":1039,"state_multiplier":0.375}},{"model":"campaign_trail.candidate_state_multiplier","pk":1031,"fields":{"candidate":200,"state":1041,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1081,"fields":{"candidate":201,"state":1041,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1032,"fields":{"candidate":200,"state":1042,"state_multiplier":0.575}},{"model":"campaign_trail.candidate_state_multiplier","pk":1082,"fields":{"candidate":201,"state":1042,"state_multiplier":0.425}},{"model":"campaign_trail.candidate_state_multiplier","pk":1033,"fields":{"candidate":200,"state":1044,"state_multiplier":0.45}},{"model":"campaign_trail.candidate_state_multiplier","pk":1083,"fields":{"candidate":201,"state":1044,"state_multiplier":0.55}},{"model":"campaign_trail.candidate_state_multiplier","pk":1034,"fields":{"candidate":200,"state":1045,"state_multiplier":0.6}},{"model":"campaign_trail.candidate_state_multiplier","pk":1084,"fields":{"candidate":201,"state":1045,"state_multiplier":0.4}},{"model":"campaign_trail.candidate_state_multiplier","pk":1035,"fields":{"candidate":200,"state":1048,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1085,"fields":{"candidate":201,"state":1048,"state_multiplier":0.5}},{"model":"campaign_trail.candidate_state_multiplier","pk":1036,"fields":{"candidate":200,"state":1049,"state_multiplier":0.475}},{"model":"campaign_trail.candidate_state_multiplier","pk":1086,"fields":{"candidate":201,"state":1049,"state_multiplier":0.525}}]
+e.state_issue_score_json = [{"model":"campaign_trail.state_issue_score","pk":10000,"fields":{"state":1000,"issue":28,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10100,"fields":{"state":1000,"issue":30,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10200,"fields":{"state":1000,"issue":29,"state_issue_score":-0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10300,"fields":{"state":1000,"issue":27,"state_issue_score":-0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10001,"fields":{"state":1003,"issue":28,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10101,"fields":{"state":1003,"issue":30,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10201,"fields":{"state":1003,"issue":29,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10301,"fields":{"state":1003,"issue":27,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10002,"fields":{"state":1004,"issue":28,"state_issue_score":0.9,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10102,"fields":{"state":1004,"issue":30,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10202,"fields":{"state":1004,"issue":29,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10302,"fields":{"state":1004,"issue":27,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10003,"fields":{"state":1006,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10103,"fields":{"state":1006,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10203,"fields":{"state":1006,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10303,"fields":{"state":1006,"issue":27,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10004,"fields":{"state":1007,"issue":28,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10104,"fields":{"state":1007,"issue":30,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10204,"fields":{"state":1007,"issue":29,"state_issue_score":0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10304,"fields":{"state":1007,"issue":27,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10005,"fields":{"state":1008,"issue":28,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10105,"fields":{"state":1008,"issue":30,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10205,"fields":{"state":1008,"issue":29,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10305,"fields":{"state":1008,"issue":27,"state_issue_score":-0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10006,"fields":{"state":1009,"issue":28,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10106,"fields":{"state":1009,"issue":30,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10206,"fields":{"state":1009,"issue":29,"state_issue_score":-0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10306,"fields":{"state":1009,"issue":27,"state_issue_score":-0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10007,"fields":{"state":1012,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10107,"fields":{"state":1012,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10207,"fields":{"state":1012,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10307,"fields":{"state":1012,"issue":27,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10008,"fields":{"state":1013,"issue":28,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10108,"fields":{"state":1013,"issue":30,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10208,"fields":{"state":1013,"issue":29,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10308,"fields":{"state":1013,"issue":27,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10009,"fields":{"state":1014,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10109,"fields":{"state":1014,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10209,"fields":{"state":1014,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10309,"fields":{"state":1014,"issue":27,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10010,"fields":{"state":1015,"issue":28,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10110,"fields":{"state":1015,"issue":30,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10210,"fields":{"state":1015,"issue":29,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10310,"fields":{"state":1015,"issue":27,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10011,"fields":{"state":1016,"issue":28,"state_issue_score":-0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10111,"fields":{"state":1016,"issue":30,"state_issue_score":-0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10211,"fields":{"state":1016,"issue":29,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10311,"fields":{"state":1016,"issue":27,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10012,"fields":{"state":1017,"issue":28,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10112,"fields":{"state":1017,"issue":30,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10212,"fields":{"state":1017,"issue":29,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10312,"fields":{"state":1017,"issue":27,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10013,"fields":{"state":1018,"issue":28,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10113,"fields":{"state":1018,"issue":30,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10213,"fields":{"state":1018,"issue":29,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10313,"fields":{"state":1018,"issue":27,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10014,"fields":{"state":1019,"issue":28,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10114,"fields":{"state":1019,"issue":30,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10214,"fields":{"state":1019,"issue":29,"state_issue_score":0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10314,"fields":{"state":1019,"issue":27,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10015,"fields":{"state":1020,"issue":28,"state_issue_score":0.9,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10115,"fields":{"state":1020,"issue":30,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10215,"fields":{"state":1020,"issue":29,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10315,"fields":{"state":1020,"issue":27,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10016,"fields":{"state":1021,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10116,"fields":{"state":1021,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10216,"fields":{"state":1021,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10316,"fields":{"state":1021,"issue":27,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10017,"fields":{"state":1022,"issue":28,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10117,"fields":{"state":1022,"issue":30,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10217,"fields":{"state":1022,"issue":29,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10317,"fields":{"state":1022,"issue":27,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10018,"fields":{"state":1023,"issue":28,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10118,"fields":{"state":1023,"issue":30,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10218,"fields":{"state":1023,"issue":29,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10318,"fields":{"state":1023,"issue":27,"state_issue_score":-0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10019,"fields":{"state":1024,"issue":28,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10119,"fields":{"state":1024,"issue":30,"state_issue_score":0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10219,"fields":{"state":1024,"issue":29,"state_issue_score":0.2,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10319,"fields":{"state":1024,"issue":27,"state_issue_score":0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10020,"fields":{"state":1026,"issue":28,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10120,"fields":{"state":1026,"issue":30,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10220,"fields":{"state":1026,"issue":29,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10320,"fields":{"state":1026,"issue":27,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10021,"fields":{"state":1027,"issue":28,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10121,"fields":{"state":1027,"issue":30,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10221,"fields":{"state":1027,"issue":29,"state_issue_score":0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10321,"fields":{"state":1027,"issue":27,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10022,"fields":{"state":1028,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10122,"fields":{"state":1028,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10222,"fields":{"state":1028,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10322,"fields":{"state":1028,"issue":27,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10023,"fields":{"state":1029,"issue":28,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10123,"fields":{"state":1029,"issue":30,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10223,"fields":{"state":1029,"issue":29,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10323,"fields":{"state":1029,"issue":27,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10024,"fields":{"state":1031,"issue":28,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10124,"fields":{"state":1031,"issue":30,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10224,"fields":{"state":1031,"issue":29,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10324,"fields":{"state":1031,"issue":27,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10025,"fields":{"state":1032,"issue":28,"state_issue_score":-0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10125,"fields":{"state":1032,"issue":30,"state_issue_score":-0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10225,"fields":{"state":1032,"issue":29,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10325,"fields":{"state":1032,"issue":27,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10026,"fields":{"state":1034,"issue":28,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10126,"fields":{"state":1034,"issue":30,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10226,"fields":{"state":1034,"issue":29,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10326,"fields":{"state":1034,"issue":27,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10027,"fields":{"state":1036,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10127,"fields":{"state":1036,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10227,"fields":{"state":1036,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10327,"fields":{"state":1036,"issue":27,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10028,"fields":{"state":1037,"issue":28,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10128,"fields":{"state":1037,"issue":30,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10228,"fields":{"state":1037,"issue":29,"state_issue_score":0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10328,"fields":{"state":1037,"issue":27,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10029,"fields":{"state":1038,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10129,"fields":{"state":1038,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10229,"fields":{"state":1038,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10329,"fields":{"state":1038,"issue":27,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10030,"fields":{"state":1039,"issue":28,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10130,"fields":{"state":1039,"issue":30,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10230,"fields":{"state":1039,"issue":29,"state_issue_score":-0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10330,"fields":{"state":1039,"issue":27,"state_issue_score":-0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10031,"fields":{"state":1041,"issue":28,"state_issue_score":-0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10131,"fields":{"state":1041,"issue":30,"state_issue_score":-0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10231,"fields":{"state":1041,"issue":29,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10331,"fields":{"state":1041,"issue":27,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10032,"fields":{"state":1042,"issue":28,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10132,"fields":{"state":1042,"issue":30,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10232,"fields":{"state":1042,"issue":29,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10332,"fields":{"state":1042,"issue":27,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10033,"fields":{"state":1044,"issue":28,"state_issue_score":0.9,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10133,"fields":{"state":1044,"issue":30,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10233,"fields":{"state":1044,"issue":29,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10333,"fields":{"state":1044,"issue":27,"state_issue_score":0.8,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10034,"fields":{"state":1045,"issue":28,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10134,"fields":{"state":1045,"issue":30,"state_issue_score":-0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10234,"fields":{"state":1045,"issue":29,"state_issue_score":-0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10334,"fields":{"state":1045,"issue":27,"state_issue_score":-0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10035,"fields":{"state":1048,"issue":28,"state_issue_score":-0.2,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10135,"fields":{"state":1048,"issue":30,"state_issue_score":-0.2,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10235,"fields":{"state":1048,"issue":29,"state_issue_score":-0.3,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10335,"fields":{"state":1048,"issue":27,"state_issue_score":-0.4,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10036,"fields":{"state":1049,"issue":28,"state_issue_score":0.7,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10136,"fields":{"state":1049,"issue":30,"state_issue_score":0.6,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10236,"fields":{"state":1049,"issue":29,"state_issue_score":0.5,"weight":1}},{"model":"campaign_trail.state_issue_score","pk":10336,"fields":{"state":1049,"issue":27,"state_issue_score":0.6,"weight":1}}]
+
+  addCandidate = (pk) => {
+    e.opponents_list.push(pk)
+    e.candidate_issue_score_json.push(
+      {
+        "model":"campaign_trail.candidate_issue_score",
+        "pk":Math.max(...e.candidate_issue_score_json.map(f=>f.pk))+1,
+        "fields":
+        {
+          "candidate": pk,
+          "issue":300, // placeholder issue
+          "issue_score": 0
+        }
+      }
+    )
+  }
+  
+  setCandidateMargins = (candidate, stealFrom, amount, autoFix = true) => {
+    let mappedCands = e.candidate_state_multiplier_json.map(f=>f.fields.candidate)
+    if (mappedCands.includes(candidate)) {
+      changeCandidateMargins(candidate, stealFrom, amount)
+      return true;
+    }
+    for (i in e.candidate_state_multiplier_json) {
+      if (e.candidate_state_multiplier_json[i].fields.candidate != stealFrom) {
+        continue;
+      }
+      let marg = e.candidate_state_multiplier_json[i].fields.state_multiplier
+      let maxPk = Math.max(...e.candidate_state_multiplier_json.map(f=>f.pk))
+      e.candidate_state_multiplier_json.push({
+        "model":"campaign_trail.candidate_state_multiplier",
+        "pk":maxPk + 1,
+        "fields":
+        {
+          "candidate": candidate,
+          "state":e.candidate_state_multiplier_json[i].fields.state,
+          "state_multiplier": autoFix ? marg * amount * 7 : marg * amount
+        }
+      })
+      e.candidate_state_multiplier_json[i].fields.state_multiplier = marg * (1 - amount)
+    }
+    return true;
+  }
+  
+  stealCandidate = (candidate, stealFrom, amount, mult = 3) => {
+      for (i in e.candidate_state_multiplier_json) {
+        if (e.candidate_state_multiplier_json[i].fields.candidate != stealFrom) {
+          continue;
+        }
+        let marg = e.candidate_state_multiplier_json[i].fields.state_multiplier
+        let state = e.candidate_state_multiplier_json[i].fields.state
+        /*let maxPk = Math.max(...e.candidate_state_multiplier_json.map(f=>f.pk))
+        e.candidate_state_multiplier_json.push({
+          "model":"campaign_trail.candidate_state_multiplier",
+          "pk":maxPk + 1,
+          "fields":
+          {
+            "candidate": candidate,
+            "state":e.candidate_state_multiplier_json[i].fields.state,
+            "state_multiplier": autoFix ? marg * amount * 7 : marg * amount
+          }
+        })*/
+        let myWay = e.candidate_state_multiplier_json.findIndex((val) => {
+          return val.fields.state == state && val.fields.candidate == candidate
+        })
+        e.candidate_state_multiplier_json[myWay].fields.state_multiplier += marg * amount * mult
+        e.candidate_state_multiplier_json[i].fields.state_multiplier = marg * (1 - amount)
+      }
+      return true;
+    }
+  
+  changeCandidateMargins = (candidate, boost) => { // adjust candidate state mults static amount -> will probably work less in swing states
+    for (i in e.candidate_state_multiplier_json) {
+      if (e.candidate_state_multiplier_json[i].fields.candidate != candidate) {
+        continue;
+      }
+      let marg = e.candidate_state_multiplier_json[i].fields.state_multiplier
+      let maxPk = e.candidate_state_multiplier_json[e.candidate_state_multiplier_json.length-1].pk
+      e.candidate_state_multiplier_json[i] = {
+        "model":"campaign_trail.candidate_state_multiplier",
+        "pk":maxPk + 1,
+        "fields":
+        {
+          "candidate": candidate,
+          "state": e.candidate_state_multiplier_json[i].fields.state,
+          "state_multiplier": marg + boost
+        }
+      }
+    }
+    return true;
+  }
+
+  candidates = [e.candidate_id, ...e.opponents_list]
+  
+  running_mate_data = e.candidate_json[e.candidate_json.map(f => f.pk).indexOf(e.running_mate_id)]
+  candidate_data = e.candidate_json[e.candidate_json.map(f => f.pk).indexOf(e.candidate_id)]
+  
+  e.candidate_last_name = candidate_data.fields.last_name
+  e.running_mate_last_name = running_mate_data.fields.last_name
+  
+  e.running_mate_image_url = running_mate_data.fields.image_url
+  e.candidate_image_url = candidate_data.fields.image_url
+  
+  e.questions_json = [
+    {
+        "model": "campaign_trail.question",
+        "pk": 1000,
+        "fields": {
+            "priority": 1,
+            "description": "As the nominee of the National Equality Party, you have championed the cause of racial equality and civil rights. How do you plan to ensure the rights and liberties of freed slaves in the post-war era?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1001,
+        "fields": {
+            "priority": 2,
+            "description": "Your stance on aggressive Reconstruction and punishing former Confederates for war crimes has drawn both support and criticism. How do you respond to those who argue for a more lenient approach to reunification and forgiveness?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1002,
+        "fields": {
+            "priority": 3,
+            "description": "The formation of the National Equality Party marks a split within the Republican Party. How do you plan to navigate this divide and unite Republicans behind your candidacy?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1003,
+        "fields": {
+            "priority": 4,
+            "description": "Your choice of Charles Sumner as your running mate has garnered attention. Can you explain the reasoning behind this selection and how it aligns with your vision for America?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1004,
+        "fields": {
+            "priority": 5,
+            "description": "Given your unwavering commitment to civil rights, how do you plan to address the concerns and fears of those who may oppose your agenda?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1005,
+        "fields": {
+            "priority": 6,
+            "description": "The Democratic Party, under John C. Breckinridge, has undergone a transformation, advocating for national unity and reconciliation. How do you differentiate yourself from the Democratic candidate and appeal to voters who prioritize unity?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1006,
+        "fields": {
+            "priority": 7,
+            "description": "In your campaign, you have emphasized the need for land and voting rights for freed slaves. How do you plan to address the challenges and opposition you may face in achieving these goals?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1007,
+        "fields": {
+            "priority": 8,
+            "description": "The scars of the Civil War are still fresh in the minds of many Americans. How do you intend to promote healing and reconciliation among a divided nation?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1008,
+        "fields": {
+            "priority": 9,
+            "description": "The Reconstruction era is fraught with challenges and uncertainties. What specific policies and initiatives do you propose to rebuild the economy and infrastructure of the nation?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1009,
+        "fields": {
+            "priority": 10,
+            "description": "Your advocacy for strict punishment of former Confederates involved in war crimes has raised concerns about potential backlash and resistance. How do you plan to address these challenges and ensure a smooth transition to a more just society?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1010,
+        "fields": {
+            "priority": 11,
+            "description": "The Democratic Party traditionally had strong support in the Southern states. How do you plan to challenge their dominance and win over voters in these regions?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1011,
+        "fields": {
+            "priority": 12,
+            "description": "Your platform focuses on racial equality and civil rights. How do you plan to address other pressing issues of the time, such as economic recovery and the healing of war-torn communities?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1012,
+        "fields": {
+            "priority": 13,
+            "description": "The National Equality Party is relatively new compared to the Democratic Party and the Republican Party. How do you plan to establish the NEP as a viable and influential political force?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1013,
+        "fields": {
+            "priority": 14,
+            "description": "The Reconstruction era has been marked by violence and resistance from various factions. How do you plan to ensure the safety and protection of African Americans and their allies during this turbulent period?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1014,
+        "fields": {
+            "priority": 15,
+            "description": "Your alliance with Charles Sumner, a prominent Radical Republican senator, is seen as a strong statement in support of civil rights. How do you plan to leverage this alliance to mobilize support from both within and outside the Republican Party?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1015,
+        "fields": {
+            "priority": 16,
+            "description": "As the candidate advocating for aggressive Reconstruction, how do you plan to address concerns about potential resistance and backlash from Southern states and former Confederates?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1016,
+        "fields": {
+            "priority": 17,
+            "description": "The wounds of the Civil War run deep, and many Americans long for stability and peace. How do you reassure voters that your vision of a more just society will not further deepen the divides and conflicts?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1017,
+        "fields": {
+            "priority": 18,
+            "description": "Your emphasis on land and voting rights for freed slaves raises questions about the redistribution of resources and power. How do you plan to navigate these complex issues and ensure a fair and equitable approach to Reconstruction?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1018,
+        "fields": {
+            "priority": 19,
+            "description": "The Democratic candidate, John C. Breckinridge, presents himself as a figure of unity and reconciliation. How do you differentiate yourself from his message and appeal to voters who prioritize healing and national unity?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1019,
+        "fields": {
+            "priority": 20,
+            "description": "The National Equality Party has emerged as a new political force. How do you plan to build a strong and cohesive party infrastructure to support your campaign and future political endeavors?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1020,
+        "fields": {
+            "priority": 21,
+            "description": "The Reconstruction era presents unique opportunities and challenges. What specific legislative measures and policies do you propose to promote racial equality and ensure long-term progress?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1021,
+        "fields": {
+            "priority": 22,
+            "description": "The rights and freedoms gained by African Americans during the war are at stake in this election. How do you plan to protect and expand upon these hard-fought gains in the face of opposition?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1022,
+        "fields": {
+            "priority": 23,
+            "description": "Your stance on strict punishments for former Confederates has been criticized for potentially hindering the process of reunification. How do you address concerns that your approach might perpetuate animosity and hinder progress?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1023,
+        "fields": {
+            "priority": 24,
+            "description": "Your selection of Charles Sumner as your running mate has drawn attention. How do you envision his role in your administration, particularly in promoting racial equality and civil rights?",
+            "likelihood": 1
+        }
+    },
+    {
+        "model": "campaign_trail.question",
+        "pk": 1024,
+        "fields": {
+            "priority": 25,
+            "description": "The alternate 1868 scenario you are campaigning in offers a unique historical context. How do you plan to leverage this narrative to engage and inspire voters, particularly those who are passionate about the future of civil rights and racial equality?",
+            "likelihood": 1
+        }
+    }
+]
+
+e.answers_json = [
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5000,
+      "fields": {
+        "question": 1000,
+        "feedback": "Your commitment to racial equality is commendable, but your approach may be perceived as radical by some. Consider addressing the concerns of those who are hesitant about swift changes.",
+        "description": "I plan to ensure the rights and liberties of freed slaves by advocating for legislation that guarantees their civil rights and protections. This includes pushing for equal access to education, employment opportunities, and voting rights. We must also work towards dismantling discriminatory practices and institutions that perpetuate inequality. However, it is crucial to engage in open dialogue and seek bipartisan support to effectively implement these reforms and address the concerns of all citizens.",
+        "global_effect": [
+          203,
+          204,
+          0.0012
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5001,
+      "fields": {
+        "question": 1000,
+        "feedback": "Your response reflects a more moderate approach, which may resonate with a wider range of voters. It is important to balance the pursuit of racial equality with the need for social cohesion and unity.",
+        "description": "To ensure the rights and liberties of freed slaves, we must foster a society that upholds the principles of equality and justice for all. This includes advocating for legislation that prohibits racial discrimination, promotes access to education and economic opportunities, and safeguards the right to vote. By working collaboratively with both Republicans and Democrats, we can create lasting change and build a society where every individual has an equal chance to succeed.",
+        "global_effect": [
+          201,
+          202,
+          0.0018
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5002,
+      "fields": {
+        "question": 1000,
+        "feedback": "Your response lacks specific plans and may leave some voters skeptical about your commitment to addressing the rights and liberties of freed slaves.",
+        "description": "I am fully dedicated to ensuring the rights and liberties of freed slaves in the post-war era. We must enact comprehensive legislation that guarantees their civil rights, including equal protection under the law and access to education and employment. Additionally, I will advocate for policies that address systemic racism and work towards the eradication of discriminatory practices. It is through these concerted efforts that we can create a society that provides equal opportunities and ensures justice for all.",
+        "global_effect": [
+          202,
+          203,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5003,
+      "fields": {
+        "question": 1001,
+        "feedback": "Your radical approach to Reconstruction and punishment of former Confederates is controversial. Many argue for a more lenient approach to reunification and forgiveness. Consider addressing the concerns of those advocating for a more moderate course.",
+        "description": "While I understand the desire for reconciliation and forgiveness, it is essential to remember that justice must be served. We cannot turn a blind eye to the war crimes committed during the conflict. By holding former Confederates accountable, we send a clear message that our nation values equality and justice for all. A lenient approach would only perpetuate the injustices of the past and undermine the progress we seek to achieve.",
+        "global_effect": [
+          202,
+          201,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5004,
+      "fields": {
+        "question": 1001,
+        "feedback": "Your response addresses the concerns raised by those advocating for a more lenient approach to reunification and forgiveness. However, it lacks the conviction and clarity needed to rally strong support for your radical stance on Reconstruction.",
+        "description": "I understand that some may argue for a more lenient approach to reunification and forgiveness. However, it is crucial to recognize the profound impact of war crimes and the systemic injustices faced by African Americans. We must confront the past to build a better future. By holding former Confederates accountable, we send a powerful message that the United States stands firmly against oppression and discrimination. This approach is necessary for true reconciliation and the establishment of a just society.",
+        "global_effect": [
+          203,
+          202,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5005,
+      "fields": {
+        "question": 1001,
+        "feedback": "Your response effectively defends your radical stance on aggressive Reconstruction and punishment of former Confederates. It may resonate with those who support your uncompromising approach to justice and equality.",
+        "description": "I understand that some advocate for a more lenient approach to reunification and forgiveness, but we must not forget the atrocities committed during the Civil War. It is our moral obligation to hold those responsible for war crimes accountable and ensure justice for the victims. By pursuing aggressive Reconstruction, we can create a society that upholds the principles of equality and safeguards the rights of all citizens. Reconciliation without justice would be an empty gesture that perpetuates the cycle of oppression.",
+        "global_effect": [
+          204,
+          203,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5006,
+      "fields": {
+        "question": 1002,
+        "feedback": "Navigating party divides can be challenging, but it's crucial to find common ground and unite Republicans behind our candidacy.",
+        "description": "As the National Equality Party, we recognize the importance of addressing the concerns and values of all Republicans. While there may be differing opinions within the party, our focus remains on the core principles of equality and justice. We aim to foster open dialogue, seeking input from all Republicans and finding areas of agreement to advance our shared goals. By emphasizing our commitment to civil rights and inclusive policies, we can build a stronger and more united Republican coalition.",
+        "global_effect": [
+          201,
+          201,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5007,
+      "fields": {
+        "question": 1002,
+        "feedback": "This answer demonstrates a clear understanding of the challenges and the need for strategic coalition-building.",
+        "description": "The formation of the National Equality Party highlights the diversity of perspectives within the Republican Party. While this divide may initially appear challenging, it presents an opportunity for constructive dialogue and the exploration of new ideas. We will actively engage with Republicans from all factions, listening to their concerns and sharing our vision of a more equitable society. By finding common ground and focusing on our shared principles of justice and fairness, we can bridge the divide and unite Republicans behind our candidacy.",
+        "global_effect": [
+          201,
+          201,
+          0.0025
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5008,
+      "fields": {
+        "question": 1002,
+        "feedback": "This response acknowledges the challenges and provides a moderate approach to navigating the party divide.",
+        "description": "Inclusivity and unity are vital for the success of any political party. As the National Equality Party, we recognize the diverse perspectives within the Republican Party and aim to bridge the gap through constructive dialogue. We will prioritize open discussions, inviting Republicans from all factions to contribute their ideas and concerns. By focusing on common values such as freedom, opportunity, and justice, we can find areas of agreement and work together towards a stronger and more unified Republican Party.",
+        "global_effect": [
+          201,
+          201,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5009,
+      "fields": {
+        "question": 1003,
+        "feedback": "Selecting Charles Sumner as my running mate aligns perfectly with my vision for America. Sumner is a renowned advocate for civil rights and equality, and his unwavering commitment to these principles resonates deeply with our campaign's core values. Together, we will work tirelessly to advance racial equality, secure the rights of all Americans, and ensure a just and inclusive society for future generations.",
+        "description": "Charles Sumner's selection as my running mate is a testament to our shared dedication to advancing civil rights and equality. With his extensive experience and unwavering commitment, we will champion the cause of racial justice, secure the rights of all citizens, and create a more inclusive and equitable America.",
+        "global_effect": [
+          200,
+          200,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5010,
+      "fields": {
+        "question": 1003,
+        "feedback": "While some may question my choice of Charles Sumner as my running mate, it reflects our campaign's commitment to pushing for bold and progressive change. Sumner's extensive knowledge and advocacy for civil rights make him a valuable asset in our pursuit of a more equal and just America. Together, we will challenge the status quo, fight for the rights of marginalized communities, and forge a path towards a brighter future.",
+        "description": "The selection of Charles Sumner as my running mate underscores our campaign's determination to advance a progressive agenda that prioritizes civil rights and equality. Sumner's expertise and unwavering dedication will be instrumental in our efforts to challenge systemic injustices, promote equal opportunities, and build a society that truly represents the values of freedom and justice for all.",
+        "global_effect": [
+          200,
+          200,
+          0.0012
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5011,
+      "fields": {
+        "question": 1003,
+        "feedback": "While Charles Sumner brings a strong commitment to civil rights, I recognize the importance of representing diverse perspectives. Our campaign values a balanced approach, aiming to bridge divides and find common ground. By including Charles Sumner as my running mate, we aim to bring together different voices and work towards practical solutions that uphold our fundamental principles while fostering unity among all Americans.",
+        "description": "The selection of Charles Sumner as my running mate demonstrates our campaign's recognition of the importance of civil rights, but we also strive to create a broad coalition that encompasses a range of perspectives. Together, we will work towards a balanced approach that promotes unity and advances the cause of civil rights in a way that is inclusive and respectful of differing viewpoints.",
+        "global_effect": [
+          198,
+          198,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5012,
+      "fields": {
+        "question": 1004,
+        "feedback": "While it is important to acknowledge the concerns and fears of those who oppose our agenda, we must remain steadfast in our commitment to civil rights. Our plan is to engage in open and honest dialogue, listening to their perspectives, and addressing their concerns with factual information and empathy. We firmly believe that a society built on equality and justice benefits everyone, and we will work tirelessly to communicate that message.",
+        "description": "We understand that there may be opposition to our agenda, but we are committed to engaging in respectful and informative conversations. By listening to the concerns and fears of those who oppose us, we can provide factual information and empathize with their perspectives. We firmly believe that an inclusive society benefits everyone, and we will strive to communicate that message effectively.",
+        "global_effect": [
+          201,
+          201,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5013,
+      "fields": {
+        "question": 1004,
+        "feedback": "While addressing concerns and fears is important, it is crucial to stay true to our principles and the pursuit of equal rights. We will emphasize the positive impact of civil rights on society as a whole and highlight the historical progress made through similar movements. Our aim is to foster understanding, bridge divides, and demonstrate that an equitable society benefits everyone.",
+        "description": "While we acknowledge the concerns and fears of those who may oppose our agenda, we cannot compromise on the pursuit of equal rights. We will highlight the undeniable positive impact of civil rights on society, drawing on historical examples of progress. By fostering understanding and showcasing the benefits of an equitable society, we aim to bridge divides and build a brighter future for all.",
+        "global_effect": [
+          202,
+          201,
+          0.0013
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5014,
+      "fields": {
+        "question": 1004,
+        "feedback": "It is crucial to address the concerns and fears of those who may oppose our agenda by presenting a more moderate course. We will emphasize the importance of finding common ground, respecting different perspectives, and engaging in constructive dialogue. By focusing on shared values and the mutual benefits of equality, we can work towards creating a society that is fair and inclusive for all.",
+        "description": "We recognize the concerns and fears of those who may oppose our agenda, and our approach is to promote a more moderate course. We will prioritize finding common ground, respecting diverse perspectives, and fostering constructive dialogue. By emphasizing shared values and the wide-ranging benefits of equality, we can build a society that is fair and inclusive for all.",
+        "global_effect": [
+          200,
+          201,
+          0.0012
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5015,
+      "fields": {
+        "question": 1005,
+        "feedback": "Your answer showcases a strong differentiation from the Democratic candidate and appeals to voters who prioritize unity. By emphasizing the need for comprehensive Reconstruction and equality, you present a clear contrast to Breckinridge's approach.",
+        "description": "I respect the Democratic Party's pursuit of unity, but we must not compromise on the principles of justice and equality. While they advocate for reconciliation, I prioritize comprehensive Reconstruction efforts that ensure the rights and opportunities for all Americans, especially the previously enslaved. Unity can only be achieved when every citizen is treated fairly and equitably.",
+        "global_effect": [
+          201,
+          202,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5016,
+      "fields": {
+        "question": 1005,
+        "feedback": "Your response fails to differentiate yourself from the Democratic candidate and may not resonate with voters who prioritize unity. Consider emphasizing your commitment to unity while highlighting the importance of justice and equality in achieving a truly united nation.",
+        "description": "Unity is indeed crucial, and I appreciate the Democratic Party's efforts in that regard. However, we must remember that true unity cannot be achieved without addressing the injustices and inequalities that persist. I am committed to forging a united nation by pursuing comprehensive Reconstruction that ensures equal rights, opportunities, and justice for all.",
+        "global_effect": [
+          -201,
+          -201,
+          -0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5017,
+      "fields": {
+        "question": 1006,
+        "feedback": "Your answer showcases a moderate approach, appealing to voters who seek a balance between unity and justice. By highlighting the importance of healing the nation while addressing the needs of marginalized communities, you present yourself as a candidate who can navigate these complex issues.",
+        "description": "I understand the desire for national unity and reconciliation. It is crucial to heal the wounds of war and foster a sense of togetherness. However, we cannot ignore the pressing issues of justice and equality. I believe in pursuing a balanced approach that promotes unity while ensuring that the rights and needs of marginalized communities, particularly freed slaves, are not overlooked.",
+        "global_effect": [
+          101,
+          101,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5018,
+      "fields": {
+        "question": 1006,
+        "feedback": "While your commitment to land and voting rights for freed slaves is admirable, it is essential to acknowledge the challenges and opposition you may encounter. Consider emphasizing the economic benefits of granting land to freed slaves, highlighting how it can contribute to the overall prosperity of the nation. Additionally, address concerns by engaging in dialogue with opponents, seeking common ground, and showcasing the potential for a more inclusive and equitable society.",
+        "description": "We understand that achieving land and voting rights for freed slaves is not without challenges. By highlighting the economic advantages and emphasizing how it can benefit the nation as a whole, we can rally support. Furthermore, open dialogue and finding common ground with opponents will allow us to demonstrate the positive impact of an inclusive and equitable society.",
+        "global_effect": [
+          202,
+          202,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5019,
+      "fields": {
+        "question": 1006,
+        "feedback": "Your radical racial policies face significant opposition and may hinder the progress of your campaign. To overcome these challenges, consider adopting a more moderate approach. Focus on gradual steps towards equality, highlighting the importance of education, economic opportunities, and fostering understanding between different communities. By presenting a pragmatic vision, you can build broader support and navigate the obstacles you may encounter.",
+        "description": "Recognizing the opposition and challenges, we can adopt a more moderate approach. Emphasize the significance of education, economic opportunities, and fostering understanding among different communities. By presenting a pragmatic vision for progress, we can build broader support and navigate the obstacles we may face.",
+        "global_effect": [
+          201,
+          201,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5020,
+      "fields": {
+        "question": 1006,
+        "feedback": "Your commitment to land and voting rights for freed slaves is commendable, but it is essential to address the concerns and opposition you will encounter. Engage in constructive dialogue, emphasizing the potential for a more inclusive and just society. Highlight the historical significance of expanding civil rights and appeal to the moral values of equality and fairness. By building a coalition of supporters and fostering understanding, you can overcome the challenges ahead.",
+        "description": "To address the challenges and opposition, engage in constructive dialogue, emphasizing the historical significance of expanding civil rights and appealing to the moral values of equality and fairness. By building a coalition of supporters and fostering understanding, we can overcome the challenges ahead.",
+        "global_effect": [
+          203,
+          203,
+          0.0012
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5021,
+      "fields": {
+        "question": 1007,
+        "feedback": "Your response shows a clear understanding of the challenges we face in promoting healing and reconciliation. By emphasizing the need for understanding and empathy, you are aligning with the sentiments of many Americans who yearn for unity.",
+        "description": "We must approach the task of healing and reconciliation with empathy and understanding. I will establish forums and platforms for open dialogue, where individuals from all walks of life can share their experiences and perspectives. By fostering a culture of empathy and actively addressing the grievances of all Americans, we can begin to heal the wounds of the Civil War.",
+        "global_effect": [
+          201,
+          201,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5022,
+      "fields": {
+        "question": 1007,
+        "feedback": "Your response misses the mark in addressing the concerns of a divided nation. It is important to acknowledge the deep scars of the Civil War and the need for comprehensive efforts to foster healing and reconciliation.",
+        "description": "Healing and reconciliation require us to acknowledge the pain and suffering caused by the Civil War. I will propose initiatives that provide economic opportunities and assistance to war-torn communities, invest in education programs that promote empathy and understanding, and work towards creating a more inclusive society where all individuals have equal rights and opportunities.",
+        "global_effect": [
+          -101,
+          -101,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5023,
+      "fields": {
+        "question": 1007,
+        "feedback": "Your response demonstrates a balanced and thoughtful approach to promoting healing and reconciliation. By acknowledging the grievances of both sides and advocating for inclusive policies, you are positioning yourself as a unifying force in a divided nation.",
+        "description": "To promote healing and reconciliation, it is crucial to address the grievances of both the Union and Confederate states. I will work towards implementing policies that ensure equal rights and opportunities for all Americans, while also fostering dialogue and understanding among communities with divergent perspectives. By focusing on unity and inclusivity, we can move forward as a stronger and more harmonious nation.",
+        "global_effect": [
+          101,
+          101,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5024,
+      "fields": {
+        "question": 1008,
+        "feedback": "Your response lacks a clear plan for rebuilding the economy and infrastructure. It is important to provide specific policies and initiatives to address the challenges of the Reconstruction era.",
+        "description": "I propose implementing comprehensive public works programs to rebuild our nation's infrastructure, creating jobs and stimulating economic growth. Additionally, we must invest in the development of industries and promote trade to revitalize the economy. These initiatives will lay a strong foundation for a prosperous and united nation."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5025,
+      "fields": {
+        "question": 1008,
+        "feedback": "While your answer acknowledges the challenges of the Reconstruction era, it lacks a concrete plan to address them. It is essential to provide specific policies and initiatives that will contribute to the rebuilding of the economy and infrastructure.",
+        "description": "To rebuild our nation's economy and infrastructure, we need to establish government-funded vocational training programs to provide skill development and employment opportunities. Additionally, we must prioritize investments in transportation networks, such as railroads and canals, to connect regions and facilitate trade. These targeted efforts will lay the groundwork for a prosperous and united nation."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5026,
+      "fields": {
+        "question": 1008,
+        "feedback": "Your response demonstrates a clear understanding of the challenges faced during the Reconstruction era and presents well-thought-out policies. By providing specific initiatives, you offer a comprehensive plan to rebuild the economy and infrastructure of our nation.",
+        "description": "I propose implementing a comprehensive program of land redistribution, providing opportunities for freed slaves to become landowners and participate in the agricultural economy. Furthermore, we must invest in the construction of schools and educational institutions to ensure the intellectual development of our citizens. These measures will lay the foundation for a just and prosperous society."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5027,
+      "fields": {
+        "question": 1008,
+        "feedback": "Your response lacks a clear plan for rebuilding the economy and infrastructure. It is crucial to provide specific policies and initiatives that address the unique challenges of the Reconstruction era.",
+        "description": "To rebuild our nation's economy and infrastructure, I propose implementing targeted tax incentives and subsidies to attract private investment in key sectors. Additionally, we must prioritize the modernization of transportation and communication networks, such as expanding railroads and telegraph lines. These measures will stimulate economic growth and facilitate the reunification of our nation."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5028,
+      "fields": {
+        "question": 1009,
+        "feedback": "Your response fails to address the concerns about potential backlash and resistance to your strict punishment stance. It is crucial to acknowledge the challenges and provide a clear plan for a smooth transition to a more just society.",
+        "description": "We understand the concerns raised by potential backlash and resistance to our stance on strict punishment for war crimes. Our approach will prioritize a fair and transparent judicial process to ensure accountability. Additionally, we will work towards comprehensive education and reconciliation programs that foster understanding and unity among all Americans.",
+        "global_effect": [
+          101,
+          101,
+          -0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5029,
+      "fields": {
+        "question": 1009,
+        "feedback": "Your response lacks a clear strategy for addressing the challenges and promoting a smooth transition. It is important to provide specific measures that address the concerns raised.",
+        "description": "We are aware of the potential backlash and resistance to our proposal for strict punishment of war crimes. To ensure a smooth transition, we will establish a comprehensive reintegration program that offers opportunities for rehabilitation and reconciliation. By focusing on restorative justice and providing support for the rebuilding of communities, we aim to create a more just and united society.",
+        "global_effect": [
+          201,
+          201,
+          -0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5030,
+      "fields": {
+        "question": 1009,
+        "feedback": "Your response lacks a clear plan for addressing the challenges and fails to offer reassurance to those concerned about potential backlash and resistance. It is essential to provide a balanced approach that promotes justice while ensuring a peaceful transition.",
+        "description": "We recognize the challenges involved in addressing war crimes committed during the Confederacy. Our approach will prioritize a comprehensive truth and reconciliation process, engaging both the victims and the perpetrators in open dialogue. By fostering understanding and emphasizing the importance of healing, we aim to navigate a smooth transition towards a more just and inclusive society.",
+        "global_effect": [
+          101,
+          101,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5031,
+      "fields": {
+        "question": 1009,
+        "feedback": "Your response offers a moderate and thoughtful approach to address concerns about backlash and resistance. It provides a clear plan for a smooth transition to a more just society while taking into account the complexities of the situation.",
+        "description": "We understand the concerns surrounding the strict punishment of former Confederates involved in war crimes. Our approach will prioritize a comprehensive reintegration program that focuses on restorative justice, rehabilitation, and education. By promoting understanding and reconciliation, we aim to create a fair and united society that upholds justice for all.",
+        "global_effect": [
+          201,
+          201,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5032,
+      "fields": {
+        "question": 1010,
+        "feedback": "Your response lacks a clear strategy to challenge the Democratic Party's dominance in the Southern states. It's important to provide specific actions and policies that address the concerns and interests of voters in these regions.",
+        "description": "To challenge the Democratic Party's dominance in the Southern states, we will engage directly with the voters, listening to their concerns and offering practical solutions that address their needs. By focusing on issues such as economic development, infrastructure improvement, and promoting inclusive policies, we can build trust and win over voters who may have traditionally supported the Democratic Party.",
+        "global_effect": [
+          200,
+          200,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5033,
+      "fields": {
+        "question": 1010,
+        "feedback": "Your response lacks a persuasive approach to winning over voters in the Southern states. It's crucial to acknowledge the historical context and offer a compelling vision that resonates with the values and aspirations of the people in these regions.",
+        "description": "In order to challenge the Democratic Party's dominance in the Southern states, we will prioritize a message of unity and progress. By highlighting our commitment to racial equality and economic opportunities for all, we can overcome divisions and build a stronger and more inclusive future. We will work closely with local communities, understanding their unique challenges and collaborating on solutions that benefit everyone.",
+        "global_effect": [
+          201,
+          201,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5034,
+      "fields": {
+        "question": 1010,
+        "feedback": "Your response shows a clear understanding of the historical context and the challenges of winning over voters in the Southern states. By adopting a more moderate approach, you recognize the need to balance progressive policies with the interests and sentiments of these regions.",
+        "description": "To challenge the Democratic Party's dominance in the Southern states, we will focus on promoting policies that prioritize economic growth, job creation, and infrastructure development. We understand the importance of respecting local traditions and values while working towards a more inclusive and equitable society. By listening to the concerns of Southern voters and delivering tangible results, we can build trust and win their support.",
+        "global_effect": [
+          202,
+          202,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5035,
+      "fields": {
+        "question": 1011,
+        "feedback": "Your response lacks a comprehensive plan for addressing economic recovery and healing war-torn communities. Voters may question your ability to handle these critical issues.",
+        "description": "Ensuring racial equality and civil rights is essential, but we must also prioritize economic recovery and the healing of war-torn communities. My administration will implement comprehensive policies to stimulate economic growth, invest in infrastructure projects, and provide support to affected communities through targeted programs and resources.",
+        "global_effect": [
+          201,
+          201,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5036,
+      "fields": {
+        "question": 1011,
+        "feedback": "Your answer demonstrates a well-rounded approach to address the pressing issues of the time. It highlights your commitment to both racial equality and the overall well-being of the nation.",
+        "description": "As president, I will not only champion racial equality and civil rights but also implement comprehensive plans for economic recovery and the healing of war-torn communities. This includes promoting job creation, supporting industries affected by the war, and investing in infrastructure projects that benefit all citizens. Together, we will build a prosperous and united nation.",
+        "global_effect": [
+          202,
+          202,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5037,
+      "fields": {
+        "question": 1011,
+        "feedback": "Your response lacks a clear plan to address economic recovery and war-torn communities, potentially alienating voters who prioritize these issues. Consider providing more concrete solutions in your future campaign speeches.",
+        "description": "While my focus is on achieving racial equality and civil rights, I understand the importance of economic recovery and healing war-torn communities. We will work diligently to foster economic growth by promoting fair trade policies, incentivizing investment in affected areas, and providing targeted assistance to communities struggling to rebuild after the war.",
+        "global_effect": [
+          203,
+          203,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5038,
+      "fields": {
+        "question": 1012,
+        "feedback": "Establishing the NEP as a viable and influential political force requires a strategic approach. We will focus on building a strong grassroots movement, engaging with local communities, and amplifying the voices of marginalized groups. By championing policies that promote racial equality and social justice, we aim to inspire and mobilize a broad base of supporters who share our vision for a more inclusive America.",
+        "description": "We plan to establish the NEP as a viable and influential political force by prioritizing grassroots organizing and community engagement. Our focus will be on amplifying the voices of marginalized communities and advocating for policies that promote racial equality and social justice. Through strategic alliances, targeted outreach, and a strong commitment to our principles, we will build a broad coalition of supporters who believe in our vision for a more inclusive America.",
+        "global_effect": [
+          201,
+          201,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5039,
+      "fields": {
+        "question": 1012,
+        "feedback": "Your response fails to address the importance of establishing the NEP as a viable and influential political force. It is crucial to outline specific strategies to gain visibility, engage with voters, and build a strong organizational structure. Focus on cultivating alliances with like-minded individuals and groups, leveraging media platforms, and developing a comprehensive policy platform that resonates with a diverse range of voters.",
+        "description": "To establish the NEP as a viable and influential political force, we will employ a multi-pronged approach. This includes actively engaging with voters through grassroots organizing, forging alliances with progressive organizations and leaders, and leveraging various media platforms to amplify our message. Additionally, we will develop a comprehensive policy platform that addresses the pressing issues of our time, offering tangible solutions that resonate with a diverse range of voters.",
+        "global_effect": [
+          -201,
+          -201,
+          -0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5040,
+      "fields": {
+        "question": 1012,
+        "feedback": "Your response demonstrates an understanding of the challenges the NEP faces as a relatively new party. By emphasizing a moderate approach and seeking common ground, you acknowledge the need to build coalitions and attract a broader base of support. However, remember the importance of maintaining the party's core values and principles to ensure a distinct identity and appeal to those seeking genuine change.",
+        "description": "To establish the NEP as a viable and influential political force, we must strike a balance between bold progressivism and pragmatic coalition-building. By seeking common ground and working with like-minded individuals and groups, we can expand our reach and attract a broader base of support. However, we must remain steadfast in our commitment to racial equality and social justice, ensuring that the NEP maintains its distinct identity and appeals to those seeking genuine change.",
+        "global_effect": [
+          101,
+          101,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5041,
+      "fields": {
+        "question": 1013,
+        "feedback": "Your answer reflects a strong commitment to protecting the rights and safety of African Americans during this challenging period of Reconstruction. It emphasizes the need for robust measures to ensure their well-being and security.",
+        "description": "I am fully aware of the violence and resistance that African Americans and their allies face during this turbulent era. To ensure their safety and protection, I will advocate for the enforcement of strict laws against acts of violence and discrimination. Additionally, I will push for the establishment of federal agencies dedicated to safeguarding their rights and empowering local communities to address any threats they may encounter. By taking decisive action, we can create an environment where all Americans can live without fear or intimidation.",
+        "global_effect": [
+          200,
+          200,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5042,
+      "fields": {
+        "question": 1013,
+        "feedback": "Your response highlights the importance of fostering a safe and inclusive environment for African Americans and their allies. It acknowledges the challenges they face and proposes comprehensive measures to address their safety concerns.",
+        "description": "I am deeply committed to ensuring the safety and protection of African Americans and their allies during this turbulent period of Reconstruction. To achieve this, I will advocate for the deployment of federal troops to areas experiencing high levels of violence and unrest, providing a strong deterrent against threats and attacks. Furthermore, I will work to strengthen the enforcement of civil rights legislation, ensuring that those who perpetrate acts of violence and discrimination are held accountable. By taking these proactive measures, we can safeguard the rights and lives of all Americans.",
+        "global_effect": [
+          200,
+          200,
+          0.0018
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5043,
+      "fields": {
+        "question": 1013,
+        "feedback": "Your answer showcases a measured and pragmatic approach to protecting African Americans and their allies during this turbulent period. It acknowledges the challenges they face while advocating for a balanced and effective strategy.",
+        "description": "Ensuring the safety and protection of African Americans and their allies is of paramount importance during this challenging era of Reconstruction. I will focus on strengthening local law enforcement agencies and supporting community-led initiatives aimed at promoting harmony and dialogue. By fostering understanding and cooperation among diverse groups, we can reduce tensions and create a safer environment for all Americans.",
+        "global_effect": [
+          100,
+          100,
+          0.0008
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5044,
+      "fields": {
+        "question": 1014,
+        "feedback": "Your strong alliance with Charles Sumner demonstrates your unwavering commitment to civil rights. By leveraging this alliance, we can rally support from within the Republican Party and beyond, highlighting our shared goal of achieving racial equality and justice. Together, we can inspire a new generation of activists and mobilize a broad coalition dedicated to advancing civil rights for all Americans.",
+        "description": "Our alliance with Charles Sumner is a powerful statement in support of civil rights. Together, we will work tirelessly to ensure equal rights and opportunities for all Americans. By mobilizing support from within the Republican Party and reaching out to like-minded individuals and organizations outside the party, we can create a united front dedicated to achieving lasting change.",
+        "global_effect": [
+          200,
+          200,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5045,
+      "fields": {
+        "question": 1014,
+        "feedback": "While your alliance with Charles Sumner highlights your commitment to civil rights, it's important to recognize the diverse perspectives within the Republican Party. By engaging with moderate Republicans and finding common ground on issues such as economic growth and national unity, we can build a broader coalition that encompasses a range of viewpoints while still advancing the cause of civil rights.",
+        "description": "Our alliance with Charles Sumner underscores our dedication to civil rights, but it's crucial to acknowledge the diverse opinions within the Republican Party. By engaging with moderate Republicans and focusing on shared goals such as fostering economic prosperity and promoting national unity, we can mobilize support from within the party and beyond to advance the cause of civil rights.",
+        "global_effect": [
+          100,
+          100,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5046,
+      "fields": {
+        "question": 1014,
+        "feedback": "Your strong alliance with Charles Sumner is commendable, but it's important to recognize the challenges of advancing radical racial policies in this political climate. To mobilize support, we must emphasize the principles of justice, equality, and unity that resonate with a broad spectrum of Americans. By engaging in constructive dialogue, building coalitions, and highlighting the tangible benefits of our policies, we can foster understanding and garner support from both within and outside the Republican Party.",
+        "description": "Our alliance with Charles Sumner represents a commitment to civil rights, but we must navigate the complexities of this political landscape. To mobilize support, we will focus on promoting justice, equality, and unity as shared values. By engaging in meaningful conversations, forging alliances, and showcasing the positive impact of our policies, we can build a broad coalition of supporters who recognize the importance of advancing civil rights.",
+        "global_effect": [
+          150,
+          150,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5047,
+      "fields": {
+        "question": 1015,
+        "feedback": "Your response lacks a clear plan and fails to address the concerns of potential resistance and backlash from Southern states and former Confederates. It is crucial to provide a strategic approach to ensure a successful aggressive Reconstruction.",
+        "description": "We will establish a comprehensive framework for Reconstruction that includes federal oversight and enforcement of civil rights laws, ensuring accountability for war crimes and acts of injustice. Through robust support for African American communities, economic development initiatives, and active engagement with Southern leaders, we will work towards reconciliation and the full realization of equality.",
+        "global_effect": [
+          201,
+          201,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5048,
+      "fields": {
+        "question": 1015,
+        "feedback": "While acknowledging the importance of addressing concerns about resistance and backlash, your response lacks a clear plan and does not provide concrete solutions. It is crucial to outline specific measures to ensure a successful implementation of aggressive Reconstruction.",
+        "description": "We will establish a truth and reconciliation commission to promote healing and understanding, fostering a dialogue between different factions. Additionally, we will engage in targeted economic investments and educational initiatives to uplift Southern communities, creating opportunities for cooperation and progress.",
+        "global_effect": [
+          200,
+          200,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5049,
+      "fields": {
+        "question": 1015,
+        "feedback": "Your response demonstrates a thoughtful approach to address concerns about potential resistance and backlash. It highlights the importance of balancing assertiveness with cooperation, which can resonate with a wider audience and promote a more moderate course.",
+        "description": "We understand the complexities and challenges surrounding Reconstruction. By fostering open dialogue and collaboration with Southern leaders, we aim to find common ground and build consensus on issues of civil rights, economic development, and social progress. Our approach ensures a sustainable and inclusive Reconstruction process that benefits all Americans.",
+        "global_effect": [
+          202,
+          202,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5050,
+      "fields": {
+        "question": 1016,
+        "feedback": "Reassure voters that your vision of a more just society will not further deepen the divides and conflicts by emphasizing the importance of healing and unity. Acknowledge the wounds of the Civil War and highlight the progress made by previous administrations in bringing the nation together.",
+        "description": "We recognize the deep scars left by the Civil War, and our vision for a more just society is rooted in healing and unity. We will build upon the progress made by previous administrations, working towards a nation that embraces equality and fairness for all its citizens.",
+        "global_effect": [
+          201,
+          201,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5051,
+      "fields": {
+        "question": 1016,
+        "feedback": "This answer fails to address the concerns of voters who long for stability and peace. Provide a more concrete plan on how your vision of a more just society will promote unity and understanding among all Americans.",
+        "description": "While the wounds of the Civil War run deep, our vision of a more just society is rooted in fostering unity and understanding. We will work towards bridging the divides and conflicts by implementing policies that promote equal opportunities, protect civil rights, and ensure justice for all.",
+        "global_effect": [
+          -101,
+          -101,
+          -0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5052,
+      "fields": {
+        "question": 1016,
+        "feedback": "This answer effectively addresses the concerns of voters by emphasizing the importance of inclusivity and collaboration. It highlights the need to bring all Americans together to heal the wounds of the Civil War and build a more harmonious society.",
+        "description": "We understand that many Americans long for stability and peace after the Civil War. Our vision of a more just society rests on the principles of inclusivity and collaboration. By bringing all Americans together, we can heal the wounds of the past and forge a future of unity and shared prosperity.",
+        "global_effect": [
+          201,
+          201,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5053,
+      "fields": {
+        "question": 1017,
+        "feedback": "Your commitment to ensuring a fair and equitable approach to Reconstruction is commendable. However, it is crucial to approach the complex issues of resource redistribution and power with caution. We must establish a comprehensive system of land reform that considers the needs of all citizens, while also implementing safeguards to prevent exploitation and maintain stability. Additionally, we will advocate for inclusive voting rights legislation that guarantees equal representation for all, regardless of race or background.",
+        "description": "Our approach to navigating the complex issues of resource redistribution and power during Reconstruction will be based on fairness, inclusivity, and stability. We will establish a comprehensive system of land reform that addresses the needs of all citizens, while implementing safeguards against exploitation. Furthermore, we will champion voting rights legislation that ensures equal representation for all Americans.",
+        "global_effect": [
+          205,
+          205,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5054,
+      "fields": {
+        "question": 1017,
+        "feedback": "Your proposed approach to navigating the complex issues of resource redistribution and power during Reconstruction is unrealistic and could lead to further divisions. It is essential to consider the broader societal and economic implications of drastic measures. Instead, we should focus on promoting education, economic opportunities, and equal access to justice for all Americans, fostering a more sustainable path towards fairness and equity.",
+        "description": "While the goal of ensuring a fair and equitable approach to Reconstruction is admirable, we must be cautious in our strategies. Instead of pursuing drastic resource redistribution, we should prioritize education, economic opportunities, and equal access to justice as the foundation for a more sustainable and inclusive society.",
+        "global_effect": [
+          -200,
+          -200,
+          -0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5055,
+      "fields": {
+        "question": 1017,
+        "feedback": "Your proposed approach strikes a balance between fairness and stability. By implementing a system that considers the needs of all citizens and protects against exploitation, we can foster a more inclusive and just society. It is essential to ensure that the voices and rights of all Americans are respected and protected throughout the Reconstruction process.",
+        "description": "To navigate the complex issues of resource redistribution and power, we will adopt an approach that aims to strike a balance between fairness and stability. Our policies will consider the needs of all citizens, prevent exploitation, and protect the rights of every American. Through this inclusive approach, we can build a more just and equitable society.",
+        "global_effect": [
+          202,
+          202,
+          0.0012
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5056,
+      "fields": {
+        "question": 1000,
+        "feedback": "Your response fails to differentiate yourself effectively from Breckinridge's message of unity and reconciliation. To appeal to voters who prioritize healing and national unity, you need to emphasize your commitment to justice and equality for all Americans.",
+        "description": "I understand the importance of healing and national unity, but we must also address the deep-rooted issues of injustice and inequality that still plague our nation. By advocating for aggressive Reconstruction, we can ensure that the rights and freedoms of all Americans, especially freed slaves, are protected and secured.",
+        "global_effect": [
+          203,
+          204,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5057,
+      "fields": {
+        "question": 1018,
+        "feedback": "Your response lacks clarity and fails to resonate with voters who prioritize healing and national unity. It's crucial to offer a concise and compelling alternative vision that unifies the nation while addressing the challenges of Reconstruction.",
+        "description": "I firmly believe that healing and national unity can only be achieved by ensuring justice and equality for all Americans. Through a balanced approach to Reconstruction that upholds the rights of freed slaves while fostering reconciliation, we can build a stronger and more united nation.",
+        "global_effect": [
+          202,
+          204,
+          0.0012
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5058,
+      "fields": {
+        "question": 1018,
+        "feedback": "Your response effectively differentiates yourself from Breckinridge's message of unity and reconciliation while appealing to voters who prioritize healing and national unity. Emphasizing the need for justice and equal rights is crucial in gaining support.",
+        "description": "While unity and reconciliation are important, we cannot ignore the need for justice and equal rights. By advocating for a more aggressive approach to Reconstruction, we can ensure that all Americans, regardless of their race or background, have equal opportunities and protections.",
+        "global_effect": [
+          201,
+          203,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5059,
+      "fields": {
+        "question": 1018,
+        "feedback": "Your response effectively highlights the importance of healing and national unity while offering a more moderate approach to Reconstruction. This approach has the potential to resonate with a broader range of voters.",
+        "description": "To prioritize healing and national unity, we must pursue a balanced path forward. While we seek justice and equality for all Americans, we must also engage in dialogue and find common ground with those who hold differing views. Together, we can build a united and inclusive nation.",
+        "global_effect": [
+          202,
+          202,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5060,
+      "fields": {
+        "question": 1019,
+        "feedback": "Building a strong and cohesive party infrastructure requires unity and inclusivity. I will focus on fostering open dialogue and collaboration among party members, welcoming diverse perspectives and ideas. Additionally, I will prioritize grassroots organizing, mobilizing supporters at the local level to build a strong foundation for our party's future.",
+        "description": "To build a strong and cohesive party infrastructure, I will emphasize unity and inclusivity, encouraging open dialogue and collaboration among party members. Grassroots organizing will be a priority, mobilizing supporters at the local level to establish a solid foundation for our party's future endeavors.",
+        "global_effect": [
+          101,
+          101,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5061,
+      "fields": {
+        "question": 1019,
+        "feedback": "While it is important to be ambitious in our goals, it is also crucial to consider the political landscape and build alliances with like-minded individuals and groups. By forging coalitions and finding common ground, we can work together to achieve meaningful change and build a strong party infrastructure.",
+        "description": "To build a strong and cohesive party infrastructure, we must be ambitious in our goals while also building alliances with like-minded individuals and groups. By forging coalitions and finding common ground, we can work together to bring about meaningful change and establish a robust party infrastructure.",
+        "global_effect": [
+          101,
+          101,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5062,
+      "fields": {
+        "question": 1019,
+        "feedback": "Building a strong party infrastructure requires a careful balance between radical policies and broader public sentiment. While advocating for racial equality, it is crucial to engage in dialogue and education to address concerns and misconceptions. By promoting a moderate course, we can appeal to a wider range of voters and work towards a cohesive and inclusive future.",
+        "description": "To build a strong party infrastructure, we must balance radical policies with broader public sentiment. Engaging in dialogue and education will help address concerns and misconceptions surrounding our agenda for racial equality. By promoting a moderate course, we can appeal to a wider range of voters and build a cohesive and inclusive future.",
+        "global_effect": [
+          100,
+          100,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5063,
+      "fields": {
+        "question": 1020,
+        "feedback": "Your commitment to racial equality is commendable, but your proposed legislative measures may be viewed as too radical and divisive by many. It is crucial to consider a more moderate approach to ensure widespread support and effective implementation.",
+        "description": "I propose the passage of the Civil Rights Act, guaranteeing equal rights and protections for all citizens, regardless of race. Additionally, I will advocate for the enforcement of the Freedmen's Bureau to provide support and assistance to freed slaves. Finally, we must prioritize the enactment of voting rights legislation that enables African Americans to fully participate in the democratic process.",
+        "global_effect": [
+          205,
+          200,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5064,
+      "fields": {
+        "question": 1020,
+        "feedback": "Your proposed legislative measures demonstrate a strong commitment to racial equality and the empowerment of freed slaves. By pursuing a more aggressive approach, you risk facing significant resistance and backlash, which could hinder progress in the long run.",
+        "description": "To promote racial equality, I will push for the establishment of land reform programs that provide land and economic opportunities for freed slaves. Additionally, I advocate for the full integration of African Americans into public institutions, including schools and military service. Lastly, I will work towards implementing measures to combat discriminatory practices and ensure equal treatment under the law.",
+        "global_effect": [
+          210,
+          200,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5065,
+      "fields": {
+        "question": 1020,
+        "feedback": "Your proposed legislative measures strike a balance between promoting racial equality and avoiding potential backlash. By focusing on incremental changes and building broad support, you can make meaningful progress while minimizing resistance.",
+        "description": "I propose the expansion of educational opportunities for African Americans through the establishment of schools and scholarships. Additionally, I will advocate for the enforcement of laws that protect the civil rights of freed slaves and ensure their fair treatment in employment and housing. By fostering economic development in communities affected by slavery, we can promote long-term progress and equality.",
+        "global_effect": [
+          200,
+          200,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5066,
+      "fields": {
+        "question": 1021,
+        "feedback": "Your response acknowledges the importance of unity and highlights the progress made by previous administrations. However, it lacks a clear plan to address the opposition and protect and expand upon the rights of African Americans.",
+        "description": "We must stand united in our commitment to protecting the rights and freedoms gained by African Americans during the war. I plan to confront the opposition head-on by advocating for legislation that ensures equal access to education, employment, and voting rights. Additionally, I will work tirelessly to hold accountable those who seek to undermine the progress we have made.",
+        "global_effect": [
+          205,
+          205,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5067,
+      "fields": {
+        "question": 1021,
+        "feedback": "Your response lacks a strong plan to protect and expand upon the hard-fought gains of African Americans. It is crucial to provide specific strategies to address the opposition and advance the cause of racial equality.",
+        "description": "To safeguard the rights and freedoms won by African Americans, we must push for comprehensive civil rights legislation that ensures equal treatment under the law. This includes securing voting rights, promoting economic opportunities, and fighting against discriminatory practices. By actively engaging with communities and building coalitions, we can create a movement that advocates for lasting change.",
+        "global_effect": [
+          210,
+          210,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5068,
+      "fields": {
+        "question": 1021,
+        "feedback": "Your response presents a moderate approach to protect and expand upon the gains of African Americans, recognizing the challenges of implementing radical racial policies in this historical context.",
+        "description": "We must strike a balance by promoting incremental changes that lead to lasting progress. I will work towards strengthening existing legislation to enforce the rights of African Americans, fostering dialogue and understanding to bridge the racial divide, and supporting initiatives that promote education and economic empowerment for all. It is through these measured actions that we can ensure a more just and inclusive society.",
+        "global_effect": [
+          203,
+          203,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5069,
+      "fields": {
+        "question": 1022,
+        "feedback": "Your approach may risk perpetuating animosity and hindering progress towards reunification. It is crucial to remember that the healing and reconciliation process requires compromise and understanding. Consider adopting a more measured and inclusive approach that promotes dialogue and cooperation, allowing for the possibility of healing and unity.",
+        "description": "While I recognize the concerns raised about strict punishments for former Confederates, it is important to address the injustices committed during the war and ensure accountability. However, I also understand the need for healing and progress. My approach involves a balanced strategy that combines justice with opportunities for dialogue, forgiveness, and reconciliation. By fostering understanding and seeking common ground, we can overcome animosity and move towards a united and prosperous nation.",
+        "global_effect": [
+          203,
+          203,
+          0.001
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5070,
+      "fields": {
+        "question": 1022,
+        "feedback": "Your response reflects a firm commitment to justice and accountability, but it may risk exacerbating tensions and hindering the process of reunification. It is essential to consider the long-term goals of healing and unity. Exploring alternative approaches, such as restorative justice and reconciliation programs, can help bridge the divide and foster a more inclusive path towards progress.",
+        "description": "I understand the concerns regarding the potential perpetuation of animosity through strict punishments. However, it is imperative to hold individuals accountable for their actions and address the deep wounds caused by the war. To balance justice with the goal of reunification, we can explore restorative justice programs, reconciliation initiatives, and opportunities for meaningful dialogue between former adversaries. By engaging in these processes, we can build a foundation for lasting unity and progress.",
+        "global_effect": [
+          201,
+          201,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5071,
+      "fields": {
+        "question": 1022,
+        "feedback": "Your response demonstrates a measured and thoughtful approach to address concerns about hindering progress and perpetuating animosity. By emphasizing the importance of unity and healing, while also acknowledging the need for accountability, you present a more inclusive vision for the nation. Such an approach may garner broader support and facilitate a smoother path towards reconciliation and progress.",
+        "description": "I understand the concerns about hindering progress and fostering animosity. While strict punishments may be necessary for accountability, it is equally crucial to prioritize unity and healing. To achieve this, I propose a comprehensive approach that combines fair justice with initiatives focused on reconciliation, forgiveness, and understanding. By striking a balance between accountability and unity, we can overcome divisions and move towards a brighter future.",
+        "global_effect": [
+          202,
+          202,
+          0.0012
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5072,
+      "fields": {
+        "question": 1023,
+        "feedback": "While Charles Sumner is a strong advocate for racial equality and civil rights, it's important to balance the administration's policies to maintain broader support. In my administration, Sumner will play a crucial role in advising on civil rights matters and advocating for legislative reforms that promote equality. However, we must also engage with and persuade moderate voices to ensure the successful implementation of our agenda.",
+        "description": "Charles Sumner's role in my administration will be to advise on civil rights issues and advocate for legislative reforms that advance racial equality. Together, we will work to enact policies that address systemic injustices and promote equal rights for all Americans. It is crucial to maintain a balance between progressive goals and the need for broad support to achieve lasting change."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5073,
+      "fields": {
+        "question": 1023,
+        "feedback": "Your vision for Charles Sumner's role in promoting racial equality and civil rights is commendable, but it may face significant opposition. Radical racial policies were not widely accepted during this time, and pushing for extreme measures could hinder the progress we aim to achieve. It is essential to approach these issues with a strategic and pragmatic mindset, seeking incremental reforms that can build broader support and foster long-term change.",
+        "description": "Charles Sumner will play an important role in my administration's efforts to promote racial equality and civil rights. We will work together to identify practical and achievable reforms that address the root causes of inequality. By pursuing a pragmatic approach, we can build broader support and pave the way for sustainable progress in the pursuit of social justice."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5074,
+      "fields": {
+        "question": 1023,
+        "feedback": "Your commitment to promoting racial equality and civil rights is admirable, but it's crucial to consider the political landscape and the need for broader consensus. Charles Sumner will contribute to my administration by engaging in productive dialogue with lawmakers from both sides of the aisle, advocating for policies that bridge divisions and promote equality. We will prioritize forging alliances and seeking common ground to achieve meaningful progress.",
+        "description": "In my administration, Charles Sumner will play a vital role in fostering constructive discussions and collaborations to promote racial equality and civil rights. Together, we will work towards bipartisan support for policies that address systemic injustices and create a more inclusive society. By prioritizing dialogue and building consensus, we can make substantial strides in advancing equality for all."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5075,
+      "fields": {
+        "question": 1023,
+        "feedback": "While Charles Sumner's dedication to racial equality and civil rights is admirable, it's important to approach these issues with a balanced perspective. In my administration, Sumner will serve as an advisor on civil rights matters and work alongside other experienced individuals to develop comprehensive solutions. By considering diverse perspectives and engaging in thoughtful policymaking, we can achieve meaningful progress towards a more just society.",
+        "description": "Charles Sumner will contribute his expertise and commitment to civil rights as part of my administration's efforts to promote racial equality. Together, we will collaborate with a team of experienced individuals to develop well-rounded policies that address the complex challenges faced by marginalized communities. By adopting a thoughtful and inclusive approach, we can foster genuine progress and advance civil rights for all."
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5076,
+      "fields": {
+        "question": 1024,
+        "feedback": "Engaging with the historical context is crucial, but we must also appeal to a broader audience. Highlight Thaddeus Stevens' commitment to equal rights for all Americans and his tireless efforts to dismantle racial inequalities. Emphasize his role in shaping the Reconstruction era and the lasting impact it had on civil rights progress.",
+        "description": "Thaddeus Stevens and Charles Sumner represent a pivotal moment in American history. We will leverage this narrative by showcasing Stevens' unwavering dedication to civil rights and racial equality. Together, we will rally voters around the vision of a more inclusive and just society, building upon the foundations laid during the Reconstruction era.",
+        "global_effect": [
+          202,
+          202,
+          0.002
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5077,
+      "fields": {
+        "question": 1024,
+        "feedback": "While racial equality is essential, it's important to recognize the political climate of the time. Present a more moderate stance that appeals to a wider range of voters. Acknowledge the progress made in civil rights thus far and outline a pragmatic approach to further advancements in racial equality.",
+        "description": "In this unique historical context, we understand the passion for civil rights and racial equality. We will engage and inspire voters by recognizing the progress achieved and proposing pragmatic solutions to address ongoing challenges. By striking a balance between idealism and practicality, we can continue to advance the cause of equal rights for all.",
+        "global_effect": [
+          200,
+          200,
+          0.0015
+        ]
+      }
+    },
+    {
+      "model": "campaign_trail.answer",
+      "pk": 5078,
+      "fields": {
+        "question": 1024,
+        "feedback": "To engage and inspire voters passionate about civil rights and racial equality, we must draw on the historical significance of Thaddeus Stevens and Charles Sumner. Highlight their courageous efforts to challenge racial injustices and dismantle systemic barriers. Demonstrate how their vision and leadership can guide us towards a future of true equality and justice.",
+        "description": "Thaddeus Stevens and Charles Sumner epitomize the fight for civil rights and racial equality. By embracing their legacy, we will energize voters who believe in equal opportunities for all. Together, we will continue their work, ensuring that every American, regardless of race, has a fair chance at success.",
+        "global_effect": [
+          203,
+          203,
+          0.0025
+        ]
+      }
+    }
+  ]
+  
+  
+  e.state_issue_score_json.forEach((v, i) => {
+      let iss_sc = v.fields.state_issue_score
+      e.state_issue_score_json[i].fields.state_issue_score = iss_sc > 1 ? 1 : iss_sc < -1 ? -1 : iss_sc
+  })
+  
+  e.answer_feedback_json = []
+  e.answer_score_global_json = []
+  e.answer_score_issue_json= [] // hopefully this won't need to be touched
+  e.answer_score_state_json= []
+  for (let _i = 0; _i < e.answers_json.length; _i++) {
+	if (e.answers_json[_i].fields.feedback) {
+		let feedback_temp = {
+			"model": "campaign_trail.answer_feedback",
+			"pk": _i * 10,
+			"fields": {
+				"answer": e.answers_json[_i].pk,
+				"candidate": e.candidate_id,
+				"answer_feedback": e.answers_json[_i].fields.feedback
+			}
+		}
+
+		e.answer_feedback_json.push(feedback_temp)
+	}
+
+	// global
+	if (e.answers_json[_i].fields.global_effect) {
+		let glob_eff = e.answers_json[_i].fields.global_effect;
+		let glob_temp;
+		if (!Array.isArray(glob_eff[0])) {
+			glob_temp = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_global_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_global_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"answer": e.answers_json[_i].pk,
+					"candidate": glob_eff[1],
+					"affected_candidate": glob_eff[0],
+					"global_multiplier": glob_eff[2]
+				}
+			}
+			e.answer_score_global_json.push(glob_temp)
+			continue;
+		}
+		glob_eff.forEach((f) => {
+			let glob_temp_2 = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_global_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_global_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"answer": e.answers_json[_i].pk,
+					"candidate": f[1],
+					"affected_candidate": f[0],
+					"global_multiplier": f[2]
+				}
+			}
+			e.answer_score_global_json.push(glob_temp_2)
+		})
+	}
+
+	// issue
+	let answer = e.answers_json[_i];
+	if (answer.fields.issue) {
+		let issue = answer.fields.issue;
+		let issue_temp;
+		if (!Array.isArray(glob_eff[0])) {
+			issue_temp = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_issue_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_issue_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"model": "campaign_trail.answer_score_global",
+					"pk": e.answer_score_issue_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_issue_json.map(f => f.pk)) + 1 : 1,
+					"fields": {
+						"answer": e.answers_json[_i].pk,
+						"issue": issue[0],
+						"issue_score": issue[1],
+						"issue_importance": issue[2]
+					}
+				}
+			}
+			e.answer_score_issue_json.push(issue_temp)
+			continue;
+		}
+		glob_eff.forEach((f) => {
+			let issue_temp_2 = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_issue_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_issue_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"answer": e.answers_json[_i].pk,
+					"issue": f[0],
+					"issue_score": f[1],
+					"issue_importance": f[2]
+				}
+			}
+			e.answer_score_issue_json.push(issue_temp_2)
+		})
+
+	}
+
+	if (e.answers_json[_i].fields.global_effect) {
+		let glob_eff = e.answers_json[_i].fields.global_effect;
+		let glob_temp;
+		if (!Array.isArray(glob_eff[0])) {
+			glob_temp = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_global_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_global_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"answer": e.answers_json[_i].pk,
+					"candidate": glob_eff[1],
+					"affected_candidate": glob_eff[0],
+					"global_multiplier": glob_eff[2]
+				}
+			}
+			e.answer_score_global_json.push(glob_temp)
+			continue;
+		}
+		glob_eff.forEach((f) => {
+			let glob_temp_2 = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_global_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_global_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"answer": e.answers_json[_i].pk,
+					"candidate": f[1],
+					"affected_candidate": f[0],
+					"global_multiplier": f[2]
+				}
+			}
+			e.answer_score_global_json.push(glob_temp_2)
+		})
+	}
+
+	// state
+	if (e.answers_json[_i].fields.state_effect) {
+		let state_eff = e.answers_json[_i].fields.state_effect;
+		let state_temp;
+		if (!Array.isArray(state_eff[0])) {
+			state = e.states_json[e.states_json.map(f => f.fields.name).indexOf(state_eff[0])].pk;
+			let f = state_eff;
+			state_temp = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_state_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_state_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"answer": e.answers_json[_i].pk,
+					"state": state,
+					"candidate": f[2] ? f[2] : e.candidate_id,
+					"affected_candidate": f[3] ? f[3] : e.candidate_id,
+					"state_multiplier": f[1]
+				}
+			}
+			e.answer_score_state_json.push(state_temp)
+			continue;
+		}
+		state_eff.forEach((f) => {
+			state = e.states_json[e.states_json.map(f => f.fields.name).indexOf(f[0])].pk;
+			let state_temp_2 = {
+				"model": "campaign_trail.answer_score_global",
+				"pk": e.answer_score_state_json.map(f => f.pk).length > 0 ? Math.max(...e.answer_score_state_json.map(f => f.pk)) + 1 : 1,
+				"fields": {
+					"answer": e.answers_json[_i].pk,
+					"state": state,
+					"candidate": f[2] ? f[2] : e.candidate_id,
+					"affected_candidate": f[3] ? f[3] : e.candidate_id,
+					"state_multiplier": f[1]
+				}
+			}
+			e.answer_score_state_json.push(state_temp_2)
+		})
+	}
+
+}
+  
+  e.issues_json = [
+    {
+        "model": "campaign_trail.issue",
+        "pk": 27,
+        "fields": {
+            "name": "Reconciliation",
+            "description": "",
+            "stance_1": "Preserving the Union",
+            "stance_desc_1": "",
+            "stance_2": "Reconciliation",
+            "stance_desc_2": "",
+            "stance_3": "Unity through Compromise",
+            "stance_desc_3": "",
+            "stance_4": "Moderate Reunification",
+            "stance_desc_4": "",
+            "stance_5": "Progressive Reunification",
+            "stance_desc_5": "",
+            "stance_6": "Radical Reunification",
+            "stance_desc_6": "",
+            "stance_7": "Radical Reconstruction",
+            "stance_desc_7": "",
+            "election": 9
+        }
+    },
+    {
+        "model": "campaign_trail.issue",
+        "pk": 28,
+        "fields": {
+            "name": "Civil Rights",
+            "description": "",
+            "stance_1": "Opposing Civil Rights",
+            "stance_desc_1": "",
+            "stance_2": "Limited Civil Rights",
+            "stance_desc_2": "",
+            "stance_3": "Gradual Civil Rights",
+            "stance_desc_3": "",
+            "stance_4": "Moderate Equality",
+            "stance_desc_4": "",
+            "stance_5": "Progressive Equality",
+            "stance_desc_5": "",
+            "stance_6": "Radical Equality",
+            "stance_desc_6": "",
+            "stance_7": "Full Civil Rights",
+            "stance_desc_7": "",
+            "election": 9
+        }
+    },
+    {
+        "model": "campaign_trail.issue",
+        "pk": 29,
+        "fields": {
+            "name": "Reconstruction",
+            "description": "",
+            "stance_1": "Limited Reconstruction",
+            "stance_desc_1": "",
+            "stance_2": "Conservative Reconstruction",
+            "stance_desc_2": "",
+            "stance_3": "Gradual Reconstruction",
+            "stance_desc_3": "",
+            "stance_4": "Moderate Rebuilding",
+            "stance_desc_4": "",
+            "stance_5": "Progressive Rebuilding",
+            "stance_desc_5": "",
+            "stance_6": "Radical Rebuilding",
+            "stance_desc_6": "",
+            "stance_7": "Comprehensive Reconstruction",
+            "stance_desc_7": "",
+            "election": 9
+        }
+    },
+    {
+        "model": "campaign_trail.issue",
+        "pk": 30,
+        "fields": {
+            "name": "Tarrifs",
+            "description": "",
+            "stance_1": "Mark of Satan",
+            "stance_desc_1": "",
+            "stance_2": "Viciously Opposed",
+            "stance_desc_2": "",
+            "stance_3": "Dislikes",
+            "stance_desc_3": "",
+            "stance_4": "Moderate",
+            "stance_desc_4": "",
+            "stance_5": "Supportive",
+            "stance_desc_5": "",
+            "stance_6": "High",
+            "stance_desc_6": "",
+            "stance_7": "Autarky",
+            "stance_desc_7": "",
+            "election": 9
+        }
+    }
+]
+
+  // amps global effects
+  
+  //campaignTrail_temp.answer_score_global_json.forEach(f=>f.fields.global_multiplier*=3)
+  
+  // CYOA!!!
+  
+  questionSheath = [
+
+  ]
+  
+  e.cyoa = true;
+  
+  getQuestionFromPk = function (pk) {
+    let index = questionSheath.map((f) => f.pk).indexOf(pk);
+    if (index < 0) {
+      return false;
+    }
+    return questionSheath[index];
+  };
+  
+  cyoAdventure = function (a) {
+    answer = e.player_answers[e.player_answers.length - 1]; // get current answer selection
+  
+    
+  
+  };
+  
+  
+  // counts how many controversial answers a player makes & has an extra function to count different aspects of answers
+  controversyCount = (array, call = a => a.fields.normal) => { // a.fields.normal
+    array = array.filter(a=>a); // fix for debug mode
+    let answers = e.answers_json.map(f=>f.pk);
+    let controversy = 0;
+    for (i in array) {
+        let answer = e.answers_json[answers.indexOf(array[i])];
+        if (!answer) continue;
+        if (!call(answer)) {
+          continue;
+        }
+        controversy++;
+    }
+    return controversy;
+  }
+  
+  // constructs endings based on header and pages
+  
+  construct = (a = 1) => {
+    e.page = e.page + a < e.pages.length ? e.page + a : 0
+    let html = e.header;
+    html += e.pages[e.page] + "<br>";
+    if (e.page > 0) {
+      html += `<button onclick='endingConstructor(a = -1)'>Back</button>`
+    }
+    if (e.page < e.pages.length - 1) {
+      html += `<button onclick='endingConstructor(a = 1)'>Next</button>`
+    }
+  
+    if (e.image == true)
+      setTimeout(()=>{
+        candImg = $(".person_image")[0]
+        if (candImg) {
+          candImg.remove()
+          $("#final_results_description")[0].style = `
+            text-align:center;
+            width: 70%;
+            text-overflow: ellipsis;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          `
+        }
+      }, 10)
+    else if (e.image)
+    setTimeout(()=>{
+        candImg = $(".person_image")[0];
+        if (candImg)
+          candImg.src = e.image;
+      }, 10)
+  
+    return html;
+  }
+  
+  endingConstructor = (a = 1) => {
+    $("#final_results_description")[0].innerHTML = construct(a);
+  }
+  
+  // ENDINGS -- this is slightly more reliable than the ending code method
+  
+  e.multiple_endings = true;
+  
+  e.header = "<h1>Error-Handling Message (oops)</h1>";
+  e.pages = ["<p>This is an error handler</p>", "<p>I dun goof</p>", "<p>Contact me on Discord (DecstarG#4326) or Reddit (u/DecstarG) and we'll see if I can fix up your problem.</p>", "<p>Sorry!</p>"];
+  e.page = 0;
+  
+  endingPicker = (out, totv, aa, quickstats) => {
+    // out = "win", "loss", or "tie" for your candidate
+    // totv = total votes in the entire election
+    // aa = all final overall results data
+    // quickstats = relevant data on candidate performance (format: your candidate's electoral vote count, your candidate's popular vote share, your candidate's raw vote total)
+
+    /*
+    e.header = "<h2></h2>"
+    e.pages = ["<p></p>",
+    "<p></p>"]
+    */
+
+    // NOTE: WINNING ELECTORAL VOTE COUNT IS 177, and the total is 352
+
+    if (out === "win") { // Your candidate won the election
+        if (quickstats[0] > 330) { // Landslide victory; you won >330 EVs
+            e.header = "<h2>Congratulations! You have won the 1868 election in a landslide!</h2>";
+            e.pages = [
+                "<p>As the election results pour in, it becomes evident that your campaign has achieved an overwhelming victory. The nation has responded to your message of unity and progress, giving you a resounding mandate to lead.</p><p>Your victory represents a turning point in American history. The country is at a critical juncture of reconstruction, and your leadership will play a pivotal role in shaping its future.</p>",
+                "<p>You stand as a beacon of hope and change in this new era. The challenges ahead are immense, but you are determined to carry out your promises and fulfill the aspirations of the American people. With a strong electoral mandate, you are ready to confront the deep divisions and work towards healing the wounds of war.</p><p>As the newly elected president, you feel a tremendous sense of responsibility and humility. The nation looks to you for guidance and leadership, and you are committed to delivering on your vision of a united and prosperous America.</p>",
+                "<p>The future holds both great challenges and opportunities. Your administration will focus on implementing comprehensive Reconstruction policies, ensuring the civil rights of all citizens, and fostering economic recovery. By pursuing a path of reconciliation and progress, you aim to forge a nation that is stronger and more inclusive than ever before.</p><p>As you embark on this historic journey, you carry the hopes and dreams of millions of Americans. The task ahead is daunting, but with your determination and the support of the people, you believe in the transformative power of unity and equality.</p>"
+            ];
+            return construct(0);
+        } else { // Victory but not a landslide
+            e.header = "<h2>Congratulations! You have won the 1868 election!</h2>";
+            e.pages = [
+                "<p>The election results are in, and your campaign emerges victorious. It is a moment of triumph and a testament to the power of your message and the support of the American people.</p><p>As the newly elected president, you face significant challenges ahead. The wounds of the Civil War still linger, and the nation is divided. However, your victory represents a ray of hope for unity and progress.</p>",
+                "<p>Your administration will prioritize the task of reconstruction and healing. You are committed to advancing the cause of civil rights and ensuring that every citizen has equal opportunities and protections under the law.</p><p>While your victory may not have been a landslide, it serves as a mandate to bring about meaningful change. The road ahead will require determination, compromise, and the ability to bridge the gaps that divide the nation.</p>",
+                "<p>With the support of the American people, you will strive to create a future where unity triumphs over division and where the promise of the United States is fulfilled for all its citizens. Your presidency marks a pivotal moment in history, and you are prepared to lead the nation towards a brighter and more inclusive tomorrow.</p>"
+            ];
+            return construct(0);
+        }
+    } else if (out === "loss") { // Your candidate lost the election
+        e.header = "<h2>Unfortunately, you did not win the 1868 election.</h2>";
+        e.pages = [
+            "<p>The election results are disheartening as they reveal your opponent's victory. It is a moment of reflection and reassessment for you and your campaign.</p><p>While the outcome may not have aligned with your aspirations, your campaign has left a lasting impact on the political landscape. Your dedication to the principles of equality and justice will resonate with future generations.</p>",
+            "<p>Though you may not hold the highest office, your voice remains vital in shaping the national conversation. The fight for civil rights and equality continues, and you will persist in advocating for those causes that you hold dear.</p><p>The election may be over, but your commitment to a more inclusive and united America endures. Your campaign has planted the seeds of change, and though the road may be long, the fight for progress must go on.</p>",
+            "<p>While this election may not have yielded the desired outcome, it serves as a reminder of the resilience and tenacity required to bring about meaningful change. The struggle for a better future is an ongoing endeavor, and you will persist in your efforts to build a more just society.</p><p>Though your campaign may have come to an end, your dedication to the principles of equality and justice will continue to shape the course of American history.</p>"
+        ];
+        return construct(0);
+    } else { // Tie
+        e.header = "<h2>The 1868 election ends in a tie.</h2>";
+        e.pages = [
+            "<p>The election results are unprecedented as they reveal a deadlock, with neither candidate securing the required number of electoral votes for a clear victory. The nation finds itself in a state of uncertainty and anticipation as the ties between the candidates need to be resolved.</p><p>The future of the country hangs in the balance, and the resolution of this tie will determine the path the United States takes in the coming years.</p>",
+            "<p>As the nation awaits a resolution, both campaigns continue their efforts to rally support and make their case to the American people. The political landscape is filled with negotiations, debates, and the intense scrutiny of every electoral vote.</p><p>The tie has intensified the divisions within the country, but it has also provided an opportunity for dialogue and compromise. The coming days and weeks will shape the future of the United States in ways that are yet to be seen.</p>",
+            "<p>In this moment of uncertainty, the nation looks to its leaders for guidance and resolution. The fate of the 1868 election rests on the decisions and actions of the key stakeholders involved, and the future of the United States hangs in the balance.</p><p>The ties that bind the nation will be tested, and the ultimate resolution will have profound implications for the direction of the country.</p>"
+        ];
+        return construct(0);
+    }
+}
+  
+  changeTheme = (theme) => {
+    if (theme == "dark") {
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#4f4f4f"
+      nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#383838"
+      document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title
+      $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window
+      $(".container")[0].style.backgroundColor = "#111111"
+      document.getElementById("header").src = "https://cdn.discordapp.com/attachments/810034515334004766/1074632981886545961/dark_banner.png"
+      document.body.style.backgroundColor = "black"
+  
+      corrr = ''
+  
+      // text color
+  
+      if (document.getElementById("styler")) document.getElementById("styler").remove();
+  
+      let styler = document.createElement("style")
+      styler.innerHTML = `
+        #final_results_description {
+          color: white;
+        }
+          
+      `
+      styler.id = "styler"
+      document.body.appendChild(styler);
+      return;
+    }
+  
+    return "Unknown theme";
+  }
+  
+  setMusic = (url, override = false) => {
+    let aud;
+    if ($("#music_player")[0]) {
+      $("#music_player")[0].remove();
+    } 
+    if (override && document.getElementById("endingAudio")) {
+      aud = document.getElementById("endingAudio");
+      aud.src = url;
+      aud.play();
+      return 0;
+    }
+    if (document.getElementById("endingAudio")) {
+      return 0;
+    }
+    aud = document.createElement("audio");
+    aud.id = "endingAudio";
+    aud.src = url;
+    aud.loop = true;
+    aud.autoplay = true;
+    document.body.appendChild(aud);
+    aud.play();
+    return 0;
+  }
+  
