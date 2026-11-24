@@ -545,7 +545,7 @@ This is a patched version of the original *1993* mod on NCT, with a new start sc
 ![1993](./images/1993.png)
 
 ## 2000N
-This is a patched version of the original *2000N* mod by DecstarG, with a music player and new design. Codes can be found [here](./mods/2000N_init.js) (Code 1) and here (Code 2), for [Nunn](./mods/2000N_NunnBreaux.js) and [Specter](./mods/2000N_SpecterWeld.js). See example:
+This is a patched version of the original *2000N* mod by DecstarG, with a music player and new design. Codes can be found [here](./mods/restored/2000N_init.js) (Code 1) and here (Code 2), for [Nunn](./mods/restored/2000N_NunnBreaux.js) and [Specter](./mods/restored/2000N_SpecterWeld.js). See example:
 ![2000N](./images/2000N.png)
 
 ## American Nihilism
