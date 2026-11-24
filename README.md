@@ -654,7 +654,7 @@ This is a guide for making CYOA questions, made by Nina. It includes tips and tr
 | **Further Reading Wizard** | A tool to help design the further reading section of mods. | [Open here](https://hunchonautilus.github.io/nct-further-reading-wizard/) |
 
 ## Other useful links
-- [Astrohuncho's New Campaign Trail](https://hxnchohxnch0.github.io/oldnewcampaigntrail/www.americanhistoryusa.com/campaign-trail/index.html), an older but retooled version of New Campaign Trail
+- [Astrohuncho's New Campaign Trail](https://hxnchohxnch0.github.io/oldnewcampaigntrail/www.americanhistoryusa.com/campaign-trail/index.html), an older but retooled version of New Campaign Trail. You may be able to find older mods that are unavailable on both sites there
 - [New Campaign Trail Mod Jam](https://nctmodjam.github.io/campaign-trail/index.html), which hosts mods made for the Mod Jam contests that aren't on either loaders
 
 - [Tips for first-time coders coming from a first-time coder](https://www.reddit.com/r/thecampaigntrail/comments/1q2q1bs/tips_for_firsttime_coders_coming_from_a_firsttime/) by Old_Box_1317
